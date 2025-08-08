@@ -1,0 +1,293 @@
+import { Meta, Canvas, Story, ArgTypes } from "@storybook/addon-docs/blocks";
+import { Button } from "./Button";
+import * as ButtonStories from "./Button.stories";
+
+<Meta of={ButtonStories} />
+
+# Button
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Button)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Primary](#primary)
+- [Secondary](#secondary)
+- [Outline](#outline)
+- [Ghost](#ghost)
+- [Destructive Button](#destructive-button)
+- [With Icons](#with-icons)
+- [Loading State](#loading-state)
+- [Disabled State](#disabled-state)
+- [Full Width](#full-width)
+- [Component API](#component-api)
+    - [Button `variant`](#button-variant)
+    - [Button `size`](#button-size)
+    - [Button `startIcon` and `endIcon`](#button-starticon-and-endicon)
+    - [Button `loading`](#button-loading)
+    - [Button `fullWidth`](#button-fullwidth)
+    - [Button `rounded`](#button-rounded)
+    - [Button `animation`](#button-animation)
+    - [Button `className`](#button-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+Buttons are clickable elements that trigger actions and allow users to interact with the interface. They communicate calls to action clearly and help users navigate through workflows. Our Button component is designed to be flexible, accessible, and production-ready with multiple variants and customization options.
+
+<Canvas of={ButtonStories.Primary} />
+
+## Primary
+
+The primary button is used for the main action on a page or in a section. Use primary buttons sparingly—typically only one per page or modal to avoid confusion about the primary action.
+
+<Canvas of={ButtonStories.Primary} />
+
+## Secondary
+
+Secondary buttons are used for secondary actions that are important but not the primary focus. They work well alongside primary buttons or when you need multiple actions of similar importance.
+
+<Canvas of={ButtonStories.Secondary} />
+
+## Outline
+
+Outline buttons provide a middle ground between secondary and ghost buttons. They're great for actions that need more emphasis than ghost buttons but less than filled buttons.
+
+<Canvas of={ButtonStories.Outline} />
+
+## Ghost
+
+Ghost buttons are subtle and work well for less important actions or in dense interfaces where you need to minimize visual weight.
+
+<Canvas of={ButtonStories.Ghost} />
+
+## Destructive Button
+
+Use destructive buttons for actions that delete, remove, or cause irreversible changes. The red color provides a clear visual cue about the potentially harmful nature of the action.
+
+<Canvas of={ButtonStories.Destructive} />
+
+## With Icons
+
+Icons can enhance button clarity and help users quickly identify actions. Use icons that clearly represent the action being performed.
+
+### Start Icon
+
+<Canvas of={ButtonStories.WithStartIcon} />
+
+### End Icon
+
+<Canvas of={ButtonStories.WithEndIcon} />
+
+## Loading State
+
+The loading state prevents multiple submissions and provides visual feedback during asynchronous operations.
+
+<Canvas of={ButtonStories.Loading} />
+
+## Disabled State
+
+Disabled buttons indicate that an action is temporarily unavailable. The button becomes non-interactive and visually de-emphasized.
+
+<Canvas of={ButtonStories.Disabled} />
+
+## Full Width
+
+Full-width buttons stretch to fill their container width, useful in forms or mobile interfaces where you want the button to be prominent.
+
+<div style={{ width: 320 }}>
+    <Button fullWidth>Full Width Button</Button>
+</div>
+
+## Component API
+
+<ArgTypes of={Button} />
+
+### Button `variant`
+
+The `variant` prop determines the visual style and hierarchy of the button. Choose the appropriate variant based on the action's importance and context.
+
+```jsx
+<Button variant="primary">Primary Action</Button>
+<Button variant="secondary">Secondary Action</Button>
+<Button variant="outline">Outline Action</Button>
+<Button variant="ghost">Subtle Action</Button>
+<Button variant="destructive">Delete Action</Button>
+```
+
+<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+    <Button variant="primary">Primary</Button>
+    <Button variant="secondary">Secondary</Button>
+    <Button variant="outline">Outline</Button>
+    <Button variant="ghost">Ghost</Button>
+    <Button variant="destructive">Destructive</Button>
+</div>
+
+### Button `size`
+
+The `size` prop controls the button's dimensions and text size. Choose sizes based on the interface context and hierarchy needs.
+
+```jsx
+<Button size="xs">Extra Small</Button>
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+<Button size="xl">Extra Large</Button>
+```
+
+<div
+    style={{
+        display: "flex",
+        gap: "8px",
+        alignItems: "center",
+        flexWrap: "wrap",
+    }}
+>
+    <Button size="xs">XS</Button>
+    <Button size="sm">SM</Button>
+    <Button size="md">MD</Button>
+    <Button size="lg">LG</Button>
+    <Button size="xl">XL</Button>
+</div>
+
+### Button `startIcon` and `endIcon`
+
+Icons can be placed at the start or end of button text to enhance meaning and improve usability. Keep icons simple and ensure they clearly represent the action.
+
+```jsx
+<Button startIcon={<PlusIcon />}>Add Item</Button>
+<Button endIcon={<ArrowRightIcon />}>Continue</Button>
+<Button startIcon={<DownloadIcon />} endIcon={<ExternalIcon />}>
+  Download File
+</Button>
+```
+
+<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+    <Button startIcon={<span>+</span>}>Add</Button>
+    <Button endIcon={<span>→</span>}>Continue</Button>
+    <Button startIcon={<span>📁</span>} endIcon={<span>⬇</span>}>
+        Download
+    </Button>
+</div>
+
+### Button `loading`
+
+The `loading` prop shows a spinner and disables the button during asynchronous operations. This prevents duplicate submissions and provides clear feedback.
+
+```jsx
+<Button loading>Processing...</Button>
+<Button loading variant="outline">Saving...</Button>
+```
+
+<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+    <Button loading>Loading</Button>
+    <Button loading variant="outline">
+        Saving
+    </Button>
+</div>
+
+### Button `fullWidth`
+
+The `fullWidth` prop makes the button expand to fill its container's width. Useful in forms, mobile interfaces, or when you want maximum prominence.
+
+```jsx
+<Button fullWidth>Full Width Button</Button>
+<Button fullWidth variant="outline">Full Width Outline</Button>
+```
+
+### Button `rounded`
+
+Control the border radius of buttons to match your design system's aesthetic.
+
+```jsx
+<Button rounded="none">Square</Button>
+<Button rounded="sm">Small Radius</Button>
+<Button rounded="md">Medium Radius</Button>
+<Button rounded="lg">Large Radius</Button>
+<Button rounded="full">Pill Shape</Button>
+```
+
+<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+    <Button rounded="none">Square</Button>
+    <Button rounded="sm">Small</Button>
+    <Button rounded="md">Medium</Button>
+    <Button rounded="lg">Large</Button>
+    <Button rounded="full">Pill</Button>
+</div>
+
+### Button `animation`
+
+Add subtle animation effects to enhance interactivity and provide visual feedback.
+
+```jsx
+<Button animation="none">No Animation</Button>
+<Button animation="scale">Scale on Hover</Button>
+<Button animation="pulse">Pulse Effect</Button>
+<Button animation="bounce">Bounce Effect</Button>
+```
+
+### Button `className`
+
+The `className` prop allows you to add custom styling while preserving the component's built-in styles.
+
+```jsx
+<Button className="custom-spacing">Custom Styled Button</Button>
+```
+
+## Accessibility
+
+Our Button component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper `<button>` elements with correct ARIA attributes
+- **Keyboard Navigation**: Full support for Enter and Space key activation
+- **Screen Reader Support**: Proper labeling with `aria-label`, `aria-disabled`, and `aria-busy`
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Loading States**: Communicated to assistive technologies via `aria-busy`
+- **Disabled States**: Properly communicated via `aria-disabled` and `disabled` attributes
+
+## Best Practices
+
+### Do's
+
+- Use clear, action-oriented labels (e.g., "Save Changes" instead of "OK")
+- Maintain consistent button hierarchy across your interface
+- Place primary actions on the right, secondary on the left
+- Use loading states for operations that take time
+- Provide adequate spacing between buttons (8px minimum)
+- Use icons that enhance clarity, not decoration
+
+### Don'ts
+
+- Don't use more than one primary button per page section
+- Avoid vague labels like "Click Here" or "Submit"
+- Don't make buttons too small (minimum 44px height for touch targets)
+- Avoid using destructive buttons for non-destructive actions
+- Don't rely solely on color to convey meaning
+
+### Button Combinations
+
+```jsx
+// Recommended: Secondary + Primary
+<div style={{ display: 'flex', gap: '8px' }}>
+  <Button variant="secondary">Cancel</Button>
+  <Button variant="primary">Save Changes</Button>
+</div>
+
+// Form actions
+<div style={{ display: 'flex', gap: '8px' }}>
+  <Button variant="ghost">Reset</Button>
+  <Button variant="outline">Save Draft</Button>
+  <Button variant="primary">Publish</Button>
+</div>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

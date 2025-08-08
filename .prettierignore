@@ -1,0 +1,10 @@
+# Build outputs
+.next
+storybook-static
+coverage
+
+# Node
+node_modules
+
+# Misc
+*.log
