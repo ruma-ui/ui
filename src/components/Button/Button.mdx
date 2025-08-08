@@ -1,4 +1,5 @@
 import { Meta, Canvas, Story, ArgTypes } from "@storybook/addon-docs/blocks";
+import { Plus, ArrowRight, Download } from "lucide-react";
 import { Button } from "./Button";
 import * as ButtonStories from "./Button.stories";
 
@@ -169,11 +170,9 @@ Icons can be placed at the start or end of button text to enhance meaning and im
 ```
 
 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-    <Button startIcon={<span>+</span>}>Add</Button>
-    <Button endIcon={<span>→</span>}>Continue</Button>
-    <Button startIcon={<span>📁</span>} endIcon={<span>⬇</span>}>
-        Download
-    </Button>
+    <Button startIcon={<Plus size={16} />}>Add</Button>
+    <Button endIcon={<ArrowRight size={16} />}>Continue</Button>
+    <Button startIcon={<Download size={16} />}>Download</Button>
 </div>
 
 ### Button `loading`

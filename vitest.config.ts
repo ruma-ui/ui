@@ -11,6 +11,19 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
     test: {
+        coverage: {
+            provider: "v8",
+            include: ["src/components/**/*.{ts,tsx}"],
+            exclude: [
+                "**/*.stories.*",
+                "**/*.test.*",
+                "**/__tests__/**",
+                "node_modules/**",
+                ".next/**",
+                "public/**",
+            ],
+            reporter: ["text", "html", "lcov"],
+        },
         projects: [
             {
                 extends: true,

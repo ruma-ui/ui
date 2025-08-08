@@ -30,7 +30,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     /**
      * Make button rounded
      */
-    rounded?: "none" | "sm" | "md" | "lg" | "full";
+    rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
     /**
      * Button animation on interaction
      */
@@ -44,11 +44,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 const base = tw`inline-flex cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-all duration-200 select-none disabled:pointer-events-none disabled:opacity-50`;
 
 const variants = {
-    primary: tw`bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md focus:ring-blue-500`,
-    secondary: tw`border border-gray-300 bg-white text-gray-900 shadow-sm hover:bg-gray-50 hover:shadow-md focus:ring-gray-400`,
-    outline: tw`border border-blue-600 bg-transparent text-blue-600 hover:border-blue-700 hover:bg-blue-50 focus:ring-blue-500`,
-    ghost: tw`bg-transparent text-gray-900 hover:bg-gray-100 focus:ring-gray-400`,
-    destructive: tw`bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md focus:ring-red-500`,
+    primary: tw`bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md`,
+    secondary: tw`border border-gray-300 bg-white text-gray-900 shadow-sm hover:bg-gray-50 hover:shadow-md`,
+    outline: tw`border border-blue-600 bg-transparent text-blue-600 hover:border-blue-700 hover:bg-blue-50`,
+    ghost: tw`bg-transparent text-gray-900 hover:bg-gray-100`,
+    destructive: tw`bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md`,
 };
 
 const sizes = {
@@ -64,6 +64,7 @@ const roundedOptions = {
     sm: tw`rounded-sm`,
     md: tw`rounded-md`,
     lg: tw`rounded-lg`,
+    xl: tw`rounded-xl`,
     full: tw`rounded-full`,
 };
 
@@ -84,7 +85,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             endIcon,
             loading = false,
             fullWidth = false,
-            rounded = "lg",
+            rounded = "xl",
             animation = "none",
             children,
             disabled,
