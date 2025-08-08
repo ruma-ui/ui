@@ -1,5 +1,6 @@
 import React from "react";
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
+import { tw } from "@/utils/tw";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
@@ -60,9 +61,9 @@ const sizes = {
 
 const roundedOptions = {
     none: tw`rounded-none`,
-    sm: tw`rounded-md`,
-    md: tw`rounded-lg`,
-    lg: tw`rounded-xl`,
+    sm: tw`rounded-sm`,
+    md: tw`rounded-md`,
+    lg: tw`rounded-lg`,
     full: tw`rounded-full`,
 };
 
