@@ -45,12 +45,12 @@ const meta: Meta<typeof Button> = {
         },
         animation: {
             control: { type: "radio" },
-            options: ["none", "scale", "fade", "slide", "glow", "lift", "ripple", "press"],
+            options: ["none", "scale", "glow", "lift", "ripple", "press"],
             description: "Animation effect on user interaction",
             defaultValue: "none",
             type: {
                 name: "enum",
-                value: ["none", "scale", "fade", "slide", "glow", "lift", "ripple", "press"],
+                value: ["none", "scale", "glow", "lift", "ripple", "press"],
             },
         },
         loading: {

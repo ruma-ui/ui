@@ -41,14 +41,14 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
      * Animation effect on user interaction
      * @default "none"
      */
-    animation?: "none" | "scale" | "fade" | "slide" | "glow" | "lift" | "ripple" | "press";
+    animation?: "none" | "scale" | "glow" | "lift" | "ripple" | "press";
     /**
      * Button content (text, elements, etc.)
      */
     children: React.ReactNode;
 }
 
-const base = tw`inline-flex cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-all duration-200 select-none disabled:pointer-events-none disabled:opacity-50`;
+const base = tw`relative inline-flex transform-gpu cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-all duration-200 select-none disabled:pointer-events-none disabled:opacity-50`;
 
 const variants = {
     primary: tw`bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md`,
@@ -79,11 +79,9 @@ const roundedOptions = {
 const animations = {
     none: tw``,
     scale: tw`transition-transform duration-150 ease-out hover:scale-105 active:scale-95`,
-    fade: tw`transition-opacity duration-200 ease-out hover:opacity-90`,
-    slide: tw`transition-transform duration-150 ease-out hover:translate-y-[-2px] active:translate-y-0`,
     glow: tw`transition-shadow duration-200 ease-out hover:shadow-lg hover:shadow-blue-500/25`,
-    lift: tw`transition-all duration-150 ease-out hover:translate-y-[-2px] hover:shadow-lg active:translate-y-0`,
-    ripple: tw`before:rounded-inherit relative overflow-hidden before:absolute before:inset-0 before:scale-0 before:bg-white/20 before:transition-transform before:duration-300 before:ease-out hover:before:scale-100`,
+    lift: tw`transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-[2px] hover:shadow-lg active:-translate-y-[1px]`,
+    ripple: tw`overflow-hidden`,
     press: tw`transition-transform duration-75 ease-out active:scale-95`,
 };
 
@@ -106,10 +104,65 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref,
     ) => {
         const isDisabled = disabled || loading;
+        const btnRef = React.useRef<HTMLButtonElement | null>(null);
+        // Combine forwarded ref and local ref
+        React.useImperativeHandle(ref, () => btnRef.current as HTMLButtonElement);
+
+        type Ripple = { id: number; x: number; y: number; size: number };
+        const [ripples, setRipples] = React.useState<Ripple[]>([]);
+
+        const createRipple = (e: { clientX?: number; clientY?: number; type?: string }) => {
+            if (animation !== "ripple" || isDisabled) return;
+            const el = btnRef.current;
+            if (!el) return;
+            const rect = el.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height) * 1.8; // cover fully
+            let x = rect.width / 2;
+            let y = rect.height / 2;
+            if (typeof e.clientX === "number" && typeof e.clientY === "number") {
+                x = e.clientX - rect.left;
+                y = e.clientY - rect.top;
+            }
+            const id = Date.now() + Math.random();
+            setRipples((prev) => [...prev.slice(-3), { id, x, y, size }]);
+            // cleanup after animation
+            window.setTimeout(() => {
+                setRipples((prev) => prev.filter((r) => r.id !== id));
+            }, 500);
+        };
+
+        // Variant-aware ripple opacity (color uses currentColor)
+        const rippleVars = React.useMemo(() => {
+            let opacity = 0.3;
+            if (variant === "primary" || variant === "destructive") opacity = 0.35;
+            else if (variant === "secondary") opacity = 0.25;
+            else if (variant === "outline" || variant === "ghost") opacity = 0.2;
+            return { ["--rui-ripple-opacity" as any]: String(opacity) } as React.CSSProperties;
+        }, [variant]);
+
+        // Compose user-provided handlers
+        const { onPointerDown, onKeyDown, style, ...restProps } =
+            props as React.ButtonHTMLAttributes<HTMLButtonElement>;
+        const handlePointerDown = React.useCallback(
+            (e: React.PointerEvent<HTMLButtonElement>) => {
+                onPointerDown?.(e);
+                createRipple(e);
+            },
+            [onPointerDown, animation, isDisabled],
+        );
+        const handleKeyDown = React.useCallback(
+            (e: React.KeyboardEvent<HTMLButtonElement>) => {
+                onKeyDown?.(e);
+                if (e.key === "Enter" || e.key === " ") {
+                    createRipple({});
+                }
+            },
+            [onKeyDown, animation, isDisabled],
+        );
 
         return (
             <button
-                ref={ref}
+                ref={btnRef}
                 className={cn(
                     base,
                     variants[variant],
@@ -122,8 +175,27 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 disabled={isDisabled}
                 aria-disabled={isDisabled}
                 aria-busy={loading}
-                {...props}
+                onPointerDown={handlePointerDown}
+                onKeyDown={handleKeyDown}
+                style={{ ...style, ...rippleVars }}
+                {...restProps}
             >
+                {animation === "ripple" && !loading && ripples.length > 0 && (
+                    <span aria-hidden className="pointer-events-none absolute inset-0">
+                        {ripples.map((r) => (
+                            <span
+                                key={r.id}
+                                className="rui-ripple"
+                                style={{
+                                    left: r.x,
+                                    top: r.y,
+                                    width: r.size,
+                                    height: r.size,
+                                }}
+                            />
+                        ))}
+                    </span>
+                )}
                 {loading && (
                     <Loader
                         type="spinner"

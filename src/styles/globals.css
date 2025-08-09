@@ -10,3 +10,25 @@
         transform: scaleY(1);
     }
 }
+
+/* Button ripple element */
+.rui-ripple {
+    position: absolute;
+    border-radius: 9999px; /* fully round */
+    transform: translate(-50%, -50%) scale(0);
+    background-color: currentColor;
+    opacity: var(--rui-ripple-opacity, 0.3);
+    pointer-events: none;
+    animation: rui-ripple-expand 500ms ease-out forwards;
+}
+
+@keyframes rui-ripple-expand {
+    from {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: var(--rui-ripple-opacity, 0.3);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
