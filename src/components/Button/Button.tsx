@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
+import { Loader } from "../Loader/Loader";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
@@ -124,35 +125,24 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 {...props}
             >
                 {loading && (
-                    <svg
-                        className={cn(
-                            "animate-spin text-current",
-                            size === "xs" && "h-3 w-3",
-                            size === "sm" && "h-3.5 w-3.5",
-                            size === "md" && "h-4 w-4",
-                            size === "lg" && "h-5 w-5",
-                            size === "xl" && "h-6 w-6",
-                        )}
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                    >
-                        <circle
-                            cx="8"
-                            cy="8"
-                            r="7"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            opacity="0.25"
-                        />
-                        <path
-                            d="M15 8a7 7 0 0 1-7 7"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                        />
-                    </svg>
+                    <Loader
+                        type="spinner"
+                        variant="primary"
+                        color="currentColor"
+                        size={
+                            size === "xs"
+                                ? "xs"
+                                : size === "sm"
+                                  ? "xs"
+                                  : size === "md"
+                                    ? "sm"
+                                    : size === "lg"
+                                      ? "md"
+                                      : "md"
+                        }
+                        speed="normal"
+                        strokeWidth="thick"
+                    />
                 )}
                 {startIcon && !loading && (
                     <span className="flex shrink-0 items-center">{startIcon}</span>
