@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
-import { Plus, ArrowRight, Download } from "lucide-react";
+import { FaPlus, FaArrowRight, FaDownload } from "react-icons/fa";
 import { Button } from "./Button";
 import * as ButtonStories from "./Button.stories";
 
@@ -119,7 +119,7 @@ Full-width buttons stretch to fill their container width, useful in forms or mob
 
 Custom Styling is useful for creating unique button designs that fit your brand or application's aesthetic.
 
-<Canvas of={ButtonStories.WithCustomClassName} />
+<Canvas of={ButtonStories.CustomStyled} />
 
 ## Component API
 
@@ -192,9 +192,9 @@ Icons can be placed at the start or end of button text to enhance meaning and im
 
 <Unstyled>
     <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-        <Button startIcon={<Plus size={16} />}>Add</Button>
-        <Button endIcon={<ArrowRight size={16} />}>Continue</Button>
-        <Button startIcon={<Download size={16} />}>Download</Button>
+        <Button startIcon={<FaPlus size={16} />}>Add</Button>
+        <Button endIcon={<FaArrowRight size={16} />}>Continue</Button>
+        <Button startIcon={<FaDownload size={16} />}>Download</Button>
     </div>
 </Unstyled>
 

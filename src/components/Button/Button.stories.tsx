@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
-import { Link, ArrowRight } from "lucide-react";
+import { FaLink, FaArrowRight } from "react-icons/fa";
 import mdx from "./Button.mdx";
 
 const meta: Meta<typeof Button> = {
@@ -135,7 +135,7 @@ export const WithStartIcon: Story = {
     args: {
         children: "Copy link",
         variant: "outline",
-        startIcon: <Link size={16} />,
+        startIcon: <FaLink size={16} />,
     },
 };
 
@@ -143,7 +143,7 @@ export const WithEndIcon: Story = {
     args: {
         children: "Forward",
         variant: "primary",
-        endIcon: <ArrowRight size={16} />,
+        endIcon: <FaArrowRight size={16} />,
     },
 };
 
@@ -180,7 +180,7 @@ export const AnimationScale: Story = {
     },
 };
 
-export const WithCustomClassName: Story = {
+export const CustomStyled: Story = {
     args: {
         children: "Custom Styled",
         variant: "primary",
