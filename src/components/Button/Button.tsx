@@ -45,9 +45,9 @@ const base = tw`inline-flex cursor-pointer items-center justify-center gap-2 fon
 
 const variants = {
     primary: tw`bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md`,
-    secondary: tw`border border-gray-300 bg-white text-gray-900 shadow-sm hover:bg-gray-50 hover:shadow-md`,
+    secondary: tw`bg-gray-100 text-black shadow-sm outline-1 outline-gray-300 hover:bg-gray-200 hover:shadow-md`,
     outline: tw`border border-blue-600 bg-transparent text-blue-600 hover:border-blue-700 hover:bg-blue-50`,
-    ghost: tw`bg-transparent text-gray-900 hover:bg-gray-100`,
+    ghost: tw`border border-gray-300 bg-transparent text-gray-900 shadow-sm hover:shadow-md`,
     destructive: tw`bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md`,
 };
 
