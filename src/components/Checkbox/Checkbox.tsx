@@ -16,7 +16,7 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     /**
      * Control the border radius of the checkbox
-     * @default "md"
+     * @default "sm"
      */
     rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
     /**
@@ -116,7 +116,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         {
             variant = "primary",
             size = "md",
-            rounded = "md",
+            rounded = "sm",
             color,
             indeterminate = false,
             animation = false,
@@ -439,8 +439,8 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
 
                 <div
                     className={cn(
-                        "flex gap-3",
-                        direction === "horizontal" ? "flex-row flex-wrap" : "flex-col",
+                        "flex",
+                        direction === "horizontal" ? "flex-row flex-wrap gap-6" : "flex-col gap-2",
                     )}
                 >
                     {enableSelectAll && (
@@ -458,8 +458,10 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
 
                     <div
                         className={cn(
-                            "flex gap-3",
-                            direction === "horizontal" ? "flex-row flex-wrap" : "flex-col",
+                            "flex",
+                            direction === "horizontal"
+                                ? "flex-row flex-wrap gap-6"
+                                : "flex-col gap-2",
                             enableSelectAll && "pl-5",
                         )}
                     >
