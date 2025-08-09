@@ -14,12 +14,13 @@ import * as ButtonStories from "./Button.stories";
 ## Table of Contents
 
 - [Overview](#overview)
-- [Primary Variant](#primary-variant)
-- [Secondary Variant](#secondary-variant)
-- [Outline Variant](#outline-variant)
-- [Ghost Variant](#ghost-variant)
-- [Destructive Variant](#destructive-variant)
-- [None Variant](#none-variant)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+    - [Outline Variant](#outline-variant)
+    - [Ghost Variant](#ghost-variant)
+    - [Destructive Variant](#destructive-variant)
+    - [None Variant](#none-variant)
 - [With Icons](#with-icons)
 - [Loading State](#loading-state)
 - [Disabled State](#disabled-state)
@@ -46,37 +47,39 @@ Buttons are clickable elements that trigger actions and allow users to interact 
 
 <Canvas of={ButtonStories.Primary} />
 
-## Primary Variant
+## Variants
+
+### Primary Variant
 
 The primary button is used for the main action on a page or in a section. Use primary buttons sparingly—typically only one per page or modal to avoid confusion about the primary action.
 
 <Canvas of={ButtonStories.Primary} />
 
-## Secondary Variant
+### Secondary Variant
 
 Secondary buttons are used for secondary actions that are important but not the primary focus. They work well alongside primary buttons or when you need multiple actions of similar importance.
 
 <Canvas of={ButtonStories.Secondary} />
 
-## Outline Variant
+### Outline Variant
 
 Outline buttons provide a middle ground between secondary and ghost buttons. They're great for actions that need more emphasis than ghost buttons but less than filled buttons.
 
 <Canvas of={ButtonStories.Outline} />
 
-## Ghost Variant
+### Ghost Variant
 
 Ghost buttons are subtle and work well for less important actions or in dense interfaces where you need to minimize visual weight.
 
 <Canvas of={ButtonStories.Ghost} />
 
-## Destructive Variant
+### Destructive Variant
 
 Use destructive buttons for actions that delete, remove, or cause irreversible changes. The red color provides a clear visual cue about the potentially harmful nature of the action.
 
 <Canvas of={ButtonStories.Destructive} />
 
-## None Variant
+### None Variant
 
 The none variant provides a completely unstyled button that can be customized with your own styles via the `className` prop.
 

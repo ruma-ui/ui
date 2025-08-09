@@ -1,0 +1,364 @@
+import { Meta, Canvas, Story, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Loader } from "./Loader";
+import * as LoaderStories from "./Loader.stories";
+
+<Meta of={LoaderStories} />
+
+# Loader
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Loader)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Primary Variant](#primary-variant)
+- [Secondary Variant](#secondary-variant)
+- [Custom Color](#custom-color)
+- [Loader Types](#loader-types)
+    - [Spinner](#spinner)
+    - [Dots](#dots)
+    - [Pulse](#pulse)
+    - [Wave](#wave)
+    - [Bars](#bars)
+    - [Ring](#ring)
+- [With Label](#with-label)
+- [Sizes](#sizes)
+- [Animation Speed](#animation-speed)
+- [Full Size](#full-size)
+- [Custom Styled](#custom-styled)
+- [Component API](#component-api)
+    - [Loader `variant`](#loader-variant)
+    - [Loader `color`](#loader-color)
+    - [Loader `size`](#loader-size)
+    - [Loader `type`](#loader-type)
+    - [Loader `speed`](#loader-speed)
+    - [Loader `label`](#loader-label)
+    - [Loader `fullSize`](#loader-fullsize)
+    - [Loader `className`](#loader-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+Loaders provide visual feedback to users when content is being processed, fetched, or loaded. They help maintain user engagement during wait times and provide clear indication that the system is working. Our Loader component offers multiple animation types, sizes, and styling options to fit various use cases.
+
+<Canvas of={LoaderStories.Primary} />
+
+## Primary Variant
+
+The primary variant uses the brand's primary color scheme and is the most common loader style.
+
+<Canvas of={LoaderStories.Primary} />
+
+## Secondary Variant
+
+The secondary variant provides a more subtle loading indication with muted colors.
+
+<Canvas of={LoaderStories.Secondary} />
+
+## Custom Color
+
+Use the `color` prop to set any custom color for the loader, giving you complete control over the appearance.
+
+<Canvas of={LoaderStories.CustomColor} />
+
+## Loader Types
+
+### Spinner
+
+The default spinner animation with a rotating circle.
+
+<Canvas of={LoaderStories.Primary} />
+
+### Dots
+
+Bouncing dots animation for a playful loading indicator.
+
+<Canvas of={LoaderStories.Dots} />
+
+### Pulse
+
+Pulsing animation for subtle loading indication.
+
+<Canvas of={LoaderStories.Pulse} />
+
+### Wave
+
+Wave animation with animated bars for dynamic loading indication.
+
+<Canvas of={LoaderStories.Wave} />
+
+### Bars
+
+Bouncing bars animation for compact loading indication.
+
+<Canvas of={LoaderStories.Bars} />
+
+### Ring
+
+Simple ring animation with transparent section.
+
+<Canvas of={LoaderStories.Ring} />
+
+## With Label
+
+Add descriptive text below the loader to provide context about what's loading.
+
+<Canvas of={LoaderStories.WithLabel} />
+
+## Full Size
+
+Make the loader take up the full width and height of its container.
+
+<Canvas of={LoaderStories.FullSize} />
+
+## Custom Styled
+
+Customize the loader appearance with custom classes.
+
+<Canvas of={LoaderStories.CustomStyled} />
+
+## Component API
+
+<ArgTypes of={Loader} />
+
+### Loader `variant`
+
+The `variant` prop determines the visual style of the loader. Choose between primary and secondary variants based on your design needs.
+
+```jsx
+<Loader variant="primary" />
+<Loader variant="secondary" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Loader variant="primary" />
+        <Loader variant="secondary" />
+    </div>
+</Unstyled>
+
+### Loader `color`
+
+The `color` prop allows you to set any custom color for the loader. When used, it overrides the variant color.
+
+```jsx
+<Loader color="#10b981" />
+<Loader color="#f59e0b" />
+<Loader color="#ef4444" />
+<Loader color="#8b5cf6" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Loader color="#10b981" />
+        <Loader color="#f59e0b" />
+        <Loader color="#ef4444" />
+        <Loader color="#8b5cf6" />
+    </div>
+</Unstyled>
+
+### Loader `size`
+
+The `size` prop controls the loader's dimensions. Choose sizes based on the interface context and visual hierarchy needs.
+
+```jsx
+<Loader size="xs" />
+<Loader size="sm" />
+<Loader size="md" />
+<Loader size="lg" />
+<Loader size="xl" />
+```
+
+<Unstyled>
+    <div
+        style={{
+            display: "flex",
+            gap: "8px",
+            alignItems: "center",
+            flexWrap: "wrap",
+        }}
+    >
+        <Loader size="xs" />
+        <Loader size="sm" />
+        <Loader size="md" />
+        <Loader size="lg" />
+        <Loader size="xl" />
+    </div>
+</Unstyled>
+
+### Loader `type`
+
+The `type` prop determines the animation style of the loader. Each type provides different visual feedback for various loading contexts.
+
+```jsx
+<Loader type="spinner" />
+<Loader type="dots" />
+<Loader type="pulse" />
+<Loader type="wave" />
+<Loader type="bars" />
+<Loader type="ring" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
+        <Loader type="spinner" />
+        <Loader type="dots" />
+        <Loader type="pulse" />
+        <Loader type="wave" />
+        <Loader type="bars" />
+        <Loader type="ring" />
+    </div>
+</Unstyled>
+
+### Loader `speed`
+
+The `speed` prop controls the animation speed of the loader. Match the speed to the expected duration of the loading operation.
+
+```jsx
+<Loader speed="slow" />
+<Loader speed="normal" />
+<Loader speed="fast" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Loader speed="slow" />
+        <Loader speed="normal" />
+        <Loader speed="fast" />
+    </div>
+</Unstyled>
+
+### Loader `label`
+
+The `label` prop adds descriptive text below the loader to provide context about what's being loaded.
+
+```jsx
+<Loader label="Loading content..." />
+<Loader label="Processing request..." />
+<Loader label="Uploading files..." />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Loader label="Loading content..." />
+        <Loader label="Processing..." />
+        <Loader label="Uploading..." />
+    </div>
+</Unstyled>
+
+### Loader `fullSize`
+
+The `fullSize` prop makes the loader expand to fill its container's width and height. Useful for overlay loading states or full-page loaders.
+
+```jsx
+<Loader fullSize />
+<Loader fullSize label="Loading page..." />
+```
+
+<Unstyled>
+    <div
+        style={{
+            width: "100%",
+            maxWidth: "100%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+        }}
+    >
+        <div
+            style={{
+                height: "100px",
+                border: "1px dashed #ccc",
+                borderRadius: "8px",
+                position: "relative",
+            }}
+        >
+            <Loader fullSize />
+        </div>
+        <div
+            style={{
+                height: "100px",
+                border: "1px dashed #ccc",
+                borderRadius: "8px",
+                position: "relative",
+            }}
+        >
+            <Loader fullSize label="Loading page..." />
+        </div>
+    </div>
+</Unstyled>
+
+### Loader `className`
+
+The `className` prop allows you to add custom styling while preserving the component's built-in styles. This is useful for adding custom colors, spacing, or other design elements.
+
+```jsx
+<Loader className="rounded-lg bg-purple-50 p-4 text-purple-600" label="Custom Styled" />
+<Loader className="border-2 border-dashed border-orange-400 bg-orange-50 text-orange-600" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px" }}>
+        <Loader className="rounded-lg bg-purple-50 p-4 text-purple-600" label="Custom Styled" />
+        <Loader className="border-2 border-dashed border-orange-400 bg-orange-50 text-orange-600" />
+    </div>
+</Unstyled>
+
+## Accessibility
+
+Our Loader component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper `role="status"` to indicate loading state to assistive technologies
+- **ARIA Support**: Provides appropriate `aria-label` and `aria-live` attributes for screen readers
+- **Visual Indicators**: Uses animation and color to convey loading state visually
+- **Motion Preferences**: Respects user's motion preferences with `prefers-reduced-motion`
+- **Screen Reader Friendly**: Announces loading states and completion to assistive technologies
+- **Color Accessibility**: Ensures sufficient contrast ratios across all variants
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive labels (e.g., "Loading content..." instead of just "Loading")
+- Use the `color` prop for brand-specific colors or custom theming
+- Choose appropriate animation speeds for expected load times
+- Provide context about what's being loaded when possible
+- Use consistent loader types throughout your application
+- Consider using skeleton screens for longer loading times
+
+### Don'ts ❌
+
+- Don't use loaders for operations that complete in under 200ms
+- Avoid overusing animated loaders in dense interfaces
+- Don't rely solely on animation to convey loading state
+- Don't make loaders too small to be noticed (minimum 16px recommended)
+- Don't use multiple different loader types in the same interface
+- Avoid using overly bright or distracting colors for loaders
+
+### Loader Combinations
+
+```jsx
+// Quick operations (< 1 second)
+<Loader size="sm" type="spinner" />
+
+// Medium operations (1-5 seconds)
+<Loader size="md" type="dots" label="Processing..." />
+
+// Long operations (> 5 seconds)
+<Loader size="lg" type="wave" label="This may take a moment..." />
+
+// Custom branded loaders
+<Loader color="#10b981" type="spinner" label="Success loading..." />
+<Loader color="#f59e0b" type="pulse" label="Warning state..." />
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

@@ -5,38 +5,44 @@ import { tw } from "@/utils/tw";
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
      * The visual style of the button
+     * @default "primary"
      */
     variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive" | "none";
     /**
      * The size of the button
+     * @default "md"
      */
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     /**
-     * Optional left icon
+     * Optional left icon - accepts any React element
      */
     startIcon?: React.ReactNode;
     /**
-     * Optional right icon
+     * Optional right icon - accepts any React element
      */
     endIcon?: React.ReactNode;
     /**
-     * Show a loading spinner
+     * Show a loading spinner and disable the button
+     * @default false
      */
     loading?: boolean;
     /**
-     * Make button take full width
+     * Make button take full width of its container
+     * @default false
      */
     fullWidth?: boolean;
     /**
-     * Make button rounded
+     * Control the border radius of the button
+     * @default "xl"
      */
     rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
     /**
-     * Button animation on interaction
+     * Animation effect on user interaction
+     * @default "none"
      */
     animation?: "none" | "scale" | "fade" | "slide" | "glow" | "lift" | "ripple" | "press";
     /**
-     * Children (button label)
+     * Button content (text, elements, etc.)
      */
     children: React.ReactNode;
 }
