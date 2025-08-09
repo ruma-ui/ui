@@ -16,25 +16,73 @@ const meta: Meta<typeof Button> = {
         variant: {
             control: { type: "radio" },
             options: ["primary", "secondary", "outline", "ghost", "destructive", "none"],
+            description: "The visual style of the button",
+            defaultValue: "primary",
+            type: {
+                name: "enum",
+                value: ["primary", "secondary", "outline", "ghost", "destructive", "none"],
+            },
         },
         size: {
             control: { type: "radio" },
             options: ["xs", "sm", "md", "lg", "xl"],
+            description: "The size of the button",
+            defaultValue: "md",
+            type: {
+                name: "enum",
+                value: ["xs", "sm", "md", "lg", "xl"],
+            },
         },
         rounded: {
             control: { type: "radio" },
             options: ["none", "sm", "md", "lg", "full"],
+            description: "Control the border radius of the button",
+            defaultValue: "xl",
+            type: {
+                name: "enum",
+                value: ["none", "sm", "md", "lg", "full"],
+            },
         },
         animation: {
             control: { type: "radio" },
             options: ["none", "scale", "fade", "slide", "glow", "lift", "ripple", "press"],
+            description: "Animation effect on user interaction",
+            defaultValue: "none",
+            type: {
+                name: "enum",
+                value: ["none", "scale", "fade", "slide", "glow", "lift", "ripple", "press"],
+            },
         },
-        loading: { control: "boolean" },
-        fullWidth: { control: "boolean" },
-        disabled: { control: "boolean" },
-        startIcon: { control: false },
-        endIcon: { control: false },
+        loading: {
+            control: "boolean",
+            description: "Show a loading spinner and disable the button",
+            defaultValue: false,
+            type: { name: "boolean" },
+        },
+        fullWidth: {
+            control: "boolean",
+            description: "Make button take full width of its container",
+            defaultValue: false,
+            type: { name: "boolean" },
+        },
+        disabled: {
+            control: "boolean",
+            description: "Disable the button",
+            type: { name: "boolean" },
+        },
+        startIcon: {
+            control: false,
+            description: "Optional left icon - accepts any React element",
+        },
+        endIcon: {
+            control: false,
+            description: "Optional right icon - accepts any React element",
+        },
         onClick: { action: "clicked" },
+        children: {
+            description: "Button content (text, elements, etc.)",
+            control: { type: "text" },
+        },
     },
 };
 

@@ -111,6 +111,73 @@ describe("Loader", () => {
         expect(loader.querySelector("svg")).toHaveClass("animate-[spin_2s_linear_infinite]");
     });
 
+    it("applies different stroke widths for spinner type", () => {
+        const { rerender } = render(<Loader type="spinner" strokeWidth="thin" size="md" />);
+        let loader = screen.getByRole("status");
+        let svg = loader.querySelector("svg");
+        let circle = svg?.querySelector("circle");
+        let path = svg?.querySelector("path");
+        expect(circle).toHaveAttribute("stroke-width", "2");
+        expect(path).toHaveAttribute("stroke-width", "2");
+
+        rerender(<Loader type="spinner" strokeWidth="normal" size="md" />);
+        loader = screen.getByRole("status");
+        svg = loader.querySelector("svg");
+        circle = svg?.querySelector("circle");
+        path = svg?.querySelector("path");
+        expect(circle).toHaveAttribute("stroke-width", "2.5");
+        expect(path).toHaveAttribute("stroke-width", "2.5");
+
+        rerender(<Loader type="spinner" strokeWidth="thick" size="md" />);
+        loader = screen.getByRole("status");
+        svg = loader.querySelector("svg");
+        circle = svg?.querySelector("circle");
+        path = svg?.querySelector("path");
+        expect(circle).toHaveAttribute("stroke-width", "3.5");
+        expect(path).toHaveAttribute("stroke-width", "3.5");
+    });
+
+    it("applies different stroke widths for ring type", () => {
+        const { rerender } = render(<Loader type="ring" strokeWidth="thin" size="md" />);
+        let loader = screen.getByRole("status");
+        let ringElement = loader.querySelector("div:not([role])");
+        expect(ringElement).toHaveClass("border-2");
+
+        rerender(<Loader type="ring" strokeWidth="normal" size="md" />);
+        loader = screen.getByRole("status");
+        ringElement = loader.querySelector("div:not([role])");
+        expect(ringElement).toHaveClass("border-[2.5px]");
+
+        rerender(<Loader type="ring" strokeWidth="thick" size="md" />);
+        loader = screen.getByRole("status");
+        ringElement = loader.querySelector("div:not([role])");
+        expect(ringElement).toHaveClass("border-[3.5px]");
+    });
+
+    it("stroke width defaults to normal when not specified", () => {
+        render(<Loader type="spinner" size="md" />);
+        const loader = screen.getByRole("status");
+        const svg = loader.querySelector("svg");
+        const circle = svg?.querySelector("circle");
+        const path = svg?.querySelector("path");
+        expect(circle).toHaveAttribute("stroke-width", "2.5");
+        expect(path).toHaveAttribute("stroke-width", "2.5");
+    });
+
+    it("stroke width varies by size for same stroke width setting", () => {
+        const { rerender } = render(<Loader type="spinner" strokeWidth="normal" size="xs" />);
+        let loader = screen.getByRole("status");
+        let svg = loader.querySelector("svg");
+        let circle = svg?.querySelector("circle");
+        expect(circle).toHaveAttribute("stroke-width", "2");
+
+        rerender(<Loader type="spinner" strokeWidth="normal" size="xl" />);
+        loader = screen.getByRole("status");
+        svg = loader.querySelector("svg");
+        circle = svg?.querySelector("circle");
+        expect(circle).toHaveAttribute("stroke-width", "3.5");
+    });
+
     it("forwards ref correctly", () => {
         const ref = { current: null };
         render(<Loader ref={ref} />);

@@ -34,6 +34,7 @@ import * as LoaderStories from "./Loader.stories";
     - [Loader `size`](#loader-size)
     - [Loader `type`](#loader-type)
     - [Loader `speed`](#loader-speed)
+    - [Loader `strokeWidth`](#loader-strokewidth)
     - [Loader `label`](#loader-label)
     - [Loader `fullSize`](#loader-fullsize)
     - [Loader `className`](#loader-classname)
@@ -234,6 +235,42 @@ The `speed` prop controls the animation speed of the loader. Match the speed to 
     </div>
 </Unstyled>
 
+### Loader `strokeWidth`
+
+The `strokeWidth` prop controls the thickness of the stroke for spinner and ring loader types. This allows you to fine-tune the visual weight of these loaders independently from their size.
+
+```jsx
+<Loader type="spinner" strokeWidth="thin" />
+<Loader type="spinner" strokeWidth="normal" />
+<Loader type="spinner" strokeWidth="thick" />
+<Loader type="ring" strokeWidth="thin" />
+<Loader type="ring" strokeWidth="normal" />
+<Loader type="ring" strokeWidth="thick" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
+            <span style={{ fontSize: "12px", color: "#666" }}>Spinner</span>
+            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                <Loader type="spinner" strokeWidth="thin" />
+                <Loader type="spinner" strokeWidth="normal" />
+                <Loader type="spinner" strokeWidth="thick" />
+            </div>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
+            <span style={{ fontSize: "12px", color: "#666" }}>Ring</span>
+            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                <Loader type="ring" strokeWidth="thin" />
+                <Loader type="ring" strokeWidth="normal" />
+                <Loader type="ring" strokeWidth="thick" />
+            </div>
+        </div>
+    </div>
+</Unstyled>
+
+**Note:** The `strokeWidth` prop only affects `spinner` and `ring` loader types. Other loader types (dots, pulse, wave, bars) ignore this prop as they don't use strokes.
+
 ### Loader `label`
 
 The `label` prop adds descriptive text below the loader to provide context about what's being loaded.
@@ -328,6 +365,7 @@ Our Loader component follows accessibility best practices:
 - Use clear, descriptive labels (e.g., "Loading content..." instead of just "Loading")
 - Use the `color` prop for brand-specific colors or custom theming
 - Choose appropriate animation speeds for expected load times
+- Use `strokeWidth` to fine-tune the visual weight of spinner and ring loaders
 - Provide context about what's being loaded when possible
 - Use consistent loader types throughout your application
 - Consider using skeleton screens for longer loading times
@@ -345,7 +383,7 @@ Our Loader component follows accessibility best practices:
 
 ```jsx
 // Quick operations (< 1 second)
-<Loader size="sm" type="spinner" />
+<Loader size="sm" type="spinner" strokeWidth="thin" />
 
 // Medium operations (1-5 seconds)
 <Loader size="md" type="dots" label="Processing..." />
@@ -354,8 +392,12 @@ Our Loader component follows accessibility best practices:
 <Loader size="lg" type="wave" label="This may take a moment..." />
 
 // Custom branded loaders
-<Loader color="#10b981" type="spinner" label="Success loading..." />
+<Loader color="#10b981" type="spinner" strokeWidth="normal" label="Success loading..." />
 <Loader color="#f59e0b" type="pulse" label="Warning state..." />
+
+// Stroke width variations for different contexts
+<Loader type="spinner" strokeWidth="thin" size="lg" label="Subtle loading..." />
+<Loader type="ring" strokeWidth="thick" size="sm" label="Bold loading..." />
 ```
 
 ## Feedback

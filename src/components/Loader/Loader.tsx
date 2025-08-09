@@ -36,6 +36,11 @@ export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
      * @default "normal"
      */
     speed?: "slow" | "normal" | "fast";
+    /**
+     * Controls the stroke width for spinner and ring loaders
+     * @default "normal"
+     */
+    strokeWidth?: "thin" | "normal" | "thick";
 }
 
 const base = tw`inline-flex items-center justify-center`;
@@ -60,20 +65,46 @@ const speeds = {
 };
 
 const spinnerSizes = {
-    xs: { strokeWidth: 2, size: 16 },
-    sm: { strokeWidth: 2, size: 24 },
-    md: { strokeWidth: 2.5, size: 32 },
-    lg: { strokeWidth: 3, size: 48 },
-    xl: { strokeWidth: 3.5, size: 64 },
+    xs: { size: 16 },
+    sm: { size: 24 },
+    md: { size: 32 },
+    lg: { size: 48 },
+    xl: { size: 64 },
+};
+
+const strokeWidths = {
+    thin: {
+        xs: 1.5,
+        sm: 1.5,
+        md: 2,
+        lg: 2.5,
+        xl: 3,
+    },
+    normal: {
+        xs: 2,
+        sm: 2,
+        md: 2.5,
+        lg: 3,
+        xl: 3.5,
+    },
+    thick: {
+        xs: 2.5,
+        sm: 3,
+        md: 3.5,
+        lg: 4,
+        xl: 5,
+    },
 };
 
 const renderSpinner = (
     size: keyof typeof sizes,
     variant: keyof typeof variants,
     speed: keyof typeof speeds,
+    strokeWidth: keyof typeof strokeWidths,
 ) => {
-    const { strokeWidth, size: svgSize } = spinnerSizes[size];
-    const radius = svgSize / 2 - strokeWidth;
+    const { size: svgSize } = spinnerSizes[size];
+    const strokeWidthValue = strokeWidths[strokeWidth][size];
+    const radius = svgSize / 2 - strokeWidthValue;
     const center = svgSize / 2;
 
     return (
@@ -89,13 +120,13 @@ const renderSpinner = (
                 cy={center}
                 r={radius}
                 stroke="currentColor"
-                strokeWidth={strokeWidth}
+                strokeWidth={strokeWidthValue}
                 opacity="0.25"
             />
             <path
-                d={`M ${center} ${strokeWidth} A ${radius} ${radius} 0 0 1 ${center + radius} ${center}`}
+                d={`M ${center} ${strokeWidthValue} A ${radius} ${radius} 0 0 1 ${center + radius} ${center}`}
                 stroke="currentColor"
-                strokeWidth={strokeWidth}
+                strokeWidth={strokeWidthValue}
                 strokeLinecap="round"
             />
         </svg>
@@ -263,13 +294,30 @@ const renderRing = (
     size: keyof typeof sizes,
     variant: keyof typeof variants,
     speed: keyof typeof speeds,
+    strokeWidth: keyof typeof strokeWidths,
 ) => {
-    const borderWidth = {
-        xs: "border-2",
-        sm: "border-2",
-        md: "border-[2.5px]",
-        lg: "border-[3px]",
-        xl: "border-[3.5px]",
+    const borderWidthClasses = {
+        thin: {
+            xs: "border-[1.5px]",
+            sm: "border-[1.5px]",
+            md: "border-2",
+            lg: "border-[2.5px]",
+            xl: "border-[3px]",
+        },
+        normal: {
+            xs: "border-2",
+            sm: "border-2",
+            md: "border-[2.5px]",
+            lg: "border-[3px]",
+            xl: "border-[3.5px]",
+        },
+        thick: {
+            xs: "border-[2.5px]",
+            sm: "border-[3px]",
+            md: "border-[3.5px]",
+            lg: "border-4",
+            xl: "border-[5px]",
+        },
     };
 
     return (
@@ -277,7 +325,7 @@ const renderRing = (
             className={cn(
                 sizes[size],
                 "rounded-full border-current border-t-transparent",
-                borderWidth[size],
+                borderWidthClasses[strokeWidth][size],
                 speeds[speed],
             )}
         />
@@ -295,6 +343,7 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
             label,
             fullSize = false,
             speed = "normal",
+            strokeWidth = "normal",
             ...props
         },
         ref,
@@ -302,7 +351,7 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
         const renderLoader = () => {
             switch (type) {
                 case "spinner":
-                    return renderSpinner(size, variant, speed);
+                    return renderSpinner(size, variant, speed, strokeWidth);
                 case "dots":
                     return renderDots(size, variant, speed);
                 case "pulse":
@@ -312,9 +361,9 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
                 case "bars":
                     return renderBars(size, variant, speed);
                 case "ring":
-                    return renderRing(size, variant, speed);
+                    return renderRing(size, variant, speed, strokeWidth);
                 default:
-                    return renderSpinner(size, variant, speed);
+                    return renderSpinner(size, variant, speed, strokeWidth);
             }
         };
 

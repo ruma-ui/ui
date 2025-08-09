@@ -15,24 +15,69 @@ const meta: Meta<typeof Loader> = {
         variant: {
             control: { type: "radio" },
             options: ["primary", "secondary"],
+            description: "The visual style of the loader",
+            defaultValue: "primary",
+            type: {
+                name: "enum",
+                value: ["primary", "secondary"],
+            },
         },
         color: {
             control: { type: "color" },
+            description: "Custom color for the loader (overrides variant)",
+            type: { name: "string" },
         },
         size: {
             control: { type: "radio" },
             options: ["xs", "sm", "md", "lg", "xl"],
+            description: "The size of the loader",
+            defaultValue: "md",
+            type: {
+                name: "enum",
+                value: ["xs", "sm", "md", "lg", "xl"],
+            },
         },
         type: {
             control: { type: "radio" },
             options: ["spinner", "dots", "pulse", "wave", "bars", "ring"],
+            description: "The type of loader animation",
+            defaultValue: "spinner",
+            type: {
+                name: "enum",
+                value: ["spinner", "dots", "pulse", "wave", "bars", "ring"],
+            },
         },
         speed: {
             control: { type: "radio" },
             options: ["slow", "normal", "fast"],
+            description: "Animation speed of the loader",
+            defaultValue: "normal",
+            type: {
+                name: "enum",
+                value: ["slow", "normal", "fast"],
+            },
         },
-        fullSize: { control: "boolean" },
-        label: { control: "text" },
+        fullSize: {
+            control: "boolean",
+            description: "Make loader take full width and height of its container",
+            defaultValue: false,
+            type: { name: "boolean" },
+        },
+        label: {
+            control: "text",
+            description: "Optional text label displayed below the loader",
+            type: { name: "string" },
+        },
+        strokeWidth: {
+            control: { type: "radio" },
+            options: ["thin", "normal", "thick"],
+            description: "Controls the stroke width for spinner and ring loaders",
+            defaultValue: "normal",
+            type: {
+                name: "enum",
+                value: ["thin", "normal", "thick"],
+            },
+        },
     },
 };
 
