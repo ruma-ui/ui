@@ -189,6 +189,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                         // ensure the box itself aligns perfectly in the label row
                         "self-center",
                         variants[variant],
+                        color && `hover:border-[${color}]`,
                         error && "border-red-500 focus-within:ring-red-500",
                         isChecked &&
                             !color &&

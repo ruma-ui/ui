@@ -164,6 +164,7 @@ export const WithError: Story = {
         label: "Checkbox with error",
         error: true,
         errorMessage: "You must accept the terms to continue.",
+        color: "#ff0000",
     },
 };
 
@@ -195,7 +196,6 @@ export const BasicGroup: CheckboxGroupStory = {
                 { value: "technology", label: "Technology" },
                 { value: "art", label: "Art" },
             ]}
-            onChange={(value) => console.log("Selected:", value)}
         />
     ),
 };
@@ -212,7 +212,6 @@ export const WithSelectAll: CheckboxGroupStory = {
                 { value: "marketing", label: "Marketing emails" },
                 { value: "updates", label: "Product updates" },
             ]}
-            onChange={(value) => console.log("Selected:", value)}
         />
     ),
 };
@@ -227,7 +226,6 @@ export const HorizontalGroup: CheckboxGroupStory = {
                 { value: "medium", label: "Medium" },
                 { value: "large", label: "Large" },
             ]}
-            onChange={(value) => console.log("Selected:", value)}
         />
     ),
 };
