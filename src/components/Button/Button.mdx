@@ -1,4 +1,4 @@
-import { Meta, Canvas, Story, ArgTypes } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Story, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
 import { Plus, ArrowRight, Download } from "lucide-react";
 import { Button } from "./Button";
 import * as ButtonStories from "./Button.stories";
@@ -14,15 +14,17 @@ import * as ButtonStories from "./Button.stories";
 ## Table of Contents
 
 - [Overview](#overview)
-- [Primary](#primary)
-- [Secondary](#secondary)
-- [Outline](#outline)
-- [Ghost](#ghost)
-- [Destructive Button](#destructive-button)
+- [Primary Variant](#primary-variant)
+- [Secondary Variant](#secondary-variant)
+- [Outline Variant](#outline-variant)
+- [Ghost Variant](#ghost-variant)
+- [Destructive Variant](#destructive-variant)
+- [None Variant](#none-variant)
 - [With Icons](#with-icons)
 - [Loading State](#loading-state)
 - [Disabled State](#disabled-state)
 - [Full Width](#full-width)
+- [Custom Styled](#custom-styled)
 - [Component API](#component-api)
     - [Button `variant`](#button-variant)
     - [Button `size`](#button-size)
@@ -44,35 +46,41 @@ Buttons are clickable elements that trigger actions and allow users to interact 
 
 <Canvas of={ButtonStories.Primary} />
 
-## Primary
+## Primary Variant
 
 The primary button is used for the main action on a page or in a section. Use primary buttons sparingly—typically only one per page or modal to avoid confusion about the primary action.
 
 <Canvas of={ButtonStories.Primary} />
 
-## Secondary
+## Secondary Variant
 
 Secondary buttons are used for secondary actions that are important but not the primary focus. They work well alongside primary buttons or when you need multiple actions of similar importance.
 
 <Canvas of={ButtonStories.Secondary} />
 
-## Outline
+## Outline Variant
 
 Outline buttons provide a middle ground between secondary and ghost buttons. They're great for actions that need more emphasis than ghost buttons but less than filled buttons.
 
 <Canvas of={ButtonStories.Outline} />
 
-## Ghost
+## Ghost Variant
 
 Ghost buttons are subtle and work well for less important actions or in dense interfaces where you need to minimize visual weight.
 
 <Canvas of={ButtonStories.Ghost} />
 
-## Destructive Button
+## Destructive Variant
 
 Use destructive buttons for actions that delete, remove, or cause irreversible changes. The red color provides a clear visual cue about the potentially harmful nature of the action.
 
 <Canvas of={ButtonStories.Destructive} />
+
+## None Variant
+
+The none variant provides a completely unstyled button that can be customized with your own styles via the `className` prop.
+
+<Canvas of={ButtonStories.None} />
 
 ## With Icons
 
@@ -102,9 +110,13 @@ Disabled buttons indicate that an action is temporarily unavailable. The button 
 
 Full-width buttons stretch to fill their container width, useful in forms or mobile interfaces where you want the button to be prominent.
 
-<div style={{ width: 320 }}>
-    <Button fullWidth>Full Width Button</Button>
-</div>
+<Canvas of={ButtonStories.FullWidthPrimary} />
+
+## Custom Styled
+
+Custom Styling is useful for creating unique button designs that fit your brand or application's aesthetic.
+
+<Canvas of={ButtonStories.WithCustomClassName} />
 
 ## Component API
 
@@ -120,15 +132,19 @@ The `variant` prop determines the visual style and hierarchy of the button. Choo
 <Button variant="outline">Outline Action</Button>
 <Button variant="ghost">Subtle Action</Button>
 <Button variant="destructive">Delete Action</Button>
+<Button variant="none">Unstyled Button</Button>
 ```
 
-<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-    <Button variant="primary">Primary</Button>
-    <Button variant="secondary">Secondary</Button>
-    <Button variant="outline">Outline</Button>
-    <Button variant="ghost">Ghost</Button>
-    <Button variant="destructive">Destructive</Button>
-</div>
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="destructive">Destructive</Button>
+        <Button variant="none">None</Button>
+    </div>
+</Unstyled>
 
 ### Button `size`
 
@@ -142,20 +158,22 @@ The `size` prop controls the button's dimensions and text size. Choose sizes bas
 <Button size="xl">Extra Large</Button>
 ```
 
-<div
-    style={{
-        display: "flex",
-        gap: "8px",
-        alignItems: "center",
-        flexWrap: "wrap",
-    }}
->
-    <Button size="xs">XS</Button>
-    <Button size="sm">SM</Button>
-    <Button size="md">MD</Button>
-    <Button size="lg">LG</Button>
-    <Button size="xl">XL</Button>
-</div>
+<Unstyled>
+    <div
+        style={{
+            display: "flex",
+            gap: "8px",
+            alignItems: "center",
+            flexWrap: "wrap",
+        }}
+    >
+        <Button size="xs">XS</Button>
+        <Button size="sm">SM</Button>
+        <Button size="md">MD</Button>
+        <Button size="lg">LG</Button>
+        <Button size="xl">XL</Button>
+    </div>
+</Unstyled>
 
 ### Button `startIcon` and `endIcon`
 
@@ -169,11 +187,13 @@ Icons can be placed at the start or end of button text to enhance meaning and im
 </Button>
 ```
 
-<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-    <Button startIcon={<Plus size={16} />}>Add</Button>
-    <Button endIcon={<ArrowRight size={16} />}>Continue</Button>
-    <Button startIcon={<Download size={16} />}>Download</Button>
-</div>
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Button startIcon={<Plus size={16} />}>Add</Button>
+        <Button endIcon={<ArrowRight size={16} />}>Continue</Button>
+        <Button startIcon={<Download size={16} />}>Download</Button>
+    </div>
+</Unstyled>
 
 ### Button `loading`
 
@@ -184,12 +204,14 @@ The `loading` prop shows a spinner and disables the button during asynchronous o
 <Button loading variant="outline">Saving...</Button>
 ```
 
-<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-    <Button loading>Loading</Button>
-    <Button loading variant="outline">
-        Saving
-    </Button>
-</div>
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Button loading>Loading</Button>
+        <Button loading variant="outline">
+            Saving
+        </Button>
+    </div>
+</Unstyled>
 
 ### Button `fullWidth`
 
@@ -199,6 +221,23 @@ The `fullWidth` prop makes the button expand to fill its container's width. Usef
 <Button fullWidth>Full Width Button</Button>
 <Button fullWidth variant="outline">Full Width Outline</Button>
 ```
+
+<Unstyled>
+    <div
+        style={{
+            width: "100%",
+            maxWidth: "100%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+        }}
+    >
+        <Button fullWidth>Full Width Button</Button>
+        <Button fullWidth variant="outline">
+            Full Width Outline
+        </Button>
+    </div>
+</Unstyled>
 
 ### Button `rounded`
 
@@ -212,32 +251,89 @@ Control the border radius of buttons to match your design system's aesthetic.
 <Button rounded="full">Pill Shape</Button>
 ```
 
-<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-    <Button rounded="none">Square</Button>
-    <Button rounded="sm">Small</Button>
-    <Button rounded="md">Medium</Button>
-    <Button rounded="lg">Large</Button>
-    <Button rounded="full">Pill</Button>
-</div>
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Button rounded="none">Square</Button>
+        <Button rounded="sm">Small</Button>
+        <Button rounded="md">Medium</Button>
+        <Button rounded="lg">Large</Button>
+        <Button rounded="full">Pill</Button>
+    </div>
+</Unstyled>
 
 ### Button `animation`
 
-Add subtle animation effects to enhance interactivity and provide visual feedback.
+Add subtle animation effects to enhance user interactions and provide visual feedback. These animations are designed to improve usability and user experience.
 
 ```jsx
 <Button animation="none">No Animation</Button>
 <Button animation="scale">Scale on Hover</Button>
-<Button animation="pulse">Pulse Effect</Button>
-<Button animation="bounce">Bounce Effect</Button>
+<Button animation="fade">Fade on Hover</Button>
+<Button animation="slide">Slide Up on Hover</Button>
+<Button animation="glow">Glow Effect</Button>
+<Button animation="lift">Lift with Shadow</Button>
+<Button animation="ripple">Ripple Effect</Button>
+<Button animation="press">Press Animation</Button>
 ```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px" }}>
+        <Button animation="none" variant="outline">
+            None
+        </Button>
+        <Button animation="scale">Scale</Button>
+        <Button animation="fade" variant="secondary">
+            Fade
+        </Button>
+        <Button animation="slide" variant="outline">
+            Slide
+        </Button>
+        <Button animation="glow">Glow</Button>
+        <Button animation="lift" variant="secondary">
+            Lift
+        </Button>
+        <Button animation="ripple" variant="outline">
+            Ripple
+        </Button>
+        <Button animation="press" variant="ghost">
+            Press
+        </Button>
+    </div>
+</Unstyled>
+
+**Animation Guide:**
+
+- **Scale**: Slightly enlarges on hover, shrinks on click - great for primary actions
+- **Fade**: Reduces opacity on hover - subtle and elegant
+- **Slide**: Moves up slightly on hover - creates depth perception
+- **Glow**: Adds a colored shadow glow - draws attention to important buttons
+- **Lift**: Combines upward movement with shadow - modern Material Design feel
+- **Ripple**: Creates a ripple effect overlay - excellent user feedback
+- **Press**: Only animates on click - minimal but responsive feel
 
 ### Button `className`
 
-The `className` prop allows you to add custom styling while preserving the component's built-in styles.
+The `className` prop allows you to add custom styling while preserving the component's built-in styles. This is useful for adding custom colors, spacing, or other design elements.
 
 ```jsx
-<Button className="custom-spacing">Custom Styled Button</Button>
+<Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg">
+  Custom Styled Button
+</Button>
+<Button className="border-2 border-dashed border-orange-400 bg-orange-50 text-orange-600 hover:bg-orange-100">
+  Dashed Border Button
+</Button>
 ```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px" }}>
+        <Button className="bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg hover:from-purple-600 hover:to-pink-600">
+            Custom Styled Button
+        </Button>
+        <Button className="border-2 border-dashed border-orange-400 bg-orange-50 text-orange-600 hover:bg-orange-100">
+            Dashed Border Button
+        </Button>
+    </div>
+</Unstyled>
 
 ## Accessibility
 
@@ -252,7 +348,7 @@ Our Button component follows accessibility best practices:
 
 ## Best Practices
 
-### Do's
+### Do's ✅
 
 - Use clear, action-oriented labels (e.g., "Save Changes" instead of "OK")
 - Maintain consistent button hierarchy across your interface
@@ -261,7 +357,7 @@ Our Button component follows accessibility best practices:
 - Provide adequate spacing between buttons (8px minimum)
 - Use icons that enhance clarity, not decoration
 
-### Don'ts
+### Don'ts ❌
 
 - Don't use more than one primary button per page section
 - Avoid vague labels like "Click Here" or "Submit"

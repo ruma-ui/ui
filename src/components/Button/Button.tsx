@@ -6,7 +6,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     /**
      * The visual style of the button
      */
-    variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive";
+    variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive" | "none";
     /**
      * The size of the button
      */
@@ -34,7 +34,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     /**
      * Button animation on interaction
      */
-    animation?: "none" | "pulse" | "bounce" | "scale";
+    animation?: "none" | "scale" | "fade" | "slide" | "glow" | "lift" | "ripple" | "press";
     /**
      * Children (button label)
      */
@@ -49,6 +49,7 @@ const variants = {
     outline: tw`border border-blue-600 bg-transparent text-blue-600 hover:border-blue-700 hover:bg-blue-50`,
     ghost: tw`border border-gray-300 bg-transparent text-gray-900 shadow-sm hover:shadow-md`,
     destructive: tw`bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md`,
+    none: tw``,
 };
 
 const sizes = {
@@ -70,9 +71,13 @@ const roundedOptions = {
 
 const animations = {
     none: tw``,
-    pulse: tw`hover:animate-pulse`,
-    bounce: tw`hover:animate-bounce`,
-    scale: tw`hover:scale-105 active:scale-95`,
+    scale: tw`transition-transform duration-150 ease-out hover:scale-105 active:scale-95`,
+    fade: tw`transition-opacity duration-200 ease-out hover:opacity-90`,
+    slide: tw`transition-transform duration-150 ease-out hover:translate-y-[-2px] active:translate-y-0`,
+    glow: tw`transition-shadow duration-200 ease-out hover:shadow-lg hover:shadow-blue-500/25`,
+    lift: tw`transition-all duration-150 ease-out hover:translate-y-[-2px] hover:shadow-lg active:translate-y-0`,
+    ripple: tw`before:rounded-inherit relative overflow-hidden before:absolute before:inset-0 before:scale-0 before:bg-white/20 before:transition-transform before:duration-300 before:ease-out hover:before:scale-100`,
+    press: tw`transition-transform duration-75 ease-out active:scale-95`,
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(

@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
     argTypes: {
         variant: {
             control: { type: "radio" },
-            options: ["primary", "secondary", "outline", "ghost", "destructive"],
+            options: ["primary", "secondary", "outline", "ghost", "destructive", "none"],
         },
         size: {
             control: { type: "radio" },
@@ -27,7 +27,7 @@ const meta: Meta<typeof Button> = {
         },
         animation: {
             control: { type: "radio" },
-            options: ["none", "pulse", "bounce", "scale"],
+            options: ["none", "scale", "fade", "slide", "glow", "lift", "ripple", "press"],
         },
         loading: { control: "boolean" },
         fullWidth: { control: "boolean" },
@@ -76,6 +76,13 @@ export const Destructive: Story = {
     },
 };
 
+export const None: Story = {
+    args: {
+        children: "No Style",
+        variant: "none",
+    },
+};
+
 export const WithStartIcon: Story = {
     args: {
         children: "Copy link",
@@ -103,5 +110,33 @@ export const Disabled: Story = {
     args: {
         children: "Disabled",
         disabled: true,
+    },
+};
+
+export const FullWidthPrimary: Story = {
+    args: {
+        children: "Full Width Button",
+        variant: "primary",
+        fullWidth: true,
+    },
+    parameters: {
+        layout: "padded",
+    },
+};
+
+export const AnimationScale: Story = {
+    args: {
+        children: "Scale Animation",
+        variant: "outline",
+        animation: "scale",
+    },
+};
+
+export const WithCustomClassName: Story = {
+    args: {
+        children: "Custom Styled",
+        variant: "primary",
+        className:
+            "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg",
     },
 };
