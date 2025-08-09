@@ -48,6 +48,11 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
      * Error message to display below the input
      */
     errorMessage?: string;
+    /**
+     * Preset width of the input wrapper
+     * @default "md"
+     */
+    width?: "sm" | "md" | "lg" | "xl";
 }
 
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
@@ -83,6 +88,13 @@ const labelSizes = {
     xl: tw`text-base`,
 };
 
+const widths = {
+    sm: tw`w-64`,
+    md: tw`w-80`,
+    lg: tw`w-96`,
+    xl: tw`w-[30rem]`,
+} as const;
+
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (
         {
@@ -90,6 +102,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             size = "md",
             rounded = "sm",
             fullWidth = false,
+            width = "md",
             startIcon,
             endIcon,
             label,
@@ -112,7 +125,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         const assistiveId = `${inputId}-desc`;
 
         return (
-            <div className={cn(wrapperBase, fullWidth ? "w-full" : "w-auto")}>
+            <div className={cn(wrapperBase, fullWidth ? "w-full" : (widths[width] ?? "w-auto"))}>
                 {label && (
                     <label
                         htmlFor={inputId}

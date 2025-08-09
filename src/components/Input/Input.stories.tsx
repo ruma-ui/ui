@@ -37,10 +37,20 @@ const meta: Meta<typeof Input> = {
             control: { type: "radio" },
             options: ["none", "sm", "md", "lg", "xl", "full"],
             description: "Control the border radius of the input",
-            defaultValue: "md",
+            defaultValue: "sm",
             type: {
                 name: "enum",
                 value: ["none", "sm", "md", "lg", "xl", "full"],
+            },
+        },
+        width: {
+            control: { type: "radio" },
+            options: ["sm", "md", "lg", "xl"],
+            description: "Preset width of the input wrapper",
+            defaultValue: "md",
+            type: {
+                name: "enum",
+                value: ["sm", "md", "lg", "xl"],
             },
         },
         fullWidth: {

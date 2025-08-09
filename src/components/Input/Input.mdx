@@ -26,6 +26,7 @@ import * as InputStories from "./Input.stories";
     - [Input `variant`](#input-variant)
     - [Input `size`](#input-size)
     - [Input `rounded`](#input-rounded)
+    - [Input `width`](#input-width)
     - [Input `className`](#input-classname)
 - [Accessibility](#accessibility)
 - [Best Practices](#best-practices)
@@ -152,6 +153,26 @@ Controls the border radius.
         <Input rounded="lg" placeholder="Large" />
         <Input rounded="xl" placeholder="XL" />
         <Input rounded="full" placeholder="Full" />
+    </div>
+</Unstyled>
+
+### Input `width`
+
+Fixed width presets when `fullWidth` is false.
+
+```jsx
+<Input width="sm" placeholder="SM" />
+<Input width="md" placeholder="MD" />
+<Input width="lg" placeholder="LG" />
+<Input width="xl" placeholder="XL" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+        <Input width="sm" placeholder="SM" />
+        <Input width="md" placeholder="MD" />
+        <Input width="lg" placeholder="LG" />
+        <Input width="xl" placeholder="XL" />
     </div>
 </Unstyled>
 
