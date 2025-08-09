@@ -58,104 +58,13 @@ Custom styling can be applied using the `className` prop to match your design sy
 
 The `multiple` prop controls whether multiple items can be expanded simultaneously. Choose based on whether users need to compare content or focus on one section at a time.
 
-```jsx
-<Accordion multiple={false}>Default: Single expansion</Accordion>
-<Accordion multiple={true}>Multiple items can be open</Accordion>
-```
-
-<Unstyled>
-    <div
-        style={{
-            display: "flex",
-            gap: "32px",
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "center",
-        }}
-    >
-        <div style={{ width: "100%", maxWidth: "300px" }}>
-            <p style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>
-                Single (default):
-            </p>
-            <Accordion multiple={false}>
-                <AccordionItem value="item-1">
-                    <AccordionTrigger>First Item</AccordionTrigger>
-                    <AccordionContent>Only one open at a time.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-2">
-                    <AccordionTrigger>Second Item</AccordionTrigger>
-                    <AccordionContent>Opening this closes the first.</AccordionContent>
-                </AccordionItem>
-            </Accordion>
-        </div>
-        <div style={{ width: "100%", maxWidth: "300px" }}>
-            <p style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>Multiple:</p>
-            <Accordion multiple={true}>
-                <AccordionItem value="item-3">
-                    <AccordionTrigger>First Item</AccordionTrigger>
-                    <AccordionContent>Both can be open together.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-4">
-                    <AccordionTrigger>Second Item</AccordionTrigger>
-                    <AccordionContent>Independent expansion.</AccordionContent>
-                </AccordionItem>
-            </Accordion>
-        </div>
-    </div>
-</Unstyled>
-
 ### Accordion `disabled`
 
 Individual accordion items can be disabled to prevent user interaction. Disabled items appear muted and cannot be expanded, useful for conditional content or restricted access scenarios.
 
-```jsx
-<AccordionItem disabled>Cannot be opened</AccordionItem>
-<AccordionItem>Normal item</AccordionItem>
-```
-
-<Unstyled>
-    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <div style={{ width: "100%", maxWidth: "400px" }}>
-            <Accordion>
-                <AccordionItem value="item-1">
-                    <AccordionTrigger>Enabled Item</AccordionTrigger>
-                    <AccordionContent>This works normally.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-2" disabled>
-                    <AccordionTrigger>Disabled Item</AccordionTrigger>
-                    <AccordionContent>Cannot be accessed.</AccordionContent>
-                </AccordionItem>
-            </Accordion>
-        </div>
-    </div>
-</Unstyled>
-
 ### Accordion `className`
 
 The `className` prop allows you to add custom styling while preserving the component's built-in functionality. This is useful for adding custom colors, spacing, or other design elements.
-
-```jsx
-<Accordion className="rounded-lg border bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg">
-    Custom styled accordion
-</Accordion>
-```
-
-<Unstyled>
-    <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: "16px" }}>
-        <div style={{ width: "100%", maxWidth: "400px" }}>
-            <Accordion className="rounded-lg border border-gray-300 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg">
-                <AccordionItem value="item-1">
-                    <AccordionTrigger>Custom Styled</AccordionTrigger>
-                    <AccordionContent>Gradient background with shadow and border.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-2">
-                    <AccordionTrigger>Another Item</AccordionTrigger>
-                    <AccordionContent>Styling applies to entire container.</AccordionContent>
-                </AccordionItem>
-            </Accordion>
-        </div>
-    </div>
-</Unstyled>
 
 ## Accessibility
 
