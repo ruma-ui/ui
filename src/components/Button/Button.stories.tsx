@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Button } from "./Button";
 import { FaLink, FaArrowRight } from "react-icons/fa";
 import mdx from "./Button.mdx";
@@ -104,7 +104,7 @@ export const Secondary: Story = {
     },
 };
 
-export const tertiary: Story = {
+export const Tertiary: Story = {
     args: {
         children: "Login",
         variant: "tertiary",
