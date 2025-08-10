@@ -17,8 +17,8 @@ import * as ButtonStories from "./Button.stories";
 - [Variants](#variants)
     - [Primary Variant](#primary-variant)
     - [Secondary Variant](#secondary-variant)
+    - [tertiary Variant](#tertiary-variant)
     - [Outline Variant](#outline-variant)
-    - [Ghost Variant](#ghost-variant)
     - [Destructive Variant](#destructive-variant)
     - [None Variant](#none-variant)
 - [With Icons](#with-icons)
@@ -61,17 +61,17 @@ Secondary buttons are used for secondary actions that are important but not the 
 
 <Canvas of={ButtonStories.Secondary} />
 
+### Tertiary Variant
+
+Tertiary buttons are subtle and work well for less important actions or in dense interfaces where you need to minimize visual weight.
+
+<Canvas of={ButtonStories.tertiary} />
+
 ### Outline Variant
 
-Outline buttons provide a middle ground between secondary and ghost buttons. They're great for actions that need more emphasis than ghost buttons but less than filled buttons.
+Outline buttons provide a middle ground between secondary and tertiary buttons. They're great for actions that need more emphasis than tertiary buttons but less than filled buttons.
 
 <Canvas of={ButtonStories.Outline} />
-
-### Ghost Variant
-
-Ghost buttons are subtle and work well for less important actions or in dense interfaces where you need to minimize visual weight.
-
-<Canvas of={ButtonStories.Ghost} />
 
 ### Destructive Variant
 
@@ -132,8 +132,8 @@ The `variant` prop determines the visual style and hierarchy of the button. Choo
 ```jsx
 <Button variant="primary">Primary Action</Button>
 <Button variant="secondary">Secondary Action</Button>
+<Button variant="tertiary">Subtle Action</Button>
 <Button variant="outline">Outline Action</Button>
-<Button variant="ghost">Subtle Action</Button>
 <Button variant="destructive">Delete Action</Button>
 <Button variant="none">Unstyled Button</Button>
 ```
@@ -142,8 +142,8 @@ The `variant` prop determines the visual style and hierarchy of the button. Choo
     <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
         <Button variant="primary">Primary</Button>
         <Button variant="secondary">Secondary</Button>
+        <Button variant="tertiary">Tertiary</Button>
         <Button variant="outline">Outline</Button>
-        <Button variant="ghost">Ghost</Button>
         <Button variant="destructive">Destructive</Button>
         <Button variant="none">None</Button>
     </div>
@@ -290,7 +290,7 @@ Add subtle animation effects to enhance user interactions and provide visual fee
         <Button animation="ripple" variant="outline">
             Ripple
         </Button>
-        <Button animation="press" variant="ghost">
+        <Button animation="press" variant="tertiary">
             Press
         </Button>
     </div>
@@ -369,7 +369,7 @@ Our Button component follows accessibility best practices:
 
 // Form actions
 <div style={{ display: 'flex', gap: '8px' }}>
-  <Button variant="ghost">Reset</Button>
+  <Button variant="tertiary">Reset</Button>
   <Button variant="outline">Save Draft</Button>
   <Button variant="primary">Publish</Button>
 </div>

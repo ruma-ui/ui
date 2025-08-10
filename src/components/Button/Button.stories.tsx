@@ -15,12 +15,12 @@ const meta: Meta<typeof Button> = {
     argTypes: {
         variant: {
             control: { type: "radio" },
-            options: ["primary", "secondary", "outline", "ghost", "destructive", "none"],
+            options: ["primary", "secondary", "outline", "tertiary", "destructive", "none"],
             description: "The visual style of the button",
             defaultValue: "primary",
             type: {
                 name: "enum",
-                value: ["primary", "secondary", "outline", "ghost", "destructive", "none"],
+                value: ["primary", "secondary", "outline", "tertiary", "destructive", "none"],
             },
         },
         size: {
@@ -35,12 +35,12 @@ const meta: Meta<typeof Button> = {
         },
         rounded: {
             control: { type: "radio" },
-            options: ["none", "sm", "md", "lg", "full"],
+            options: ["none", "sm", "md", "lg", "xl", "full"],
             description: "Control the border radius of the button",
             defaultValue: "xl",
             type: {
                 name: "enum",
-                value: ["none", "sm", "md", "lg", "full"],
+                value: ["none", "sm", "md", "lg", "xl", "full"],
             },
         },
         animation: {
@@ -103,17 +103,17 @@ export const Secondary: Story = {
     },
 };
 
+export const tertiary: Story = {
+    args: {
+        children: "Login",
+        variant: "tertiary",
+    },
+};
+
 export const Outline: Story = {
     args: {
         children: "Copy link",
         variant: "outline",
-    },
-};
-
-export const Ghost: Story = {
-    args: {
-        children: "Login",
-        variant: "ghost",
     },
 };
 

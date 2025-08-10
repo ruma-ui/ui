@@ -8,7 +8,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
      * The visual style of the button
      * @default "primary"
      */
-    variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive" | "none";
+    variant?: "primary" | "secondary" | "outline" | "tertiary" | "destructive" | "none";
     /**
      * The size of the button
      * @default "md"
@@ -51,10 +51,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 const base = tw`relative inline-flex transform-gpu cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-all duration-200 select-none disabled:pointer-events-none disabled:opacity-50`;
 
 const variants = {
-    primary: tw`bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md`,
-    secondary: tw`bg-gray-100 text-black shadow-sm outline-1 outline-gray-300 hover:bg-gray-200 hover:shadow-md`,
+    primary: tw`bg-blue-600 text-white shadow-sm hover:bg-blue-500 hover:shadow-md`,
+    secondary: tw`bg-gray-200 text-black shadow-sm outline outline-gray-300 hover:bg-gray-200/80 hover:shadow-md`,
     outline: tw`border border-blue-600 bg-transparent text-blue-600 hover:border-blue-700 hover:bg-blue-50`,
-    ghost: tw`border border-gray-300 bg-transparent text-gray-900 shadow-sm hover:shadow-md`,
+    tertiary: tw`border border-gray-300 bg-white text-gray-900 shadow-sm hover:shadow-md`,
     destructive: tw`bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md`,
     none: tw``,
 };
@@ -136,7 +136,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             let opacity = 0.3;
             if (variant === "primary" || variant === "destructive") opacity = 0.35;
             else if (variant === "secondary") opacity = 0.25;
-            else if (variant === "outline" || variant === "ghost") opacity = 0.2;
+            else if (variant === "outline" || variant === "tertiary") opacity = 0.2;
             return { ["--rui-ripple-opacity" as any]: String(opacity) } as React.CSSProperties;
         }, [variant]);
 
