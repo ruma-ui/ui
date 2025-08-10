@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import { Input } from "./Input";
 import mdx from "./Input.mdx";
-import { FaSearch, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaSearch, FaLock } from "react-icons/fa";
+import { RxCross1 } from "react-icons/rx";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 const meta: Meta<typeof Input> = {
     title: "Components/Input",
@@ -138,11 +141,30 @@ export const WithDescription: Story = {
 };
 
 export const WithIcons: Story = {
+    render: (args) => {
+        const [show, setShow] = useState(false);
+        return (
+            <Input
+                {...args}
+                label={args.label ?? "Password"}
+                placeholder={args.placeholder ?? "Enter your password"}
+                type={show ? "text" : "password"}
+                startIcon={<FaLock size={14} />}
+                endIcon={
+                    <button
+                        type="button"
+                        aria-label={show ? "Hide password" : "Show password"}
+                        onClick={() => setShow((s) => !s)}
+                        className="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-inherit transition-colors duration-200 hover:bg-gray-100 hover:text-gray-700"
+                    >
+                        {show ? <BsEyeSlash size={18} /> : <BsEye size={18} />}
+                    </button>
+                }
+            />
+        );
+    },
     args: {
-        placeholder: "Search docs",
-        startIcon: <FaSearch size={14} />,
-        endIcon: <FaEye size={14} />,
-        type: "search",
+        variant: "primary",
     },
 };
 
@@ -170,4 +192,36 @@ export const FullWidth: Story = {
     parameters: {
         layout: "padded",
     },
+};
+
+export const SearchWithIcon: Story = {
+    render: (args) => {
+        const [searchValue, setSearchValue] = useState("");
+        return (
+            <Input
+                {...args}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder={args.placeholder ?? "Search documentation..."}
+                variant="secondary"
+                startIcon={<FaSearch size={14} />}
+                endIcon={
+                    searchValue ? (
+                        <button
+                            type="button"
+                            aria-label="Clear search"
+                            onClick={() => setSearchValue("")}
+                            className="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-inherit transition-colors duration-200 hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-offset-1 focus:outline-none active:bg-gray-200"
+                        >
+                            <RxCross1 size={16} />
+                        </button>
+                    ) : null
+                }
+                rounded="full"
+                size="lg"
+                width="xl"
+            />
+        );
+    },
+    args: {},
 };
