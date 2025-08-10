@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Select } from "./Select";
-import { FaGlobe } from "react-icons/fa";
 import { useState } from "react";
 import mdx from "./Select.mdx";
+import { tw } from "@/utils/tw";
+import { FaApple, FaWindows, FaLinux, FaAndroid, FaChrome, FaQuestion } from "react-icons/fa";
+import { RiComputerLine } from "react-icons/ri";
 
 const meta: Meta<typeof Select> = {
     title: "Components/Select",
@@ -26,12 +28,12 @@ const meta: Meta<typeof Select> = {
         },
         size: {
             control: { type: "radio" },
-            options: ["xs", "sm", "md", "lg", "xl"],
+            options: ["sm", "md", "lg"],
             description: "The size of the select",
             defaultValue: "md",
             type: {
                 name: "enum",
-                value: ["xs", "sm", "md", "lg", "xl"],
+                value: ["sm", "md", "lg"],
             },
         },
         rounded: {
@@ -124,6 +126,15 @@ const countryOptions = [
     { value: "au", label: "Australia" },
 ];
 
+const osOptions = [
+    { value: "macos", label: "macOS", icon: <FaApple /> },
+    { value: "windows", label: "Windows", icon: <FaWindows /> },
+    { value: "linux", label: "Linux", icon: <FaLinux /> },
+    { value: "android", label: "Android", icon: <FaAndroid /> },
+    { value: "chromeos", label: "Chrome OS", icon: <FaChrome /> },
+    { value: "other", label: "Other", icon: <FaQuestion /> },
+];
+
 const categoryOptions = [
     { value: "tech", label: "Technology" },
     { value: "design", label: "Design" },
@@ -168,10 +179,10 @@ export const WithDescription: Story = {
 
 export const WithStartIcon: Story = {
     args: {
-        options: countryOptions,
-        label: "Country",
-        startIcon: <FaGlobe />,
-        placeholder: "Select your country...",
+        options: osOptions,
+        label: "Operating System",
+        startIcon: <RiComputerLine />,
+        placeholder: "Select your operating system...",
     },
 };
 
@@ -220,7 +231,7 @@ export const CustomStyled: Story = {
         options: countryOptions,
         label: "Custom Styled",
         placeholder: "Custom select...",
-        className: "border-purple-500 focus:ring-purple-500",
+        className: tw`border-purple-500 focus-within:border-purple-500 focus-within:ring-purple-200 focus:ring-purple-500`,
     },
 };
 

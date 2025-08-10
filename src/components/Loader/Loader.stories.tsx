@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Loader } from "./Loader";
 import mdx from "./Loader.mdx";
+import { tw } from "@/utils/tw";
 
 const meta: Meta<typeof Loader> = {
     title: "Components/Loader",
@@ -171,7 +172,7 @@ export const CustomStyled: Story = {
     args: {
         color: "#6b46c1", // Darker purple for better contrast
         type: "spinner",
-        className: "bg-white p-4 rounded-lg shadow-sm border border-gray-200",
+        className: tw`rounded-lg border border-gray-200 bg-white p-4 shadow-sm`,
         label: "Custom styled loader",
     },
 };

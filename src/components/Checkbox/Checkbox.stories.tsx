@@ -5,6 +5,7 @@ import mdx from "./Checkbox.mdx";
 const meta: Meta<typeof Checkbox> = {
     title: "Components/Checkbox",
     component: Checkbox,
+    subcomponents: { CheckboxGroup },
     parameters: {
         layout: "centered",
         docs: {

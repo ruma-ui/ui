@@ -126,20 +126,16 @@ The `variant` prop determines the visual style and hierarchy of the select. Choo
 The `size` prop controls the select's dimensions and text size. Choose sizes based on the interface context and hierarchy needs.
 
 ```jsx
-<Select size="xs" options={options} placeholder="Extra Small" />
 <Select size="sm" options={options} placeholder="Small" />
 <Select size="md" options={options} placeholder="Medium" />
 <Select size="lg" options={options} placeholder="Large" />
-<Select size="xl" options={options} placeholder="Extra Large" />
 ```
 
 <Unstyled>
     <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
-        <Select size="xs" options={[{ value: "1", label: "XS" }]} placeholder="XS" />
         <Select size="sm" options={[{ value: "1", label: "SM" }]} placeholder="SM" />
         <Select size="md" options={[{ value: "1", label: "MD" }]} placeholder="MD" />
         <Select size="lg" options={[{ value: "1", label: "LG" }]} placeholder="LG" />
-        <Select size="xl" options={[{ value: "1", label: "XL" }]} placeholder="XL" />
     </div>
 </Unstyled>
 
