@@ -147,7 +147,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                         sizes[size].padX,
                         sizes[size].gap,
                         error &&
-                            "border-red-500 focus-within:border-red-500 focus-within:ring-red-500",
+                            "border-red-500 focus-within:border-red-500 focus-within:ring-red-200",
                         fullWidth && "w-full",
                         className,
                     )}
