@@ -45,3 +45,4 @@ storybook-static
 
 # Jetbrains
 !/.idea/
+.idea/*
