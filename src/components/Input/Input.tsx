@@ -56,11 +56,11 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 }
 
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
-const fieldBase = tw`relative inline-flex items-center border bg-white text-gray-900 drop-shadow transition-all duration-200 focus-within:ring-2 disabled:cursor-not-allowed disabled:opacity-50`;
+const fieldBase = tw`relative inline-flex items-center border bg-white text-gray-900 transition-all duration-200 focus-within:ring-3 disabled:cursor-not-allowed disabled:opacity-50`;
 
 const variants = {
-    primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-500`,
-    secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-500`,
+    primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200`,
+    secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200`,
 };
 
 const sizes = {
@@ -161,7 +161,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                         ref={inputRef}
                         id={inputId}
                         className={cn(
-                            "min-w-0 flex-1 bg-transparent outline-none placeholder:text-gray-400",
+                            "min-w-0 flex-1 bg-transparent outline-none placeholder:font-light placeholder:text-gray-400",
                             sizes[size].input,
                         )}
                         aria-invalid={error || undefined}
