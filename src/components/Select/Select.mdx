@@ -1,0 +1,301 @@
+import { Meta, Canvas, Story, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { FaUser, FaGlobe, FaBuilding } from "react-icons/fa";
+import { Select } from "./Select";
+import * as SelectStories from "./Select.stories";
+
+<Meta of={SelectStories} />
+
+# Select
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Select)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+- [With Icons](#with-icons)
+- [With Labels and Descriptions](#with-labels-and-descriptions)
+- [Error State](#error-state)
+- [Disabled State](#disabled-state)
+- [Full Width](#full-width)
+- [Custom Styled](#custom-styled)
+- [Component API](#component-api)
+    - [Select `variant`](#select-variant)
+    - [Select `size`](#select-size)
+    - [Select `width`](#select-width)
+    - [Select `rounded`](#select-rounded)
+    - [Select `animation`](#select-animation)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Select component is a fully custom, accessible dropdown selection interface that provides complete control over styling and behavior. Built with keyboard navigation, proper ARIA attributes, and modern design patterns for production-ready applications.
+
+<Canvas of={SelectStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The primary variant is the default style with blue focus states and clean styling. Use this for most form inputs and primary selection actions.
+
+<Canvas of={SelectStories.Primary} />
+
+### Secondary Variant
+
+The secondary variant features a subtle gray styling perfect for secondary contexts and muted backgrounds. It provides a softer visual presence while maintaining full functionality.
+
+<Canvas of={SelectStories.Secondary} />
+
+## With Icons
+
+Icons can enhance select clarity and help users quickly identify the type of selection. Use icons that clearly represent the content being selected.
+
+<Canvas of={SelectStories.WithStartIcon} />
+
+## With Labels and Descriptions
+
+Labels and descriptions provide context and guidance to help users make the right selection.
+
+<Canvas of={SelectStories.WithLabel} />
+
+<Canvas of={SelectStories.WithDescription} />
+
+## Error State
+
+The error state displays validation errors with clear visual feedback and helpful error messages to guide users.
+
+<Canvas of={SelectStories.ErrorState} />
+
+## Disabled State
+
+Disabled selects indicate that the selection is temporarily unavailable. Both the entire component and individual options can be disabled.
+
+<Canvas of={SelectStories.Disabled} />
+
+## Full Width
+
+Full-width selects stretch to fill their container width, useful in forms or mobile interfaces where you want the select to be prominent.
+
+<Canvas of={SelectStories.FullWidth} />
+
+## Custom Styled
+
+Custom styling is useful for creating unique select designs that fit your brand or application's aesthetic.
+
+<Canvas of={SelectStories.CustomStyled} />
+
+## Component API
+
+<ArgTypes of={Select} />
+
+### Select `variant`
+
+The `variant` prop determines the visual style and hierarchy of the select. Choose the appropriate variant based on the selection's importance and context.
+
+```jsx
+<Select variant="primary" options={options} placeholder="Primary selection" />
+<Select variant="secondary" options={options} placeholder="Secondary selection" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Select
+            variant="primary"
+            options={[{ value: "1", label: "Primary" }]}
+            placeholder="Primary"
+        />
+        <Select
+            variant="secondary"
+            options={[{ value: "1", label: "Secondary" }]}
+            placeholder="Secondary"
+        />
+    </div>
+</Unstyled>
+
+### Select `size`
+
+The `size` prop controls the select's dimensions and text size. Choose sizes based on the interface context and hierarchy needs.
+
+```jsx
+<Select size="xs" options={options} placeholder="Extra Small" />
+<Select size="sm" options={options} placeholder="Small" />
+<Select size="md" options={options} placeholder="Medium" />
+<Select size="lg" options={options} placeholder="Large" />
+<Select size="xl" options={options} placeholder="Extra Large" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <Select size="xs" options={[{ value: "1", label: "XS" }]} placeholder="XS" />
+        <Select size="sm" options={[{ value: "1", label: "SM" }]} placeholder="SM" />
+        <Select size="md" options={[{ value: "1", label: "MD" }]} placeholder="MD" />
+        <Select size="lg" options={[{ value: "1", label: "LG" }]} placeholder="LG" />
+        <Select size="xl" options={[{ value: "1", label: "XL" }]} placeholder="XL" />
+    </div>
+</Unstyled>
+
+### Select `width`
+
+The `width` prop sets a preset container width for the Select wrapper. Use this when you want consistent control widths without stretching to the container. For full-bleed layouts, prefer `fullWidth`.
+
+```jsx
+<Select width="sm" options={options} placeholder="Small width" />
+<Select width="md" options={options} placeholder="Medium width" />
+<Select width="lg" options={options} placeholder="Large width" />
+<Select width="xl" options={options} placeholder="XL width" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <Select width="sm" options={[{ value: "1", label: "sm" }]} placeholder="sm" />
+        <Select width="md" options={[{ value: "1", label: "md" }]} placeholder="md" />
+        <Select width="lg" options={[{ value: "1", label: "lg" }]} placeholder="lg" />
+        <Select width="xl" options={[{ value: "1", label: "xl" }]} placeholder="xl" />
+    </div>
+    <div style={{ marginTop: 8, color: "#6b7280", fontSize: 12 }}>
+        Tip: Use <code>fullWidth</code> to make the control stretch to its container instead.
+    </div>
+</Unstyled>
+
+### Select `rounded`
+
+The `rounded` prop controls the border radius of the select. Use this to match your design system's corner radius preferences.
+
+```jsx
+<Select rounded="none" options={options} placeholder="No radius" />
+<Select rounded="sm" options={options} placeholder="Small radius" />
+<Select rounded="md" options={options} placeholder="Medium radius" />
+<Select rounded="lg" options={options} placeholder="Large radius" />
+<Select rounded="xl" options={options} placeholder="Extra large radius" />
+<Select rounded="full" options={options} placeholder="Full radius" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <Select
+            rounded="none"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="No radius"
+        />
+        <Select
+            rounded="sm"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Small radius"
+        />
+        <Select
+            rounded="md"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Medium radius"
+        />
+        <Select
+            rounded="lg"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Large radius"
+        />
+        <Select
+            rounded="xl"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Extra large radius"
+        />
+        <Select
+            rounded="full"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Full radius"
+        />
+    </div>
+</Unstyled>
+
+### Select `animation`
+
+The `animation` prop controls whether animations are enabled. Disable for users with reduced motion preferences.
+
+```jsx
+<Select animation={true} options={options} placeholder="With animations" />
+<Select animation={false} options={options} placeholder="No animations" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <Select
+            animation={true}
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="With animations"
+        />
+        <Select
+            animation={false}
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="No animations"
+        />
+    </div>
+</Unstyled>
+
+## Accessibility
+
+The Select component follows WAI-ARIA guidelines and includes comprehensive accessibility features:
+
+- **Keyboard Navigation**: Full keyboard support with arrow keys, Enter, Space, and Escape
+- **Screen Reader Support**: Proper ARIA attributes and role definitions
+- **Focus Management**: Clear focus indicators and logical focus flow
+- **Error Handling**: Accessible error messages linked to the select element
+
+## Best Practices
+
+### When to Use
+
+- **Single Selection**: When users need to choose one option from a list
+- **Custom Styling**: When you need full control over appearance and behavior
+- **Accessibility**: When you need comprehensive keyboard and screen reader support
+- **Form Integration**: For advanced form handling with libraries like React Hook Form
+
+### When Not to Use
+
+- **Few Options**: Consider radio buttons for 2-4 simple options
+- **Multiple Selection**: Use checkbox groups or a multi-select component
+- **Search Required**: Consider a combobox or autocomplete component
+
+### Guidelines
+
+1. **Clear Labels**: Always provide descriptive labels for form accessibility
+2. **Logical Ordering**: Order options alphabetically, by importance, or by frequency of use
+3. **Default Values**: Use meaningful placeholders or pre-select reasonable defaults
+4. **Error Handling**: Provide clear, actionable error messages
+5. **Consistent Sizing**: Use consistent sizes throughout your application
+6. **Performance**: For large option lists, consider virtualization or server-side filtering
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
