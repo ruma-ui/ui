@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
     /**
      * The visual style of the input
      * @default "primary"
@@ -95,7 +95,7 @@ const widths = {
     xl: tw`w-[30rem]`,
 } as const;
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     (
         {
             variant = "primary",
@@ -187,4 +187,4 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
 );
 
-Input.displayName = "Input";
+TextInput.displayName = "TextInput";

@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { Input } from "./Input";
-import mdx from "./Input.mdx";
+import { TextInput } from "./TextInput";
+import mdx from "./TextInput.mdx";
 import { FaSearch, FaLock } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 
-const meta: Meta<typeof Input> = {
-    title: "Components/Input",
-    component: Input,
+const meta: Meta<typeof TextInput> = {
+    title: "Components/TextInput",
+    component: TextInput,
     parameters: {
         layout: "centered",
         docs: {
@@ -108,7 +108,7 @@ const meta: Meta<typeof Input> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof TextInput>;
 
 export const Primary: Story = {
     args: {
@@ -144,7 +144,7 @@ export const WithIcons: Story = {
     render: (args) => {
         const [show, setShow] = useState(false);
         return (
-            <Input
+            <TextInput
                 {...args}
                 label={args.label ?? "Password"}
                 placeholder={args.placeholder ?? "Enter your password"}
@@ -198,7 +198,7 @@ export const SearchWithIcon: Story = {
     render: (args) => {
         const [searchValue, setSearchValue] = useState("");
         return (
-            <Input
+            <TextInput
                 {...args}
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
