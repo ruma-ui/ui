@@ -320,7 +320,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                     lastSearchedIndex.current = -1;
                     triggerRef.current?.focus();
                     break;
-                case "ArrowDown":
+                case "ArrowDown": {
                     event.preventDefault();
                     if (!isOpen) {
                         setIsOpen(true);
@@ -330,15 +330,19 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                     } else {
                         const nextIndex = Math.min(focusedIndex + 1, options.length - 1);
                         setFocusedIndex(nextIndex);
+                        scrollToOption(nextIndex);
                     }
                     break;
-                case "ArrowUp":
+                }
+                case "ArrowUp": {
                     event.preventDefault();
                     if (isOpen) {
                         const prevIndex = Math.max(focusedIndex - 1, 0);
                         setFocusedIndex(prevIndex);
+                        scrollToOption(prevIndex);
                     }
                     break;
+                }
                 case "Tab":
                     setIsOpen(false);
                     setFocusedIndex(-1);
