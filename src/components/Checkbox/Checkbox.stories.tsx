@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Checkbox, CheckboxGroup } from "./Checkbox";
 import mdx from "./Checkbox.mdx";
 
 const meta: Meta<typeof Checkbox> = {
     title: "Components/Checkbox",
     component: Checkbox,
+    subcomponents: { CheckboxGroup },
     parameters: {
         layout: "centered",
         docs: {

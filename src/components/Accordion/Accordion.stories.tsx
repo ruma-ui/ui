@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./Accordion";
-import { Button } from "../Button/Button";
-import { FaWindows, FaLinux, FaUbuntu, FaRedhat } from "react-icons/fa";
+import { Button } from "@/components";
+import { FaWindows, FaUbuntu, FaRedhat } from "react-icons/fa";
 import { MdArchive } from "react-icons/md";
 import mdx from "./Accordion.mdx";
 

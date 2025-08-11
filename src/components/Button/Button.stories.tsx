@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Button } from "./Button";
 import { FaLink, FaArrowRight } from "react-icons/fa";
 import mdx from "./Button.mdx";
+import { tw } from "@/utils/tw";
 
 const meta: Meta<typeof Button> = {
     title: "Components/Button",
@@ -103,7 +104,7 @@ export const Secondary: Story = {
     },
 };
 
-export const tertiary: Story = {
+export const Tertiary: Story = {
     args: {
         children: "Login",
         variant: "tertiary",
@@ -184,7 +185,6 @@ export const CustomStyled: Story = {
     args: {
         children: "Custom Styled",
         variant: "primary",
-        className:
-            "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg",
+        className: tw`bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg hover:from-purple-600 hover:to-pink-600`,
     },
 };

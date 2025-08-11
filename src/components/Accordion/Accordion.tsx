@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
 import { cn } from "@/utils/cn";
-import { tw } from "@/utils/tw";
 import { IoChevronDown } from "react-icons/io5";
 
 export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {

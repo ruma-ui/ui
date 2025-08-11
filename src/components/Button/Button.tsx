@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
-import { Loader } from "../Loader/Loader";
+import { Loader } from "@/components";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     /**
@@ -137,7 +137,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             if (variant === "primary" || variant === "destructive") opacity = 0.35;
             else if (variant === "secondary") opacity = 0.25;
             else if (variant === "outline" || variant === "tertiary") opacity = 0.2;
-            return { ["--rui-ripple-opacity" as any]: String(opacity) } as React.CSSProperties;
+            return { "--rui-ripple-opacity": String(opacity) } as React.CSSProperties & {
+                "--rui-ripple-opacity": string;
+            };
         }, [variant]);
 
         // Compose user-provided handlers
