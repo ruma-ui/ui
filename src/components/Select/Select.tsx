@@ -429,7 +429,6 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                         aria-haspopup="listbox"
                         aria-controls={listboxId}
                         aria-describedby={hasAssistive ? assistiveId : undefined}
-                        aria-invalid={error || undefined}
                         id={selectId}
                         {...props}
                     >
