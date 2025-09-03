@@ -1,0 +1,247 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Avatar } from "./Avatar";
+import * as AvatarStories from "./Avatar.stories";
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Avatar)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+- [Sizes](#sizes)
+- [Rounded Options](#rounded-options)
+- [With Initials](#with-initials)
+- [Status Indicators](#status-indicators)
+- [Clickable Avatars](#clickable-avatars)
+- [Custom Fallbacks](#custom-fallbacks)
+- [Avatar Groups](#avatar-groups)
+- [With Badges](#with-badges)
+- [Component API](#component-api)
+    - [Avatar `variant`](#avatar-variant)
+    - [Avatar `size`](#avatar-size)
+    - [Avatar `rounded`](#avatar-rounded)
+    - [Avatar `status`](#avatar-status)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Avatar component displays user profile images, initials, or fallback icons in a consistent, accessible format. Built with proper image loading states, status indicators, and keyboard navigation for production-ready applications.
+
+<Canvas of={AvatarStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The primary variant features a clean white border and subtle shadow, perfect for user profiles and primary identification contexts.
+
+<Canvas of={AvatarStories.Primary} />
+
+### Secondary Variant
+
+The secondary variant uses a subtle gray border for secondary contexts and when you need a softer visual presence.
+
+<Canvas of={AvatarStories.Secondary} />
+
+## Sizes
+
+Avatars come in six sizes to fit different interface contexts, from compact lists to prominent profile displays.
+
+<Canvas of={AvatarStories.Sizes} />
+
+## Rounded Options
+
+Control the border radius to match your design system, from sharp corners to fully rounded circles.
+
+<Canvas of={AvatarStories.RoundedVariants} />
+
+## With Initials
+
+When no image is available, avatars can display user initials as a fallback, automatically taking the first two characters.
+
+<Canvas of={AvatarStories.WithInitials} />
+
+## Status Indicators
+
+Status indicators show user availability with color-coded dots positioned at the bottom-right of the avatar.
+
+<Canvas of={AvatarStories.StatusVariants} />
+
+## Clickable Avatars
+
+Make avatars interactive with proper focus states and keyboard navigation for user profile actions or navigation.
+
+<Canvas of={AvatarStories.Clickable} />
+
+## Custom Fallbacks
+
+Provide custom fallback content like icons or graphics when neither image nor initials are available.
+
+<Canvas of={AvatarStories.CustomFallback} />
+
+## Avatar Groups
+
+Stack multiple avatars with overlapping layout for team displays or collaboration indicators.
+
+<Canvas of={AvatarStories.AvatarGroup} />
+
+## With Badges
+
+Combine avatars with notification badges for unread counts or status indicators.
+
+<Canvas of={AvatarStories.WithBadge} />
+
+## Component API
+
+<ArgTypes of={Avatar} />
+
+### Avatar `variant`
+
+The `variant` prop determines the visual style and border treatment of the avatar. Choose the appropriate variant based on the avatar's context and importance.
+
+```jsx
+<Avatar variant="primary" src="/user.jpg" alt="User" />
+<Avatar variant="secondary" src="/user.jpg" alt="User" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+        <Avatar
+            variant="primary"
+            src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt="Primary"
+        />
+        <Avatar
+            variant="secondary"
+            src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt="Secondary"
+        />
+    </div>
+</Unstyled>
+
+### Avatar `size`
+
+The `size` prop controls the avatar's dimensions. Choose sizes based on the interface context and visual hierarchy needs.
+
+```jsx
+<Avatar size="xs" src="/user.jpg" alt="User" />
+<Avatar size="sm" src="/user.jpg" alt="User" />
+<Avatar size="md" src="/user.jpg" alt="User" />
+<Avatar size="lg" src="/user.jpg" alt="User" />
+<Avatar size="xl" src="/user.jpg" alt="User" />
+<Avatar size="2xl" src="/user.jpg" alt="User" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "end", flexWrap: "wrap" }}>
+        <Avatar size="xs" initials="XS" />
+        <Avatar size="sm" initials="SM" />
+        <Avatar size="md" initials="MD" />
+        <Avatar size="lg" initials="LG" />
+        <Avatar size="xl" initials="XL" />
+        <Avatar size="2xl" initials="2XL" />
+    </div>
+</Unstyled>
+
+### Avatar `rounded`
+
+The `rounded` prop controls the border radius of the avatar. Use this to match your design system's corner radius preferences.
+
+```jsx
+<Avatar rounded="none" src="/user.jpg" alt="User" />
+<Avatar rounded="sm" src="/user.jpg" alt="User" />
+<Avatar rounded="md" src="/user.jpg" alt="User" />
+<Avatar rounded="lg" src="/user.jpg" alt="User" />
+<Avatar rounded="xl" src="/user.jpg" alt="User" />
+<Avatar rounded="full" src="/user.jpg" alt="User" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <Avatar rounded="none" initials="N" />
+        <Avatar rounded="sm" initials="SM" />
+        <Avatar rounded="md" initials="MD" />
+        <Avatar rounded="lg" initials="LG" />
+        <Avatar rounded="xl" initials="XL" />
+        <Avatar rounded="full" initials="F" />
+    </div>
+</Unstyled>
+
+### Avatar `status`
+
+The `status` prop controls the color and meaning of the status indicator when `showStatus` is enabled.
+
+```jsx
+<Avatar showStatus status="online" src="/user.jpg" alt="User" />
+<Avatar showStatus status="away" src="/user.jpg" alt="User" />
+<Avatar showStatus status="busy" src="/user.jpg" alt="User" />
+<Avatar showStatus status="offline" src="/user.jpg" alt="User" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
+        <Avatar showStatus status="online" initials="ON" />
+        <Avatar showStatus status="away" initials="AW" />
+        <Avatar showStatus status="busy" initials="BY" />
+        <Avatar showStatus status="offline" initials="OF" />
+    </div>
+</Unstyled>
+
+## Accessibility
+
+The Avatar component follows accessibility best practices and includes:
+
+- **Image Alt Text**: Proper alt text for screen readers when using images
+- **Keyboard Navigation**: Full keyboard support for clickable avatars
+- **Focus Management**: Clear focus indicators and proper focus handling
+- **Status Indicators**: Accessible labels for status indicators
+- **Semantic HTML**: Proper button roles for interactive avatars
+
+## Best Practices
+
+### When to Use
+
+- **User Identification**: For displaying user profile pictures in interfaces
+- **Team Members**: In team lists, collaboration tools, or member directories
+- **Comments/Posts**: To identify authors in content feeds or discussions
+- **Navigation**: As profile triggers in headers or navigation menus
+
+### When Not to Use
+
+- **Decorative Images**: Use regular img elements for non-profile imagery
+- **Large Images**: Consider dedicated image components for hero images or galleries
+- **Complex Graphics**: Use appropriate image components for detailed graphics
+
+### Guidelines
+
+1. **Consistent Sizing**: Use consistent avatar sizes within the same interface context
+2. **Meaningful Fallbacks**: Provide initials or meaningful fallback content
+3. **Proper Alt Text**: Always include descriptive alt text for accessibility
+4. **Status Clarity**: Use status indicators consistently across your application
+5. **Loading States**: Handle image loading gracefully with appropriate fallbacks
+6. **Performance**: Optimize avatar images for web delivery and consider lazy loading
+
+### Content Guidelines
+
+1. **Image Quality**: Use high-quality, well-cropped profile images
+2. **Consistent Aspect**: Ensure all avatar images have consistent aspect ratios
+3. **Appropriate Content**: Use professional, appropriate images for business contexts
+4. **Fallback Strategy**: Always provide meaningful initials or fallback content
+5. **Status Accuracy**: Keep status indicators accurate and up-to-date
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
