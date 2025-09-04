@@ -1,0 +1,279 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { RadioGroup } from "./RadioGroup";
+import * as RadioGroupStories from "./RadioGroup.stories";
+
+<Meta of={RadioGroupStories} />
+
+# RadioGroup
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/RadioGroup)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+- [With Labels](#with-labels)
+- [With Descriptions](#with-descriptions)
+- [With Option Descriptions](#with-option-descriptions)
+- [With Icons](#with-icons)
+- [Horizontal Layout](#horizontal-layout)
+- [Error State](#error-state)
+- [Disabled States](#disabled-states)
+- [Controlled Example](#controlled-example)
+- [Payment Method Example](#payment-method-example)
+- [Component API](#component-api)
+    - [RadioGroup `variant`](#radiogroup-variant)
+    - [RadioGroup `size`](#radiogroup-size)
+    - [RadioGroup `orientation`](#radiogroup-orientation)
+    - [RadioGroup `rounded`](#radiogroup-rounded)
+    - [RadioGroup `animation`](#radiogroup-animation)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The RadioGroup component provides a set of mutually exclusive options where users can select exactly one choice. It offers full customization with support for icons, descriptions, horizontal/vertical layouts, error states, and comprehensive accessibility features.
+
+<Canvas of={RadioGroupStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The primary variant uses blue colors and is perfect for most selection scenarios. Use this when the radio group represents an important choice or primary action.
+
+<Canvas of={RadioGroupStories.Primary} />
+
+### Secondary Variant
+
+The secondary variant features subtle gray styling that works well as secondary controls or in content-heavy layouts where you want less visual prominence.
+
+<Canvas of={RadioGroupStories.Secondary} />
+
+## With Labels
+
+Labels provide context and make radio groups more accessible and user-friendly.
+
+<Canvas of={RadioGroupStories.WithLabel} />
+
+## With Descriptions
+
+Group descriptions provide additional context and help users understand the choice they're making.
+
+<Canvas of={RadioGroupStories.WithDescription} />
+
+## With Option Descriptions
+
+Individual option descriptions provide detailed information about each choice, helping users make informed decisions.
+
+<Canvas of={RadioGroupStories.WithOptionDescriptions} />
+
+## With Icons
+
+Icons help users quickly identify different options and make the interface more visually appealing and scannable.
+
+<Canvas of={RadioGroupStories.WithIcons} />
+
+## Horizontal Layout
+
+Horizontal layouts work well when you have fewer options or want to save vertical space.
+
+<Canvas of={RadioGroupStories.Horizontal} />
+
+## Error State
+
+The error state displays validation errors with clear visual feedback and helpful error messages.
+
+<Canvas of={RadioGroupStories.ErrorState} />
+
+## Disabled States
+
+Radio groups can be entirely disabled, or individual options can be disabled to indicate unavailable choices.
+
+<Canvas of={RadioGroupStories.Disabled} />
+
+<Canvas of={RadioGroupStories.WithDisabledOptions} />
+
+## Controlled Example
+
+This example demonstrates a controlled radio group with external state management.
+
+<Canvas of={RadioGroupStories.Controlled} />
+
+## Payment Method Example
+
+A practical example showing how radio groups work in a typical checkout flow.
+
+<Canvas of={RadioGroupStories.PaymentMethodExample} />
+
+## Component API
+
+<ArgTypes of={RadioGroup} />
+
+### RadioGroup `variant`
+
+The variant prop determines the visual style and color scheme of the radio buttons.
+
+```tsx
+<RadioGroup variant="primary" options={options} label="Primary style" />
+<RadioGroup variant="secondary" options={options} label="Secondary style" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "24px" }}>
+        <RadioGroup
+            variant="primary"
+            options={[
+                { value: "1", label: "Option 1" },
+                { value: "2", label: "Option 2" },
+            ]}
+            label="Primary"
+        />
+        <RadioGroup
+            variant="secondary"
+            options={[
+                { value: "1", label: "Option 1" },
+                { value: "2", label: "Option 2" },
+            ]}
+            label="Secondary"
+        />
+    </div>
+</Unstyled>
+
+### RadioGroup `size`
+
+The size prop controls the dimensions of the radio buttons and associated text.
+
+```tsx
+<RadioGroup size="sm" options={options} label="Small" />
+<RadioGroup size="md" options={options} label="Medium" />
+<RadioGroup size="lg" options={options} label="Large" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "24px" }}>
+        <RadioGroup size="sm" options={[{ value: "1", label: "Small" }]} label="SM" />
+        <RadioGroup size="md" options={[{ value: "1", label: "Medium" }]} label="MD" />
+        <RadioGroup size="lg" options={[{ value: "1", label: "Large" }]} label="LG" />
+    </div>
+</Unstyled>
+
+### RadioGroup `orientation`
+
+The orientation prop controls whether options are laid out vertically or horizontally.
+
+```tsx
+<RadioGroup orientation="vertical" options={options} label="Vertical" />
+<RadioGroup orientation="horizontal" options={options} label="Horizontal" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "24px", flexDirection: "column" }}>
+        <RadioGroup
+            orientation="vertical"
+            options={[
+                { value: "1", label: "Option 1" },
+                { value: "2", label: "Option 2" },
+            ]}
+            label="Vertical"
+        />
+        <RadioGroup
+            orientation="horizontal"
+            options={[
+                { value: "1", label: "Option 1" },
+                { value: "2", label: "Option 2" },
+            ]}
+            label="Horizontal"
+        />
+    </div>
+</Unstyled>
+
+### RadioGroup `rounded`
+
+The rounded prop controls the border radius of the radio buttons.
+
+```tsx
+<RadioGroup rounded="none" options={options} label="No radius" />
+<RadioGroup rounded="sm" options={options} label="Small radius" />
+<RadioGroup rounded="md" options={options} label="Medium radius" />
+<RadioGroup rounded="lg" options={options} label="Large radius" />
+<RadioGroup rounded="xl" options={options} label="XL radius" />
+<RadioGroup rounded="full" options={options} label="Full radius" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+        <RadioGroup rounded="none" options={[{ value: "1", label: "None" }]} />
+        <RadioGroup rounded="sm" options={[{ value: "1", label: "Small" }]} />
+        <RadioGroup rounded="md" options={[{ value: "1", label: "Medium" }]} />
+        <RadioGroup rounded="lg" options={[{ value: "1", label: "Large" }]} />
+        <RadioGroup rounded="xl" options={[{ value: "1", label: "XL" }]} />
+        <RadioGroup rounded="full" options={[{ value: "1", label: "Full" }]} />
+    </div>
+</Unstyled>
+
+### RadioGroup `animation`
+
+The animation prop controls whether selection changes are animated.
+
+```tsx
+<RadioGroup animation={true} options={options} label="With animations" />
+<RadioGroup animation={false} options={options} label="No animations" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "24px" }}>
+        <RadioGroup animation={true} options={[{ value: "1", label: "With animations" }]} />
+        <RadioGroup animation={false} options={[{ value: "1", label: "No animations" }]} />
+    </div>
+</Unstyled>
+
+## Accessibility
+
+The RadioGroup component follows WAI-ARIA guidelines and includes comprehensive accessibility features:
+
+- **Semantic HTML**: Uses proper `radiogroup` role and fieldset structure
+- **Keyboard Navigation**: Full keyboard support with arrow keys and tab navigation
+- **Screen Reader Support**: Proper announcements of options, selections, and descriptions
+- **Focus Management**: Clear focus indicators and logical focus flow
+- **Error Handling**: Accessible error messages linked to the radio group
+- **Required Fields**: Proper `aria-required` and visual indication for required fields
+- **Label Association**: Proper label association for all radio options
+
+## Best Practices
+
+### When to Use
+
+- **Mutually Exclusive Options**: When users must select exactly one option from a set
+- **Clear Choices**: When all options should be visible and comparable
+- **Form Inputs**: For form fields requiring a single selection
+- **Settings and Preferences**: For configuration options with clear alternatives
+
+### When Not to Use
+
+- **Multiple Selections**: Use checkboxes or a multi-select component instead
+- **Many Options**: Consider a select dropdown for more than 6-8 options
+- **Binary Choices**: Consider a switch for simple on/off or yes/no choices
+- **Actions**: Use buttons for actions that trigger immediate behavior
+
+### Guidelines
+
+- **Clear Labels**: Use descriptive, concise labels that clearly differentiate options
+- **Logical Ordering**: Order options by importance, frequency of use, or alphabetically
+- **Consistent Options**: Ensure options are mutually exclusive and complete
+- **Group Related Options**: Keep related radio groups close together
+- **Default Selections**: Consider pre-selecting the most common or recommended option
+- **Error Handling**: Provide clear validation messages for required fields
+- **Mobile Considerations**: Ensure adequate touch targets and consider vertical layouts
+- **Descriptions**: Use option descriptions for complex choices that need clarification
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the [GitHub repository](https://github.com/ruma-ui/ui).

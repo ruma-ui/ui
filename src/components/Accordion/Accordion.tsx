@@ -189,8 +189,10 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
     return (
         <div
             className={cn(
-                "overflow-hidden text-sm transition-all",
-                isExpanded ? "max-h-none pb-4" : "max-h-0",
+                "overflow-hidden text-sm duration-200",
+                isExpanded
+                    ? "animate-in fade-in slide-in-from-top-2 pb-4 ease-out"
+                    : "animate-out fade-out slide-out-to-top-2 max-h-0 ease-in",
                 className,
             )}
             {...props}

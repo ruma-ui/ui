@@ -429,7 +429,6 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                         aria-haspopup="listbox"
                         aria-controls={listboxId}
                         aria-describedby={hasAssistive ? assistiveId : undefined}
-                        aria-invalid={error || undefined}
                         id={selectId}
                         {...props}
                     >
@@ -450,7 +449,8 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                             className={cn(
                                 dropdownBase,
                                 dropdownRadius,
-                                animation && "animate-in origin-top scale-y-100 opacity-100",
+                                animation &&
+                                    "animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-150 ease-out",
                             )}
                             role="listbox"
                         >
