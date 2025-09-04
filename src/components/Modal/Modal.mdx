@@ -1,5 +1,7 @@
 import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import React from "react";
 import { Modal } from "./Modal";
+import { Button } from "../Button/Button";
 import * as ModalStories from "./Modal.stories";
 
 <Meta of={ModalStories} />
@@ -175,30 +177,53 @@ The `variant` prop determines the visual style and background treatment of the m
 ```
 
 <Unstyled>
-    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-        <button
-            style={{
-                padding: "8px 16px",
-                border: "1px solid #d1d5db",
-                borderRadius: "6px",
-                background: "#3b82f6",
-                color: "white",
-            }}
-        >
-            Primary Modal
-        </button>
-        <button
-            style={{
-                padding: "8px 16px",
-                border: "1px solid #d1d5db",
-                borderRadius: "6px",
-                background: "#6b7280",
-                color: "white",
-            }}
-        >
-            Secondary Modal
-        </button>
+export const VariantExample = () => {
+  const [primaryOpen, setPrimaryOpen] = React.useState(false);
+  const [secondaryOpen, setSecondaryOpen] = React.useState(false);
+
+return (
+
+<div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+<Button
+onClick={() => setPrimaryOpen(true)}
+variant="primary" >
+Open Primary Modal
+</Button>
+<Button
+onClick={() => setSecondaryOpen(true)}
+variant="secondary" >
+Open Secondary Modal
+</Button>
+
+      <Modal
+        variant="primary"
+        open={primaryOpen}
+        onClose={() => setPrimaryOpen(false)}
+        title="Primary Modal"
+      >
+        <p>
+          This is a primary modal with clean white background and standard border
+          styling. Perfect for most modal dialogs and primary content overlays.
+        </p>
+      </Modal>
+
+      <Modal
+        variant="secondary"
+        open={secondaryOpen}
+        onClose={() => setSecondaryOpen(false)}
+        title="Secondary Modal"
+      >
+        <p>
+          This is a secondary modal with a subtle gray background, perfect for
+          secondary contexts when you want a softer visual presence.
+        </p>
+      </Modal>
     </div>
+
+);
+};
+
+<VariantExample />
 </Unstyled>
 
 ### Modal `size`
@@ -224,59 +249,129 @@ The `size` prop controls the modal's width and maximum dimensions. Choose sizes 
 ```
 
 <Unstyled>
-    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
-        <button
-            style={{
-                padding: "6px 12px",
-                border: "1px solid #d1d5db",
-                borderRadius: "4px",
-                fontSize: "12px",
-            }}
-        >
-            SM
-        </button>
-        <button
-            style={{
-                padding: "8px 16px",
-                border: "1px solid #d1d5db",
-                borderRadius: "4px",
-                fontSize: "14px",
-            }}
-        >
-            MD
-        </button>
-        <button
-            style={{
-                padding: "10px 20px",
-                border: "1px solid #d1d5db",
-                borderRadius: "4px",
-                fontSize: "16px",
-            }}
-        >
-            LG
-        </button>
-        <button
-            style={{
-                padding: "12px 24px",
-                border: "1px solid #d1d5db",
-                borderRadius: "4px",
-                fontSize: "18px",
-            }}
-        >
-            XL
-        </button>
-        <button
-            style={{
-                padding: "8px 16px",
-                border: "1px solid #d1d5db",
-                borderRadius: "4px",
-                fontSize: "14px",
-                background: "#f3f4f6",
-            }}
-        >
-            FULL
-        </button>
+export const SizeExample = () => {
+  const [smOpen, setSmOpen] = React.useState(false);
+  const [mdOpen, setMdOpen] = React.useState(false);
+  const [lgOpen, setLgOpen] = React.useState(false);
+  const [xlOpen, setXlOpen] = React.useState(false);
+  const [fullOpen, setFullOpen] = React.useState(false);
+
+return (
+
+<div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+<button
+onClick={() => setSmOpen(true)}
+style={{
+          padding: "6px 12px",
+          border: "1px solid #d1d5db",
+          borderRadius: "4px",
+          fontSize: "12px",
+          cursor: "pointer",
+        }} >
+Small
+</button>
+<button
+onClick={() => setMdOpen(true)}
+style={{
+          padding: "8px 16px",
+          border: "1px solid #d1d5db",
+          borderRadius: "4px",
+          fontSize: "14px",
+          cursor: "pointer",
+        }} >
+Medium
+</button>
+<button
+onClick={() => setLgOpen(true)}
+style={{
+          padding: "10px 20px",
+          border: "1px solid #d1d5db",
+          borderRadius: "4px",
+          fontSize: "16px",
+          cursor: "pointer",
+        }} >
+Large
+</button>
+<button
+onClick={() => setXlOpen(true)}
+style={{
+          padding: "12px 24px",
+          border: "1px solid #d1d5db",
+          borderRadius: "4px",
+          fontSize: "18px",
+          cursor: "pointer",
+        }} >
+Extra Large
+</button>
+<button
+onClick={() => setFullOpen(true)}
+style={{
+          padding: "14px 18px",
+          border: "1px solid #d1d5db",
+          borderRadius: "4px",
+          fontSize: "20px",
+          cursor: "pointer",
+        }} >
+Full Size
+</button>
+
+      <Modal size="sm" open={smOpen} onClose={() => setSmOpen(false)} title="Small Modal">
+        <p>
+          This is a small modal perfect for simple confirmations, alerts, or brief
+          messages.
+        </p>
+      </Modal>
+
+      <Modal
+        size="md"
+        open={mdOpen}
+        onClose={() => setMdOpen(false)}
+        title="Medium Modal"
+      >
+        <p>
+          This is a medium modal, the default size that works well for most content
+          and forms.
+        </p>
+      </Modal>
+
+      <Modal size="lg" open={lgOpen} onClose={() => setLgOpen(false)} title="Large Modal">
+        <p>
+          This is a large modal that provides more space for complex forms, detailed
+          content, or interactions that need additional room while maintaining good
+          usability.
+        </p>
+      </Modal>
+
+      <Modal
+        size="xl"
+        open={xlOpen}
+        onClose={() => setXlOpen(false)}
+        title="Extra Large Modal"
+      >
+        <p>
+          This is an extra large modal for content that requires even more space while
+          still maintaining readability and good user experience.
+        </p>
+      </Modal>
+
+      <Modal
+        size="full"
+        open={fullOpen}
+        onClose={() => setFullOpen(false)}
+        title="Full Size Modal"
+      >
+        <p>
+          This is a full-size modal that adapts to the viewport with responsive
+          margins, perfect for dashboards, complex forms, or content-heavy interfaces
+          that need maximum screen real estate.
+        </p>
+      </Modal>
     </div>
+
+);
+};
+
+<SizeExample />
 </Unstyled>
 
 ### Modal `rounded`
@@ -302,83 +397,141 @@ The `rounded` prop controls the border radius of the modal container. Use this t
 ```
 
 <Unstyled>
-    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
-        <div
-            style={{
-                width: "60px",
-                height: "40px",
-                border: "1px solid #d1d5db",
-                borderRadius: "0px",
-                background: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "10px",
-            }}
-        >
-            none
-        </div>
-        <div
-            style={{
-                width: "60px",
-                height: "40px",
-                border: "1px solid #d1d5db",
-                borderRadius: "2px",
-                background: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "10px",
-            }}
-        >
-            sm
-        </div>
-        <div
-            style={{
-                width: "60px",
-                height: "40px",
-                border: "1px solid #d1d5db",
-                borderRadius: "6px",
-                background: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "10px",
-            }}
-        >
-            md
-        </div>
-        <div
-            style={{
-                width: "60px",
-                height: "40px",
-                border: "1px solid #d1d5db",
-                borderRadius: "8px",
-                background: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "10px",
-            }}
-        >
-            lg
-        </div>
-        <div
-            style={{
-                width: "60px",
-                height: "40px",
-                border: "1px solid #d1d5db",
-                borderRadius: "12px",
-                background: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "10px",
-            }}
-        >
-            xl
-        </div>
+export const RoundedExample = () => {
+  const [noneOpen, setNoneOpen] = React.useState(false);
+  const [smOpen, setSmOpen] = React.useState(false);
+  const [mdOpen, setMdOpen] = React.useState(false);
+  const [lgOpen, setLgOpen] = React.useState(false);
+  const [xlOpen, setXlOpen] = React.useState(false);
+
+return (
+
+<div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+<button
+onClick={() => setNoneOpen(true)}
+style={{
+          width: "60px",
+          height: "40px",
+          border: "1px solid #d1d5db",
+          borderRadius: "0px",
+          background: "white",
+          fontSize: "14px",
+          cursor: "pointer",
+        }} >
+none
+</button>
+<button
+onClick={() => setSmOpen(true)}
+style={{
+          width: "60px",
+          height: "40px",
+          border: "1px solid #d1d5db",
+          borderRadius: "2px",
+          background: "white",
+          fontSize: "14px",
+          cursor: "pointer",
+        }} >
+sm
+</button>
+<button
+onClick={() => setMdOpen(true)}
+style={{
+          width: "60px",
+          height: "40px",
+          border: "1px solid #d1d5db",
+          borderRadius: "6px",
+          background: "white",
+          fontSize: "14px",
+          cursor: "pointer",
+        }} >
+md
+</button>
+<button
+onClick={() => setLgOpen(true)}
+style={{
+          width: "60px",
+          height: "40px",
+          border: "1px solid #d1d5db",
+          borderRadius: "8px",
+          background: "white",
+          fontSize: "14px",
+          cursor: "pointer",
+        }} >
+lg
+</button>
+<button
+onClick={() => setXlOpen(true)}
+style={{
+          width: "60px",
+          height: "40px",
+          border: "1px solid #d1d5db",
+          borderRadius: "12px",
+          background: "white",
+          fontSize: "14px",
+          cursor: "pointer",
+        }} >
+xl
+</button>
+
+      <Modal
+        rounded="none"
+        open={noneOpen}
+        onClose={() => setNoneOpen(false)}
+        title="No Radius"
+      >
+        <p>
+          This modal has no border radius (sharp corners). Notice the angular
+          appearance.
+        </p>
+      </Modal>
+
+      <Modal
+        rounded="sm"
+        open={smOpen}
+        onClose={() => setSmOpen(false)}
+        title="Small Radius"
+      >
+        <p>This modal has a small border radius for subtle rounded corners.</p>
+      </Modal>
+
+      <Modal
+        rounded="md"
+        open={mdOpen}
+        onClose={() => setMdOpen(false)}
+        title="Medium Radius"
+      >
+        <p>This modal has a medium border radius for a balanced rounded appearance.</p>
+      </Modal>
+
+      <Modal
+        rounded="lg"
+        open={lgOpen}
+        onClose={() => setLgOpen(false)}
+        title="Large Radius"
+      >
+        <p>
+          This modal has a large border radius (default) for a modern, pleasant
+          rounded look.
+        </p>
+      </Modal>
+
+      <Modal
+        rounded="xl"
+        open={xlOpen}
+        onClose={() => setXlOpen(false)}
+        title="Extra Large Radius"
+      >
+        <p>
+          This modal has an extra large border radius for a very rounded, soft
+          appearance.
+        </p>
+      </Modal>
     </div>
+
+);
+};
+
+<RoundedExample />
 </Unstyled>
 
 ### Modal `animation`
@@ -395,30 +548,67 @@ The `animation` prop controls whether entrance and exit animations are enabled. 
 ```
 
 <Unstyled>
-    <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
-        <button
-            style={{
-                padding: "8px 16px",
-                border: "1px solid #d1d5db",
-                borderRadius: "4px",
-                background: "#3b82f6",
-                color: "white",
-            }}
-        >
-            With animations
-        </button>
-        <button
-            style={{
-                padding: "8px 16px",
-                border: "1px solid #d1d5db",
-                borderRadius: "4px",
-                background: "#6b7280",
-                color: "white",
-            }}
-        >
-            No animations
-        </button>
+export const AnimationExample = () => {
+  const [animatedOpen, setAnimatedOpen] = React.useState(false);
+  const [staticOpen, setStaticOpen] = React.useState(false);
+
+return (
+
+<div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
+<button
+onClick={() => setAnimatedOpen(true)}
+style={{
+          padding: "8px 16px",
+          border: "1px solid #d1d5db",
+          borderRadius: "4px",
+          background: "#3b82f6",
+          color: "white",
+          cursor: "pointer",
+        }} >
+With animations
+</button>
+<button
+onClick={() => setStaticOpen(true)}
+style={{
+          padding: "8px 16px",
+          border: "1px solid #d1d5db",
+          borderRadius: "4px",
+          background: "#6b7280",
+          color: "white",
+          cursor: "pointer",
+        }} >
+No animations
+</button>
+
+      <Modal
+        animation={true}
+        open={animatedOpen}
+        onClose={() => setAnimatedOpen(false)}
+        title="With Animations"
+      >
+        <p>
+          This modal opens and closes with smooth fade and zoom animations. Notice the
+          entrance and exit effects.
+        </p>
+      </Modal>
+
+      <Modal
+        animation={false}
+        open={staticOpen}
+        onClose={() => setStaticOpen(false)}
+        title="No Animations"
+      >
+        <p>
+          This modal appears and disappears instantly without any animations. This is
+          useful for users who prefer reduced motion.
+        </p>
+      </Modal>
     </div>
+
+);
+};
+
+<AnimationExample />
 </Unstyled>
 
 ## Accessibility

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
@@ -85,12 +85,12 @@ export interface ModalProps {
 }
 
 // Base styles
-const overlayBase = tw`fixed inset-0 z-50 flex items-center justify-center bg-black/50`;
-const modalBase = tw`relative max-h-[90vh] w-full overflow-hidden bg-white shadow-2xl outline-none`;
+const overlayBase = tw`fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm`;
+const modalBase = tw`relative max-h-[85vh] w-full overflow-hidden bg-white shadow-xl ring-1 ring-gray-200 outline-none`;
 const headerBase = tw`flex items-center justify-between border-b border-gray-200 px-6 py-4`;
-const bodyBase = tw`flex-1 overflow-y-auto px-6 py-4`;
+const bodyBase = tw`flex-1 overflow-y-auto px-6 py-5`;
 const footerBase = tw`border-t border-gray-200 px-6 py-4`;
-const closeButtonBase = tw`rounded-sm p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
+const closeButtonBase = tw`rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
 
 // Variants
 const variants = {
@@ -118,13 +118,13 @@ const roundedOptions = {
 
 // Animation classes
 const overlayAnimations = {
-    enter: tw`animate-in fade-in duration-200`,
-    exit: tw`animate-out fade-out duration-200`,
+    enter: tw`animate-in fade-in-0 duration-200 ease-out`,
+    exit: tw`animate-out fade-out-0 duration-150 ease-in`,
 };
 
 const modalAnimations = {
-    enter: tw`animate-in zoom-in-95 duration-200`,
-    exit: tw`animate-out zoom-out-95 duration-200`,
+    enter: tw`animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200 ease-out`,
+    exit: tw`animate-out fade-out-0 zoom-out-95 slide-out-to-top-2 duration-150 ease-in`,
 };
 
 // Close icon component
@@ -254,20 +254,40 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             }
         };
 
-        if (!open) return null;
+        // Support exit animations by keeping mounted until animation completes
+        const [isMounted, setIsMounted] = useState(open);
+        const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+
+        useEffect(() => {
+            if (open) {
+                setIsMounted(true);
+                setIsAnimatingOut(false);
+            } else if (animation) {
+                setIsAnimatingOut(true);
+                const t = setTimeout(() => {
+                    setIsMounted(false);
+                    setIsAnimatingOut(false);
+                }, 160); // match duration-150 + small buffer
+                return () => clearTimeout(t);
+            } else {
+                setIsMounted(false);
+            }
+        }, [open, animation]);
+
+        if (!isMounted) return null;
 
         const modalClasses = cn(
             modalBase,
             variants[variant],
             sizes[size],
             roundedOptions[rounded],
-            animation && modalAnimations.enter,
+            animation && (isAnimatingOut ? modalAnimations.exit : modalAnimations.enter),
             className,
         );
 
         const overlayClasses = cn(
             overlayBase,
-            animation && overlayAnimations.enter,
+            animation && (isAnimatingOut ? overlayAnimations.exit : overlayAnimations.enter),
             overlayClassName,
         );
 
@@ -292,12 +312,12 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     {/* Header */}
                     {(header || title || !hideCloseButton) && (
                         <div className={headerBase}>
-                            <div className="flex-1">
+                            <div className="min-w-0 flex-1">
                                 {header ||
                                     (title && (
                                         <h2
                                             id={titleId}
-                                            className="text-lg font-semibold text-gray-900"
+                                            className="truncate text-lg font-semibold text-gray-900"
                                         >
                                             {title}
                                         </h2>
