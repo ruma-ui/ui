@@ -1,0 +1,67 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import Calendar, { Calendar as CalendarNamed } from "./Calendar";
+import * as CalendarStories from "./Calendar.stories";
+
+<Meta of={CalendarStories} />
+
+# Calendar
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Calendar)
+
+## Overview
+
+The Calendar component is a lightweight, fully controlled/uncontrolled date picker grid built with date-fns. It supports month navigation, single-day selection, min/max range limits, and custom disabling logic.
+
+<Canvas of={CalendarStories.Uncontrolled} />
+
+## Examples
+
+### Min/Max Range
+
+<Canvas of={CalendarStories.WithMinMax} />
+
+### Controlled Month
+
+<Canvas of={CalendarStories.ControlledMonth} />
+
+## Component API
+
+<ArgTypes of={CalendarNamed} />
+
+### Usage
+
+```tsx
+import { useState } from "react";
+import { Calendar } from "@/components";
+
+export function Example() {
+    const [selected, setSelected] = useState<Date | null>(new Date());
+    return (
+        <Calendar
+            selectedDate={selected}
+            onDateSelect={setSelected}
+            weekStartsOn={0}
+            showOutsideDays
+            showMonthYearPickers
+        />
+    );
+}
+```
+
+### Accessibility
+
+- **Keyboard focus**: Day buttons are focusable and expose `aria-selected` and `aria-disabled`.
+- **Semantics**: Markup uses grid semantics and accessible labels for month navigation.
+- **Live region**: The visible month label is announced when it changes.
+
+### Animations
+
+- Uses Tailwind CSS animate classes for subtle slide + fade between months.
+- Toggle with `disableAnimation` (default: `false`). Set to `true` to disable transitions.
+
+### Best Practices
+
+- **Min/Max**: Use `minDate`/`maxDate` to restrict selectable dates.
+- **Disabled logic**: Provide `isDateDisabled` to exclude custom holidays or blackout dates.
+- **Controlled month**: Use `month` and `onMonthChange` when syncing the visible month with parent state.
+- **Localization**: Pass a `date-fns` locale for localized month and weekday labels.
