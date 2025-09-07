@@ -46,3 +46,9 @@ storybook-static
 # Jetbrains
 !/.idea/
 .idea/*
+
+# Ai code editor config
+!/.zencoder/
+.zencoder/
+.zencoder/**/*
+.zencoder/rules/repo.md
