@@ -6,3 +6,4 @@ export * from "./TextInput/TextInput";
 export * from "./Select/Select";
 export * from "./Calendar/Calendar";
 export * from "./DatePicker/DatePicker";
+export * from "./Table/Table";
