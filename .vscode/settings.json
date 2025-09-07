@@ -2,7 +2,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
 
-    // Teach Tailwind CSS IntelliSense to detect classes inside our helpers
     "tailwindCSS.experimental.classRegex": [
         "cn\\(([^)]*)\\)",
         "clsx\\(([^)]*)\\)",
@@ -11,7 +10,6 @@
     ],
     "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
 
-    // Use workspace Prettier and require a config
     "prettier.pluginSearchDirs": ["."],
     "prettier.requireConfig": true
 }
