@@ -21,14 +21,16 @@ import React from "react";
 - [Alignment](#alignment)
 - [Empty State](#empty-state)
 - [Component API](#component-api)
-    - [Table `columns`](#table-columns)
-    - [Table `data`](#table-data)
     - [Table `density`](#table-density)
     - [Table `variant`](#table-variant)
-    - [Table `highlightOnHover`](#table-highlightonhover)
-    - [Table `stickyHeader` and `maxHeight`](#table-stickyheader-and-maxheight)
-    - [Table `caption` and `ariaLabel`](#table-caption-and-arialabel)
+    - [Table on hover highlighting](#table-on-hover-highlighting)
+    - [Table with sticky header and max height](#table-with-sticky-header-and-max-height)
+    - [Table with caption and aria-label](#table-with-caption-and-aria-label)
     - [Table `className`](#table-classname)
+    - [Table `resizable`](#table-resizable)
+    - [Table `virtualization`](#table-virtualization)
+    - [Table `rowClassName` and `cellClassName`](#table-rowclassname-and-cellclassname)
+    - [Table `sticky` columns](#table-sticky-columns)
 
 ## Overview
 
@@ -413,7 +415,7 @@ Make columns stick to the left while scrolling horizontally.
 ```
 
 <Unstyled>
-    <div style={{ maxHeight: 200, overflow: "auto", border: "1px solid #e5e7eb", borderRadius: 6 }}>
+    <div style={{ maxHeight: 210, overflow: "auto", border: "1px solid #e5e7eb", borderRadius: 6 }}>
         <Table
             columns={[
                 { key: "id", header: "ID", sticky: true, width: "80px" },
