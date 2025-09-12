@@ -1,0 +1,536 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Tooltip } from "./Tooltip";
+import { Button } from "../Button/Button";
+import { Badge } from "../Badge/Badge";
+import * as TooltipStories from "./Tooltip.stories";
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Tooltip)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Positions](#positions)
+    - [Auto Position](#auto-position)
+    - [Manual Positions](#manual-positions)
+- [Variants](#variants)
+    - [Dark Variant](#dark-variant)
+    - [Light Variant](#light-variant)
+    - [Semantic Variants](#semantic-variants)
+- [Sizes](#sizes)
+- [Max Width](#max-width)
+- [With Icons](#with-icons)
+- [With Badges](#with-badges)
+- [Long Content](#long-content)
+- [Custom Delay](#custom-delay)
+- [Without Arrow](#without-arrow)
+- [Disabled](#disabled)
+- [Interactive Elements](#interactive-elements)
+- [Component API](#component-api)
+    - [Tooltip `position`](#tooltip-position)
+    - [Tooltip `variant`](#tooltip-variant)
+    - [Tooltip `size`](#tooltip-size)
+    - [Tooltip `maxWidth`](#tooltip-maxwidth)
+    - [Tooltip `rounded`](#tooltip-rounded)
+    - [Tooltip `delay`](#tooltip-delay)
+    - [Tooltip `showArrow`](#tooltip-showarrow)
+    - [Tooltip `disabled`](#tooltip-disabled)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Tooltip component displays contextual information when users hover over or focus on trigger elements. Built with intelligent auto-positioning, comprehensive styling options, and accessibility features for production-ready applications.
+
+<Canvas of={TooltipStories.Basic} />
+
+## Positions
+
+### Auto Position
+
+The auto position intelligently selects the best position based on available viewport space, following the priority order: top → left → right → bottom.
+
+<Canvas of={TooltipStories.AutoPosition} />
+
+### Manual Positions
+
+Choose specific positions when you need precise control over tooltip placement.
+
+<Canvas of={TooltipStories.Positions} />
+
+## Variants
+
+### Dark Variant
+
+The dark variant provides high contrast and works well on light backgrounds.
+
+### Light Variant
+
+The light variant offers a subtle appearance with clean arrow styling that works well on dark backgrounds.
+
+### Semantic Variants
+
+Semantic variants communicate meaning through color and are perfect for status indicators and contextual information.
+
+<Canvas of={TooltipStories.Variants} />
+
+## Sizes
+
+Tooltips come in three sizes to match different interface contexts and content lengths.
+
+<Canvas of={TooltipStories.Sizes} />
+
+## Max Width
+
+Control the maximum width of tooltips to prevent them from becoming too wide while maintaining readability. By default, tooltips have no maximum width and will size naturally based on their content. When a maxWidth is set, long content will automatically wrap to fit within the constraint.
+
+<Canvas of={TooltipStories.MaxWidth} />
+
+## With Icons
+
+Icons enhance tooltip meaning and help users quickly identify the type of information being displayed.
+
+<Canvas of={TooltipStories.WithIcons} />
+
+## With Badges
+
+Tooltips work seamlessly with badges to provide additional context for status indicators and labels.
+
+<Canvas of={TooltipStories.WithBadges} />
+
+## Long Content
+
+Tooltips can display longer content including formatted text and multiple lines of information.
+
+<Canvas of={TooltipStories.LongContent} />
+
+## Custom Delay
+
+Control the delay before tooltips appear to match your application's interaction patterns.
+
+<Canvas of={TooltipStories.CustomDelay} />
+
+## Without Arrow
+
+Tooltips can be displayed without arrows for a cleaner, more minimal appearance.
+
+<Canvas of={TooltipStories.WithoutArrow} />
+
+## Disabled
+
+Tooltips can be conditionally disabled when certain features are not available.
+
+<Canvas of={TooltipStories.Disabled} />
+
+## Interactive Elements
+
+Tooltips work with interactive elements like buttons and form controls to provide contextual help.
+
+<Canvas of={TooltipStories.InteractiveElements} />
+
+## Component API
+
+<ArgTypes of={Tooltip} />
+
+### Tooltip `position`
+
+The `position` prop determines where the tooltip appears relative to the trigger element. The "auto" position automatically selects the best position based on available viewport space, following the priority order: top → left → right → bottom.
+
+```jsx
+<Tooltip content="Auto-positioned tooltip" position="auto">
+  <Button>Auto</Button>
+</Tooltip>
+<Tooltip content="Top positioned tooltip" position="top">
+  <Button>Top</Button>
+</Tooltip>
+<Tooltip content="Bottom positioned tooltip" position="bottom">
+  <Button>Bottom</Button>
+</Tooltip>
+<Tooltip content="Left positioned tooltip" position="left">
+  <Button>Left</Button>
+</Tooltip>
+<Tooltip content="Right positioned tooltip" position="right">
+  <Button>Right</Button>
+</Tooltip>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Tooltip
+            content="Auto position tooltip - prioritizes top, then left, right, bottom"
+            position="auto"
+        >
+            <Button variant="outline" size="sm">
+                Auto
+            </Button>
+        </Tooltip>
+        <Tooltip content="Top tooltip" position="top">
+            <Button variant="outline" size="sm">
+                Top
+            </Button>
+        </Tooltip>
+        <Tooltip content="Bottom tooltip" position="bottom">
+            <Button variant="outline" size="sm">
+                Bottom
+            </Button>
+        </Tooltip>
+        <Tooltip content="Left tooltip" position="left">
+            <Button variant="outline" size="sm">
+                Left
+            </Button>
+        </Tooltip>
+        <Tooltip content="Right tooltip" position="right">
+            <Button variant="outline" size="sm">
+                Right
+            </Button>
+        </Tooltip>
+    </div>
+</Unstyled>
+
+### Tooltip `variant`
+
+The `variant` prop controls the visual appearance and semantic meaning of the tooltip. Choose variants that match the information being communicated.
+
+```jsx
+<Tooltip content="Dark tooltip" variant="dark">
+  <Button>Dark</Button>
+</Tooltip>
+<Tooltip content="Light tooltip" variant="light">
+  <Button>Light</Button>
+</Tooltip>
+<Tooltip content="Primary tooltip" variant="primary">
+  <Button>Primary</Button>
+</Tooltip>
+<Tooltip content="Success tooltip" variant="success">
+  <Button>Success</Button>
+</Tooltip>
+<Tooltip content="Warning tooltip" variant="warning">
+  <Button>Warning</Button>
+</Tooltip>
+<Tooltip content="Error tooltip" variant="error">
+  <Button>Error</Button>
+</Tooltip>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Tooltip content="Dark" variant="dark">
+            <Button variant="secondary" size="sm">
+                Dark
+            </Button>
+        </Tooltip>
+        <Tooltip content="Light" variant="light">
+            <Button variant="secondary" size="sm">
+                Light
+            </Button>
+        </Tooltip>
+        <Tooltip content="Primary" variant="primary">
+            <Button variant="secondary" size="sm">
+                Primary
+            </Button>
+        </Tooltip>
+        <Tooltip content="Success" variant="success">
+            <Button variant="secondary" size="sm">
+                Success
+            </Button>
+        </Tooltip>
+        <Tooltip content="Warning" variant="warning">
+            <Button variant="secondary" size="sm">
+                Warning
+            </Button>
+        </Tooltip>
+        <Tooltip content="Error" variant="error">
+            <Button variant="secondary" size="sm">
+                Error
+            </Button>
+        </Tooltip>
+    </div>
+</Unstyled>
+
+### Tooltip `size`
+
+The `size` prop controls the tooltip's dimensions and text size. Choose sizes based on the content length and interface context.
+
+```jsx
+<Tooltip content="Small tooltip" size="sm">
+  <Button>SM</Button>
+</Tooltip>
+<Tooltip content="Medium tooltip" size="md">
+  <Button>MD</Button>
+</Tooltip>
+<Tooltip content="Large tooltip" size="lg">
+  <Button>LG</Button>
+</Tooltip>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <Tooltip content="Small tooltip" size="sm">
+            <Button variant="outline" size="sm">
+                SM
+            </Button>
+        </Tooltip>
+        <Tooltip content="Medium tooltip" size="md">
+            <Button variant="outline" size="md">
+                MD
+            </Button>
+        </Tooltip>
+        <Tooltip content="Large tooltip" size="lg">
+            <Button variant="outline" size="lg">
+                LG
+            </Button>
+        </Tooltip>
+    </div>
+</Unstyled>
+
+### Tooltip `maxWidth`
+
+The `maxWidth` prop controls the maximum width of the tooltip. It accepts predefined size options (`xs`, `sm`, `md`, `lg`, `xl`) or `none` for no maximum width. By default, tooltips have no maximum width and will size naturally based on their content. When a maxWidth is set, content will automatically wrap to fit within the constraint.
+
+```jsx
+<Tooltip content="Tooltip with small max width" maxWidth="sm">
+  <Button>Small</Button>
+</Tooltip>
+<Tooltip content="Tooltip with no max width" maxWidth="none">
+  <Button>No Max</Button>
+</Tooltip>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <Tooltip content="This tooltip has a small max width and will wrap content" maxWidth="xs">
+            <Button variant="outline" size="sm">
+                XS
+            </Button>
+        </Tooltip>
+        <Tooltip content="This tooltip has a medium max width and will wrap content" maxWidth="md">
+            <Button variant="outline" size="sm">
+                MD
+            </Button>
+        </Tooltip>
+        <Tooltip content="This tooltip has no max width and won't wrap" maxWidth="none">
+            <Button variant="outline" size="sm">
+                None
+            </Button>
+        </Tooltip>
+    </div>
+</Unstyled>
+
+### Tooltip `rounded`
+
+The `rounded` prop controls the border radius of the tooltip. Use this to match your design system's corner radius preferences.
+
+```jsx
+<Tooltip content="No radius" rounded="none">
+  <Button>No radius</Button>
+</Tooltip>
+<Tooltip content="Small radius" rounded="sm">
+  <Button>Small radius</Button>
+</Tooltip>
+<Tooltip content="Medium radius" rounded="md">
+  <Button>Medium radius</Button>
+</Tooltip>
+<Tooltip content="Large radius" rounded="lg">
+  <Button>Large radius</Button>
+</Tooltip>
+<Tooltip content="Extra large radius" rounded="xl">
+  <Button>XL radius</Button>
+</Tooltip>
+<Tooltip content="Full radius" rounded="full">
+  <Button>Full radius</Button>
+</Tooltip>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <Tooltip content="None" rounded="none">
+            <Button variant="outline" size="sm">
+                None
+            </Button>
+        </Tooltip>
+        <Tooltip content="SM" rounded="sm">
+            <Button variant="outline" size="sm">
+                SM
+            </Button>
+        </Tooltip>
+        <Tooltip content="MD" rounded="md">
+            <Button variant="outline" size="sm">
+                MD
+            </Button>
+        </Tooltip>
+        <Tooltip content="LG" rounded="lg">
+            <Button variant="outline" size="sm">
+                LG
+            </Button>
+        </Tooltip>
+        <Tooltip content="XL" rounded="xl">
+            <Button variant="outline" size="sm">
+                XL
+            </Button>
+        </Tooltip>
+        <Tooltip content="Full" rounded="full">
+            <Button variant="outline" size="sm">
+                Full
+            </Button>
+        </Tooltip>
+    </div>
+</Unstyled>
+
+### Tooltip `delay`
+
+The `delay` prop controls the delay in milliseconds before the tooltip appears. This helps prevent accidental tooltip displays during quick mouse movements.
+
+```jsx
+<Tooltip content="Quick tooltip (100ms)" delay={100}>
+  <Button>Quick</Button>
+</Tooltip>
+<Tooltip content="Normal tooltip (300ms)" delay={300}>
+  <Button>Normal</Button>
+</Tooltip>
+<Tooltip content="Slow tooltip (1000ms)" delay={1000}>
+  <Button>Slow</Button>
+</Tooltip>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <Tooltip content="Quick tooltip (100ms)" delay={100}>
+            <Button variant="outline" size="sm">
+                Quick
+            </Button>
+        </Tooltip>
+        <Tooltip content="Normal tooltip (300ms)" delay={300}>
+            <Button variant="outline" size="sm">
+                Normal
+            </Button>
+        </Tooltip>
+        <Tooltip content="Slow tooltip (1000ms)" delay={1000}>
+            <Button variant="outline" size="sm">
+                Slow
+            </Button>
+        </Tooltip>
+    </div>
+</Unstyled>
+
+### Tooltip `showArrow`
+
+The `showArrow` prop controls whether to display an arrow pointing to the trigger element. Arrows help users understand the relationship between the tooltip and its trigger.
+
+```jsx
+<Tooltip content="Tooltip with arrow" showArrow={true}>
+  <Button>With Arrow</Button>
+</Tooltip>
+<Tooltip content="Tooltip without arrow" showArrow={false}>
+  <Button>Without Arrow</Button>
+</Tooltip>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <Tooltip content="Tooltip with arrow" showArrow={true}>
+            <Button variant="outline" size="sm">
+                With Arrow
+            </Button>
+        </Tooltip>
+        <Tooltip content="Tooltip without arrow" showArrow={false}>
+            <Button variant="outline" size="sm">
+                Without Arrow
+            </Button>
+        </Tooltip>
+    </div>
+</Unstyled>
+
+### Tooltip `disabled`
+
+The `disabled` prop controls whether the tooltip is disabled. When disabled, the tooltip will not appear on hover or focus.
+
+```jsx
+<Tooltip content="This tooltip is enabled">
+  <Button>Enabled</Button>
+</Tooltip>
+<Tooltip content="This tooltip is disabled" disabled={true}>
+  <Button>Disabled</Button>
+</Tooltip>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <Tooltip content="This tooltip is enabled">
+            <Button variant="outline" size="sm">
+                Enabled
+            </Button>
+        </Tooltip>
+        <Tooltip content="This tooltip is disabled" disabled={true}>
+            <Button variant="outline" size="sm">
+                Disabled
+            </Button>
+        </Tooltip>
+    </div>
+</Unstyled>
+
+## Accessibility
+
+The Tooltip component follows accessibility best practices and includes:
+
+- **Keyboard Navigation**: Full keyboard support with focus management
+- **Screen Reader Support**: Proper ARIA attributes and roles
+- **Focus Management**: Clear focus indicators and proper focus handling
+- **Semantic HTML**: Uses appropriate ARIA roles and properties
+- **Color Contrast**: All variants meet WCAG color contrast requirements
+- **Motion Preferences**: Respects user's motion preferences for animations
+
+## Best Practices
+
+### When to Use
+
+- **Contextual Help**: For explaining interface elements and their functions
+- **Status Information**: For providing details about system states and indicators
+- **Form Guidance**: For helping users understand form field requirements
+- **Feature Explanations**: For describing complex features or options
+- **Error Details**: For providing additional context about errors or warnings
+
+### When Not to Use
+
+- **Essential Information**: Don't hide critical information in tooltips
+- **Long Content**: Keep tooltip content concise; use modals for detailed information
+- **Mobile Interfaces**: Consider touch interactions on mobile devices
+- **Complex Interactions**: Avoid complex interactive elements within tooltips
+- **Frequent Changes**: Don't use tooltips for rapidly changing information
+
+### Guidelines
+
+1. **Concise Content**: Keep tooltip text brief and actionable
+2. **Clear Language**: Use specific, understandable language
+3. **Consistent Positioning**: Use consistent positions for similar elements
+4. **Appropriate Timing**: Choose delay times that match user expectations
+5. **Visual Hierarchy**: Use variants to indicate importance and type of information
+6. **Performance**: Avoid excessive tooltip animations or complex positioning logic
+
+### Content Guidelines
+
+1. **Action-Oriented**: Focus on what users can do or what information they're receiving
+2. **Context-Aware**: Provide information relevant to the current context
+3. **Non-Redundant**: Don't repeat information that's already clear from the interface
+4. **Helpful**: Ensure tooltips add value and improve user understanding
+5. **Up-to-Date**: Keep tooltip content accurate and current
+
+### Implementation Guidelines
+
+1. **Positioning Logic**: Implement smart positioning that adapts to viewport boundaries
+2. **Touch Support**: Consider touch interactions for mobile and tablet users
+3. **Animation Performance**: Use performant animations that don't impact user experience
+4. **Memory Management**: Properly clean up event listeners and timers
+5. **Testing**: Test tooltips across different browsers and devices
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

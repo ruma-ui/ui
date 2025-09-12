@@ -7,3 +7,4 @@ export * from "./Select/Select";
 export * from "./Calendar/Calendar";
 export * from "./DatePicker/DatePicker";
 export * from "./Table/Table";
+export * from "./Tooltip/Tooltip";
