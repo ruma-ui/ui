@@ -4,6 +4,7 @@ export * from "./Accordion/Accordion";
 export * from "./Checkbox/Checkbox";
 export * from "./TextInput/TextInput";
 export * from "./Select/Select";
+export * from "./Dropdown/Dropdown";
 export * from "./Calendar/Calendar";
 export * from "./DatePicker/DatePicker";
 export * from "./Table/Table";
