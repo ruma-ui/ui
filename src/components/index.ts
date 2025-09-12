@@ -3,6 +3,7 @@ export * from "./Loader/Loader";
 export * from "./Accordion/Accordion";
 export * from "./Checkbox/Checkbox";
 export * from "./TextInput/TextInput";
+export * from "./Textarea/Textarea";
 export * from "./Select/Select";
 export * from "./Dropdown/Dropdown";
 export * from "./Calendar/Calendar";

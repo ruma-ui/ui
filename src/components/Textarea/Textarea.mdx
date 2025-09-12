@@ -1,0 +1,276 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Textarea } from "./Textarea";
+import * as TextareaStories from "./Textarea.stories";
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Textarea)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+- [With Label](#with-label)
+- [With Description](#with-description)
+- [Different Row Counts](#different-row-counts)
+- [Resize Options](#resize-options)
+- [Character Counter](#character-counter)
+- [Error State](#error-state)
+- [Disabled State](#disabled-state)
+- [Full Width](#full-width)
+- [Component API](#component-api)
+    - [Textarea `variant`](#textarea-variant)
+    - [Textarea `size`](#textarea-size)
+    - [Textarea `rounded`](#textarea-rounded)
+    - [Textarea `width`](#textarea-width)
+    - [Textarea `rows`](#textarea-rows)
+    - [Textarea `resize`](#textarea-resize)
+    - [Textarea `className`](#textarea-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+A versatile, accessible Textarea component with label, helper text, error state, and customizable rows—styled to match the rest of the system.
+
+<Canvas of={TextareaStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The default Textarea appearance.
+
+<Canvas of={TextareaStories.Primary} />
+
+### Secondary Variant
+
+A subtle, filled background style.
+
+<Canvas of={TextareaStories.Secondary} />
+
+## With Label
+
+Display a label above the Textarea for clarity.
+
+<Canvas of={TextareaStories.WithLabel} />
+
+## With Description
+
+Use helper text to provide context or instructions for the Textarea.
+
+<Canvas of={TextareaStories.WithDescription} />
+
+## Different Row Counts
+
+Control the number of visible text lines in the Textarea.
+
+<Canvas of={TextareaStories.DifferentRows} />
+
+## Resize Options
+
+Control how users can resize the Textarea.
+
+<Canvas of={TextareaStories.ResizeOptions} />
+
+## Character Counter
+
+Implement a character counter with the Textarea.
+
+<Canvas of={TextareaStories.CharacterCounter} />
+
+## Error State
+
+Show validation feedback and message for the Textarea.
+
+<Canvas of={TextareaStories.ErrorState} />
+
+## Disabled State
+
+Textareas can be disabled when not interactive.
+
+<Canvas of={TextareaStories.Disabled} />
+
+## Full Width
+
+Stretch the Textarea to fill the container width.
+
+<Canvas of={TextareaStories.FullWidth} />
+
+## Component API
+
+<ArgTypes of={Textarea} />
+
+### Textarea `variant`
+
+Controls the visual style of the Textarea.
+
+```jsx
+<Textarea variant="primary" placeholder="Primary" />
+<Textarea variant="secondary" placeholder="Secondary" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+        <Textarea variant="primary" placeholder="Primary" />
+        <Textarea variant="secondary" placeholder="Secondary" />
+    </div>
+</Unstyled>
+
+### Textarea `size`
+
+Adjusts the height and font size of the Textarea.
+
+```jsx
+<Textarea size="xs" placeholder="XS" />
+<Textarea size="sm" placeholder="SM" />
+<Textarea size="md" placeholder="MD" />
+<Textarea size="lg" placeholder="LG" />
+<Textarea size="xl" placeholder="XL" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "start" }}>
+        <Textarea size="xs" placeholder="XS" />
+        <Textarea size="sm" placeholder="SM" />
+        <Textarea size="md" placeholder="MD" />
+        <Textarea size="lg" placeholder="LG" />
+        <Textarea size="xl" placeholder="XL" />
+    </div>
+</Unstyled>
+
+### Textarea `rounded`
+
+Controls the border radius of the Textarea.
+
+```jsx
+<Textarea rounded="none" placeholder="None" />
+<Textarea rounded="sm" placeholder="Small" />
+<Textarea rounded="md" placeholder="Medium" />
+<Textarea rounded="lg" placeholder="Large" />
+<Textarea rounded="xl" placeholder="XL" />
+<Textarea rounded="full" placeholder="Full" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "start" }}>
+        <Textarea rounded="none" placeholder="None" />
+        <Textarea rounded="sm" placeholder="Small" />
+        <Textarea rounded="md" placeholder="Medium" />
+        <Textarea rounded="lg" placeholder="Large" />
+        <Textarea rounded="xl" placeholder="XL" />
+        <Textarea rounded="full" placeholder="Full" />
+    </div>
+</Unstyled>
+
+### Textarea `width`
+
+Fixed width presets for the Textarea when `fullWidth` is false.
+
+```jsx
+<Textarea width="sm" placeholder="SM" />
+<Textarea width="md" placeholder="MD" />
+<Textarea width="lg" placeholder="LG" />
+<Textarea width="xl" placeholder="XL" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "start" }}>
+        <Textarea width="sm" placeholder="SM" />
+        <Textarea width="md" placeholder="MD" />
+        <Textarea width="lg" placeholder="LG" />
+        <Textarea width="xl" placeholder="XL" />
+    </div>
+</Unstyled>
+
+### Textarea `rows`
+
+Controls the number of visible text lines in the Textarea.
+
+```jsx
+<Textarea rows={2} placeholder="2 rows" />
+<Textarea rows={4} placeholder="4 rows" />
+<Textarea rows={6} placeholder="6 rows" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "start" }}>
+        <Textarea rows={2} placeholder="2 rows" />
+        <Textarea rows={4} placeholder="4 rows" />
+        <Textarea rows={6} placeholder="6 rows" />
+    </div>
+</Unstyled>
+
+### Textarea `resize`
+
+Controls the resize behavior of the Textarea.
+
+```jsx
+<Textarea resize="none" placeholder="No resize" />
+<Textarea resize="vertical" placeholder="Vertical" />
+<Textarea resize="horizontal" placeholder="Horizontal" />
+<Textarea resize="both" placeholder="Both" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+        <Textarea resize="none" placeholder="No resize" />
+        <Textarea resize="vertical" placeholder="Vertical" />
+        <Textarea resize="horizontal" placeholder="Horizontal" />
+        <Textarea resize="both" placeholder="Both" />
+    </div>
+</Unstyled>
+
+### Textarea `className`
+
+Add custom utility classes to the Textarea while preserving base styles.
+
+```jsx
+<Textarea className="border-2 border-dashed" placeholder="Dashed" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+        <Textarea className="border-2 border-dashed" placeholder="Dashed" />
+    </div>
+</Unstyled>
+
+## Accessibility
+
+This component follows accessibility best practices:
+
+- Semantic textarea element with proper labeling via `label` + `htmlFor`
+- `aria-invalid` and `aria-describedby` for errors and helper text
+- Clear focus outline and sufficient contrast
+- Keyboard-friendly and screen-reader compatible
+
+## Best Practices
+
+### Do's ✅
+
+- Use a clear label for every Textarea
+- Provide helper text when necessary
+- Set appropriate `rows` for expected content length
+- Consider `resize` behavior based on use case
+- Validate on blur or submit; keep error messages concise
+
+### Don'ts ❌
+
+- Don't rely solely on placeholder as a label
+- Avoid long, paragraph-like helper text
+- Don't show errors before the user has interacted
+- Don't set `rows` too high for short content
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

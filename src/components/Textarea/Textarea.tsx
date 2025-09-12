@@ -1,0 +1,197 @@
+import React from "react";
+import { cn } from "@/utils/cn";
+import { tw } from "@/utils/tw";
+
+export interface TextareaProps
+    extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
+    /**
+     * The visual style of the textarea
+     * @default "primary"
+     */
+    variant?: "primary" | "secondary";
+    /**
+     * The size of the textarea
+     * @default "md"
+     */
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
+    /**
+     * Control the border radius of the textarea
+     * @default "sm"
+     */
+    rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
+    /**
+     * Make textarea take full width of its container
+     * @default false
+     */
+    fullWidth?: boolean;
+    /**
+     * Optional label text displayed above the textarea
+     */
+    label?: string;
+    /**
+     * Optional helper/description text displayed below the textarea
+     */
+    description?: string;
+    /**
+     * Show error state
+     * @default false
+     */
+    error?: boolean;
+    /**
+     * Error message to display below the textarea
+     */
+    errorMessage?: string;
+    /**
+     * Preset width of the textarea wrapper
+     * @default "md"
+     */
+    width?: "sm" | "md" | "lg" | "xl";
+    /**
+     * Number of visible text lines
+     * @default 3
+     */
+    rows?: number;
+    /**
+     * Control textarea resize behavior
+     * @default "vertical"
+     */
+    resize?: "none" | "vertical" | "horizontal" | "both";
+}
+
+const wrapperBase = tw`relative inline-flex w-full flex-col`;
+const fieldBase = tw`relative inline-flex border bg-white text-gray-900 transition-all duration-200 focus-within:ring-3 disabled:cursor-not-allowed disabled:opacity-50`;
+
+const variants = {
+    primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200`,
+    secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200`,
+};
+
+const sizes = {
+    xs: { container: tw`min-h-8`, textarea: tw`px-2 py-1.5 text-xs`, padX: "px-2", padY: "py-1.5" },
+    sm: { container: tw`min-h-9`, textarea: tw`px-3 py-2 text-sm`, padX: "px-3", padY: "py-2" },
+    md: {
+        container: tw`min-h-10`,
+        textarea: tw`px-3.5 py-2.5 text-base`,
+        padX: "px-3.5",
+        padY: "py-2.5",
+    },
+    lg: { container: tw`min-h-12`, textarea: tw`px-4 py-3 text-lg`, padX: "px-4", padY: "py-3" },
+    xl: { container: tw`min-h-14`, textarea: tw`px-5 py-4 text-xl`, padX: "px-5", padY: "py-4" },
+} as const;
+
+const roundedOptions = {
+    none: tw`rounded-none`,
+    sm: tw`rounded-sm`,
+    md: tw`rounded-md`,
+    lg: tw`rounded-lg`,
+    xl: tw`rounded-xl`,
+    full: tw`rounded-full`,
+};
+
+const resizeOptions = {
+    none: tw`resize-none`,
+    vertical: tw`resize-y`,
+    horizontal: tw`resize-x`,
+    both: tw`resize`,
+};
+
+const labelSizes = {
+    xs: tw`text-xs`,
+    sm: tw`text-sm`,
+    md: tw`text-sm`,
+    lg: tw`text-base`,
+    xl: tw`text-base`,
+};
+
+const widths = {
+    sm: tw`w-64`,
+    md: tw`w-80`,
+    lg: tw`w-96`,
+    xl: tw`w-[30rem]`,
+} as const;
+
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+    (
+        {
+            variant = "primary",
+            size = "md",
+            rounded = "sm",
+            fullWidth = false,
+            width = "md",
+            label,
+            description,
+            error = false,
+            errorMessage,
+            rows = 3,
+            resize = "vertical",
+            className = "",
+            id,
+            disabled,
+            ...props
+        },
+        ref,
+    ) => {
+        const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
+        React.useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
+        const autoId = React.useId();
+        const textareaId = id ?? autoId;
+
+        const hasAssistive = Boolean(description || (error && errorMessage));
+        const assistiveId = `${textareaId}-desc`;
+
+        return (
+            <div className={cn(wrapperBase, fullWidth ? "w-full" : (widths[width] ?? "w-auto"))}>
+                {label && (
+                    <label
+                        htmlFor={textareaId}
+                        className={cn(
+                            "mb-1 font-medium text-gray-900",
+                            labelSizes[size],
+                            error && "text-red-700",
+                        )}
+                    >
+                        {label}
+                    </label>
+                )}
+                <div
+                    className={cn(
+                        fieldBase,
+                        variants[variant],
+                        sizes[size].container,
+                        roundedOptions[rounded],
+                        error &&
+                            "border-red-500 focus-within:border-red-500 focus-within:ring-red-200",
+                        fullWidth && "w-full",
+                        className,
+                    )}
+                >
+                    <textarea
+                        ref={textareaRef}
+                        id={textareaId}
+                        rows={rows}
+                        className={cn(
+                            "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 min-w-0 flex-1 bg-transparent outline-none placeholder:font-light placeholder:text-gray-400",
+                            sizes[size].textarea,
+                            resizeOptions[resize],
+                        )}
+                        aria-invalid={error || undefined}
+                        aria-describedby={hasAssistive ? assistiveId : undefined}
+                        disabled={disabled}
+                        {...props}
+                    />
+                </div>
+                {hasAssistive && (
+                    <div id={assistiveId} className="mt-1 min-h-[1rem]">
+                        {error && errorMessage ? (
+                            <span className="text-sm text-red-600">{errorMessage}</span>
+                        ) : description ? (
+                            <span className="text-sm text-gray-600">{description}</span>
+                        ) : null}
+                    </div>
+                )}
+            </div>
+        );
+    },
+);
+
+Textarea.displayName = "Textarea";
