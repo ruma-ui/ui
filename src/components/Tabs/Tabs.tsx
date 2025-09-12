@@ -113,15 +113,15 @@ const tabListOrientations = {
 
 const tabVariants = {
     default: {
-        inactive: tw`cursor-pointer border-b-2 border-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-700`,
+        inactive: tw`cursor-pointer border-b-2 border-transparent text-gray-500 hover:text-blue-600`,
         active: tw`border-b-2 border-blue-600 text-blue-600`,
     },
     underline: {
-        inactive: tw`cursor-pointer border-b-2 border-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-700`,
+        inactive: tw`cursor-pointer border-b-2 border-transparent text-gray-500 hover:text-blue-600`,
         active: tw`border-b-2 border-blue-600 text-blue-600`,
     },
     pills: {
-        inactive: tw`cursor-pointer bg-transparent text-gray-500 hover:bg-gray-200 hover:text-gray-700`,
+        inactive: tw`cursor-pointer bg-transparent text-gray-500 hover:text-blue-600`,
         active: tw`bg-white text-blue-600 shadow-sm`,
     },
 };
