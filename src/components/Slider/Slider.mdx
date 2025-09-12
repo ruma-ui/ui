@@ -1,0 +1,403 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Slider } from "./Slider";
+import * as SliderStories from "./Slider.stories";
+
+<Meta of={SliderStories} />
+
+# Slider
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Slider)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+- [With Labels and Values](#with-labels-and-values)
+- [Controlled vs Uncontrolled](#controlled-vs-uncontrolled)
+- [Custom Ranges](#custom-ranges)
+- [With Steps](#with-steps)
+- [Sizes](#sizes)
+- [Disabled State](#disabled-state)
+- [Error State](#error-state)
+- [Component API](#component-api)
+    - [Slider `variant`](#slider-variant)
+    - [Slider `size`](#slider-size)
+    - [Slider `min`, `max`, and `step`](#slider-min-max-and-step)
+    - [Slider `value` and `defaultValue`](#slider-value-and-defaultvalue)
+    - [Slider `showValue`](#slider-showvalue)
+    - [Slider `valueFormatter`](#slider-valueformatter)
+    - [Slider `label` and `description`](#slider-label-and-description)
+    - [Slider `error` and `errorMessage`](#slider-error-and-errormessage)
+    - [Slider `disabled`](#slider-disabled)
+    - [Slider `onChange` and `onChangeEnd`](#slider-onchange-and-onchangeend)
+    - [Slider `className`](#slider-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+Sliders allow users to select a value from a continuous or discrete range by moving a thumb along a track. They provide an intuitive way to adjust settings like volume, brightness, or any numeric value within a defined range. Our Slider component is designed to be accessible, customizable, and consistent with our design system.
+
+<Canvas of={SliderStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The primary slider uses blue as the accent color and is suitable for most use cases where you want to draw attention to the control.
+
+<Canvas of={SliderStories.Primary} />
+
+### Secondary Variant
+
+The secondary slider uses gray as the accent color and works well in less prominent contexts or when you want a more subtle appearance.
+
+<Canvas of={SliderStories.Secondary} />
+
+## With Labels and Values
+
+### With Label
+
+Labels provide context about what the slider controls.
+
+<Canvas of={SliderStories.WithLabel} />
+
+### With Value Display
+
+Show the current value next to the label for immediate feedback.
+
+<Canvas of={SliderStories.WithValue} />
+
+### With Description
+
+Descriptions provide additional context or instructions.
+
+<Canvas of={SliderStories.WithDescription} />
+
+## Controlled vs Uncontrolled
+
+### Uncontrolled (Default)
+
+Uncontrolled sliders manage their own state internally.
+
+```jsx
+<Slider defaultValue={50} onChange={(value) => console.log(value)} />
+```
+
+### Controlled
+
+Controlled sliders accept a `value` prop and require an `onChange` handler.
+
+<Canvas of={SliderStories.Controlled} />
+
+## Custom Ranges
+
+Customize the minimum and maximum values to fit your use case.
+
+<Canvas of={SliderStories.CustomRange} />
+
+## With Steps
+
+Use the `step` prop to create discrete intervals instead of continuous values.
+
+<Canvas of={SliderStories.WithStep} />
+
+## Sizes
+
+Choose from three sizes based on your interface needs.
+
+<Canvas of={SliderStories.Sizes} />
+
+## Disabled State
+
+Disabled sliders prevent user interaction and indicate unavailable functionality.
+
+<Canvas of={SliderStories.Disabled} />
+
+## Error State
+
+Error states highlight validation issues or required configurations.
+
+<Canvas of={SliderStories.ErrorState} />
+
+## Component API
+
+<ArgTypes of={Slider} />
+
+### Slider `variant`
+
+The `variant` prop determines the visual style and color scheme of the slider track.
+
+```jsx
+<Slider variant="primary" />   {/* Blue accent */}
+<Slider variant="secondary" /> {/* Gray accent */}
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "300px" }}>
+        <Slider variant="primary" label="Primary" defaultValue={60} showValue />
+        <Slider variant="secondary" label="Secondary" defaultValue={40} showValue />
+    </div>
+</Unstyled>
+
+### Slider `size`
+
+The `size` prop controls the dimensions of the slider track and thumb.
+
+```jsx
+<Slider size="sm" /> {/* Small: 2px track height, 12px thumb */}
+<Slider size="md" /> {/* Medium: 4px track height, 16px thumb */}
+<Slider size="lg" /> {/* Large: 6px track height, 20px thumb */}
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "300px" }}>
+        <Slider size="sm" label="Small" defaultValue={30} showValue />
+        <Slider size="md" label="Medium" defaultValue={50} showValue />
+        <Slider size="lg" label="Large" defaultValue={70} showValue />
+    </div>
+</Unstyled>
+
+### Slider `min`, `max`, and `step`
+
+Control the range and granularity of values.
+
+```jsx
+<Slider min={0} max={100} step={1} />     {/* 0-100 in whole numbers */}
+<Slider min={-10} max={40} step={0.5} />  {/* -10 to 40 in 0.5 increments */}
+<Slider min={1} max={5} step={1} />       {/* Rating scale 1-5 */}
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "300px" }}>
+        <Slider label="Volume" min={0} max={100} defaultValue={75} showValue />
+        <Slider label="Temperature" min={-10} max={40} defaultValue={20} showValue />
+        <Slider label="Rating" min={1} max={5} step={1} defaultValue={3} showValue />
+    </div>
+</Unstyled>
+
+### Slider `value` and `defaultValue`
+
+Control slider state for different usage patterns.
+
+```jsx
+// Uncontrolled - manages its own state
+<Slider defaultValue={50} />;
+
+// Controlled - parent manages state
+const [value, setValue] = useState(50);
+<Slider value={value} onChange={setValue} />;
+```
+
+### Slider `showValue`
+
+Display the current value next to the label.
+
+```jsx
+<Slider label="Brightness" showValue defaultValue={80} />
+```
+
+<Unstyled>
+    <div style={{ width: "300px" }}>
+        <Slider label="Brightness" showValue defaultValue={80} />
+    </div>
+</Unstyled>
+
+### Slider `valueFormatter`
+
+Customize how values are displayed.
+
+```jsx
+<Slider
+    label="Price"
+    min={0}
+    max={1000}
+    defaultValue={250}
+    showValue
+    valueFormatter={(value) => `$${value}`}
+/>
+```
+
+<Unstyled>
+    <div style={{ width: "300px" }}>
+        <Slider
+            label="Price"
+            min={0}
+            max={1000}
+            defaultValue={250}
+            showValue
+            valueFormatter={(value) => `$${value}`}
+        />
+    </div>
+</Unstyled>
+
+### Slider `label` and `description`
+
+Provide context and help text.
+
+```jsx
+<Slider label="Volume Level" description="Adjust the audio output volume" defaultValue={70} />
+```
+
+<Unstyled>
+    <div style={{ width: "300px" }}>
+        <Slider
+            label="Volume Level"
+            description="Adjust the audio output volume"
+            defaultValue={70}
+        />
+    </div>
+</Unstyled>
+
+### Slider `error` and `errorMessage`
+
+Indicate validation errors or required states.
+
+```jsx
+<Slider
+    label="Required Setting"
+    error
+    errorMessage="This setting must be configured"
+    defaultValue={0}
+/>
+```
+
+<Unstyled>
+    <div style={{ width: "300px" }}>
+        <Slider
+            label="Required Setting"
+            error
+            errorMessage="This setting must be configured"
+            defaultValue={0}
+        />
+    </div>
+</Unstyled>
+
+### Slider `disabled`
+
+Prevent user interaction when functionality is unavailable.
+
+```jsx
+<Slider disabled label="Disabled Slider" defaultValue={50} />
+```
+
+<Unstyled>
+    <div style={{ width: "300px" }}>
+        <Slider disabled label="Disabled Slider" defaultValue={50} />
+    </div>
+</Unstyled>
+
+### Slider `onChange` and `onChangeEnd`
+
+Handle value changes with different timing.
+
+```jsx
+<Slider
+    onChange={(value) => console.log("Value changed:", value)}
+    onChangeEnd={(value) => console.log("Change ended:", value)}
+/>
+```
+
+### Slider `className`
+
+Add custom styling while preserving component behavior.
+
+```jsx
+<Slider className="custom-slider" />
+```
+
+## Accessibility
+
+Our Slider component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper ARIA attributes for screen readers
+- **Keyboard Navigation**: Full support for arrow keys, Home, End, Page Up/Down
+- **Screen Reader Support**: Proper labeling with `aria-valuemin`, `aria-valuemax`, `aria-valuenow`
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Touch Support**: Optimized for touch interactions on mobile devices
+- **High Contrast**: Sufficient color contrast in all variants
+
+### Keyboard Controls
+
+- **Arrow Left/Right**: Decrease/increase by step value
+- **Arrow Up/Down**: Same as left/right for consistency
+- **Home**: Jump to minimum value
+- **End**: Jump to maximum value
+- **Page Up/Down**: Large increments (10% of range)
+
+## Best Practices
+
+### Do's ✅
+
+- Use sliders for continuous or discrete numeric values
+- Provide clear labels that explain what the slider controls
+- Show values when precision matters to the user
+- Use appropriate min/max values for your use case
+- Consider step values for discrete selections (ratings, levels)
+- Test with keyboard navigation for accessibility
+- Use descriptions for complex or unfamiliar controls
+
+### Don'ts ❌
+
+- Don't use sliders for non-numeric values
+- Avoid very large ranges without proper step values
+- Don't hide important sliders behind feature flags
+- Avoid using sliders for binary choices (use switches instead)
+- Don't make sliders too small for touch interaction
+- Avoid excessive decimal precision without good reason
+
+### Common Use Cases
+
+```jsx
+// Volume control
+<Slider
+  label="Volume"
+  min={0}
+  max={100}
+  defaultValue={70}
+  showValue
+/>
+
+// Brightness adjustment
+<Slider
+  label="Brightness"
+  min={0}
+  max={100}
+  step={5}
+  defaultValue={80}
+  showValue
+/>
+
+// Rating input
+<Slider
+  label="Rate this product"
+  min={1}
+  max={5}
+  step={1}
+  defaultValue={3}
+  showValue
+/>
+
+// Price range
+<Slider
+  label="Maximum Price"
+  min={0}
+  max={1000}
+  step={50}
+  defaultValue={500}
+  showValue
+  valueFormatter={(value) => `$${value}`}
+/>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
