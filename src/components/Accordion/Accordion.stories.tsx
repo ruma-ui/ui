@@ -8,6 +8,7 @@ import mdx from "./Accordion.mdx";
 const meta: Meta<typeof Accordion> = {
     title: "Components/Accordion",
     component: Accordion,
+    subcomponents: { AccordionItem, AccordionTrigger, AccordionContent },
     parameters: {
         layout: "centered",
         docs: {
