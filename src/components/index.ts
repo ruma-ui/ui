@@ -13,3 +13,4 @@ export * from "./Tooltip/Tooltip";
 export * from "./Modal/Modal";
 export * from "./Drawer/Drawer";
 export * from "./Slider/Slider";
+export * from "./Tabs/Tabs";
