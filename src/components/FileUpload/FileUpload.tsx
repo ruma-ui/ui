@@ -62,6 +62,10 @@ export interface FileUploadProps {
      */
     buttonText?: string;
     /**
+     * Custom description text below the button
+     */
+    description?: string;
+    /**
      * Show file list
      * @default true
      */
@@ -170,6 +174,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             dragAndDrop = true,
             placeholder = "Click to upload or drag and drop",
             buttonText = "Choose File",
+            description,
             showFileList = true,
             icon = <DefaultFileUploadIcon size={sizes[size].icon} />,
             onFilesSelected,
@@ -381,6 +386,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                         >
                             {buttonText}
                         </button>
+                        {description && <p className="mt-2 text-sm text-gray-600">{description}</p>}
                         {accept && <p className="mt-2 text-xs text-gray-500">Accepted: {accept}</p>}
                         {maxSize && (
                             <p className="mt-1 text-xs text-gray-500">

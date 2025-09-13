@@ -100,10 +100,9 @@ const meta: Meta<typeof FileUpload> = {
             defaultValue: "Click to upload or drag and drop",
             type: { name: "string" },
         },
-        buttonText: {
+        description: {
             control: "text",
-            description: "Custom upload button text",
-            defaultValue: "Choose File",
+            description: "Custom description text below the button",
             type: { name: "string" },
         },
         onFilesSelected: { action: "filesSelected" },
@@ -252,28 +251,12 @@ export const RoundedCorners: Story = {
     },
 };
 
-export const CustomIcon: Story = {
+export const WithDescription: Story = {
     render: (args) => <FileUploadWithState {...args} />,
     args: {
-        icon: (
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-blue-500"
-            >
-                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                <polyline points="14,2 14,8 20,8" />
-                <path d="m16 13-3 3-3-3" />
-                <path d="M13 16v-3" />
-            </svg>
-        ),
-        placeholder: "Upload with custom icon",
+        description: "Upload your documents in PDF or Word format. Maximum file size is 10MB.",
+        accept: ".pdf,.doc,.docx",
+        maxSize: 10 * 1024 * 1024, // 10MB
+        placeholder: "Select your documents",
     },
 };

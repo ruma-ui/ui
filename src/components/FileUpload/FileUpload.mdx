@@ -24,6 +24,7 @@ import * as FileUploadStories from "./FileUpload.stories";
 - [Disabled State](#disabled-state)
 - [Full Width](#full-width)
 - [Custom Styling](#custom-styling)
+- [With Description](#with-description)
 - [Component API](#component-api)
     - [FileUpload `variant`](#fileupload-variant)
     - [FileUpload `size`](#fileupload-size)
@@ -38,6 +39,7 @@ import * as FileUploadStories from "./FileUpload.stories";
     - [FileUpload `showFileList`](#fileupload-showfilelist)
     - [FileUpload `placeholder`](#fileupload-placeholder)
     - [FileUpload `buttonText`](#fileupload-buttontext)
+    - [FileUpload `description`](#fileupload-description)
     - [FileUpload `onFilesSelected`](#fileupload-onfilesselected)
     - [FileUpload `onFileRemoved`](#fileupload-onfileremoved)
     - [FileUpload `onError`](#fileupload-onerror)
@@ -153,6 +155,12 @@ Make the file upload component expand to fill its container's width using the `f
 Customize the appearance using the `className` prop to add custom styles while preserving the component's built-in functionality.
 
 <Canvas of={FileUploadStories.CustomStyling} />
+
+## With Description
+
+Add descriptive text below the upload button to provide additional context or instructions to users.
+
+<Canvas of={FileUploadStories.WithDescription} />
 
 ## Component API
 
@@ -413,6 +421,36 @@ The `buttonText` prop customizes the text on the upload button.
         <FileUpload buttonText="Select Files" />
         <FileUpload buttonText="Choose Images" />
         <FileUpload buttonText="Upload Documents" />
+    </div>
+</Unstyled>
+
+### FileUpload `description`
+
+The `description` prop adds custom descriptive text below the upload button to provide additional context or instructions.
+
+```jsx
+<FileUpload
+    description="Upload your documents in PDF or Word format. Maximum file size is 10MB."
+    accept=".pdf,.doc,.docx"
+    maxSize={10 * 1024 * 1024}
+/>
+
+<FileUpload description="Only JPEG and PNG images are supported." accept="image/jpeg,image/png" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <FileUpload
+            description="Upload your documents in PDF or Word format. Maximum file size is 10MB."
+            accept=".pdf,.doc,.docx"
+            maxSize={10 * 1024 * 1024}
+            placeholder="Select documents"
+        />
+        <FileUpload
+            description="Only JPEG and PNG images are supported."
+            accept="image/jpeg,image/png"
+            placeholder="Select images"
+        />
     </div>
 </Unstyled>
 
