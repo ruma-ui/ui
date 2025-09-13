@@ -1,0 +1,385 @@
+import { Meta, Canvas, Story, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Progress } from "./Progress";
+import * as ProgressStories from "./Progress.stories";
+
+<Meta of={ProgressStories} />
+
+# Progress
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Progress)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Bar Variant](#bar-variant)
+    - [Circular Variant](#circular-variant)
+    - [All Variants](#all-variants)
+- [Appearances](#appearances)
+    - [Filled Appearance](#filled-appearance)
+    - [Outline Appearance](#outline-appearance)
+    - [Soft Appearance](#soft-appearance)
+- [Sizes](#sizes)
+- [Rounded Options](#rounded-options)
+- [With Values](#with-values)
+- [Custom Labels](#custom-labels)
+- [Animated Progress](#animated-progress)
+- [Striped Progress](#striped-progress)
+- [Indeterminate Progress](#indeterminate-progress)
+- [Loading States](#loading-states)
+- [File Upload Progress](#file-upload-progress)
+- [Circular Variants](#circular-variants)
+- [Zero and Full Progress](#zero-and-full-progress)
+- [Custom Styling](#custom-styling)
+- [Component API](#component-api)
+    - [Progress `variant`](#progress-variant)
+    - [Progress `size`](#progress-size)
+    - [Progress `appearance`](#progress-appearance)
+    - [Progress `rounded`](#progress-rounded)
+    - [Progress `showValue`](#progress-showvalue)
+    - [Progress `label`](#progress-label)
+    - [Progress `animated`](#progress-animated)
+    - [Progress `striped`](#progress-striped)
+    - [Progress `indeterminate`](#progress-indeterminate)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Progress component displays the completion status of a task or process. Built with comprehensive styling options, animation support, and accessibility features for production-ready applications.
+
+<Canvas of={ProgressStories.Primary} />
+
+## Variants
+
+### Bar Variant
+
+The bar variant displays progress as a horizontal progress bar, perfect for most progress indication use cases.
+
+<Canvas of={ProgressStories.Primary} />
+
+### Circular Variant
+
+The circular variant displays progress as a circular progress ring, ideal for compact spaces and modern interfaces.
+
+<Canvas of={ProgressStories.Circular} />
+
+### All Variants
+
+The progress component includes both bar and circular layout variants for different interface contexts.
+
+<Canvas of={ProgressStories.Variants} />
+
+## Appearances
+
+### Filled Appearance
+
+The filled appearance provides maximum contrast and visibility, perfect for important progress indicators and primary status tracking.
+
+### Outline Appearance
+
+The outline appearance offers a subtle appearance while maintaining clear boundaries, ideal for secondary progress indicators.
+
+### Soft Appearance
+
+The soft appearance uses light background colors for gentle emphasis without overwhelming the interface.
+
+<Canvas of={ProgressStories.Appearances} />
+
+## Sizes
+
+Progress bars come in three sizes to fit different interface contexts, from compact inline indicators to prominent status displays.
+
+<Canvas of={ProgressStories.Sizes} />
+
+## Rounded Options
+
+Control the border radius to match your design system, from sharp corners to fully rounded progress bars.
+
+<Canvas of={ProgressStories.RoundedVariants} />
+
+## With Values
+
+The Progress component can display the current value as a percentage.
+
+<Canvas of={ProgressStories.WithValue} />
+
+## Custom Labels
+
+You can customize the label text using the `label` prop.
+
+<Canvas of={ProgressStories.WithLabels} />
+
+## Animated Progress
+
+Add smooth transitions when progress values change for better user experience.
+
+<Canvas of={ProgressStories.Animated} />
+
+## Striped Progress
+
+Add visual interest with animated stripes for active progress indicators.
+
+<Canvas of={ProgressStories.Striped} />
+
+## Indeterminate Progress
+
+Show loading states with animated indeterminate progress bars when exact progress is unknown. The bar variant shows a sliding animation, while the circular variant displays a rotating loading indicator.
+
+<Canvas of={ProgressStories.Indeterminate} />
+
+## Loading States
+
+Combine different progress states to create comprehensive loading experiences.
+
+<Canvas of={ProgressStories.LoadingStates} />
+
+## File Upload Progress
+
+Track multiple file uploads with individual progress indicators.
+
+<Canvas of={ProgressStories.FileUpload} />
+
+## Circular Variants
+
+Circular progress indicators work well in compact spaces and provide a modern aesthetic.
+
+<Canvas of={ProgressStories.CircularAppearances} />
+
+## Zero and Full Progress
+
+Handle edge cases like zero progress and complete progress appropriately.
+
+<Canvas of={ProgressStories.ZeroAndFull} />
+
+## Custom Styling
+
+Customize the appearance with custom class names for tracks, fills, and containers.
+
+<Canvas of={ProgressStories.CustomStyling} />
+
+## Component API
+
+<ArgTypes of={Progress} />
+
+### Progress `variant`
+
+The `variant` prop determines the layout style of the progress component. Choose between bar and circular variants based on your interface needs.
+
+```jsx
+<Progress value={75} variant="bar" />
+<Progress value={75} variant="circular" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
+        <Progress value={75} variant="bar" />
+        <Progress value={75} variant="circular" />
+    </div>
+</Unstyled>
+
+### Progress `size`
+
+The `size` prop controls the progress bar's dimensions. Choose sizes based on the interface context and visual hierarchy needs.
+
+```jsx
+<Progress value={75} size="sm" />
+<Progress value={75} size="md" />
+<Progress value={75} size="lg" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "300px" }}>
+        <Progress value={75} size="sm" />
+        <Progress value={75} size="md" />
+        <Progress value={75} size="lg" />
+    </div>
+</Unstyled>
+
+### Progress `appearance`
+
+The `appearance` prop controls the visual treatment and emphasis level of the progress bar.
+
+```jsx
+<Progress value={75} appearance="filled" />
+<Progress value={75} appearance="outline" />
+<Progress value={75} appearance="soft" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "300px" }}>
+        <Progress value={75} appearance="filled" variant="bar" />
+        <Progress value={75} appearance="outline" variant="bar" />
+        <Progress value={75} appearance="soft" variant="bar" />
+    </div>
+</Unstyled>
+
+### Progress `rounded`
+
+The `rounded` prop controls the border radius of the progress bar. Use this to match your design system's corner radius preferences.
+
+```jsx
+<Progress value={75} rounded="none" />
+<Progress value={75} rounded="sm" />
+<Progress value={75} rounded="md" />
+<Progress value={75} rounded="lg" />
+<Progress value={75} rounded="xl" />
+<Progress value={75} rounded="full" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "300px" }}>
+        <Progress value={75} rounded="none" />
+        <Progress value={75} rounded="sm" />
+        <Progress value={75} rounded="md" />
+        <Progress value={75} rounded="lg" />
+        <Progress value={75} rounded="xl" />
+        <Progress value={75} rounded="full" />
+    </div>
+</Unstyled>
+
+### Progress `showValue`
+
+The `showValue` prop controls whether to display the progress percentage. The value appears at the top-right for bar variants and centered for circular variants.
+
+```jsx
+<Progress value={75} showValue />
+<Progress value={45} showValue variant="circular" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "300px" }}>
+        <Progress value={75} showValue />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+            <Progress value={45} showValue variant="circular" />
+        </div>
+    </div>
+</Unstyled>
+
+### Progress `label`
+
+The `label` prop allows you to add custom text labels that appear at the top-left of the progress bar. Use this to provide context about what the progress represents.
+
+```jsx
+<Progress value={75} label="Upload Progress" />
+<Progress value={45} label="Processing..." showValue />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "300px" }}>
+        <Progress value={75} label="Upload Progress" />
+        <Progress value={45} label="Processing..." showValue />
+    </div>
+</Unstyled>
+
+### Progress `animated`
+
+The `animated` prop adds smooth transitions when progress values change. This improves user experience by providing visual feedback for value updates.
+
+```jsx
+<Progress value={75} animated />
+<Progress value={60} animated showValue />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "300px" }}>
+        <Progress value={75} animated />
+        <Progress value={60} animated showValue />
+    </div>
+</Unstyled>
+
+### Progress `striped`
+
+The `striped` prop adds animated stripes to the progress bar for additional visual interest. This is particularly useful for active progress indicators.
+
+```jsx
+<Progress value={75} striped />
+<Progress value={60} striped animated />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "300px" }}>
+        <Progress value={75} striped />
+        <Progress value={60} striped animated />
+    </div>
+</Unstyled>
+
+### Progress `indeterminate`
+
+The `indeterminate` prop shows an animated loading state when the exact progress is unknown. For bar variants, it displays a sliding animation across the progress bar. For circular variants, it shows a rotating loading indicator.
+
+```jsx
+<Progress indeterminate />
+<Progress indeterminate variant="circular" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
+        <Progress indeterminate />
+        <Progress indeterminate variant="circular" />
+    </div>
+</Unstyled>
+
+## Accessibility
+
+The Progress component follows accessibility best practices and includes:
+
+- **Semantic Progress Role**: Proper ARIA progressbar role with value attributes
+- **Screen Reader Support**: Appropriate ARIA labels and value announcements
+- **Keyboard Navigation**: Full keyboard accessibility for interactive elements
+- **Color Contrast**: All variants meet WCAG color contrast requirements
+- **Motion Preferences**: Respects user's motion preferences for animations
+
+## Best Practices
+
+### When to Use
+
+- **Task Progress**: For showing completion status of long-running tasks
+- **File Operations**: For upload/download progress tracking
+- **Loading States**: For indeterminate progress during data fetching
+- **Status Indicators**: For system metrics, storage usage, battery levels
+- **Multi-step Processes**: For wizard or form completion progress
+- **Data Processing**: For batch operations, imports, or exports
+
+### When Not to Use
+
+- **Instant Actions**: Use loaders for immediate feedback instead
+- **Binary States**: Use toggles or checkboxes for simple on/off states
+- **Navigation**: Don't use progress bars as navigation elements
+- **Exact Values**: Consider other components when precise numeric display is critical
+- **Small Spaces**: Use alternative indicators in very constrained layouts
+
+### Guidelines
+
+1. **Clear Purpose**: Always provide context for what the progress represents
+2. **Appropriate Animation**: Use animation sparingly and respect motion preferences
+3. **Consistent Variants**: Use the same variants for similar types of progress
+4. **Value Ranges**: Ensure progress values stay within 0-100 range
+5. **Loading States**: Use indeterminate progress when exact progress is unknown
+6. **Performance**: Avoid updating progress too frequently to prevent UI lag
+
+### Content Guidelines
+
+1. **Descriptive Labels**: Use clear, actionable labels that users understand
+2. **Progress Units**: Specify units when percentages aren't meaningful (MB, items, etc.)
+3. **Status Communication**: Use appropriate variants to communicate progress status
+4. **Error Handling**: Show clear error states when progress fails
+5. **Completion Feedback**: Provide clear completion feedback and next steps
+
+### Animation Guidelines
+
+1. **Smooth Transitions**: Use consistent animation timing for value changes
+2. **Motion Preferences**: Respect user's reduced motion preferences
+3. **Performance**: Avoid complex animations that could impact performance
+4. **Purposeful Animation**: Only animate when it adds value to the user experience
+5. **Consistent Timing**: Use consistent animation durations across the application
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

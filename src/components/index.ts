@@ -15,3 +15,4 @@ export * from "./Drawer/Drawer";
 export * from "./Slider/Slider";
 export * from "./Tabs/Tabs";
 export * from "./Card/Card";
+export * from "./Progress/Progress";
