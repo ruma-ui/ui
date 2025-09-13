@@ -17,3 +17,4 @@ export * from "./Tabs/Tabs";
 export * from "./Card/Card";
 export * from "./Progress/Progress";
 export * from "./Pagination/Pagination";
+export * from "./Stepper/Stepper";
