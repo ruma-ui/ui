@@ -243,7 +243,7 @@ export const DataTable: Story = {
         return (
             <div className="space-y-4">
                 <div className="rounded-lg border border-gray-200 bg-white p-4">
-                    <div className="mb-4 flex items-center justify-between">
+                    <div className="mb-4 flex flex-col items-start justify-between gap-2">
                         <div className="text-sm text-gray-700">
                             Showing {Math.min((currentPage - 1) * itemsPerPage + 1, totalItems)} to{" "}
                             {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}{" "}

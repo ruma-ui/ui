@@ -51,7 +51,7 @@ export interface PaginationProps {
 const base = tw`flex items-center gap-1`;
 
 const sizes = {
-    sm: tw`gap-1`,
+    sm: tw`gap-1.5`,
     md: tw`gap-1.5`,
     lg: tw`gap-2`,
 };
