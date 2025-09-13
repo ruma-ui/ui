@@ -6,6 +6,11 @@ import { FaHome, FaUser, FaCog, FaBell } from "react-icons/fa";
 const meta: Meta<typeof Tabs> = {
     title: "Components/Tabs",
     component: Tabs,
+    subcomponents: {
+        TabList,
+        Tab,
+        TabPanel,
+    },
     parameters: {
         layout: "centered",
         docs: {

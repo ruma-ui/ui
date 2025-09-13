@@ -10,6 +10,26 @@
     }
 }
 
+/* Progress bar shimmer animation */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Progress bar indeterminate animation */
+@keyframes indeterminate {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 /* Button ripple element */
 .rui-ripple {
     position: absolute;

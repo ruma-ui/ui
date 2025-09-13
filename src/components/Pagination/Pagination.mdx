@@ -1,0 +1,391 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Pagination } from "./Pagination";
+import * as PaginationStories from "./Pagination.stories";
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Pagination)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Sizes](#sizes)
+- [With First/Last Buttons](#with-firstlast-buttons)
+- [Many Pages](#many-pages)
+- [Few Pages](#few-pages)
+- [Middle Pages](#middle-pages)
+- [End Pages](#end-pages)
+- [Disabled State](#disabled-state)
+- [Compact Mode](#compact-mode)
+- [Data Table Integration](#data-table-integration)
+- [Custom Styling](#custom-styling)
+- [Component API](#component-api)
+    - [Pagination `currentPage`](#pagination-currentpage)
+    - [Pagination `totalPages`](#pagination-totalpages)
+    - [Pagination `onPageChange`](#pagination-onpagechange)
+    - [Pagination `maxVisiblePages`](#pagination-maxvisiblepages)
+    - [Pagination `size`](#pagination-size)
+    - [Pagination `showFirstLast`](#pagination-showfirstlast)
+    - [Pagination `showPrevNext`](#pagination-showprevnext)
+    - [Pagination `disabled`](#pagination-disabled)
+    - [Pagination `className`](#pagination-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Pagination component provides navigation controls for paginated content. It displays page numbers with previous/next buttons and supports ellipsis for large page counts. Built with accessibility, keyboard navigation, and responsive design in mind.
+
+<Canvas of={PaginationStories.Primary} />
+
+## Basic Usage
+
+The most common pagination setup with previous/next navigation and page numbers.
+
+<Canvas of={PaginationStories.Basic} />
+
+## Sizes
+
+Pagination supports three sizes to fit different interface contexts.
+
+<Canvas of={PaginationStories.Sizes} />
+
+## With First/Last Buttons
+
+Enable first/last navigation buttons for quick access to the beginning or end of large datasets.
+
+<Canvas of={PaginationStories.WithFirstLast} />
+
+## Many Pages
+
+When dealing with many pages, the component automatically shows ellipsis to keep the interface clean while maintaining navigation efficiency.
+
+<Canvas of={PaginationStories.ManyPages} />
+
+## Few Pages
+
+For smaller page counts, all pages are displayed without ellipsis.
+
+<Canvas of={PaginationStories.FewPages} />
+
+## Middle Pages
+
+Navigation behavior when the current page is in the middle of the range.
+
+<Canvas of={PaginationStories.MiddlePages} />
+
+## End Pages
+
+Navigation behavior when the current page is near the end of the range.
+
+<Canvas of={PaginationStories.EndPages} />
+
+## Disabled State
+
+The entire pagination can be disabled to prevent user interaction.
+
+<Canvas of={PaginationStories.Disabled} />
+
+## Compact Mode
+
+A minimal pagination without previous/next buttons, showing only page numbers.
+
+<Canvas of={PaginationStories.Compact} />
+
+## Data Table Integration
+
+Common pattern for integrating pagination with data tables or lists.
+
+<Canvas of={PaginationStories.DataTable} />
+
+## Custom Styling
+
+The component accepts custom CSS classes for additional styling flexibility.
+
+<Canvas of={PaginationStories.CustomStyling} />
+
+## Component API
+
+<ArgTypes of={Pagination} />
+
+### Pagination `currentPage`
+
+The current active page number (1-indexed). This determines which page button appears active and affects the visible page range.
+
+```tsx
+<Pagination currentPage={3} totalPages={10} onPageChange={setCurrentPage} />
+```
+
+### Pagination `totalPages`
+
+The total number of pages available. If totalPages is 1 or less, the component renders nothing.
+
+```tsx
+<Pagination currentPage={1} totalPages={25} onPageChange={setCurrentPage} />
+```
+
+### Pagination `onPageChange`
+
+Callback function called when the user clicks a page button or navigation control. Receives the new page number as an argument.
+
+```tsx
+const [currentPage, setCurrentPage] = useState(1);
+
+<Pagination
+    currentPage={currentPage}
+    totalPages={10}
+    onPageChange={(page) => {
+        setCurrentPage(page);
+        // Additional logic like API calls
+    }}
+/>;
+```
+
+### Pagination `maxVisiblePages`
+
+Controls how many page number buttons are visible at once. When the total pages exceed this number, ellipsis (...) appears to indicate skipped pages.
+
+```tsx
+// Show maximum 7 page buttons
+<Pagination maxVisiblePages={7} currentPage={5} totalPages={20} onPageChange={setCurrentPage} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>
+                maxVisiblePages=5
+            </h4>
+            <Pagination
+                maxVisiblePages={5}
+                currentPage={8}
+                totalPages={20}
+                onPageChange={() => {}}
+            />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>
+                maxVisiblePages=7
+            </h4>
+            <Pagination
+                maxVisiblePages={7}
+                currentPage={8}
+                totalPages={20}
+                onPageChange={() => {}}
+            />
+        </div>
+    </div>
+</Unstyled>
+
+### Pagination `size`
+
+Controls the size of all pagination buttons and spacing.
+
+```tsx
+<Pagination size="sm" currentPage={1} totalPages={10} onPageChange={setCurrentPage} />
+<Pagination size="md" currentPage={1} totalPages={10} onPageChange={setCurrentPage} />
+<Pagination size="lg" currentPage={1} totalPages={10} onPageChange={setCurrentPage} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>Small</h4>
+            <Pagination size="sm" currentPage={3} totalPages={10} onPageChange={() => {}} />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>Medium</h4>
+            <Pagination size="md" currentPage={3} totalPages={10} onPageChange={() => {}} />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>Large</h4>
+            <Pagination size="lg" currentPage={3} totalPages={10} onPageChange={() => {}} />
+        </div>
+    </div>
+</Unstyled>
+
+### Pagination `showFirstLast`
+
+When enabled, displays first («) and last (») navigation buttons for quick access to the beginning and end of the pagination range.
+
+```tsx
+<Pagination showFirstLast currentPage={5} totalPages={20} onPageChange={setCurrentPage} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>
+                Without First/Last
+            </h4>
+            <Pagination currentPage={8} totalPages={20} onPageChange={() => {}} />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>
+                With First/Last
+            </h4>
+            <Pagination showFirstLast currentPage={8} totalPages={20} onPageChange={() => {}} />
+        </div>
+    </div>
+</Unstyled>
+
+### Pagination `showPrevNext`
+
+Controls whether previous (&lt;) and next (&gt;) navigation buttons are displayed. Default is true.
+
+```tsx
+// Hide previous/next buttons for a compact design
+<Pagination showPrevNext={false} currentPage={3} totalPages={10} onPageChange={setCurrentPage} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>
+                With Prev/Next
+            </h4>
+            <Pagination currentPage={3} totalPages={10} onPageChange={() => {}} />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>
+                Without Prev/Next
+            </h4>
+            <Pagination
+                showPrevNext={false}
+                currentPage={3}
+                totalPages={10}
+                onPageChange={() => {}}
+            />
+        </div>
+    </div>
+</Unstyled>
+
+### Pagination `disabled`
+
+Disables all interactive elements in the pagination component.
+
+```tsx
+<Pagination disabled currentPage={3} totalPages={10} onPageChange={setCurrentPage} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>Enabled</h4>
+            <Pagination currentPage={3} totalPages={10} onPageChange={() => {}} />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "500" }}>Disabled</h4>
+            <Pagination disabled currentPage={3} totalPages={10} onPageChange={() => {}} />
+        </div>
+    </div>
+</Unstyled>
+
+### Pagination `className`
+
+Accepts additional CSS classes for custom styling and layout modifications.
+
+```tsx
+<Pagination
+    className="justify-center rounded-lg bg-gray-50 p-4"
+    currentPage={3}
+    totalPages={10}
+    onPageChange={setCurrentPage}
+/>
+```
+
+## Accessibility
+
+The Pagination component follows WCAG guidelines and accessibility best practices:
+
+- **Semantic HTML**: Uses `<nav>` element with proper `aria-label`
+- **ARIA Labels**: All buttons have descriptive `aria-label` attributes
+- **Current Page**: Active page button has `aria-current="page"`
+- **Keyboard Navigation**: Full keyboard support with logical tab order
+- **Screen Reader Support**: Clear announcements for page changes and navigation
+- **Focus Management**: Visible focus indicators and proper focus behavior
+- **Disabled States**: Properly communicated via `aria-disabled` and `disabled` attributes
+
+## Best Practices
+
+### Do's ✅
+
+- Always provide a clear `onPageChange` handler
+- Use appropriate `maxVisiblePages` for your use case (5-7 is usually ideal)
+- Show first/last buttons for datasets with more than 20 pages
+- Consider the total number of pages when choosing size
+- Provide visual feedback for the current page
+- Test with keyboard navigation
+- Use consistent pagination across similar interfaces
+
+### Don'ts ❌
+
+- Don't hide pagination for small datasets (2-3 pages still benefit from it)
+- Avoid very large `maxVisiblePages` values (>10) as it creates clutter
+- Don't disable pagination without clear user feedback
+- Avoid inconsistent page numbering (always start from 1)
+- Don't use pagination for very small datasets (< 10 items total)
+
+### Common Patterns
+
+```tsx
+// Basic pagination
+const [currentPage, setCurrentPage] = useState(1);
+const itemsPerPage = 20;
+const totalItems = 247;
+const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+<Pagination
+  currentPage={currentPage}
+  totalPages={totalPages}
+  onPageChange={setCurrentPage}
+/>
+
+// With API integration
+const handlePageChange = async (page: number) => {
+  setCurrentPage(page);
+  setLoading(true);
+  try {
+    const response = await fetch(`/api/items?page=${page}&limit=${itemsPerPage}`);
+    const data = await response.json();
+    setItems(data.items);
+  } catch (error) {
+    console.error('Failed to load page:', error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+<Pagination
+  currentPage={currentPage}
+  totalPages={totalPages}
+  onPageChange={handlePageChange}
+  disabled={loading}
+/>
+
+// Data table pagination
+<div className="flex items-center justify-between">
+  <div className="text-sm text-gray-700">
+    Showing {startItem} to {endItem} of {totalItems} results
+  </div>
+  <Pagination
+    currentPage={currentPage}
+    totalPages={totalPages}
+    onPageChange={setCurrentPage}
+    size="sm"
+  />
+</div>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

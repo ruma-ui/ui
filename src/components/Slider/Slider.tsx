@@ -112,7 +112,7 @@ const sizes = {
     },
 };
 
-const thumbBase = tw`pointer-events-none absolute block rounded-full border-1 border-gray-400 bg-white shadow-lg transition duration-200 ease-in-out hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:shadow-none`;
+const thumbBase = tw`absolute block cursor-pointer rounded-full border-1 border-gray-400 bg-white shadow-lg transition duration-200 ease-in-out hover:scale-105 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-115 disabled:shadow-none`;
 
 const labelBase = tw`mb-2 font-medium text-gray-900`;
 const labelSizes = {
@@ -162,6 +162,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         const [internalValue, setInternalValue] = useState(defaultValue);
         const sliderRef = useRef<HTMLDivElement>(null);
         const trackRef = useRef<HTMLDivElement>(null);
+        const [isDragging, setIsDragging] = useState(false);
 
         const autoId = React.useId();
         const sliderId = id ?? autoId;
@@ -211,10 +212,20 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             return Math.min(Math.max(steppedValue, min), max);
         };
 
+        const handleTrackClick = (e: React.PointerEvent) => {
+            if (disabled) return;
+
+            e.preventDefault();
+            const newValue = getValueFromPosition(e.clientX);
+            updateValue(newValue);
+            onChangeEnd?.(newValue);
+        };
+
         const handlePointerDown = (e: React.PointerEvent) => {
             if (disabled) return;
 
             e.preventDefault();
+            setIsDragging(true);
             let currentValue = getValueFromPosition(e.clientX);
             updateValue(currentValue);
 
@@ -226,6 +237,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             };
 
             const handlePointerUp = () => {
+                setIsDragging(false);
                 onChangeEnd?.(currentValue);
                 document.removeEventListener("pointermove", handlePointerMove);
                 document.removeEventListener("pointerup", handlePointerUp);
@@ -295,6 +307,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             sizes[size].thumb,
             error && errorStyles,
             disabled && "shadow-none",
+            isDragging && "ring-2 ring-blue-300",
         );
 
         const labelClasses = cn(
@@ -343,6 +356,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                         <div
                             ref={trackRef}
                             className={cn(trackClasses, "absolute top-1/2 -translate-y-1/2")}
+                            onPointerDown={handleTrackClick}
                         >
                             <div
                                 className={cn(
