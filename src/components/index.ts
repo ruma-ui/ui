@@ -18,3 +18,4 @@ export * from "./Card/Card";
 export * from "./Progress/Progress";
 export * from "./Pagination/Pagination";
 export * from "./Stepper/Stepper";
+export * from "./Resizable/Resizable";

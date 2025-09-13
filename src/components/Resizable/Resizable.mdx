@@ -1,0 +1,554 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Resizable } from "./Resizable";
+import * as ResizableStories from "./Resizable.stories";
+
+<Meta of={ResizableStories} />
+
+# Resizable
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Resizable)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Resize Directions](#resize-directions)
+    - [Horizontal Only](#horizontal-only)
+    - [Vertical Only](#vertical-only)
+    - [Both Directions](#both-directions)
+- [Size Constraints](#size-constraints)
+- [Handle Customization](#handle-customization)
+- [Corner Handle Control](#corner-handle-control)
+- [Real-world Examples](#real-world-examples)
+    - [Code Editor](#code-editor)
+    - [Image Viewer](#image-viewer)
+- [Disabled State](#disabled-state)
+- [Component API](#component-api)
+    - [Resizable `direction`](#resizable-direction)
+    - [Resizable `defaultWidth` and `defaultHeight`](#resizable-defaultwidth-and-defaultheight)
+    - [Resizable `minWidth`, `maxWidth`, `minHeight`, `maxHeight`](#resizable-minwidth-maxwidth-minheight-maxheight)
+    - [Resizable `resizable`](#resizable-resizable)
+    - [Resizable `showHandles`](#resizable-showhandles)
+    - [Resizable `handleSize`](#resizable-handlesize)
+    - [Resizable `handleColor`](#resizable-handlecolor)
+    - [Resizable `showCornerHandle`](#resizable-showcornerhandle)
+    - [Resizable `cornerHandleSize`](#resizable-cornerhandlesize)
+    - [Resizable `onResize`, `onResizeStart`, `onResizeEnd`](#resizable-onresize-onresizestart-onresizeend)
+    - [Resizable `className` and `handleClassName`](#resizable-classname-and-handleclassname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Resizable component provides a flexible container that allows users to adjust the size of content by dragging resize handles. It's perfect for creating resizable panels, editors, viewers, and other interactive UI elements that need dynamic sizing capabilities.
+
+<Canvas of={ResizableStories.Default} />
+
+## Basic Usage
+
+The most basic usage of the Resizable component wraps any content and makes it resizable in both directions.
+
+```jsx
+<Resizable>
+    <div>Your content here</div>
+</Resizable>
+```
+
+<Unstyled>
+    <Resizable>
+        <div className="flex h-full items-center justify-center rounded bg-blue-50 p-4">
+            <span className="text-blue-600">Basic resizable content</span>
+        </div>
+    </Resizable>
+</Unstyled>
+
+## Resize Directions
+
+### Horizontal Only
+
+Restrict resizing to horizontal direction only, useful for resizable sidebars or columns.
+
+<Canvas of={ResizableStories.HorizontalOnly} />
+
+### Vertical Only
+
+Restrict resizing to vertical direction only, useful for resizable headers or footers.
+
+<Canvas of={ResizableStories.VerticalOnly} />
+
+### Both Directions
+
+Allow resizing in both horizontal and vertical directions, providing maximum flexibility.
+
+<Canvas of={ResizableStories.BothDirections} />
+
+## Size Constraints
+
+Set minimum and maximum size constraints to prevent the component from becoming too small or too large.
+
+<Canvas of={ResizableStories.WithConstraints} />
+
+## Handle Customization
+
+Customize the appearance of resize handles with different sizes and colors.
+
+<Canvas of={ResizableStories.LargeHandle} />
+
+## Corner Handle Control
+
+Control the visibility and size of corner handles for diagonal resizing.
+
+<Canvas of={ResizableStories.CornerHandleHidden} />
+
+<Canvas of={ResizableStories.LargeCornerHandle} />
+
+<Canvas of={ResizableStories.CustomCornerSize} />
+
+## Real-world Examples
+
+### Code Editor
+
+A resizable code editor with syntax highlighting simulation.
+
+<Canvas of={ResizableStories.CodeEditor} />
+
+### Image Viewer
+
+A resizable image viewer with proper aspect ratio handling.
+
+<Canvas of={ResizableStories.ImageViewer} />
+
+## Disabled State
+
+Disable the resize functionality when needed.
+
+<Canvas of={ResizableStories.Disabled} />
+
+## Component API
+
+<ArgTypes of={Resizable} />
+
+### Resizable `direction`
+
+The `direction` prop controls which resize handles are displayed and which directions are allowed for resizing.
+
+```jsx
+{
+    /* Horizontal resizing only */
+}
+<Resizable direction="horizontal">
+    <div>Content</div>
+</Resizable>;
+
+{
+    /* Vertical resizing only */
+}
+<Resizable direction="vertical">
+    <div>Content</div>
+</Resizable>;
+
+{
+    /* Both directions (default) */
+}
+<Resizable direction="both">
+    <div>Content</div>
+</Resizable>;
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+        <Resizable direction="horizontal" defaultWidth={200} defaultHeight={150}>
+            <div className="flex h-full items-center justify-center rounded bg-red-50 p-2 text-xs">
+                Horizontal
+            </div>
+        </Resizable>
+        <Resizable direction="vertical" defaultWidth={200} defaultHeight={150}>
+            <div className="flex h-full items-center justify-center rounded bg-green-50 p-2 text-xs">
+                Vertical
+            </div>
+        </Resizable>
+        <Resizable direction="both" defaultWidth={200} defaultHeight={150}>
+            <div className="flex h-full items-center justify-center rounded bg-blue-50 p-2 text-xs">
+                Both
+            </div>
+        </Resizable>
+    </div>
+</Unstyled>
+
+### Resizable `defaultWidth` and `defaultHeight`
+
+Set the initial dimensions of the resizable container.
+
+```jsx
+<Resizable defaultWidth={400} defaultHeight={300}>
+    <div>Content</div>
+</Resizable>
+```
+
+<Unstyled>
+    <Resizable defaultWidth={350} defaultHeight={200}>
+        <div className="flex h-full items-center justify-center rounded bg-purple-50 p-4">
+            <span className="text-purple-600">Custom initial size</span>
+        </div>
+    </Resizable>
+</Unstyled>
+
+### Resizable `minWidth`, `maxWidth`, `minHeight`, `maxHeight`
+
+Define size constraints to prevent the component from becoming too small or too large.
+
+```jsx
+<Resizable minWidth={200} maxWidth={600} minHeight={150} maxHeight={400}>
+    <div>Content</div>
+</Resizable>
+```
+
+<Unstyled>
+    <Resizable
+        minWidth={150}
+        maxWidth={400}
+        minHeight={100}
+        maxHeight={250}
+        defaultWidth={250}
+        defaultHeight={150}
+    >
+        <div className="flex h-full items-center justify-center rounded bg-orange-50 p-3">
+            <span className="text-sm text-orange-600">Constrained size</span>
+        </div>
+    </Resizable>
+</Unstyled>
+
+### Resizable `resizable`
+
+Enable or disable the resize functionality entirely.
+
+```jsx
+{
+    /* Enabled (default) */
+}
+<Resizable resizable={true}>
+    <div>Resizable content</div>
+</Resizable>;
+
+{
+    /* Disabled */
+}
+<Resizable resizable={false}>
+    <div>Fixed size content</div>
+</Resizable>;
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px" }}>
+        <Resizable resizable={true} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-green-50 p-2 text-xs">
+                Resizable
+            </div>
+        </Resizable>
+        <Resizable resizable={false} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-red-50 p-2 text-xs">
+                Fixed
+            </div>
+        </Resizable>
+    </div>
+</Unstyled>
+
+### Resizable `showHandles`
+
+Control the visibility of resize handles.
+
+```jsx
+{
+    /* Show handles (default) */
+}
+<Resizable showHandles={true}>
+    <div>Content with visible handles</div>
+</Resizable>;
+
+{
+    /* Hide handles */
+}
+<Resizable showHandles={false}>
+    <div>Content without handles</div>
+</Resizable>;
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px" }}>
+        <Resizable showHandles={true} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-blue-50 p-2 text-xs">
+                With handles
+            </div>
+        </Resizable>
+        <Resizable showHandles={false} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-gray-50 p-2 text-xs">
+                No handles
+            </div>
+        </Resizable>
+    </div>
+</Unstyled>
+
+### Resizable `handleSize`
+
+Customize the thickness of resize handles.
+
+```jsx
+<Resizable handleSize={2}>
+  <div>Thin handles</div>
+</Resizable>
+
+<Resizable handleSize={8}>
+  <div>Thick handles</div>
+</Resizable>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px" }}>
+        <Resizable handleSize={2} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-yellow-50 p-2 text-xs">
+                Thin (2px)
+            </div>
+        </Resizable>
+        <Resizable handleSize={8} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-pink-50 p-2 text-xs">
+                Thick (8px)
+            </div>
+        </Resizable>
+    </div>
+</Unstyled>
+
+### Resizable `handleColor`
+
+Choose from predefined color themes for resize handles.
+
+```jsx
+<Resizable handleColor="default">
+  <div>Default gray handles</div>
+</Resizable>
+
+<Resizable handleColor="primary">
+  <div>Blue primary handles</div>
+</Resizable>
+
+<Resizable handleColor="secondary">
+  <div>Dark secondary handles</div>
+</Resizable>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px" }}>
+        <Resizable handleColor="default" defaultWidth={160} defaultHeight={100}>
+            <div className="flex h-full items-center justify-center rounded bg-gray-50 p-2 text-xs">
+                Default
+            </div>
+        </Resizable>
+        <Resizable handleColor="primary" defaultWidth={160} defaultHeight={100}>
+            <div className="flex h-full items-center justify-center rounded bg-blue-50 p-2 text-xs">
+                Primary
+            </div>
+        </Resizable>
+        <Resizable handleColor="secondary" defaultWidth={160} defaultHeight={100}>
+            <div className="flex h-full items-center justify-center rounded bg-gray-100 p-2 text-xs">
+                Secondary
+            </div>
+        </Resizable>
+    </div>
+</Unstyled>
+
+### Resizable `showCornerHandle`
+
+Control the visibility of the corner handle for resizing in both dimensions simultaneously.
+
+```jsx
+{
+    /* Show corner handle (default) */
+}
+<Resizable showCornerHandle={true}>
+    <div>Content with corner handle</div>
+</Resizable>;
+
+{
+    /* Hide corner handle */
+}
+<Resizable showCornerHandle={false}>
+    <div>Content without corner handle</div>
+</Resizable>;
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px" }}>
+        <Resizable showCornerHandle={true} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-green-50 p-2 text-xs">
+                With corner
+            </div>
+        </Resizable>
+        <Resizable showCornerHandle={false} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-red-50 p-2 text-xs">
+                No corner
+            </div>
+        </Resizable>
+    </div>
+</Unstyled>
+
+### Resizable `cornerHandleSize`
+
+Set a custom size for the corner handle, independent of the edge handle size.
+
+```jsx
+<Resizable cornerHandleSize={8}>
+  <div>Large corner handle</div>
+</Resizable>
+
+<Resizable handleSize={2} cornerHandleSize={6}>
+  <div>Thin edges, larger corner</div>
+</Resizable>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px" }}>
+        <Resizable cornerHandleSize={4} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-blue-50 p-2 text-xs">
+                Corner: 4px
+            </div>
+        </Resizable>
+        <Resizable cornerHandleSize={12} defaultWidth={180} defaultHeight={120}>
+            <div className="flex h-full items-center justify-center rounded bg-purple-50 p-2 text-xs">
+                Corner: 12px
+            </div>
+        </Resizable>
+    </div>
+</Unstyled>
+
+### Resizable `onResize`, `onResizeStart`, `onResizeEnd`
+
+Handle resize events for custom logic and state management.
+
+```jsx
+function MyComponent() {
+    const [size, setSize] = useState({ width: 300, height: 200 });
+
+    return (
+        <Resizable
+            onResize={(newSize) => {
+                console.log("Resizing:", newSize);
+                setSize(newSize);
+            }}
+            onResizeStart={() => console.log("Resize started")}
+            onResizeEnd={(finalSize) => console.log("Resize ended:", finalSize)}
+        >
+            <div>
+                Current size: {size.width}x{size.height}
+            </div>
+        </Resizable>
+    );
+}
+```
+
+<Unstyled>
+    <Resizable
+        defaultWidth={250}
+        defaultHeight={150}
+        onResize={(size) => console.log("Resizing to:", size)}
+        onResizeStart={() => console.log("Resize started")}
+        onResizeEnd={(size) => console.log("Resize ended at:", size)}
+    >
+        <div className="flex h-full items-center justify-center rounded bg-indigo-50 p-3">
+            <span className="text-sm text-indigo-600">Check console for events</span>
+        </div>
+    </Resizable>
+</Unstyled>
+
+### Resizable `className` and `handleClassName`
+
+Apply custom styling to the container and handles.
+
+```jsx
+<Resizable
+    className="rounded-lg border-2 border-blue-300 shadow-md"
+    handleClassName="bg-blue-500 hover:bg-blue-600"
+>
+    <div>Custom styled resizable</div>
+</Resizable>
+```
+
+<Unstyled>
+    <Resizable
+        className="rounded-lg border-2 border-purple-300 shadow-md"
+        handleClassName="bg-purple-500 hover:bg-purple-600"
+        defaultWidth={280}
+        defaultHeight={160}
+    >
+        <div className="flex h-full items-center justify-center rounded bg-purple-50 p-4">
+            <span className="text-purple-600">Custom styled</span>
+        </div>
+    </Resizable>
+</Unstyled>
+
+## Accessibility
+
+The Resizable component follows accessibility best practices:
+
+- **Keyboard Navigation**: Resize handles are focusable and support arrow key resizing
+- **Screen Reader Support**: Proper ARIA labels and roles for assistive technologies
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Semantic HTML**: Uses appropriate ARIA attributes for slider-like behavior
+- **High Contrast**: Resize handles have sufficient contrast and hover states
+
+### Keyboard Controls
+
+- **Tab**: Move focus to resize handles
+- **Arrow Keys**: Resize the container (10px increments)
+- **Enter/Space**: Activate resize mode (if supported by implementation)
+
+## Best Practices
+
+### Do's ✅
+
+- Set appropriate min/max constraints to prevent unusable sizes
+- Provide clear visual feedback during resize operations
+- Use consistent handle colors across your application
+- Consider touch interfaces when setting handle sizes
+- Test with keyboard-only navigation
+- Provide alternative ways to achieve the same functionality
+
+### Don'ts ❌
+
+- Don't make handles too small for touch interaction (minimum 44px recommended)
+- Avoid hiding handles completely unless there's a clear alternative
+- Don't set min/max constraints that make the component unusable
+- Avoid using resize for critical layout elements that shouldn't change
+- Don't rely solely on color to indicate interactive elements
+
+### Performance Considerations
+
+- Resize events fire frequently during drag operations
+- Debounce resize callbacks if performing expensive operations
+- Consider using `requestAnimationFrame` for smooth animations
+- Avoid heavy re-renders during resize by memoizing content
+
+### Use Cases
+
+**Good for:**
+
+- Code editors and IDE panels
+- Image viewers and media players
+- Dashboard widgets and charts
+- Form builders and layout tools
+- Split-pane interfaces
+
+**Not ideal for:**
+
+- Fixed-layout content
+- Mobile-first responsive designs
+- Content that must maintain specific aspect ratios
+- Critical UI elements that shouldn't be resized
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
