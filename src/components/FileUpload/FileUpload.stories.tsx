@@ -6,7 +6,7 @@ const meta: Meta<typeof FileUpload> = {
     title: "Components/FileUpload",
     component: FileUpload,
     parameters: {
-        layout: "centered",
+        layout: "padded",
         docs: {
             description: {
                 component:
