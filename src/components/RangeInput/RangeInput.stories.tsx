@@ -192,12 +192,12 @@ export const TemperatureRange: Story = {
 
 export const FileSizeRange: Story = {
     args: {
-        label: "File Size (MB)",
+        label: "File Size",
         defaultValue: [1, 10],
         min: 0.1,
         max: 100,
         step: 0.1,
         showValue: true,
-        valueFormatter: (value) => `${value} MB`,
+        valueFormatter: (value) => `${value.toFixed(2)} MB`,
     },
 };

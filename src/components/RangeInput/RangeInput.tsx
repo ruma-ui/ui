@@ -114,7 +114,7 @@ const sizes = {
 
 const thumbBase = tw`absolute block cursor-pointer rounded-full border-1 border-gray-400 bg-white shadow-lg transition duration-200 ease-in-out hover:scale-105 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-115 disabled:shadow-none`;
 
-const labelBase = tw`mb-2 font-medium text-gray-900`;
+const labelBase = tw`font-medium text-gray-900`;
 const labelSizes = {
     sm: tw`text-xs`,
     md: tw`text-sm`,
@@ -364,7 +364,7 @@ export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
         return (
             <div ref={ref} className={wrapperBase}>
                 {label && (
-                    <div className="flex items-center justify-between">
+                    <div className="mb-3 flex items-center justify-between">
                         <label htmlFor={rangeId} className={labelClasses}>
                             {label}
                         </label>
