@@ -83,16 +83,16 @@ export interface SwitchProps {
 // Design primitives matching Select component
 const wrapperBase = tw`relative inline-flex flex-col`;
 const containerBase = tw`inline-flex items-center gap-2`;
-const switchBase = tw`relative inline-flex shrink-0 cursor-pointer border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-offset-2 focus:outline-none`;
+const switchBase = tw`relative inline-flex shrink-0 cursor-pointer border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none`;
 
 const variants = {
     primary: {
-        off: tw`bg-gray-200 focus:ring-blue-500`,
-        on: tw`bg-blue-600 focus:ring-blue-500`,
+        off: tw`bg-gray-200`,
+        on: tw`bg-blue-600`,
     },
     secondary: {
-        off: tw`bg-gray-200 focus:ring-gray-400`,
-        on: tw`bg-gray-600 focus:ring-gray-400`,
+        off: tw`bg-gray-200`,
+        on: tw`bg-gray-600`,
     },
 };
 
@@ -123,7 +123,7 @@ const roundedOptions = {
     full: tw`rounded-full`,
 };
 
-const thumbBase = tw`pointer-events-none absolute top-0 left-0 inline-block transform bg-white shadow ring-0 transition duration-200 ease-in-out`;
+const thumbBase = tw`pointer-events-none absolute top-0 left-0 inline-block transform bg-white shadow transition duration-200 ease-in-out`;
 
 const labelBase = tw`font-medium text-gray-900`;
 const labelSizes = {
@@ -137,7 +137,7 @@ const descriptionText = tw`text-sm text-gray-600`;
 const errorText = tw`text-sm text-red-600`;
 
 const disabledStyles = tw`cursor-not-allowed opacity-50`;
-const errorStyles = tw`ring-red-500 focus:ring-red-500`;
+const errorStyles = tw`ring-red-500`;
 
 export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     (
