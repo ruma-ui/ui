@@ -7,7 +7,7 @@ const meta: Meta<typeof Toast> = {
     title: "Components/Toast",
     component: Toast,
     parameters: {
-        layout: "fullscreen",
+        layout: "padded",
         docs: {
             description: {
                 component: "Toast notifications provide brief feedback about actions or events.",
@@ -107,7 +107,7 @@ const ToastContainer = ({
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="relative min-h-screen bg-gray-50 p-8">
+        <div className="relative">
             <Button onClick={() => setIsOpen(true)} className="mb-4">
                 Show Toast
             </Button>
@@ -346,7 +346,7 @@ export const MultipleToasts: Story = {
         };
 
         return (
-            <div className="relative min-h-screen bg-gray-50 p-8">
+            <div className="relative">
                 <div className="mb-4 flex flex-wrap gap-2">
                     <Button onClick={() => addToast("success", "Success!", "Operation completed.")}>
                         Add Success
