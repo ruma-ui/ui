@@ -9,3 +9,4 @@ export * from "./Dropdown/Dropdown";
 export * from "./Calendar/Calendar";
 export * from "./DatePicker/DatePicker";
 export * from "./TreeView/TreeView";
+export * from "./FileUpload/FileUpload";
