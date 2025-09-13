@@ -136,15 +136,6 @@ The `variant` prop determines the visual style and semantic meaning of the toast
 <Toast variant="info" title="Info" description="Here's some information." />
 ```
 
-<Unstyled>
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: "400px" }}>
-        <Toast open variant="success" title="Success!" description="Operation completed." />
-        <Toast open variant="error" title="Error" description="Something went wrong." />
-        <Toast open variant="warning" title="Warning" description="Please check your input." />
-        <Toast open variant="info" title="Info" description="Here's some information." />
-    </div>
-</Unstyled>
-
 ### Toast `position`
 
 The `position` prop controls where the toast appears on screen. Choose positions that don't interfere with important UI elements.
@@ -168,14 +159,6 @@ The `size` prop controls the padding and overall dimensions of the toast.
 <Toast size="lg" title="Large" description="Toast with generous padding." />
 ```
 
-<Unstyled>
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: "400px" }}>
-        <Toast open size="sm" title="Small" description="Compact toast." />
-        <Toast open size="md" title="Medium" description="Standard size." />
-        <Toast open size="lg" title="Large" description="Generous padding." />
-    </div>
-</Unstyled>
-
 ### Toast `duration`
 
 The `duration` prop sets the auto-dismiss delay in milliseconds. Set to `0` to disable auto-dismiss.
@@ -197,31 +180,6 @@ The `icon` prop allows you to override the default variant icon with a custom on
     description="Uses a custom icon instead of the default."
 />
 ```
-
-<Unstyled>
-    <div style={{ maxWidth: "400px" }}>
-        <Toast
-            open
-            icon={
-                <svg
-                    className="h-5 w-5 text-purple-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                    />
-                </svg>
-            }
-            title="Custom Icon"
-            description="This toast uses a custom star icon."
-        />
-    </div>
-</Unstyled>
 
 ### Toast `title` and `description`
 

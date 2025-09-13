@@ -79,10 +79,10 @@ export interface ToastProps {
 }
 
 // Base styles
-const toastBase = tw`relative flex items-start gap-3 rounded-lg border p-4 shadow-lg ring-1 ring-gray-200 outline-none`;
+const toastBase = tw`relative flex max-w-sm items-start gap-3 rounded-lg border p-4 shadow-lg ring-1 ring-gray-200 outline-none`;
 const contentBase = tw`min-w-0 flex-1`;
-const titleBase = tw`text-sm font-semibold`;
-const descriptionBase = tw`text-sm`;
+const titleBase = tw`text-sm font-semibold break-words`;
+const descriptionBase = tw`text-sm break-words`;
 const closeButtonBase = tw`flex shrink-0 items-center justify-center rounded-md p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
 
 // Variants
@@ -279,7 +279,9 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
                 {/* Content */}
                 <div className={contentBase}>
                     {children ? (
-                        <div id={descId}>{children}</div>
+                        <div id={descId} className="break-words">
+                            {children}
+                        </div>
                     ) : (
                         <>
                             {title && (
