@@ -146,7 +146,7 @@ const IndentGuide: React.FC<{ level: number; isLast?: boolean }> = ({ level, isL
                     isCurrentLevel && !isLast && "bg-gray-300",
                 )}
                 style={{
-                    left: `${i * 16 + 6}px`, // 6px is half of the icon width (4px) plus some spacing
+                    left: `${(i + 1) * 16 + 8}px`, // Align with center of chevron icon
                 }}
             />,
         );
@@ -338,8 +338,10 @@ export const TreeItemContent: React.FC<TreeItemContentProps> = ({
                 {hasTrigger ? (
                     children
                 ) : (
-                    <div className="flex flex-1 items-center gap-1">
-                        <div className="w-4" /> {/* Placeholder for icon alignment */}
+                    <div
+                        className="flex flex-1 items-center gap-1"
+                        style={{ marginLeft: `${level > 0 ? 16 : 0}px` }}
+                    >
                         {children}
                     </div>
                 )}
