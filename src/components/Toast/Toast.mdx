@@ -1,0 +1,372 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Button } from "../Button/Button";
+import { Toast } from "./Toast";
+import * as ToastStories from "./Toast.stories";
+
+<Meta of={ToastStories} />
+
+# Toast
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Toast)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Success Variant](#success-variant)
+    - [Error Variant](#error-variant)
+    - [Warning Variant](#warning-variant)
+    - [Info Variant](#info-variant)
+- [Positions](#positions)
+- [Sizes](#sizes)
+- [Auto-dismiss](#auto-dismiss)
+- [Custom Content](#custom-content)
+- [Multiple Toasts](#multiple-toasts)
+- [Component API](#component-api)
+    - [Toast `variant`](#toast-variant)
+    - [Toast `position`](#toast-position)
+    - [Toast `size`](#toast-size)
+    - [Toast `duration`](#toast-duration)
+    - [Toast `icon`](#toast-icon)
+    - [Toast `title` and `description`](#toast-title-and-description)
+    - [Toast `children`](#toast-children)
+    - [Toast `showCloseButton`](#toast-showclosebutton)
+    - [Toast `animation`](#toast-animation)
+    - [Toast `className`](#toast-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+Toast notifications provide brief feedback about actions or events. They appear temporarily and automatically dismiss to keep users informed without interrupting their workflow. Our Toast component is designed to be accessible, customizable, and consistent with the design system.
+
+<Canvas of={ToastStories.Success} />
+
+## Variants
+
+### Success Variant
+
+Use the success variant to confirm that an action was completed successfully.
+
+<Canvas of={ToastStories.Success} />
+
+### Error Variant
+
+Use the error variant to inform users about failures or problems that need attention.
+
+<Canvas of={ToastStories.Error} />
+
+### Warning Variant
+
+Use the warning variant to alert users about potentially harmful actions or important information.
+
+<Canvas of={ToastStories.Warning} />
+
+### Info Variant
+
+Use the info variant for general information that doesn't require immediate action.
+
+<Canvas of={ToastStories.Info} />
+
+## Positions
+
+Toasts can be positioned in different corners of the screen to suit your layout needs.
+
+### Top Positions
+
+<Canvas of={ToastStories.TopLeft} />
+
+### Bottom Positions
+
+<Canvas of={ToastStories.BottomCenter} />
+
+## Sizes
+
+Choose the appropriate size based on the amount of content and visual hierarchy.
+
+### Small Size
+
+<Canvas of={ToastStories.SmallSize} />
+
+### Large Size
+
+<Canvas of={ToastStories.LargeSize} />
+
+## Auto-dismiss
+
+Toasts automatically dismiss after a specified duration to avoid cluttering the interface.
+
+### With Auto-dismiss
+
+<Canvas of={ToastStories.WithoutCloseButton} />
+
+### Persistent Toast
+
+<Canvas of={ToastStories.NoAutoDismiss} />
+
+## Custom Content
+
+You can provide custom content using the `children` prop for more complex toast layouts.
+
+<Canvas of={ToastStories.WithChildren} />
+
+## Multiple Toasts
+
+Multiple toasts can be displayed simultaneously, stacking vertically.
+
+<Canvas of={ToastStories.MultipleToasts} />
+
+## Component API
+
+<ArgTypes of={Toast} />
+
+### Toast `variant`
+
+The `variant` prop determines the visual style and semantic meaning of the toast. Each variant includes appropriate colors and icons.
+
+```jsx
+<Toast variant="success" title="Success!" description="Operation completed." />
+<Toast variant="error" title="Error" description="Something went wrong." />
+<Toast variant="warning" title="Warning" description="Please check your input." />
+<Toast variant="info" title="Info" description="Here's some information." />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: "400px" }}>
+        <Toast open variant="success" title="Success!" description="Operation completed." />
+        <Toast open variant="error" title="Error" description="Something went wrong." />
+        <Toast open variant="warning" title="Warning" description="Please check your input." />
+        <Toast open variant="info" title="Info" description="Here's some information." />
+    </div>
+</Unstyled>
+
+### Toast `position`
+
+The `position` prop controls where the toast appears on screen. Choose positions that don't interfere with important UI elements.
+
+```jsx
+<Toast position="top-left" title="Top Left" description="Appears in top-left corner." />
+<Toast position="top-center" title="Top Center" description="Appears at top center." />
+<Toast position="top-right" title="Top Right" description="Appears in top-right corner." />
+<Toast position="bottom-left" title="Bottom Left" description="Appears in bottom-left corner." />
+<Toast position="bottom-center" title="Bottom Center" description="Appears at bottom center." />
+<Toast position="bottom-right" title="Bottom Right" description="Appears in bottom-right corner." />
+```
+
+### Toast `size`
+
+The `size` prop controls the padding and overall dimensions of the toast.
+
+```jsx
+<Toast size="sm" title="Small" description="Compact toast with minimal padding." />
+<Toast size="md" title="Medium" description="Standard toast size." />
+<Toast size="lg" title="Large" description="Toast with generous padding." />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: "400px" }}>
+        <Toast open size="sm" title="Small" description="Compact toast." />
+        <Toast open size="md" title="Medium" description="Standard size." />
+        <Toast open size="lg" title="Large" description="Generous padding." />
+    </div>
+</Unstyled>
+
+### Toast `duration`
+
+The `duration` prop sets the auto-dismiss delay in milliseconds. Set to `0` to disable auto-dismiss.
+
+```jsx
+<Toast duration={3000} title="Quick" description="Dismisses after 3 seconds." />
+<Toast duration={10000} title="Slow" description="Dismisses after 10 seconds." />
+<Toast duration={0} title="Persistent" description="Never auto-dismisses." />
+```
+
+### Toast `icon`
+
+The `icon` prop allows you to override the default variant icon with a custom one.
+
+```jsx
+<Toast
+    icon={<CustomIcon />}
+    title="Custom Icon"
+    description="Uses a custom icon instead of the default."
+/>
+```
+
+<Unstyled>
+    <div style={{ maxWidth: "400px" }}>
+        <Toast
+            open
+            icon={
+                <svg
+                    className="h-5 w-5 text-purple-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                    />
+                </svg>
+            }
+            title="Custom Icon"
+            description="This toast uses a custom star icon."
+        />
+    </div>
+</Unstyled>
+
+### Toast `title` and `description`
+
+The `title` and `description` props provide the main content of the toast.
+
+```jsx
+<Toast
+    title="Toast Title"
+    description="This is the description that provides more details about the toast content."
+/>
+```
+
+### Toast `children`
+
+The `children` prop allows you to provide custom JSX content instead of using `title` and `description`.
+
+```jsx
+<Toast>
+    <div>
+        <strong>Custom Content</strong>
+        <p>You can use any JSX here.</p>
+        <Button size="sm">Action</Button>
+    </div>
+</Toast>
+```
+
+### Toast `showCloseButton`
+
+The `showCloseButton` prop controls whether the close button is displayed.
+
+```jsx
+<Toast showCloseButton={false} title="No Close Button" description="This toast has no close button." />
+<Toast showCloseButton={true} title="With Close Button" description="This toast has a close button." />
+```
+
+### Toast `animation`
+
+The `animation` prop enables or disables enter/exit animations.
+
+```jsx
+<Toast animation={true} title="Animated" description="This toast animates in and out." />
+<Toast animation={false} title="No Animation" description="This toast appears instantly." />
+```
+
+### Toast `className`
+
+The `className` prop allows you to add custom styling.
+
+```jsx
+<Toast
+    className="border-2 border-dashed border-purple-400"
+    title="Custom Styled"
+    description="This toast has custom border styling."
+/>
+```
+
+## Accessibility
+
+Our Toast component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper ARIA attributes for screen readers
+- **Live Regions**: Uses `aria-live="assertive"` for important notifications
+- **Keyboard Navigation**: Close button is keyboard accessible
+- **Screen Reader Support**: Proper labeling with `aria-label` and `aria-describedby`
+- **Focus Management**: Close button receives focus when toast appears
+- **Color Contrast**: All variants meet WCAG color contrast requirements
+- **Motion Preferences**: Respects user's motion preferences for animations
+
+## Best Practices
+
+### Do's ✅
+
+- Use toasts for brief, non-critical information
+- Keep messages clear and concise
+- Use appropriate variants for semantic meaning
+- Position toasts where they won't interfere with content
+- Allow manual dismissal for important notifications
+- Test with screen readers for accessibility
+
+### Don'ts ❌
+
+- Don't use for critical errors that require immediate action
+- Avoid long messages that require scrolling
+- Don't stack too many toasts simultaneously
+- Don't rely solely on color to convey meaning
+- Avoid using toasts for form validation errors
+
+### Toast Usage Guidelines
+
+```jsx
+// Good: Success confirmation
+<Toast variant="success" title="Saved!" description="Your changes have been saved." />
+
+// Good: Error notification
+<Toast variant="error" title="Upload Failed" description="Please check your file and try again." />
+
+// Good: Warning alert
+<Toast variant="warning" title="Session Expiring" description="Your session will expire in 5 minutes." />
+
+// Avoid: Critical action required
+// Use a modal or inline error instead
+<Toast variant="error" title="Payment Failed" description="Click here to retry payment." />
+```
+
+### Implementation Example
+
+```jsx
+import { useState } from "react";
+import { Toast } from "./Toast";
+
+function App() {
+    const [toast, setToast] = useState({
+        open: false,
+        variant: "success",
+        title: "",
+        description: "",
+    });
+
+    const showToast = (variant, title, description) => {
+        setToast({ open: true, variant, title, description });
+    };
+
+    const handleClose = () => {
+        setToast((prev) => ({ ...prev, open: false }));
+    };
+
+    return (
+        <div>
+            <button onClick={() => showToast("success", "Success!", "Operation completed.")}>
+                Show Success Toast
+            </button>
+
+            <Toast
+                open={toast.open}
+                onClose={handleClose}
+                variant={toast.variant}
+                title={toast.title}
+                description={toast.description}
+            />
+        </div>
+    );
+}
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
