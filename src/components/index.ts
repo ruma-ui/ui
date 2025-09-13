@@ -10,3 +10,5 @@ export * from "./Calendar/Calendar";
 export * from "./DatePicker/DatePicker";
 export * from "./TreeView/TreeView";
 export * from "./FileUpload/FileUpload";
+export * from "./Slider/Slider";
+export * from "./RangeInput/RangeInput";
