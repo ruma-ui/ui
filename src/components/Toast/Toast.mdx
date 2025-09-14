@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
 import { Toast, ToastProvider } from "./Toast";
 import * as ToastStories from "./Toast.stories";
@@ -200,6 +201,113 @@ The `variant` prop determines the semantic meaning, color scheme, and default ic
 <Toast variant="info" title="Info" description="Here's some information" onClose={() => {}} />
 ```
 
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            success: false,
+            error: false,
+            warning: false,
+            info: false,
+        });
+
+        const showToast = (variant) => {
+            setToasts(prev => ({ ...prev, [variant]: true }));
+        };
+
+        const closeToast = (variant) => {
+            setToasts(prev => ({ ...prev, [variant]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#10b981",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('success')}
+                    >
+                        Show Success
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#ef4444",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('error')}
+                    >
+                        Show Error
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#f59e0b",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('warning')}
+                    >
+                        Show Warning
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#3b82f6",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('info')}
+                    >
+                        Show Info
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.success}
+                    variant="success"
+                    title="Success!"
+                    description="Operation completed"
+                    onClose={() => closeToast('success')}
+                />
+                <Toast
+                    open={toasts.error}
+                    variant="error"
+                    title="Error"
+                    description="Something went wrong"
+                    onClose={() => closeToast('error')}
+                />
+                <Toast
+                    open={toasts.warning}
+                    variant="warning"
+                    title="Warning"
+                    description="Please check your input"
+                    onClose={() => closeToast('warning')}
+                />
+                <Toast
+                    open={toasts.info}
+                    variant="info"
+                    title="Info"
+                    description="Here's some information"
+                    onClose={() => closeToast('info')}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
 ### Toast `position`
 
 The `position` prop controls where the toast appears on screen. Choose positions that don't interfere with important interface elements.
@@ -213,6 +321,155 @@ The `position` prop controls where the toast appears on screen. Choose positions
 <Toast position="bottom-right" title="Bottom Right" onClose={() => {}} />
 ```
 
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            'top-left': false,
+            'top-center': false,
+            'top-right': false,
+            'bottom-left': false,
+            'bottom-center': false,
+            'bottom-right': false,
+        });
+
+        const showToast = (position) => {
+            setToasts(prev => ({ ...prev, [position]: true }));
+        };
+
+        const closeToast = (position) => {
+            setToasts(prev => ({ ...prev, [position]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('top-left')}
+                    >
+                        Top Left
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('top-center')}
+                    >
+                        Top Center
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('top-right')}
+                    >
+                        Top Right
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('bottom-left')}
+                    >
+                        Bottom Left
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('bottom-center')}
+                    >
+                        Bottom Center
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('bottom-right')}
+                    >
+                        Bottom Right
+                    </button>
+                </div>
+                <Toast
+                    open={toasts['top-left']}
+                    position="top-left"
+                    title="Top Left"
+                    onClose={() => closeToast('top-left')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['top-center']}
+                    position="top-center"
+                    title="Top Center"
+                    onClose={() => closeToast('top-center')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['top-right']}
+                    position="top-right"
+                    title="Top Right"
+                    onClose={() => closeToast('top-right')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['bottom-left']}
+                    position="bottom-left"
+                    title="Bottom Left"
+                    onClose={() => closeToast('bottom-left')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['bottom-center']}
+                    position="bottom-center"
+                    title="Bottom Center"
+                    onClose={() => closeToast('bottom-center')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['bottom-right']}
+                    position="bottom-right"
+                    title="Bottom Right"
+                    onClose={() => closeToast('bottom-right')}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
 ### Toast `size`
 
 The `size` prop controls the toast's dimensions and typography scale. Choose sizes based on content length and visual hierarchy.
@@ -223,6 +480,95 @@ The `size` prop controls the toast's dimensions and typography scale. Choose siz
 <Toast size="lg" title="Large" description="Prominent toast with more space" onClose={() => {}} />
 ```
 
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            sm: false,
+            md: false,
+            lg: false,
+        });
+
+        const showToast = (size) => {
+            setToasts(prev => ({ ...prev, [size]: true }));
+        };
+
+        const closeToast = (size) => {
+            setToasts(prev => ({ ...prev, [size]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('sm')}
+                    >
+                        Small
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('md')}
+                    >
+                        Medium
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('lg')}
+                    >
+                        Large
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.sm}
+                    size="sm"
+                    title="Small"
+                    description="Compact toast"
+                    onClose={() => closeToast('sm')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts.md}
+                    size="md"
+                    title="Medium"
+                    description="Standard toast size"
+                    onClose={() => closeToast('md')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts.lg}
+                    size="lg"
+                    title="Large"
+                    description="Prominent toast with more space"
+                    onClose={() => closeToast('lg')}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
 ### Toast `duration`
 
 The `duration` prop sets auto-dismiss delay in milliseconds. Set to 0 to disable auto-dismiss.
@@ -231,6 +577,71 @@ The `duration` prop sets auto-dismiss delay in milliseconds. Set to 0 to disable
 <Toast duration={3000} title="3 second toast" onClose={() => {}} />
 <Toast duration={0} title="Persistent toast" onClose={() => {}} />
 ```
+
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            timed: false,
+            persistent: false,
+        });
+
+        const showToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: true }));
+        };
+
+        const closeToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('timed')}
+                    >
+                        3 Second Toast
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('persistent')}
+                    >
+                        Persistent Toast
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.timed}
+                    duration={3000}
+                    title="3 Second Toast"
+                    description="This will auto-dismiss in 3 seconds"
+                    onClose={() => closeToast('timed')}
+                />
+                <Toast
+                    open={toasts.persistent}
+                    duration={0}
+                    title="Persistent Toast"
+                    description="This will stay until manually closed"
+                    onClose={() => closeToast('persistent')}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
 
 ### Toast `icon`
 
@@ -245,6 +656,43 @@ The `icon` prop accepts any React element to override the default variant icon.
 />
 ```
 
+<Unstyled>
+    {(() => {
+        const [toast, setToast] = React.useState(false);
+
+        const showToast = () => setToast(true);
+        const closeToast = () => setToast(false);
+
+        return (
+            <div>
+                <button
+                    style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#6b7280",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        marginBottom: "16px"
+                    }}
+                    onClick={showToast}
+                >
+                    Show Custom Icon Toast
+                </button>
+                <Toast
+                    open={toast}
+                    icon={<span style={{ fontSize: "20px" }}>🚀</span>}
+                    title="Custom Icon"
+                    description="Toast with custom rocket icon"
+                    onClose={closeToast}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
 ### Toast `title` and `description`
 
 The `title` and `description` props provide structured content. Use `title` for brief summaries and `description` for additional details.
@@ -256,6 +704,42 @@ The `title` and `description` props provide structured content. Use `title` for 
     onClose={() => {}}
 />
 ```
+
+<Unstyled>
+    {(() => {
+        const [toast, setToast] = React.useState(false);
+
+        const showToast = () => setToast(true);
+        const closeToast = () => setToast(false);
+
+        return (
+            <div>
+                <button
+                    style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#6b7280",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        marginBottom: "16px"
+                    }}
+                    onClick={showToast}
+                >
+                    Show Structured Toast
+                </button>
+                <Toast
+                    open={toast}
+                    title="Operation Complete"
+                    description="Your data has been saved successfully to the cloud storage."
+                    onClose={closeToast}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
 
 ### Toast `children`
 
@@ -271,6 +755,59 @@ The `children` prop allows fully custom content layout, overriding title/descrip
 </Toast>
 ```
 
+<Unstyled>
+    {(() => {
+        const [toast, setToast] = React.useState(false);
+
+        const showToast = () => setToast(true);
+        const closeToast = () => setToast(false);
+
+        return (
+            <div>
+                <button
+                    style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#6b7280",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        marginBottom: "16px"
+                    }}
+                    onClick={showToast}
+                >
+                    Show Custom Content Toast
+                </button>
+                <Toast
+                    open={toast}
+                    onClose={closeToast}
+                    duration={0}
+                >
+                    <div>
+                        <strong>🚀 Mission Update</strong>
+                        <p>Your deployment is now live! Check the status dashboard for details.</p>
+                        <button
+                            style={{
+                                padding: "4px 8px",
+                                backgroundColor: "#3b82f6",
+                                color: "white",
+                                border: "none",
+                                borderRadius: "4px",
+                                cursor: "pointer",
+                                fontSize: "12px"
+                            }}
+                            onClick={() => alert('Action clicked!')}
+                        >
+                            View Dashboard
+                        </button>
+                    </div>
+                </Toast>
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
 ### Toast `showCloseButton`
 
 The `showCloseButton` prop controls visibility of the close button. Default is `true`.
@@ -280,6 +817,73 @@ The `showCloseButton` prop controls visibility of the close button. Default is `
 <Toast showCloseButton={true} title="With close button" onClose={() => {}} />
 ```
 
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            noClose: false,
+            withClose: false,
+        });
+
+        const showToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: true }));
+        };
+
+        const closeToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('noClose')}
+                    >
+                        No Close Button
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('withClose')}
+                    >
+                        With Close Button
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.noClose}
+                    showCloseButton={false}
+                    title="No Close Button"
+                    description="This toast has no close button"
+                    onClose={() => closeToast('noClose')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts.withClose}
+                    showCloseButton={true}
+                    title="With Close Button"
+                    description="This toast has a close button"
+                    onClose={() => closeToast('withClose')}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
 ### Toast `animation`
 
 The `animation` prop enables smooth enter/exit transitions. Default is `true`.
@@ -288,6 +892,73 @@ The `animation` prop enables smooth enter/exit transitions. Default is `true`.
 <Toast animation={false} title="No animation" onClose={() => {}} />
 <Toast animation={true} title="With animation" onClose={() => {}} />
 ```
+
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            noAnimation: false,
+            withAnimation: false,
+        });
+
+        const showToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: true }));
+        };
+
+        const closeToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('noAnimation')}
+                    >
+                        No Animation
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('withAnimation')}
+                    >
+                        With Animation
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.noAnimation}
+                    animation={false}
+                    title="No Animation"
+                    description="This toast appears/disappears instantly"
+                    onClose={() => closeToast('noAnimation')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts.withAnimation}
+                    animation={true}
+                    title="With Animation"
+                    description="This toast has smooth enter/exit transitions"
+                    onClose={() => closeToast('withAnimation')}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
 
 ## Accessibility
 
