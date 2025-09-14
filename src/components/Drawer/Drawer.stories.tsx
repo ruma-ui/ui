@@ -2,7 +2,14 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Drawer } from "./Drawer";
 import { useState } from "react";
 import mdx from "./Drawer.mdx";
-import { User, Settings, Trash2, AlertCircle, Info, Menu } from "lucide-react";
+import {
+    LuUser as User,
+    LuSettings as Settings,
+    LuTrash2 as Trash2,
+    LuTriangle as AlertCircle,
+    LuInfo as Info,
+    LuMenu as Menu,
+} from "react-icons/lu";
 import { cn } from "@/utils/cn";
 
 const meta: Meta<typeof Drawer> = {

@@ -1,6 +1,14 @@
 import React from "react";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
+import {
+    FiImage as FileImage,
+    FiVideo as FileVideo,
+    FiMusic as FileAudio,
+    FiFileText as FileText,
+    FiArchive as FileArchive,
+    FiFile as File,
+} from "react-icons/fi";
 
 export interface FileUploadProps {
     /**
@@ -61,6 +69,10 @@ export interface FileUploadProps {
      */
     buttonText?: string;
     /**
+     * Custom description text below the button
+     */
+    description?: string;
+    /**
      * Show file list
      * @default true
      */
@@ -93,12 +105,12 @@ export interface FileUploadProps {
 }
 
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
-const uploadAreaBase = tw`relative flex flex-col items-center justify-center border-2 border-dashed bg-white transition-all duration-200 focus-within:ring-3 disabled:cursor-not-allowed disabled:opacity-50`;
+const uploadAreaBase = tw`relative flex flex-col items-center justify-center border-2 border-dashed bg-white transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50`;
 
 const variants = {
-    primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200 hover:border-blue-400`,
-    secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200 hover:border-gray-400`,
-    dashed: tw`border-gray-400 focus-within:border-blue-500 focus-within:ring-blue-200 hover:border-blue-500`,
+    primary: tw`border-gray-300 hover:border-blue-400`,
+    secondary: tw`border-gray-300 bg-gray-50 hover:border-gray-400`,
+    dashed: tw`border-gray-400 hover:border-blue-500`,
 };
 
 const sizes = {
@@ -169,6 +181,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             dragAndDrop = true,
             placeholder = "Click to upload or drag and drop",
             buttonText = "Choose File",
+            description,
             showFileList = true,
             icon = <DefaultFileUploadIcon size={sizes[size].icon} />,
             onFilesSelected,
@@ -321,14 +334,14 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
         };
 
-        const getFileIcon = (file: File): string => {
+        const getFileIcon = (file: File): React.ReactNode => {
             const type = file.type;
-            if (type.startsWith("image/")) return "🖼️";
-            if (type.startsWith("video/")) return "🎥";
-            if (type.startsWith("audio/")) return "🎵";
-            if (type.includes("pdf")) return "📄";
-            if (type.includes("zip") || type.includes("rar")) return "📦";
-            return "📄";
+            if (type.startsWith("image/")) return <FileImage size={16} />;
+            if (type.startsWith("video/")) return <FileVideo size={16} />;
+            if (type.startsWith("audio/")) return <FileAudio size={16} />;
+            if (type.includes("pdf")) return <FileText size={16} />;
+            if (type.includes("zip") || type.includes("rar")) return <FileArchive size={16} />;
+            return <File size={16} />;
         };
 
         return (
@@ -380,6 +393,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                         >
                             {buttonText}
                         </button>
+                        {description && <p className="mt-2 text-sm text-gray-600">{description}</p>}
                         {accept && <p className="mt-2 text-xs text-gray-500">Accepted: {accept}</p>}
                         {maxSize && (
                             <p className="mt-1 text-xs text-gray-500">
@@ -424,7 +438,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                                     <button
                                         type="button"
                                         onClick={() => handleRemoveFile(index)}
-                                        className="aspect-square h-6 w-6 cursor-pointer rounded-full border border-gray-200 text-xs text-gray-400 transition hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:outline-none"
+                                        className="aspect-square h-6 w-6 cursor-pointer rounded-full border border-gray-200 text-xs text-gray-400 transition hover:bg-gray-100 hover:text-gray-500"
                                         aria-label={`Remove ${file.name}`}
                                     >
                                         ✕

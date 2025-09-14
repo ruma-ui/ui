@@ -3,16 +3,16 @@ import { Badge } from "./Badge";
 import { useState } from "react";
 import mdx from "./Badge.mdx";
 import {
-    Star,
-    Heart,
-    CheckCircle,
-    AlertTriangle,
-    XCircle,
-    Info,
-    Zap,
-    Award,
-    Shield,
-} from "lucide-react";
+    LuStar as Star,
+    LuHeart as Heart,
+    LuCheck as CheckCircle,
+    LuTriangleAlert as AlertTriangle,
+    LuX as XCircle,
+    LuInfo as Info,
+    LuZap as Zap,
+    LuAward as Award,
+    LuShield as Shield,
+} from "react-icons/lu";
 
 const meta: Meta<typeof Badge> = {
     title: "Components/Badge",

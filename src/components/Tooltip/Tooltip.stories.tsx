@@ -4,15 +4,15 @@ import { Button } from "../Button/Button";
 import { Badge } from "../Badge/Badge";
 import { useState } from "react";
 import {
-    Info,
-    HelpCircle,
-    AlertTriangle,
-    CheckCircle,
-    Star,
-    Heart,
-    Zap,
-    Award,
-} from "lucide-react";
+    LuInfo as Info,
+    LuCircleHelp as HelpCircle,
+    LuTriangle as AlertTriangle,
+    LuCheck as CheckCircle,
+    LuStar as Star,
+    LuHeart as Heart,
+    LuZap as Zap,
+    LuAward as Award,
+} from "react-icons/lu";
 import mdx from "./Tooltip.mdx";
 
 const meta: Meta<typeof Tooltip> = {

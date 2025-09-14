@@ -2,7 +2,14 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Modal } from "./Modal";
 import { useState } from "react";
 import mdx from "./Modal.mdx";
-import { User, Settings, Trash2, AlertCircle, CheckCircle, Info } from "lucide-react";
+import {
+    LuUser as User,
+    LuSettings as Settings,
+    LuTrash2 as Trash2,
+    LuTriangle as AlertCircle,
+    LuCheck as CheckCircle,
+    LuInfo as Info,
+} from "react-icons/lu";
 import { cn } from "@/utils/cn";
 
 const meta: Meta<typeof Modal> = {
@@ -340,7 +347,7 @@ export const PreventClose: Story = {
                         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
                         <p className="text-gray-600">
                             This modal cannot be closed by clicking outside or pressing Escape. You
-                            must click the "I Understand" button to proceed.
+                            must click the &ldquo;I Understand&quot; button to proceed.
                         </p>
                     </div>
                 </Modal>
@@ -555,13 +562,14 @@ export const InfoModal: Story = {
                 >
                     <div className="space-y-3">
                         <p className="text-gray-600">
-                            Here's some important information about the feature you're using.
+                            Here&#39;s some important information about the feature you&#39;re
+                            using.
                         </p>
                         <div className="rounded-md bg-blue-50 p-3">
                             <h4 className="font-medium text-blue-900">Pro Tip</h4>
                             <p className="mt-1 text-sm text-blue-700">
-                                You can customize the modal's appearance using the variant, size,
-                                and rounded props to match your design system.
+                                You can customize the modal&apos;s appearance using the variant,
+                                size, and rounded props to match your design system.
                             </p>
                         </div>
                     </div>
@@ -739,8 +747,8 @@ export const Controlled: Story = {
                     title="Controlled Modal"
                 >
                     <p className="text-gray-600">
-                        This modal's open state is controlled by the parent component. You can open
-                        and close it using external buttons.
+                        This modal&apos;s open state is controlled by the parent component. You can
+                        open and close it using external buttons.
                     </p>
                 </Modal>
             </div>
