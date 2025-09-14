@@ -31,7 +31,7 @@
         "@eslint/eslintrc": "^3",
         "@storybook/addon-a11y": "^9.1.4",
         "@storybook/addon-docs": "^9.1.4",
-        "@storybook/addon-vitest": "^9.1.4",
+        "@storybook/addon-vitest": "^9.1.5",
         "@storybook/nextjs-vite": "^9.1.4",
         "@tailwindcss/postcss": "^4",
         "@testing-library/jest-dom": "^6.6.4",
