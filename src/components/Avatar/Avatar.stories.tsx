@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Avatar } from "./Avatar";
 import { useState } from "react";
 import mdx from "./Avatar.mdx";
-import { Heart } from "lucide-react";
+import { LuHeart as Heart } from "react-icons/lu";
 
 const meta: Meta<typeof Avatar> = {
     title: "Components/Avatar",

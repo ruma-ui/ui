@@ -1,7 +1,14 @@
 import React from "react";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
-import { FileImage, FileVideo, FileAudio, FileText, FileArchive, File } from "lucide-react";
+import {
+    FiImage as FileImage,
+    FiVideo as FileVideo,
+    FiMusic as FileAudio,
+    FiFileText as FileText,
+    FiArchive as FileArchive,
+    FiFile as File,
+} from "react-icons/fi";
 
 export interface FileUploadProps {
     /**

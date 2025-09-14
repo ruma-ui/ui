@@ -2,7 +2,12 @@ import React from "react";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
 import { Button } from "@/components";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+import {
+    HiChevronLeft as ChevronLeft,
+    HiChevronRight as ChevronRight,
+    HiChevronDoubleLeft as ChevronsLeft,
+    HiChevronDoubleRight as ChevronsRight,
+} from "react-icons/hi";
 
 export interface PaginationProps {
     /**
