@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, createContext, useContext, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
@@ -320,3 +320,249 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
 );
 
 Toast.displayName = "Toast";
+
+// Toast context and hook
+
+export interface ToastItem {
+    id: string;
+    open: boolean;
+    variant?: "success" | "error" | "warning" | "info";
+    position?:
+        | "top-left"
+        | "top-center"
+        | "top-right"
+        | "bottom-left"
+        | "bottom-center"
+        | "bottom-right";
+    size?: "sm" | "md" | "lg";
+    duration?: number;
+    icon?: React.ReactNode;
+    title?: string;
+    description?: string;
+    children?: React.ReactNode;
+    showCloseButton?: boolean;
+    animation?: boolean;
+    className?: string;
+}
+
+interface ToastContextType {
+    toasts: ToastItem[];
+    addToast: (toast: Omit<ToastItem, "id" | "open">) => string;
+    removeToast: (id: string) => void;
+    updateToast: (id: string, updates: Partial<ToastItem>) => void;
+    success: (
+        title: string,
+        description?: string,
+        options?: Partial<Omit<ToastItem, "id" | "open" | "variant" | "title" | "description">>,
+    ) => string;
+    error: (
+        title: string,
+        description?: string,
+        options?: Partial<Omit<ToastItem, "id" | "open" | "variant" | "title" | "description">>,
+    ) => string;
+    warning: (
+        title: string,
+        description?: string,
+        options?: Partial<Omit<ToastItem, "id" | "open" | "variant" | "title" | "description">>,
+    ) => string;
+    info: (
+        title: string,
+        description?: string,
+        options?: Partial<Omit<ToastItem, "id" | "open" | "variant" | "title" | "description">>,
+    ) => string;
+    promise: <T>(
+        promise: Promise<T>,
+        messages: {
+            loading: string;
+            success: string | ((data: T) => string);
+            error: string | ((error: unknown) => string);
+        },
+        options?: Partial<Omit<ToastItem, "id" | "open" | "title" | "description">>,
+    ) => Promise<T>;
+}
+
+const ToastContext = createContext<ToastContextType | undefined>(undefined);
+
+export const useToast = () => {
+    const context = useContext(ToastContext);
+    if (!context) {
+        throw new Error("useToast must be used within a ToastProvider");
+    }
+    return context;
+};
+
+interface ToastProviderProps {
+    children: React.ReactNode;
+}
+
+export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
+    const [toasts, setToasts] = useState<ToastItem[]>([]);
+
+    const addToast = useCallback((toast: Omit<ToastItem, "id" | "open">) => {
+        const id = Math.random().toString(36).substring(2, 9);
+        const newToast: ToastItem = {
+            ...toast,
+            id,
+            open: true,
+        };
+        setToasts((prev) => [...prev, newToast]);
+        return id;
+    }, []);
+
+    const removeToast = useCallback((id: string) => {
+        setToasts((prev) =>
+            prev.map((toast) => (toast.id === id ? { ...toast, open: false } : toast)),
+        );
+        // Remove from state after animation
+        setTimeout(() => {
+            setToasts((prev) => prev.filter((toast) => toast.id !== id));
+        }, 300);
+    }, []);
+
+    const updateToast = useCallback((id: string, updates: Partial<ToastItem>) => {
+        setToasts((prev) =>
+            prev.map((toast) => (toast.id === id ? { ...toast, ...updates } : toast)),
+        );
+    }, []);
+
+    const success = useCallback(
+        (
+            title: string,
+            description?: string,
+            options?: Partial<Omit<ToastItem, "id" | "open" | "variant" | "title" | "description">>,
+        ) => {
+            return addToast({
+                variant: "success",
+                title,
+                description,
+                ...options,
+            });
+        },
+        [addToast],
+    );
+
+    const error = useCallback(
+        (
+            title: string,
+            description?: string,
+            options?: Partial<Omit<ToastItem, "id" | "open" | "variant" | "title" | "description">>,
+        ) => {
+            return addToast({
+                variant: "error",
+                title,
+                description,
+                ...options,
+            });
+        },
+        [addToast],
+    );
+
+    const warning = useCallback(
+        (
+            title: string,
+            description?: string,
+            options?: Partial<Omit<ToastItem, "id" | "open" | "variant" | "title" | "description">>,
+        ) => {
+            return addToast({
+                variant: "warning",
+                title,
+                description,
+                ...options,
+            });
+        },
+        [addToast],
+    );
+
+    const info = useCallback(
+        (
+            title: string,
+            description?: string,
+            options?: Partial<Omit<ToastItem, "id" | "open" | "variant" | "title" | "description">>,
+        ) => {
+            return addToast({
+                variant: "info",
+                title,
+                description,
+                ...options,
+            });
+        },
+        [addToast],
+    );
+
+    const promise = useCallback(
+        async <T,>(
+            promise: Promise<T>,
+            messages: {
+                loading: string;
+                success: string | ((data: T) => string);
+                error: string | ((error: unknown) => string);
+            },
+            options?: Partial<Omit<ToastItem, "id" | "open" | "title" | "description">>,
+        ): Promise<T> => {
+            const id = addToast({
+                variant: "info",
+                title: messages.loading,
+                ...options,
+            });
+
+            try {
+                const data = await promise;
+                const successMessage =
+                    typeof messages.success === "function"
+                        ? messages.success(data)
+                        : messages.success;
+                updateToast(id, {
+                    variant: "success",
+                    title: successMessage,
+                });
+                return data;
+            } catch (error) {
+                const errorMessage =
+                    typeof messages.error === "function" ? messages.error(error) : messages.error;
+                updateToast(id, {
+                    variant: "error",
+                    title: errorMessage,
+                });
+                throw error;
+            }
+        },
+        [addToast, updateToast],
+    );
+
+    const value: ToastContextType = {
+        toasts,
+        addToast,
+        removeToast,
+        updateToast,
+        success,
+        error,
+        warning,
+        info,
+        promise,
+    };
+
+    return (
+        <ToastContext.Provider value={value}>
+            {children}
+            {toasts.map((toast) => (
+                <Toast
+                    key={toast.id}
+                    open={toast.open}
+                    onClose={() => removeToast(toast.id)}
+                    variant={toast.variant}
+                    position={toast.position}
+                    size={toast.size}
+                    duration={toast.duration}
+                    icon={toast.icon}
+                    title={toast.title}
+                    description={toast.description}
+                    showCloseButton={toast.showCloseButton}
+                    animation={toast.animation}
+                    className={toast.className}
+                >
+                    {toast.children}
+                </Toast>
+            ))}
+        </ToastContext.Provider>
+    );
+};
