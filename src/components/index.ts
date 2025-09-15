@@ -17,3 +17,4 @@ export * from "./Form/Form";
 export * from "./Toast/Toast";
 export * from "./SortableList/SortableList";
 export * from "./Carousel/Carousel";
+export * from "./Skeleton/Skeleton";
