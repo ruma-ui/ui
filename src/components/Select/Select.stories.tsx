@@ -9,6 +9,13 @@ import { RiComputerLine } from "react-icons/ri";
 const meta: Meta<typeof Select> = {
     title: "Components/Select",
     component: Select,
+    decorators: [
+        (Story) => (
+            <div style={{ minHeight: "350px" }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: "centered",
         docs: {
