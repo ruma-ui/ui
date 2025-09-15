@@ -15,3 +15,4 @@ export * from "./RangeInput/RangeInput";
 export * from "./Form/Form";
 export * from "./Toast/Toast";
 export * from "./SortableList/SortableList";
+export * from "./Carousel/Carousel";

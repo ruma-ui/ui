@@ -1,0 +1,789 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import React from "react";
+import { Carousel } from "./Carousel";
+import { FaPlay, FaPause, FaMousePointer } from "react-icons/fa";
+import * as CarouselStories from "./Carousel.stories";
+
+<Meta of={CarouselStories} />
+
+# Carousel
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Carousel)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Drag and Swipe](#drag-and-swipe)
+- [Autoplay](#autoplay)
+- [Navigation Options](#navigation-options)
+    - [Navigation Arrows](#navigation-arrows)
+    - [Dot Indicators](#dot-indicators)
+    - [Slide Counter](#slide-counter)
+- [Infinite vs Finite](#infinite-vs-finite)
+- [Controlled vs Uncontrolled](#controlled-vs-uncontrolled)
+- [Custom Styling](#custom-styling)
+- [Component API](#component-api)
+    - [Carousel `items`](#carousel-items)
+    - [Carousel `activeIndex` and `defaultActiveIndex`](#carousel-activeindex-and-defaultactiveindex)
+    - [Carousel `onChange`](#carousel-onchange)
+    - [Carousel `draggable`](#carousel-draggable)
+    - [Carousel `autoplay` and `autoplayInterval`](#carousel-autoplay-and-autoplayinterval)
+    - [Carousel `pauseOnHover`](#carousel-pauseonhover)
+    - [Carousel `showArrows`, `showDots`, `showCounter`](#carousel-showarrows-showdots-showcounter)
+    - [Carousel `infinite`](#carousel-infinite)
+    - [Carousel `animationDuration`](#carousel-animationduration)
+    - [Carousel `className`, `slideClassName`, `arrowClassName`, `dotClassName`](#carousel-classname-slideclassname-arrowclassname-dotclassname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Performance](#performance)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Carousel component provides a modern, accessible way to display multiple items in a sliding interface. It supports drag and swipe gestures, autoplay functionality, and various navigation options. Built with performance and accessibility in mind, it integrates seamlessly with your design system.
+
+<Canvas of={CarouselStories.Default} />
+
+## Basic Usage
+
+The carousel requires an array of React elements as items. Each item will be displayed as a slide.
+
+```jsx
+import { Carousel } from "@/components/Carousel";
+
+const items = [<div>Slide 1</div>, <div>Slide 2</div>, <div>Slide 3</div>];
+
+function MyComponent() {
+    return <Carousel items={items} />;
+}
+```
+
+<Canvas of={CarouselStories.Default} />
+
+## Drag and Swipe
+
+The carousel supports drag and swipe gestures on both desktop and mobile devices. Users can drag horizontally to navigate between slides.
+
+<Canvas of={CarouselStories.Default} />
+
+**Drag Features:**
+
+- Smooth drag animations with visual feedback
+- Configurable drag threshold (15% of container width)
+- Disabled during transitions to prevent conflicts
+- Touch and mouse support
+
+## Autoplay
+
+Enable automatic slide progression with customizable intervals. Autoplay can be paused on hover for better user experience.
+
+<Canvas of={CarouselStories.WithAutoplay} />
+
+```jsx
+<Carousel items={items} autoplay={true} autoplayInterval={3000} pauseOnHover={true} />
+```
+
+## Navigation Options
+
+### Navigation Arrows
+
+Arrow buttons appear on the left and right sides for manual navigation. They are automatically hidden when not needed (single slide or at boundaries in finite mode).
+
+<Canvas of={CarouselStories.Default} />
+
+### Dot Indicators
+
+Clickable dots at the bottom show the current position and allow direct navigation to any slide.
+
+<Canvas of={CarouselStories.Default} />
+
+### Slide Counter
+
+Display a counter showing current slide position (e.g., "2 / 5").
+
+<Canvas of={CarouselStories.WithCounter} />
+
+## Infinite vs Finite
+
+Choose between infinite loop navigation or finite boundaries.
+
+### Infinite (Default)
+
+<Canvas of={CarouselStories.Default} />
+
+Allows continuous navigation in both directions.
+
+### Finite
+
+<Canvas of={CarouselStories.NonInfinite} />
+
+Stops at the first and last slides, disabling navigation arrows accordingly.
+
+## Controlled vs Uncontrolled
+
+The carousel can be used in controlled or uncontrolled modes.
+
+### Uncontrolled (Default)
+
+```jsx
+<Carousel items={items} defaultActiveIndex={0} />
+```
+
+### Controlled
+
+```jsx
+const [activeIndex, setActiveIndex] = useState(0);
+
+<Carousel items={items} activeIndex={activeIndex} onChange={setActiveIndex} />;
+```
+
+<Canvas of={CarouselStories.Controlled} />
+
+## Custom Styling
+
+Customize the carousel appearance with className props.
+
+<Canvas of={CarouselStories.CustomStyling} />
+
+```jsx
+<Carousel
+    items={items}
+    className="rounded-xl border-4 border-white shadow-2xl"
+    arrowClassName="bg-black/80 hover:bg-black text-white"
+    dotClassName="bg-black/60 hover:bg-black"
+/>
+```
+
+## Component API
+
+<ArgTypes of={Carousel} />
+
+### Carousel `items`
+
+The `items` prop accepts an array of React elements that will be displayed as slides. Each item should be a valid React element.
+
+```jsx
+const items = [
+    <div className="bg-blue-500 p-8 text-white">Slide 1</div>,
+    <div className="bg-green-500 p-8 text-white">Slide 2</div>,
+    <div className="bg-purple-500 p-8 text-white">Slide 3</div>,
+];
+
+<Carousel items={items} />;
+```
+
+<Unstyled>
+    <div style={{ width: "100%", margin: "0 auto" }}>
+        <Carousel
+            items={[
+                <div
+                    key="1"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#3b82f6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Slide 1
+                </div>,
+                <div
+                    key="2"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#10b981",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Slide 2
+                </div>,
+                <div
+                    key="3"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#8b5cf6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Slide 3
+                </div>,
+            ]}
+        />
+    </div>
+</Unstyled>
+
+### Carousel `activeIndex` and `defaultActiveIndex`
+
+Control the currently displayed slide. Use `activeIndex` for controlled mode or `defaultActiveIndex` for uncontrolled mode.
+
+```jsx
+// Uncontrolled
+<Carousel items={items} defaultActiveIndex={1} />;
+
+// Controlled
+const [index, setIndex] = useState(0);
+<Carousel items={items} activeIndex={index} onChange={setIndex} />;
+```
+
+<Unstyled>
+    <div style={{ width: "100%", margin: "0 auto" }}>
+        <Carousel
+            items={[
+                <div
+                    key="1"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#3b82f6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    First Slide
+                </div>,
+                <div
+                    key="2"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#10b981",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Second Slide (Active)
+                </div>,
+                <div
+                    key="3"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#8b5cf6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Third Slide
+                </div>,
+            ]}
+            defaultActiveIndex={1}
+        />
+    </div>
+</Unstyled>
+
+### Carousel `onChange`
+
+Callback function called when the active slide changes. Receives the new slide index as a parameter.
+
+```jsx
+<Carousel items={items} onChange={(index) => console.log(`Switched to slide ${index + 1}`)} />
+```
+
+### Carousel `draggable`
+
+Enable or disable drag/swipe functionality. When disabled, users can only navigate using arrows and dots.
+
+```jsx
+<Carousel items={items} draggable={false} />
+```
+
+<Unstyled>
+    <div style={{ width: "100%", margin: "0 auto" }}>
+        <Carousel
+            draggable={false}
+            items={[
+                <div
+                    key="1"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#3b82f6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    First Slide
+                </div>,
+                <div
+                    key="2"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#10b981",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Second Slide (Active)
+                </div>,
+                <div
+                    key="3"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#8b5cf6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Third Slide
+                </div>,
+            ]}
+            defaultActiveIndex={1}
+        />
+    </div>
+</Unstyled>
+
+### Carousel `autoplay` and `autoplayInterval`
+
+Enable automatic slide progression and set the interval between transitions.
+
+```jsx
+<Carousel items={items} autoplay={true} autoplayInterval={5000} />
+```
+
+<Unstyled>
+    <div style={{ width: "100%", margin: "0 auto" }}>
+        <Carousel
+            items={[
+                <div
+                    key="1"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#3b82f6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 1
+                </div>,
+                <div
+                    key="2"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#10b981",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 2
+                </div>,
+                <div
+                    key="3"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#8b5cf6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 3
+                </div>,
+            ]}
+            autoplay={true}
+            autoplayInterval={4000}
+        />
+    </div>
+</Unstyled>
+
+### Carousel `pauseOnHover`
+
+Pause autoplay when the user hovers over the carousel. Improves user experience by preventing unwanted transitions.
+
+```jsx
+<Carousel items={items} autoplay={true} pauseOnHover={true} />
+```
+
+<Unstyled>
+    <div style={{ width: "100%", margin: "0 auto" }}>
+        <Carousel
+            autoplay={true}
+            pauseOnHover={true}
+            items={[
+                <div
+                    key="1"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#3b82f6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 1
+                </div>,
+                <div
+                    key="2"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#10b981",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 2
+                </div>,
+                <div
+                    key="3"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#8b5cf6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 3
+                </div>,
+            ]}
+        />
+    </div>
+</Unstyled>
+
+### Carousel `showArrows`, `showDots`, `showCounter`
+
+Control the visibility of navigation elements.
+
+```jsx
+<Carousel items={items} showArrows={true} showDots={true} showCounter={false} />
+```
+
+<Unstyled>
+    <div
+        style={{
+            width: "100%",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: "2rem",
+        }}
+    >
+        <div>
+            <h4 style={{ marginBottom: "1rem", fontSize: "1.125rem", fontWeight: "600" }}>
+                With All Controls
+            </h4>
+            <Carousel
+                items={[
+                    <div
+                        key="1"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#e5e7eb",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 1
+                    </div>,
+                    <div
+                        key="2"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#e5e7eb",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 2
+                    </div>,
+                ]}
+                showArrows={true}
+                showDots={true}
+                showCounter={true}
+            />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "1rem", fontSize: "1.125rem", fontWeight: "600" }}>
+                Minimal Controls
+            </h4>
+            <Carousel
+                items={[
+                    <div
+                        key="1"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#e5e7eb",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 1
+                    </div>,
+                    <div
+                        key="2"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#e5e7eb",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 2
+                    </div>,
+                ]}
+                showArrows={false}
+                showDots={false}
+                showCounter={false}
+            />
+        </div>
+    </div>
+</Unstyled>
+
+### Carousel `infinite`
+
+Enable infinite loop navigation. When disabled, navigation stops at the first and last slides.
+
+```jsx
+<Carousel items={items} infinite={false} />
+```
+
+<Unstyled>
+    <div style={{ width: "100%", margin: "0 auto" }}>
+        <Carousel
+            items={[
+                <div
+                    key="1"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#3b82f6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 1
+                </div>,
+                <div
+                    key="2"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#10b981",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 2
+                </div>,
+                <div
+                    key="3"
+                    style={{
+                        padding: "2rem",
+                        height: "100%",
+                        background: "#8b5cf6",
+                        color: "white",
+                        textAlign: "center",
+                    }}
+                >
+                    Auto-playing Slide 3
+                </div>,
+            ]}
+            autoplay={true}
+            infinite={false}
+        />
+    </div>
+</Unstyled>
+
+### Carousel `animationDuration`
+
+Control the duration of slide transitions in milliseconds.
+
+```jsx
+<Carousel items={items} animationDuration={500} />
+```
+
+<Unstyled>
+    <div
+        style={{
+            width: "100%",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: "2rem",
+        }}
+    >
+        <div>
+            <h4 style={{ marginBottom: "1rem", fontSize: "1.125rem", fontWeight: "600" }}>
+                Fast Animation (150ms)
+            </h4>
+            <Carousel
+                items={[
+                    <div
+                        key="1"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#3b82f6",
+                            color: "white",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 1
+                    </div>,
+                    <div
+                        key="2"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#10b981",
+                            color: "white",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 2
+                    </div>,
+                    <div
+                        key="3"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#8b5cf6",
+                            color: "white",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 3
+                    </div>,
+                ]}
+                animationDuration={150}
+            />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "1rem", fontSize: "1.125rem", fontWeight: "600" }}>
+                Slow Animation (1000ms)
+            </h4>
+            <Carousel
+                items={[
+                    <div
+                        key="1"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#3b82f6",
+                            color: "white",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 1
+                    </div>,
+                    <div
+                        key="2"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#10b981",
+                            color: "white",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 2
+                    </div>,
+                    <div
+                        key="3"
+                        style={{
+                            padding: "1rem",
+                            height: "100%",
+                            background: "#8b5cf6",
+                            color: "white",
+                            textAlign: "center",
+                        }}
+                    >
+                        Slide 3
+                    </div>,
+                ]}
+                animationDuration={1000}
+            />
+        </div>
+    </div>
+</Unstyled>
+
+### Carousel `className`, `slideClassName`, `arrowClassName`, `dotClassName`
+
+Apply custom styling to different parts of the carousel.
+
+```jsx
+<Carousel
+    items={items}
+    className="rounded-2xl border-2 border-gray-200 shadow-xl"
+    slideClassName="rounded-xl"
+    arrowClassName="bg-blue-600 hover:bg-blue-700 text-white"
+    dotClassName="bg-blue-200"
+/>
+```
+
+## Accessibility
+
+The Carousel component follows WCAG guidelines and accessibility best practices:
+
+- **Keyboard Navigation**: Full support for arrow keys, Home, and End keys
+- **Screen Reader Support**: Proper ARIA labels and live regions
+- **Focus Management**: Logical tab order and visible focus indicators
+- **Touch Support**: Optimized for mobile devices with proper touch handling
+- **Reduced Motion**: Respects user's motion preferences
+
+**Keyboard Controls:**
+
+- `←` `→` - Navigate between slides
+- `Home` - Go to first slide
+- `End` - Go to last slide
+
+## Best Practices
+
+### Do's ✅
+
+- Use high-quality images or content for slides
+- Keep slide count reasonable (3-10 slides typically)
+- Ensure sufficient contrast for navigation elements
+- Test on various screen sizes and devices
+- Provide meaningful alt text for images
+- Use autoplay sparingly and always with pause-on-hover
+
+### Don'ts ❌
+
+- Don't overload slides with too much content
+- Avoid autoplay without user control options
+- Don't hide navigation controls unnecessarily
+- Avoid very fast animation durations (< 150ms)
+- Don't use the carousel for critical content navigation
+
+### Content Guidelines
+
+- **Images**: Use optimized images with proper aspect ratios
+- **Text**: Keep text concise and scannable
+- **Interactive Elements**: Ensure buttons and links are accessible
+- **Loading States**: Consider lazy loading for performance
+
+## Performance
+
+The Carousel component is optimized for performance:
+
+- **Efficient Rendering**: Only renders visible content
+- **Smooth Animations**: Uses CSS transforms for 60fps animations
+- **Memory Management**: Proper cleanup of timers and event listeners
+- **Bundle Size**: Minimal dependencies, tree-shakable
+
+**Performance Tips:**
+
+- Use lazy loading for slide content
+- Optimize images and media
+- Limit the number of slides when possible
+- Consider virtual scrolling for large datasets
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
