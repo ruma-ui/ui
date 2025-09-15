@@ -20,6 +20,37 @@
     }
 }
 
+/* Skeleton shimmer animation */
+@keyframes skeleton-shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Skeleton wave animation */
+@keyframes skeleton-wave {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Skeleton fade animation */
+@keyframes skeleton-fade {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
 /* Progress bar indeterminate animation */
 @keyframes indeterminate {
     0% {

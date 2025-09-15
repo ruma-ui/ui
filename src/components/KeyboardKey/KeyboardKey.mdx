@@ -1,0 +1,375 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { KeyboardKey } from "./KeyboardKey";
+import * as KeyboardKeyStories from "./KeyboardKey.stories";
+
+<Meta of={KeyboardKeyStories} />
+
+# KeyboardKey
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/KeyboardKey)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Default Variant](#default-variant)
+    - [Flat Variant](#flat-variant)
+    - [Outlined Variant](#outlined-variant)
+    - [Minimal Variant](#minimal-variant)
+- [States](#states)
+    - [Pressed State](#pressed-state)
+    - [Disabled State](#disabled-state)
+    - [Clickable Keys](#clickable-keys)
+- [Common Use Cases](#common-use-cases)
+    - [Single Keys](#single-keys)
+    - [Modifier Keys](#modifier-keys)
+    - [Function Keys](#function-keys)
+    - [Arrow Keys](#arrow-keys)
+    - [Keyboard Shortcuts](#keyboard-shortcuts)
+    - [Special Keys](#special-keys)
+- [Size Variations](#size-variations)
+- [Custom Styled](#custom-styled)
+- [Component API](#component-api)
+    - [KeyboardKey `variant`](#keyboardkey-variant)
+    - [KeyboardKey `size`](#keyboardkey-size)
+    - [KeyboardKey `pressed`](#keyboardkey-pressed)
+    - [KeyboardKey `disabled`](#keyboardkey-disabled)
+    - [KeyboardKey `clickable`](#keyboardkey-clickable)
+    - [KeyboardKey `as`](#keyboardkey-as)
+    - [KeyboardKey `className`](#keyboardkey-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The KeyboardKey component displays keyboard keys in a visually appealing and consistent manner. It's perfect for documentation, tutorials, keyboard shortcuts display, and any interface where you need to represent keyboard input. The component supports multiple variants, sizes, states, and can be rendered as different HTML elements.
+
+<Canvas of={KeyboardKeyStories.Overview} />
+
+## Variants
+
+### Default Variant
+
+The default variant provides a classic keyboard key appearance with subtle shadows and borders, resembling physical keyboard keys.
+
+<Canvas of={KeyboardKeyStories.Default} />
+
+### Flat Variant
+
+The flat variant offers a more minimal appearance with reduced visual depth, suitable for modern flat design interfaces.
+
+<Canvas of={KeyboardKeyStories.Flat} />
+
+### Outlined Variant
+
+The outlined variant emphasizes the border and provides clear visual separation, great for highlighting important keys or shortcuts.
+
+<Canvas of={KeyboardKeyStories.Outlined} />
+
+### Minimal Variant
+
+The minimal variant provides the most subtle appearance while maintaining readability, perfect for dense interfaces or when you need low visual weight.
+
+<Canvas of={KeyboardKeyStories.Minimal} />
+
+## States
+
+### Pressed State
+
+The pressed state visually indicates that a key is currently being pressed or is active, with inset shadows and position adjustments.
+
+<Canvas of={KeyboardKeyStories.Pressed} />
+
+### Disabled State
+
+Disabled keys appear grayed out and non-interactive, useful for showing unavailable keyboard shortcuts or inactive keys.
+
+<Canvas of={KeyboardKeyStories.Disabled} />
+
+### Clickable Keys
+
+Clickable keys can be interacted with and include proper focus states and event handlers for enhanced user interaction.
+
+<Canvas of={KeyboardKeyStories.Clickable} />
+
+## Common Use Cases
+
+### Single Keys
+
+Display individual character keys for typing tutorials or key mapping documentation.
+
+<Canvas of={KeyboardKeyStories.SingleKeys} />
+
+### Modifier Keys
+
+Show modifier keys like Ctrl, Alt, Shift, and Cmd for keyboard shortcut documentation.
+
+<Canvas of={KeyboardKeyStories.ModifierKeys} />
+
+### Function Keys
+
+Display function keys in a compact format, perfect for showing available function key shortcuts.
+
+<Canvas of={KeyboardKeyStories.FunctionKeys} />
+
+### Arrow Keys
+
+Create directional key layouts for navigation instructions or game controls.
+
+<Canvas of={KeyboardKeyStories.ArrowKeys} />
+
+### Keyboard Shortcuts
+
+Combine multiple keys to show complete keyboard shortcuts and combinations.
+
+<Canvas of={KeyboardKeyStories.KeyboardShortcut} />
+
+<Canvas of={KeyboardKeyStories.ComplexShortcut} />
+
+### Special Keys
+
+Display special function keys and navigation keys for comprehensive keyboard documentation.
+
+<Canvas of={KeyboardKeyStories.SpecialKeys} />
+
+## Size Variations
+
+Different sizes allow you to match the component to your interface's typography and spacing requirements.
+
+<Canvas of={KeyboardKeyStories.SizeVariations} />
+
+## Custom Styled
+
+Custom styling allows you to create unique key designs that match your brand or application's aesthetic.
+
+<Canvas of={KeyboardKeyStories.CustomStyled} />
+
+## Component API
+
+<ArgTypes of={KeyboardKey} />
+
+### KeyboardKey `variant`
+
+The `variant` prop determines the visual style of the keyboard key. Choose the appropriate variant based on your design system and the level of emphasis needed.
+
+```jsx
+<KeyboardKey variant="default">Ctrl</KeyboardKey>
+<KeyboardKey variant="flat">Alt</KeyboardKey>
+<KeyboardKey variant="outlined">Shift</KeyboardKey>
+<KeyboardKey variant="minimal">Tab</KeyboardKey>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <KeyboardKey variant="default">Default</KeyboardKey>
+        <KeyboardKey variant="flat">Flat</KeyboardKey>
+        <KeyboardKey variant="outlined">Outlined</KeyboardKey>
+        <KeyboardKey variant="minimal">Minimal</KeyboardKey>
+    </div>
+</Unstyled>
+
+### KeyboardKey `size`
+
+The `size` prop controls the key's dimensions and text size. Choose sizes based on your interface context and content hierarchy.
+
+```jsx
+<KeyboardKey size="xs">Esc</KeyboardKey>
+<KeyboardKey size="sm">Ctrl</KeyboardKey>
+<KeyboardKey size="md">Alt</KeyboardKey>
+<KeyboardKey size="lg">Shift</KeyboardKey>
+<KeyboardKey size="xl">Space</KeyboardKey>
+```
+
+<Unstyled>
+    <div
+        style={{
+            display: "flex",
+            gap: "8px",
+            alignItems: "center",
+            flexWrap: "wrap",
+        }}
+    >
+        <KeyboardKey size="xs">XS</KeyboardKey>
+        <KeyboardKey size="sm">SM</KeyboardKey>
+        <KeyboardKey size="md">MD</KeyboardKey>
+        <KeyboardKey size="lg">LG</KeyboardKey>
+        <KeyboardKey size="xl">XL</KeyboardKey>
+    </div>
+</Unstyled>
+
+### KeyboardKey `pressed`
+
+The `pressed` prop visually indicates that a key is currently active or being pressed. This creates an inset effect that mimics physical key depression.
+
+```jsx
+<KeyboardKey>Normal</KeyboardKey>
+<KeyboardKey pressed>Pressed</KeyboardKey>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <KeyboardKey>Normal</KeyboardKey>
+        <KeyboardKey pressed>Pressed</KeyboardKey>
+    </div>
+</Unstyled>
+
+### KeyboardKey `disabled`
+
+The `disabled` prop shows inactive or unavailable keys with reduced opacity and appropriate cursor styling.
+
+```jsx
+<KeyboardKey>Active</KeyboardKey>
+<KeyboardKey disabled>Disabled</KeyboardKey>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <KeyboardKey>Active</KeyboardKey>
+        <KeyboardKey disabled>Disabled</KeyboardKey>
+    </div>
+</Unstyled>
+
+### KeyboardKey `clickable`
+
+The `clickable` prop makes the key interactive with proper focus states and event handling. When enabled, the component automatically renders as a button element.
+
+```jsx
+<KeyboardKey clickable onClick={() => console.log('Key clicked')}>
+    Click Me
+</KeyboardKey>
+<KeyboardKey clickable variant="outlined">
+    Interactive
+</KeyboardKey>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <KeyboardKey clickable>Clickable</KeyboardKey>
+        <KeyboardKey clickable variant="outlined">
+            Interactive
+        </KeyboardKey>
+    </div>
+</Unstyled>
+
+### KeyboardKey `as`
+
+The `as` prop controls which HTML element is rendered. By default, it renders as a `<kbd>` element for semantic keyboard input representation.
+
+```jsx
+<KeyboardKey as="kbd">Semantic Kbd</KeyboardKey>
+<KeyboardKey as="span">Span Element</KeyboardKey>
+<KeyboardKey as="button" clickable>Button Element</KeyboardKey>
+<KeyboardKey as="div">Div Element</KeyboardKey>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <KeyboardKey as="kbd">KBD</KeyboardKey>
+        <KeyboardKey as="span">SPAN</KeyboardKey>
+        <KeyboardKey as="button" clickable>
+            BUTTON
+        </KeyboardKey>
+        <KeyboardKey as="div">DIV</KeyboardKey>
+    </div>
+</Unstyled>
+
+### KeyboardKey `className`
+
+The `className` prop allows you to add custom styling while preserving the component's built-in styles. This is useful for creating themed keys or adding custom effects.
+
+```jsx
+<KeyboardKey className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-purple-600 shadow-lg">
+    Custom Styled Key
+</KeyboardKey>
+<KeyboardKey className="border-2 border-dashed border-orange-400 bg-orange-50 text-orange-600">
+    Dashed Border Key
+</KeyboardKey>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px" }}>
+        <KeyboardKey className="border-purple-600 bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg">
+            Custom
+        </KeyboardKey>
+        <KeyboardKey className="border-2 border-dashed border-orange-400 bg-orange-50 text-orange-600">
+            Dashed
+        </KeyboardKey>
+    </div>
+</Unstyled>
+
+## Accessibility
+
+Our KeyboardKey component follows accessibility best practices:
+
+- **Semantic HTML**: Uses `<kbd>` elements by default for semantic representation of keyboard input
+- **Keyboard Navigation**: When clickable, provides full keyboard support with Enter and Space key activation
+- **Screen Reader Support**: Proper ARIA attributes including `aria-disabled` for disabled states
+- **Focus Management**: Clear focus indicators and logical tab order for interactive keys
+- **Flexible Elements**: Supports different HTML elements through the `as` prop for various semantic contexts
+
+## Best Practices
+
+### Do's ✅
+
+- Use semantic `<kbd>` elements for representing actual keyboard input
+- Group related keys logically (e.g., modifier keys together)
+- Use consistent sizing within the same context
+- Provide clear visual hierarchy with appropriate variants
+- Use the pressed state to show active shortcuts or current input
+- Combine keys with separators (+ symbols) for complex shortcuts
+
+### Don'ts ❌
+
+- Don't use keyboard keys for general buttons or actions unrelated to keyboard input
+- Avoid mixing too many different variants in the same context
+- Don't make keys too small for comfortable reading (minimum recommended: sm size)
+- Avoid using only color to convey key states - use shape and contrast as well
+- Don't overcrowd interfaces with too many keyboard shortcuts at once
+
+### Common Patterns
+
+```jsx
+// Keyboard shortcut documentation
+<div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+  <KeyboardKey size="sm">Ctrl</KeyboardKey>
+  <span>+</span>
+  <KeyboardKey size="sm">Shift</KeyboardKey>
+  <span>+</span>
+  <KeyboardKey size="sm">P</KeyboardKey>
+  <span style={{ marginLeft: '8px', color: '#666' }}>Open Command Palette</span>
+</div>
+
+// Key mapping table
+<table>
+  <tr>
+    <td><KeyboardKey size="sm">W</KeyboardKey></td>
+    <td>Move forward</td>
+  </tr>
+  <tr>
+    <td><KeyboardKey size="sm">S</KeyboardKey></td>
+    <td>Move backward</td>
+  </tr>
+</table>
+
+// Tutorial highlighting
+<p>
+  Press <KeyboardKey pressed>Enter</KeyboardKey> to confirm your selection.
+</p>
+```
+
+### Keyboard Shortcut Guidelines
+
+- **Platform Conventions**: Use appropriate modifier keys for each platform (Cmd on Mac, Ctrl on Windows/Linux)
+- **Visual Hierarchy**: Make primary shortcuts more prominent than secondary ones
+- **Grouping**: Group related shortcuts together and separate different categories
+- **Context**: Show shortcuts only when they're available and relevant to the current context
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

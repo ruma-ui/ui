@@ -1,0 +1,452 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import {
+    FaHome,
+    FaArrowRight,
+    FaExternalLinkAlt,
+    FaEnvelope,
+    FaPhone,
+    FaUser,
+} from "react-icons/fa";
+import { Link } from "./Link";
+import * as LinkStories from "./Link.stories";
+
+<Meta of={LinkStories} />
+
+# Link
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Link)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+    - [Tertiary Variant](#tertiary-variant)
+    - [Destructive Variant](#destructive-variant)
+    - [None Variant](#none-variant)
+- [With Icons](#with-icons)
+- [External Links](#external-links)
+- [Email and Phone Links](#email-and-phone-links)
+- [Text Decoration](#text-decoration)
+- [Animations](#animations)
+- [Navigation Example](#navigation-example)
+- [Custom Styled](#custom-styled)
+- [Component API](#component-api)
+    - [Link `variant`](#link-variant)
+    - [Link `size`](#link-size)
+    - [Link `startIcon` and `endIcon`](#link-starticon-and-endicon)
+    - [Link `underline`](#link-underline)
+    - [Link `animation`](#link-animation)
+    - [Link `external` and `internal`](#link-external-and-internal)
+    - [Link `focusRing`](#link-focusring)
+    - [Link `className`](#link-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+Links are navigational elements that allow users to move between pages, sections, or external resources. Our Link component is built on top of Next.js Link for optimal performance and SEO, with automatic handling of internal vs external navigation. It provides consistent styling, accessibility features, and flexible customization options.
+
+<Canvas of={LinkStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The primary link is used for main navigation items and important actions. It uses the primary color to draw attention and indicate significance.
+
+<Canvas of={LinkStories.Primary} />
+
+### Secondary Variant
+
+Secondary links are used for less prominent navigation items or when you need a more subtle appearance while maintaining good readability.
+
+<Canvas of={LinkStories.Secondary} />
+
+### Tertiary Variant
+
+Tertiary links provide the most subtle appearance, perfect for metadata, footers, or when you need minimal visual weight.
+
+<Canvas of={LinkStories.Tertiary} />
+
+### Destructive Variant
+
+Use destructive links for actions that lead to deletion, removal, or other potentially harmful operations. The red color provides a clear visual warning.
+
+<Canvas of={LinkStories.Destructive} />
+
+### None Variant
+
+The none variant provides a completely unstyled link that can be customized with your own styles via the `className` prop.
+
+<Canvas of={LinkStories.None} />
+
+## With Icons
+
+Icons enhance link clarity and help users quickly understand the destination or action. Use icons that clearly represent the link's purpose.
+
+### Start Icon
+
+<Canvas of={LinkStories.WithStartIcon} />
+
+### End Icon
+
+<Canvas of={LinkStories.WithEndIcon} />
+
+## External Links
+
+External links automatically open in a new tab and include proper security attributes (`rel="noopener noreferrer"`). The component intelligently detects external URLs.
+
+<Canvas of={LinkStories.ExternalLink} />
+
+## Email and Phone Links
+
+Special link types for communication actions are automatically handled with appropriate protocols.
+
+### Email Link
+
+<Canvas of={LinkStories.EmailLink} />
+
+### Phone Link
+
+<Canvas of={LinkStories.PhoneLink} />
+
+## Text Decoration
+
+Control the underline behavior to match your design needs and provide appropriate visual cues.
+
+### No Underline
+
+<Canvas of={LinkStories.NoUnderline} />
+
+### Hover Underline
+
+<Canvas of={LinkStories.HoverUnderline} />
+
+### Always Underlined
+
+<Canvas of={LinkStories.AlwaysUnderline} />
+
+## Animations
+
+Subtle animations provide visual feedback and enhance the user experience during interactions.
+
+### Scale Animation
+
+<Canvas of={LinkStories.AnimationScale} />
+
+### Glow Animation
+
+<Canvas of={LinkStories.AnimationGlow} />
+
+### Lift Animation
+
+<Canvas of={LinkStories.AnimationLift} />
+
+## Navigation Example
+
+A practical example showing how links work together in a navigation context.
+
+<Canvas of={LinkStories.NavigationExample} />
+
+## Custom Styled
+
+Custom styling allows you to create unique link designs while preserving accessibility and functionality.
+
+<Canvas of={LinkStories.CustomStyled} />
+
+## Component API
+
+<ArgTypes of={Link} />
+
+### Link `variant`
+
+The `variant` prop determines the visual style and hierarchy of the link. Choose the appropriate variant based on the link's importance and context.
+
+```jsx
+<Link href="/home" variant="primary">Primary Link</Link>
+<Link href="/about" variant="secondary">Secondary Link</Link>
+<Link href="/help" variant="tertiary">Tertiary Link</Link>
+<Link href="/delete" variant="destructive">Delete Account</Link>
+<Link href="/custom" variant="none">Unstyled Link</Link>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
+        <Link href="/home" variant="primary">
+            Primary
+        </Link>
+        <Link href="/about" variant="secondary">
+            Secondary
+        </Link>
+        <Link href="/help" variant="tertiary">
+            Tertiary
+        </Link>
+        <Link href="/delete" variant="destructive">
+            Destructive
+        </Link>
+        <Link href="/custom" variant="none">
+            None
+        </Link>
+    </div>
+</Unstyled>
+
+### Link `size`
+
+The `size` prop controls the link's text size and icon spacing. Choose sizes based on the interface context and hierarchy needs.
+
+```jsx
+<Link href="/xs" size="xs">Extra Small</Link>
+<Link href="/sm" size="sm">Small</Link>
+<Link href="/md" size="md">Medium</Link>
+<Link href="/lg" size="lg">Large</Link>
+<Link href="/xl" size="xl">Extra Large</Link>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
+        <Link href="/xs" size="xs">
+            XS
+        </Link>
+        <Link href="/sm" size="sm">
+            SM
+        </Link>
+        <Link href="/md" size="md">
+            MD
+        </Link>
+        <Link href="/lg" size="lg">
+            LG
+        </Link>
+        <Link href="/xl" size="xl">
+            XL
+        </Link>
+    </div>
+</Unstyled>
+
+### Link `startIcon` and `endIcon`
+
+Icons can be placed at the start or end of link text to enhance meaning and improve usability. Keep icons simple and ensure they clearly represent the destination.
+
+```jsx
+<Link href="/home" startIcon={<HomeIcon />}>Home</Link>
+<Link href="/continue" endIcon={<ArrowRightIcon />}>Continue</Link>
+<Link href="https://external.com" endIcon={<ExternalIcon />}>External Site</Link>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
+        <Link href="/home" startIcon={<FaHome size={16} />}>
+            Home
+        </Link>
+        <Link href="/continue" endIcon={<FaArrowRight size={16} />}>
+            Continue
+        </Link>
+        <Link href="https://external.com" endIcon={<FaExternalLinkAlt size={14} />}>
+            External Site
+        </Link>
+    </div>
+</Unstyled>
+
+### Link `underline`
+
+Control the text decoration to provide appropriate visual cues for different link types and contexts.
+
+```jsx
+<Link href="/none" underline="none">No Underline</Link>
+<Link href="/hover" underline="hover">Hover Underline</Link>
+<Link href="/always" underline="always">Always Underlined</Link>
+<Link href="/default" underline="default">Browser Default</Link>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
+        <Link href="/none" underline="none">
+            No Underline
+        </Link>
+        <Link href="/hover" underline="hover">
+            Hover Underline
+        </Link>
+        <Link href="/always" underline="always">
+            Always Underlined
+        </Link>
+        <Link href="/default" underline="default">
+            Browser Default
+        </Link>
+    </div>
+</Unstyled>
+
+### Link `animation`
+
+Add subtle animation effects to enhance user interactions and provide visual feedback.
+
+```jsx
+<Link href="/scale" animation="scale">Scale Animation</Link>
+<Link href="/glow" animation="glow">Glow Effect</Link>
+<Link href="/lift" animation="lift">Lift Animation</Link>
+<Link href="/press" animation="press">Press Animation</Link>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
+        <Link href="/scale" animation="scale">
+            Scale Animation
+        </Link>
+        <Link href="/glow" animation="glow">
+            Glow Effect
+        </Link>
+        <Link href="/lift" animation="lift">
+            Lift Animation
+        </Link>
+        <Link href="/press" animation="press">
+            Press Animation
+        </Link>
+    </div>
+</Unstyled>
+
+**Animation Guide:**
+
+- **Scale**: Slightly enlarges on hover, shrinks on click - great for important navigation
+- **Glow**: Adds a colored shadow glow - draws attention to special links
+- **Lift**: Combines upward movement with shadow - modern, interactive feel
+- **Press**: Only animates on click - minimal but responsive feedback
+
+### Link `external` and `internal`
+
+Control how the link behaves and whether it uses Next.js routing or standard anchor behavior.
+
+```jsx
+// Automatic detection (recommended)
+<Link href="/internal">Internal Link</Link>
+<Link href="https://external.com">External Link</Link>
+
+// Explicit control
+<Link href="/page" internal={true}>Force Internal</Link>
+<Link href="/page" external={true}>Force External</Link>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-start" }}>
+        <Link href="/internal">Internal Link (auto-detected)</Link>
+        <Link href="https://external.com">External Link (auto-detected)</Link>
+        <Link href="mailto:hello@example.com">Email Link (auto-detected)</Link>
+    </div>
+</Unstyled>
+
+### Link `focusRing`
+
+Control the visibility of focus rings for accessibility and design preferences.
+
+```jsx
+<Link href="/focus" focusRing={true}>With Focus Ring</Link>
+<Link href="/no-focus" focusRing={false}>No Focus Ring</Link>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+        <Link href="/focus" focusRing={true}>
+            With Focus Ring
+        </Link>
+        <Link href="/no-focus" focusRing={false}>
+            No Focus Ring
+        </Link>
+    </div>
+</Unstyled>
+
+### Link `className`
+
+The `className` prop allows you to add custom styling while preserving the component's built-in functionality and accessibility.
+
+```jsx
+<Link
+    href="/custom"
+    className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"
+>
+    Custom Styled Link
+</Link>
+```
+
+<Unstyled>
+    <div style={{ marginBottom: "16px" }}>
+        <Link
+            href="/custom"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent hover:from-purple-600 hover:to-pink-600"
+        >
+            Custom Styled Link
+        </Link>
+    </div>
+</Unstyled>
+
+## Accessibility
+
+Our Link component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper `<a>` elements with correct attributes
+- **Keyboard Navigation**: Full support for Enter and Space key activation
+- **Screen Reader Support**: Proper `href` attributes and meaningful link text
+- **Focus Management**: Clear focus indicators with customizable focus rings
+- **External Link Safety**: Automatic `rel="noopener noreferrer"` for external links
+- **Context Awareness**: Smart detection of link types (email, phone, external)
+
+## Best Practices
+
+### Do's ✅
+
+- Use descriptive link text that makes sense out of context (avoid "click here")
+- Provide visual indication for external links (using end icons)
+- Use appropriate variants to establish clear hierarchy
+- Include focus rings for keyboard navigation
+- Use consistent styling patterns across your application
+- Provide adequate spacing between links (minimum 8px)
+
+### Don'ts ❌
+
+- Don't use vague link text like "read more" or "click here"
+- Avoid removing focus indicators without providing alternatives
+- Don't use destructive variants for non-destructive actions
+- Avoid making links too small (minimum 44px touch target)
+- Don't rely solely on color to convey link meaning
+- Avoid breaking link functionality with custom styles
+
+### Link Text Guidelines
+
+```jsx
+// Good: Descriptive and specific
+<Link href="/user-guide">User Guide</Link>
+<Link href="/contact">Contact Support</Link>
+<Link href="/download">Download Report</Link>
+
+// Bad: Vague and unclear
+<Link href="/guide">Click here</Link>
+<Link href="/contact">More info</Link>
+<Link href="/download">Read more</Link>
+```
+
+### Navigation Patterns
+
+```jsx
+// Main navigation
+<nav>
+  <Link href="/" variant="primary">Home</Link>
+  <Link href="/products" variant="secondary">Products</Link>
+  <Link href="/about" variant="secondary">About</Link>
+  <Link href="/contact" variant="secondary">Contact</Link>
+</nav>
+
+// Footer links
+<footer>
+  <Link href="/privacy" variant="tertiary" size="sm">Privacy Policy</Link>
+  <Link href="/terms" variant="tertiary" size="sm">Terms of Service</Link>
+  <Link href="/help" variant="tertiary" size="sm">Help Center</Link>
+</footer>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

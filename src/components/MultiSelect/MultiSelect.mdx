@@ -1,0 +1,380 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { MultiSelect } from "./MultiSelect";
+import * as MultiSelectStories from "./MultiSelect.stories";
+
+<Meta of={MultiSelectStories} />
+
+# MultiSelect
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/MultiSelect)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+- [With Icons](#with-icons)
+- [With Labels and Descriptions](#with-labels-and-descriptions)
+- [Error State](#error-state)
+- [Disabled State](#disabled-state)
+- [Full Width](#full-width)
+- [Custom Styled](#custom-styled)
+- [Max Selections](#max-selections)
+- [Show Selected Labels](#show-selected-labels)
+- [Controlled Component](#controlled-component)
+- [Component API](#component-api)
+    - [MultiSelect `variant`](#multiselect-variant)
+    - [MultiSelect `size`](#multiselect-size)
+    - [MultiSelect `width`](#multiselect-width)
+    - [MultiSelect `rounded`](#multiselect-rounded)
+    - [MultiSelect `animation`](#multiselect-animation)
+    - [MultiSelect `maxSelections`](#multiselect-maxselections)
+    - [MultiSelect `showSelectedCount`](#multiselect-showselectedcount)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The MultiSelect component is a fully custom, accessible multi-selection dropdown interface that provides complete control over styling and behavior. Built with keyboard navigation, proper ARIA attributes, and modern design patterns for production-ready applications. It supports both controlled and uncontrolled usage patterns.
+
+<Canvas of={MultiSelectStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The primary variant is the default style with blue focus states and clean styling. Use this for most form inputs and primary selection actions.
+
+<Canvas of={MultiSelectStories.Primary} />
+
+### Secondary Variant
+
+The secondary variant features a subtle gray styling perfect for secondary contexts and muted backgrounds. It provides a softer visual presence while maintaining full functionality.
+
+<Canvas of={MultiSelectStories.Secondary} />
+
+## With Icons
+
+Icons can enhance multi-select clarity and help users quickly identify the type of selection. Use icons that clearly represent the content being selected.
+
+<Canvas of={MultiSelectStories.WithStartIcon} />
+
+## With Labels and Descriptions
+
+Labels and descriptions provide context and guidance to help users make the right selections.
+
+<Canvas of={MultiSelectStories.WithLabel} />
+
+<Canvas of={MultiSelectStories.WithDescription} />
+
+## Error State
+
+The error state displays validation errors with clear visual feedback and helpful error messages to guide users.
+
+<Canvas of={MultiSelectStories.ErrorState} />
+
+## Disabled State
+
+Disabled multi-selects indicate that the selection is temporarily unavailable. Both the entire component and individual options can be disabled.
+
+<Canvas of={MultiSelectStories.Disabled} />
+
+## Full Width
+
+Full-width multi-selects stretch to fill their container width, useful in forms or mobile interfaces where you want the multi-select to be prominent.
+
+<Canvas of={MultiSelectStories.FullWidth} />
+
+## Custom Styled
+
+Custom styling is useful for creating unique multi-select designs that fit your brand or application's aesthetic.
+
+<Canvas of={MultiSelectStories.CustomStyled} />
+
+## Max Selections
+
+Limit the number of selections users can make to enforce business rules or improve UX.
+
+<Canvas of={MultiSelectStories.MaxSelections} />
+
+## Show Selected Labels
+
+Display selected options as individual tags instead of a count, useful when you want users to see exactly what's selected.
+
+<Canvas of={MultiSelectStories.ShowSelectedLabels} />
+
+## Controlled Component
+
+For advanced use cases, use the MultiSelect as a controlled component with external state management.
+
+<Canvas of={MultiSelectStories.Controlled} />
+
+## Component API
+
+<ArgTypes of={MultiSelect} />
+
+### MultiSelect `variant`
+
+The `variant` prop determines the visual style and hierarchy of the multi-select. Choose the appropriate variant based on the selection's importance and context.
+
+```jsx
+<MultiSelect variant="primary" options={options} placeholder="Primary selection" />
+<MultiSelect variant="secondary" options={options} placeholder="Secondary selection" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <MultiSelect
+            variant="primary"
+            options={[{ value: "1", label: "Primary" }]}
+            placeholder="Primary"
+        />
+        <MultiSelect
+            variant="secondary"
+            options={[{ value: "1", label: "Secondary" }]}
+            placeholder="Secondary"
+        />
+    </div>
+</Unstyled>
+
+### MultiSelect `size`
+
+The `size` prop controls the multi-select's dimensions and text size. Choose sizes based on the interface context and hierarchy needs.
+
+```jsx
+<MultiSelect size="sm" options={options} placeholder="Small" />
+<MultiSelect size="md" options={options} placeholder="Medium" />
+<MultiSelect size="lg" options={options} placeholder="Large" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <MultiSelect size="sm" options={[{ value: "1", label: "SM" }]} placeholder="SM" />
+        <MultiSelect size="md" options={[{ value: "1", label: "MD" }]} placeholder="MD" />
+        <MultiSelect size="lg" options={[{ value: "1", label: "LG" }]} placeholder="LG" />
+    </div>
+</Unstyled>
+
+### MultiSelect `width`
+
+The `width` prop sets a preset container width for the MultiSelect wrapper. Use this when you want consistent control widths without stretching to the container. For full-bleed layouts, prefer `fullWidth`.
+
+```jsx
+<MultiSelect width="sm" options={options} placeholder="Small width" />
+<MultiSelect width="md" options={options} placeholder="Medium width" />
+<MultiSelect width="lg" options={options} placeholder="Large width" />
+<MultiSelect width="xl" options={options} placeholder="XL width" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <MultiSelect width="sm" options={[{ value: "1", label: "sm" }]} placeholder="sm" />
+        <MultiSelect width="md" options={[{ value: "1", label: "md" }]} placeholder="md" />
+        <MultiSelect width="lg" options={[{ value: "1", label: "lg" }]} placeholder="lg" />
+        <MultiSelect width="xl" options={[{ value: "1", label: "xl" }]} placeholder="xl" />
+    </div>
+    <div style={{ marginTop: 8, color: "#6b7280", fontSize: 12 }}>
+        Tip: Use <code>fullWidth</code> to make the control stretch to its container instead.
+    </div>
+</Unstyled>
+
+### MultiSelect `rounded`
+
+The `rounded` prop controls the border radius of the multi-select. Use this to match your design system's corner radius preferences.
+
+```jsx
+<MultiSelect rounded="none" options={options} placeholder="No radius" />
+<MultiSelect rounded="sm" options={options} placeholder="Small radius" />
+<MultiSelect rounded="md" options={options} placeholder="Medium radius" />
+<MultiSelect rounded="lg" options={options} placeholder="Large radius" />
+<MultiSelect rounded="xl" options={options} placeholder="Extra large radius" />
+<MultiSelect rounded="full" options={options} placeholder="Full radius" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <MultiSelect
+            rounded="none"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="No radius"
+        />
+        <MultiSelect
+            rounded="sm"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Small radius"
+        />
+        <MultiSelect
+            rounded="md"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Medium radius"
+        />
+        <MultiSelect
+            rounded="lg"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Large radius"
+        />
+        <MultiSelect
+            rounded="xl"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Extra large radius"
+        />
+        <MultiSelect
+            rounded="full"
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="Full radius"
+        />
+    </div>
+</Unstyled>
+
+### MultiSelect `animation`
+
+The `animation` prop controls whether animations are enabled. Disable for users with reduced motion preferences.
+
+```jsx
+<MultiSelect animation={true} options={options} placeholder="With animations" />
+<MultiSelect animation={false} options={options} placeholder="No animations" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <MultiSelect
+            animation={true}
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="With animations"
+        />
+        <MultiSelect
+            animation={false}
+            options={[
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+            ]}
+            placeholder="No animations"
+        />
+    </div>
+</Unstyled>
+
+### MultiSelect `maxSelections`
+
+The `maxSelections` prop limits the number of options that can be selected. This is useful for enforcing business rules or improving user experience by preventing overwhelming selections.
+
+```jsx
+<MultiSelect maxSelections={3} options={options} placeholder="Select up to 3 options" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <MultiSelect
+            maxSelections={2}
+            options={[
+                { value: "1", label: "Option 1" },
+                { value: "2", label: "Option 2" },
+                { value: "3", label: "Option 3" },
+            ]}
+            placeholder="Max 2 selections"
+        />
+    </div>
+</Unstyled>
+
+### MultiSelect `showSelectedCount`
+
+The `showSelectedCount` prop controls how selected options are displayed in the trigger. When `true` (default), it shows a count like "2 of 5 selected". When `false`, it displays selected options as individual tags.
+
+```jsx
+<MultiSelect showSelectedCount={true} options={options} placeholder="Show count" />
+<MultiSelect showSelectedCount={false} options={options} placeholder="Show labels" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexWrap: "wrap" }}>
+        <MultiSelect
+            showSelectedCount={true}
+            defaultValue={["1", "2"]}
+            options={[
+                { value: "1", label: "Option 1" },
+                { value: "2", label: "Option 2" },
+                { value: "3", label: "Option 3" },
+            ]}
+            placeholder="Show count"
+        />
+        <MultiSelect
+            showSelectedCount={false}
+            defaultValue={["1", "2"]}
+            options={[
+                { value: "1", label: "Option 1" },
+                { value: "2", label: "Option 2" },
+                { value: "3", label: "Option 3" },
+            ]}
+            placeholder="Show labels"
+        />
+    </div>
+</Unstyled>
+
+## Accessibility
+
+The MultiSelect component follows WAI-ARIA guidelines and includes comprehensive accessibility features:
+
+- **Keyboard Navigation**: Full keyboard support with arrow keys, Enter, Space, and Escape
+- **Screen Reader Support**: Proper ARIA attributes and role definitions including `aria-multiselectable`
+- **Focus Management**: Clear focus indicators and logical focus flow
+- **Error Handling**: Accessible error messages linked to the multi-select element
+- **Hidden Search**: Type-to-select functionality for quick navigation
+
+## Best Practices
+
+### When to Use
+
+- **Multiple Selection**: When users need to choose multiple options from a list
+- **Custom Styling**: When you need full control over appearance and behavior
+- **Accessibility**: When you need comprehensive keyboard and screen reader support
+- **Form Integration**: For advanced form handling with libraries like React Hook Form
+- **Limited Choices**: When you want to restrict the number of selections with `maxSelections`
+
+### When Not to Use
+
+- **Single Selection**: Consider a regular Select component for single choices
+- **Few Options**: Consider checkbox groups for simple 2-4 options
+- **Search Required**: Consider a combobox or autocomplete component
+- **Complex Hierarchies**: For deeply nested or hierarchical selections
+
+### Guidelines
+
+1. **Clear Labels**: Always provide descriptive labels for form accessibility
+2. **Logical Ordering**: Order options alphabetically, by importance, or by frequency of use
+3. **Default Values**: Use meaningful defaults or pre-select reasonable options
+4. **Error Handling**: Provide clear, actionable error messages
+5. **Consistent Sizing**: Use consistent sizes throughout your application
+6. **Performance**: For large option lists, consider virtualization or server-side filtering
+7. **Max Selections**: Use `maxSelections` to prevent user overwhelm and enforce business rules
+8. **Display Mode**: Choose between count and label display based on your use case
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
