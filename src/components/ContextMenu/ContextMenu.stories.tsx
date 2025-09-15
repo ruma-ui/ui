@@ -125,12 +125,6 @@ export const TextSelection: Story = {
                             text to see the context menu with text-related actions. Try selecting
                             some text and right-clicking to see the available options.
                         </p>
-                        <p className="leading-relaxed text-gray-600">
-                            Context menus are perfect for providing contextual actions that are
-                            relevant to the current selection or area. They help users perform
-                            actions more efficiently without cluttering the interface with permanent
-                            buttons.
-                        </p>
                     </div>
                 </ContextMenuTrigger>
                 <ContextMenuContent className="w-56">
