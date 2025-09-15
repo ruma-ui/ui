@@ -14,3 +14,4 @@ export * from "./Slider/Slider";
 export * from "./RangeInput/RangeInput";
 export * from "./Form/Form";
 export * from "./Toast/Toast";
+export * from "./SortableList/SortableList";
