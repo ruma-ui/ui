@@ -17,6 +17,13 @@ import { RiComputerLine } from "react-icons/ri";
 const meta: Meta<typeof DropdownMenu> = {
     title: "Components/Dropdown",
     component: DropdownMenu,
+    decorators: [
+        (Story) => (
+            <div style={{ minHeight: "200px" }}>
+                <Story />
+            </div>
+        ),
+    ],
     subcomponents: {
         DropdownMenuTrigger,
         DropdownMenuContent,

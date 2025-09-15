@@ -9,6 +9,13 @@ import { RiComputerLine } from "react-icons/ri";
 const meta: Meta<typeof MultiSelect> = {
     title: "Components/MultiSelect",
     component: MultiSelect,
+    decorators: [
+        (Story) => (
+            <div style={{ minHeight: "350px" }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: "padded",
         docs: {
