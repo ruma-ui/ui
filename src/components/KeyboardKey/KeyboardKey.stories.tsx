@@ -3,12 +3,8 @@ import { KeyboardKey } from "./KeyboardKey";
 import mdx from "./KeyboardKey.mdx";
 import { tw } from "@/utils/tw";
 import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import {
-    MdKeyboardCommandKey,
-    MdKeyboardOptionKey,
-    MdKeyboardArrowUp,
-    MdKeyboardControlKey,
-} from "react-icons/md";
+import { MdKeyboardCommandKey, MdKeyboardOptionKey, MdKeyboardControlKey } from "react-icons/md";
+import { ImShift } from "react-icons/im";
 
 const meta: Meta<typeof KeyboardKey> = {
     title: "Components/KeyboardKey",
@@ -89,7 +85,7 @@ export const Overview: Story = {
                 <MdKeyboardOptionKey />
             </KeyboardKey>
             <KeyboardKey size="sm">
-                <MdKeyboardArrowUp />
+                <ImShift />
             </KeyboardKey>
             <KeyboardKey size="sm">
                 <MdKeyboardControlKey />
