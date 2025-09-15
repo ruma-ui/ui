@@ -3,6 +3,12 @@ import { KeyboardKey } from "./KeyboardKey";
 import mdx from "./KeyboardKey.mdx";
 import { tw } from "@/utils/tw";
 import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import {
+    MdKeyboardCommandKey,
+    MdKeyboardOptionKey,
+    MdKeyboardArrowUp,
+    MdKeyboardControlKey,
+} from "react-icons/md";
 
 const meta: Meta<typeof KeyboardKey> = {
     title: "Components/KeyboardKey",
@@ -72,6 +78,26 @@ const meta: Meta<typeof KeyboardKey> = {
 
 export default meta;
 type Story = StoryObj<typeof KeyboardKey>;
+
+export const Overview: Story = {
+    render: () => (
+        <div className="flex items-center gap-1">
+            <KeyboardKey size="sm">
+                <MdKeyboardCommandKey />
+            </KeyboardKey>
+            <KeyboardKey size="sm">
+                <MdKeyboardOptionKey />
+            </KeyboardKey>
+            <KeyboardKey size="sm">
+                <MdKeyboardArrowUp />
+            </KeyboardKey>
+            <KeyboardKey size="sm">
+                <MdKeyboardControlKey />
+            </KeyboardKey>
+            <KeyboardKey size="sm">P</KeyboardKey>
+        </div>
+    ),
+};
 
 export const Default: Story = {
     args: {
