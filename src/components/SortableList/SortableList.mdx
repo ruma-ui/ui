@@ -1,0 +1,404 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { SortableList } from "./SortableList";
+import * as SortableListStories from "./SortableList.stories";
+import { FaGripVertical, FaFile, FaFolder } from "react-icons/fa";
+
+<Meta of={SortableListStories} />
+
+# SortableList
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/SortableList)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Direction Support](#direction-support)
+    - [Vertical Sorting](#vertical-sorting)
+    - [Horizontal Sorting](#horizontal-sorting)
+- [Custom Item Rendering](#custom-item-rendering)
+- [Custom Drag Handle](#custom-drag-handle)
+- [Event Handling](#event-handling)
+- [Disabled State](#disabled-state)
+- [Component API](#component-api)
+    - [SortableList `items`](#sortablelist-items)
+    - [SortableList `renderItem`](#sortablelist-renderitem)
+    - [SortableList `onReorder`](#sortablelist-onreorder)
+    - [SortableList `onChange`](#sortablelist-onchange)
+    - [SortableList `getItemKey`](#sortablelist-getitemkey)
+    - [SortableList `disabled`](#sortablelist-disabled)
+    - [SortableList `direction`](#sortablelist-direction)
+    - [SortableList `renderDragHandle`](#sortablelist-renderdraghandle)
+    - [SortableList `showDragPreview`](#sortablelist-showdragpreview)
+    - [SortableList `animationDuration`](#sortablelist-animationduration)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Performance Considerations](#performance-considerations)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+SortableList is a flexible, accessible component that enables drag-and-drop reordering of list items. It supports both vertical and horizontal sorting, custom item rendering, and full keyboard accessibility. Built using native HTML5 Drag and Drop API for optimal performance and compatibility.
+
+<Canvas of={SortableListStories.Basic} />
+
+## Basic Usage
+
+The SortableList component requires an array of items and a render function for each item:
+
+<Canvas of={SortableListStories.Basic} />
+
+## Direction Support
+
+### Vertical Sorting
+
+By default, SortableList arranges items vertically and supports vertical drag-and-drop reordering.
+
+<Canvas of={SortableListStories.Vertical} />
+
+### Horizontal Sorting
+
+Set `direction="horizontal"` to arrange items horizontally and enable horizontal drag-and-drop reordering.
+
+<Canvas of={SortableListStories.Horizontal} />
+
+## Custom Item Rendering
+
+You can customize how each item is rendered by providing a custom `renderItem` function. This allows you to include checkboxes, icons, text, or any other content.
+
+<Canvas of={SortableListStories.CustomRendering} />
+
+## Custom Drag Handle
+
+By default, SortableList provides a hamburger menu icon as the drag handle. You can customize this by providing a `renderDragHandle` function.
+
+<Canvas of={SortableListStories.CustomDragHandle} />
+
+## Event Handling
+
+SortableList provides several callbacks for handling reorder events:
+
+- `onReorder`: Called when items are reordered (provides from/to indices)
+- `onChange`: Called when the item array changes (provides new array)
+
+<Canvas of={SortableListStories.EventHandling} />
+
+## Disabled State
+
+You can disable the entire list by setting `disabled={true}`. This prevents all drag-and-drop interactions and keyboard navigation.
+
+<Canvas of={SortableListStories.Disabled} />
+
+## Component API
+
+<ArgTypes of={SortableList} />
+
+### SortableList `items`
+
+An array of items to display in the sortable list. Can be any type of data.
+
+```tsx
+const items = [
+    { id: 1, name: "Item 1", type: "file" },
+    { id: 2, name: "Item 2", type: "folder" },
+    { id: 3, name: "Item 3", type: "file" },
+];
+
+<SortableList items={items} renderItem={(item) => <div>{item.name}</div>} />;
+```
+
+### SortableList `renderItem`
+
+A function that renders each item. Receives the item data, index, and drag state.
+
+```tsx
+<SortableList
+    items={items}
+    renderItem={(item, index, isDragging) => (
+        <div className={`rounded border p-4 ${isDragging ? "opacity-50" : ""}`}>
+            <span className="font-medium">{item.name}</span>
+            <span className="ml-2 text-sm text-gray-500">({item.type})</span>
+        </div>
+    )}
+/>
+```
+
+### SortableList `onReorder`
+
+Callback function called when items are reordered. Receives the new items array, from index, and to index.
+
+```tsx
+const handleReorder = (items, fromIndex, toIndex) => {
+    console.log(`Moved item from position ${fromIndex} to ${toIndex}`);
+    console.log("New order:", items);
+};
+
+<SortableList
+    items={items}
+    onReorder={handleReorder}
+    renderItem={(item) => <div>{item.name}</div>}
+/>;
+```
+
+### SortableList `onChange`
+
+Callback function called when the items array changes. Receives the new items array.
+
+```tsx
+const handleChange = (newItems) => {
+    setItems(newItems);
+    // Persist changes to server
+    saveToServer(newItems);
+};
+
+<SortableList
+    items={items}
+    onChange={handleChange}
+    renderItem={(item) => <div>{item.name}</div>}
+/>;
+```
+
+### SortableList `getItemKey`
+
+Function to generate unique keys for React rendering. Defaults to `item-${index}`.
+
+```tsx
+<SortableList
+    items={items}
+    getItemKey={(item, index) => item.id.toString()}
+    renderItem={(item) => <div>{item.name}</div>}
+/>
+```
+
+### SortableList `disabled`
+
+Disables all drag-and-drop interactions and keyboard navigation.
+
+```tsx
+<SortableList items={items} disabled={true} renderItem={(item) => <div>{item.name}</div>} />
+```
+
+<Unstyled>
+    <SortableList
+        items={[
+            { id: 1, name: "Disabled Item 1" },
+            { id: 2, name: "Disabled Item 2" },
+            { id: 3, name: "Disabled Item 3" },
+        ]}
+        disabled={true}
+        renderItem={(item) => <div>{item.name}</div>}
+    />
+</Unstyled>
+
+### SortableList `direction`
+
+Controls the layout direction of the sortable list.
+
+```tsx
+// Vertical layout (default)
+<SortableList
+  items={items}
+  direction="vertical"
+  renderItem={(item) => <div>{item.name}</div>}
+/>
+
+// Horizontal layout
+<SortableList
+  items={items}
+  direction="horizontal"
+  renderItem={(item) => <div>{item.name}</div>}
+/>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div>
+            <h4 style={{ marginBottom: "8px" }}>Vertical Direction</h4>
+            <SortableList
+                items={[
+                    { id: 1, name: "Item 1" },
+                    { id: 2, name: "Item 2" },
+                    { id: 3, name: "Item 3" },
+                ]}
+                direction="vertical"
+                renderItem={(item) => <div>{item.name}</div>}
+                style={{ width: "200px" }}
+            />
+        </div>
+        <div>
+            <h4 style={{ marginBottom: "8px" }}>Horizontal Direction</h4>
+            <SortableList
+                items={[
+                    { id: 1, name: "Item 1" },
+                    { id: 2, name: "Item 2" },
+                    { id: 3, name: "Item 3" },
+                ]}
+                direction="horizontal"
+                renderItem={(item) => <div>{item.name}</div>}
+            />
+        </div>
+    </div>
+</Unstyled>
+
+### SortableList `renderDragHandle`
+
+Custom function to render the drag handle. If not provided, uses a default hamburger menu icon.
+
+```tsx
+<SortableList
+    items={items}
+    renderDragHandle={(item, index) => (
+        <div className="flex items-center justify-center">
+            <FaGripVertical className="text-gray-400" />
+        </div>
+    )}
+    renderItem={(item) => <div>{item.name}</div>}
+/>
+```
+
+<Unstyled>
+    <SortableList
+        items={[
+            { id: 1, name: "Custom Handle 1" },
+            { id: 2, name: "Custom Handle 2" },
+            { id: 3, name: "Custom Handle 3" },
+        ]}
+        renderDragHandle={(item, index) => (
+            <div>
+                <FaGripVertical style={{ color: "#9ca3af" }} />
+            </div>
+        )}
+        renderItem={(item) => <div>{item.name}</div>}
+    />
+</Unstyled>
+
+### SortableList `showDragPreview`
+
+Controls whether to show a drag preview during drag operations. Currently not implemented in the native implementation.
+
+### SortableList `animationDuration`
+
+Controls the duration of reorder animations in milliseconds. Default is 200ms.
+
+```tsx
+<SortableList items={items} animationDuration={300} renderItem={(item) => <div>{item.name}</div>} />
+```
+
+## Accessibility
+
+Our SortableList component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper `role="list"` and `role="listitem"` attributes
+- **Keyboard Navigation**: Full support for arrow keys, Home, and End keys
+- **Screen Reader Support**: Proper labeling and state announcements
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Drag and Drop**: Native HTML5 drag-and-drop with proper feedback
+
+### Keyboard Navigation
+
+- **Arrow Up/Down**: Move items up/down (vertical) or left/right (horizontal)
+- **Home/End**: Jump to first/last item
+- **Tab**: Navigate between focusable elements
+- **Space/Enter**: Activate drag mode (when focused on drag handle)
+
+### Screen Reader Announcements
+
+The component provides helpful announcements for screen reader users:
+
+- "Use arrow keys to reorder, Home/End to jump to start/end"
+- Drag state changes are announced
+- Reorder actions are described
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive content in your `renderItem` function
+- Provide appropriate visual feedback during drag operations
+- Consider the number of items (avoid very long lists for performance)
+- Test with keyboard navigation
+- Use meaningful keys with `getItemKey` for React reconciliation
+- Handle the `onChange` callback to persist reordering
+
+### Don'ts ❌
+
+- Don't use SortableList for static content that doesn't need reordering
+- Avoid deeply nested or complex item structures in `renderItem`
+- Don't disable the component without clear visual indication
+- Avoid using SortableList for very large datasets (>100 items)
+- Don't mix different item types without clear visual distinction
+
+### Performance Considerations
+
+For optimal performance with large lists:
+
+```tsx
+// Use React.memo for item rendering
+const ItemRenderer = React.memo(({ item, index, isDragging }) => (
+    <div className={`item ${isDragging ? "dragging" : ""}`}>{item.name}</div>
+));
+
+// Limit animation duration for large lists
+<SortableList items={largeItemArray} animationDuration={100} renderItem={ItemRenderer} />;
+
+// Consider virtualization for very large lists
+// (Implementation depends on your virtualization library)
+```
+
+### Common Patterns
+
+```tsx
+// Task management
+const TaskList = ({ tasks, onReorder }) => (
+    <SortableList
+        items={tasks}
+        onReorder={onReorder}
+        renderItem={(task, index, isDragging) => (
+            <div className="flex items-center gap-3 rounded border p-3">
+                <input type="checkbox" checked={task.completed} />
+                <span className={task.completed ? "line-through" : ""}>{task.title}</span>
+                <span className="text-sm text-gray-500">{task.priority}</span>
+            </div>
+        )}
+    />
+);
+
+// File explorer
+const FileList = ({ files, onReorder }) => (
+    <SortableList
+        items={files}
+        onReorder={onReorder}
+        renderItem={(file, index, isDragging) => (
+            <div className="flex items-center gap-3 p-2">
+                {file.type === "folder" ? <FaFolder /> : <FaFile />}
+                <span>{file.name}</span>
+                <span className="text-sm text-gray-500">{file.size}</span>
+            </div>
+        )}
+    />
+);
+
+// Priority queue
+const PriorityList = ({ items, onReorder }) => (
+    <SortableList
+        items={items}
+        direction="horizontal"
+        onReorder={onReorder}
+        renderItem={(item, index, isDragging) => (
+            <div className="flex min-w-[100px] flex-col items-center rounded border p-4">
+                <span className="font-medium">{item.name}</span>
+                <span className="text-sm text-gray-500">Priority {index + 1}</span>
+            </div>
+        )}
+    />
+);
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
