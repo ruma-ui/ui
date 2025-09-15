@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useContext, createContext } from "react";
 import { cn } from "@/utils/cn";
 import { tw } from "@/utils/tw";
+import { createPortal } from "react-dom";
 
 // ContextMenu Context
 interface ContextMenuContextType {
@@ -197,60 +198,89 @@ export const ContextMenuContent = React.forwardRef<HTMLDivElement, ContextMenuCo
     ({ className, children, ...props }, ref) => {
         const { isOpen, position } = useContextMenu();
         const contentRef = useRef<HTMLDivElement>(null);
-        const [actualPosition, setActualPosition] = useState({ x: 0, y: 0 });
+        const [isVisible, setIsVisible] = useState(false);
+        const [finalPosition, setFinalPosition] = useState({ x: 0, y: 0 });
 
         useEffect(() => {
-            if (isOpen && contentRef.current) {
-                // Use requestAnimationFrame to ensure content is fully rendered before calculating position
+            if (isOpen) {
+                setIsVisible(false);
+
+                // Use double requestAnimationFrame to ensure content is fully rendered
                 requestAnimationFrame(() => {
-                    if (contentRef.current) {
-                        const contentRect = contentRef.current.getBoundingClientRect();
-                        const viewportWidth = window.innerWidth;
-                        const viewportHeight = window.innerHeight;
+                    requestAnimationFrame(() => {
+                        if (contentRef.current) {
+                            const contentRect = contentRef.current.getBoundingClientRect();
+                            const viewportWidth = window.innerWidth;
+                            const viewportHeight = window.innerHeight;
 
-                        let x = position.x;
-                        let y = position.y;
+                            let x = position.x;
+                            let y = position.y;
 
-                        // Adjust horizontal position if needed
-                        if (x + contentRect.width > viewportWidth) {
-                            x = viewportWidth - contentRect.width - 8; // 8px margin from edge
+                            // Adjust horizontal position if needed
+                            if (x + contentRect.width > viewportWidth) {
+                                x = viewportWidth - contentRect.width - 8; // 8px margin from edge
+                            }
+
+                            // Adjust vertical position if needed
+                            if (y + contentRect.height > viewportHeight) {
+                                y = viewportHeight - contentRect.height - 8; // 8px margin from edge
+                            }
+
+                            // Ensure minimum margins from edges
+                            x = Math.max(8, x);
+                            y = Math.max(8, y);
+
+                            setFinalPosition({ x, y });
+                            setIsVisible(true);
                         }
-
-                        // Adjust vertical position if needed
-                        if (y + contentRect.height > viewportHeight) {
-                            y = viewportHeight - contentRect.height - 8; // 8px margin from edge
-                        }
-
-                        // Ensure minimum margins from edges
-                        x = Math.max(8, x);
-                        y = Math.max(8, y);
-
-                        setActualPosition({ x, y });
-                    }
+                    });
                 });
+            } else {
+                setIsVisible(false);
             }
         }, [isOpen, position]);
 
         if (!isOpen) return null;
 
-        return (
-            <div
-                ref={(node) => {
-                    contentRef.current = node;
-                    if (typeof ref === "function") ref(node);
-                    else if (ref) ref.current = node;
-                }}
-                className={cn(contentBase, contentAnimation, "fixed", className)}
-                data-context-menu-content
-                role="menu"
-                style={{
-                    left: actualPosition.x,
-                    top: actualPosition.y,
-                }}
-                {...props}
-            >
-                {children}
-            </div>
+        // Render off-screen first to measure, then position correctly
+        return createPortal(
+            <>
+                {/* Hidden measurement element */}
+                <div
+                    ref={contentRef}
+                    className={cn(contentBase, "fixed", className)}
+                    style={{
+                        left: "-9999px",
+                        top: "-9999px",
+                        visibility: "hidden",
+                        pointerEvents: "none",
+                    }}
+                    data-context-menu-measure
+                >
+                    {children}
+                </div>
+
+                {/* Visible positioned element */}
+                {isVisible && (
+                    <div
+                        ref={(node) => {
+                            if (typeof ref === "function") ref(node);
+                            else if (ref) ref.current = node;
+                        }}
+                        className={cn(contentBase, contentAnimation, "fixed", className)}
+                        data-context-menu-content
+                        role="menu"
+                        style={{
+                            left: finalPosition.x,
+                            top: finalPosition.y,
+                        }}
+                        {...props}
+                    >
+                        {children}
+                    </div>
+                )}
+            </>,
+            document.body,
         );
     },
 );
