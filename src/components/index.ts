@@ -5,6 +5,7 @@ export * from "./Checkbox/Checkbox";
 export * from "./TextInput/TextInput";
 export * from "./Textarea/Textarea";
 export * from "./Select/Select";
+export * from "./MultiSelect/MultiSelect";
 export * from "./Dropdown/Dropdown";
 export * from "./ContextMenu/ContextMenu";
 export * from "./Calendar/Calendar";
