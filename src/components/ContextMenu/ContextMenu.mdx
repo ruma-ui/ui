@@ -10,6 +10,7 @@ import {
 } from "./ContextMenu";
 import * as ContextMenuStories from "./ContextMenu.stories";
 import { FaUser, FaCog, FaSignOutAlt, FaCopy, FaPaste, FaCut, FaTrash } from "react-icons/fa";
+import { useState } from "react";
 
 <Meta of={ContextMenuStories} />
 
@@ -49,7 +50,58 @@ import { FaUser, FaCog, FaSignOutAlt, FaCopy, FaPaste, FaCut, FaTrash } from "re
 
 The ContextMenu component provides a right-click context menu with intelligent positioning that adapts to viewport boundaries. It follows the same design system as other menu components but is specifically designed for contextual actions triggered by right-clicking on content areas.
 
-<Canvas of={ContextMenuStories.Primary} />
+<div
+    style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "2rem",
+        border: "2px dashed #d1d5db",
+        borderRadius: "0.5rem",
+        margin: "1rem 0",
+    }}
+>
+    <ContextMenu>
+        <ContextMenuTrigger>
+            <div
+                style={{
+                    textAlign: "center",
+                    padding: "2rem",
+                    backgroundColor: "#f3f4f6",
+                    borderRadius: "0.5rem",
+                    cursor: "context-menu",
+                }}
+            >
+                <p style={{ color: "#6b7280", marginBottom: "0.5rem" }}>
+                    Right-click anywhere in this area
+                </p>
+                <p style={{ fontSize: "1.125rem", fontWeight: "500" }}>Context Menu Area</p>
+            </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent className="w-56">
+            <ContextMenuLabel>Actions</ContextMenuLabel>
+            <ContextMenuSeparator />
+            <ContextMenuGroup>
+                <ContextMenuItem>
+                    <FaCopy className="mr-2 h-4 w-4" />
+                    <span>Copy</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaPaste className="mr-2 h-4 w-4" />
+                    <span>Paste</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaCut className="mr-2 h-4 w-4" />
+                    <span>Cut</span>
+                </ContextMenuItem>
+            </ContextMenuGroup>
+            <ContextMenuSeparator />
+            <ContextMenuItem>
+                <FaTrash className="mr-2 h-4 w-4" />
+                <span>Delete</span>
+            </ContextMenuItem>
+        </ContextMenuContent>
+    </ContextMenu>
+</div>
 
 ## Basic Usage
 
@@ -87,25 +139,249 @@ The ContextMenu uses a compound pattern similar to the Dropdown component. The `
 
 Context menus work well with icons to provide visual cues for different actions.
 
-<Canvas of={ContextMenuStories.WithIcons} />
+<div
+    style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "1rem",
+        border: "2px dashed #d1d5db",
+        borderRadius: "0.5rem",
+        margin: "1rem 0",
+    }}
+>
+    <ContextMenu>
+        <ContextMenuTrigger>
+            <div
+                style={{
+                    padding: "1.5rem",
+                    backgroundColor: "#eff6ff",
+                    borderRadius: "0.5rem",
+                    textAlign: "center",
+                    cursor: "context-menu",
+                }}
+            >
+                <FaUser style={{ fontSize: "2rem", color: "#2563eb", margin: "0 auto 0.5rem" }} />
+                <p style={{ fontWeight: "500", color: "#1e40af" }}>User Profile</p>
+                <p style={{ fontSize: "0.875rem", color: "#2563eb" }}>Right-click for options</p>
+            </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent className="w-56">
+            <ContextMenuLabel>My Account</ContextMenuLabel>
+            <ContextMenuSeparator />
+            <ContextMenuGroup>
+                <ContextMenuItem>
+                    <FaUser className="mr-2 h-4 w-4" />
+                    <span>Profile</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaCog className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaSignOutAlt className="mr-2 h-4 w-4" />
+                    <span>Sign Out</span>
+                </ContextMenuItem>
+            </ContextMenuGroup>
+        </ContextMenuContent>
+    </ContextMenu>
+</div>
 
 ### Text Selection Context
 
 Perfect for text editing applications where users need quick access to text manipulation actions.
 
-<Canvas of={ContextMenuStories.TextSelection} />
+<div
+    style={{
+        padding: "1.5rem",
+        border: "2px dashed #d1d5db",
+        borderRadius: "0.5rem",
+        margin: "1rem 0",
+    }}
+>
+    <ContextMenu>
+        <ContextMenuTrigger>
+            <div style={{ lineHeight: "1.625" }}>
+                <h3
+                    style={{
+                        fontSize: "1.125rem",
+                        fontWeight: "600",
+                        color: "#1f2937",
+                        marginBottom: "1rem",
+                    }}
+                >
+                    Sample Text
+                </h3>
+                <p style={{ color: "#6b7280", marginBottom: "1rem" }}>
+                    This is a sample paragraph of text. You can right-click anywhere on this text to
+                    see the context menu with text-related actions.
+                </p>
+                <p style={{ color: "#6b7280" }}>
+                    Context menus are perfect for providing contextual actions that are relevant to
+                    the current selection or area.
+                </p>
+            </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent className="w-56">
+            <ContextMenuLabel>Text Actions</ContextMenuLabel>
+            <ContextMenuSeparator />
+            <ContextMenuGroup>
+                <ContextMenuItem>
+                    <FaCopy className="mr-2 h-4 w-4" />
+                    <span>Copy</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaCut className="mr-2 h-4 w-4" />
+                    <span>Cut</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaPaste className="mr-2 h-4 w-4" />
+                    <span>Paste</span>
+                </ContextMenuItem>
+            </ContextMenuGroup>
+            <ContextMenuSeparator />
+            <ContextMenuItem>
+                <FaTrash className="mr-2 h-4 w-4" />
+                <span>Delete</span>
+            </ContextMenuItem>
+        </ContextMenuContent>
+    </ContextMenu>
+</div>
 
 ### Image Context
 
 Ideal for image galleries or media applications where users need image-specific actions.
 
-<Canvas of={ContextMenuStories.ImageContext} />
+<div
+    style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "2rem",
+        border: "2px dashed #d1d5db",
+        borderRadius: "0.5rem",
+        margin: "1rem 0",
+    }}
+>
+    <ContextMenu>
+        <ContextMenuTrigger>
+            <div style={{ textAlign: "center" }}>
+                <div
+                    style={{
+                        width: "8rem",
+                        height: "8rem",
+                        backgroundColor: "#e5e7eb",
+                        borderRadius: "0.5rem",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        margin: "0 auto 1rem",
+                    }}
+                >
+                    <span style={{ fontSize: "0.875rem", color: "#9ca3af" }}>Image</span>
+                </div>
+                <p style={{ color: "#6b7280" }}>Right-click on the image for options</p>
+            </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent className="w-56">
+            <ContextMenuLabel>Image Actions</ContextMenuLabel>
+            <ContextMenuSeparator />
+            <ContextMenuGroup>
+                <ContextMenuItem>
+                    <FaCopy className="mr-2 h-4 w-4" />
+                    <span>Copy Image</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaUser className="mr-2 h-4 w-4" />
+                    <span>View Details</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaCog className="mr-2 h-4 w-4" />
+                    <span>Edit</span>
+                </ContextMenuItem>
+            </ContextMenuGroup>
+            <ContextMenuSeparator />
+            <ContextMenuItem>
+                <FaTrash className="mr-2 h-4 w-4" />
+                <span>Delete</span>
+            </ContextMenuItem>
+        </ContextMenuContent>
+    </ContextMenu>
+</div>
 
 ### Nested Groups
 
 Use multiple groups and separators to organize complex context menus with different categories of actions.
 
-<Canvas of={ContextMenuStories.NestedGroups} />
+<div
+    style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "2rem",
+        border: "2px dashed #d1d5db",
+        borderRadius: "0.5rem",
+        margin: "1rem 0",
+    }}
+>
+    <ContextMenu>
+        <ContextMenuTrigger>
+            <div
+                style={{
+                    padding: "2rem",
+                    backgroundColor: "#f0fdf4",
+                    borderRadius: "0.5rem",
+                    textAlign: "center",
+                    cursor: "context-menu",
+                }}
+            >
+                <p style={{ fontSize: "1.125rem", fontWeight: "500", color: "#166534" }}>
+                    File Explorer
+                </p>
+                <p style={{ fontSize: "0.875rem", color: "#16a34a", marginTop: "0.5rem" }}>
+                    Right-click for file actions
+                </p>
+            </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent className="w-64">
+            <ContextMenuLabel>File Operations</ContextMenuLabel>
+            <ContextMenuSeparator />
+            <ContextMenuGroup>
+                <ContextMenuItem>
+                    <FaCopy className="mr-2 h-4 w-4" />
+                    <span>Copy</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaCut className="mr-2 h-4 w-4" />
+                    <span>Cut</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaPaste className="mr-2 h-4 w-4" />
+                    <span>Paste</span>
+                </ContextMenuItem>
+            </ContextMenuGroup>
+            <ContextMenuSeparator />
+            <ContextMenuLabel>View Options</ContextMenuLabel>
+            <ContextMenuSeparator />
+            <ContextMenuGroup>
+                <ContextMenuItem>
+                    <FaUser className="mr-2 h-4 w-4" />
+                    <span>Large Icons</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaCog className="mr-2 h-4 w-4" />
+                    <span>Details</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaSignOutAlt className="mr-2 h-4 w-4" />
+                    <span>List</span>
+                </ContextMenuItem>
+            </ContextMenuGroup>
+            <ContextMenuSeparator />
+            <ContextMenuItem>
+                <FaTrash className="mr-2 h-4 w-4" />
+                <span>Delete</span>
+            </ContextMenuItem>
+        </ContextMenuContent>
+    </ContextMenu>
+</div>
 
 ## States
 
@@ -113,13 +389,108 @@ Use multiple groups and separators to organize complex context menus with differ
 
 Context menus can be disabled to prevent interaction in certain areas.
 
-<Canvas of={ContextMenuStories.Disabled} />
+<div
+    style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "2rem",
+        border: "2px dashed #d1d5db",
+        borderRadius: "0.5rem",
+        margin: "1rem 0",
+    }}
+>
+    <ContextMenu>
+        <ContextMenuTrigger disabled>
+            <div
+                style={{
+                    padding: "2rem",
+                    backgroundColor: "#fef2f2",
+                    borderRadius: "0.5rem",
+                    textAlign: "center",
+                    opacity: 0.5,
+                }}
+            >
+                <p style={{ fontSize: "1.125rem", fontWeight: "500", color: "#dc2626" }}>
+                    Disabled Area
+                </p>
+                <p style={{ fontSize: "0.875rem", color: "#dc2626", marginTop: "0.5rem" }}>
+                    Context menu is disabled
+                </p>
+            </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent className="w-56">
+            <ContextMenuLabel>Actions</ContextMenuLabel>
+            <ContextMenuSeparator />
+            <ContextMenuGroup>
+                <ContextMenuItem>
+                    <FaCopy className="mr-2 h-4 w-4" />
+                    <span>Copy</span>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <FaPaste className="mr-2 h-4 w-4" />
+                    <span>Paste</span>
+                </ContextMenuItem>
+            </ContextMenuGroup>
+        </ContextMenuContent>
+    </ContextMenu>
+</div>
 
 ## Controlled Component
 
 For advanced use cases, you can control the context menu's open state programmatically.
 
-<Canvas of={ContextMenuStories.Controlled} />
+<div style={{ margin: "1rem 0" }}>
+    <div
+        style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "1rem",
+            border: "2px dashed #d1d5db",
+            borderRadius: "0.5rem",
+        }}
+    >
+        <ContextMenu>
+            <ContextMenuTrigger>
+                <div
+                    style={{
+                        padding: "1.5rem",
+                        backgroundColor: "#faf5ff",
+                        borderRadius: "0.5rem",
+                        textAlign: "center",
+                        cursor: "context-menu",
+                    }}
+                >
+                    <p style={{ fontWeight: "500", color: "#7c3aed" }}>Controlled Context Menu</p>
+                    <p style={{ fontSize: "0.875rem", color: "#7c3aed", marginTop: "0.25rem" }}>
+                        Right-click here
+                    </p>
+                </div>
+            </ContextMenuTrigger>
+            <ContextMenuContent className="w-56">
+                <ContextMenuLabel>Actions</ContextMenuLabel>
+                <ContextMenuSeparator />
+                <ContextMenuGroup>
+                    <ContextMenuItem>
+                        <FaCopy className="mr-2 h-4 w-4" />
+                        <span>Copy</span>
+                    </ContextMenuItem>
+                    <ContextMenuItem>
+                        <FaPaste className="mr-2 h-4 w-4" />
+                        <span>Paste</span>
+                    </ContextMenuItem>
+                    <ContextMenuItem>
+                        <FaCut className="mr-2 h-4 w-4" />
+                        <span>Cut</span>
+                    </ContextMenuItem>
+                </ContextMenuGroup>
+            </ContextMenuContent>
+        </ContextMenu>
+    </div>
+    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginTop: "0.5rem" }}>
+        Note: This example shows the basic structure. For full controlled behavior, use the open and
+        onOpenChange props.
+    </p>
+</div>
 
 ## Component API
 
