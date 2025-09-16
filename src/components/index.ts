@@ -20,6 +20,7 @@ export * from "./Loader/Loader";
 export * from "./Modal/Modal";
 export * from "./MultiSelect/MultiSelect";
 export * from "./Pagination/Pagination";
+export * from "./Popover/Popover";
 export * from "./Progress/Progress";
 export * from "./RadioGroup/RadioGroup";
 export * from "./RangeInput/RangeInput";
