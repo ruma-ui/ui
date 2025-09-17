@@ -15,6 +15,7 @@ export * from "./Drawer/Drawer";
 export * from "./Dropdown/Dropdown";
 export * from "./Editable/Editable";
 export * from "./FileUpload/FileUpload";
+export * from "./FloatingActionButton/FloatingActionButton";
 export * from "./Form/Form";
 export * from "./Image/Image";
 export * from "./InputOTP/InputOTP";
