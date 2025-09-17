@@ -67,7 +67,7 @@ Square images maintain a 1:1 aspect ratio, perfect for profile pictures, thumbna
 
 Video aspect ratio (16:9) is ideal for video thumbnails, banners, or wide content displays.
 
-<Canvas of={ImageStories.VideoAspect} />
+<Canvas of={ImageStories.CustomAspectRatio} />
 
 ### Portrait Aspect Ratio
 
@@ -281,15 +281,22 @@ The `fill` prop makes the image fill its parent container, useful for responsive
 
 ```jsx
 <div style={{ position: "relative", width: "300px", height: "200px" }}>
-    <Image fill src="https://picsum.photos/600/400" alt="Filling container" />
+    <Image fill src="https://picsum.photos/1200/800" alt="Filling container" />
 </div>
 ```
 
 <Unstyled>
     <div
-        style={{ width: "300px", height: "200px", position: "relative", border: "1px solid #ccc" }}
+        style={{
+            width: "300px",
+            height: "200px",
+            position: "relative",
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+            overflow: "hidden",
+        }}
     >
-        <Image fill src="https://picsum.photos/600/400" alt="Filling container" />
+        <Image fill src="https://picsum.photos/1200/800" alt="Filling container" />
     </div>
 </Unstyled>
 
@@ -298,15 +305,15 @@ The `fill` prop makes the image fill its parent container, useful for responsive
 The `showSkeleton` prop displays a skeleton loader while the image is loading, providing better visual feedback to users.
 
 ```jsx
-<Image showSkeleton src="https://picsum.photos/300/300" alt="With skeleton" width={300} height={300} />
-<Image showSkeleton skeletonAnimation="wave" src="https://picsum.photos/300/300" alt="Wave animation" width={300} height={300} />
+<Image showSkeleton src="https://picsum.photos/1500/1500" alt="With skeleton" width={300} height={300} />
+<Image showSkeleton skeletonAnimation="wave" src="https://picsum.photos/1500/1500" alt="Wave animation" width={300} height={300} />
 ```
 
 <Unstyled>
     <div style={{ display: "flex", gap: "8px" }}>
         <Image
             showSkeleton
-            src="https://picsum.photos/150/150"
+            src="https://picsum.photos/1500/1500"
             alt="Shimmer"
             width={150}
             height={150}
@@ -314,7 +321,7 @@ The `showSkeleton` prop displays a skeleton loader while the image is loading, p
         <Image
             showSkeleton
             skeletonAnimation="wave"
-            src="https://picsum.photos/150/150"
+            src="https://picsum.photos/1500/1500"
             alt="Wave"
             width={150}
             height={150}
@@ -327,8 +334,8 @@ The `showSkeleton` prop displays a skeleton loader while the image is loading, p
 Control the animation and shape of the skeleton loader.
 
 ```jsx
-<Image showSkeleton skeletonAnimation="shimmer" skeletonVariant="rectangle" src="https://picsum.photos/200/200" alt="Rectangle shimmer" width={200} height={200} />
-<Image showSkeleton skeletonAnimation="pulse" skeletonVariant="circle" src="https://picsum.photos/200/200" alt="Circle pulse" width={200} height={200} rounded="full" />
+<Image showSkeleton skeletonAnimation="shimmer" skeletonVariant="rectangle" src="https://picsum.photos/1200/1200" alt="Rectangle shimmer" width={200} height={200} />
+<Image showSkeleton skeletonAnimation="pulse" skeletonVariant="circle" src="https://picsum.photos/1200/1200" alt="Circle pulse" width={200} height={200} rounded="full" />
 ```
 
 <Unstyled>
@@ -336,7 +343,7 @@ Control the animation and shape of the skeleton loader.
         <Image
             showSkeleton
             skeletonAnimation="shimmer"
-            src="https://picsum.photos/120/120"
+            src="https://picsum.photos/1200/1200"
             alt="Shimmer"
             width={120}
             height={120}
@@ -345,7 +352,7 @@ Control the animation and shape of the skeleton loader.
             showSkeleton
             skeletonAnimation="pulse"
             skeletonVariant="circle"
-            src="https://picsum.photos/120/120"
+            src="https://picsum.photos/1200/1200"
             alt="Pulse circle"
             width={120}
             height={120}
@@ -379,8 +386,9 @@ The `fallback` prop allows you to specify custom content to display when the ima
         width={200}
         height={150}
         fallback={
-            <div className="flex h-full w-full items-center justify-center bg-gray-100 text-sm text-gray-500">
-                Failed to load
+            <div className="flex h-[200px] w-[150px] flex-col items-center justify-center bg-gray-100 p-2 text-gray-500">
+                <span className="mb-1 text-2xl">🖼️</span>
+                <span className="text-sm">Image not available</span>
             </div>
         }
     />

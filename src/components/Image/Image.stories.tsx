@@ -190,14 +190,35 @@ export const Rounded: Story = {
 
 export const FillContainer: Story = {
     args: {
-        src: "https://picsum.photos/4800/3200",
+        src: "https://picsum.photos/500/400",
         alt: "Image filling container",
         fill: true,
-        aspectRatio: "video",
     },
     parameters: {
-        layout: "padded",
+        layout: "centered",
     },
+    render: (args) => (
+        <div
+            style={{
+                width: "400px",
+                height: "300px",
+                borderRadius: "20px",
+                overflow: "hidden",
+                background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(200,200,255,0.10) 100%)",
+                boxShadow:
+                    "0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 0 0 4px rgba(255,255,255,0.25), 0 16px 48px 0 rgba(31, 38, 135, 0.25)",
+                border: "1.5px solid rgba(255,255,255,0.25)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+        >
+            <Image {...args} alt={args.alt || "Image filling container"} />
+        </div>
+    ),
 };
 
 export const CustomAspectRatio: Story = {

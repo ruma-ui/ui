@@ -62,7 +62,7 @@ export interface ImageProps
     skeletonVariant?: "rectangle" | "circle";
 }
 
-const base = tw`inline-block overflow-hidden`;
+const base = tw`relative inline-block overflow-hidden`;
 
 const fitOptions = {
     contain: tw`object-contain`,
@@ -112,13 +112,14 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         },
         ref,
     ) => {
-        const aspectClass =
-            typeof aspectRatio === "number"
-                ? `aspect-[${aspectRatio}]`
-                : aspectRatioOptions[aspectRatio] || tw``;
+        const aspectClass = fill
+            ? tw`` // Don't apply aspect ratio when using fill
+            : typeof aspectRatio === "number"
+              ? `aspect-[${aspectRatio}]`
+              : aspectRatioOptions[aspectRatio] || tw``;
 
         const [hasError, setHasError] = React.useState(false);
-        const [isLoaded, setIsLoaded] = React.useState(false);
+        const [isLoaded, setIsLoaded] = React.useState(fill); // Start loaded for fill mode
 
         // For Next.js Image, width and height are required unless fill is true
         const imageWidth = fill ? undefined : typeof width === "number" ? width : 300;
@@ -154,7 +155,13 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 
         return (
             <div
-                className={cn(base, aspectClass, roundedOptions[rounded], className)}
+                className={cn(
+                    base,
+                    fill ? "h-full w-full" : "",
+                    aspectClass,
+                    roundedOptions[rounded],
+                    className,
+                )}
                 style={style}
             >
                 {/* Always render the image to trigger loading events */}
@@ -180,16 +187,22 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
                     <Skeleton
                         variant={skeletonVariant}
                         size="xs" // Use smallest size to minimize default styling
-                        width={typeof width === "number" ? width : "100%"}
-                        height={typeof height === "number" ? height : "100%"}
+                        width={fill ? "100%" : typeof width === "number" ? width : imageWidth}
+                        height={fill ? "100%" : typeof height === "number" ? height : imageHeight}
                         animation={skeletonAnimation}
                         className={cn(
                             roundedOptions[rounded],
-                            "absolute z-10",
-                            typeof width === "number"
-                                ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                                : "inset-0",
+                            "absolute inset-0 z-10 flex items-center justify-center",
+                            fill ? "h-full w-full" : "",
                         )}
+                        style={
+                            fill
+                                ? {}
+                                : {
+                                      width: typeof width === "number" ? width : imageWidth,
+                                      height: typeof height === "number" ? height : imageHeight,
+                                  }
+                        }
                     />
                 )}
             </div>
