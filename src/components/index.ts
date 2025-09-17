@@ -14,6 +14,7 @@ export * from "./Drawer/Drawer";
 export * from "./Dropdown/Dropdown";
 export * from "./FileUpload/FileUpload";
 export * from "./Form/Form";
+export * from "./Image/Image";
 export * from "./InputOTP/InputOTP";
 export * from "./KeyboardKey/KeyboardKey";
 export * from "./Link/Link";

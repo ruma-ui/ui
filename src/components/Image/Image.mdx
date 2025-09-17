@@ -1,0 +1,500 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Image } from "./Image";
+import * as ImageStories from "./Image.stories";
+
+<Meta of={ImageStories} />
+
+# Image
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Image)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Aspect Ratios](#aspect-ratios)
+    - [Square Aspect Ratio](#square-aspect-ratio)
+    - [Video Aspect Ratio](#video-aspect-ratio)
+    - [Portrait Aspect Ratio](#portrait-aspect-ratio)
+    - [Wide Aspect Ratio](#wide-aspect-ratio)
+- [Fit Options](#fit-options)
+    - [Cover Fit](#cover-fit)
+    - [Contain Fit](#contain-fit)
+    - [Fill Fit](#fill-fit)
+- [Rounded Corners](#rounded-corners)
+- [Fill Container](#fill-container)
+- [Loading States](#loading-states)
+    - [With Skeleton](#with-skeleton)
+    - [With Circular Skeleton](#with-circular-skeleton)
+- [Error Handling](#error-handling)
+    - [With Fallback](#with-fallback)
+    - [With Skeleton and Fallback](#with-skeleton-and-fallback)
+- [Component API](#component-api)
+    - [Image `src` and `alt`](#image-src-and-alt)
+    - [Image `width` and `height`](#image-width-and-height)
+    - [Image `fit`](#image-fit)
+    - [Image `aspectRatio`](#image-aspectratio)
+    - [Image `rounded`](#image-rounded)
+    - [Image `fill`](#image-fill)
+    - [Image `showSkeleton`](#image-showskeleton)
+    - [Image `skeletonAnimation` and `skeletonVariant`](#image-skeletonanimation-and-skeletonvariant)
+    - [Image `fallback`](#image-fallback)
+    - [Image `className`](#image-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Image component provides optimized image rendering with Next.js Image component, offering automatic optimization, lazy loading, and responsive behavior. It supports various aspect ratios, fit options, and styling to maintain consistency with our design system.
+
+**Note:** This component is optimized for Next.js applications. For React applications, consider using the standard `<img>` tag or a custom image component.
+
+<Canvas of={ImageStories.Default} />
+
+## Aspect Ratios
+
+### Square Aspect Ratio
+
+Square images maintain a 1:1 aspect ratio, perfect for profile pictures, thumbnails, or grid layouts.
+
+<Canvas of={ImageStories.Square} />
+
+### Video Aspect Ratio
+
+Video aspect ratio (16:9) is ideal for video thumbnails, banners, or wide content displays.
+
+<Canvas of={ImageStories.VideoAspect} />
+
+### Portrait Aspect Ratio
+
+Portrait aspect ratio (3:4) works well for portrait photos, cards, or vertical content.
+
+<Canvas of={ImageStories.Portrait} />
+
+### Wide Aspect Ratio
+
+Wide aspect ratio provides a cinematic feel, suitable for hero banners or landscape images.
+
+<Canvas of={ImageStories.WideAspect} />
+
+## Fit Options
+
+### Cover Fit
+
+Cover fit scales the image to cover the entire container while maintaining aspect ratio, potentially cropping parts of the image.
+
+<Canvas of={ImageStories.FitCover} />
+
+### Contain Fit
+
+Contain fit scales the image to fit within the container while maintaining aspect ratio, ensuring the entire image is visible.
+
+<Canvas of={ImageStories.FitContain} />
+
+### Fill Fit
+
+Fill fit stretches the image to fill the container completely, potentially distorting the aspect ratio.
+
+<Canvas of={ImageStories.FillFit} />
+
+## Rounded Corners
+
+Apply rounded corners to images for a softer, more modern appearance.
+
+<Canvas of={ImageStories.Rounded} />
+
+## Fill Container
+
+When using the `fill` prop, the image will fill its parent container, useful for responsive designs.
+
+<Canvas of={ImageStories.FillContainer} />
+
+## Loading States
+
+### With Skeleton
+
+Show a skeleton loader while the image is loading for better user experience.
+
+<Canvas of={ImageStories.WithSkeleton} />
+
+### With Circular Skeleton
+
+Use circular skeleton for profile images or avatars.
+
+<Canvas of={ImageStories.WithSkeletonCircle} />
+
+## Error Handling
+
+### With Fallback
+
+Display custom content when the image fails to load.
+
+<Canvas of={ImageStories.WithFallback} />
+
+### With Skeleton and Fallback
+
+Combine skeleton loading with fallback content for comprehensive error handling.
+
+<Canvas of={ImageStories.WithSkeletonAndFallback} />
+
+## Component API
+
+<ArgTypes of={Image} />
+
+### Image `src` and `alt`
+
+The `src` prop specifies the image source URL, and `alt` provides alternative text for accessibility and when the image fails to load.
+
+```jsx
+<Image src="https://example.com/image.jpg" alt="Description of the image" />
+```
+
+<Unstyled>
+    <Image src="https://picsum.photos/200/150" alt="Sample image" width={200} height={150} />
+</Unstyled>
+
+### Image `width` and `height`
+
+Specify the dimensions of the image. These are required for Next.js Image optimization unless using the `fill` prop.
+
+```jsx
+<Image src="https://picsum.photos/400/300" alt="Landscape image" width={400} height={300} />
+<Image src="https://picsum.photos/300/300" alt="Square image" width={300} height={300} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px" }}>
+        <Image src="https://picsum.photos/200/150" alt="Small image" width={200} height={150} />
+        <Image src="https://picsum.photos/150/200" alt="Tall image" width={150} height={200} />
+    </div>
+</Unstyled>
+
+### Image `fit`
+
+Control how the image scales within its container using object-fit CSS property.
+
+```jsx
+<Image fit="cover" src="https://picsum.photos/400/300" alt="Cover fit" width={300} height={300} />
+<Image fit="contain" src="https://picsum.photos/400/300" alt="Contain fit" width={300} height={300} />
+<Image fit="fill" src="https://picsum.photos/400/300" alt="Fill fit" width={300} height={300} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px" }}>
+        <Image
+            fit="cover"
+            src="https://picsum.photos/200/200"
+            alt="Cover"
+            width={200}
+            height={200}
+        />
+        <Image
+            fit="contain"
+            src="https://picsum.photos/200/200"
+            alt="Contain"
+            width={200}
+            height={200}
+        />
+        <Image fit="fill" src="https://picsum.photos/200/200" alt="Fill" width={200} height={200} />
+    </div>
+</Unstyled>
+
+### Image `aspectRatio`
+
+Maintain consistent aspect ratios across your images using preset options or custom ratios.
+
+```jsx
+<Image aspectRatio="square" src="https://picsum.photos/300/300" alt="Square" width={300} height={300} />
+<Image aspectRatio="video" src="https://picsum.photos/640/360" alt="Video" width={640} height={360} />
+<Image aspectRatio={16/9} src="https://picsum.photos/400/225" alt="Custom ratio" width={400} height={225} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Image
+            aspectRatio="square"
+            src="https://picsum.photos/150/150"
+            alt="Square"
+            width={150}
+            height={150}
+        />
+        <Image
+            aspectRatio="video"
+            src="https://picsum.photos/200/113"
+            alt="Video"
+            width={200}
+            height={113}
+        />
+        <Image
+            aspectRatio="portrait"
+            src="https://picsum.photos/150/200"
+            alt="Portrait"
+            width={150}
+            height={200}
+        />
+    </div>
+</Unstyled>
+
+### Image `rounded`
+
+Apply rounded corners to soften the image appearance and match your design system.
+
+```jsx
+<Image rounded="none" src="https://picsum.photos/200/200" alt="No rounding" width={200} height={200} />
+<Image rounded="md" src="https://picsum.photos/200/200" alt="Medium rounding" width={200} height={200} />
+<Image rounded="full" src="https://picsum.photos/200/200" alt="Full rounding" width={200} height={200} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px" }}>
+        <Image
+            rounded="none"
+            src="https://picsum.photos/150/150"
+            alt="Sharp"
+            width={150}
+            height={150}
+        />
+        <Image
+            rounded="md"
+            src="https://picsum.photos/150/150"
+            alt="Rounded"
+            width={150}
+            height={150}
+        />
+        <Image
+            rounded="full"
+            src="https://picsum.photos/150/150"
+            alt="Circle"
+            width={150}
+            height={150}
+        />
+    </div>
+</Unstyled>
+
+### Image `fill`
+
+The `fill` prop makes the image fill its parent container, useful for responsive designs. When using `fill`, the parent container must have `position: relative`.
+
+```jsx
+<div style={{ position: "relative", width: "300px", height: "200px" }}>
+    <Image fill src="https://picsum.photos/600/400" alt="Filling container" />
+</div>
+```
+
+<Unstyled>
+    <div
+        style={{ width: "300px", height: "200px", position: "relative", border: "1px solid #ccc" }}
+    >
+        <Image fill src="https://picsum.photos/600/400" alt="Filling container" />
+    </div>
+</Unstyled>
+
+### Image `showSkeleton`
+
+The `showSkeleton` prop displays a skeleton loader while the image is loading, providing better visual feedback to users.
+
+```jsx
+<Image showSkeleton src="https://picsum.photos/300/300" alt="With skeleton" width={300} height={300} />
+<Image showSkeleton skeletonAnimation="wave" src="https://picsum.photos/300/300" alt="Wave animation" width={300} height={300} />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px" }}>
+        <Image
+            showSkeleton
+            src="https://picsum.photos/150/150"
+            alt="Shimmer"
+            width={150}
+            height={150}
+        />
+        <Image
+            showSkeleton
+            skeletonAnimation="wave"
+            src="https://picsum.photos/150/150"
+            alt="Wave"
+            width={150}
+            height={150}
+        />
+    </div>
+</Unstyled>
+
+### Image `skeletonAnimation` and `skeletonVariant`
+
+Control the animation and shape of the skeleton loader.
+
+```jsx
+<Image showSkeleton skeletonAnimation="shimmer" skeletonVariant="rectangle" src="https://picsum.photos/200/200" alt="Rectangle shimmer" width={200} height={200} />
+<Image showSkeleton skeletonAnimation="pulse" skeletonVariant="circle" src="https://picsum.photos/200/200" alt="Circle pulse" width={200} height={200} rounded="full" />
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <Image
+            showSkeleton
+            skeletonAnimation="shimmer"
+            src="https://picsum.photos/120/120"
+            alt="Shimmer"
+            width={120}
+            height={120}
+        />
+        <Image
+            showSkeleton
+            skeletonAnimation="pulse"
+            skeletonVariant="circle"
+            src="https://picsum.photos/120/120"
+            alt="Pulse circle"
+            width={120}
+            height={120}
+            rounded="full"
+        />
+    </div>
+</Unstyled>
+
+### Image `fallback`
+
+The `fallback` prop allows you to specify custom content to display when the image fails to load.
+
+```jsx
+<Image
+    src="https://invalid-url.com/image.jpg"
+    alt="With fallback"
+    width={300}
+    height={300}
+    fallback={
+        <div className="flex h-full w-full items-center justify-center bg-gray-100 text-gray-500">
+            Image not available
+        </div>
+    }
+/>
+```
+
+<Unstyled>
+    <Image
+        src="https://invalid-url.com/image.jpg"
+        alt="With fallback"
+        width={200}
+        height={150}
+        fallback={
+            <div className="flex h-full w-full items-center justify-center bg-gray-100 text-sm text-gray-500">
+                Failed to load
+            </div>
+        }
+    />
+</Unstyled>
+
+### Image `className`
+
+Add custom styling while preserving the component's built-in styles.
+
+```jsx
+<Image
+    className="border-2 border-gray-300 shadow-lg"
+    src="https://picsum.photos/300/200"
+    alt="Custom styled"
+    width={300}
+    height={200}
+/>
+```
+
+<Unstyled>
+    <Image
+        className="border-2 border-gray-300 shadow-lg"
+        src="https://picsum.photos/200/150"
+        alt="Custom styled"
+        width={200}
+        height={150}
+    />
+</Unstyled>
+
+## Accessibility
+
+Our Image component follows accessibility best practices:
+
+- **Alt Text**: Always provide meaningful alternative text for screen readers
+- **Semantic HTML**: Uses proper `<img>` elements with Next.js optimization
+- **Loading Optimization**: Automatic lazy loading and responsive images
+- **Error Handling**: Graceful fallback when images fail to load
+- **Keyboard Navigation**: No keyboard interaction needed for images
+
+## Best Practices
+
+### Do's ✅
+
+- Always provide descriptive `alt` text for accessibility
+- Use appropriate aspect ratios for different content types
+- Optimize image file sizes for web performance
+- Use `fill` prop for responsive container filling
+- Choose fit options that preserve important image content
+- Use `showSkeleton` for better loading experience
+- Provide meaningful `fallback` content for error states
+- Use `skeletonVariant="circle"` for profile images
+- Combine skeleton and fallback for comprehensive UX
+
+### Don'ts ❌
+
+- Don't omit `alt` text unless the image is purely decorative
+- Avoid using `fill` without a positioned parent container
+- Don't rely on images alone to convey critical information
+- Avoid extremely high-resolution images that impact performance
+- Don't use skeleton without considering the aspect ratio
+- Avoid generic fallback messages; make them contextual
+
+### Usage Examples
+
+```jsx
+// Profile avatar with skeleton and fallback
+<Image
+  src="/avatar.jpg"
+  alt="User profile picture"
+  width={100}
+  height={100}
+  rounded="full"
+  aspectRatio="square"
+  showSkeleton
+  skeletonVariant="circle"
+  fallback={
+    <div className="flex items-center justify-center w-full h-full bg-gray-200 text-gray-500 text-2xl">
+      👤
+    </div>
+  }
+/>
+
+// Hero banner with skeleton loading
+<Image
+  src="/hero.jpg"
+  alt="Company hero image"
+  width={1200}
+  height={600}
+  fit="cover"
+  aspectRatio="wide"
+  showSkeleton
+  skeletonAnimation="wave"
+/>
+
+// Product thumbnail with error handling
+<Image
+  src="/product.jpg"
+  alt="Product image"
+  width={300}
+  height={300}
+  fit="contain"
+  rounded="md"
+  className="shadow-md"
+  showSkeleton
+  fallback={
+    <div className="flex flex-col items-center justify-center w-full h-full bg-gray-50 text-gray-400 p-4 text-center">
+      <div className="text-3xl mb-2">📦</div>
+      <div className="text-sm">Image unavailable</div>
+    </div>
+  }
+/>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
