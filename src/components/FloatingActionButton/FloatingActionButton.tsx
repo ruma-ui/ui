@@ -306,8 +306,6 @@ export const FloatingActionButton = React.forwardRef<HTMLButtonElement, Floating
                         positions[position],
                         roundedOptions[rounded],
                         animations[animation],
-                        hasActions && isExpanded && "rotate-45",
-                        "transition-transform duration-300",
                         className,
                     )}
                     disabled={isDisabled}
@@ -357,7 +355,16 @@ export const FloatingActionButton = React.forwardRef<HTMLButtonElement, Floating
                             strokeWidth="thick"
                         />
                     )}
-                    {!loading && <span className="flex shrink-0 items-center">{icon}</span>}
+                    {!loading && (
+                        <span
+                            className={cn(
+                                "flex shrink-0 items-center transition-transform duration-300",
+                                hasActions && isExpanded && "rotate-45",
+                            )}
+                        >
+                            {icon}
+                        </span>
+                    )}
                     {showTooltip && tooltip && (
                         <div className={cn(tooltipBase, tooltipClasses)} role="tooltip">
                             {tooltip}
