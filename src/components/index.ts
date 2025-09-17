@@ -25,6 +25,7 @@ export * from "./Popover/Popover";
 export * from "./Progress/Progress";
 export * from "./RadioGroup/RadioGroup";
 export * from "./RangeInput/RangeInput";
+export * from "./Rating/Rating";
 export * from "./Resizable/Resizable";
 export * from "./Select/Select";
 export * from "./Skeleton/Skeleton";
