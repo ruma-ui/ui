@@ -21,6 +21,14 @@ const meta: Meta<typeof Accordion> = {
             description: "Allow multiple items to be expanded at once",
             defaultValue: false,
         },
+        children: {
+            control: false,
+            description: "Accordion content (AccordionItem components)",
+        },
+        className: {
+            control: "text",
+            description: "Additional CSS classes",
+        },
     },
 } satisfies Meta<typeof Accordion>;
 

@@ -41,6 +41,10 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
      * Card content
      */
     children: React.ReactNode;
+    /**
+     * Additional classes for the card container
+     */
+    className?: string;
 }
 
 export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {

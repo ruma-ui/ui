@@ -11,6 +11,7 @@ import mdx from "./Form.mdx";
 const meta: Meta<typeof Form> = {
     title: "Components/Form",
     component: Form,
+    subcomponents: { FormField, FormSection },
     parameters: {
         layout: "padded",
         docs: {

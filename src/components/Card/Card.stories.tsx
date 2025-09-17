@@ -8,6 +8,7 @@ import { tw } from "@/utils/tw";
 const meta: Meta<typeof Card> = {
     title: "Components/Card",
     component: Card,
+    subcomponents: { CardHeader, CardBody, CardFooter },
     parameters: {
         layout: "centered",
         docs: {
