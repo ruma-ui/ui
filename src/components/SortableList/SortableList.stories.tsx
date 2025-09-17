@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { SortableList } from "./SortableList";
+import { SortableList, SortableItem } from "./SortableList";
 import { FaGripVertical, FaFile, FaFolder } from "react-icons/fa";
 import { useState } from "react";
 
@@ -13,6 +13,7 @@ interface SampleItem {
 const meta: Meta<typeof SortableList> = {
     title: "Components/SortableList",
     component: SortableList,
+    subcomponents: { SortableItem },
     parameters: {
         layout: "padded",
         docs: {
