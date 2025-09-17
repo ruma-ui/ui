@@ -46,3 +46,4 @@ export * from "./Toast/Toast";
 export * from "./Tooltip/Tooltip";
 export * from "./TopLoader/TopLoader";
 export * from "./TreeView/TreeView";
+export * from "./Video/Video";
