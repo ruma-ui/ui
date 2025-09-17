@@ -15,7 +15,7 @@ const meta: Meta<typeof FloatingActionButton> = {
     },
     decorators: [
         (Story) => (
-            <div className="relative h-96 w-full">
+            <div className="relative min-h-24 w-full">
                 <Story />
             </div>
         ),
@@ -312,4 +312,11 @@ export const WithMultipleActions: Story = {
             },
         ],
     },
+    decorators: [
+        (Story) => (
+            <div className="relative min-h-96 w-full p-4">
+                <Story />
+            </div>
+        ),
+    ],
 };
