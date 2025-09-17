@@ -1,0 +1,615 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Clipboard } from "./Clipboard";
+import * as ClipboardStories from "./Clipboard.stories";
+
+<Meta of={ClipboardStories} />
+
+# Clipboard
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Clipboard)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+    - [Primary Variant](#primary-variant)
+    - [Secondary Variant](#secondary-variant)
+    - [Outline Variant](#outline-variant)
+    - [Ghost Variant](#ghost-variant)
+- [Animations](#animations)
+- [With Tooltip](#with-tooltip)
+- [Icon Only](#icon-only)
+- [With Text](#with-text)
+- [Feedback Options](#feedback-options)
+- [Disabled State](#disabled-state)
+- [Sizes](#sizes)
+- [Component API](#component-api)
+    - [Clipboard `value`](#clipboard-value)
+    - [Clipboard `variant`](#clipboard-variant)
+    - [Clipboard `size`](#clipboard-size)
+    - [Clipboard `iconOnly`](#clipboard-icononly)
+    - [Clipboard `tooltip`](#clipboard-tooltip)
+    - [Clipboard `showFeedback`](#clipboard-showfeedback)
+    - [Clipboard `feedbackText`](#clipboard-feedbacktext)
+    - [Clipboard `feedbackDuration`](#clipboard-feedbackduration)
+    - [Clipboard `animation`](#clipboard-animation)
+    - [Clipboard `onCopy` and `onError`](#clipboard-oncopy-and-onerror)
+    - [Clipboard `disabled`](#clipboard-disabled)
+    - [Clipboard `rounded`](#clipboard-rounded)
+    - [Clipboard `className`](#clipboard-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Clipboard component provides an easy way to copy text content to the user's clipboard with visual feedback. It handles the clipboard API and provides consistent styling that matches our design system with smooth transitions and proper focus states.
+
+<Canvas of={ClipboardStories.Default} />
+
+## Variants
+
+### Primary Variant
+
+The primary clipboard provides a more prominent appearance with better hover effects and visual feedback.
+
+<Canvas of={ClipboardStories.Default} />
+
+### Secondary Variant
+
+The secondary variant offers a more subtle appearance, perfect for less prominent copy actions.
+
+<Canvas of={ClipboardStories.Secondary} />
+
+### Outline Variant
+
+The outline variant provides a bordered appearance with transparent background, ideal for secondary actions that need clear visual separation.
+
+<Canvas of={ClipboardStories.Outline} />
+
+### Ghost Variant
+
+The ghost variant offers the most minimal appearance with no background or border, perfect for inline copy actions within content.
+
+<Canvas of={ClipboardStories.Ghost} />
+
+## Animations
+
+The Clipboard component supports various animation effects to enhance user interaction feedback.
+
+<Canvas of={ClipboardStories.WithAnimation} />
+
+## With Tooltip
+
+Tooltips provide additional context and improve accessibility by explaining the clipboard action. The tooltip automatically changes to show feedback when content is copied.
+
+<Canvas of={ClipboardStories.WithTooltip} />
+
+## Icon Only
+
+The icon-only mode displays just the copy icon, making it perfect for compact interfaces.
+
+<Canvas of={ClipboardStories.IconOnly} />
+
+## With Text
+
+The Clipboard component can display text alongside the icon for better clarity and user experience. Set `iconOnly={false}` to show the text content.
+
+<Canvas of={ClipboardStories.WithText} />
+
+## Feedback Options
+
+### Custom Feedback Text
+
+Customize the feedback message shown when text is copied successfully.
+
+<Canvas of={ClipboardStories.CustomFeedback} />
+
+### No Feedback
+
+Disable the visual feedback entirely for a more minimal experience.
+
+<Canvas of={ClipboardStories.NoFeedback} />
+
+## Disabled State
+
+Disabled clipboard buttons indicate that the copy functionality is temporarily unavailable. The button becomes non-interactive and visually de-emphasized.
+
+<Canvas of={ClipboardStories.Disabled} />
+
+## Sizes
+
+The clipboard component supports multiple sizes to fit different interface contexts.
+
+<Canvas of={ClipboardStories.SmallSize} />
+
+<Canvas of={ClipboardStories.LargeSize} />
+
+## Component API
+
+<ArgTypes of={Clipboard} />
+
+### Clipboard `value`
+
+The `value` prop specifies the text content that will be copied to the clipboard when the button is clicked. This is a required prop.
+
+```jsx
+<Clipboard value="https://example.com" />
+<Clipboard value="npm install @ruma-ui/ui" />
+```
+
+### Clipboard `variant`
+
+The `variant` prop determines the visual prominence of the clipboard trigger. Choose the appropriate variant based on the context and importance of the copy action.
+
+```jsx
+<Clipboard value="text" variant="primary" />    // More prominent appearance
+<Clipboard value="text" variant="secondary" />  // More subtle appearance
+<Clipboard value="text" variant="outline" />    // Bordered with transparent background
+<Clipboard value="text" variant="ghost" />      // Minimal with no background or border
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Clipboard value="text" variant="primary">
+            Primary
+        </Clipboard>
+        <Clipboard value="text" variant="secondary">
+            Secondary
+        </Clipboard>
+        <Clipboard value="text" variant="outline">
+            Outline
+        </Clipboard>
+        <Clipboard value="text" variant="ghost">
+            Ghost
+        </Clipboard>
+    </div>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
+        <Clipboard value="text" variant="primary" iconOnly={false}>
+            Primary Text
+        </Clipboard>
+        <Clipboard value="text" variant="secondary" iconOnly={false}>
+            Secondary Text
+        </Clipboard>
+        <Clipboard value="text" variant="outline" iconOnly={false}>
+            Outline Text
+        </Clipboard>
+        <Clipboard value="text" variant="ghost" iconOnly={false}>
+            Ghost Text
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `size`
+
+The `size` prop controls the clipboard trigger's dimensions and icon size. Choose sizes based on the interface context.
+
+```jsx
+<Clipboard value="text" size="sm" />  // Small
+<Clipboard value="text" size="md" />  // Medium (default)
+<Clipboard value="text" size="lg" />  // Large
+```
+
+<Unstyled>
+    <div
+        style={{
+            display: "flex",
+            gap: "8px",
+            alignItems: "center",
+            flexWrap: "wrap",
+        }}
+    >
+        <Clipboard value="text" size="sm" variant="primary">
+            SM
+        </Clipboard>
+        <Clipboard value="text" size="md" variant="primary">
+            MD
+        </Clipboard>
+        <Clipboard value="text" size="lg" variant="primary">
+            LG
+        </Clipboard>
+    </div>
+    <div
+        style={{
+            display: "flex",
+            gap: "8px",
+            alignItems: "center",
+            flexWrap: "wrap",
+            marginTop: "8px",
+        }}
+    >
+        <Clipboard value="text" size="sm" variant="primary" iconOnly={false}>
+            Small
+        </Clipboard>
+        <Clipboard value="text" size="md" variant="primary" iconOnly={false}>
+            Medium
+        </Clipboard>
+        <Clipboard value="text" size="lg" variant="primary" iconOnly={false}>
+            Large
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `iconOnly`
+
+The `iconOnly` prop displays only the copy icon without any text, creating a more compact interface element. This is enabled by default.
+
+```jsx
+<Clipboard value="text" iconOnly={true} />     // Icon only (default)
+<Clipboard value="text" iconOnly={false} />   // With text
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
+        <Clipboard value="text" iconOnly={true} variant="primary" />
+        <Clipboard value="text" iconOnly={false} variant="primary">
+            With Text
+        </Clipboard>
+        <Clipboard value="text" iconOnly={true} variant="secondary" />
+        <Clipboard value="text" iconOnly={false} variant="secondary">
+            With Text
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `tooltip`
+
+The `tooltip` prop adds a tooltip that appears on hover, providing additional context about the clipboard action. When content is copied and `showFeedback` is enabled, the tooltip automatically changes to display the feedback text. Defaults to "Copy to clipboard".
+
+```jsx
+<Clipboard value="text" tooltip="Copy to clipboard" />  // Changes to "Copied!" when clicked
+<Clipboard value="text" tooltip="Copy API key" />       // Changes to feedback text when clicked
+```
+
+### Clipboard `showFeedback`
+
+The `showFeedback` prop controls whether visual feedback is shown when text is copied. When enabled, the trigger will temporarily display the feedback text and icon.
+
+```jsx
+<Clipboard value="text" showFeedback={true} />   // Show feedback (default)
+<Clipboard value="text" showFeedback={false} />  // No feedback
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Clipboard value="text" showFeedback={true} variant="primary">
+            With Feedback
+        </Clipboard>
+        <Clipboard value="text" showFeedback={false} variant="primary">
+            No Feedback
+        </Clipboard>
+    </div>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
+        <Clipboard value="text" showFeedback={true} variant="primary" iconOnly={false}>
+            With Feedback
+        </Clipboard>
+        <Clipboard value="text" showFeedback={false} variant="primary" iconOnly={false}>
+            No Feedback
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `feedbackText`
+
+The `feedbackText` prop allows you to customize the text displayed when the copy operation succeeds. This works in combination with `showFeedback`.
+
+```jsx
+<Clipboard value="text" feedbackText="Copied!">Default</Clipboard>
+<Clipboard value="text" feedbackText="✅ Copied to clipboard!">Custom</Clipboard>
+<Clipboard value="text" feedbackText="Done!">Short</Clipboard>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Clipboard value="text" feedbackText="Copied!" variant="primary">
+            Default
+        </Clipboard>
+        <Clipboard value="text" feedbackText="✅ Copied!" variant="secondary">
+            With Icon
+        </Clipboard>
+    </div>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
+        <Clipboard value="text" feedbackText="Copied!" variant="primary" iconOnly={false}>
+            Default
+        </Clipboard>
+        <Clipboard value="text" feedbackText="✅ Copied!" variant="secondary" iconOnly={false}>
+            With Icon
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `feedbackDuration`
+
+The `feedbackDuration` prop controls how long the feedback message is displayed in milliseconds. After this duration, the button returns to its original state.
+
+```jsx
+<Clipboard value="text" feedbackDuration={1000}>1 second</Clipboard>
+<Clipboard value="text" feedbackDuration={3000}>3 seconds</Clipboard>
+<Clipboard value="text" feedbackDuration={5000}>5 seconds</Clipboard>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Clipboard value="text" feedbackDuration={1000} variant="primary">
+            1s
+        </Clipboard>
+        <Clipboard value="text" feedbackDuration={3000} variant="primary">
+            3s
+        </Clipboard>
+    </div>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
+        <Clipboard value="text" feedbackDuration={1000} variant="primary" iconOnly={false}>
+            1 second
+        </Clipboard>
+        <Clipboard value="text" feedbackDuration={3000} variant="primary" iconOnly={false}>
+            3 seconds
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `animation`
+
+The `animation` prop adds interactive animation effects to enhance user feedback. Choose from various animation styles or disable animations entirely.
+
+```jsx
+<Clipboard value="text" animation="none" />     // No animation
+<Clipboard value="text" animation="scale" />    // Scale effect on hover/active
+<Clipboard value="text" animation="glow" />     // Glow effect with shadow
+<Clipboard value="text" animation="press" />    // Press effect on active
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Clipboard value="text" animation="none" variant="primary">
+            None
+        </Clipboard>
+        <Clipboard value="text" animation="scale" variant="primary">
+            Scale
+        </Clipboard>
+        <Clipboard value="text" animation="glow" variant="primary">
+            Glow
+        </Clipboard>
+        <Clipboard value="text" animation="press" variant="primary">
+            Press
+        </Clipboard>
+    </div>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
+        <Clipboard value="text" animation="none" variant="primary" iconOnly={false}>
+            None
+        </Clipboard>
+        <Clipboard value="text" animation="scale" variant="primary" iconOnly={false}>
+            Scale
+        </Clipboard>
+        <Clipboard value="text" animation="glow" variant="primary" iconOnly={false}>
+            Glow
+        </Clipboard>
+        <Clipboard value="text" animation="press" variant="primary" iconOnly={false}>
+            Press
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `onCopy` and `onError`
+
+The `onCopy` callback is fired when text is successfully copied to the clipboard. The `onError` callback is fired when the copy operation fails.
+
+```jsx
+<Clipboard
+    value="text"
+    onCopy={(copiedValue) => console.log("Copied:", copiedValue)}
+    onError={(error) => console.error("Copy failed:", error)}
+>
+    Copy with callbacks
+</Clipboard>
+```
+
+### Clipboard `disabled`
+
+The `disabled` prop disables the clipboard functionality and applies disabled styling. This is useful when the copy action should not be available temporarily.
+
+```jsx
+<Clipboard value="text" disabled>Disabled</Clipboard>
+<Clipboard value="text" disabled={false}>Enabled</Clipboard>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Clipboard value="text" disabled variant="primary">
+            Disabled
+        </Clipboard>
+        <Clipboard value="text" variant="primary">
+            Enabled
+        </Clipboard>
+    </div>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
+        <Clipboard value="text" disabled variant="primary" iconOnly={false}>
+            Disabled
+        </Clipboard>
+        <Clipboard value="text" variant="primary" iconOnly={false}>
+            Enabled
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `rounded`
+
+Control the border radius of clipboard buttons to match your design system's aesthetic.
+
+```jsx
+<Clipboard value="text" rounded="none">Square</Clipboard>
+<Clipboard value="text" rounded="sm">Small Radius</Clipboard>
+<Clipboard value="text" rounded="md">Medium Radius</Clipboard>
+<Clipboard value="text" rounded="lg">Large Radius</Clipboard>
+<Clipboard value="text" rounded="xl">Extra Large Radius</Clipboard>
+<Clipboard value="text" rounded="full">Pill Shape</Clipboard>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <Clipboard value="text" rounded="none" variant="primary">
+            Square
+        </Clipboard>
+        <Clipboard value="text" rounded="sm" variant="primary">
+            Small
+        </Clipboard>
+        <Clipboard value="text" rounded="md" variant="primary">
+            Medium
+        </Clipboard>
+        <Clipboard value="text" rounded="lg" variant="primary">
+            Large
+        </Clipboard>
+        <Clipboard value="text" rounded="xl" variant="primary">
+            XL
+        </Clipboard>
+        <Clipboard value="text" rounded="full" variant="primary">
+            Pill
+        </Clipboard>
+    </div>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
+        <Clipboard value="text" rounded="none" variant="primary" iconOnly={false}>
+            Square
+        </Clipboard>
+        <Clipboard value="text" rounded="sm" variant="primary" iconOnly={false}>
+            Small
+        </Clipboard>
+        <Clipboard value="text" rounded="md" variant="primary" iconOnly={false}>
+            Medium
+        </Clipboard>
+        <Clipboard value="text" rounded="lg" variant="primary" iconOnly={false}>
+            Large
+        </Clipboard>
+        <Clipboard value="text" rounded="xl" variant="primary" iconOnly={false}>
+            XL
+        </Clipboard>
+        <Clipboard value="text" rounded="full" variant="primary" iconOnly={false}>
+            Pill
+        </Clipboard>
+    </div>
+</Unstyled>
+
+### Clipboard `className`
+
+The `className` prop allows you to add custom styling while preserving the component's built-in styles. This is useful for adding custom colors, spacing, or other design elements.
+
+```jsx
+<Clipboard
+    value="text"
+    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg"
+/>
+<Clipboard
+    value="text"
+    className="border-2 border-dashed border-orange-400 bg-orange-50 text-orange-600 hover:bg-orange-100"
+/>
+```
+
+<Unstyled>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px" }}>
+        <Clipboard
+            value="text"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg hover:from-purple-600 hover:to-pink-600"
+        >
+            Custom Styled
+        </Clipboard>
+        <Clipboard
+            value="text"
+            className="border-2 border-dashed border-orange-400 bg-orange-50 text-orange-600 hover:bg-orange-100"
+        >
+            Dashed Border
+        </Clipboard>
+    </div>
+</Unstyled>
+
+## Accessibility
+
+Our Clipboard component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper `<button>` elements with correct ARIA attributes
+- **Keyboard Navigation**: Full support for Enter and Space key activation
+- **Screen Reader Support**: Proper labeling with `aria-label` that updates based on state
+- **Focus Management**: Clear focus indicators and logical tab order
+- **State Communication**: Screen readers are informed when content is copied
+- **Error Handling**: Failed copy operations are communicated to assistive technologies
+
+## Best Practices
+
+### Do's ✅
+
+- Always provide meaningful `value` content to copy
+- Use tooltips to provide context, especially for icon-only variants (they automatically change to show feedback when copied)
+- Choose appropriate variants based on visual hierarchy (primary for prominent, secondary for subtle)
+- Test clipboard functionality across different browsers
+- Use appropriate feedback duration (2-3 seconds is usually ideal)
+- Consider accessibility - ensure sufficient color contrast and hover states
+
+### Don'ts ❌
+
+- Don't use clipboard triggers for non-copy actions
+- Avoid very long feedback durations that might confuse users
+- Don't disable copy functionality without clear visual indication
+- Avoid using clipboard for sensitive information without user consent
+- Don't rely on clipboard functionality as the only way to access content
+- Don't use icon-only variants without tooltips for clarity
+
+### Usage Examples
+
+```jsx
+// Basic usage (icon-only with default tooltip that changes to "Copied!")
+<Clipboard value="https://example.com" />
+
+// With custom tooltip that changes to feedback text when copied
+<Clipboard
+    value="npm install @ruma-ui/ui"
+    tooltip="Copy install command"
+/>
+
+// With text label
+<Clipboard
+    value="api-key-12345"
+    iconOnly={false}
+    tooltip="Copy API key"
+>
+    Copy Key
+</Clipboard>
+
+// With custom feedback
+<Clipboard
+    value="secret-token"
+    feedbackText="🔑 Token copied!"
+    feedbackDuration={3000}
+    tooltip="Copy authentication token"
+/>
+
+// With animations
+<Clipboard
+    value="text"
+    animation="scale"
+    variant="primary"
+/>
+
+// In a code block
+<div className="relative bg-gray-900 p-4 rounded">
+    <pre><code>const code = "example";</code></pre>
+    <Clipboard
+        value='const code = "example";'
+        className="absolute top-2 right-2"
+        variant="secondary"
+        tooltip="Copy code"
+    />
+</div>
+
+// With callbacks
+<Clipboard
+    value="text"
+    onCopy={(value) => console.log('Copied:', value)}
+    onError={(error) => console.error('Copy failed:', error)}
+/>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

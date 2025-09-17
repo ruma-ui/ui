@@ -8,6 +8,7 @@ export * from "./Calendar/Calendar";
 export * from "./Card/Card";
 export * from "./Carousel/Carousel";
 export * from "./Checkbox/Checkbox";
+export * from "./Clipboard/Clipboard";
 export * from "./ContextMenu/ContextMenu";
 export * from "./DatePicker/DatePicker";
 export * from "./Drawer/Drawer";

@@ -243,7 +243,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     }, [isVisible, position, content]);
 
     const getPositionStyles = () => {
-        const offset = 8;
+        const offset = 12;
 
         switch (actualPosition) {
             case "top":
