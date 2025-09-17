@@ -24,6 +24,13 @@ const meta: Meta<typeof Tooltip> = {
             page: mdx,
         },
     },
+    decorators: [
+        (Story) => (
+            <div className="flex items-center justify-center p-8">
+                <Story />
+            </div>
+        ),
+    ],
     argTypes: {
         position: {
             control: { type: "radio" },
