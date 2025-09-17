@@ -95,7 +95,7 @@ export interface ResizableProps extends Omit<React.HTMLAttributes<HTMLDivElement
 }
 
 const baseContainer = tw`relative inline-block`;
-const baseHandle = tw`absolute z-10 cursor-pointer bg-blue-500 opacity-50 transition-all select-none hover:bg-blue-600 hover:opacity-80 active:bg-blue-700`;
+const baseHandle = tw`absolute z-10 bg-blue-500 opacity-50 transition-all select-none hover:bg-blue-600 hover:opacity-80 active:bg-blue-700`;
 
 const handleColors = {
     default: tw``,
@@ -137,7 +137,6 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
             "horizontal" | "vertical" | "both" | null
         >(null);
 
-        // Combine forwarded ref and local ref
         React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
 
         const handleMouseDown = useCallback(
@@ -154,8 +153,9 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                 let finalSize = { width: startWidth, height: startHeight };
 
                 const handleMouseMove = (e: MouseEvent) => {
-                    if (!isResizing) return;
-
+                    // This is where the stale closure was causing the issue.
+                    // The `if (!isResizing)` check is removed because this listener
+                    // is only active during a drag operation.
                     let newWidth = startWidth;
                     let newHeight = startHeight;
 
@@ -176,7 +176,6 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                     const newSize = { width: newWidth, height: newHeight };
                     finalSize = newSize;
 
-                    // Use requestAnimationFrame for smoother updates
                     requestAnimationFrame(() => {
                         setSize(newSize);
                         onResize?.(newSize);
@@ -189,18 +188,16 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                     onResizeEnd?.(finalSize);
                     document.removeEventListener("mousemove", handleMouseMove);
                     document.removeEventListener("mouseup", handleMouseUp);
-                    // Re-enable text selection
                     document.body.style.userSelect = "";
                 };
 
-                // Disable text selection during resize
                 document.body.style.userSelect = "none";
-
                 document.addEventListener("mousemove", handleMouseMove);
                 document.addEventListener("mouseup", handleMouseUp);
             },
             [
-                size,
+                size.width,
+                size.height,
                 minWidth,
                 maxWidth,
                 minHeight,
@@ -208,17 +205,14 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                 onResize,
                 onResizeStart,
                 onResizeEnd,
-                isResizing,
-                setActiveDirection,
             ],
         );
 
-        // Handle keyboard resize for accessibility
         const handleKeyDown = useCallback(
             (direction: "horizontal" | "vertical" | "both") => (e: React.KeyboardEvent) => {
                 if (!resizable) return;
 
-                const step = 10; // pixels to move per key press
+                const step = 10;
                 let newWidth = size.width;
                 let newHeight = size.height;
 
@@ -266,9 +260,7 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                 className={cn(baseContainer, className)}
                 style={{ ...containerStyle, ...style }}
                 onMouseDown={(e) => {
-                    // Only handle container clicks if not clicking on a handle
                     if (!(e.target as HTMLElement).classList.contains("handle")) {
-                        // Make the whole container resizable only if no handles are shown
                         if (!showHandles) {
                             handleMouseDown("both")(e);
                         }
@@ -280,7 +272,6 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
 
                 {showHandles && resizable && (
                     <>
-                        {/* Horizontal resize handle */}
                         {(direction === "horizontal" || direction === "both") && (
                             <div
                                 className={cn(
@@ -310,7 +301,6 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                             />
                         )}
 
-                        {/* Vertical resize handle */}
                         {(direction === "vertical" || direction === "both") && (
                             <div
                                 className={cn(
@@ -340,7 +330,6 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                             />
                         )}
 
-                        {/* Corner resize handle for both directions */}
                         {showCornerHandle && direction === "both" && (
                             <div
                                 className={cn(
@@ -356,7 +345,7 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                                     right: 0,
                                     width: `${cornerHandleSize || handleSize}px`,
                                     height: `${cornerHandleSize || handleSize}px`,
-                                    cursor: "nw-resize",
+                                    cursor: "nwse-resize",
                                     zIndex: 15,
                                 }}
                                 onMouseDown={handleMouseDown("both")}
