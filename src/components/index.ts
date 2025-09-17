@@ -1,4 +1,5 @@
 export * from "./Accordion/Accordion";
+export * from "./Alert/Alert";
 export * from "./Avatar/Avatar";
 export * from "./Badge/Badge";
 export * from "./Breadcrumb/Breadcrumb";
