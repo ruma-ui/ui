@@ -1,0 +1,271 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import { TopLoader } from "./TopLoader";
+import * as TopLoaderStories from "./TopLoader.stories";
+
+<Meta of={TopLoaderStories} />
+
+# TopLoader
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/TopLoader)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Indeterminate Loading](#indeterminate-loading)
+- [Determinate Progress](#determinate-progress)
+- [Interactive Examples](#interactive-examples)
+- [Sizes](#sizes)
+- [Variants](#variants)
+- [Animation Speeds](#animation-speeds)
+- [Glow Effect](#glow-effect)
+- [Custom Colors](#custom-colors)
+- [Page Transitions](#page-transitions)
+- [Component API](#component-api)
+    - [TopLoader `progress`](#toploader-progress)
+    - [TopLoader `show`](#toploader-show)
+    - [TopLoader `size`](#toploader-size)
+    - [TopLoader `variant`](#toploader-variant)
+    - [TopLoader `color`](#toploader-color)
+    - [TopLoader `speed`](#toploader-speed)
+    - [TopLoader `glow`](#toploader-glow)
+    - [TopLoader `zIndex`](#toploader-zindex)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The TopLoader component provides a sleek, animated progress bar that appears at the top of the viewport. It's perfect for indicating loading states during page transitions, API calls, file uploads, or any async operation that requires visual feedback. The component supports both determinate and indeterminate progress states with smooth animations.
+
+<Canvas of={TopLoaderStories.Default} />
+
+## Indeterminate Loading
+
+Use indeterminate mode when you don't know the exact progress or duration of the operation. The loader will show a continuous animation to indicate ongoing activity.
+
+<Canvas of={TopLoaderStories.Default} />
+
+## Determinate Progress
+
+For operations where you can track progress (like file uploads or data processing), use determinate mode with a specific progress value.
+
+<Canvas of={TopLoaderStories.Determinate} />
+
+## Interactive Examples
+
+See the TopLoader in action with real-time progress updates and user interactions.
+
+<Canvas of={TopLoaderStories.Interactive} />
+
+## Sizes
+
+Choose from five different sizes to match your design requirements and visual hierarchy.
+
+<Canvas of={TopLoaderStories.Sizes} />
+
+## Variants
+
+The TopLoader comes with semantic color variants for different contexts and states.
+
+<Canvas of={TopLoaderStories.Variants} />
+
+## Animation Speeds
+
+Control the animation speed to match your application's feel and performance requirements.
+
+<Canvas of={TopLoaderStories.Speeds} />
+
+## Glow Effect
+
+Add a subtle glow effect to make the loader more prominent and visually appealing.
+
+<Canvas of={TopLoaderStories.WithGlow} />
+
+## Custom Colors
+
+Override the default variants with custom colors for brand-specific styling.
+
+<Canvas of={TopLoaderStories.CustomColor} />
+
+## Page Transitions
+
+Perfect for indicating page navigation and route changes in single-page applications.
+
+<Canvas of={TopLoaderStories.PageTransition} />
+
+## Component API
+
+<ArgTypes of={TopLoaderStories} />
+
+### TopLoader `progress`
+
+The `progress` prop accepts a number between 0-100 for determinate progress, or `null` for indeterminate loading. Use `null` when you don't know the exact progress or duration.
+
+### TopLoader `show`
+
+Controls the visibility of the loader. Set to `false` to hide the loader completely. The component uses opacity transitions for smooth show/hide animations.
+
+### TopLoader `size`
+
+Choose from five predefined sizes (`xs`, `sm`, `md`, `lg`, `xl`) to control the height of the loader bar. The default `md` size works well for most applications.
+
+### TopLoader `variant`
+
+Select from semantic color variants (`primary`, `secondary`, `success`, `warning`, `error`) that align with your design system's color palette.
+
+### TopLoader `color`
+
+Override the variant colors with a custom hex color value. This gives you complete control over the loader's appearance while maintaining all other functionality.
+
+### TopLoader `speed`
+
+Control animation timing with three speed options:
+
+- `slow`: 500ms transitions for deliberate, calming animations
+- `normal`: 300ms transitions for balanced user experience
+- `fast`: 200ms transitions for quick, responsive feel
+
+### TopLoader `glow`
+
+Add a subtle glow effect that creates a shadow based on the loader's color. This enhances visual prominence without being distracting.
+
+### TopLoader `zIndex`
+
+Control the stacking order of the loader. The default value of 50 ensures it appears above most content but can be adjusted for specific layout requirements.
+
+## Accessibility
+
+Our TopLoader component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper ARIA attributes for screen reader support
+- **Progress Indication**: Correctly communicates progress values to assistive technologies
+- **State Communication**: Properly indicates loading states with `aria-valuenow`, `aria-valuemin`, and `aria-valuemax`
+- **Screen Reader Friendly**: Includes descriptive `aria-label` for context
+- **Keyboard Navigation**: Doesn't interfere with keyboard navigation as it's a passive indicator
+- **Color Contrast**: All variants meet WCAG color contrast requirements
+- **Motion Preferences**: Respects user's motion preferences through CSS transitions
+
+## Best Practices
+
+### Do's ✅
+
+- Use indeterminate mode for operations of unknown duration
+- Use determinate mode when you can provide accurate progress feedback
+- Position the loader at the top of the viewport for maximum visibility
+- Choose appropriate sizes based on your application's visual hierarchy
+- Use semantic variants (success, warning, error) to provide contextual feedback
+- Combine with other loading indicators for complex operations
+- Test with real user scenarios to ensure appropriate timing
+
+### Don'ts ❌
+
+- Don't use the loader for operations that complete instantly
+- Avoid blocking user interaction unless absolutely necessary
+- Don't place multiple loaders on the same page simultaneously
+- Avoid using the loader for background operations that don't affect the UI
+- Don't rely solely on color to convey meaning (combine with text when possible)
+
+### Usage Patterns
+
+```jsx
+// Basic indeterminate loading
+<TopLoader progress={null} show={isLoading} />
+
+// File upload with progress
+<TopLoader
+  progress={uploadProgress}
+  show={isUploading}
+  variant="primary"
+  size="md"
+/>
+
+// Page transition
+<TopLoader
+  progress={null}
+  show={isNavigating}
+  variant="primary"
+  speed="fast"
+/>
+
+// Form submission
+<TopLoader
+  progress={null}
+  show={isSubmitting}
+  variant="primary"
+  glow
+/>
+
+// Custom branded loader
+<TopLoader
+  progress={loadingProgress}
+  show={isLoading}
+  color="#your-brand-color"
+  size="lg"
+  glow
+/>
+```
+
+### Integration Examples
+
+```jsx
+// With React Router
+import { useLocation } from "react-router-dom";
+
+function App() {
+    const location = useLocation();
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+        // Simulate route loading
+        const timer = setTimeout(() => setIsLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, [location]);
+
+    return (
+        <>
+            <TopLoader progress={null} show={isLoading} />
+            {/* Your app content */}
+        </>
+    );
+}
+
+// With API calls
+function DataComponent() {
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
+
+    const fetchData = async () => {
+        setLoading(true);
+        setProgress(0);
+
+        try {
+            // Simulate progress updates
+            for (let i = 0; i <= 100; i += 20) {
+                setProgress(i);
+                await new Promise((resolve) => setTimeout(resolve, 200));
+            }
+
+            await apiCall();
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <>
+            <TopLoader progress={progress} show={loading} />
+            <button onClick={fetchData}>Load Data</button>
+        </>
+    );
+}
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

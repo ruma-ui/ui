@@ -43,4 +43,5 @@ export * from "./Textarea/Textarea";
 export * from "./TextInput/TextInput";
 export * from "./Toast/Toast";
 export * from "./Tooltip/Tooltip";
+export * from "./TopLoader/TopLoader";
 export * from "./TreeView/TreeView";
