@@ -13,6 +13,7 @@ export * from "./ContextMenu/ContextMenu";
 export * from "./DatePicker/DatePicker";
 export * from "./Drawer/Drawer";
 export * from "./Dropdown/Dropdown";
+export * from "./Editable/Editable";
 export * from "./FileUpload/FileUpload";
 export * from "./Form/Form";
 export * from "./Image/Image";
