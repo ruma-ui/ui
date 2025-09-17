@@ -24,6 +24,7 @@ export * from "./Link/Link";
 export * from "./Loader/Loader";
 export * from "./Modal/Modal";
 export * from "./MultiSelect/MultiSelect";
+export * from "./NavigationMenu/NavigationMenu";
 export * from "./Pagination/Pagination";
 export * from "./Popover/Popover";
 export * from "./Progress/Progress";
