@@ -161,9 +161,9 @@ const itemVariants = {
 };
 
 const itemSizes = {
-    sm: tw`px-3 py-1.5 text-xs`,
-    md: tw`px-4 py-2 text-sm`,
-    lg: tw`px-5 py-2.5 text-base`,
+    sm: tw`px-2 py-1 text-xs`,
+    md: tw`px-3 py-1.5 text-sm`,
+    lg: tw`px-4 py-2 text-base`,
 };
 
 // Increased spacing for submenus
@@ -462,10 +462,17 @@ export const NavigationMenuGroup: React.FC<NavigationMenuGroupProps> = ({
     title,
     ...props
 }) => {
+    const { size } = useNavigationMenu();
+
     return (
-        <div className={cn("px-2 py-1.5", className)} role="group" {...props}>
+        <div className={className} role="group" {...props}>
             {title && (
-                <div className="px-2 py-1.5 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                <div
+                    className={cn(
+                        itemSizes[size],
+                        "my-0.5 border-b border-gray-200 font-semibold tracking-wider text-gray-500",
+                    )}
+                >
                     {title}
                 </div>
             )}
