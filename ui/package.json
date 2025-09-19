@@ -6,7 +6,7 @@
   "author": "Ruma UI",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruma-ui/ui.git"
+    "url": "git+https://github.com/ruma-ui/ui.git"
   },
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -25,5 +25,8 @@
       "import": "./index.mjs",
       "require": "./index.js"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
