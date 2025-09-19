@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/ruma-ui/ui/compare/v1.0.3...v1.0.4) (2025-09-19)
+
+### 🐛 Bug Fixes
+
+- remove extraneous quotation mark in deploy to Chromatic step ([1ddb76f](https://github.com/ruma-ui/ui/commit/1ddb76f351d6a8af9cdc74bd68ffc9e9dcadea28))
+
 ## [1.0.3](https://github.com/ruma-ui/ui/compare/v1.0.2...v1.0.3) (2025-09-19)
 
 ### ♻️ Code Refactoring
