@@ -1,3 +1,9 @@
+## [1.0.6](https://github.com/ruma-ui/ui/compare/v1.0.5...v1.0.6) (2025-09-19)
+
+### 🐛 Bug Fixes
+
+- update deploy to Chromatic step and add build-storybook script ([73101d4](https://github.com/ruma-ui/ui/commit/73101d459fc94aa3b3e4f21e3fdfeebd017e86bb))
+
 ## [1.0.5](https://github.com/ruma-ui/ui/compare/v1.0.4...v1.0.5) (2025-09-19)
 
 ### 🐛 Bug Fixes
