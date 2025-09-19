@@ -5,7 +5,7 @@ export default [
   ...baseConfig,
   ...nx.configs["flat/react"],
   {
-    ignores: ["storybook-static/**", "dist/**", "coverage/**", "**/*.d.ts"],
+    ignores: ["**/storybook-static/**"],
   },
   {
     files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
