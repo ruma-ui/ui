@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/ruma-ui/ui/compare/v1.0.1...v1.0.2) (2025-09-19)
+
+### 🐛 Bug Fixes
+
+- update ESLint configuration to ignore additional directories and add PostCSS config file ([6ee506f](https://github.com/ruma-ui/ui/commit/6ee506fd7513a59f76ee92d42a1507f6d6ce95ae))
+
 ## [1.0.1](https://github.com/ruma-ui/ui/compare/v1.0.0...v1.0.1) (2025-09-19)
 
 ### 🐛 Bug Fixes
