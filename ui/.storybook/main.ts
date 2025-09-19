@@ -1,6 +1,6 @@
+import type { StorybookConfig } from "@storybook/react-vite";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import type { StorybookConfig } from "@storybook/react-vite";
 
 const require = createRequire(import.meta.url);
 
@@ -25,6 +25,21 @@ const config: StorybookConfig = {
 
     // Provide process polyfill for browser environment
     config.define["process.env"] = JSON.stringify(process.env);
+
+    // Configure build options to prevent ESBuild service issues
+    config.build = {
+      ...config.build,
+      rollupOptions: {
+        ...config.build?.rollupOptions,
+        external: ["react", "react-dom"],
+      },
+    };
+
+    // Ensure proper CSS handling
+    config.css = {
+      ...config.css,
+      postcss: "../postcss.config.cjs",
+    };
 
     return config;
   },
