@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/ruma-ui/ui/compare/v1.0.2...v1.0.3) (2025-09-19)
+
+### ♻️ Code Refactoring
+
+- update Storybook configuration and ESLint settings ([24ea270](https://github.com/ruma-ui/ui/commit/24ea2702c6eb6febe8e8e5cc30fe772431ff363f))
+
 ## [1.0.2](https://github.com/ruma-ui/ui/compare/v1.0.1...v1.0.2) (2025-09-19)
 
 ### 🐛 Bug Fixes
