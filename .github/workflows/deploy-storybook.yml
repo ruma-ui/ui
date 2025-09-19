@@ -37,6 +37,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Deploy to Chromatic
-        run: npx chromatic --auto-accept-changes --build-script-name="nx run ui:build-storybook"
+        run: npx chromatic --auto-accept-changes
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

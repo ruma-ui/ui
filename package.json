@@ -24,6 +24,7 @@
     "typecheck": "nx run-many -t typecheck",
     "storybook": "nx storybook ui",
     "storybook:build": "nx build-storybook ui",
+    "build-storybook": "nx build-storybook ui",
     "docs:api": "typedoc",
     "docs:build": "npm run docs:api && npm run storybook:build",
     "size": "size-limit",
