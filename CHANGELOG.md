@@ -1,3 +1,13 @@
+## [1.1.0](https://github.com/ruma-ui/ui/compare/v1.0.6...v1.1.0) (2025-09-19)
+
+### 🚀 Features
+
+- add workflow_dispatch input for release type and enhance failure notification ([66f44d1](https://github.com/ruma-ui/ui/commit/66f44d1afde87d251ca53055edbff1937b8b7288))
+
+### 🐛 Bug Fixes
+
+- correct environment variable name for NPM token in release workflow ([50e0720](https://github.com/ruma-ui/ui/commit/50e07201768bf879a73858e3fca107860ad72e75))
+
 ## [1.0.6](https://github.com/ruma-ui/ui/compare/v1.0.5...v1.0.6) (2025-09-19)
 
 ### 🐛 Bug Fixes
