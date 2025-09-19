@@ -53,7 +53,7 @@
     "@eslint/js": "^9.36.0",
     "@next/eslint-plugin-next": "^15.5.3",
     "@nx/eslint": "21.5.2",
-    "@nx/eslint-plugin": "21.5.2",
+    "@nx/eslint-plugin": "21.5.3",
     "@nx/jest": "21.5.2",
     "@nx/js": "21.5.2",
     "@nx/next": "21.5.2",
