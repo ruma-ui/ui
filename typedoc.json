@@ -6,6 +6,7 @@
   "plugin": ["typedoc-plugin-markdown", "typedoc-plugin-missing-exports"],
   "readme": "./ui/README.md",
   "name": "@ruma/ui",
+  "tsconfig": "./ui/tsconfig.lib.json",
   "includeVersion": true,
   "excludePrivate": true,
   "excludeProtected": true,
