@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@ruma-ui/source", "demo", "website"]
+  "ignore": ["@ruma-ui/source"]
 }
