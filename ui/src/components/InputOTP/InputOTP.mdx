@@ -1,0 +1,416 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { InputOTP } from "./InputOTP";
+import * as InputOTPStories from "./InputOTP.stories";
+
+<Meta of={InputOTPStories} />
+
+# InputOTP
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/InputOTP)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+  - [Primary Variant](#primary-variant)
+  - [Secondary Variant](#secondary-variant)
+- [With Label](#with-label)
+- [With Description](#with-description)
+- [Error State](#error-state)
+- [Disabled State](#disabled-state)
+- [Masked Input](#masked-input)
+- [Alphanumeric Input](#alphanumeric-input)
+- [Custom Length](#custom-length)
+- [Full Width](#full-width)
+- [Controlled Example](#controlled-example)
+- [Component API](#component-api)
+  - [InputOTP `variant`](#inputotp-variant)
+  - [InputOTP `size`](#inputotp-size)
+  - [InputOTP `rounded`](#inputotp-rounded)
+  - [InputOTP `length`](#inputotp-length)
+  - [InputOTP `type`](#inputotp-type)
+  - [InputOTP `gap`](#inputotp-gap)
+  - [InputOTP `mask`](#inputotp-mask)
+  - [InputOTP `className`](#inputotp-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Use Cases](#use-cases)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+A versatile, accessible InputOTP component for one-time passwords, verification codes, PINs, and other sequential character input—styled to match the rest of the system.
+
+<Canvas of={InputOTPStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The default InputOTP appearance with focused blue styling.
+
+<Canvas of={InputOTPStories.Primary} />
+
+### Secondary Variant
+
+A subtle, filled background style for secondary contexts.
+
+<Canvas of={InputOTPStories.Secondary} />
+
+## With Label
+
+Display a label above the InputOTP for clarity and context.
+
+<Canvas of={InputOTPStories.WithLabel} />
+
+## With Description
+
+Use helper text to provide context or instructions for the InputOTP.
+
+<Canvas of={InputOTPStories.WithDescription} />
+
+## Error State
+
+Show validation feedback and message for the InputOTP.
+
+<Canvas of={InputOTPStories.ErrorState} />
+
+## Disabled State
+
+InputOTP can be disabled when not interactive.
+
+<Canvas of={InputOTPStories.Disabled} />
+
+## Masked Input
+
+Use masked input for sensitive data like PINs or passwords.
+
+<Canvas of={InputOTPStories.Masked} />
+
+## Alphanumeric Input
+
+Support both letters and numbers for product keys and similar use cases.
+
+<Canvas of={InputOTPStories.Alphanumeric} />
+
+## Custom Length
+
+Adjust the number of input slots based on your needs.
+
+<Canvas of={InputOTPStories.CustomLength} />
+
+## Full Width
+
+Stretch the InputOTP to fill the container width.
+
+<Canvas of={InputOTPStories.FullWidth} />
+
+## Controlled Example
+
+A functional example showing controlled state and completion handling.
+
+<Canvas of={InputOTPStories.Controlled} />
+
+## Component API
+
+<ArgTypes of={InputOTP} />
+
+### InputOTP `variant`
+
+Controls the visual style of the InputOTP.
+
+```jsx
+<InputOTP variant="primary" length={6} />
+<InputOTP variant="secondary" length={6} />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <InputOTP variant='primary' length={6} />
+    <InputOTP variant='secondary' length={6} />
+  </div>
+</Unstyled>
+
+### InputOTP `size`
+
+Adjusts the height and font size of the InputOTP slots.
+
+```jsx
+<InputOTP size="xs" length={4} />
+<InputOTP size="sm" length={4} />
+<InputOTP size="md" length={4} />
+<InputOTP size="lg" length={4} />
+<InputOTP size="xl" length={4} />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <InputOTP size='xs' length={4} />
+    <InputOTP size='sm' length={4} />
+    <InputOTP size='md' length={4} />
+    <InputOTP size='lg' length={4} />
+    <InputOTP size='xl' length={4} />
+  </div>
+</Unstyled>
+
+### InputOTP `rounded`
+
+Controls the border radius of the InputOTP slots.
+
+```jsx
+<InputOTP rounded="none" length={4} />
+<InputOTP rounded="sm" length={4} />
+<InputOTP rounded="md" length={4} />
+<InputOTP rounded="lg" length={4} />
+<InputOTP rounded="xl" length={4} />
+<InputOTP rounded="full" length={4} />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "12px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <InputOTP rounded='none' length={4} />
+    <InputOTP rounded='sm' length={4} />
+    <InputOTP rounded='md' length={4} />
+    <InputOTP rounded='lg' length={4} />
+    <InputOTP rounded='xl' length={4} />
+    <InputOTP rounded='full' length={4} />
+  </div>
+</Unstyled>
+
+### InputOTP `length`
+
+Sets the number of input slots for the OTP.
+
+```jsx
+<InputOTP length={4} />
+<InputOTP length={6} />
+<InputOTP length={8} />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <InputOTP length={4} />
+    <InputOTP length={6} />
+    <InputOTP length={8} />
+  </div>
+</Unstyled>
+
+### InputOTP `type`
+
+Controls the type of characters allowed in the input.
+
+```jsx
+<InputOTP type="number" length={6} />
+<InputOTP type="text" length={6} />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <div style={{ textAlign: "center" }}>
+      <p style={{ fontSize: "12px", color: "#666", marginBottom: "8px" }}>Numbers only</p>
+      <InputOTP type='number' length={6} />
+    </div>
+    <div style={{ textAlign: "center" }}>
+      <p style={{ fontSize: "12px", color: "#666", marginBottom: "8px" }}>Alphanumeric</p>
+      <InputOTP type='text' length={6} />
+    </div>
+  </div>
+</Unstyled>
+
+### InputOTP `gap`
+
+Adjusts the spacing between input slots.
+
+```jsx
+<InputOTP gap="xs" length={4} />
+<InputOTP gap="sm" length={4} />
+<InputOTP gap="md" length={4} />
+<InputOTP gap="lg" length={4} />
+<InputOTP gap="xl" length={4} />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <InputOTP gap='xs' length={4} />
+    <InputOTP gap='sm' length={4} />
+    <InputOTP gap='md' length={4} />
+    <InputOTP gap='lg' length={4} />
+    <InputOTP gap='xl' length={4} />
+  </div>
+</Unstyled>
+
+### InputOTP `mask`
+
+Hide input characters for sensitive data.
+
+```jsx
+<InputOTP mask={false} length={4} />
+<InputOTP mask={true} length={4} />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <div style={{ textAlign: "center" }}>
+      <p style={{ fontSize: "12px", color: "#666", marginBottom: "8px" }}>Visible</p>
+      <InputOTP mask={false} length={4} />
+    </div>
+    <div style={{ textAlign: "center" }}>
+      <p style={{ fontSize: "12px", color: "#666", marginBottom: "8px" }}>Masked</p>
+      <InputOTP mask={true} length={4} />
+    </div>
+  </div>
+</Unstyled>
+
+### InputOTP `className`
+
+Add custom utility classes to the InputOTP while preserving base styles.
+
+```jsx
+<InputOTP className='border-2 border-dashed' length={4} />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "12px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <InputOTP className='border-2 border-dashed' length={4} />
+  </div>
+</Unstyled>
+
+## Accessibility
+
+This component follows accessibility best practices:
+
+- Semantic input elements with proper labeling via `label` + `htmlFor`
+- `aria-invalid` and `aria-describedby` for errors and helper text
+- Individual `aria-label` for each input slot with position context
+- Keyboard navigation support (Arrow keys, Home, End, Backspace, Delete)
+- Clear focus outline and sufficient contrast
+- Screen-reader compatible with proper role and grouping
+- Input mode hints for mobile keyboards (`numeric` for numbers)
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear labels describing what code the user should enter
+- Provide helper text explaining where the code was sent
+- Auto-focus the first input for better UX
+- Use appropriate `type` (number vs text) based on expected input
+- Show completion feedback when the code is entered
+- Use `mask` prop for sensitive data like PINs
+
+### Don'ts ❌
+
+- Don't use overly long OTP codes (keep it between 4-8 characters)
+- Avoid disabling paste functionality unless absolutely necessary
+- Don't show errors before the user has attempted to enter the code
+- Don't use for non-sequential input (use regular text inputs instead)
+
+### Common Patterns
+
+```jsx
+// Email verification
+<InputOTP
+    label="Email Verification"
+    description="Enter the 6-digit code sent to your email"
+    length={6}
+    autoFocus
+    onComplete={(code) => verifyEmail(code)}
+/>
+
+// SMS authentication
+<InputOTP
+    label="SMS Code"
+    description="Enter the 4-digit code sent to +1 (555) 123-4567"
+    length={4}
+    type="number"
+    onComplete={(code) => verifySMS(code)}
+/>
+
+// Security PIN
+<InputOTP
+    label="Security PIN"
+    description="Enter your 6-digit security PIN"
+    length={6}
+    mask={true}
+    type="number"
+    onComplete={(pin) => verifyPIN(pin)}
+/>
+
+// Product key
+<InputOTP
+    label="Product Key"
+    description="Enter the 8-character product key"
+    length={8}
+    type="text"
+    onComplete={(key) => activateProduct(key)}
+/>
+```
+
+## Use Cases
+
+<Canvas of={InputOTPStories.UseCases} />
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

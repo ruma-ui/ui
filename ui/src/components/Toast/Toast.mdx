@@ -1,0 +1,1020 @@
+import * as React from "react";
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Toast, ToastProvider } from "./Toast";
+import * as ToastStories from "./Toast.stories";
+
+<Meta of={ToastStories} />
+
+# Toast
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Toast)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+  - [Success Variant](#success-variant)
+  - [Error Variant](#error-variant)
+  - [Warning Variant](#warning-variant)
+  - [Info Variant](#info-variant)
+- [Positions](#positions)
+- [Sizes](#sizes)
+- [With Icons](#with-icons)
+- [With Title and Description](#with-title-and-description)
+- [Auto-dismiss](#auto-dismiss)
+- [Close Button](#close-button)
+- [Animation](#animation)
+- [ToastProvider](#toastprovider)
+  - [Basic Usage](#basic-usage)
+  - [Promise Toasts](#promise-toasts)
+  - [Toast Queue](#toast-queue)
+- [Component API](#component-api)
+  - [Toast `variant`](#toast-variant)
+  - [Toast `position`](#toast-position)
+  - [Toast `size`](#toast-size)
+  - [Toast `duration`](#toast-duration)
+  - [Toast `icon`](#toast-icon)
+  - [Toast `title` and `description`](#toast-title-and-description)
+  - [Toast `children`](#toast-children)
+  - [Toast `showCloseButton`](#toast-showclosebutton)
+  - [Toast `animation`](#toast-animation)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Toast component displays temporary notifications that appear on screen to provide feedback about operations, alerts, or important information. Built with accessibility, animations, and flexible positioning for production-ready applications.
+
+<Canvas of={ToastStories.Success} />
+
+## Variants
+
+### Success Variant
+
+The success variant indicates successful operations or positive outcomes with a green color scheme and checkmark icon.
+
+<Canvas of={ToastStories.Success} />
+
+### Error Variant
+
+The error variant communicates failures, errors, or critical issues that need immediate attention.
+
+<Canvas of={ToastStories.Error} />
+
+### Warning Variant
+
+The warning variant alerts users to potential issues or important information that requires caution.
+
+<Canvas of={ToastStories.Warning} />
+
+### Info Variant
+
+The info variant provides general information, updates, or neutral notifications.
+
+<Canvas of={ToastStories.Info} />
+
+## Positions
+
+Toasts can be positioned in any corner of the screen to suit different interface layouts and user preferences.
+
+<Canvas of={ToastStories.Positions} />
+
+## Sizes
+
+Three size options allow toasts to fit different content amounts and interface contexts.
+
+<Canvas of={ToastStories.Sizes} />
+
+## With Icons
+
+Custom icons enhance toast meaning and help users quickly identify notification types.
+
+<Canvas of={ToastStories.WithCustomIcon} />
+
+## With Title and Description
+
+Toasts support both title-only, description-only, or combined title and description layouts.
+
+<Canvas of={ToastStories.WithTitleOnly} />
+
+<Canvas of={ToastStories.WithDescriptionOnly} />
+
+## Auto-dismiss
+
+Toasts can automatically dismiss after a specified duration, or remain persistent until manually closed.
+
+<Canvas of={ToastStories.AutoDismiss} />
+
+<Canvas of={ToastStories.NoAutoDismiss} />
+
+## Close Button
+
+Toasts include an optional close button for manual dismissal, with proper accessibility support.
+
+<Canvas of={ToastStories.NoCloseButton} />
+
+## Animation
+
+Smooth enter and exit animations provide polished user experience while maintaining performance.
+
+<Canvas of={ToastStories.NoAnimation} />
+
+## ToastProvider
+
+The ToastProvider component manages toast state and provides a convenient hook-based API for showing toasts throughout your application.
+
+### Basic Usage
+
+Use the `useToast` hook to access toast functions like `success()`, `error()`, `warning()`, and `info()`.
+
+```jsx
+function MyComponent() {
+  const { success, error } = useToast();
+
+  const handleSave = () => {
+    try {
+      // Save operation
+      success("Data saved successfully!");
+    } catch {
+      error("Failed to save data");
+    }
+  };
+
+  return <button onClick={handleSave}>Save</button>;
+}
+
+// Wrap your app with ToastProvider
+function App() {
+  return (
+    <ToastProvider>
+      <MyComponent />
+    </ToastProvider>
+  );
+}
+```
+
+<Canvas of={ToastStories.WithToastProvider} />
+
+### Promise Toasts
+
+Handle asynchronous operations with promise-based toasts that automatically show loading, success, and error states.
+
+```jsx
+const { promise } = useToast();
+
+const handleAsyncOperation = async () => {
+  const result = await promise(fetchData(), {
+    loading: "Loading data...",
+    success: "Data loaded successfully!",
+    error: "Failed to load data",
+  });
+};
+```
+
+<Canvas of={ToastStories.PromiseToast} />
+
+### Toast Queue
+
+Multiple toasts stack automatically and dismiss in sequence, preventing notification overload.
+
+<Canvas of={ToastStories.ToastQueue} />
+
+## Component API
+
+<ArgTypes of={Toast} />
+
+### Toast `variant`
+
+The `variant` prop determines the semantic meaning, color scheme, and default icon of the toast.
+
+```jsx
+<Toast variant="success" title="Success!" description="Operation completed" onClose={() => {}} />
+<Toast variant="error" title="Error" description="Something went wrong" onClose={() => {}} />
+<Toast variant="warning" title="Warning" description="Please check your input" onClose={() => {}} />
+<Toast variant="info" title="Info" description="Here's some information" onClose={() => {}} />
+```
+
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            success: false,
+            error: false,
+            warning: false,
+            info: false,
+        });
+
+        const showToast = (variant) => {
+            setToasts(prev => ({ ...prev, [variant]: true }));
+        };
+
+        const closeToast = (variant) => {
+            setToasts(prev => ({ ...prev, [variant]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#10b981",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('success')}
+                    >
+                        Show Success
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#ef4444",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('error')}
+                    >
+                        Show Error
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#f59e0b",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('warning')}
+                    >
+                        Show Warning
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#3b82f6",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('info')}
+                    >
+                        Show Info
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.success}
+                    variant="success"
+                    title="Success!"
+                    description="Operation completed"
+                    onClose={() => closeToast('success')}
+                />
+                <Toast
+                    open={toasts.error}
+                    variant="error"
+                    title="Error"
+                    description="Something went wrong"
+                    onClose={() => closeToast('error')}
+                />
+                <Toast
+                    open={toasts.warning}
+                    variant="warning"
+                    title="Warning"
+                    description="Please check your input"
+                    onClose={() => closeToast('warning')}
+                />
+                <Toast
+                    open={toasts.info}
+                    variant="info"
+                    title="Info"
+                    description="Here's some information"
+                    onClose={() => closeToast('info')}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Toast `position`
+
+The `position` prop controls where the toast appears on screen. Choose positions that don't interfere with important interface elements.
+
+```jsx
+<Toast position="top-left" title="Top Left" onClose={() => {}} />
+<Toast position="top-center" title="Top Center" onClose={() => {}} />
+<Toast position="top-right" title="Top Right" onClose={() => {}} />
+<Toast position="bottom-left" title="Bottom Left" onClose={() => {}} />
+<Toast position="bottom-center" title="Bottom Center" onClose={() => {}} />
+<Toast position="bottom-right" title="Bottom Right" onClose={() => {}} />
+```
+
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            'top-left': false,
+            'top-center': false,
+            'top-right': false,
+            'bottom-left': false,
+            'bottom-center': false,
+            'bottom-right': false,
+        });
+
+        const showToast = (position) => {
+            setToasts(prev => ({ ...prev, [position]: true }));
+        };
+
+        const closeToast = (position) => {
+            setToasts(prev => ({ ...prev, [position]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('top-left')}
+                    >
+                        Top Left
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('top-center')}
+                    >
+                        Top Center
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('top-right')}
+                    >
+                        Top Right
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('bottom-left')}
+                    >
+                        Bottom Left
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('bottom-center')}
+                    >
+                        Bottom Center
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('bottom-right')}
+                    >
+                        Bottom Right
+                    </button>
+                </div>
+                <Toast
+                    open={toasts['top-left']}
+                    position="top-left"
+                    title="Top Left"
+                    onClose={() => closeToast('top-left')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['top-center']}
+                    position="top-center"
+                    title="Top Center"
+                    onClose={() => closeToast('top-center')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['top-right']}
+                    position="top-right"
+                    title="Top Right"
+                    onClose={() => closeToast('top-right')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['bottom-left']}
+                    position="bottom-left"
+                    title="Bottom Left"
+                    onClose={() => closeToast('bottom-left')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['bottom-center']}
+                    position="bottom-center"
+                    title="Bottom Center"
+                    onClose={() => closeToast('bottom-center')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts['bottom-right']}
+                    position="bottom-right"
+                    title="Bottom Right"
+                    onClose={() => closeToast('bottom-right')}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Toast `size`
+
+The `size` prop controls the toast's dimensions and typography scale. Choose sizes based on content length and visual hierarchy.
+
+```jsx
+<Toast size="sm" title="Small" description="Compact toast" onClose={() => {}} />
+<Toast size="md" title="Medium" description="Standard toast size" onClose={() => {}} />
+<Toast size="lg" title="Large" description="Prominent toast with more space" onClose={() => {}} />
+```
+
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            sm: false,
+            md: false,
+            lg: false,
+        });
+
+        const showToast = (size) => {
+            setToasts(prev => ({ ...prev, [size]: true }));
+        };
+
+        const closeToast = (size) => {
+            setToasts(prev => ({ ...prev, [size]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('sm')}
+                    >
+                        Small
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('md')}
+                    >
+                        Medium
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('lg')}
+                    >
+                        Large
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.sm}
+                    size="sm"
+                    title="Small"
+                    description="Compact toast"
+                    onClose={() => closeToast('sm')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts.md}
+                    size="md"
+                    title="Medium"
+                    description="Standard toast size"
+                    onClose={() => closeToast('md')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts.lg}
+                    size="lg"
+                    title="Large"
+                    description="Prominent toast with more space"
+                    onClose={() => closeToast('lg')}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Toast `duration`
+
+The `duration` prop sets auto-dismiss delay in milliseconds. Set to 0 to disable auto-dismiss.
+
+```jsx
+<Toast duration={3000} title="3 second toast" onClose={() => {}} />
+<Toast duration={0} title="Persistent toast" onClose={() => {}} />
+```
+
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            timed: false,
+            persistent: false,
+        });
+
+        const showToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: true }));
+        };
+
+        const closeToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('timed')}
+                    >
+                        3 Second Toast
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('persistent')}
+                    >
+                        Persistent Toast
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.timed}
+                    duration={3000}
+                    title="3 Second Toast"
+                    description="This will auto-dismiss in 3 seconds"
+                    onClose={() => closeToast('timed')}
+                />
+                <Toast
+                    open={toasts.persistent}
+                    duration={0}
+                    title="Persistent Toast"
+                    description="This will stay until manually closed"
+                    onClose={() => closeToast('persistent')}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Toast `icon`
+
+The `icon` prop accepts any React element to override the default variant icon.
+
+```jsx
+<Toast
+  icon={<CustomIcon />}
+  title='Custom Icon'
+  description='Toast with custom icon'
+  onClose={() => {}}
+/>
+```
+
+<Unstyled>
+    {(() => {
+        const [toast, setToast] = React.useState(false);
+
+        const showToast = () => setToast(true);
+        const closeToast = () => setToast(false);
+
+        return (
+            <div>
+                <button
+                    style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#6b7280",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        marginBottom: "16px"
+                    }}
+                    onClick={showToast}
+                >
+                    Show Custom Icon Toast
+                </button>
+                <Toast
+                    open={toast}
+                    icon={<span style={{ fontSize: "20px" }}>🚀</span>}
+                    title="Custom Icon"
+                    description="Toast with custom rocket icon"
+                    onClose={closeToast}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Toast `title` and `description`
+
+The `title` and `description` props provide structured content. Use `title` for brief summaries and `description` for additional details.
+
+```jsx
+<Toast
+  title='Operation Complete'
+  description='Your data has been saved successfully'
+  onClose={() => {}}
+/>
+```
+
+<Unstyled>
+    {(() => {
+        const [toast, setToast] = React.useState(false);
+
+        const showToast = () => setToast(true);
+        const closeToast = () => setToast(false);
+
+        return (
+            <div>
+                <button
+                    style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#6b7280",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        marginBottom: "16px"
+                    }}
+                    onClick={showToast}
+                >
+                    Show Structured Toast
+                </button>
+                <Toast
+                    open={toast}
+                    title="Operation Complete"
+                    description="Your data has been saved successfully to the cloud storage."
+                    onClose={closeToast}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Toast `children`
+
+The `children` prop allows fully custom content layout, overriding title/description structure.
+
+```jsx
+<Toast onClose={() => {}}>
+  <div>
+    <strong>Custom Content</strong>
+    <p>Any React elements can be rendered here</p>
+    <button>Action</button>
+  </div>
+</Toast>
+```
+
+<Unstyled>
+    {(() => {
+        const [toast, setToast] = React.useState(false);
+
+        const showToast = () => setToast(true);
+        const closeToast = () => setToast(false);
+
+        return (
+            <div>
+                <button
+                    style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#6b7280",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        marginBottom: "16px"
+                    }}
+                    onClick={showToast}
+                >
+                    Show Custom Content Toast
+                </button>
+                <Toast
+                    open={toast}
+                    onClose={closeToast}
+                    duration={0}
+                >
+                    <div>
+                        <strong>🚀 Mission Update</strong>
+                        <p>Your deployment is now live! Check the status dashboard for details.</p>
+                        <button
+                            style={{
+                                padding: "4px 8px",
+                                backgroundColor: "#3b82f6",
+                                color: "white",
+                                border: "none",
+                                borderRadius: "4px",
+                                cursor: "pointer",
+                                fontSize: "12px"
+                            }}
+                            onClick={() => alert('Action clicked!')}
+                        >
+                            View Dashboard
+                        </button>
+                    </div>
+                </Toast>
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Toast `showCloseButton`
+
+The `showCloseButton` prop controls visibility of the close button. Default is `true`.
+
+```jsx
+<Toast showCloseButton={false} title="No close button" onClose={() => {}} />
+<Toast showCloseButton={true} title="With close button" onClose={() => {}} />
+```
+
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            noClose: false,
+            withClose: false,
+        });
+
+        const showToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: true }));
+        };
+
+        const closeToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('noClose')}
+                    >
+                        No Close Button
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('withClose')}
+                    >
+                        With Close Button
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.noClose}
+                    showCloseButton={false}
+                    title="No Close Button"
+                    description="This toast has no close button"
+                    onClose={() => closeToast('noClose')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts.withClose}
+                    showCloseButton={true}
+                    title="With Close Button"
+                    description="This toast has a close button"
+                    onClose={() => closeToast('withClose')}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Toast `animation`
+
+The `animation` prop enables smooth enter/exit transitions. Default is `true`.
+
+```jsx
+<Toast animation={false} title="No animation" onClose={() => {}} />
+<Toast animation={true} title="With animation" onClose={() => {}} />
+```
+
+<Unstyled>
+    {(() => {
+        const [toasts, setToasts] = React.useState({
+            noAnimation: false,
+            withAnimation: false,
+        });
+
+        const showToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: true }));
+        };
+
+        const closeToast = (type) => {
+            setToasts(prev => ({ ...prev, [type]: false }));
+        };
+
+        return (
+            <div>
+                <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('noAnimation')}
+                    >
+                        No Animation
+                    </button>
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#6b7280",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => showToast('withAnimation')}
+                    >
+                        With Animation
+                    </button>
+                </div>
+                <Toast
+                    open={toasts.noAnimation}
+                    animation={false}
+                    title="No Animation"
+                    description="This toast appears/disappears instantly"
+                    onClose={() => closeToast('noAnimation')}
+                    duration={0}
+                />
+                <Toast
+                    open={toasts.withAnimation}
+                    animation={true}
+                    title="With Animation"
+                    description="This toast has smooth enter/exit transitions"
+                    onClose={() => closeToast('withAnimation')}
+                    duration={0}
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+## Accessibility
+
+The Toast component follows accessibility best practices and includes:
+
+- **ARIA Live Regions**: Automatic `aria-live="assertive"` for screen reader announcements
+- **Semantic Roles**: Proper `role="alert"` for critical notifications
+- **Keyboard Navigation**: Full keyboard support for interactive elements
+- **Focus Management**: Clear focus indicators and proper focus handling
+- **Screen Reader Support**: Comprehensive ARIA labeling with `aria-labelledby` and `aria-describedby`
+- **Color Contrast**: All variants meet WCAG color contrast requirements
+- **Motion Preferences**: Respects `prefers-reduced-motion` for animation control
+
+## Best Practices
+
+### When to Use
+
+- **Operation Feedback**: Confirming successful actions or reporting errors
+- **Status Updates**: Showing progress, completion, or system state changes
+- **Alerts and Warnings**: Critical information requiring immediate attention
+- **Non-intrusive Notifications**: Information that doesn't interrupt user workflow
+- **Form Validation**: Displaying validation errors or success messages
+
+### When Not to Use
+
+- **Critical Actions**: Don't use toasts for destructive actions or important decisions
+- **Persistent Information**: Avoid toasts for information users need to reference later
+- **Complex Interactions**: Don't embed forms or complex UI in toasts
+- **Navigation**: Don't use toasts as primary navigation or action triggers
+- **Excessive Notifications**: Limit toast frequency to prevent user annoyance
+
+### Guidelines
+
+1. **Clear Messaging**: Use concise, actionable language that users understand immediately
+2. **Appropriate Variants**: Choose variants that match the semantic meaning of the notification
+3. **Consistent Positioning**: Use consistent positions across your application
+4. **Auto-dismiss Timing**: Set appropriate durations based on content importance and length
+5. **Manual Dismissal**: Always provide close buttons for persistent toasts
+6. **Queue Management**: Handle multiple toasts gracefully without overwhelming users
+7. **Mobile Considerations**: Ensure toasts work well on smaller screens and touch devices
+
+### Content Guidelines
+
+1. **Actionable Language**: Use verbs that suggest what happened or what users can do
+2. **Error Specificity**: Provide specific error information when possible
+3. **Success Confirmation**: Clearly indicate what operation succeeded
+4. **Warning Clarity**: Explain what the warning means and potential consequences
+5. **Progressive Disclosure**: Use title for summary, description for details
+
+### Technical Guidelines
+
+1. **Provider Setup**: Wrap your application root with `ToastProvider` for hook access
+2. **Error Boundaries**: Handle toast errors gracefully to prevent crashes
+3. **Performance**: Avoid creating toasts in rapid succession
+4. **State Management**: Use appropriate state management for complex toast scenarios
+5. **Testing**: Test toast behavior across different devices and screen readers
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

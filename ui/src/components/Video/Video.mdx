@@ -1,0 +1,241 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import { VideoPlayer } from "./Video";
+import * as VideoStories from "./Video.stories";
+
+<Meta of={VideoStories} />
+
+# VideoPlayer
+
+A fully-featured, accessible video player component with custom controls, built-in support for common video features, and seamless integration with your design system.
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Video)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Autoplay Videos](#autoplay-videos)
+- [Looping Videos](#looping-videos)
+- [Muted Videos](#muted-videos)
+- [Native Controls](#native-controls)
+- [Aspect Ratios](#aspect-ratios)
+- [Custom Styling](#custom-styling)
+- [Event Callbacks](#event-callbacks)
+- [Multiple Players](#multiple-players)
+  - [Subtitles / Tracks](#subtitles--tracks)
+- [Playback Speed Control](#playback-speed-control)
+- [Settings Menu](#settings-menu)
+- [Interactive Features](#interactive-features)
+  - [Feedback Overlays](#feedback-overlays)
+  - [Control Tooltips](#control-tooltips)
+- [Component API](#component-api)
+- [Accessibility](#accessibility)
+  - [Keyboard Shortcuts](#keyboard-shortcuts)
+- [Best Practices](#best-practices)
+  - [Do's](#dos-)
+  - [Don'ts](#donts-)
+  - [Performance Optimization](#performance-optimization)
+  - [Responsive Design](#responsive-design)
+- [Browser Support](#browser-support)
+  - [Video Format Support](#video-format-support)
+- [Feedback](#feedback)
+
+## Overview
+
+The VideoPlayer component provides a fully-featured, accessible video player with custom controls, built-in support for common video features, and seamless integration with your design system. It includes play/pause controls, volume management, progress tracking, fullscreen support, and comprehensive keyboard navigation.
+
+<Canvas of={VideoStories.Default} />
+
+## Basic Usage
+
+The most common use case is a simple video player with custom controls and a poster image.
+
+<Canvas of={VideoStories.Basic} />
+
+## Autoplay Videos
+
+Videos can be set to autoplay when the component mounts. Note that most browsers require videos to be muted for autoplay to work.
+
+<Canvas of={VideoStories.Autoplay} />
+
+## Looping Videos
+
+Enable video looping for continuous playback, perfect for background videos or demonstrations.
+
+<Canvas of={VideoStories.Looping} />
+
+## Muted Videos
+
+Start videos in a muted state, allowing users to enable audio when ready.
+
+<Canvas of={VideoStories.Muted} />
+
+## Native Controls
+
+For simpler implementations, you can use the browser's native video controls instead of the custom overlay.
+
+<Canvas of={VideoStories.NativeControls} />
+
+## Aspect Ratios
+
+The VideoPlayer adapts to its container's aspect ratio, making it easy to create responsive video layouts.
+
+<Canvas of={VideoStories.AspectRatios} />
+
+## Custom Styling
+
+Apply custom styles to match your design system using the `className` and `videoClassName` props.
+
+<Canvas of={VideoStories.CustomStyled} />
+
+## Event Callbacks
+
+The component provides comprehensive event callbacks for tracking video state and user interactions.
+
+<Canvas of={VideoStories.WithCallbacks} />
+
+## Multiple Players
+
+Multiple video players can coexist on the same page, each maintaining independent state.
+
+<Canvas of={VideoStories.MultiplePlayers} />
+
+### Subtitles / Tracks
+
+Provide WebVTT subtitle files via the `tracks` prop. Each track should include `src`, `kind`, `srclang`, and `label`.
+
+<Canvas of={VideoStories.WithSubtitles} />
+
+## Playback Speed Control
+
+The VideoPlayer includes a built-in settings menu that allows users to adjust playback speed. You can customize the available speed options using the `playbackRates` prop.
+
+<Canvas of={VideoStories.WithPlaybackRates} />
+
+## Settings Menu
+
+The settings menu provides access to playback speed controls and subtitle selection. It appears when the settings button is clicked and automatically hides when a selection is made or when clicking outside.
+
+<Canvas of={VideoStories.WithSettingsMenu} />
+
+## Interactive Features
+
+### Feedback Overlays
+
+The VideoPlayer provides visual feedback for user actions through animated overlays that appear when:
+
+- Playing or pausing the video
+- Seeking forward or backward
+- Adjusting volume
+
+<Canvas of={VideoStories.WithFeedback} />
+
+### Control Tooltips
+
+All controls display helpful tooltips on hover, including keyboard shortcuts for power users.
+
+<Canvas of={VideoStories.WithTooltips} />
+
+## Component API
+
+<ArgTypes of={VideoStories} />
+
+## Accessibility
+
+Our VideoPlayer component follows accessibility best practices:
+
+- **Keyboard Navigation**: Full support for Tab, Enter, and Space key interactions
+- **Screen Reader Support**: Proper ARIA labels and semantic HTML structure
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Color Contrast**: High contrast controls that meet WCAG guidelines
+- **Reduced Motion**: Respects user's motion preferences
+- **Captions Support**: Built-in support for WebVTT caption files
+
+### Keyboard Shortcuts
+
+- **Space** or **K**: Play/pause video
+- **Enter**: Play/pause video (when focused on play button)
+- **Tab/Shift+Tab**: Navigate between controls
+- **Arrow Keys**: Seek through video (when progress bar is focused)
+- **M**: Toggle mute
+- **F**: Toggle fullscreen
+- **J** or **Arrow Left**: Seek backward 10 seconds
+- **L** or **Arrow Right**: Seek forward 10 seconds
+- **Arrow Up**: Increase volume
+- **Arrow Down**: Decrease volume
+
+## Best Practices
+
+### Do's ✅
+
+- Always provide a meaningful `poster` image for better user experience
+- Use appropriate `preload` settings based on your use case
+- Consider video file size and format for optimal loading
+- Test videos across different devices and network conditions
+- Provide captions for accessibility when content requires them
+- Use the `muted` prop for autoplay videos to ensure compatibility
+
+### Don'ts ❌
+
+- Don't rely on autoplay without user consent (use muted autoplay)
+- Avoid very large video files that could cause performance issues
+- Don't hide controls completely unless there's a specific UX reason
+- Avoid nesting video players or placing them in small containers
+- Don't use videos for content that could be conveyed with text or images
+
+### Performance Optimization
+
+```jsx
+// Recommended: Optimized loading
+<VideoPlayer
+  src="/videos/optimized-video.mp4"
+  poster="/images/video-poster.jpg"
+  preload="metadata"
+  className="aspect-video"
+/>
+
+// For hero videos: Consider lazy loading
+<VideoPlayer
+  src="/videos/hero-video.mp4"
+  poster="/images/hero-poster.jpg"
+  preload="none"
+  className="aspect-video"
+/>
+```
+
+### Responsive Design
+
+```jsx
+// Responsive video container
+<div className='aspect-video w-full'>
+  <VideoPlayer
+    src='/videos/responsive-video.mp4'
+    poster='/images/video-poster.jpg'
+    controls={true}
+    showCustomControls={true}
+  />
+</div>
+```
+
+## Browser Support
+
+The VideoPlayer component supports all modern browsers that implement the HTML5 video element:
+
+- **Chrome**: Full support (recommended)
+- **Firefox**: Full support
+- **Safari**: Full support
+- **Edge**: Full support
+- **Mobile browsers**: Full support with touch controls
+
+### Video Format Support
+
+The component supports the following video formats:
+
+- **MP4** (H.264): Universally supported
+- **WebM** (VP8/VP9): Modern browser support
+- **OGV** (Theora): Limited support
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

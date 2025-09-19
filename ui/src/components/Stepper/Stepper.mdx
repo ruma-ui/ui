@@ -1,0 +1,916 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { FaUser, FaCreditCard, FaCheckCircle, FaTruck, FaBox } from "react-icons/fa";
+import { Stepper } from "./Stepper";
+import * as StepperStories from "./Stepper.stories";
+
+<Meta of={StepperStories} />
+
+# Stepper
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Stepper)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+  - [Default Variant](#default-variant)
+  - [Numbered Variant](#numbered-variant)
+  - [Minimal Variant](#minimal-variant)
+- [Orientations](#orientations)
+  - [Horizontal Orientation](#horizontal-orientation)
+  - [Vertical Orientation](#vertical-orientation)
+- [Sizes](#sizes)
+- [With Icons](#with-icons)
+- [Clickable Steps](#clickable-steps)
+- [Without Descriptions](#without-descriptions)
+- [Without Connectors](#without-connectors)
+- [Disabled Steps](#disabled-steps)
+- [Custom Styled](#custom-styled)
+- [Component API](#component-api)
+  - [Stepper `steps`](#stepper-steps)
+  - [Stepper `activeStep`](#stepper-activestep)
+  - [Stepper `variant`](#stepper-variant)
+  - [Stepper `orientation`](#stepper-orientation)
+  - [Stepper `size`](#stepper-size)
+  - [Stepper `clickable`](#stepper-clickable)
+  - [Stepper `showConnector`](#stepper-showconnector)
+  - [Stepper `showDescription`](#stepper-showdescription)
+  - [Stepper `onStepClick` and `onChange`](#stepper-onstepclick-and-onchange)
+  - [Stepper `className`](#stepper-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Stepper component provides a visual representation of a multi-step process, guiding users through a sequence of steps. It displays progress, indicates the current step, and can optionally allow navigation between steps. The component is fully accessible and follows our design system patterns.
+
+<Canvas of={StepperStories.Default} />
+
+## Variants
+
+### Default Variant
+
+The default variant shows steps with circular indicators that change color based on their state. Completed steps show a checkmark icon, active steps are highlighted, and inactive steps are muted.
+
+<Canvas of={StepperStories.Default} />
+
+### Numbered Variant
+
+The numbered variant displays step numbers instead of icons, providing a clear sequential progression that's easy to follow.
+
+<Canvas of={StepperStories.Numbered} />
+
+### Minimal Variant
+
+The minimal variant uses subtle styling with lighter colors and smaller visual emphasis, perfect for less prominent step indicators.
+
+<Canvas of={StepperStories.Minimal} />
+
+## Orientations
+
+### Horizontal Orientation
+
+Horizontal steppers are ideal for wide layouts and work well in forms, wizards, and checkout flows.
+
+<Canvas of={StepperStories.HorizontalSmall} />
+
+### Vertical Orientation
+
+Vertical steppers are perfect for narrow layouts and provide more space for step descriptions and content.
+
+<Canvas of={StepperStories.VerticalDefault} />
+
+## Sizes
+
+The Stepper component supports three sizes to accommodate different design needs and screen sizes.
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "24px",
+      marginBottom: "16px",
+    }}
+  >
+    <div>
+      <h4
+        style={{
+          marginBottom: "8px",
+          fontSize: "14px",
+          fontWeight: "600",
+        }}
+      >
+        Small
+      </h4>
+      <Stepper
+        steps={[
+          { id: "1", title: "Step 1", description: "First step" },
+          { id: "2", title: "Step 2", description: "Second step" },
+          { id: "3", title: "Step 3", description: "Third step" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+    <div>
+      <h4
+        style={{
+          marginBottom: "8px",
+          fontSize: "14px",
+          fontWeight: "600",
+        }}
+      >
+        Medium (Default)
+      </h4>
+      <Stepper
+        steps={[
+          { id: "1", title: "Step 1", description: "First step" },
+          { id: "2", title: "Step 2", description: "Second step" },
+          { id: "3", title: "Step 3", description: "Third step" },
+        ]}
+        activeStep={1}
+        size='md'
+      />
+    </div>
+    <div>
+      <h4
+        style={{
+          marginBottom: "8px",
+          fontSize: "14px",
+          fontWeight: "600",
+        }}
+      >
+        Large
+      </h4>
+      <Stepper
+        steps={[
+          { id: "1", title: "Step 1", description: "First step" },
+          { id: "2", title: "Step 2", description: "Second step" },
+          { id: "3", title: "Step 3", description: "Third step" },
+        ]}
+        activeStep={1}
+        size='lg'
+      />
+    </div>
+  </div>
+</Unstyled>
+
+## With Icons
+
+Icons can enhance step clarity and help users quickly identify different stages of a process.
+
+<Canvas of={StepperStories.Default} />
+
+## Clickable Steps
+
+When enabled, users can click on steps to navigate between them. This is useful for allowing users to go back to previous steps or jump ahead if appropriate.
+
+<Canvas of={StepperStories.Clickable} />
+
+## Without Descriptions
+
+You can hide step descriptions to create a more compact stepper when descriptions aren't necessary.
+
+<Canvas of={StepperStories.NoDescriptions} />
+
+## Without Connectors
+
+The connector lines between steps can be hidden for a cleaner look in certain designs.
+
+<Canvas of={StepperStories.NoConnectors} />
+
+## Disabled Steps
+
+Steps can be disabled to prevent navigation to certain stages. Disabled steps are visually muted and not clickable.
+
+<Canvas of={StepperStories.WithDisabledSteps} />
+
+## Custom Styled
+
+Custom styling allows you to adapt the stepper to your specific design needs.
+
+<Canvas of={StepperStories.CustomStyled} />
+
+## Component API
+
+<ArgTypes of={Stepper} />
+
+### Stepper `steps`
+
+The `steps` prop accepts an array of step objects that define the stepper's content and behavior.
+
+```tsx
+const steps = [
+  {
+    id: "personal-info",
+    title: "Personal Information",
+    description: "Enter your personal details",
+    icon: <UserIcon />,
+    disabled: false,
+  },
+  {
+    id: "payment",
+    title: "Payment Details",
+    description: "Provide payment information",
+    icon: <CreditCardIcon />,
+  },
+  // ... more steps
+];
+
+<Stepper steps={steps} activeStep={0} />;
+```
+
+<Unstyled>
+  <Stepper
+    steps={[
+      {
+        id: "info",
+        title: "Information",
+        description: "Basic information",
+        icon: <FaUser size={16} />,
+      },
+      {
+        id: "details",
+        title: "Details",
+        description: "Additional details",
+        icon: <FaCreditCard size={16} />,
+      },
+      {
+        id: "confirm",
+        title: "Confirm",
+        description: "Confirmation step",
+        icon: <FaCheckCircle size={16} />,
+      },
+    ]}
+    activeStep={1}
+  />
+</Unstyled>
+
+### Stepper `activeStep`
+
+The `activeStep` prop controls which step is currently highlighted as active. This is a zero-based index.
+
+```tsx
+// First step active
+<Stepper steps={steps} activeStep={0} />
+
+// Second step active
+<Stepper steps={steps} activeStep={1} />
+
+// Last step active
+<Stepper steps={steps} activeStep={steps.length - 1} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Step 1 Active
+      </span>
+      <Stepper
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={0}
+        size='sm'
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Step 2 Active
+      </span>
+      <Stepper
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Step 3 Active
+      </span>
+      <Stepper
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={2}
+        size='sm'
+      />
+    </div>
+  </div>
+</Unstyled>
+
+### Stepper `variant`
+
+The `variant` prop determines the visual style and behavior of step indicators.
+
+```tsx
+// Default variant with icons and checkmarks
+<Stepper variant="default" steps={steps} />
+
+// Numbered variant with step numbers
+<Stepper variant="numbered" steps={steps} />
+
+// Minimal variant with subtle styling
+<Stepper variant="minimal" steps={steps} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Default
+      </span>
+      <Stepper
+        variant='default'
+        steps={[
+          { id: "1", title: "Step 1", icon: <FaUser size={14} /> },
+          {
+            id: "2",
+            title: "Step 2",
+            icon: <FaCreditCard size={14} />,
+          },
+          {
+            id: "3",
+            title: "Step 3",
+            icon: <FaCheckCircle size={14} />,
+          },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Numbered
+      </span>
+      <Stepper
+        variant='numbered'
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Minimal
+      </span>
+      <Stepper
+        variant='minimal'
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+  </div>
+</Unstyled>
+
+### Stepper `orientation`
+
+The `orientation` prop controls whether steps are arranged horizontally or vertically.
+
+```tsx
+// Horizontal layout (default)
+<Stepper orientation="horizontal" steps={steps} />
+
+// Vertical layout
+<Stepper orientation="vertical" steps={steps} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "32px", alignItems: "flex-start" }}>
+    <div style={{ flex: 1 }}>
+      <h4
+        style={{
+          fontSize: "14px",
+          fontWeight: "600",
+          marginBottom: "8px",
+        }}
+      >
+        Horizontal
+      </h4>
+      <Stepper
+        orientation='horizontal'
+        steps={[
+          {
+            id: "1",
+            title: "Personal Info",
+            description: "Enter details",
+          },
+          { id: "2", title: "Payment", description: "Payment info" },
+          { id: "3", title: "Confirm", description: "Review order" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+    <div style={{ flex: 1 }}>
+      <h4
+        style={{
+          fontSize: "14px",
+          fontWeight: "600",
+          marginBottom: "8px",
+        }}
+      >
+        Vertical
+      </h4>
+      <Stepper
+        orientation='vertical'
+        steps={[
+          {
+            id: "1",
+            title: "Personal Info",
+            description: "Enter details",
+          },
+          { id: "2", title: "Payment", description: "Payment info" },
+          { id: "3", title: "Confirm", description: "Review order" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+  </div>
+</Unstyled>
+
+### Stepper `size`
+
+The `size` prop controls the overall dimensions of the stepper including indicators, text, and spacing.
+
+```tsx
+<Stepper size="sm" steps={steps} />
+<Stepper size="md" steps={steps} />
+<Stepper size="lg" steps={steps} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Small
+      </span>
+      <Stepper
+        size='sm'
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Medium
+      </span>
+      <Stepper
+        size='md'
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Large
+      </span>
+      <Stepper
+        size='lg'
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+      />
+    </div>
+  </div>
+</Unstyled>
+
+### Stepper `clickable`
+
+The `clickable` prop enables or disables click navigation between steps.
+
+```tsx
+<Stepper clickable={true} steps={steps} onStepClick={handleStepClick} />
+<Stepper clickable={false} steps={steps} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Clickable
+      </span>
+      <Stepper
+        clickable={true}
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Not Clickable
+      </span>
+      <Stepper
+        clickable={false}
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+  </div>
+</Unstyled>
+
+### Stepper `showConnector`
+
+The `showConnector` prop controls whether connector lines are displayed between steps.
+
+```tsx
+<Stepper showConnector={true} steps={steps} />
+<Stepper showConnector={false} steps={steps} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        With Connectors
+      </span>
+      <Stepper
+        showConnector={true}
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Without Connectors
+      </span>
+      <Stepper
+        showConnector={false}
+        steps={[
+          { id: "1", title: "Step 1" },
+          { id: "2", title: "Step 2" },
+          { id: "3", title: "Step 3" },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+  </div>
+</Unstyled>
+
+### Stepper `showDescription`
+
+The `showDescription` prop controls whether step descriptions are displayed.
+
+```tsx
+<Stepper showDescription={true} steps={steps} />
+<Stepper showDescription={false} steps={steps} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        With Descriptions
+      </span>
+      <Stepper
+        showDescription={true}
+        steps={[
+          {
+            id: "1",
+            title: "Step 1",
+            description: "First step description",
+          },
+          {
+            id: "2",
+            title: "Step 2",
+            description: "Second step description",
+          },
+          {
+            id: "3",
+            title: "Step 3",
+            description: "Third step description",
+          },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+    <div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "#666",
+          marginBottom: "4px",
+          display: "block",
+        }}
+      >
+        Without Descriptions
+      </span>
+      <Stepper
+        showDescription={false}
+        steps={[
+          {
+            id: "1",
+            title: "Step 1",
+            description: "First step description",
+          },
+          {
+            id: "2",
+            title: "Step 2",
+            description: "Second step description",
+          },
+          {
+            id: "3",
+            title: "Step 3",
+            description: "Third step description",
+          },
+        ]}
+        activeStep={1}
+        size='sm'
+      />
+    </div>
+  </div>
+</Unstyled>
+
+### Stepper `onStepClick` and `onChange`
+
+These callback props allow you to handle step navigation and state changes.
+
+```tsx
+const [activeStep, setActiveStep] = useState(0);
+
+const handleStepClick = (stepIndex, step) => {
+  console.log("Step clicked:", stepIndex, step);
+  setActiveStep(stepIndex);
+};
+
+const handleChange = stepIndex => {
+  setActiveStep(stepIndex);
+};
+
+<Stepper
+  steps={steps}
+  activeStep={activeStep}
+  clickable={true}
+  onStepClick={handleStepClick}
+  onChange={handleChange}
+/>;
+```
+
+### Stepper `className`
+
+The `className` prop allows you to add custom styling while preserving the component's built-in styles.
+
+```tsx
+<Stepper
+    className="bg-gray-50 p-6 rounded-lg border border-gray-200"
+    steps={steps}
+/>
+<Stepper
+    className="custom-stepper-theme"
+    steps={steps}
+/>
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <Stepper
+      className='rounded-lg border border-blue-200 bg-blue-50 p-4'
+      steps={[
+        { id: "1", title: "Step 1" },
+        { id: "2", title: "Step 2" },
+        { id: "3", title: "Step 3" },
+      ]}
+      activeStep={1}
+      size='sm'
+    />
+    <Stepper
+      className='rounded-lg border border-green-200 bg-green-50 p-4'
+      steps={[
+        { id: "1", title: "Step 1" },
+        { id: "2", title: "Step 2" },
+        { id: "3", title: "Step 3" },
+      ]}
+      activeStep={1}
+      size='sm'
+    />
+  </div>
+</Unstyled>
+
+## Accessibility
+
+Our Stepper component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper ARIA attributes and roles (`tablist`, `tab`, `aria-selected`, `aria-disabled`)
+- **Keyboard Navigation**: Full support for arrow key navigation when clickable
+- **Screen Reader Support**: Proper labeling and state announcements
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Orientation Support**: Proper `aria-orientation` attribute for screen readers
+- **State Communication**: Active, completed, and disabled states are properly communicated
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive step titles that indicate the purpose of each step
+- Keep step descriptions concise and actionable
+- Use icons that clearly represent the step's purpose
+- Maintain consistent step progression (don't skip steps unless necessary)
+- Provide visual feedback when steps are completed
+- Use appropriate sizes based on your layout and content density
+- Consider vertical orientation for mobile or narrow layouts
+
+### Don'ts ❌
+
+- Don't use vague step titles like "Step 1", "Step 2"
+- Avoid overly long step descriptions that clutter the interface
+- Don't make steps clickable if the workflow doesn't support backward navigation
+- Avoid mixing different variants within the same stepper
+- Don't hide important step information behind tooltips
+- Avoid using stepper for single-step processes
+
+### Stepper Combinations
+
+```tsx
+// Checkout flow
+<Stepper
+    steps={[
+        { id: "cart", title: "Shopping Cart", icon: <CartIcon /> },
+        { id: "shipping", title: "Shipping", icon: <TruckIcon /> },
+        { id: "payment", title: "Payment", icon: <CreditCardIcon /> },
+        { id: "confirmation", title: "Confirmation", icon: <CheckIcon /> },
+    ]}
+    activeStep={1}
+    variant="default"
+/>
+
+// Form wizard
+<Stepper
+    steps={[
+        { id: "basic", title: "Basic Info" },
+        { id: "details", title: "Details" },
+        { id: "review", title: "Review" },
+    ]}
+    activeStep={0}
+    variant="numbered"
+    orientation="vertical"
+/>
+
+// Onboarding flow
+<Stepper
+    steps={[
+        { id: "welcome", title: "Welcome" },
+        { id: "setup", title: "Setup" },
+        { id: "preferences", title: "Preferences" },
+        { id: "complete", title: "Complete" },
+    ]}
+    activeStep={2}
+    variant="minimal"
+    clickable={true}
+/>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

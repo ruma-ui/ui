@@ -1,0 +1,357 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import { RangeInput } from "./RangeInput";
+import * as RangeInputStories from "./RangeInput.stories";
+
+<Meta of={RangeInputStories} />
+
+# RangeInput
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/RangeInput)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Variants](#variants)
+  - [Primary Variant](#primary-variant)
+  - [Secondary Variant](#secondary-variant)
+- [Sizes](#sizes)
+  - [Small Size](#small-size)
+  - [Medium Size](#medium-size)
+  - [Large Size](#large-size)
+- [Value Display](#value-display)
+- [Custom Formatting](#custom-formatting)
+- [Controlled vs Uncontrolled](#controlled-vs-uncontrolled)
+- [Error States](#error-states)
+- [Disabled State](#disabled-state)
+- [Use Cases](#use-cases)
+  - [Price Range](#price-range)
+  - [Temperature Range](#temperature-range)
+  - [File Size Range](#file-size-range)
+- [Component API](#component-api)
+  - [RangeInput `value`](#rangeinput-value)
+  - [RangeInput `defaultValue`](#rangeinput-defaultvalue)
+  - [RangeInput `min` and `max`](#rangeinput-min-and-max)
+  - [RangeInput `step`](#rangeinput-step)
+  - [RangeInput `variant`](#rangeinput-variant)
+  - [RangeInput `size`](#rangeinput-size)
+  - [RangeInput `showValue`](#rangeinput-showvalue)
+  - [RangeInput `valueFormatter`](#rangeinput-valueformatter)
+  - [RangeInput `label`](#rangeinput-label)
+  - [RangeInput `description`](#rangeinput-description)
+  - [RangeInput `error`](#rangeinput-error)
+  - [RangeInput `onChange`](#rangeinput-onchange)
+  - [RangeInput `onChangeEnd`](#rangeinput-onchangeend)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The RangeInput component provides a dual-thumb slider interface for selecting numeric ranges. It supports both controlled and uncontrolled usage patterns and integrates seamlessly with your design system.
+
+<Canvas of={RangeInputStories.Default} />
+
+## Basic Usage
+
+The RangeInput can be used as a simple range selector with default settings.
+
+```jsx
+function MyComponent() {
+  const [range, setRange] = useState([20, 80]);
+
+  return <RangeInput value={range} onChange={setRange} label='Select a range' />;
+}
+```
+
+## Variants
+
+### Primary Variant
+
+<Canvas of={RangeInputStories.Default} />
+
+### Secondary Variant
+
+<Canvas of={RangeInputStories.Secondary} />
+
+## Sizes
+
+### Small Size
+
+<Canvas of={RangeInputStories.Small} />
+
+### Medium Size
+
+<Canvas of={RangeInputStories.Default} />
+
+### Large Size
+
+<Canvas of={RangeInputStories.Large} />
+
+## Value Display
+
+Show the current range values with the `showValue` prop.
+
+<Canvas of={RangeInputStories.WithLabel} />
+
+## Custom Formatting
+
+Use the `valueFormatter` prop to customize how values are displayed.
+
+<Canvas of={RangeInputStories.TemperatureRange} />
+
+## Controlled vs Uncontrolled
+
+### Controlled Component
+
+```jsx
+const [range, setRange] = useState([15, 85]);
+
+<RangeInput value={range} onChange={setRange} />;
+```
+
+### Uncontrolled Component
+
+```jsx
+<RangeInput defaultValue={[20, 80]} onChange={range => console.log(range)} />
+```
+
+<Canvas of={RangeInputStories.Controlled} />
+
+## Error States
+
+Display error states with custom error messages for validation feedback.
+
+<Canvas of={RangeInputStories.Error} />
+
+## Disabled State
+
+<Canvas of={RangeInputStories.Disabled} />
+
+## Use Cases
+
+### Price Range
+
+<Canvas of={RangeInputStories.WithLabel} />
+
+### Temperature Range
+
+<Canvas of={RangeInputStories.TemperatureRange} />
+
+### File Size Range
+
+<Canvas of={RangeInputStories.FileSizeRange} />
+
+## Component API
+
+<ArgTypes of={RangeInput} />
+
+### RangeInput `value`
+
+The `value` prop controls the current range values when using the RangeInput as a controlled component. It should be a tuple of two numbers `[min, max]`.
+
+```jsx
+<RangeInput value={[20, 80]} onChange={setRange} />
+```
+
+### RangeInput `defaultValue`
+
+The `defaultValue` prop sets the initial range values for uncontrolled components.
+
+```jsx
+<RangeInput defaultValue={[10, 90]} />
+```
+
+### RangeInput `min` and `max`
+
+The `min` and `max` props define the range boundaries for the slider.
+
+```jsx
+<RangeInput min={0} max={100} defaultValue={[25, 75]} />
+```
+
+### RangeInput `step`
+
+The `step` prop controls the increment value for range adjustments.
+
+```jsx
+<RangeInput step={5} defaultValue={[20, 80]} />;
+{
+  /* Increments by 5 */
+}
+<RangeInput step={0.1} defaultValue={[1.5, 2.5]} />;
+{
+  /* Increments by 0.1 */
+}
+```
+
+### RangeInput `variant`
+
+The `variant` prop determines the visual style of the range input.
+
+```jsx
+<RangeInput variant='primary' />;
+{
+  /* Blue styling */
+}
+<RangeInput variant='secondary' />;
+{
+  /* Gray styling */
+}
+```
+
+### RangeInput `size`
+
+The `size` prop controls the overall dimensions of the range input.
+
+```jsx
+<RangeInput size='sm' />;
+{
+  /* Small size */
+}
+<RangeInput size='md' />;
+{
+  /* Medium size (default) */
+}
+<RangeInput size='lg' />;
+{
+  /* Large size */
+}
+```
+
+### RangeInput `showValue`
+
+The `showValue` prop displays the current range values next to the label.
+
+```jsx
+<RangeInput showValue={true} defaultValue={[30, 70]} />
+```
+
+### RangeInput `valueFormatter`
+
+The `valueFormatter` prop allows custom formatting of the displayed values.
+
+```jsx
+<RangeInput valueFormatter={value => `$${value}`} defaultValue={[50, 200]} />
+```
+
+### RangeInput `label`
+
+The `label` prop adds a label above the range input for better accessibility and user experience.
+
+```jsx
+<RangeInput label='Price Range' />
+```
+
+### RangeInput `description`
+
+The `description` prop adds helper text below the range input.
+
+```jsx
+<RangeInput label='Volume' description='Adjust the volume level' />
+```
+
+### RangeInput `error`
+
+The `error` prop displays the range input in an error state with red styling.
+
+```jsx
+<RangeInput error={true} errorMessage='Please select a valid range' />
+```
+
+### RangeInput `onChange`
+
+The `onChange` callback is called whenever the selected range changes.
+
+```jsx
+<RangeInput
+  onChange={range => {
+    console.log("Selected range:", range);
+    // range is [min, max]
+  }}
+/>
+```
+
+### RangeInput `onChangeEnd`
+
+The `onChangeEnd` callback is called when the user finishes adjusting the range (on mouse/touch release or key press).
+
+```jsx
+<RangeInput
+  onChangeEnd={range => {
+    console.log("Range adjustment complete:", range);
+    // Perform final validation or API calls
+  }}
+/>
+```
+
+## Accessibility
+
+Our RangeInput component follows accessibility best practices:
+
+- **Keyboard Navigation**: Full support for Tab navigation between thumbs and arrow key adjustments
+- **Screen Reader Support**: Proper ARIA labels, values, and descriptions for both thumbs
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Semantic HTML**: Uses appropriate HTML elements with correct attributes
+- **Dual Thumb Support**: Each thumb is independently accessible with proper ARIA attributes
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive labels for range inputs
+- Provide appropriate min/max values for your use case
+- Consider using `valueFormatter` for user-friendly value display
+- Use `showValue` when users need to see exact values
+- Provide helpful descriptions for complex ranges
+- Test keyboard navigation thoroughly
+
+### Don'ts ❌
+
+- Don't use range inputs for single value selection (use regular sliders instead)
+- Avoid very small ranges that make precise selection difficult
+- Don't hide values when precision is important
+- Avoid using ranges for non-numeric data
+- Don't make ranges too wide without considering step sizes
+
+### Range Input Combinations
+
+```jsx
+// Filter controls
+<div className="space-y-4">
+  <RangeInput
+    label="Price Range"
+    min={0}
+    max={1000}
+    defaultValue={[100, 500]}
+    showValue={true}
+    valueFormatter={(value) => `$${value}`}
+  />
+  <RangeInput
+    label="Rating"
+    min={1}
+    max={5}
+    step={0.5}
+    defaultValue={[3, 5]}
+    showValue={true}
+  />
+</div>
+
+// Audio controls
+<RangeInput
+  label="Frequency Range"
+  min={20}
+  max={20000}
+  defaultValue={[100, 10000]}
+  valueFormatter={(value) => `${value}Hz`}
+/>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

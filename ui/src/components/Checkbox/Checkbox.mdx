@@ -1,0 +1,340 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Checkbox } from "./Checkbox";
+import * as CheckboxStories from "./Checkbox.stories";
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Checkbox)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+  - [Primary Variant](#primary-variant)
+  - [Secondary Variant](#secondary-variant)
+- [States](#states)
+  - [Checked State](#checked-state)
+  - [Indeterminate State](#indeterminate-state)
+  - [Disabled State](#disabled-state)
+- [With Label and Description](#with-label-and-description)
+- [Required Field](#required-field)
+- [Error State](#error-state)
+- [Animation](#animation)
+- [Custom Color](#custom-color)
+- [Checkbox Group](#checkbox-group)
+- [Component API](#component-api)
+  - [Checkbox `variant`](#checkbox-variant)
+  - [Checkbox `size`](#checkbox-size)
+  - [Checkbox `rounded`](#checkbox-rounded)
+  - [Checkbox `animation`](#checkbox-animation)
+  - [Checkbox `labelPosition`](#checkbox-labelposition)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+A flexible and accessible checkbox component with smooth animations, custom colors, and support for labels and descriptions. Includes a CheckboxGroup component with automatic indeterminate state handling.
+
+<Canvas of={CheckboxStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The default checkbox variant with blue styling.
+
+<Canvas of={CheckboxStories.Primary} />
+
+### Secondary Variant
+
+A more subtle gray-styled checkbox.
+
+<Canvas of={CheckboxStories.Secondary} />
+
+## States
+
+### Checked State
+
+A checkbox in its checked state.
+
+<Canvas of={CheckboxStories.Checked} />
+
+### Indeterminate State
+
+Used when the checkbox represents a partial selection (e.g., when some but not all child items are selected).
+
+<Canvas of={CheckboxStories.Indeterminate} />
+
+### Disabled State
+
+Checkboxes can be disabled to prevent user interaction.
+
+<Canvas of={CheckboxStories.Disabled} />
+
+## With Label and Description
+
+Checkboxes can include labels and descriptions to provide context.
+
+<Canvas of={CheckboxStories.WithDescription} />
+
+## Required Field
+
+Mark checkboxes as required with a red asterisk.
+
+<Canvas of={CheckboxStories.Required} />
+
+## Error State
+
+Display error states with custom styling and error messages.
+
+<Canvas of={CheckboxStories.WithError} />
+
+## Animation
+
+Enable smooth scale animation for a polished user experience, similar to Vercel's design.
+
+<Canvas of={CheckboxStories.WithAnimation} />
+
+## Custom Color
+
+Use any color for the checkbox by providing a CSS color value.
+
+<Canvas of={CheckboxStories.CustomColor} />
+
+## Checkbox Group
+
+Group multiple checkboxes with automatic state management and optional "Select All" functionality.
+
+### Basic Group
+
+<Canvas of={CheckboxStories.BasicGroup} />
+
+### With Select All (Indeterminate State)
+
+The CheckboxGroup automatically handles indeterminate state when some but not all options are selected.
+
+<Canvas of={CheckboxStories.WithSelectAll} />
+
+### Horizontal Layout
+
+<Canvas of={CheckboxStories.HorizontalGroup} />
+
+## Component API
+
+<ArgTypes of={CheckboxStories} />
+
+### Checkbox `variant`
+
+The `variant` prop controls the visual style and color scheme of the checkbox.
+
+```jsx
+<Checkbox variant="primary" label="Primary" />
+<Checkbox variant="secondary" label="Secondary" />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <Checkbox variant='primary' label='Primary' checked />
+    <Checkbox variant='secondary' label='Secondary' checked />
+  </div>
+</Unstyled>
+
+### Checkbox `size`
+
+The `size` prop controls the checkbox's dimensions. Choose sizes based on the interface context and hierarchy needs.
+
+```jsx
+<Checkbox size="xs" label="Extra Small" />
+<Checkbox size="sm" label="Small" />
+<Checkbox size="md" label="Medium" />
+<Checkbox size="lg" label="Large" />
+<Checkbox size="xl" label="Extra Large" />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <Checkbox size='xs' label='Extra Small' />
+    <Checkbox size='sm' label='Small' />
+    <Checkbox size='md' label='Medium' />
+    <Checkbox size='lg' label='Large' />
+    <Checkbox size='xl' label='Extra Large' />
+  </div>
+</Unstyled>
+
+### Checkbox `rounded`
+
+The `rounded` prop controls the border radius of the checkbox.
+
+```jsx
+<Checkbox rounded="none" label="No border radius" />
+<Checkbox rounded="sm" label="Small border radius" />
+<Checkbox rounded="md" label="Medium border radius" />
+<Checkbox rounded="lg" label="Large border radius" />
+<Checkbox rounded="xl" label="Extra large border radius" />
+<Checkbox rounded="full" label="Full border radius" />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <Checkbox rounded='none' label='None' checked />
+    <Checkbox rounded='sm' label='Small' checked />
+    <Checkbox rounded='md' label='Medium' checked />
+    <Checkbox rounded='lg' label='Large' checked />
+    <Checkbox rounded='xl' label='XL' checked />
+    <Checkbox rounded='full' label='Full' checked />
+  </div>
+</Unstyled>
+
+### Checkbox `animation`
+
+The `animation` prop enables smooth scale transitions for the checkmark icon.
+
+```jsx
+<Checkbox animation={false} label="No animation" />
+<Checkbox animation={true} label="With animation" />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <Checkbox animation={false} label='No animation' />
+    <Checkbox animation={true} label='With animation' />
+  </div>
+</Unstyled>
+
+### Checkbox `labelPosition`
+
+The `labelPosition` prop controls whether the label appears to the left or right of the checkbox.
+
+```jsx
+<Checkbox labelPosition="left" label="Left positioned label" />
+<Checkbox labelPosition="right" label="Right positioned label" />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <Checkbox labelPosition='left' label='Left positioned label' />
+    <Checkbox labelPosition='right' label='Right positioned label' />
+  </div>
+</Unstyled>
+
+### Checkbox `color`
+
+The `color` prop allows you to customize the checkbox color with any CSS color value.
+
+```jsx
+<Checkbox color="#10b981" label="Green checkbox" />
+<Checkbox color="#ef4444" label="Red checkbox" />
+<Checkbox color="#8b5cf6" label="Purple checkbox" />
+```
+
+<Unstyled>
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <Checkbox color='#10b981' label='Green' checked />
+    <Checkbox color='#ef4444' label='Red' checked />
+    <Checkbox color='#8b5cf6' label='Purple' checked />
+  </div>
+</Unstyled>
+
+## Accessibility
+
+This component follows accessibility best practices:
+
+- Uses semantic HTML with proper `input[type="checkbox"]` elements
+- Supports keyboard navigation (Tab, Space, Enter)
+- Provides proper ARIA attributes
+- Includes focus management and visual focus indicators
+- Supports screen readers with proper labeling
+- Implements the indeterminate state correctly
+- Provides error announcements for screen readers
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive labels placed to the right by default
+- Associate labels with inputs (wrap input with a `<label>` or use `htmlFor`)
+- Use checkboxes for multi-select; use radios when only one option can be selected
+- Group related options with a group label and optional description
+- Use the indeterminate state to reflect partial selection in a parent “Select All”
+- Keep touch targets large enough (at least 40–44px for comfortable tapping)
+- Allow users to change their selection without surprises; persist state where appropriate
+
+### Don'ts ❌
+
+- Don’t use a checkbox when the user must pick exactly one option (use radios)
+- Don’t pre-check options for marketing/consent; require explicit opt-in
+- Don’t rely on color alone to convey state; keep the checkmark visible and provide focus outlines
+- Don’t introduce layout shifts on check/uncheck; icon should animate without moving content
+- Don’t cram many options without spacing; use vertical lists for long groups and wrap smartly horizontally
+- Don’t mix checkboxes and radios in the same logical group
+
+### Common Patterns
+
+```jsx
+// Parent with Select All and indeterminate state handled by CheckboxGroup
+<CheckboxGroup
+  label='Notifications'
+  enableSelectAll
+  selectAllLabel='Enable all'
+  options={[
+    { value: "email", label: "Email" },
+    { value: "push", label: "Push" },
+    { value: "sms", label: "SMS" },
+  ]}
+  checkboxProps={{ animation: true }}
+/>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

@@ -1,15 +1,95 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-
-    "tailwindCSS.experimental.classRegex": [
-        "cn\\(([^)]*)\\)",
-        "clsx\\(([^)]*)\\)",
-        "classnames\\(([^)]*)\\)",
-        "tw`([^`]*)`"
-    ],
-    "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
-
-    "prettier.pluginSearchDirs": ["."],
-    "prettier.requireConfig": true
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#04046e",
+    "titleBar.activeBackground": "#04046e",
+    "titleBar.activeForeground": "#FFFCFD"
+  },
+  "nxConsole.generateAiAgentRules": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.rulers": [100],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "emmet.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  },
+  "tailwindCSS.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/coverage": true,
+    "**/.nx": true,
+    "**/storybook-static": true,
+    "**/docs/api": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/.nx/cache": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.hg/store/**": true,
+    "**/dist/**": true,
+    "**/coverage/**": true,
+    "**/.nx/**": true
+  },
+  "git.ignoreLimitWarning": true,
+  "git.autofetch": true,
+  "npm.packageManager": "pnpm",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, pnpm-lock.yaml, yarn.lock, .npmrc, .nvmrc",
+    ".eslintrc.js": ".eslintrc.*.js, .eslintrc.*.json, .eslintignore",
+    ".prettierrc": ".prettierrc.*, .prettierignore",
+    "vitest.config.*": "vitest.workspace.*",
+    "jest.config.*": "jest.preset.*",
+    "vite.config.*": "vite.workspace.*"
+  },
+  "cSpell.words": [
+    "ruma"
+  ]
 }

@@ -1,0 +1,594 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Rating } from "./Rating";
+import { useState } from "react";
+import * as RatingStories from "./Rating.stories";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { FaRegStar, FaStar } from "react-icons/fa";
+
+<Meta of={RatingStories} />
+
+# Rating
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Rating)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Interactive Rating](#interactive-rating)
+- [Sizes](#sizes)
+- [Variants](#variants)
+- [Precision](#precision)
+- [With Value Display](#with-value-display)
+- [Custom Icons](#custom-icons)
+- [Custom Colors](#custom-colors)
+- [States](#states)
+  - [Readonly State](#readonly-state)
+  - [Disabled State](#disabled-state)
+- [Animations](#animations)
+- [Custom Maximum](#custom-maximum)
+- [Advanced Examples](#advanced-examples)
+  - [Controlled Component](#controlled-component)
+  - [Hover Feedback](#hover-feedback)
+  - [Product Review Card](#product-review-card)
+- [Component API](#component-api)
+  - [Rating `value`](#rating-value)
+  - [Rating `max`](#rating-max)
+  - [Rating `size`](#rating-size)
+  - [Rating `variant`](#rating-variant)
+  - [Rating `precision`](#rating-precision)
+  - [Rating `emptyIcon`](#rating-emptyicon)
+  - [Rating `filledIcon`](#rating-filledicon)
+  - [Rating `colorClassName`](#rating-colorclassname)
+  - [Rating `readonly`](#rating-readonly)
+  - [Rating `disabled`](#rating-disabled)
+  - [Rating `showValue`](#rating-showvalue)
+  - [Rating `label`](#rating-label)
+  - [Rating `onChange`](#rating-onchange)
+  - [Rating `onHover`](#rating-onhover)
+  - [Rating `animation`](#rating-animation)
+  - [Rating `className`](#rating-classname)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Rating component allows users to view and interact with star-based rating systems. It supports full and half-star precision, multiple sizes and variants, and provides comprehensive accessibility features. Perfect for product reviews, user feedback, and any scenario requiring star ratings.
+
+<Canvas of={RatingStories.Default} />
+
+## Basic Usage
+
+The simplest way to use the Rating component is to display a static rating value.
+
+```jsx
+<Rating value={4} />
+<Rating value={3.5} precision={0.5} />
+```
+
+<Unstyled>
+    {(() => {
+        const [rating1, setRating1] = useState(4);
+        const [rating2, setRating2] = useState(3.5);
+
+        return (
+            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+                <Rating value={rating1} onChange={setRating1} />
+                <Rating value={rating2} onChange={setRating2} precision={0.5} />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+## Interactive Rating
+
+Make the rating interactive by providing an `onChange` callback. Users can click on stars to set their rating.
+
+<Canvas of={RatingStories.Interactive} />
+
+## Sizes
+
+The Rating component supports five different sizes to fit various design contexts.
+
+<Canvas of={RatingStories.Sizes} />
+
+## Variants
+
+Choose from three visual variants to match your design system.
+
+<Canvas of={RatingStories.Variants} />
+
+## Precision
+
+Control the rating precision to allow half-star ratings or whole-star only.
+
+<Canvas of={RatingStories.HalfStars} />
+
+## With Value Display
+
+Show the numeric rating value alongside the stars for better clarity.
+
+<Canvas of={RatingStories.WithValue} />
+
+## Custom Icons
+
+Use custom icons instead of the default stars to match your design requirements or use case.
+
+<Canvas of={RatingStories.CustomIcons} />
+
+## Custom Colors
+
+Apply custom colors to your rating component using the `color` prop. This works with both default and custom icons.
+
+<Canvas of={RatingStories.CustomColors} />
+
+## States
+
+### Readonly State
+
+Display ratings that users cannot interact with, perfect for showing average ratings or historical data.
+
+<Canvas of={RatingStories.Readonly} />
+
+### Disabled State
+
+Use the disabled state when the rating should be visible but not interactive due to form state or permissions.
+
+<Canvas of={RatingStories.Disabled} />
+
+## Animations
+
+Add subtle animations to enhance user interaction feedback.
+
+<Canvas of={RatingStories.WithAnimation} />
+
+## Custom Maximum
+
+Set a custom maximum rating value for specialized use cases.
+
+<Canvas of={RatingStories.CustomMax} />
+
+## Advanced Examples
+
+### Controlled Component
+
+Use React state to control the rating value and respond to changes.
+
+<Canvas of={RatingStories.Controlled} />
+
+### Hover Feedback
+
+Track hover states for enhanced user experience.
+
+<Canvas of={RatingStories.WithHoverFeedback} />
+
+### Product Review Card
+
+A complete example showing how to use Rating in a product review interface.
+
+<Canvas of={RatingStories.ProductReview} />
+
+## Component API
+
+<ArgTypes of={Rating} />
+
+### Rating `value`
+
+The current rating value. Should be a number between 0 and `max`.
+
+```jsx
+<Rating value={4} />
+<Rating value={2.5} />
+<Rating value={0} />
+```
+
+<Unstyled>
+    {(() => {
+        const [rating1, setRating1] = useState(4);
+        const [rating2, setRating2] = useState(2.5);
+        const [rating3, setRating3] = useState(0);
+
+        return (
+            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+                <Rating value={rating1} onChange={setRating1} />
+                <Rating value={rating2} onChange={setRating2} />
+                <Rating value={rating3} onChange={setRating3} />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `max`
+
+The maximum rating value. Defaults to 5 stars.
+
+```jsx
+<Rating value={7} max={10} showValue />
+<Rating value={3} max={5} showValue />
+```
+
+<Unstyled>
+    {(() => {
+        const [rating1, setRating1] = useState(7);
+        const [rating2, setRating2] = useState(3);
+
+        return (
+            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+                <Rating value={rating1} onChange={setRating1} max={10} showValue />
+                <Rating value={rating2} onChange={setRating2} max={5} showValue />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `size`
+
+Controls the size of the rating stars.
+
+```jsx
+<Rating size="xs" value={3} />
+<Rating size="sm" value={3} />
+<Rating size="md" value={3} />
+<Rating size="lg" value={3} />
+<Rating size="xl" value={3} />
+```
+
+<Unstyled>
+    {(() => {
+        const [xsRating, setXsRating] = useState(3);
+        const [smRating, setSmRating] = useState(3);
+        const [mdRating, setMdRating] = useState(3);
+        const [lgRating, setLgRating] = useState(3);
+        const [xlRating, setXlRating] = useState(3);
+
+        return (
+            <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+                <Rating size="xs" value={xsRating} onChange={setXsRating} />
+                <Rating size="sm" value={smRating} onChange={setSmRating} />
+                <Rating size="md" value={mdRating} onChange={setMdRating} />
+                <Rating size="lg" value={lgRating} onChange={setLgRating} />
+                <Rating size="xl" value={xlRating} onChange={setXlRating} />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `variant`
+
+Determines the visual style and color scheme of the rating.
+
+```jsx
+<Rating variant="default" value={4} />
+<Rating variant="filled" value={4} />
+<Rating variant="outline" value={4} />
+```
+
+<Unstyled>
+    {(() => {
+        const [defaultRating, setDefaultRating] = useState(4);
+        const [filledRating, setFilledRating] = useState(4);
+        const [outlineRating, setOutlineRating] = useState(4);
+
+        return (
+            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+                <Rating variant="default" value={defaultRating} onChange={setDefaultRating} />
+                <Rating variant="filled" value={filledRating} onChange={setFilledRating} />
+                <Rating variant="outline" value={outlineRating} onChange={setOutlineRating} />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `precision`
+
+Controls whether users can select half-stars or only whole stars.
+
+```jsx
+<Rating value={3.5} precision={0.5} />
+<Rating value={3} precision={1} />
+```
+
+<Unstyled>
+    {(() => {
+        const [halfStarRating, setHalfStarRating] = useState(3.5);
+        const [wholeStarRating, setWholeStarRating] = useState(3);
+
+        return (
+            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+                <Rating value={halfStarRating} onChange={setHalfStarRating} precision={0.5} />
+                <Rating value={wholeStarRating} onChange={setWholeStarRating} precision={1} />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `emptyIcon`
+
+Custom icon component for the empty/unfilled state. Should accept `size` and `className` props.
+
+```jsx
+import { AiOutlineHeart } from "react-icons/ai";
+
+<Rating value={3} emptyIcon={AiOutlineHeart} />;
+```
+
+### Rating `filledIcon`
+
+Custom icon component for the filled state. Should accept `size` and `className` props.
+
+```jsx
+import { AiFillHeart } from "react-icons/ai";
+
+<Rating value={3} filledIcon={AiFillHeart} />;
+```
+
+### Rating `colorClassName`
+
+Applies a custom color to the rating icons using Tailwind CSS color classes. Works with both default and custom icons.
+
+```jsx
+<Rating value={4} colorClassName="text-blue-500" />
+<Rating value={3} emptyIcon={AiOutlineHeart} filledIcon={AiFillHeart} colorClassName="text-red-500" />
+```
+
+<Unstyled>
+    {(() => {
+        const [blueStarsRating, setBlueStarsRating] = useState(4);
+        const [redHeartsRating, setRedHeartsRating] = useState(3);
+
+        return (
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <span style={{ minWidth: "120px", fontSize: "14px" }}>Blue Stars:</span>
+                    <Rating
+                        value={blueStarsRating}
+                        onChange={setBlueStarsRating}
+                        colorClassName="text-blue-500"
+                    />
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <span style={{ minWidth: "120px", fontSize: "14px" }}>Red Hearts:</span>
+                    <Rating
+                        value={redHeartsRating}
+                        onChange={setRedHeartsRating}
+                        emptyIcon={AiOutlineHeart}
+                        filledIcon={AiFillHeart}
+                        colorClassName="text-red-500"
+                    />
+                </div>
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `readonly`
+
+Makes the rating display-only, preventing user interaction.
+
+```jsx
+<Rating value={4} readonly />
+<Rating value={2.5} readonly precision={0.5} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+    <Rating value={4} readonly />
+    <Rating value={2.5} readonly precision={0.5} />
+  </div>
+</Unstyled>
+
+### Rating `disabled`
+
+Disables the rating, making it non-interactive and visually muted.
+
+```jsx
+<Rating value={3} disabled />
+<Rating value={4} disabled showValue />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+    <Rating value={3} disabled />
+    <Rating value={4} disabled showValue />
+  </div>
+</Unstyled>
+
+### Rating `showValue`
+
+Displays the numeric rating value alongside the stars.
+
+```jsx
+<Rating value={4.2} showValue />
+<Rating value={3} max={5} showValue />
+```
+
+<Unstyled>
+    {(() => {
+        const [rating1, setRating1] = useState(4.2);
+        const [rating2, setRating2] = useState(3);
+
+        return (
+            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+                <Rating value={rating1} onChange={setRating1} showValue />
+                <Rating value={rating2} onChange={setRating2} max={5} showValue />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `label`
+
+Provides an accessible label for the rating component.
+
+```jsx
+<Rating value={4} label="Product quality rating" />
+<Rating value={3} label="Customer service rating" showValue />
+```
+
+<Unstyled>
+    {(() => {
+        const [rating1, setRating1] = useState(4);
+        const [rating2, setRating2] = useState(3);
+
+        return (
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                <Rating value={rating1} onChange={setRating1} label="Product quality rating" />
+                <Rating
+                    value={rating2}
+                    onChange={setRating2}
+                    label="Customer service rating"
+                    showValue
+                />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `onChange`
+
+Callback function called when the rating value changes.
+
+```jsx
+function handleRatingChange(value) {
+  console.log("New rating:", value);
+}
+
+<Rating value={rating} onChange={handleRatingChange} />;
+```
+
+### Rating `onHover`
+
+Callback function called when a user hovers over a star.
+
+```jsx
+function handleRatingHover(value) {
+  console.log("Hovered rating:", value);
+}
+
+<Rating value={rating} onHover={handleRatingHover} />;
+```
+
+### Rating `animation`
+
+Adds animation effects to enhance user interaction.
+
+```jsx
+<Rating value={3} animation="scale" />
+<Rating value={3} animation="glow" />
+```
+
+<Unstyled>
+    {(() => {
+        const [scaleRating, setScaleRating] = useState(3);
+        const [glowRating, setGlowRating] = useState(3);
+
+        return (
+            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+                <Rating value={scaleRating} onChange={setScaleRating} animation="scale" />
+                <Rating value={glowRating} onChange={setGlowRating} animation="glow" />
+            </div>
+        );
+    })()}
+
+</Unstyled>
+
+### Rating `className`
+
+Allows custom styling via Tailwind CSS classes.
+
+```jsx
+<Rating value={4} className='rounded-lg border bg-gradient-to-r from-blue-50 to-purple-50 p-4' />
+```
+
+<Canvas of={RatingStories.CustomStyled} />
+
+## Accessibility
+
+Our Rating component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper ARIA attributes and roles
+- **Keyboard Navigation**: Full keyboard support for interactive ratings
+- **Screen Reader Support**: Clear labels and value announcements
+- **Focus Management**: Visible focus indicators and logical tab order
+- **ARIA Labels**: Proper labeling for assistive technologies
+- **Live Regions**: Dynamic value updates announced to screen readers
+
+### Keyboard Navigation
+
+- **Tab**: Move focus to the rating component
+- **Arrow Keys**: Navigate between stars (when interactive)
+- **Enter/Space**: Select the current star
+- **Escape**: Clear focus
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear labels for accessibility
+- Provide appropriate maximum values (typically 5 or 10)
+- Show rating values when context is unclear
+- Use readonly state for display-only ratings
+- Consider half-star precision for detailed feedback
+- Test with keyboard navigation
+
+### Don'ts ❌
+
+- Don't use ratings for binary choices (use checkboxes instead)
+- Avoid too many stars (keep max reasonable)
+- Don't make ratings too small for touch interaction
+- Avoid using disabled state for validation feedback
+- Don't rely on color alone to convey rating state
+
+### Rating Scale Guidelines
+
+- **1-5 stars**: Most common for general feedback
+- **1-10 stars**: Better for detailed assessments
+- **Half-stars**: Useful for more precise feedback
+- **Custom scales**: Only when standard scales don't fit
+
+### Form Integration
+
+```jsx
+function ReviewForm() {
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Overall Rating:
+        <Rating value={rating} onChange={setRating} label='Overall product rating' required />
+      </label>
+
+      <textarea
+        value={comment}
+        onChange={e => setComment(e.target.value)}
+        placeholder='Tell us about your experience...'
+      />
+
+      <button type='submit' disabled={rating === 0}>
+        Submit Review
+      </button>
+    </form>
+  );
+}
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

@@ -1,0 +1,17 @@
+{
+  "name": "@ruma-ui/utils",
+  "version": "0.0.0",
+  "description": "Shared utilities for Ruma UI components",
+  "license": "MIT",
+  "author": "Ruma UI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruma-ui/ui.git"
+  },
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1"
+  }
+}

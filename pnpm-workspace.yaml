@@ -1,0 +1,8 @@
+packages:
+  - "ui"
+  - "utils"
+  - "demo"
+  - "www"
+
+autoInstallPeers: true
+strictPeerDependencies: false

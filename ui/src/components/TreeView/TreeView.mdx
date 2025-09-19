@@ -1,0 +1,567 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { TreeView, TreeItem, TreeItemContent, TreeItemTrigger, TreeItemChildren } from "./TreeView";
+import * as TreeViewStories from "./TreeView.stories";
+import { FaFile, FaFolder } from "react-icons/fa";
+
+<Meta of={TreeViewStories} />
+
+# TreeView
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/TreeView)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Selection Modes](#selection-modes)
+  - [Single Selection](#single-selection)
+  - [Multiple Selection](#multiple-selection)
+- [Expansion Modes](#expansion-modes)
+  - [Multiple Expansion](#multiple-expansion)
+  - [Single Expansion](#single-expansion)
+- [Pre-selected State](#pre-selected-state)
+- [Simple List](#simple-list)
+- [Nested Structure](#nested-structure)
+- [Indentation Guides](#indentation-guides)
+- [Component API](#component-api)
+  - [TreeView `multiple`](#treeview-multiple)
+  - [TreeView `multipleExpanded`](#treeview-multipleexpanded)
+  - [TreeView `indentGuide`](#treeview-indentguide)
+  - [TreeView `defaultSelected`](#treeview-defaultselected)
+  - [TreeView `defaultExpanded`](#treeview-defaultexpanded)
+  - [TreeView `onSelectionChange`](#treeview-onselectionchange)
+  - [TreeView `onExpansionChange`](#treeview-onexpansionchange)
+  - [TreeItem `value`](#treeitem-value)
+  - [TreeItem `disabled`](#treeitem-disabled)
+  - [TreeItemTrigger `hasChildren`](#treeitemtrigger-haschildren)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+TreeView is a hierarchical component that displays nested data in a tree-like structure. It supports selection, expansion/collapse, and keyboard navigation, making it ideal for file explorers, navigation menus, and data hierarchies.
+
+<Canvas of={TreeViewStories.Basic} />
+
+## Basic Usage
+
+The TreeView component consists of several sub-components that work together:
+
+- `TreeView`: The root container
+- `TreeItem`: Individual tree nodes
+- `TreeItemContent`: The clickable content area
+- `TreeItemTrigger`: Expandable trigger for parent nodes
+- `TreeItemChildren`: Container for child nodes
+
+<Canvas of={TreeViewStories.Basic} />
+
+## Selection Modes
+
+### Single Selection
+
+By default, TreeView allows only one item to be selected at a time. Clicking on an item will deselect any previously selected item.
+
+<Canvas of={TreeViewStories.SingleSelection} />
+
+### Multiple Selection
+
+Set `multiple={true}` to allow multiple items to be selected simultaneously. Use Ctrl+Click (or Cmd+Click on Mac) to select multiple items.
+
+<Canvas of={TreeViewStories.MultipleSelection} />
+
+## Expansion Modes
+
+### Multiple Expansion
+
+By default, multiple tree branches can be expanded at once, allowing users to view multiple sections of the hierarchy simultaneously.
+
+<Canvas of={TreeViewStories.Basic} />
+
+### Single Expansion
+
+Set `multipleExpanded={false}` to allow only one branch to be expanded at a time. Expanding a new branch will automatically collapse any previously expanded branches.
+
+<Canvas of={TreeViewStories.SingleExpansion} />
+
+## Pre-selected State
+
+You can initialize the TreeView with pre-selected and pre-expanded items using the `defaultSelected` and `defaultExpanded` props.
+
+<Canvas of={TreeViewStories.PreSelected} />
+
+## Simple List
+
+For simple flat lists without hierarchy, you can omit the `TreeItemTrigger` and `TreeItemChildren` components.
+
+<Canvas of={TreeViewStories.SimpleList} />
+
+## Nested Structure
+
+TreeView supports unlimited nesting levels, making it suitable for complex hierarchical data structures.
+
+<Canvas of={TreeViewStories.Basic} />
+
+## Indentation Guides
+
+Indentation guides provide visual cues to help users understand the hierarchical structure of the tree. They appear as vertical lines connecting parent and child items.
+
+<Canvas of={TreeViewStories.WithIndentGuides} />
+
+## Component API
+
+<ArgTypes of={TreeViewStories} />
+
+### TreeView `multiple`
+
+Controls whether multiple items can be selected simultaneously.
+
+```jsx
+// Single selection (default)
+<TreeView multiple={false}>
+  {/* Tree items */}
+</TreeView>
+
+// Multiple selection
+<TreeView multiple={true}>
+  {/* Tree items */}
+</TreeView>
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+    <div>
+      <h4 style={{ marginBottom: "8px" }}>Single Selection</h4>
+      <TreeView
+        multiple={false}
+        style={{
+          width: "200px",
+          border: "1px solid #e5e7eb",
+          borderRadius: "4px",
+        }}
+      >
+        <TreeItem value='item1'>
+          <TreeItemContent>Item 1</TreeItemContent>
+        </TreeItem>
+        <TreeItem value='item2'>
+          <TreeItemContent>Item 2</TreeItemContent>
+        </TreeItem>
+        <TreeItem value='item3'>
+          <TreeItemContent>Item 3</TreeItemContent>
+        </TreeItem>
+      </TreeView>
+    </div>
+    <div>
+      <h4 style={{ marginBottom: "8px" }}>Multiple Selection</h4>
+      <TreeView
+        multiple={true}
+        style={{
+          width: "200px",
+          border: "1px solid #e5e7eb",
+          borderRadius: "4px",
+        }}
+      >
+        <TreeItem value='item1'>
+          <TreeItemContent>Item 1</TreeItemContent>
+        </TreeItem>
+        <TreeItem value='item2'>
+          <TreeItemContent>Item 2</TreeItemContent>
+        </TreeItem>
+        <TreeItem value='item3'>
+          <TreeItemContent>Item 3</TreeItemContent>
+        </TreeItem>
+      </TreeView>
+    </div>
+  </div>
+</Unstyled>
+
+### TreeView `multipleExpanded`
+
+Controls whether multiple branches can be expanded simultaneously.
+
+```jsx
+// Multiple expansion (default)
+<TreeView multipleExpanded={true}>
+  {/* Tree items */}
+</TreeView>
+
+// Single expansion
+<TreeView multipleExpanded={false}>
+  {/* Tree items */}
+</TreeView>
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+    <div>
+      <h4 style={{ marginBottom: "8px" }}>Multiple Expansion</h4>
+      <TreeView
+        multipleExpanded={true}
+        style={{
+          width: "200px",
+          border: "1px solid #e5e7eb",
+          borderRadius: "4px",
+        }}
+      >
+        <TreeItem value='folder1'>
+          <TreeItemContent>
+            <TreeItemTrigger hasChildren={true}>📁 Folder 1</TreeItemTrigger>
+          </TreeItemContent>
+          <TreeItemChildren>
+            <TreeItem value='file1'>
+              <TreeItemContent>📄 File 1</TreeItemContent>
+            </TreeItem>
+          </TreeItemChildren>
+        </TreeItem>
+        <TreeItem value='folder2'>
+          <TreeItemContent>
+            <TreeItemTrigger hasChildren={true}>📁 Folder 2</TreeItemTrigger>
+          </TreeItemContent>
+          <TreeItemChildren>
+            <TreeItem value='file2'>
+              <TreeItemContent>📄 File 2</TreeItemContent>
+            </TreeItem>
+          </TreeItemChildren>
+        </TreeItem>
+      </TreeView>
+    </div>
+    <div>
+      <h4 style={{ marginBottom: "8px" }}>Single Expansion</h4>
+      <TreeView
+        multipleExpanded={false}
+        style={{
+          width: "200px",
+          border: "1px solid #e5e7eb",
+          borderRadius: "4px",
+        }}
+      >
+        <TreeItem value='folder1'>
+          <TreeItemContent>
+            <TreeItemTrigger hasChildren={true}>📁 Folder 1</TreeItemTrigger>
+          </TreeItemContent>
+          <TreeItemChildren>
+            <TreeItem value='file1'>
+              <TreeItemContent>📄 File 1</TreeItemContent>
+            </TreeItem>
+          </TreeItemChildren>
+        </TreeItem>
+        <TreeItem value='folder2'>
+          <TreeItemContent>
+            <TreeItemTrigger hasChildren={true}>📁 Folder 2</TreeItemTrigger>
+          </TreeItemContent>
+          <TreeItemChildren>
+            <TreeItem value='file2'>
+              <TreeItemContent>📄 File 2</TreeItemContent>
+            </TreeItem>
+          </TreeItemChildren>
+        </TreeItem>
+      </TreeView>
+    </div>
+  </div>
+</Unstyled>
+
+### TreeView `indentGuide`
+
+Shows visual indentation guides to help users understand the tree hierarchy structure.
+
+```jsx
+// With indentation guides
+<TreeView indentGuide={true}>
+  {/* Tree items */}
+</TreeView>
+
+// Without indentation guides (default)
+<TreeView indentGuide={false}>
+  {/* Tree items */}
+</TreeView>
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+    <div>
+      <h4 style={{ marginBottom: "8px" }}>With Indent Guides</h4>
+      <TreeView
+        indentGuide={true}
+        style={{
+          width: "200px",
+          border: "1px solid #e5e7eb",
+          borderRadius: "4px",
+        }}
+      >
+        <TreeItem value='root'>
+          <TreeItemContent>
+            <TreeItemTrigger hasChildren={true}>📁 Root</TreeItemTrigger>
+          </TreeItemContent>
+          <TreeItemChildren>
+            <TreeItem value='child'>
+              <TreeItemContent>
+                <TreeItemTrigger hasChildren={true}>📁 Child</TreeItemTrigger>
+              </TreeItemContent>
+              <TreeItemChildren>
+                <TreeItem value='file'>
+                  <TreeItemContent>📄 File.txt</TreeItemContent>
+                </TreeItem>
+              </TreeItemChildren>
+            </TreeItem>
+          </TreeItemChildren>
+        </TreeItem>
+      </TreeView>
+    </div>
+    <div>
+      <h4 style={{ marginBottom: "8px" }}>Without Indent Guides</h4>
+      <TreeView
+        indentGuide={false}
+        style={{
+          width: "200px",
+          border: "1px solid #e5e7eb",
+          borderRadius: "4px",
+        }}
+      >
+        <TreeItem value='root'>
+          <TreeItemContent>
+            <TreeItemTrigger hasChildren={true}>📁 Root</TreeItemTrigger>
+          </TreeItemContent>
+          <TreeItemChildren>
+            <TreeItem value='child'>
+              <TreeItemContent>
+                <TreeItemTrigger hasChildren={true}>📁 Child</TreeItemTrigger>
+              </TreeItemContent>
+              <TreeItemChildren>
+                <TreeItem value='file'>
+                  <TreeItemContent>📄 File.txt</TreeItemContent>
+                </TreeItem>
+              </TreeItemChildren>
+            </TreeItem>
+          </TreeItemChildren>
+        </TreeItem>
+      </TreeView>
+    </div>
+  </div>
+</Unstyled>
+
+### TreeView `defaultSelected`
+
+An array of item values that should be selected when the component mounts.
+
+```jsx
+<TreeView defaultSelected={["item1", "item3"]}>
+  <TreeItem value='item1'>Item 1</TreeItem>
+  <TreeItem value='item2'>Item 2</TreeItem>
+  <TreeItem value='item3'>Item 3</TreeItem>
+</TreeView>
+```
+
+### TreeView `defaultExpanded`
+
+An array of item values that should be expanded when the component mounts.
+
+```jsx
+<TreeView defaultExpanded={["folder1"]}>
+  <TreeItem value='folder1'>
+    <TreeItemContent>
+      <TreeItemTrigger hasChildren={true}>📁 Folder 1</TreeItemTrigger>
+    </TreeItemContent>
+    <TreeItemChildren>
+      <TreeItem value='file1'>📄 File 1</TreeItem>
+    </TreeItemChildren>
+  </TreeItem>
+</TreeView>
+```
+
+### TreeView `onSelectionChange`
+
+Callback function called when the selection changes. Receives an array of selected item values.
+
+```jsx
+const handleSelectionChange = selectedItems => {
+  console.log("Selected items:", selectedItems);
+};
+
+<TreeView onSelectionChange={handleSelectionChange}>{/* Tree items */}</TreeView>;
+```
+
+### TreeView `onExpansionChange`
+
+Callback function called when the expansion state changes. Receives an array of expanded item values.
+
+```jsx
+const handleExpansionChange = expandedItems => {
+  console.log("Expanded items:", expandedItems);
+};
+
+<TreeView onExpansionChange={handleExpansionChange}>{/* Tree items */}</TreeView>;
+```
+
+### TreeItem `value`
+
+A unique identifier for the tree item. This value is used for selection and expansion state management.
+
+```jsx
+<TreeItem value='unique-id'>Item Content</TreeItem>
+```
+
+### TreeItem `disabled`
+
+Disables the tree item, preventing selection and expansion.
+
+```jsx
+<TreeItem value='disabled-item' disabled>
+  Disabled Item
+</TreeItem>
+```
+
+<Unstyled>
+  <TreeView
+    style={{
+      width: "200px",
+      border: "1px solid #e5e7eb",
+      borderRadius: "4px",
+    }}
+  >
+    <TreeItem value='enabled'>
+      <TreeItemContent>Enabled Item</TreeItemContent>
+    </TreeItem>
+    <TreeItem value='disabled' disabled>
+      <TreeItemContent>Disabled Item</TreeItemContent>
+    </TreeItem>
+  </TreeView>
+</Unstyled>
+
+### TreeItemTrigger `hasChildren`
+
+Controls whether the expansion icon is displayed. Set to `true` for items that have children, `false` for leaf nodes.
+
+```jsx
+// Folder with children - shows expansion icon
+<TreeItemTrigger hasChildren={true}>📁 Folder</TreeItemTrigger>
+
+// File (leaf node) - no expansion icon
+<TreeItemTrigger hasChildren={false}>📄 File.txt</TreeItemTrigger>
+```
+
+<Unstyled>
+  <TreeView
+    style={{
+      width: "200px",
+      border: "1px solid #e5e7eb",
+      borderRadius: "4px",
+    }}
+  >
+    <TreeItem value='folder'>
+      <TreeItemContent>
+        <TreeItemTrigger hasChildren={true}>📁 Folder</TreeItemTrigger>
+      </TreeItemContent>
+    </TreeItem>
+    <TreeItem value='file'>
+      <TreeItemContent>
+        <TreeItemTrigger hasChildren={false}>📄 File.txt</TreeItemTrigger>
+      </TreeItemContent>
+    </TreeItem>
+  </TreeView>
+</Unstyled>
+
+## Accessibility
+
+Our TreeView component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper ARIA attributes for tree structure
+- **Keyboard Navigation**: Full support for arrow keys, Enter, and Space
+- **Screen Reader Support**: Proper labeling with `aria-expanded`, `aria-selected`, and `aria-disabled`
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Role Attributes**: Uses `role="tree"` and `role="treeitem"` for screen readers
+
+### Keyboard Navigation
+
+- **Arrow Up/Down**: Navigate between sibling items
+- **Arrow Left**: Collapse current item or move to parent
+- **Arrow Right**: Expand current item or move to first child
+- **Enter/Space**: Select current item
+- **Home/End**: Navigate to first/last item in current level
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive labels for tree items
+- Provide appropriate icons to distinguish between files and folders
+- Consider the depth of your hierarchy (avoid deeply nested structures when possible)
+- Use consistent indentation and spacing
+- Provide visual feedback for selected and expanded states
+- Test with keyboard navigation
+
+### Don'ts ❌
+
+- Don't use TreeView for simple flat lists (use regular lists instead)
+- Avoid very deep nesting (more than 5-6 levels)
+- Don't mix different types of content without clear visual distinction
+- Avoid using TreeView for large datasets (consider virtualization)
+- Don't disable items without clear visual indication
+
+### Performance Considerations
+
+For large tree structures:
+
+```jsx
+// Use React.memo for tree items
+const TreeItem = React.memo(({ value, children, ...props }) => {
+  // Implementation
+});
+
+// Consider lazy loading for large hierarchies
+const TreeItemChildren = ({ children, isExpanded }) => {
+  return <div className={isExpanded ? "visible" : "hidden"}>{isExpanded ? children : null}</div>;
+};
+```
+
+### Common Patterns
+
+```jsx
+// File explorer pattern
+<TreeView multiple multipleExpanded>
+  <TreeItem value="folder">
+    <TreeItemContent>
+      <TreeItemTrigger hasChildren={true}>
+        <FaFolder className="text-blue-500" />
+        <span>Documents</span>
+      </TreeItemTrigger>
+    </TreeItemContent>
+    <TreeItemChildren>
+      <TreeItem value="file">
+        <TreeItemContent>
+          <FaFile className="text-gray-500" />
+          <span>document.pdf</span>
+        </TreeItemContent>
+      </TreeItem>
+    </TreeItemChildren>
+  </TreeItem>
+</TreeView>
+
+// Navigation menu pattern
+<TreeView multiple={false} multipleExpanded={false}>
+  <TreeItem value="dashboard">
+    <TreeItemContent>Dashboard</TreeItemContent>
+  </TreeItem>
+  <TreeItem value="settings">
+    <TreeItemContent>
+      <TreeItemTrigger hasChildren={true}>Settings</TreeItemTrigger>
+    </TreeItemContent>
+    <TreeItemChildren>
+      <TreeItem value="profile">
+        <TreeItemContent>Profile</TreeItemContent>
+      </TreeItem>
+      <TreeItem value="preferences">
+        <TreeItemContent>Preferences</TreeItemContent>
+      </TreeItem>
+    </TreeItemChildren>
+  </TreeItem>
+</TreeView>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
