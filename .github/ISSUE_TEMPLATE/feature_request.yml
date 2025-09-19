@@ -4,13 +4,13 @@ title: "[Feature]: "
 labels: ["feature request", "enhancement"]
 assignees: []
 body:
-    - type: markdown
-      attributes:
-          value: |
-              ## 🚀 Feature Request
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 Feature Request
 
-              Thank you for your interest in improving **Ruma UI**! Your ideas help us make this component library better. ✨
+        Thank you for your interest in improving **Ruma UI**! Your ideas help us make this component library better. ✨
 
-              Before submitting your request:
-              - 🔍 **Check existing [discussions](https://github.com/ruma-ui/ui/discussions?discussions_q=)** and **[issues](https://github.com/ruma-ui/ui/issues?q=)** to see if someone has already suggested a similar feature.
-              - 💡 If your idea is more of a question or discussion, consider posting in our **[GitHub discussions](https://github.com/ruma-ui/ui/discussions)**.
+        Before submitting your request:
+        - 🔍 **Check existing [discussions](https://github.com/ruma-ui/ui/discussions?discussions_q=)** and **[issues](https://github.com/ruma-ui/ui/issues?q=)** to see if someone has already suggested a similar feature.
+        - 💡 If your idea is more of a question or discussion, consider posting in our **[GitHub discussions](https://github.com/ruma-ui/ui/discussions)**.

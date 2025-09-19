@@ -1,0 +1,14 @@
+[
+  {
+    "name": "UI Library (ESM)",
+    "path": "dist/ui/index.mjs",
+    "limit": "50 KB",
+    "gzip": true
+  },
+  {
+    "name": "UI Library (CJS)",
+    "path": "dist/ui/index.js",
+    "limit": "50 KB",
+    "gzip": true
+  }
+]

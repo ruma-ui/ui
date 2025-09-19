@@ -1,0 +1,319 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as PopoverStories from "./Popover.stories";
+
+<Meta of={PopoverStories} />
+
+# Popover
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Popover)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Variants](#variants)
+  - [Primary](#primary)
+  - [Secondary](#secondary)
+- [With Labels and Descriptions](#with-labels-and-descriptions)
+- [With Icons](#with-icons)
+- [Trigger Types](#trigger-types)
+  - [Click Trigger](#click-trigger)
+  - [Hover Trigger](#hover-trigger)
+  - [Focus Trigger](#focus-trigger)
+- [States](#states)
+  - [Error State](#error-state)
+  - [Disabled State](#disabled-state)
+- [Layout](#layout)
+  - [Full Width](#full-width)
+  - [Custom Styled](#custom-styled)
+- [Alignments](#alignments)
+- [Controlled Component](#controlled-component)
+- [Close Behavior](#close-behavior)
+- [With Forms](#with-forms)
+- [Component API](#component-api)
+  - [Popover](#popover)
+  - [PopoverTrigger](#popovertrigger)
+  - [PopoverContent](#popovercontent)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Popover component is a compound component system that provides flexible content display in overlay panels. Unlike dropdown menus, popovers can contain rich content including forms, images, and interactive elements. The component offers multiple trigger types with isolated event handling, comprehensive alignment options including perfect center positioning, smart positioning, and comprehensive accessibility features that align with the design system.
+
+<Canvas of={PopoverStories.Primary} />
+
+## Basic Usage
+
+The Popover component uses a compound pattern with multiple sub-components. The `Popover` provides context and behavior, `PopoverTrigger` handles the trigger element, and `PopoverContent` contains the overlay content.
+
+```tsx
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant='outline' endIcon={<FaInfoCircle />}>
+      Show Info
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent className='w-80'>
+    <div className='space-y-3'>
+      <h4 className='font-semibold text-gray-900'>About this feature</h4>
+      <p className='text-sm text-gray-600'>
+        This is a popover component that can contain rich content.
+      </p>
+    </div>
+  </PopoverContent>
+</Popover>
+```
+
+## Variants
+
+### Primary
+
+The primary variant uses the outline Button style, perfect for most popover interactions with informational content.
+
+<Canvas of={PopoverStories.Primary} />
+
+### Secondary
+
+The secondary variant uses the secondary Button style for less prominent popovers or when integrated into specific UI contexts.
+
+<Canvas of={PopoverStories.Secondary} />
+
+## With Labels and Descriptions
+
+Labels and descriptions provide context and guidance to help users understand the popover's purpose and content.
+
+<Canvas of={PopoverStories.WithLabel} />
+
+<Canvas of={PopoverStories.WithDescription} />
+
+## With Icons
+
+Icons can enhance popover clarity and help users quickly identify the popover's function. Add icons to the trigger button or within the popover content.
+
+<Canvas of={PopoverStories.WithStartIcon} />
+
+## Trigger Types
+
+### Click Trigger
+
+The default trigger type opens the popover on click and closes it when clicking outside or pressing Escape. Click triggers are isolated from focus events, ensuring predictable behavior.
+
+<Canvas of={PopoverStories.Primary} />
+
+### Hover Trigger
+
+Hover triggers display the popover when hovering over the trigger element, useful for tooltips and quick previews. The popover appears on mouse enter and disappears on mouse leave.
+
+<Canvas of={PopoverStories.HoverTrigger} />
+
+### Focus Trigger
+
+Focus triggers show the popover when the trigger element receives focus, ideal for form help text and accessibility. The popover remains open when focusing on the popover content and only closes when focus moves completely away from both the trigger and content.
+
+<Canvas of={PopoverStories.FocusTrigger} />
+
+### Trigger Behavior Comparison
+
+See all trigger types in action and understand their distinct behaviors:
+
+<Canvas of={PopoverStories.TriggerBehaviors} />
+
+## States
+
+### Error State
+
+The error state displays validation errors or warnings with clear visual feedback and helpful error messages.
+
+<Canvas of={PopoverStories.ErrorState} />
+
+### Disabled State
+
+Disabled popovers indicate that the interaction is temporarily unavailable.
+
+<Canvas of={PopoverStories.Disabled} />
+
+## Layout
+
+### Full Width
+
+Full-width popovers stretch to fill their container width, useful in forms or mobile interfaces.
+
+<Canvas of={PopoverStories.FullWidth} />
+
+### Custom Styled
+
+Custom styling allows you to create unique popover designs that fit your brand or application's aesthetic.
+
+<Canvas of={PopoverStories.CustomStyled} />
+
+## Alignments
+
+The popover can be positioned relative to the trigger with comprehensive alignment options. Use the `align` prop on `PopoverContent` which defaults to "bottom-start". The component supports:
+
+- **Bottom alignments**: `bottom-start`, `bottom-center`, `bottom-end`
+- **Top alignments**: `top-start`, `top-center`, `top-end`
+- **Side alignments**: `left`, `right`
+
+The center alignments (`bottom-center`, `top-center`) perfectly center the popover relative to the trigger element, providing optimal visual balance.
+
+<Canvas of={PopoverStories.Alignments} />
+
+### Center Alignment Showcase
+
+See the perfect centering in action:
+
+<Canvas of={PopoverStories.CenterAlignment} />
+
+## Controlled Component
+
+For advanced use cases, you can control the popover's open state programmatically.
+
+<Canvas of={PopoverStories.Controlled} />
+
+## Close Behavior
+
+Control how the popover closes by using the `closeOnClick` prop on `PopoverContent`. By default, popovers remain open when clicking inside the content.
+
+<Canvas of={PopoverStories.CloseOnClick} />
+
+## With Forms
+
+Popovers are perfect for containing forms and interactive content. Use the Form components to create structured input experiences within popovers.
+
+<Canvas of={PopoverStories.WithForm} />
+
+```tsx
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant='outline' endIcon={<FaEdit />}>
+      Contact Us
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent className='w-80'>
+    <Form onSubmit={handleSubmit} spacing='md'>
+      <FormField label='Name' required>
+        <TextInput placeholder='Enter your name' />
+      </FormField>
+      <FormField label='Email' required>
+        <TextInput type='email' placeholder='Enter your email' />
+      </FormField>
+      <FormField label='Message'>
+        <Textarea placeholder='Enter your message' rows={3} />
+      </FormField>
+      <div className='flex justify-end space-x-2 pt-2'>
+        <Button type='button' size='sm' variant='outline'>
+          Cancel
+        </Button>
+        <Button type='submit' size='sm'>
+          Send Message
+        </Button>
+      </div>
+    </Form>
+  </PopoverContent>
+</Popover>
+```
+
+## Component API
+
+<ArgTypes of={PopoverStories} />
+
+### Popover
+
+The root component that provides context for the popover.
+
+```tsx
+<Popover open={open} onOpenChange={setOpen} trigger='click'>
+  {/* children */}
+</Popover>
+```
+
+**Props:**
+
+- `children`: ReactNode - The popover content
+- `open?`: boolean - Controlled open state
+- `defaultOpen?`: boolean - Default open state (default: false)
+- `onOpenChange?`: (open: boolean) => void - Callback when open state changes
+- `trigger?`: "click" | "hover" | "focus" - How the popover is triggered (default: "click")
+
+### PopoverTrigger
+
+The trigger element that opens/closes the popover.
+
+```tsx
+<PopoverTrigger asChild>
+  <Button>Open Popover</Button>
+</PopoverTrigger>
+```
+
+**Props:**
+
+- `children`: ReactNode - The trigger element content
+- `asChild?`: boolean - Whether to merge props onto the child element (default: false)
+
+### PopoverContent
+
+The content container for the popover overlay.
+
+```tsx
+<PopoverContent position='bottom' align='start' className='w-64' closeOnClick offset={8}>
+  {/* popover content */}
+</PopoverContent>
+```
+
+**Props:**
+
+- `children`: ReactNode - The popover content
+- `align?`: "bottom-start" | "bottom-center" | "bottom-end" | "top-start" | "top-center" | "top-end" | "left" | "right" - Alignment relative to trigger (default: "bottom-start")
+- `className?`: string - Additional CSS classes
+- `closeOnClick?`: boolean - Whether clicking inside closes the popover (default: false)
+- `offset?`: number - Offset from trigger element in pixels (default: 8)
+- `autoPosition?`: boolean - Whether to automatically adjust position based on available viewport space (default: true)
+
+## Accessibility
+
+The Popover component follows WAI-ARIA guidelines and includes comprehensive accessibility features:
+
+- **Keyboard Navigation**: Full keyboard support with Escape key to close and proper focus management
+- **Screen Reader Support**: Proper ARIA attributes including `aria-expanded` and `role="dialog"`
+- **Focus Management**: Intelligent focus handling that preserves focus within popover content for focus triggers, while maintaining clear focus indicators and logical focus flow
+- **Click Outside**: Automatically closes when clicking outside the popover (for click triggers)
+- **Trigger Isolation**: Each trigger type has isolated event handling to prevent interference between click, hover, and focus behaviors
+- **Multiple Triggers**: Support for click, hover, and focus triggers with appropriate and predictable behavior patterns
+
+## Best Practices
+
+### When to Use
+
+- **Rich Content Display**: For showing detailed information, forms, or interactive content in an overlay
+- **Contextual Help**: For providing help text, tooltips, or additional information
+- **Quick Actions**: For displaying action panels or mini-forms without full page navigation
+- **User Profiles**: For showing user information or quick profile actions
+- **Settings Panels**: For inline settings or configuration options
+
+### When Not to Use
+
+- **Simple Tooltips**: Consider using native tooltips or simpler solutions for basic text-only hints
+- **Navigation Menus**: Use the Dropdown component for menu-style navigation
+- **Large Forms**: Consider modals or dedicated pages for complex forms
+- **Critical Actions**: Use modals for actions that require explicit user confirmation
+
+### Guidelines
+
+1. **Appropriate Content**: Keep popover content focused and relevant to the trigger element
+2. **Reasonable Size**: Don't make popovers too large - they should feel lightweight and contextual
+3. **Clear Triggers**: Use descriptive trigger text or icons that clearly indicate what the popover contains
+4. **Smart Positioning**: Choose alignment that prevents the popover from being cut off by viewport edges. Use center alignments for optimal visual balance when appropriate
+5. **Trigger Selection**: Choose the right trigger type - click for interactive content, hover for quick previews, focus for form help
+6. **Consistent Behavior**: Use consistent trigger types and behaviors throughout your application
+7. **Mobile Considerations**: Ensure popovers work well on touch devices and small screens
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

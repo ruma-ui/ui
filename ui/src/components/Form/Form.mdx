@@ -1,0 +1,486 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Form, FormField, FormSection } from "./Form";
+import { TextInput } from "../TextInput/TextInput";
+import { Textarea } from "../Textarea/Textarea";
+import { Checkbox } from "../Checkbox/Checkbox";
+import { Button } from "../Button/Button";
+import { Select } from "../Select/Select";
+import { DatePicker } from "../DatePicker/DatePicker";
+import * as FormStories from "./Form.stories";
+
+<Meta of={FormStories} />
+
+# Form
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Form)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+- [Form with Sections](#form-with-sections)
+- [Card Layout](#card-layout)
+- [Horizontal Layout](#horizontal-layout)
+- [Form States](#form-states)
+  - [Loading State](#loading-state)
+  - [Error State](#error-state)
+  - [Disabled State](#disabled-state)
+- [FormField Component](#formfield-component)
+- [FormSection Component](#formsection-component)
+- [Component API](#component-api)
+  - [Form `variant`](#form-variant)
+  - [Form `size`](#form-size)
+  - [Form `direction`](#form-direction)
+  - [Form `spacing`](#form-spacing)
+  - [Form `fullWidth`](#form-fullwidth)
+  - [Form `card`](#form-card)
+  - [Form `loading`](#form-loading)
+  - [Form `disabled`](#form-disabled)
+  - [Form `onSubmit` and `onError`](#form-onsubmit-and-onerror)
+  - [FormField `label`](#formfield-label)
+  - [FormField `description`](#formfield-description)
+  - [FormField `error`](#formfield-error)
+  - [FormField `required`](#formfield-required)
+  - [FormSection `title`](#formsection-title)
+  - [FormSection `bordered`](#formsection-bordered)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Form component provides a structured way to create forms with consistent styling, validation, and user experience. It includes FormField for individual inputs and FormSection for grouping related fields. The Form component handles form submission, basic validation, and provides loading and error states.
+
+<Canvas of={FormStories.Basic} />
+
+## Basic Usage
+
+The most common use case is a simple form with various input types wrapped in FormField components.
+
+<Canvas of={FormStories.Basic} />
+
+## Form with Sections
+
+Use FormSection to group related fields together with titles and descriptions. This improves form organization and user experience.
+
+<Canvas of={FormStories.WithSections} />
+
+## Card Layout
+
+The card layout provides a contained, elevated appearance for forms that need to stand out from the page content.
+
+<Canvas of={FormStories.CardLayout} />
+
+## Horizontal Layout
+
+Horizontal forms are useful for compact layouts or when you have simple forms with short labels.
+
+<Canvas of={FormStories.HorizontalLayout} />
+
+## Form States
+
+### Loading State
+
+Show a loading state during form submission or when processing data.
+
+<Canvas of={FormStories.LoadingState} />
+
+### Error State
+
+Display form-level errors when validation fails or submission encounters issues.
+
+<Canvas of={FormStories.WithErrors} />
+
+### Disabled State
+
+Disable the entire form when it should not be interactive.
+
+<Canvas of={FormStories.Basic} />
+
+## FormField Component
+
+FormField wraps individual form inputs with labels, descriptions, and error messages. It provides consistent spacing and styling.
+
+```jsx
+<FormField
+  label='Email Address'
+  description="We'll use this to send you updates"
+  required
+  error={hasError}
+  errorMessage='Please enter a valid email'
+>
+  <TextInput type='email' placeholder='your@email.com' />
+</FormField>
+```
+
+<Unstyled>
+  <div style={{ maxWidth: "400px" }}>
+    <FormField label='Email Address' description="We'll use this to send you updates" required>
+      <TextInput type='email' placeholder='your@email.com' />
+    </FormField>
+  </div>
+</Unstyled>
+
+## FormSection Component
+
+FormSection groups related form fields with an optional title and description. Use the `bordered` prop to visually separate sections.
+
+```jsx
+<FormSection title='Personal Information' description='Tell us about yourself' bordered>
+  <FormField label='First Name' required>
+    <TextInput placeholder='Enter your first name' />
+  </FormField>
+  <FormField label='Last Name' required>
+    <TextInput placeholder='Enter your last name' />
+  </FormField>
+</FormSection>
+```
+
+<Unstyled>
+  <div style={{ maxWidth: "400px" }}>
+    <FormSection title='Personal Information' description='Tell us about yourself' bordered>
+      <FormField label='First Name' required>
+        <TextInput placeholder='Enter your first name' />
+      </FormField>
+      <FormField label='Last Name' required>
+        <TextInput placeholder='Enter your last name' />
+      </FormField>
+    </FormSection>
+  </div>
+</Unstyled>
+
+## Component API
+
+<ArgTypes of={FormStories} />
+
+### Form `variant`
+
+The `variant` prop controls the visual style of the form. Currently supports primary and secondary variants.
+
+```jsx
+<Form variant="primary">...</Form>
+<Form variant="secondary">...</Form>
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
+    <Form variant='primary' title='Primary Form'>
+      <FormField label='Name'>
+        <TextInput placeholder='Primary variant' />
+      </FormField>
+    </Form>
+    <Form variant='secondary' title='Secondary Form'>
+      <FormField label='Name'>
+        <TextInput placeholder='Secondary variant' />
+      </FormField>
+    </Form>
+  </div>
+</Unstyled>
+
+### Form `size`
+
+The `size` prop controls the overall size of form elements, affecting text size and spacing.
+
+```jsx
+<Form size="xs">...</Form>
+<Form size="sm">...</Form>
+<Form size="md">...</Form>
+<Form size="lg">...</Form>
+<Form size="xl">...</Form>
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
+    <Form size='sm' title='Small Form'>
+      <FormField label='Name' size='sm'>
+        <TextInput placeholder='Small size' size='sm' />
+      </FormField>
+    </Form>
+    <Form size='lg' title='Large Form'>
+      <FormField label='Name' size='lg'>
+        <TextInput placeholder='Large size' size='lg' />
+      </FormField>
+    </Form>
+  </div>
+</Unstyled>
+
+### Form `direction`
+
+The `direction` prop controls the layout direction of form fields.
+
+```jsx
+<Form direction="vertical">...</Form>
+<Form direction="horizontal">...</Form>
+```
+
+<Unstyled>
+  <div style={{ maxWidth: "600px" }}>
+    <Form direction='horizontal' title='Horizontal Form' spacing='lg'>
+      <FormField label='First Name' direction='horizontal'>
+        <TextInput placeholder='John' />
+      </FormField>
+      <FormField label='Last Name' direction='horizontal'>
+        <TextInput placeholder='Doe' />
+      </FormField>
+    </Form>
+  </div>
+</Unstyled>
+
+### Form `spacing`
+
+The `spacing` prop controls the spacing between form elements.
+
+```jsx
+<Form spacing="xs">...</Form>
+<Form spacing="sm">...</Form>
+<Form spacing="md">...</Form>
+<Form spacing="lg">...</Form>
+<Form spacing="xl">...</Form>
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
+    <Form spacing='sm' title='Tight Spacing'>
+      <FormField label='Field 1'>
+        <TextInput placeholder='Tight spacing' />
+      </FormField>
+      <FormField label='Field 2'>
+        <TextInput placeholder='Tight spacing' />
+      </FormField>
+    </Form>
+    <Form spacing='lg' title='Loose Spacing'>
+      <FormField label='Field 1'>
+        <TextInput placeholder='Loose spacing' />
+      </FormField>
+      <FormField label='Field 2'>
+        <TextInput placeholder='Loose spacing' />
+      </FormField>
+    </Form>
+  </div>
+</Unstyled>
+
+### Form `fullWidth`
+
+The `fullWidth` prop makes the form expand to fill its container width.
+
+```jsx
+<Form fullWidth>...</Form>
+```
+
+<Unstyled>
+  <div style={{ width: "100%", border: "1px solid #e5e7eb", padding: "16px" }}>
+    <Form fullWidth title='Full Width Form'>
+      <FormField label='Name' fullWidth>
+        <TextInput placeholder='Full width input' fullWidth />
+      </FormField>
+    </Form>
+  </div>
+</Unstyled>
+
+### Form `card`
+
+The `card` prop displays the form in a card-like container with background, border, and shadow.
+
+```jsx
+<Form card>...</Form>
+```
+
+<Unstyled>
+  <Form card title='Card Form' style={{ maxWidth: "400px" }}>
+    <FormField label='Name'>
+      <TextInput placeholder='Card layout' />
+    </FormField>
+  </Form>
+</Unstyled>
+
+### Form `loading`
+
+The `loading` prop shows a loading state and prevents form submission.
+
+```jsx
+<Form loading loadingMessage='Processing...'>
+  ...
+</Form>
+```
+
+<Unstyled>
+  <Form loading loadingMessage='Processing...' title='Loading Form' style={{ maxWidth: "400px" }}>
+    <FormField label='Name'>
+      <TextInput placeholder='Loading state' disabled />
+    </FormField>
+  </Form>
+</Unstyled>
+
+### Form `disabled`
+
+The `disabled` prop disables all form elements and applies visual styling.
+
+```jsx
+<Form disabled>...</Form>
+```
+
+<Unstyled>
+  <Form disabled title='Disabled Form' style={{ maxWidth: "400px" }}>
+    <FormField label='Name'>
+      <TextInput placeholder='Disabled form' />
+    </FormField>
+  </Form>
+</Unstyled>
+
+### Form `onSubmit` and `onError`
+
+The `onSubmit` callback is fired when the form is submitted successfully. The `onError` callback is fired when validation fails.
+
+```jsx
+<Form
+  onSubmit={event => {
+    console.log("Form submitted:", event);
+  }}
+  onError={errors => {
+    console.log("Validation errors:", errors);
+  }}
+>
+  ...
+</Form>
+```
+
+### FormField `label`
+
+The `label` prop displays text above the form field.
+
+```jsx
+<FormField label='Email Address'>
+  <TextInput type='email' />
+</FormField>
+```
+
+### FormField `description`
+
+The `description` prop displays helper text below the form field.
+
+```jsx
+<FormField label='Password' description='Must be at least 8 characters long'>
+  <TextInput type='password' />
+</FormField>
+```
+
+### FormField `error`
+
+The `error` prop shows the field in an error state with red styling.
+
+```jsx
+<FormField label='Email' error errorMessage='Please enter a valid email address'>
+  <TextInput type='email' />
+</FormField>
+```
+
+### FormField `required`
+
+The `required` prop adds a red asterisk to the label and enables validation.
+
+```jsx
+<FormField label='Name' required>
+  <TextInput />
+</FormField>
+```
+
+### FormSection `title`
+
+The `title` prop displays a heading for the section.
+
+```jsx
+<FormSection title='Personal Information'>...</FormSection>
+```
+
+### FormSection `bordered`
+
+The `bordered` prop adds a border, background, and shadow to the section.
+
+```jsx
+<FormSection title='Section' bordered>
+  ...
+</FormSection>
+```
+
+## Accessibility
+
+Our Form components follow accessibility best practices:
+
+- **Semantic HTML**: Uses proper `<form>`, `<label>`, and `<fieldset>` elements
+- **ARIA Attributes**: Proper `aria-describedby`, `aria-invalid`, and `aria-required` attributes
+- **Keyboard Navigation**: Full keyboard support with logical tab order
+- **Screen Reader Support**: Clear labeling and error announcements
+- **Focus Management**: Visible focus indicators and proper focus flow
+- **Error Identification**: Clear error messages associated with form fields
+
+## Best Practices
+
+### Do's ✅
+
+- Use FormField for all form inputs to ensure consistent labeling and spacing
+- Group related fields with FormSection for better organization
+- Provide clear, descriptive labels for all form fields
+- Include helpful descriptions when field purpose isn't obvious
+- Use the `required` prop for mandatory fields
+- Show loading states during form submission
+- Provide clear error messages when validation fails
+- Use appropriate input types (email, tel, etc.) and components (DatePicker for dates)
+
+### Don'ts ❌
+
+- Don't create forms without proper labels
+- Avoid very long forms - break them into steps if needed
+- Don't rely on placeholder text as the only label
+- Avoid generic error messages like "Invalid input"
+- Don't disable forms without clear indication of why
+- Avoid mixing different sizes within the same form
+- Don't use FormField for non-form content
+
+### Form Layout Patterns
+
+```jsx
+// Simple contact form
+<Form title="Contact Us">
+  <FormField label="Name" required>
+    <TextInput />
+  </FormField>
+  <FormField label="Email" required>
+    <TextInput type="email" />
+  </FormField>
+  <FormField label="Message" required>
+    <Textarea />
+  </FormField>
+</Form>
+
+// Complex form with sections
+<Form title="User Registration">
+  <FormSection title="Account" bordered>
+    <FormField label="Email" required>
+      <TextInput type="email" />
+    </FormField>
+    <FormField label="Password" required>
+      <TextInput type="password" />
+    </FormField>
+  </FormSection>
+  <FormSection title="Profile" bordered>
+    <FormField label="First Name" required>
+      <TextInput />
+    </FormField>
+    <FormField label="Last Name" required>
+      <TextInput />
+    </FormField>
+    <FormField label="Date of Birth">
+      <DatePicker placeholder="Select your date of birth" />
+    </FormField>
+  </FormSection>
+</Form>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

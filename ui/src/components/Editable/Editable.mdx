@@ -1,0 +1,242 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Editable } from "./Editable";
+import * as EditableStories from "./Editable.stories";
+
+<Meta of={EditableStories} />
+
+# Editable
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Editable)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Basic Usage](#basic-usage)
+  - [Default](#default)
+  - [With Placeholder](#with-placeholder)
+- [Control Modes](#control-modes)
+- [With Buttons](#with-buttons)
+- [Double Click Trigger](#double-click-trigger)
+- [Validation](#validation)
+- [States](#states)
+  - [Disabled](#disabled)
+  - [Read Only](#read-only)
+- [Custom Content](#custom-content)
+- [Component API](#component-api)
+  - [Editable `value` and `defaultValue`](#editable-value-and-defaultvalue)
+  - [Editable `placeholder`](#editable-placeholder)
+  - [Editable `size`](#editable-size)
+  - [Editable `trigger`](#editable-trigger)
+  - [Editable `showButtons`](#editable-showbuttons)
+  - [Editable `maxLength`](#editable-maxlength)
+  - [Editable `onChange`](#editable-onchange)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+An inline text editing component that allows users to click or double-click on text to edit it directly. Perfect for quick text modifications without complex forms.
+
+<Canvas of={EditableStories.Default} />
+
+## Basic Usage
+
+### Default
+
+The simplest usage of the Editable component.
+
+<Canvas of={EditableStories.Default} />
+
+### With Placeholder
+
+Display placeholder text when no value is provided.
+
+<Canvas of={EditableStories.WithPlaceholder} />
+
+## Control Modes
+
+Use controlled mode for full control over the component's state.
+
+<Canvas of={EditableStories.Controlled} />
+
+## With Buttons
+
+Enable explicit save and cancel buttons for better user experience.
+
+<Canvas of={EditableStories.WithButtons} />
+
+## Double Click Trigger
+
+Use double-click instead of single-click to start editing.
+
+<Canvas of={EditableStories.DoubleClickTrigger} />
+
+## Validation
+
+Set character limits for the editable text.
+
+<Canvas of={EditableStories.WithMaxLength} />
+
+## States
+
+### Disabled
+
+Prevent interaction with the component.
+
+<Canvas of={EditableStories.Disabled} />
+
+### Read Only
+
+Display text without allowing edits.
+
+<Canvas of={EditableStories.ReadOnly} />
+
+## Custom Content
+
+Use custom content for advanced display options.
+
+<Canvas of={EditableStories.CustomChildren} />
+
+## Component API
+
+<ArgTypes of={Editable} />
+
+### Editable `value` and `defaultValue`
+
+Control the component's value either externally (controlled) or internally (uncontrolled).
+
+```tsx
+// Controlled
+const [value, setValue] = useState("text");
+<Editable value={value} onChange={setValue} />
+
+// Uncontrolled
+<Editable defaultValue="text" />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+    <Editable value='Controlled' onChange={() => {}} />
+    <Editable defaultValue='Uncontrolled' />
+  </div>
+</Unstyled>
+
+### Editable `placeholder`
+
+Text displayed when the value is empty.
+
+```tsx
+<Editable placeholder='Enter your name...' />
+```
+
+<Unstyled>
+  <Editable placeholder='Enter your name...' />
+</Unstyled>
+
+### Editable `size`
+
+Controls the overall dimensions and text size.
+
+```tsx
+<Editable size="xs" defaultValue="Extra small" />
+<Editable size="sm" defaultValue="Small" />
+<Editable size="md" defaultValue="Medium" />
+<Editable size="lg" defaultValue="Large" />
+<Editable size="xl" defaultValue="Extra large" />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+    <Editable size='xs' defaultValue='Extra small' />
+    <Editable size='sm' defaultValue='Small' />
+    <Editable size='md' defaultValue='Medium' />
+    <Editable size='lg' defaultValue='Large' />
+    <Editable size='xl' defaultValue='Extra large' />
+  </div>
+</Unstyled>
+
+### Editable `trigger`
+
+Choose whether clicking or double-clicking starts the edit mode.
+
+```tsx
+<Editable trigger="click" defaultValue="Click to edit" />
+<Editable trigger="doubleClick" defaultValue="Double-click to edit" />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+    <Editable trigger='click' defaultValue='Click to edit' />
+    <Editable trigger='doubleClick' defaultValue='Double-click to edit' />
+  </div>
+</Unstyled>
+
+### Editable `showButtons`
+
+Display save and cancel buttons when editing.
+
+```tsx
+<Editable showButtons defaultValue='Edit with buttons' />
+```
+
+<Unstyled>
+  <Editable showButtons defaultValue='Edit with buttons' />
+</Unstyled>
+
+### Editable `maxLength`
+
+Set maximum character limit.
+
+```tsx
+<Editable maxLength={20} defaultValue='Max 20 characters' />
+```
+
+<Unstyled>
+  <Editable maxLength={20} defaultValue='Max 20 characters' />
+</Unstyled>
+
+### Editable `onChange`
+
+Callback function for value changes.
+
+```tsx
+<Editable onChange={value => console.log("Value changed:", value)} defaultValue='With callback' />
+```
+
+<Unstyled>
+  <Editable onChange={value => console.log("Value changed:", value)} defaultValue='With callback' />
+</Unstyled>
+
+## Accessibility
+
+The Editable component follows accessibility best practices:
+
+- **Keyboard Navigation**: Full support for Tab, Enter, and Escape keys
+- **Screen Reader Support**: Proper ARIA labels and live regions for dynamic content
+- **Focus Management**: Clear focus indicators and logical focus flow
+- **Semantic HTML**: Uses appropriate input elements with correct attributes
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive placeholder text
+- Provide visual feedback during editing states
+- Consider using buttons for critical or long-form content
+- Test keyboard navigation thoroughly
+
+### Don'ts ❌
+
+- Don't use for password or sensitive input fields
+- Avoid very long text that would be hard to edit inline
+- Don't rely solely on color to indicate editable state
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

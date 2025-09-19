@@ -1,0 +1,116 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as AccordionStories from "./Accordion.stories";
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Accordion)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Multiple Expansion](#multiple-expansion)
+- [Disabled Items](#disabled-items)
+- [Custom Styled](#custom-styled)
+- [Component API](#component-api)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+Accordions are collapsible content sections that help organize information and reduce visual clutter. They allow users to selectively reveal content they're interested in while keeping the interface clean and scannable. Our Accordion component is designed to be accessible, flexible, and production-ready.
+
+<Canvas of={AccordionStories.Default} />
+
+## Multiple Expansion
+
+By default, only one accordion item can be expanded at a time. Enable the `multiple` prop to allow multiple items to be expanded simultaneously.
+
+<Canvas of={AccordionStories.Multiple} />
+
+## Disabled Items
+
+Individual accordion items can be disabled to prevent user interaction while maintaining visual consistency.
+
+<Canvas of={AccordionStories.WithDisabledItems} />
+
+## Custom Styled
+
+Custom styling can be applied using the `className` prop to match your design system while preserving all accordion functionality.
+
+<Canvas of={AccordionStories.CustomStyled} />
+
+## Component API
+
+<ArgTypes of={AccordionStories} />
+
+## Accessibility
+
+Our Accordion component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper `<button>` elements for triggers with correct ARIA attributes
+- **Keyboard Navigation**: Full support for Enter and Space key activation
+- **Screen Reader Support**: Proper labeling with `aria-expanded` and semantic structure
+- **Focus Management**: Clear focus indicators and logical tab order
+- **State Communication**: Expansion state is properly communicated to assistive technologies
+- **Disabled States**: Properly communicated via `aria-disabled` and `disabled` attributes
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive trigger text that indicates what content will be revealed
+- Keep content sections focused and avoid overwhelming users with too much information
+- Place most important or commonly accessed items at the top
+- Use consistent content structure across accordion items
+- Consider using the `multiple` prop when users need to compare information
+- Provide adequate spacing between accordion items
+
+### Don'ts ❌
+
+- Don't nest accordions too deeply (avoid accordion within accordion)
+- Avoid using accordions for critical information that users must see
+- Don't make trigger text too long or complex
+- Avoid opening too many items by default in single-expansion mode
+- Don't use accordions for navigation unless the content is truly secondary
+
+### Content Organization
+
+```jsx
+// Recommended: FAQ Structure
+<Accordion>
+  <AccordionItem value="general">
+    <AccordionTrigger>General Questions</AccordionTrigger>
+    <AccordionContent>
+      {/* Organize related questions together */}
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="technical">
+    <AccordionTrigger>Technical Support</AccordionTrigger>
+    <AccordionContent>
+      {/* Technical content here */}
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+// Settings Panel
+<Accordion multiple>
+  <AccordionItem value="privacy">
+    <AccordionTrigger>Privacy Settings</AccordionTrigger>
+    <AccordionContent>
+      {/* Allow multiple sections open for settings */}
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).

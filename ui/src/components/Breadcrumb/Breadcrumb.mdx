@@ -1,0 +1,246 @@
+import { Meta, Canvas, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import { Breadcrumb } from "./Breadcrumb";
+import * as BreadcrumbStories from "./Breadcrumb.stories";
+
+<Meta of={BreadcrumbStories} />
+
+# Breadcrumb
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/Breadcrumb)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Variants](#variants)
+  - [Primary Variant](#primary-variant)
+  - [Secondary Variant](#secondary-variant)
+- [With Icons](#with-icons)
+- [Custom Separators](#custom-separators)
+- [Collapsed Navigation](#collapsed-navigation)
+- [File System Style](#file-system-style)
+- [Disabled Items](#disabled-items)
+- [Full Width](#full-width)
+- [Interactive Example](#interactive-example)
+- [Component API](#component-api)
+  - [Breadcrumb `variant`](#breadcrumb-variant)
+  - [Breadcrumb `size`](#breadcrumb-size)
+  - [Breadcrumb `rounded`](#breadcrumb-rounded)
+  - [Breadcrumb `animation`](#breadcrumb-animation)
+  - [Breadcrumb `maxItems`](#breadcrumb-maxitems)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+The Breadcrumb component provides hierarchical navigation that shows users their current location within an application or website. It offers full customization with support for icons, item collapsing, and comprehensive accessibility features. By default, the separator between items is "/". You can customize it via the `separator` prop.
+
+<Canvas of={BreadcrumbStories.Primary} />
+
+## Variants
+
+### Primary Variant
+
+The primary variant uses blue hover states and is perfect for most navigation scenarios. Use this when breadcrumbs are a primary navigation element.
+
+<Canvas of={BreadcrumbStories.Primary} />
+
+### Secondary Variant
+
+The secondary variant features subtle gray styling that works well as secondary navigation or in content-heavy layouts where you want less visual prominence.
+
+<Canvas of={BreadcrumbStories.Secondary} />
+
+## With Icons
+
+Icons help users quickly identify different types of pages or sections in your navigation hierarchy.
+
+<Canvas of={BreadcrumbStories.WithIcons} />
+
+## Custom Separators
+
+The default separator is "/". Customize the separator between breadcrumb items to match your design system or create different navigation contexts using the `separator` prop.
+
+<Canvas of={BreadcrumbStories.CustomSeparator} />
+
+## Collapsed Navigation
+
+When breadcrumb paths become long, automatically collapse them to maintain a clean interface while preserving the most important navigation context.
+
+<Canvas of={BreadcrumbStories.Collapsed} />
+
+## File System Style
+
+Perfect for file browsers, documentation sites, or any hierarchical content structure that resembles a file system.
+
+<Canvas of={BreadcrumbStories.FileSystem} />
+
+## Disabled Items
+
+Some breadcrumb items can be disabled to indicate sections that are temporarily unavailable or restricted.
+
+<Canvas of={BreadcrumbStories.WithDisabledItem} />
+
+## Full Width
+
+Full-width breadcrumbs stretch across their container, useful for page headers or when you want breadcrumbs to be prominent.
+
+<Canvas of={BreadcrumbStories.FullWidth} />
+
+## Interactive Example
+
+This example demonstrates dynamic breadcrumb navigation with clickable items that update the current path.
+
+<Canvas of={BreadcrumbStories.Interactive} />
+
+## Component API
+
+<ArgTypes of={Breadcrumb} />
+
+### Breadcrumb `variant`
+
+The variant prop determines the visual style and color scheme of the breadcrumb items.
+
+```tsx
+<Breadcrumb variant="primary" items={items} />
+<Breadcrumb variant="secondary" items={items} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
+    <Breadcrumb
+      variant='primary'
+      items={[{ label: "Home", href: "/" }, { label: "Primary Style" }]}
+    />
+    <Breadcrumb
+      variant='secondary'
+      items={[{ label: "Home", href: "/" }, { label: "Secondary Style" }]}
+    />
+  </div>
+</Unstyled>
+
+### Breadcrumb `size`
+
+The size prop controls the text size and padding of breadcrumb items.
+
+```tsx
+<Breadcrumb size="sm" items={items} />
+<Breadcrumb size="md" items={items} />
+<Breadcrumb size="lg" items={items} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
+    <Breadcrumb size='sm' items={[{ label: "Home" }, { label: "Small" }]} />
+    <Breadcrumb size='md' items={[{ label: "Home" }, { label: "Medium" }]} />
+    <Breadcrumb size='lg' items={[{ label: "Home" }, { label: "Large" }]} />
+  </div>
+</Unstyled>
+
+### Breadcrumb `rounded`
+
+The rounded prop controls the border radius of breadcrumb items on hover and focus.
+
+```tsx
+<Breadcrumb rounded="none" items={items} />
+<Breadcrumb rounded="sm" items={items} />
+<Breadcrumb rounded="md" items={items} />
+<Breadcrumb rounded="lg" items={items} />
+<Breadcrumb rounded="xl" items={items} />
+<Breadcrumb rounded="full" items={items} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "8px", flexDirection: "column" }}>
+    <Breadcrumb rounded='none' items={[{ label: "Home" }, { label: "None" }]} />
+    <Breadcrumb rounded='sm' items={[{ label: "Home" }, { label: "Small" }]} />
+    <Breadcrumb rounded='md' items={[{ label: "Home" }, { label: "Medium" }]} />
+    <Breadcrumb rounded='lg' items={[{ label: "Home" }, { label: "Large" }]} />
+    <Breadcrumb rounded='xl' items={[{ label: "Home" }, { label: "XL" }]} />
+    <Breadcrumb rounded='full' items={[{ label: "Home" }, { label: "Full" }]} />
+  </div>
+</Unstyled>
+
+### Breadcrumb `animation`
+
+The animation prop controls whether hover and focus transitions are enabled.
+
+```tsx
+<Breadcrumb animation={true} items={items} />
+<Breadcrumb animation={false} items={items} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
+    <Breadcrumb animation={true} items={[{ label: "Home" }, { label: "With animations" }]} />
+    <Breadcrumb animation={false} items={[{ label: "Home" }, { label: "No animations" }]} />
+  </div>
+</Unstyled>
+
+### Breadcrumb `maxItems`
+
+The maxItems prop sets the maximum number of items to display before collapsing the navigation with an ellipsis.
+
+```tsx
+<Breadcrumb maxItems={4} items={longItemsList} />
+```
+
+<Unstyled>
+  <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
+    <Breadcrumb
+      maxItems={3}
+      items={[
+        { label: "Home" },
+        { label: "Category" },
+        { label: "Subcategory" },
+        { label: "Products" },
+        { label: "Details" },
+      ]}
+    />
+    <div style={{ marginTop: 8, color: "#6b7280", fontSize: 12 }}>
+      This breadcrumb shows only 3 items maximum with collapsing.
+    </div>
+  </div>
+</Unstyled>
+
+## Accessibility
+
+The Breadcrumb component follows WAI-ARIA guidelines and includes comprehensive accessibility features:
+
+- **Semantic HTML**: Uses `<nav>` and `<ol>` elements for proper structure
+- **ARIA Labels**: Includes `aria-label="Breadcrumb"` for screen readers
+- **Current Page**: Uses `aria-current="page"` for the current location
+- **Keyboard Navigation**: Full keyboard support for focusable items
+- **Screen Reader Support**: Proper announcement of breadcrumb structure and current location
+
+## Best Practices
+
+### When to Use
+
+- **Hierarchical Navigation**: When your site has a clear hierarchical structure
+- **Deep Navigation**: For applications with multiple levels of navigation
+- **User Orientation**: When users need to understand their current location
+- **Quick Navigation**: To provide shortcuts back to higher-level pages
+
+### When Not to Use
+
+- **Shallow Sites**: For simple sites with only one or two levels
+- **Linear Processes**: In step-by-step processes where users shouldn't go back
+- **Mobile First**: Consider if breadcrumbs add value on small screens
+
+### Guidelines
+
+- **Clear Labels**: Use descriptive, concise labels that clearly identify each level
+- **Logical Hierarchy**: Ensure breadcrumbs reflect the actual site structure
+- **Current Page**: Make the current page visually distinct (usually not linked)
+- **Consistent Placement**: Place breadcrumbs in the same location across pages
+- **Mobile Considerations**: Consider showing fewer items or different styling on mobile
+- **Performance**: For very long breadcrumb paths, implement collapsing with `maxItems`
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the [GitHub repository](https://github.com/ruma-ui/ui).

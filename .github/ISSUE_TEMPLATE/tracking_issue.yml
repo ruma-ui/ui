@@ -1,0 +1,94 @@
+name: "📋 Tracking Issue"
+description: For tracking a large body of work. For internal use only.
+title: "[Tracking]: "
+labels: ["tracking", "epic"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Tracking Issue
+
+        This issue tracks a large body of work that requires coordination across multiple tasks and milestones. Use this template for complex features, refactors, or multi-week initiatives.
+
+        **Guidelines for tracking issues:**
+        - 🎯 Break work into clear, shippable milestones
+        - 👤 Assign owners for each milestone
+        - 📅 Set realistic completion dates
+        - ✅ Mark tasks as complete when done
+        - 🔗 Link related issues and pull requests
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: "🎯 Problem Statement"
+      description: "A brief description of the problem we're trying to solve or the goal we're working toward."
+      placeholder: "What problem are we solving? What goal are we working toward?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: milestones
+    attributes:
+      label: "🏁 Milestones"
+      description: |
+        Define clear milestones for this tracking issue. Each milestone should be shippable and usable.
+
+        **Milestone format:**
+        - **Milestone Name**
+          **Owner:** `@username`
+          **Complete by:** `YYYY-MM-DD`
+          - [ ] Task 1
+          - [ ] Task 2
+          - [ ] Task 3
+      placeholder: |
+        ### M1: First milestone
+        **Owner:** `@username`
+        **Complete by:** `2025-01-15`
+        - [ ] Implement core functionality
+        - [ ] Add tests
+        - [ ] Update documentation
+
+        ### M2: Second milestone
+        **Owner:** `@username`
+        **Complete by:** `2025-01-30`
+        - [ ] Add advanced features
+        - [ ] Performance optimization
+        - [ ] Integration testing
+
+        **========= Everything below this line is strictly nice-to-have =========**
+
+        ### Future enhancements
+        - [ ] Nice-to-have feature 1
+        - [ ] Nice-to-have feature 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: success_criteria
+    attributes:
+      label: "✅ Success Criteria"
+      description: "What does success look like? How will we know when this work is complete?"
+      placeholder: |
+        - [ ] All milestones completed
+        - [ ] Tests passing
+        - [ ] Documentation updated
+        - [ ] Code reviewed and merged
+        - [ ] Deployed to production
+
+  - type: textarea
+    id: related_issues
+    attributes:
+      label: "🔗 Related Issues and Pull Requests"
+      description: "Link any related issues, pull requests, or discussions."
+      placeholder: |
+        - Related to #123
+        - Depends on #456
+        - See also: [Discussion #789](https://github.com/ruma-ui/ui/discussions/789)
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "ℹ️ Additional Context"
+      description: "Any additional information, constraints, or considerations?"
+      placeholder: "Add any other context about this tracking issue here."

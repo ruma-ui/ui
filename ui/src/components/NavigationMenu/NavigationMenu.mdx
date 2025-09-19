@@ -1,0 +1,165 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import { NavigationMenu } from "./NavigationMenu";
+import * as NavigationMenuStories from "./NavigationMenu.stories";
+
+<Meta of={NavigationMenuStories} />
+
+# NavigationMenu
+
+[Source code](https://github.com/ruma-ui/ui/tree/main/src/components/NavigationMenu)
+
+{/* <!-- START doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Horizontal Navigation](#horizontal-navigation)
+- [Vertical Navigation](#vertical-navigation)
+- [Navigation with Icons](#navigation-with-icons)
+- [Underline Variant](#underline-variant)
+- [Pills Variant](#pills-variant)
+- [Custom Styled](#custom-styled)
+- [Component API](#component-api)
+  - [NavigationMenu `orientation`](#navigationmenu-orientation)
+  - [NavigationMenu `size`](#navigationmenu-size)
+  - [NavigationMenu `variant`](#navigationmenu-variant)
+- [Accessibility](#accessibility)
+- [Best Practices](#best-practices)
+- [Feedback](#feedback)
+
+{/* <!-- END doctoc generated TOC please keep comment here to allow auto update --> */}
+
+## Overview
+
+NavigationMenu provides a flexible and accessible navigation component that supports both horizontal and vertical orientations, with support for nested menus and submenus. It follows modern design patterns and includes comprehensive keyboard navigation and screen reader support.
+
+<Canvas of={NavigationMenuStories.Default} />
+
+## Horizontal Navigation
+
+The default horizontal orientation is perfect for top navigation bars and main site navigation.
+
+<Canvas of={NavigationMenuStories.Default} />
+
+## Vertical Navigation
+
+Vertical navigation is ideal for sidebars, mobile menus, and secondary navigation areas.
+
+<Canvas of={NavigationMenuStories.Vertical} />
+
+## Navigation with Icons
+
+Navigation items can include icons to improve visual hierarchy and user experience.
+
+<Canvas of={NavigationMenuStories.WithIcons} />
+
+## Underline Variant
+
+The underline variant provides clear visual feedback for the active navigation state.
+
+<Canvas of={NavigationMenuStories.UnderlineVariant} />
+
+## Pills Variant
+
+The pills variant creates a more contained, button-like appearance for navigation items.
+
+<Canvas of={NavigationMenuStories.PillsVariant} />
+
+## Custom Styled
+
+Custom styling can be applied using the `className` prop to match your design system while preserving all navigation functionality.
+
+<Canvas of={NavigationMenuStories.CustomStyled} />
+
+## Component API
+
+<ArgTypes of={NavigationMenuStories} />
+
+### NavigationMenu `orientation`
+
+The `orientation` prop controls the layout direction of the navigation menu. Choose "horizontal" for top navigation bars and "vertical" for sidebars and mobile menus.
+
+### NavigationMenu `size`
+
+The `size` prop controls the overall size of navigation items. Available options are "sm", "md", and "lg", providing appropriate padding and font sizes for different contexts.
+
+### NavigationMenu `variant`
+
+The `variant` prop determines the visual style of the navigation menu. Options include "default" for standard navigation, "underline" for active state indicators, and "pills" for a more contained appearance.
+
+## Accessibility
+
+Our NavigationMenu component follows accessibility best practices:
+
+- **Semantic HTML**: Uses proper `<nav>`, `<ul>`, `<li>`, and `<a>` elements with correct ARIA attributes
+- **Keyboard Navigation**: Full support for Tab, Enter, Space, and arrow key navigation
+- **Screen Reader Support**: Proper labeling with `aria-expanded`, `aria-haspopup`, and `role` attributes
+- **Focus Management**: Clear focus indicators and logical tab order
+- **State Communication**: Menu expansion states are properly communicated to assistive technologies
+- **Disabled States**: Properly communicated via `aria-disabled` and `disabled` attributes
+
+## Best Practices
+
+### Do's ✅
+
+- Use clear, descriptive labels for navigation items
+- Keep navigation hierarchy shallow (avoid deeply nested submenus)
+- Use icons consistently across navigation items when applicable
+- Provide adequate spacing between navigation items
+- Consider using the `active` prop to highlight the current page/section
+- Test navigation on mobile devices and ensure touch targets are adequate
+- Use semantic HTML structure for SEO benefits
+
+### Don'ts ❌
+
+- Don't hide critical navigation behind complex submenu structures
+- Avoid using navigation for actions that could be better served by buttons
+- Don't make navigation items too small on touch devices
+- Avoid inconsistent navigation patterns across your application
+- Don't overload navigation items with too much text or icons
+- Avoid using navigation for content that changes frequently
+
+### Navigation Structure
+
+```jsx
+// Recommended: Clear hierarchy
+<NavigationMenu orientation="horizontal">
+  <NavigationMenuList>
+    <NavigationMenuItem value="home">
+      <NavigationMenuLink href="/">Home</NavigationMenuLink>
+    </NavigationMenuItem>
+    <NavigationMenuItem value="products">
+      <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuGroup title="Categories">
+          <NavigationMenuLink href="/electronics">Electronics</NavigationMenuLink>
+          <NavigationMenuLink href="/clothing">Clothing</NavigationMenuLink>
+        </NavigationMenuGroup>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+
+// For mobile: Consider collapsible navigation
+<NavigationMenu orientation="vertical">
+  <NavigationMenuList>
+    {/* Navigation items */}
+  </NavigationMenuList>
+</NavigationMenu>
+```
+
+### Active State Management
+
+```jsx
+// Highlight current page
+const currentPath = window.location.pathname;
+
+<NavigationMenuItem value='dashboard' active={currentPath === "/dashboard"}>
+  <NavigationMenuLink href='/dashboard'>Dashboard</NavigationMenuLink>
+</NavigationMenuItem>;
+```
+
+## Feedback
+
+Help us improve this component by providing feedback or contributing to the
+[GitHub repository](https://github.com/ruma-ui/ui).
