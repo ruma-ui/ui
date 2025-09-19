@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/ruma-ui/ui/compare/v1.0.0...v1.0.1) (2025-09-19)
+
+### 🐛 Bug Fixes
+
+- update repository URL format and add publishConfig to package.json files ([8ee03f3](https://github.com/ruma-ui/ui/commit/8ee03f3d12a5a0ed0131c597a807a317626e7773))
+
 ## 1.0.0 (2025-09-19)
 
 ### 🚀 Features
