@@ -1,3 +1,9 @@
+## [1.0.5](https://github.com/ruma-ui/ui/compare/v1.0.4...v1.0.5) (2025-09-19)
+
+### 🐛 Bug Fixes
+
+- update deploy to Chromatic step to include build script name ([8e1e6bb](https://github.com/ruma-ui/ui/commit/8e1e6bbc0a5a0662d9af6ca39a65ea65030cfd50))
+
 ## [1.0.4](https://github.com/ruma-ui/ui/compare/v1.0.3...v1.0.4) (2025-09-19)
 
 ### 🐛 Bug Fixes
