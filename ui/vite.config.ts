@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => ({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: ["react", "react-dom", "react/jsx-runtime", "next", "react-router-dom"],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
@@ -62,6 +62,8 @@ export default defineConfig(({ mode }) => ({
           react: "React",
           "react-dom": "ReactDOM",
           "react/jsx-runtime": "jsxRuntime",
+          next: "Next",
+          "react-router-dom": "ReactRouterDOM",
         },
         // Preserve module structure for better tree-shaking
         preserveModules: false,
