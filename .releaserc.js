@@ -62,16 +62,9 @@ module.exports = {
       },
     ],
     [
-      "@semantic-release/npm",
-      {
-        npmPublish: true,
-        pkgRoot: "dist/utils",
-      },
-    ],
-    [
       "@semantic-release/git",
       {
-        assets: ["CHANGELOG.md", "package.json", "ui/package.json", "utils/package.json"],
+        assets: ["CHANGELOG.md", "package.json", "ui/package.json"],
         message: "chore(release): ${nextRelease.version} [skip ci]",
       },
     ],

@@ -86,7 +86,6 @@ pnpm dev
 ├── ui/              # Main UI library
 ├── demo/            # Demo application
 ├── website/         # Documentation website
-├── utils/           # Shared utilities
 └── docs/            # Generated documentation
 ```
 

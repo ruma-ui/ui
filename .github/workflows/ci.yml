@@ -45,7 +45,6 @@ jobs:
           filters: |
             src:
               - 'ui/src/**'
-              - 'utils/src/**'
               - 'demo/src/**'
               - 'www/src/**'
             config:
