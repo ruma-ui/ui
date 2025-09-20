@@ -3,6 +3,7 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "outDir": "",
+    "composite": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],

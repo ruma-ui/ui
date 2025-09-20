@@ -7,8 +7,6 @@
     "strict": true,
     "types": ["vite/client"]
   },
-  "files": [],
-  "include": [],
   "references": [
     {
       "path": "./tsconfig.lib.json"
