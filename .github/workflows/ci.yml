@@ -159,9 +159,9 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      # Enable Nx Cloud distribution for free tier
+      # Enable Nx Cloud CI run (without distribution due to agent requirement)
       - name: Start Nx Cloud CI run
-        run: pnpm dlx nx start-ci-run --distribute-on="1 linux-medium-js" --stop-agents-after="build"
+        run: pnpm dlx nx start-ci-run --stop-agents-after="build"
 
       - uses: actions/setup-node@v4
         with:
@@ -292,16 +292,21 @@ jobs:
             const runUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}`;
             const branch = '${{ github.ref_name }}';
 
+            // Get job statuses from workflow context
+            const qualityResult = '${{ needs.quality.result }}';
+            const testResult = '${{ needs.test.result }}';
+            const buildResult = '${{ needs.build.result }}';
+
+            // Build the failed jobs list
+            let failedJobs = '';
+            if (qualityResult === 'failure') failedJobs += '- Quality checks\n';
+            if (testResult === 'failure') failedJobs += '- Tests\n';
+            if (buildResult === 'failure') failedJobs += '- Build\n';
+
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `🚨 CI Failed on ${branch}`,
-              body: `The CI workflow failed on branch \`${branch}\`.\n\n**Workflow Run:** ${runUrl}\n\n**Failed Jobs:**\n${
-                needs.quality.result === 'failure' ? '- Quality checks\n' : ''
-              }${
-                needs.test.result === 'failure' ? '- Tests\n' : ''
-              }${
-                needs.build.result === 'failure' ? '- Build\n' : ''
-              }\nPlease check the logs for details.`,
+              body: `The CI workflow failed on branch \`${branch}\`.\n\n**Workflow Run:** ${runUrl}\n\n**Failed Jobs:**\n${failedJobs}\nPlease check the logs for details.`,
               labels: ['bug', 'ci', `branch:${branch}`]
             });
