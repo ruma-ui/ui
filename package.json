@@ -34,7 +34,7 @@
     "docs:api": "typedoc",
     "docs:build": "npm run docs:api && npm run storybook:build",
     "size": "size-limit",
-    "size:analyze": "size-limit --why",
+    "size:analyze": "npm run build:analyze",
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
