@@ -68,8 +68,6 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           # Explicitly tell Chromatic where the built Storybook is located
           storybookBuildDir: ui/storybook-static
-          # Skip Chromatic tests, only publish the Storybook
-          skip: true
           # Don't fail the CI job if visual changes are detected
           exitZeroOnChanges: true
         # Don't block deployment if Chromatic fails for any reason
