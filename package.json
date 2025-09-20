@@ -1,6 +1,6 @@
 {
   "name": "@ruma-ui/source",
-  "version": "0.0.0",
+  "version": "0.1.0-dev.0",
   "description": "A modern, production-ready React UI component library built with TypeScript, Tailwind CSS, and Nx.",
   "license": "MIT",
   "author": "Ruma UI",
@@ -38,8 +38,10 @@
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
+    "changeset:status": "changeset status",
     "release": "npm run build:production && npm run changeset:publish",
     "release:version": "npm run changeset:version && npm run build:production",
+    "release:prerelease": "npm run build:production && npm run changeset:publish --tag",
     "release:semantic": "semantic-release",
     "release:dry": "semantic-release --dry-run",
     "clean": "nx reset && rm -rf dist coverage docs/api .nx/cache",

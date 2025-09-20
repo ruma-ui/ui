@@ -36,9 +36,11 @@ pnpm build
 
 ### 3. Making Changes
 
-1. Create a branch from `main`:
+1. Create a branch from `dev` (our default branch):
 
    ```bash
+   git checkout dev
+   git pull origin dev
    git checkout -b feature/my-new-feature
    ```
 
@@ -60,10 +62,78 @@ pnpm build
 ### 4. Pull Request Process
 
 1. Push your branch to your fork
-2. Create a Pull Request against the `main` branch
+2. Create a Pull Request against the `dev` branch (not main!)
 3. Fill out the PR template completely
 4. Ensure all checks pass
 5. Request review from maintainers
+
+## Release Pipeline & Branch Strategy
+
+We use a **5-branch strategy** for controlled releases:
+
+### Branch Hierarchy
+
+```text
+dev (default) → alpha → beta → rc → main
+```
+
+| Branch  | Purpose                  | Release Type | NPM Tag   |
+| ------- | ------------------------ | ------------ | --------- |
+| `dev`   | Active development       | No release   | -         |
+| `alpha` | Experimental features    | Pre-release  | `@alpha`  |
+| `beta`  | Feature-complete testing | Pre-release  | `@beta`   |
+| `rc`    | Release candidates       | Pre-release  | `@rc`     |
+| `main`  | Stable production        | Stable       | `@latest` |
+
+### Release Flow
+
+1. **Development**: All feature branches merge into `dev`
+2. **Alpha Release**: `dev` → `alpha` triggers automatic pre-release (`1.0.0-alpha.1`)
+3. **Beta Release**: `alpha` → `beta` triggers automatic pre-release (`1.0.0-beta.1`)
+4. **Release Candidate**: `beta` → `rc` triggers automatic pre-release (`1.0.0-rc.1`)
+5. **Stable Release**: `rc` → `main` triggers manual approval for stable release (`1.0.0`)
+
+### Branch Permissions
+
+- **dev**: 1 review required, allows force pushes (development flexibility)
+- **alpha**: 1 review required, no force pushes
+- **beta**: 1 review required, no force pushes
+- **rc**: 2 reviews required, no force pushes (release candidate quality)
+- **main**: 2 reviews required, no force pushes, no deletions (production protection)
+
+### Using the Release Pipeline
+
+#### For Contributors
+
+- Always branch from and PR to `dev`
+- Follow conventional commits for automated changelog generation
+
+#### For Maintainers
+
+- Use GitHub Actions workflows for branch merging:
+  - **Branch Merge Pipeline**: Automated merging between release branches
+  - **Version Bump**: Manually bump versions when needed
+  - **Release Pipeline**: Automated publishing to NPM
+
+#### Manual Branch Operations
+
+```bash
+# Merge dev to alpha (for alpha release)
+git checkout alpha
+git pull origin alpha
+git merge dev --no-ff
+git push origin alpha
+
+# This triggers automatic alpha release: 1.0.0-alpha.X
+```
+
+### Version Strategy
+
+- **Development**: `0.1.0-dev.X` (not published)
+- **Alpha**: `0.1.0-alpha.X` (experimental, may have breaking changes)
+- **Beta**: `0.1.0-beta.X` (feature-complete, API stable)
+- **RC**: `0.1.0-rc.X` (production-ready, final testing)
+- **Stable**: `0.1.0` (production release)
 
 ## Coding Standards
 
@@ -268,9 +338,9 @@ export const Secondary: Story = {
 
 ## Release Process
 
-We use both Changesets and Semantic Release for version management:
+We use a **5-branch release strategy** with Changesets for version management:
 
-### Changesets (Recommended)
+### Using Changesets (Recommended)
 
 1. Create a changeset for your changes:
 
@@ -279,18 +349,8 @@ We use both Changesets and Semantic Release for version management:
    ```
 
 2. Follow the prompts to describe your changes
-
 3. Commit the changeset file with your changes
-
-4. The release process will be automated when the PR is merged
-
-### Semantic Release (Alternative)
-
-Semantic Release automatically determines version bumps based on commit messages:
-
-- `feat:` → Minor version bump
-- `fix:`, `perf:`, `docs:`, etc. → Patch version bump
-- `feat!:`, `fix!:`, or `BREAKING CHANGE:` → Major version bump
+4. The release process will be automated when the PR is merged to the appropriate branch
 
 ## Getting Help
 

@@ -1,0 +1,133 @@
+name: Branch Merge Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: "Source branch to merge from"
+        required: true
+        type: choice
+        options:
+          - dev
+          - alpha
+          - beta
+          - rc
+      target_branch:
+        description: "Target branch to merge into"
+        required: true
+        type: choice
+        options:
+          - alpha
+          - beta
+          - rc
+          - main
+      merge_type:
+        description: "Type of merge"
+        required: true
+        default: "merge"
+        type: choice
+        options:
+          - merge
+          - squash
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  validate-merge:
+    runs-on: ubuntu-latest
+    outputs:
+      valid: ${{ steps.validation.outputs.valid }}
+      reason: ${{ steps.validation.outputs.reason }}
+    steps:
+      - name: Validate merge path
+        id: validation
+        run: |
+          SOURCE="${{ github.event.inputs.source_branch }}"
+          TARGET="${{ github.event.inputs.target_branch }}"
+
+          # Define valid merge paths
+          VALID_PATHS=(
+            "dev->alpha"
+            "alpha->beta"
+            "beta->rc"
+            "rc->main"
+          )
+
+          MERGE_PATH="${SOURCE}->${TARGET}"
+          VALID=false
+
+          for path in "${VALID_PATHS[@]}"; do
+            if [[ "$path" == "$MERGE_PATH" ]]; then
+              VALID=true
+              break
+            fi
+          done
+
+          if [[ "$VALID" == "true" ]]; then
+            echo "valid=true" >> $GITHUB_OUTPUT
+            echo "reason=Valid merge path: $MERGE_PATH" >> $GITHUB_OUTPUT
+          else
+            echo "valid=false" >> $GITHUB_OUTPUT
+            echo "reason=Invalid merge path: $MERGE_PATH. Valid paths: ${VALID_PATHS[*]}" >> $GITHUB_OUTPUT
+          fi
+
+  merge-branches:
+    needs: validate-merge
+    runs-on: ubuntu-latest
+    if: needs.validate-merge.outputs.valid == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Perform merge
+        run: |
+          SOURCE="${{ github.event.inputs.source_branch }}"
+          TARGET="${{ github.event.inputs.target_branch }}"
+          MERGE_TYPE="${{ github.event.inputs.merge_type }}"
+
+          # Ensure we have the latest branches
+          git fetch origin
+
+          # Checkout target branch
+          git checkout $TARGET
+          git pull origin $TARGET
+
+          # Perform merge
+          if [[ "$MERGE_TYPE" == "squash" ]]; then
+            git merge --squash origin/$SOURCE
+            git commit -m "feat: merge $SOURCE into $TARGET (squashed)"
+          else
+            git merge origin/$SOURCE --no-ff -m "feat: merge $SOURCE into $TARGET"
+          fi
+
+          # Push the result
+          git push origin $TARGET
+
+      - name: Create merge summary
+        run: |
+          SOURCE="${{ github.event.inputs.source_branch }}"
+          TARGET="${{ github.event.inputs.target_branch }}"
+          MERGE_TYPE="${{ github.event.inputs.merge_type }}"
+
+          echo "✅ Successfully merged $SOURCE into $TARGET using $MERGE_TYPE"
+          echo "🚀 Branch $TARGET is now ready for release"
+
+  merge-failed:
+    needs: validate-merge
+    runs-on: ubuntu-latest
+    if: needs.validate-merge.outputs.valid == 'false'
+    steps:
+      - name: Report invalid merge
+        run: |
+          echo "❌ ${{ needs.validate-merge.outputs.reason }}"
+          exit 1
