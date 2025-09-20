@@ -60,7 +60,7 @@ jobs:
 
       - name: Publish to Chromatic
         # UPDATE: Changed from @v1 to @v11 to support the 'onlyStories' flag
-        uses: chromaui/action@v1
+        uses: chromaui/action@v13
         with:
           # Use GITHUB_TOKEN for tighter integration
           token: ${{ secrets.GITHUB_TOKEN }}
