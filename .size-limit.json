@@ -3,12 +3,32 @@
     "name": "UI Library (ESM)",
     "path": "dist/ui/index.mjs",
     "limit": "100 KB",
-    "gzip": true
+    "gzip": true,
+    "ignore": [
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "next",
+      "react-router-dom",
+      "react-icons",
+      "date-fns",
+      "tw-animate-css"
+    ]
   },
   {
     "name": "UI Library (CJS)",
     "path": "dist/ui/index.js",
     "limit": "100 KB",
-    "gzip": true
+    "gzip": true,
+    "ignore": [
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "next",
+      "react-router-dom",
+      "react-icons",
+      "date-fns",
+      "tw-animate-css"
+    ]
   }
 ]
