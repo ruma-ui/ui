@@ -1,10 +1,10 @@
 name: Deploy Storybook
 
-# Triggers the workflow on push events to the main branch
+# Triggers the workflow on push events to the dev branch
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   deploy:
@@ -58,20 +58,6 @@ jobs:
       - name: Build Storybook
         run: pnpm run storybook:build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # This should match the output directory of your build script
-          path: "./storybook-static"
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      # Publishes the Storybook to Chromatic for visual regression testing
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
