@@ -1,7 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { cn, tw } from "../../lib/utils";
 
 export interface RatingProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   /**

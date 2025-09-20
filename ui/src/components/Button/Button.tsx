@@ -1,7 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import { Loader } from "../../";
+import { cn, tw } from "../../lib/utils";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**

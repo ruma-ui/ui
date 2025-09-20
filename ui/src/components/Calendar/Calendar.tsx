@@ -1,4 +1,4 @@
-import React from "react";
+import type { Locale } from "date-fns";
 import {
   addDays,
   addMonths,
@@ -14,9 +14,8 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
-import type { Locale } from "date-fns";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface CalendarProps {
   /** Currently selected date (controlled). */

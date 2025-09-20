@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { FaArrowDown, FaArrowLeft, FaArrowRight, FaArrowUp } from "react-icons/fa";
+import { ImShift } from "react-icons/im";
+import { MdKeyboardCommandKey, MdKeyboardControlKey, MdKeyboardOptionKey } from "react-icons/md";
+import { tw } from "../../lib/utils";
 import { KeyboardKey } from "./KeyboardKey";
 import mdx from "./KeyboardKey.mdx";
-import { tw } from "@ruma-ui/utils";
-import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { MdKeyboardCommandKey, MdKeyboardOptionKey, MdKeyboardControlKey } from "react-icons/md";
-import { ImShift } from "react-icons/im";
 
 const meta: Meta<typeof KeyboardKey> = {
   title: "Components/KeyboardKey",

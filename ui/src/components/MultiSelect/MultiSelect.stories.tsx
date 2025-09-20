@@ -1,8 +1,8 @@
-import { tw } from "@ruma-ui/utils";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { FaAndroid, FaApple, FaChrome, FaLinux, FaQuestion, FaWindows } from "react-icons/fa";
 import { RiComputerLine } from "react-icons/ri";
+import { tw } from "../../lib/utils";
 import { MultiSelect, MultiSelectProps } from "./MultiSelect";
 import mdx from "./MultiSelect.mdx";
 

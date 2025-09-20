@@ -1,14 +1,13 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import {
-  FiImage as FileImage,
-  FiVideo as FileVideo,
-  FiMusic as FileAudio,
-  FiFileText as FileText,
-  FiArchive as FileArchive,
   FiFile as File,
+  FiArchive as FileArchive,
+  FiMusic as FileAudio,
+  FiImage as FileImage,
+  FiFileText as FileText,
+  FiVideo as FileVideo,
 } from "react-icons/fi";
+import { cn, tw } from "../../lib/utils";
 
 export interface FileUploadProps {
   /**

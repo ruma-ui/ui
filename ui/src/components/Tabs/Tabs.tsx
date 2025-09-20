@@ -1,6 +1,5 @@
-import React, { useState, createContext, useContext, useEffect, useCallback } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

@@ -1,7 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 
 export interface ModalProps {
   /**

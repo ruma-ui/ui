@@ -1,7 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import { Skeleton } from "../../";
+import { cn, tw } from "../../lib/utils";
 
 export interface ImageProps
   extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src" | "alt" | "width" | "height"> {

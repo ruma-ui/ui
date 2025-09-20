@@ -1,4 +1,3 @@
-import { cn } from "@ruma-ui/utils";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import {
@@ -9,6 +8,7 @@ import {
   LuTrash2 as Trash2,
   LuUser as User,
 } from "react-icons/lu";
+import { cn } from "../../lib/utils";
 import { Modal, ModalProps } from "./Modal";
 import mdx from "./Modal.mdx";
 

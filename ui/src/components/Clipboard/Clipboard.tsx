@@ -1,9 +1,8 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import { FaCopy } from "react-icons/fa";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 import { Tooltip } from "../../";
+import { cn, tw } from "../../lib/utils";
 
 export interface ClipboardProps {
   /**

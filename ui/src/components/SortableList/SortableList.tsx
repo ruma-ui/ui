@@ -1,4 +1,4 @@
-import { cn, tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 import React, { useCallback, useEffect, useState } from "react";
 import { FaGripVertical } from "react-icons/fa";
 

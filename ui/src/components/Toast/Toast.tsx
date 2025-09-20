@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef, createContext, useContext, useCallback } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 
 export interface ToastProps {
   /**

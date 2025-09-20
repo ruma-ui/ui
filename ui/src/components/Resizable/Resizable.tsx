@@ -1,4 +1,4 @@
-import { cn, tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 import React, { useCallback, useRef, useState } from "react";
 
 export interface ResizableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onResize"> {

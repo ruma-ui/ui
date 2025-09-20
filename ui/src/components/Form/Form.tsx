@@ -1,6 +1,5 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 
 // FormField Component
 export interface FormFieldProps extends React.HTMLAttributes<HTMLDivElement> {

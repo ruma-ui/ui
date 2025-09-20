@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { useEffect, useRef, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface SelectOption {
   value: string;

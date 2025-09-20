@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
+import { tw } from "../../lib/utils";
 import { Carousel } from "./Carousel";
-import { tw } from "@ruma-ui/utils";
 
 const meta: Meta<typeof Carousel> = {
   title: "Components/Carousel",

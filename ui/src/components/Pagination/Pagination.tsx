@@ -1,13 +1,12 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
-import { Button } from "../../";
 import {
   HiChevronLeft as ChevronLeft,
   HiChevronRight as ChevronRight,
   HiChevronDoubleLeft as ChevronsLeft,
   HiChevronDoubleRight as ChevronsRight,
 } from "react-icons/hi";
+import { Button } from "../../";
+import { cn, tw } from "../../lib/utils";
 
 export interface PaginationProps {
   /**

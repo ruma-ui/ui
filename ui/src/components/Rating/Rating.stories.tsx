@@ -1,10 +1,10 @@
-import { tw } from "@ruma-ui/utils";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import { BsEmojiNeutral, BsEmojiSmileFill } from "react-icons/bs";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { tw } from "../../lib/utils";
 import { Rating } from "./Rating";
 import mdx from "./Rating.mdx";
 

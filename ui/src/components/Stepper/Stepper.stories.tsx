@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Stepper, Step } from "./Stepper";
-import { FaUser, FaCreditCard, FaCheckCircle, FaTruck, FaBox } from "react-icons/fa";
+import { FaBox, FaCheckCircle, FaCreditCard, FaTruck, FaUser } from "react-icons/fa";
+import { tw } from "../../lib/utils";
+import { Step, Stepper } from "./Stepper";
 import mdx from "./Stepper.mdx";
-import { tw } from "@ruma-ui/utils";
 
 const meta: Meta<typeof Stepper> = {
   title: "Components/Stepper",

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Card, CardHeader, CardBody, CardFooter } from "./Card";
+import { FaCalendar, FaMapMarker, FaUser } from "react-icons/fa";
+import { tw } from "../../lib/utils";
 import { Button } from "../Button/Button";
-import { FaUser, FaCalendar, FaMapMarker } from "react-icons/fa";
+import { Card, CardBody, CardFooter, CardHeader } from "./Card";
 import mdx from "./Card.mdx";
-import { tw } from "@ruma-ui/utils";
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",

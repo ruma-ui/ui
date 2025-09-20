@@ -1,4 +1,3 @@
-import { tw } from "@ruma-ui/utils";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   FaArrowRight,
@@ -8,6 +7,7 @@ import {
   FaPhone,
   FaUser,
 } from "react-icons/fa";
+import { tw } from "../../lib/utils";
 import { Link } from "./Link";
 import mdx from "./Link.mdx";
 

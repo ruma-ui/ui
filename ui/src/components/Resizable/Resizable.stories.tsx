@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { tw } from "../../lib/utils";
 import { Resizable } from "./Resizable";
 import mdx from "./Resizable.mdx";
-import { tw } from "@ruma-ui/utils";
 
 const meta: Meta<typeof Resizable> = {
   title: "Components/Resizable",

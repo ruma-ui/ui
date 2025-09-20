@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { useEffect, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface SwitchProps {
   /**

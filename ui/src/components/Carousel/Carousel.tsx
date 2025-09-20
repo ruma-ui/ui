@@ -1,7 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { cn, tw } from "../../lib/utils";
 
 export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   /**

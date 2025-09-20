@@ -1,4 +1,4 @@
-import { cn, tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 import React, { createContext, useCallback, useContext, useState } from "react";
 import { IoChevronForward } from "react-icons/io5";
 
