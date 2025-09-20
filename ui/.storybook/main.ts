@@ -30,15 +30,7 @@ const config: StorybookConfig = {
     // For Storybook build, don't externalize dependencies to avoid resolution issues
     config.build = config.build || {};
     config.build.rollupOptions = config.build.rollupOptions || {};
-    config.build.rollupOptions.external = [
-      "react",
-      "react-dom",
-      "react/jsx-runtime",
-      "next",
-      "react-router-dom",
-      /^react-icons/,
-      "tw-animate-css",
-    ];
+    config.build.rollupOptions.external = [];
 
     return config;
   },
