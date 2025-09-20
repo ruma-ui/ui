@@ -13,6 +13,8 @@ export default [
       "**/coverage",
       "**/node_modules",
       "**/.nx/cache",
+      "**/next-env.d.ts",
+      "**/.next/**/*",
     ],
   },
   {
