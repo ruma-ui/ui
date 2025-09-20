@@ -1,7 +1,13 @@
 {
   "name": "@ruma-ui/source",
   "version": "0.0.0",
+  "description": "A modern, production-ready React UI component library built with TypeScript, Tailwind CSS, and Nx.",
   "license": "MIT",
+  "author": "Ruma UI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruma-ui/ui.git"
+  },
   "private": true,
   "scripts": {
     "prepare": "husky",
