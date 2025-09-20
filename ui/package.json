@@ -1,6 +1,7 @@
 {
   "name": "@ruma-ui/ui",
   "version": "0.1.0-dev.0",
+  "type": "module",
   "description": "A modern, production-ready React UI component library built with TypeScript, Tailwind CSS, and Nx.",
   "license": "MIT",
   "author": "Ruma UI",
