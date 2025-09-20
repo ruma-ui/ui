@@ -63,7 +63,9 @@ export default defineConfig(({ mode }) => {
           "react/jsx-runtime",
           "next",
           "react-router-dom",
-          "react-icons",
+          /^react-icons/,
+          /^date-fns/,
+          "tw-animate-css",
         ],
         output: {
           // Provide global variables to use in the UMD build
