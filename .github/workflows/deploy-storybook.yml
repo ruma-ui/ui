@@ -70,5 +70,7 @@ jobs:
           storybookBuildDir: ui/storybook-static
           # Don't fail the CI job if visual changes are detected
           exitZeroOnChanges: true
+          # Exit the process once upload is complete
+          exitOnceUploaded: true
         # Don't block deployment if Chromatic fails for any reason
         continue-on-error: true
