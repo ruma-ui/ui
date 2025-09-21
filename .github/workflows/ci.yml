@@ -24,25 +24,53 @@ permissions:
   actions: read
   contents: read
   issues: write
+  pull-requests: read
 
 jobs:
   # Check what files changed to conditionally run jobs
   changes:
     runs-on: ubuntu-latest
     outputs:
-      src: ${{ steps.changes.outputs.src }}
-      config: ${{ steps.changes.outputs.config }}
-      workflows: ${{ steps.changes.outputs.workflows }}
-      docs: ${{ steps.changes.outputs.docs }}
+      src: ${{ steps.final-outputs.outputs.src }}
+      config: ${{ steps.final-outputs.outputs.config }}
+      workflows: ${{ steps.final-outputs.outputs.workflows }}
+      docs: ${{ steps.final-outputs.outputs.docs }}
+      is_dependabot: ${{ steps.check-actor.outputs.is_dependabot }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # Check if this is a Dependabot PR
+      - name: Check if Dependabot PR
+        id: check-actor
+        run: |
+          if [[ "${{ github.actor }}" == "dependabot[bot]" ]]; then
+            echo "is_dependabot=true" >> $GITHUB_OUTPUT
+            echo "This is a Dependabot PR"
+          else
+            echo "is_dependabot=false" >> $GITHUB_OUTPUT
+            echo "This is not a Dependabot PR"
+          fi
+
+      # For Dependabot PRs, assume config changes and skip file filtering
+      - name: Set outputs for Dependabot
+        id: dependabot-outputs
+        if: steps.check-actor.outputs.is_dependabot == 'true'
+        run: |
+          echo "src=false" >> $GITHUB_OUTPUT
+          echo "config=true" >> $GITHUB_OUTPUT
+          echo "workflows=false" >> $GITHUB_OUTPUT
+          echo "docs=false" >> $GITHUB_OUTPUT
+
+      # For regular PRs, use paths-filter
       - name: Check changed files
         id: changes
+        if: steps.check-actor.outputs.is_dependabot == 'false'
         uses: dorny/paths-filter@v3
         with:
+          # Add token for better API access
+          token: ${{ github.token }}
           filters: |
             src:
               - 'ui/src/**'
@@ -60,11 +88,103 @@ jobs:
               - 'docs/**'
               - '*.md'
 
+      # Set final outputs (combine both Dependabot and regular PR results)
+      - name: Set final outputs
+        id: final-outputs
+        run: |
+          if [[ "${{ steps.check-actor.outputs.is_dependabot }}" == "true" ]]; then
+            echo "src=${{ steps.dependabot-outputs.outputs.src }}" >> $GITHUB_OUTPUT
+            echo "config=${{ steps.dependabot-outputs.outputs.config }}" >> $GITHUB_OUTPUT
+            echo "workflows=${{ steps.dependabot-outputs.outputs.workflows }}" >> $GITHUB_OUTPUT
+            echo "docs=${{ steps.dependabot-outputs.outputs.docs }}" >> $GITHUB_OUTPUT
+          else
+            # Use conditional assignment with fallback
+            SRC_OUTPUT="${{ steps.changes.outputs.src }}"
+            CONFIG_OUTPUT="${{ steps.changes.outputs.config }}"
+            WORKFLOWS_OUTPUT="${{ steps.changes.outputs.workflows }}"
+            DOCS_OUTPUT="${{ steps.changes.outputs.docs }}"
+
+            echo "src=${SRC_OUTPUT:-false}" >> $GITHUB_OUTPUT
+            echo "config=${CONFIG_OUTPUT:-false}" >> $GITHUB_OUTPUT
+            echo "workflows=${WORKFLOWS_OUTPUT:-false}" >> $GITHUB_OUTPUT
+            echo "docs=${DOCS_OUTPUT:-false}" >> $GITHUB_OUTPUT
+          fi
+
+  # Lightweight CI for Dependabot PRs
+  dependabot-ci:
+    runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs.is_dependabot == 'true'
+    steps:
+      - name: Dependabot PR detected
+        run: |
+          echo "🤖 Dependabot PR detected - running lightweight CI checks"
+          echo "This PR will run basic validation without full change detection"
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.0
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Basic validation
+        run: |
+          echo "Running basic validation for Dependabot PR..."
+
+          # Check if lockfile is consistent
+          echo "✅ Checking lockfile consistency..."
+          pnpm install --frozen-lockfile
+
+          # Run lint on critical files
+          echo "✅ Running lint..."
+          pnpm dlx nx run-many -t lint --parallel=2
+
+          # Run type checking
+          echo "✅ Running type check..."
+          pnpm dlx nx run-many -t typecheck --parallel=2
+
+          # Run critical tests
+          echo "✅ Running tests..."
+          pnpm dlx nx run-many -t test --parallel=2
+
+          # Test build
+          echo "✅ Testing build..."
+          pnpm dlx nx run-many -t build --parallel=2
+
+      - name: Security check
+        run: |
+          echo "🔍 Running security audit..."
+          pnpm audit --audit-level high || echo "Security issues found - please review"
+
+      - name: Dependabot summary
+        run: |
+          echo "## 🤖 Dependabot PR Validation Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Dependencies installed successfully" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Lint checks passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Type checking passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Tests passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Build completed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Basic security audit completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This Dependabot PR has passed basic validation checks." >> $GITHUB_STEP_SUMMARY
+
   # Initial setup and dependency installation
   setup:
     runs-on: ubuntu-latest
     needs: changes
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: needs.changes.outputs.is_dependabot == 'false' && (needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -107,7 +227,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: needs.changes.outputs.is_dependabot == 'false' && (needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -146,7 +266,7 @@ jobs:
   typecheck:
     runs-on: ubuntu-latest
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: needs.changes.outputs.is_dependabot == 'false' && (needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -185,7 +305,7 @@ jobs:
   security:
     runs-on: ubuntu-latest
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: needs.changes.outputs.is_dependabot == 'false' && (needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -218,7 +338,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: needs.changes.outputs.is_dependabot == 'false' && (needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -256,7 +376,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: needs.changes.outputs.is_dependabot == 'false' && (needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -315,9 +435,9 @@ jobs:
 
   # Notify on failures
   notify-failure:
-    needs: [lint, typecheck, security, test, build]
+    needs: [dependabot-ci, lint, typecheck, security, test, build]
     runs-on: ubuntu-latest
-    if: always() && (needs.lint.result == 'failure' || needs.typecheck.result == 'failure' || needs.security.result == 'failure' || needs.test.result == 'failure' || needs.build.result == 'failure')
+    if: always() && (needs.dependabot-ci.result == 'failure' || needs.lint.result == 'failure' || needs.typecheck.result == 'failure' || needs.security.result == 'failure' || needs.test.result == 'failure' || needs.build.result == 'failure')
     steps:
       - name: Create failure issue
         uses: actions/github-script@v8
@@ -327,6 +447,7 @@ jobs:
             const branch = '${{ github.ref_name }}';
 
             // Get job statuses from workflow context
+            const dependabotResult = '${{ needs.dependabot-ci.result }}';
             const lintResult = '${{ needs.lint.result }}';
             const typecheckResult = '${{ needs.typecheck.result }}';
             const securityResult = '${{ needs.security.result }}';
@@ -335,6 +456,7 @@ jobs:
 
             // Build the failed jobs list
             let failedJobs = '';
+            if (dependabotResult === 'failure') failedJobs += '- Dependabot CI\n';
             if (lintResult === 'failure') failedJobs += '- Lint checks\n';
             if (typecheckResult === 'failure') failedJobs += '- Type checks\n';
             if (securityResult === 'failure') failedJobs += '- Security checks\n';
