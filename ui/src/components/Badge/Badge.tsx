@@ -1,4 +1,5 @@
 import React from "react";
+import { IoClose } from "react-icons/io5";
 import { cn, tw } from "../../lib/utils";
 
 export interface BadgeProps {
@@ -157,19 +158,6 @@ const focusRings = {
   info: tw`focus:ring-cyan-500`,
 };
 
-// Close icon component
-const CloseIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={cn("h-3 w-3", className)}
-    fill='none'
-    stroke='currentColor'
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-  </svg>
-);
-
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (
     {
@@ -279,7 +267,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
             onClick={handleDismiss}
             aria-label='Remove badge'
           >
-            <CloseIcon />
+            <IoClose className='h-3 w-3' />
           </button>
         )}
       </Component>

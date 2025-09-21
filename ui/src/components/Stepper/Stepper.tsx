@@ -1,4 +1,5 @@
 import React from "react";
+import { HiOutlineCheck } from "react-icons/hi";
 import { cn, tw } from "../../lib/utils";
 
 export interface Step {
@@ -253,17 +254,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       }
 
       if (state === "completed") {
-        return (
-          <svg
-            className='h-4 w-4'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            strokeWidth={2}
-          >
-            <path strokeLinecap='round' strokeLinejoin='round' d='M5 13l4 4L19 7' />
-          </svg>
-        );
+        return <HiOutlineCheck className='h-4 w-4' />;
       }
 
       if (step.icon) {

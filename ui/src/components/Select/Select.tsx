@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { HiOutlineCheck, HiOutlineChevronDown } from "react-icons/hi";
 import { cn, tw } from "../../lib/utils";
 
 export interface SelectOption {
@@ -176,15 +177,9 @@ const errorText = tw`text-sm text-red-600`;
 
 // Chevron down icon component
 const ChevronDownIcon = ({ isOpen, animated }: { isOpen: boolean; animated: boolean }) => (
-  <svg
+  <HiOutlineChevronDown
     className={cn("h-4 w-4 text-gray-400", animated && chevronAnimated, isOpen && "rotate-180")}
-    fill='none'
-    stroke='currentColor'
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
-  </svg>
+  />
 );
 
 export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
@@ -486,22 +481,14 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                     )}
                     <span className='flex-1 truncate'>{option.label}</span>
                     {/* Check icon shown for selected option */}
-                    <svg
+                    <HiOutlineCheck
                       className={cn(
                         "h-5 w-5 shrink-0 text-blue-600",
                         isSelected ? "opacity-100" : "opacity-0"
                       )}
-                      viewBox='0 0 20 20'
-                      fill='currentColor'
                       aria-hidden={!isSelected}
                       focusable='false'
-                    >
-                      <path
-                        fillRule='evenodd'
-                        d='M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414l2.293 2.293 6.543-6.543a1 1 0 011.414 0z'
-                        clipRule='evenodd'
-                      />
-                    </svg>
+                    />
                   </button>
                 );
               })}

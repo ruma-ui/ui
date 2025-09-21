@@ -7,9 +7,16 @@ const meta: Meta<typeof DatePicker> = {
   title: "Components/DatePicker",
   component: DatePicker,
   parameters: {
-    layout: "centered",
+    layout: "padded",
     docs: { page: mdx },
   },
+  decorators: [
+    Story => (
+      <div className='min-h-96'>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     variant: {
       control: { type: "radio" },

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { IoClose } from "react-icons/io5";
 import { cn, tw } from "../../lib/utils";
 
 export interface DrawerProps {
@@ -175,19 +176,6 @@ const drawerAnimations = {
     exit: tw`animate-out slide-out-to-bottom-2 duration-150 ease-in`,
   },
 };
-
-// Close icon component
-const CloseIcon = () => (
-  <svg
-    className='h-5 w-5'
-    fill='none'
-    stroke='currentColor'
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-  </svg>
-);
 
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   (
@@ -372,7 +360,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
                   onClick={onClose}
                   aria-label='Close drawer'
                 >
-                  <CloseIcon />
+                  <IoClose className='h-5 w-5' />
                 </button>
               )}
             </div>

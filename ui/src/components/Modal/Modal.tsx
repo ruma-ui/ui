@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { IoClose } from "react-icons/io5";
 import { cn, tw } from "../../lib/utils";
 
 export interface ModalProps {
@@ -125,19 +126,6 @@ const modalAnimations = {
   enter: tw`animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200 ease-out`,
   exit: tw`animate-out fade-out-0 zoom-out-95 slide-out-to-top-2 duration-150 ease-in`,
 };
-
-// Close icon component
-const CloseIcon = () => (
-  <svg
-    className='h-5 w-5'
-    fill='none'
-    stroke='currentColor'
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-  </svg>
-);
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (
@@ -319,7 +307,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   onClick={onClose}
                   aria-label='Close modal'
                 >
-                  <CloseIcon />
+                  <IoClose className='h-5 w-5' />
                 </button>
               )}
             </div>

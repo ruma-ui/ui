@@ -14,6 +14,7 @@ import {
   IoVolumeMute,
   IoVolumeOff,
 } from "react-icons/io5";
+import { Loader } from "../Loader/Loader";
 
 export interface VideoTrack {
   /** The URL of the subtitle/caption file */
@@ -645,7 +646,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {isLoading && (
         <div className={loadingSpinner}>
-          <div className='h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white'></div>
+          <Loader type='ring' size='lg' color='white' strokeWidth='thick' />
         </div>
       )}
 

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { HiOutlineCheck, HiOutlineChevronDown } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
 import { cn, tw } from "../../lib/utils";
 
 export interface MultiSelectOption {
@@ -193,22 +195,9 @@ const selectedItemRemove = tw`ml-1 flex h-3 w-3 cursor-pointer items-center just
 
 // Chevron down icon component
 const ChevronDownIcon = ({ isOpen, animated }: { isOpen: boolean; animated: boolean }) => (
-  <svg
+  <HiOutlineChevronDown
     className={cn("h-4 w-4 text-gray-400", animated && chevronAnimated, isOpen && "rotate-180")}
-    fill='none'
-    stroke='currentColor'
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
-  </svg>
-);
-
-// Remove icon component
-const RemoveIcon = () => (
-  <svg className='h-3 w-3' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-  </svg>
+  />
 );
 
 export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
@@ -505,7 +494,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                     disabled={disabled}
                     aria-label={`Remove ${option.label}`}
                   >
-                    <RemoveIcon />
+                    <IoClose className='h-3 w-3' />
                   </button>
                 </span>
               ))
@@ -587,17 +576,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                     {/* Checkbox indicator */}
                     <div className='flex h-5 w-5 shrink-0 items-center justify-center'>
                       {isSelected ? (
-                        <svg
-                          className='h-5 w-5 text-blue-600'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414l2.293 2.293 6.543-6.543a1 1 0 011.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
+                        <HiOutlineCheck className='h-5 w-5 text-blue-600' />
                       ) : (
                         <div className='h-4 w-4 rounded border-2 border-gray-300' />
                       )}

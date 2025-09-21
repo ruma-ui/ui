@@ -15,6 +15,7 @@ import {
   startOfWeek,
 } from "date-fns";
 import React from "react";
+import { HiChevronLeft as ChevronLeft, HiChevronRight as ChevronRight } from "react-icons/hi";
 import { cn, tw } from "../../lib/utils";
 
 export interface CalendarProps {
@@ -168,16 +169,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       {/* Header */}
       <div className={header}>
         <button type='button' className={navBtn} aria-label='Previous month' onClick={goPrev}>
-          {/* Left chevron */}
-          <svg width='16' height='16' viewBox='0 0 24 24' fill='none' aria-hidden>
-            <path
-              d='M15 18l-6-6 6-6'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
+          <ChevronLeft size={16} />
         </button>
         {showMonthYearPickers ? (
           <div className={pickerWrap}>
@@ -239,16 +231,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           </div>
         )}
         <button type='button' className={navBtn} aria-label='Next month' onClick={goNext}>
-          {/* Right chevron */}
-          <svg width='16' height='16' viewBox='0 0 24 24' fill='none' aria-hidden>
-            <path
-              d='M9 6l6 6-6 6'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
+          <ChevronRight size={16} />
         </button>
       </div>
 

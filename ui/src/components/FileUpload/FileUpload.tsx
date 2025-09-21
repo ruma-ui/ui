@@ -5,6 +5,7 @@ import {
   FiMusic as FileAudio,
   FiImage as FileImage,
   FiFileText as FileText,
+  FiUpload as FileUploadIcon,
   FiVideo as FileVideo,
 } from "react-icons/fi";
 import { cn, tw } from "../../lib/utils";
@@ -145,25 +146,7 @@ const roundedOptions = {
 const buttonBase = tw`inline-flex cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50`;
 
 // Default file upload icon
-const DefaultFileUploadIcon = ({ size = 24 }: { size?: number }) => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width={size}
-    height={size}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-    className='lucide lucide-file-up-icon lucide-file-up'
-  >
-    <path d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z' />
-    <path d='M14 2v4a2 2 0 0 0 2 2h4' />
-    <path d='M12 12v6' />
-    <path d='m15 15-3-3-3 3' />
-  </svg>
-);
+const DefaultFileUploadIcon = ({ size = 24 }: { size?: number }) => <FileUploadIcon size={size} />;
 
 export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
   (
