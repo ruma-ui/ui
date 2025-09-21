@@ -65,8 +65,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: changes
     if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
-    outputs:
-      cache-hit: ${{ steps.cache-deps.outputs.cache-hit }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -82,42 +80,28 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      # Enhanced caching strategy
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Cache Nx
-        uses: actions/cache@v4
-        with:
-          path: .nx/cache
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-
-            ${{ runner.os }}-nx-
-
-      # Cache dependencies with retry
-      - name: Cache dependencies
-        id: cache-deps
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
+      # Install dependencies with retry
       - name: Install dependencies with retry
-        if: steps.cache-deps.outputs.cache-hit != 'true'
         uses: nick-fields/retry@v3
         with:
           timeout_minutes: 10
           max_attempts: 3
           command: pnpm install --frozen-lockfile
 
+      # Cache Nx workspace
+      - name: Cache Nx workspace
+        uses: actions/cache@v4
+        with:
+          path: |
+            .nx/cache
+            .nx/workspace-data
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
+            ${{ runner.os }}-nx-
+
       - name: Start Nx Cloud CI run
-        run: pnpm dlx nx start-ci-run --stop-agents-after="build"
+        run: pnpm dlx nx start-ci-run --stop-agents-after="build" --agent-count=3
 
   # Code quality and linting
   lint:
@@ -139,37 +123,24 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      # Restore caches
-      - name: Restore pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
+      # Restore Nx cache
       - name: Restore Nx cache
         uses: actions/cache@v4
         with:
-          path: .nx/cache
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-${{ github.sha }}
+          path: |
+            .nx/cache
+            .nx/workspace-data
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-
+            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
             ${{ runner.os }}-nx-
 
-      - name: Restore dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      - name: Install dependencies (if cache miss)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-
-      # Lint
+      # Lint using Nx
       - name: Lint
-        run: pnpm run lint
+        run: pnpm dlx nx run-many -t lint --parallel=3
 
   # Type checking
   typecheck:
@@ -191,29 +162,24 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      # Restore caches
-      - name: Restore dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
+      # Restore Nx cache
       - name: Restore Nx cache
         uses: actions/cache@v4
         with:
-          path: .nx/cache
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-${{ github.sha }}
+          path: |
+            .nx/cache
+            .nx/workspace-data
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-
+            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
             ${{ runner.os }}-nx-
 
-      - name: Install dependencies (if cache miss)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-
-      # Typecheck
+      # Typecheck using Nx
       - name: Typecheck
-        run: pnpm run typecheck
+        run: pnpm dlx nx run-many -t typecheck --parallel=3
 
   # Security checks
   security:
@@ -235,14 +201,7 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      - name: Restore dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      - name: Install dependencies (if cache miss)
-        if: needs.setup.outputs.cache-hit != 'true'
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       # Security scanning
@@ -275,28 +234,23 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      # Restore caches
-      - name: Restore dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
+      # Restore Nx cache
       - name: Restore Nx cache
         uses: actions/cache@v4
         with:
-          path: .nx/cache
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-${{ github.sha }}
+          path: |
+            .nx/cache
+            .nx/workspace-data
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-
+            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
             ${{ runner.os }}-nx-
 
-      - name: Install dependencies (if cache miss)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-
       - name: Run unit tests
-        run: pnpm run test
+        run: pnpm dlx nx run-many -t test --parallel=3 --coverage
 
   # Build
   build:
@@ -318,34 +272,41 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      # Restore caches
-      - name: Restore dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
+      # Restore Nx cache
       - name: Restore Nx cache
         uses: actions/cache@v4
         with:
-          path: .nx/cache
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-${{ github.sha }}
+          path: |
+            .nx/cache
+            .nx/workspace-data
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}-
+            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
             ${{ runner.os }}-nx-
 
-      - name: Install dependencies (if cache miss)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-
       - name: Build
-        run: pnpm run build
+        run: pnpm dlx nx run-many -t build --parallel=3
 
       - name: Build docs
         run: pnpm run docs:build
 
       - name: Optimization checks
         run: pnpm run size
+
+      # Upload build artifacts
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            dist/
+            ui/dist/
+            docs/
+            ui/storybook-static/
+          retention-days: 30
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster
       - name: Fix CI issues

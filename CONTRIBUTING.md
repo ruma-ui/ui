@@ -67,6 +67,127 @@ pnpm build
 4. Ensure all checks pass
 5. Request review from maintainers
 
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment, ensuring code quality, security, and reliability across all supported branches. The CI pipeline is designed following industry best practices for scaled open source projects.
+
+### Pipeline Overview
+
+The CI workflow automatically runs on:
+
+- **Push events** to branches: `dev`, `alpha`, `beta`, `rc`, `main`
+- **Pull request events** targeting these branches
+
+### Concurrency Control
+
+To optimize resource usage and prevent redundant runs, the pipeline uses concurrency groups that cancel in-progress runs when new commits are pushed to the same branch.
+
+### Jobs and Checks
+
+The pipeline consists of the following jobs, running conditionally based on file changes:
+
+1. **Changes Detection** (`changes`)
+   - Analyzes modified files to determine which subsequent jobs should run
+   - Uses path filtering to skip unnecessary checks for documentation-only changes
+
+2. **Setup** (`setup`)
+   - Installs dependencies using pnpm with frozen lockfile
+   - Configures Node.js 20 and caching for pnpm store, Nx cache, and node_modules
+   - Initializes Nx Cloud for distributed task execution
+
+3. **Linting** (`lint`)
+   - Runs ESLint across the codebase
+   - Ensures consistent code style and catches potential issues
+
+4. **Type Checking** (`typecheck`)
+   - Performs TypeScript compilation checks
+   - Validates type safety across all projects
+
+5. **Security Scanning** (`security`)
+   - Runs `pnpm audit` for dependency vulnerabilities
+   - Performs dependency review on pull requests to detect security issues
+   - Continues on error to avoid blocking development for non-critical issues
+
+6. **Testing** (`test`)
+   - Executes unit tests using Jest/Vitest
+   - Runs across all affected projects in the monorepo
+
+7. **Build** (`build`)
+   - Builds all affected projects
+   - Generates documentation
+   - Performs bundle size checks
+   - Applies Nx Cloud CI optimizations and fixes
+
+8. **Failure Notification** (`notify-failure`)
+   - Creates GitHub issues when CI fails
+   - Includes details about which jobs failed and links to workflow runs
+
+### Branch Protection
+
+All release branches have required status checks:
+
+- Linting must pass
+- Type checking must pass
+- Security scans must complete
+- Tests must pass
+- Build must succeed
+
+Pull requests cannot be merged until all required checks pass.
+
+### Caching Strategy
+
+The pipeline implements multi-layer caching for performance:
+
+- **pnpm Store Cache**: Caches downloaded packages
+- **Nx Cache**: Speeds up task execution through computation caching
+- **Node Modules Cache**: Avoids reinstallation when lockfile hasn't changed
+
+### Nx Cloud Integration
+
+We use Nx Cloud for enhanced CI performance:
+
+- **Remote Caching**: Shares computation results across runs
+- **Distributed Execution**: Parallelizes tasks across multiple agents
+- **Performance Insights**: Provides detailed build analytics
+
+### Troubleshooting CI Failures
+
+If CI fails on your pull request:
+
+1. **Check the Actions Tab**: Review the detailed logs for each failed job
+2. **Run Locally First**: Reproduce issues locally before pushing fixes:
+
+   ```bash
+   pnpm validate  # Runs lint, typecheck, test, build
+   ```
+
+3. **Common Issues**:
+   - **Lint Errors**: Run `pnpm run lint` and fix code style issues
+   - **Type Errors**: Run `pnpm run typecheck` and resolve TypeScript issues
+   - **Test Failures**: Run `pnpm run test` and debug failing tests
+   - **Build Failures**: Run `pnpm run build` and check for compilation errors
+   - **Security Issues**: Review dependency vulnerabilities and update packages
+4. **Push Fixes**: Commit and push your changes to trigger a new CI run
+5. **Request Help**: If issues persist, mention maintainers in your PR
+
+### Performance Optimization
+
+The pipeline is optimized for speed and cost-efficiency:
+
+- **Conditional Execution**: Jobs only run when relevant files change
+- **Intelligent Caching**: Minimizes redundant work
+- **Parallel Execution**: Multiple jobs run simultaneously where possible
+- **Early Failure Detection**: Fast feedback on linting and type errors
+
+### Contributing to CI
+
+When making changes that affect CI:
+
+- Update `.github/workflows/ci.yml` for workflow changes
+- Test workflow changes on a feature branch first
+- Ensure new jobs follow the established patterns
+- Update this documentation if adding new checks or processes
+
 ## Release Pipeline & Branch Strategy
 
 We use a **5-branch strategy** for controlled releases:
@@ -178,7 +299,7 @@ This project uses [Conventional Commits](https://conventionalcommits.org/) for a
 
 ### Format
 
-```
+```text
 <type>[optional scope]: <description>
 
 [optional body]
