@@ -24,6 +24,7 @@ permissions:
   actions: read
   contents: read
   issues: write
+  pull-requests: read
 
 jobs:
   # Check what files changed to conditionally run jobs
@@ -43,6 +44,8 @@ jobs:
         id: changes
         uses: dorny/paths-filter@v3
         with:
+          # Add token for better API access
+          token: ${{ github.token }}
           filters: |
             src:
               - 'ui/src/**'
