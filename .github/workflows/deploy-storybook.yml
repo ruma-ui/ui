@@ -49,7 +49,7 @@ jobs:
         # Only run if the node_modules cache was not hit
         if: steps.cache-deps.outputs.cache-hit != 'true'
         # Retry the command up to 3 times in case of transient network errors
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@v3
         with:
           timeout_minutes: 10
           max_attempts: 3
