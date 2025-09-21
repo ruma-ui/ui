@@ -157,7 +157,7 @@ jobs:
 
       # Enable Nx Cloud CI run (without distribution due to agent requirement)
       - name: Start Nx Cloud CI run
-        run: pnpm dlx nx start-ci-run --stop-agents-after="build"
+        run: pnpm dlx nx start-ci-run
 
       - uses: actions/setup-node@v4
         with:
