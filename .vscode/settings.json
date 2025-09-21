@@ -86,5 +86,10 @@
   },
   "cSpell.words": [
     "ruma"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#5B0933",
+    "titleBar.activeBackground": "#800C47",
+    "titleBar.activeForeground": "#FFFCFD"
+  }
 }
