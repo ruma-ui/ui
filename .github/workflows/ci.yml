@@ -120,9 +120,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [changes, setup]
     if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
-    strategy:
-      matrix:
-        node-version: [20] # Reduced to single version for free tier optimization
     steps:
       - uses: actions/checkout@v4
         with:
