@@ -24,6 +24,7 @@ permissions:
   actions: read
   contents: read
   issues: write
+  pull-requests: read
 
 jobs:
   # Check what files changed to conditionally run jobs
@@ -68,6 +69,8 @@ jobs:
         if: steps.check-actor.outputs.is_dependabot == 'false'
         uses: dorny/paths-filter@v3
         with:
+          # Add token for better API access
+          token: ${{ github.token }}
           filters: |
             src:
               - 'ui/src/**'
@@ -95,10 +98,16 @@ jobs:
             echo "workflows=${{ steps.dependabot-outputs.outputs.workflows }}" >> $GITHUB_OUTPUT
             echo "docs=${{ steps.dependabot-outputs.outputs.docs }}" >> $GITHUB_OUTPUT
           else
-            echo "src=${{ steps.changes.outputs.src }}" >> $GITHUB_OUTPUT
-            echo "config=${{ steps.changes.outputs.config }}" >> $GITHUB_OUTPUT
-            echo "workflows=${{ steps.changes.outputs.workflows }}" >> $GITHUB_OUTPUT
-            echo "docs=${{ steps.changes.outputs.docs }}" >> $GITHUB_OUTPUT
+            # Use conditional assignment with fallback
+            SRC_OUTPUT="${{ steps.changes.outputs.src }}"
+            CONFIG_OUTPUT="${{ steps.changes.outputs.config }}"
+            WORKFLOWS_OUTPUT="${{ steps.changes.outputs.workflows }}"
+            DOCS_OUTPUT="${{ steps.changes.outputs.docs }}"
+
+            echo "src=${SRC_OUTPUT:-false}" >> $GITHUB_OUTPUT
+            echo "config=${CONFIG_OUTPUT:-false}" >> $GITHUB_OUTPUT
+            echo "workflows=${WORKFLOWS_OUTPUT:-false}" >> $GITHUB_OUTPUT
+            echo "docs=${DOCS_OUTPUT:-false}" >> $GITHUB_OUTPUT
           fi
 
   # Lightweight CI for Dependabot PRs
