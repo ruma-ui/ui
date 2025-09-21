@@ -154,10 +154,12 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      # Enable Nx Cloud CI run (without distribution due to agent requirement)
-      - name: Start Nx Cloud CI run
-        run: pnpm dlx nx start-ci-run
+      # Nx Cloud CI run disabled: starting a CI run here can cause the job to wait
+      # for remote agents and hang the workflow when no agents are available.
+      # If you want to enable Nx Cloud CI runs, add the appropriate secrets/agents
+      # and uncomment the following step.
+      # - name: Start Nx Cloud CI run
+      #   run: pnpm dlx nx start-ci-run --stop-agents-after="build"
 
       - uses: actions/setup-node@v4
         with:
