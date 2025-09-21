@@ -275,8 +275,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       <div
         className={overlayClasses}
         onClick={handleOverlayClick}
-        role='dialog'
-        aria-modal='true'
+        role="dialog"
+        aria-modal="true"
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy || (title ? titleId : undefined)}
         aria-describedby={ariaDescribedBy || descId}
@@ -292,22 +292,22 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           {/* Header */}
           {(header || title || !hideCloseButton) && (
             <div className={headerBase}>
-              <div className='min-w-0 flex-1'>
+              <div className="min-w-0 flex-1">
                 {header ||
                   (title && (
-                    <h2 id={titleId} className='truncate text-lg font-semibold text-gray-900'>
+                    <h2 id={titleId} className="truncate text-lg font-semibold text-gray-900">
                       {title}
                     </h2>
                   ))}
               </div>
               {!hideCloseButton && (
                 <button
-                  type='button'
+                  type="button"
                   className={closeButtonBase}
                   onClick={onClose}
-                  aria-label='Close modal'
+                  aria-label="Close modal"
                 >
-                  <IoClose className='h-5 w-5' />
+                  <IoClose className="h-5 w-5" />
                 </button>
               )}
             </div>

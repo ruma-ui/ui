@@ -180,7 +180,7 @@ export const Popover: React.FC<PopoverProps> = ({
   };
 
   return (
-    <div className='relative'>
+    <div className="relative">
       <PopoverContext.Provider value={contextValue}>{children}</PopoverContext.Provider>
     </div>
   );
@@ -285,7 +285,7 @@ export const PopoverTrigger = React.forwardRef<HTMLElement, PopoverTriggerProps>
             actualRef.current = node;
           }
         }}
-        type='button'
+        type="button"
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         {...(trigger === "hover" && {
@@ -297,7 +297,7 @@ export const PopoverTrigger = React.forwardRef<HTMLElement, PopoverTriggerProps>
           onBlur: handleBlur,
         })}
         aria-expanded={isOpen}
-        aria-haspopup='dialog'
+        aria-haspopup="dialog"
         style={{ position: "relative" }}
         {...props}
       >
@@ -568,7 +568,7 @@ export const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentPro
         }}
         className={cn(contentBase, animationClass, className)}
         data-popover-content
-        role='dialog'
+        role="dialog"
         style={getPositionStyles()}
         onClick={handleContentClick}
         onFocus={handleContentFocus}

@@ -189,8 +189,8 @@ type CheckboxGroupStory = StoryObj<typeof CheckboxGroup>;
 export const BasicGroup: CheckboxGroupStory = {
   render: () => (
     <CheckboxGroup
-      label='Select your interests'
-      description='Choose all that apply'
+      label="Select your interests"
+      description="Choose all that apply"
       options={[
         { value: "sports", label: "Sports" },
         { value: "music", label: "Music" },
@@ -204,9 +204,9 @@ export const BasicGroup: CheckboxGroupStory = {
 export const WithSelectAll: CheckboxGroupStory = {
   render: () => (
     <CheckboxGroup
-      label='Select features'
+      label="Select features"
       enableSelectAll
-      selectAllLabel='Enable all features'
+      selectAllLabel="Enable all features"
       options={[
         { value: "notifications", label: "Push notifications" },
         { value: "analytics", label: "Analytics tracking" },
@@ -220,8 +220,8 @@ export const WithSelectAll: CheckboxGroupStory = {
 export const HorizontalGroup: CheckboxGroupStory = {
   render: () => (
     <CheckboxGroup
-      label='Horizontal layout'
-      direction='horizontal'
+      label="Horizontal layout"
+      direction="horizontal"
       options={[
         { value: "small", label: "Small" },
         { value: "medium", label: "Medium" },

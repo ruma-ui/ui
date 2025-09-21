@@ -150,9 +150,9 @@ Customize the carousel appearance with className props.
 ```jsx
 <Carousel
   items={items}
-  className='rounded-xl border-4 border-white shadow-2xl'
-  arrowClassName='bg-black/80 hover:bg-black text-white'
-  dotClassName='bg-black/60 hover:bg-black'
+  className="rounded-xl border-4 border-white shadow-2xl"
+  arrowClassName="bg-black/80 hover:bg-black text-white"
+  dotClassName="bg-black/60 hover:bg-black"
 />
 ```
 
@@ -166,9 +166,9 @@ The `items` prop accepts an array of React elements that will be displayed as sl
 
 ```jsx
 const items = [
-  <div className='bg-blue-500 p-8 text-white'>Slide 1</div>,
-  <div className='bg-green-500 p-8 text-white'>Slide 2</div>,
-  <div className='bg-purple-500 p-8 text-white'>Slide 3</div>,
+  <div className="bg-blue-500 p-8 text-white">Slide 1</div>,
+  <div className="bg-green-500 p-8 text-white">Slide 2</div>,
+  <div className="bg-purple-500 p-8 text-white">Slide 3</div>,
 ];
 
 <Carousel items={items} />;
@@ -179,7 +179,7 @@ const items = [
     <Carousel
       items={[
         <div
-          key='1'
+          key="1"
           style={{
             padding: "2rem",
             height: "100%",
@@ -191,7 +191,7 @@ const items = [
           Slide 1
         </div>,
         <div
-          key='2'
+          key="2"
           style={{
             padding: "2rem",
             height: "100%",
@@ -203,7 +203,7 @@ const items = [
           Slide 2
         </div>,
         <div
-          key='3'
+          key="3"
           style={{
             padding: "2rem",
             height: "100%",
@@ -237,7 +237,7 @@ const [index, setIndex] = useState(0);
     <Carousel
       items={[
         <div
-          key='1'
+          key="1"
           style={{
             padding: "2rem",
             height: "100%",
@@ -249,7 +249,7 @@ const [index, setIndex] = useState(0);
           First Slide
         </div>,
         <div
-          key='2'
+          key="2"
           style={{
             padding: "2rem",
             height: "100%",
@@ -261,7 +261,7 @@ const [index, setIndex] = useState(0);
           Second Slide (Active)
         </div>,
         <div
-          key='3'
+          key="3"
           style={{
             padding: "2rem",
             height: "100%",
@@ -300,7 +300,7 @@ Enable or disable drag/swipe functionality. When disabled, users can only naviga
       draggable={false}
       items={[
         <div
-          key='1'
+          key="1"
           style={{
             padding: "2rem",
             height: "100%",
@@ -312,7 +312,7 @@ Enable or disable drag/swipe functionality. When disabled, users can only naviga
           First Slide
         </div>,
         <div
-          key='2'
+          key="2"
           style={{
             padding: "2rem",
             height: "100%",
@@ -324,7 +324,7 @@ Enable or disable drag/swipe functionality. When disabled, users can only naviga
           Second Slide (Active)
         </div>,
         <div
-          key='3'
+          key="3"
           style={{
             padding: "2rem",
             height: "100%",
@@ -354,7 +354,7 @@ Enable automatic slide progression and set the interval between transitions.
     <Carousel
       items={[
         <div
-          key='1'
+          key="1"
           style={{
             padding: "2rem",
             height: "100%",
@@ -366,7 +366,7 @@ Enable automatic slide progression and set the interval between transitions.
           Auto-playing Slide 1
         </div>,
         <div
-          key='2'
+          key="2"
           style={{
             padding: "2rem",
             height: "100%",
@@ -378,7 +378,7 @@ Enable automatic slide progression and set the interval between transitions.
           Auto-playing Slide 2
         </div>,
         <div
-          key='3'
+          key="3"
           style={{
             padding: "2rem",
             height: "100%",
@@ -411,7 +411,7 @@ Pause autoplay when the user hovers over the carousel. Improves user experience 
       pauseOnHover={true}
       items={[
         <div
-          key='1'
+          key="1"
           style={{
             padding: "2rem",
             height: "100%",
@@ -423,7 +423,7 @@ Pause autoplay when the user hovers over the carousel. Improves user experience 
           Auto-playing Slide 1
         </div>,
         <div
-          key='2'
+          key="2"
           style={{
             padding: "2rem",
             height: "100%",
@@ -435,7 +435,7 @@ Pause autoplay when the user hovers over the carousel. Improves user experience 
           Auto-playing Slide 2
         </div>,
         <div
-          key='3'
+          key="3"
           style={{
             padding: "2rem",
             height: "100%",
@@ -482,7 +482,7 @@ Control the visibility of navigation elements.
       <Carousel
         items={[
           <div
-            key='1'
+            key="1"
             style={{
               padding: "1rem",
               height: "100%",
@@ -493,7 +493,7 @@ Control the visibility of navigation elements.
             Slide 1
           </div>,
           <div
-            key='2'
+            key="2"
             style={{
               padding: "1rem",
               height: "100%",
@@ -522,7 +522,7 @@ Control the visibility of navigation elements.
       <Carousel
         items={[
           <div
-            key='1'
+            key="1"
             style={{
               padding: "1rem",
               height: "100%",
@@ -533,7 +533,7 @@ Control the visibility of navigation elements.
             Slide 1
           </div>,
           <div
-            key='2'
+            key="2"
             style={{
               padding: "1rem",
               height: "100%",
@@ -565,7 +565,7 @@ Enable infinite loop navigation. When disabled, navigation stops at the first an
     <Carousel
       items={[
         <div
-          key='1'
+          key="1"
           style={{
             padding: "2rem",
             height: "100%",
@@ -577,7 +577,7 @@ Enable infinite loop navigation. When disabled, navigation stops at the first an
           Auto-playing Slide 1
         </div>,
         <div
-          key='2'
+          key="2"
           style={{
             padding: "2rem",
             height: "100%",
@@ -589,7 +589,7 @@ Enable infinite loop navigation. When disabled, navigation stops at the first an
           Auto-playing Slide 2
         </div>,
         <div
-          key='3'
+          key="3"
           style={{
             padding: "2rem",
             height: "100%",
@@ -638,7 +638,7 @@ Control the duration of slide transitions in milliseconds.
       <Carousel
         items={[
           <div
-            key='1'
+            key="1"
             style={{
               padding: "1rem",
               height: "100%",
@@ -650,7 +650,7 @@ Control the duration of slide transitions in milliseconds.
             Slide 1
           </div>,
           <div
-            key='2'
+            key="2"
             style={{
               padding: "1rem",
               height: "100%",
@@ -662,7 +662,7 @@ Control the duration of slide transitions in milliseconds.
             Slide 2
           </div>,
           <div
-            key='3'
+            key="3"
             style={{
               padding: "1rem",
               height: "100%",
@@ -690,7 +690,7 @@ Control the duration of slide transitions in milliseconds.
       <Carousel
         items={[
           <div
-            key='1'
+            key="1"
             style={{
               padding: "1rem",
               height: "100%",
@@ -702,7 +702,7 @@ Control the duration of slide transitions in milliseconds.
             Slide 1
           </div>,
           <div
-            key='2'
+            key="2"
             style={{
               padding: "1rem",
               height: "100%",
@@ -714,7 +714,7 @@ Control the duration of slide transitions in milliseconds.
             Slide 2
           </div>,
           <div
-            key='3'
+            key="3"
             style={{
               padding: "1rem",
               height: "100%",
@@ -739,10 +739,10 @@ Apply custom styling to different parts of the carousel.
 ```jsx
 <Carousel
   items={items}
-  className='rounded-2xl border-2 border-gray-200 shadow-xl'
-  slideClassName='rounded-xl'
-  arrowClassName='bg-blue-600 hover:bg-blue-700 text-white'
-  dotClassName='bg-blue-200'
+  className="rounded-2xl border-2 border-gray-200 shadow-xl"
+  slideClassName="rounded-xl"
+  arrowClassName="bg-blue-600 hover:bg-blue-700 text-white"
+  dotClassName="bg-blue-200"
 />
 ```
 

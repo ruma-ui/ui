@@ -201,7 +201,7 @@ export const TabList: React.FC<TabListProps> = ({ children, className, ...props 
         fullWidth && "w-full",
         className
       )}
-      role='tablist'
+      role="tablist"
       {...props}
     >
       {children}
@@ -251,7 +251,7 @@ export const Tab: React.FC<TabProps> = ({
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       disabled={disabled}
-      role='tab'
+      role="tab"
       aria-selected={isActive}
       aria-controls={`tabpanel-${value}`}
       id={`tab-${value}`}
@@ -272,7 +272,7 @@ export const TabPanel: React.FC<TabPanelProps> = ({ children, className, value, 
   return (
     <div
       className={cn(baseTabPanel, tabPanelVariants[orientation], className)}
-      role='tabpanel'
+      role="tabpanel"
       aria-labelledby={`tab-${value}`}
       id={`tabpanel-${value}`}
       {...props}

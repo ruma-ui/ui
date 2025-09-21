@@ -266,16 +266,16 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
         {isEditing ? (
           <div className={cn("flex w-full items-center", sizes[size].gap)}>
             {/* Grid container for input sizer and input field */}
-            <div className='relative grid grow items-center'>
+            <div className="relative grid grow items-center">
               {/* Sizer: Renders text invisibly to define width */}
-              <span className='invisible col-start-1 row-start-1 p-0 whitespace-pre' aria-hidden>
+              <span className="invisible col-start-1 row-start-1 p-0 whitespace-pre" aria-hidden>
                 {editValue || placeholder || "\u00A0"}
               </span>
 
               {/* Input: Overlays the sizer */}
               <input
                 ref={inputRef}
-                type='text'
+                type="text"
                 value={editValue}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
@@ -287,13 +287,13 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
                   isEmpty && "text-gray-400"
                 )}
                 disabled={isDisabled}
-                aria-label='Edit text'
+                aria-label="Edit text"
               />
             </div>
             {showButtons && (
-              <div className='flex shrink-0 items-center gap-1'>
+              <div className="flex shrink-0 items-center gap-1">
                 <button
-                  type='button'
+                  type="button"
                   onMouseDown={handleSaveMouseDown}
                   className={cn(
                     buttonBase,
@@ -305,7 +305,7 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
                   {saveText}
                 </button>
                 <button
-                  type='button'
+                  type="button"
                   onMouseDown={handleCancelMouseDown}
                   className={cn(
                     buttonBase,
@@ -328,9 +328,9 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
                 handleStartEdit();
               }
             }}
-            role='button'
+            role="button"
             aria-label={`Edit: ${displayValue}`}
-            className='truncate'
+            className="truncate"
           >
             {children || (
               <span className={cn("select-none", isEmpty && "text-gray-400 italic")}>

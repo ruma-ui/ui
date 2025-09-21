@@ -54,7 +54,7 @@ const sampleItems = [
 export const Basic = {
   args: {
     items: sampleItems,
-    renderItem: item => <div className='text-sm'>{(item as SampleItem).name}</div>,
+    renderItem: item => <div className="text-sm">{(item as SampleItem).name}</div>,
     onReorder: (items, fromIndex, toIndex) => {
       console.log(`Moved item from ${fromIndex} to ${toIndex}`);
     },
@@ -85,20 +85,20 @@ export const CustomRendering = {
     renderItem: item => {
       const typedItem = item as SampleItem;
       return (
-        <div className='flex items-center gap-3 text-sm text-gray-900'>
+        <div className="flex items-center gap-3 text-sm text-gray-900">
           <input
-            type='checkbox'
+            type="checkbox"
             checked={typedItem.completed}
-            className='rounded border-gray-300 text-blue-600 focus:ring-blue-500'
+            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             readOnly
           />
           {typedItem.type === "folder" ? (
-            <FaFolder className='text-amber-500' />
+            <FaFolder className="text-amber-500" />
           ) : (
-            <FaFile className='text-gray-500' />
+            <FaFile className="text-gray-500" />
           )}
-          <span className='flex-1 font-medium'>{typedItem.name}</span>
-          <span className='rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-500'>
+          <span className="flex-1 font-medium">{typedItem.name}</span>
+          <span className="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-500">
             {typedItem.type}
           </span>
         </div>
@@ -129,9 +129,9 @@ export const CustomDragHandle = {
     renderItem: item => {
       const typedItem = item as SampleItem;
       return (
-        <div className='flex items-center gap-3 text-sm'>
-          <span className='flex-1'>{typedItem.name}</span>
-          <span className='text-xs text-gray-500'>{typedItem.type}</span>
+        <div className="flex items-center gap-3 text-sm">
+          <span className="flex-1">{typedItem.name}</span>
+          <span className="text-xs text-gray-500">{typedItem.type}</span>
         </div>
       );
     },
@@ -172,8 +172,8 @@ const EventHandlingComponent = (args: Partial<React.ComponentProps<typeof Sortab
   };
 
   return (
-    <div className='flex items-start gap-6'>
-      <div className='flex-1'>
+    <div className="flex items-start gap-6">
+      <div className="flex-1">
         <SortableList
           {...args}
           items={items}
@@ -184,19 +184,19 @@ const EventHandlingComponent = (args: Partial<React.ComponentProps<typeof Sortab
           renderItem={
             args.renderItem ??
             ((item: unknown, index: number, isDragging: boolean) => (
-              <div className='text-sm'>{(item as SampleItem).name}</div>
+              <div className="text-sm">{(item as SampleItem).name}</div>
             ))
           }
         />
       </div>
-      <div className='max-w-xs flex-1'>
-        <h4 className='mb-3 text-sm font-semibold text-gray-900'>Event Log</h4>
-        <div className='max-h-48 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-3 font-mono text-xs'>
+      <div className="max-w-xs flex-1">
+        <h4 className="mb-3 text-sm font-semibold text-gray-900">Event Log</h4>
+        <div className="max-h-48 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-3 font-mono text-xs">
           {events.length === 0 ? (
-            <div className='text-gray-500'>No events yet...</div>
+            <div className="text-gray-500">No events yet...</div>
           ) : (
             events.map((event, index) => (
-              <div key={index} className='mb-1'>
+              <div key={index} className="mb-1">
                 {event}
               </div>
             ))
@@ -210,7 +210,7 @@ const EventHandlingComponent = (args: Partial<React.ComponentProps<typeof Sortab
 export const EventHandling = {
   render: args => <EventHandlingComponent {...args} />,
   args: {
-    renderItem: item => <div className='text-sm'>{(item as SampleItem).name}</div>,
+    renderItem: item => <div className="text-sm">{(item as SampleItem).name}</div>,
   },
 } satisfies Story;
 
@@ -218,8 +218,8 @@ const WithStateManagementComponent = (args: Partial<React.ComponentProps<typeof 
   const [items, setItems] = useState(sampleItems);
 
   return (
-    <div className='w-96'>
-      <div className='mb-4'>
+    <div className="w-96">
+      <div className="mb-4">
         <button
           onClick={() => {
             const newItem = {
@@ -230,7 +230,7 @@ const WithStateManagementComponent = (args: Partial<React.ComponentProps<typeof 
             };
             setItems([...items, newItem]);
           }}
-          className='rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+          className="rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         >
           Add Item
         </button>
@@ -243,7 +243,7 @@ const WithStateManagementComponent = (args: Partial<React.ComponentProps<typeof 
         renderItem={
           args.renderItem ??
           ((item: unknown, index: number, isDragging: boolean) => (
-            <div className='text-sm'>{(item as SampleItem).name}</div>
+            <div className="text-sm">{(item as SampleItem).name}</div>
           ))
         }
       />
@@ -257,18 +257,18 @@ export const WithStateManagement = {
     renderItem: item => {
       const typedItem = item as SampleItem;
       return (
-        <div className='flex items-center gap-3 text-sm'>
+        <div className="flex items-center gap-3 text-sm">
           <input
-            type='checkbox'
+            type="checkbox"
             checked={typedItem.completed}
-            className='rounded border-gray-300'
+            className="rounded border-gray-300"
             onChange={() => {
               // This would normally update the item in state
               console.log(`Toggle ${typedItem.name}`);
             }}
           />
-          <span className='flex-1'>{typedItem.name}</span>
-          <span className='text-xs text-gray-500'>{typedItem.type}</span>
+          <span className="flex-1">{typedItem.name}</span>
+          <span className="text-xs text-gray-500">{typedItem.type}</span>
         </div>
       );
     },

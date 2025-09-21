@@ -297,7 +297,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
         onMouseLeave={hideTooltip}
         onFocus={showTooltip}
         onBlur={hideTooltip}
-        className='inline-block'
+        className="inline-block"
         aria-describedby={id}
       >
         {children}
@@ -306,7 +306,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       <div
         ref={tooltipRef}
         id={id}
-        role='tooltip'
+        role="tooltip"
         className={tooltipClasses}
         style={getPositionStyles()}
         onMouseEnter={showTooltip}

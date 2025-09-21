@@ -122,7 +122,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       <span
         key={key}
         className={tw`flex h-8 w-8 items-center justify-center text-sm text-gray-500`}
-        aria-hidden='true'
+        aria-hidden="true"
       >
         ...
       </span>
@@ -136,17 +136,17 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       <nav
         ref={ref}
         className={cn(base, sizes[size], className)}
-        aria-label='Pagination Navigation'
+        aria-label="Pagination Navigation"
         {...props}
       >
         {/* First button */}
         {showFirstLast && (
           <Button
-            variant='secondary'
+            variant="secondary"
             size={size === "sm" ? "xs" : size === "md" ? "sm" : "md"}
             onClick={() => handlePageChange(1)}
             disabled={disabled || safeCurrentPage === 1}
-            aria-label='Go to first page'
+            aria-label="Go to first page"
           >
             <ChevronsLeft size={size === "sm" ? 14 : size === "md" ? 16 : 18} />
           </Button>
@@ -155,11 +155,11 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         {/* Previous button */}
         {showPrevNext && (
           <Button
-            variant='secondary'
+            variant="secondary"
             size={size === "sm" ? "xs" : size === "md" ? "sm" : "md"}
             onClick={() => handlePageChange(safeCurrentPage - 1)}
             disabled={disabled || safeCurrentPage === 1}
-            aria-label='Go to previous page'
+            aria-label="Go to previous page"
           >
             <ChevronLeft size={size === "sm" ? 14 : size === "md" ? 16 : 18} />
           </Button>
@@ -183,11 +183,11 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         {/* Next button */}
         {showPrevNext && (
           <Button
-            variant='secondary'
+            variant="secondary"
             size={size === "sm" ? "xs" : size === "md" ? "sm" : "md"}
             onClick={() => handlePageChange(safeCurrentPage + 1)}
             disabled={disabled || safeCurrentPage === totalPages}
-            aria-label='Go to next page'
+            aria-label="Go to next page"
           >
             <ChevronRight size={size === "sm" ? 14 : size === "md" ? 16 : 18} />
           </Button>
@@ -196,11 +196,11 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         {/* Last button */}
         {showFirstLast && (
           <Button
-            variant='secondary'
+            variant="secondary"
             size={size === "sm" ? "xs" : size === "md" ? "sm" : "md"}
             onClick={() => handlePageChange(totalPages)}
             disabled={disabled || safeCurrentPage === totalPages}
-            aria-label='Go to last page'
+            aria-label="Go to last page"
           >
             <ChevronsRight size={size === "sm" ? 14 : size === "md" ? 16 : 18} />
           </Button>

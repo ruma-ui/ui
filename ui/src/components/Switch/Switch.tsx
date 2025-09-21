@@ -218,8 +218,8 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     const SwitchElement = (
       <button
         ref={ref}
-        type='button'
-        role='switch'
+        type="button"
+        role="switch"
         aria-checked={isChecked}
         aria-describedby={hasAssistive ? assistiveId : undefined}
         onClick={handleToggle}

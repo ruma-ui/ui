@@ -108,50 +108,50 @@ export const Secondary: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-2'>
-      <Badge variant='primary'>Primary</Badge>
-      <Badge variant='secondary'>Secondary</Badge>
-      <Badge variant='success'>Success</Badge>
-      <Badge variant='warning'>Warning</Badge>
-      <Badge variant='error'>Error</Badge>
-      <Badge variant='info'>Info</Badge>
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge variant="primary">Primary</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="success">Success</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="error">Error</Badge>
+      <Badge variant="info">Info</Badge>
     </div>
   ),
 };
 
 export const Styles: Story = {
   render: () => (
-    <div className='space-y-4'>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge style='filled' variant='primary'>
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge style="filled" variant="primary">
           Filled
         </Badge>
-        <Badge style='filled' variant='success'>
+        <Badge style="filled" variant="success">
           Success
         </Badge>
-        <Badge style='filled' variant='error'>
+        <Badge style="filled" variant="error">
           Error
         </Badge>
       </div>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge style='outline' variant='primary'>
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge style="outline" variant="primary">
           Outline
         </Badge>
-        <Badge style='outline' variant='success'>
+        <Badge style="outline" variant="success">
           Success
         </Badge>
-        <Badge style='outline' variant='error'>
+        <Badge style="outline" variant="error">
           Error
         </Badge>
       </div>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge style='soft' variant='primary'>
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge style="soft" variant="primary">
           Soft
         </Badge>
-        <Badge style='soft' variant='success'>
+        <Badge style="soft" variant="success">
           Success
         </Badge>
-        <Badge style='soft' variant='error'>
+        <Badge style="soft" variant="error">
           Error
         </Badge>
       </div>
@@ -161,43 +161,43 @@ export const Styles: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className='flex items-center gap-3'>
-      <Badge size='sm'>Small</Badge>
-      <Badge size='md'>Medium</Badge>
-      <Badge size='lg'>Large</Badge>
+    <div className="flex items-center gap-3">
+      <Badge size="sm">Small</Badge>
+      <Badge size="md">Medium</Badge>
+      <Badge size="lg">Large</Badge>
     </div>
   ),
 };
 
 export const RoundedVariants: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-2'>
-      <Badge rounded='none'>None</Badge>
-      <Badge rounded='sm'>Small</Badge>
-      <Badge rounded='md'>Medium</Badge>
-      <Badge rounded='lg'>Large</Badge>
-      <Badge rounded='xl'>XL</Badge>
-      <Badge rounded='full'>Full</Badge>
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge rounded="none">None</Badge>
+      <Badge rounded="sm">Small</Badge>
+      <Badge rounded="md">Medium</Badge>
+      <Badge rounded="lg">Large</Badge>
+      <Badge rounded="xl">XL</Badge>
+      <Badge rounded="full">Full</Badge>
     </div>
   ),
 };
 
 export const WithIcons: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-2'>
-      <Badge startIcon={<Star className='h-3 w-3' />} variant='primary'>
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge startIcon={<Star className="h-3 w-3" />} variant="primary">
         Featured
       </Badge>
-      <Badge startIcon={<CheckCircle className='h-3 w-3' />} variant='success'>
+      <Badge startIcon={<CheckCircle className="h-3 w-3" />} variant="success">
         Verified
       </Badge>
-      <Badge endIcon={<Heart className='h-3 w-3' />} variant='error'>
+      <Badge endIcon={<Heart className="h-3 w-3" />} variant="error">
         Favorite
       </Badge>
       <Badge
-        startIcon={<Zap className='h-3 w-3' />}
-        endIcon={<Award className='h-3 w-3' />}
-        variant='warning'
+        startIcon={<Zap className="h-3 w-3" />}
+        endIcon={<Award className="h-3 w-3" />}
+        variant="warning"
       >
         Premium
       </Badge>
@@ -207,26 +207,26 @@ export const WithIcons: Story = {
 
 export const StatusBadges: Story = {
   render: () => (
-    <div className='space-y-3'>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge variant='success' startIcon={<CheckCircle className='h-3 w-3' />}>
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge variant="success" startIcon={<CheckCircle className="h-3 w-3" />}>
           Active
         </Badge>
-        <Badge variant='warning' startIcon={<AlertTriangle className='h-3 w-3' />}>
+        <Badge variant="warning" startIcon={<AlertTriangle className="h-3 w-3" />}>
           Pending
         </Badge>
-        <Badge variant='error' startIcon={<XCircle className='h-3 w-3' />}>
+        <Badge variant="error" startIcon={<XCircle className="h-3 w-3" />}>
           Inactive
         </Badge>
-        <Badge variant='info' startIcon={<Info className='h-3 w-3' />}>
+        <Badge variant="info" startIcon={<Info className="h-3 w-3" />}>
           Draft
         </Badge>
       </div>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge variant='success' style='soft' startIcon={<Shield className='h-3 w-3' />}>
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge variant="success" style="soft" startIcon={<Shield className="h-3 w-3" />}>
           Secure
         </Badge>
-        <Badge variant='primary' style='outline' startIcon={<Star className='h-3 w-3' />}>
+        <Badge variant="primary" style="outline" startIcon={<Star className="h-3 w-3" />}>
           Featured
         </Badge>
       </div>
@@ -238,24 +238,24 @@ const ClickableComponent = () => {
   const [clicked, setClicked] = useState<string | null>(null);
 
   return (
-    <div className='space-y-3'>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge clickable onClick={() => setClicked("primary")} variant='primary'>
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge clickable onClick={() => setClicked("primary")} variant="primary">
           Click me
         </Badge>
         <Badge
           clickable
           onClick={() => setClicked("success")}
-          variant='success'
-          startIcon={<CheckCircle className='h-3 w-3' />}
+          variant="success"
+          startIcon={<CheckCircle className="h-3 w-3" />}
         >
           Action
         </Badge>
-        <Badge clickable onClick={() => setClicked("outline")} variant='info' style='outline'>
+        <Badge clickable onClick={() => setClicked("outline")} variant="info" style="outline">
           Outline
         </Badge>
       </div>
-      {clicked && <p className='text-sm text-gray-600'>Last clicked: {clicked}</p>}
+      {clicked && <p className="text-sm text-gray-600">Last clicked: {clicked}</p>}
     </div>
   );
 };
@@ -271,7 +271,7 @@ const DismissibleComponent = () => {
       id: "2",
       text: "With Icon",
       variant: "success" as const,
-      icon: <Star className='h-3 w-3' />,
+      icon: <Star className="h-3 w-3" />,
     },
     {
       id: "3",
@@ -286,8 +286,8 @@ const DismissibleComponent = () => {
   };
 
   return (
-    <div className='space-y-3'>
-      <div className='flex flex-wrap items-center gap-2'>
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-2">
         {badges.map(badge => (
           <Badge
             key={badge.id}
@@ -302,7 +302,7 @@ const DismissibleComponent = () => {
         ))}
       </div>
       <button
-        className='text-sm text-blue-600 hover:text-blue-700'
+        className="text-sm text-blue-600 hover:text-blue-700"
         onClick={() =>
           setBadges([
             {
@@ -314,7 +314,7 @@ const DismissibleComponent = () => {
               id: "2",
               text: "With Icon",
               variant: "success",
-              icon: <Star className='h-3 w-3' />,
+              icon: <Star className="h-3 w-3" />,
             },
             {
               id: "3",
@@ -337,28 +337,28 @@ export const Dismissible: Story = {
 
 export const NotificationBadges: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-4'>
-      <div className='relative'>
-        <button className='rounded-lg bg-gray-100 p-3 hover:bg-gray-200'>
-          <Heart className='h-5 w-5 text-gray-600' />
+    <div className="flex flex-wrap items-center gap-4">
+      <div className="relative">
+        <button className="rounded-lg bg-gray-100 p-3 hover:bg-gray-200">
+          <Heart className="h-5 w-5 text-gray-600" />
         </button>
-        <Badge className='absolute -top-1 -right-1' variant='error' size='sm'>
+        <Badge className="absolute -top-1 -right-1" variant="error" size="sm">
           3
         </Badge>
       </div>
-      <div className='relative'>
-        <button className='rounded-lg bg-gray-100 p-3 hover:bg-gray-200'>
-          <Star className='h-5 w-5 text-gray-600' />
+      <div className="relative">
+        <button className="rounded-lg bg-gray-100 p-3 hover:bg-gray-200">
+          <Star className="h-5 w-5 text-gray-600" />
         </button>
-        <Badge className='absolute -top-1 -right-1' variant='primary' size='sm'>
+        <Badge className="absolute -top-1 -right-1" variant="primary" size="sm">
           12
         </Badge>
       </div>
-      <div className='relative'>
-        <button className='rounded-lg bg-gray-100 p-3 hover:bg-gray-200'>
-          <Info className='h-5 w-5 text-gray-600' />
+      <div className="relative">
+        <button className="rounded-lg bg-gray-100 p-3 hover:bg-gray-200">
+          <Info className="h-5 w-5 text-gray-600" />
         </button>
-        <Badge className='absolute -top-1 -right-1' variant='warning' size='sm'>
+        <Badge className="absolute -top-1 -right-1" variant="warning" size="sm">
           99+
         </Badge>
       </div>
@@ -368,29 +368,29 @@ export const NotificationBadges: Story = {
 
 export const TagBadges: Story = {
   render: () => (
-    <div className='space-y-3'>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge variant='primary' style='soft'>
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge variant="primary" style="soft">
           React
         </Badge>
-        <Badge variant='secondary' style='soft'>
+        <Badge variant="secondary" style="soft">
           TypeScript
         </Badge>
-        <Badge variant='success' style='soft'>
+        <Badge variant="success" style="soft">
           Tailwind
         </Badge>
-        <Badge variant='info' style='soft'>
+        <Badge variant="info" style="soft">
           Vite
         </Badge>
       </div>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge variant='primary' style='outline' dismissible>
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge variant="primary" style="outline" dismissible>
           Frontend
         </Badge>
-        <Badge variant='success' style='outline' dismissible>
+        <Badge variant="success" style="outline" dismissible>
           Backend
         </Badge>
-        <Badge variant='warning' style='outline' dismissible>
+        <Badge variant="warning" style="outline" dismissible>
           Design
         </Badge>
       </div>

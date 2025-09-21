@@ -328,8 +328,8 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       <div
         className={overlayClasses}
         onClick={handleOverlayClick}
-        role='dialog'
-        aria-modal='true'
+        role="dialog"
+        aria-modal="true"
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy || (title ? titleId : undefined)}
         aria-describedby={ariaDescribedBy || descId}
@@ -345,22 +345,22 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           {/* Header */}
           {(header || title || !hideCloseButton) && (
             <div className={headerBase}>
-              <div className='min-w-0 flex-1'>
+              <div className="min-w-0 flex-1">
                 {header ||
                   (title && (
-                    <h2 id={titleId} className='truncate text-lg font-semibold text-gray-900'>
+                    <h2 id={titleId} className="truncate text-lg font-semibold text-gray-900">
                       {title}
                     </h2>
                   ))}
               </div>
               {!hideCloseButton && (
                 <button
-                  type='button'
+                  type="button"
                   className={closeButtonBase}
                   onClick={onClose}
-                  aria-label='Close drawer'
+                  aria-label="Close drawer"
                 >
-                  <IoClose className='h-5 w-5' />
+                  <IoClose className="h-5 w-5" />
                 </button>
               )}
             </div>

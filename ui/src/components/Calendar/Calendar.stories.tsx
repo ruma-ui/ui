@@ -89,7 +89,7 @@ const ControlledMonthComponent = (args: Partial<CalendarProps>) => {
   const [selected, setSelected] = useState<Date | null>(null);
   const [month, setMonth] = useState<Date>(new Date());
   return (
-    <div className='flex flex-col items-center gap-4'>
+    <div className="flex flex-col items-center gap-4">
       <Calendar
         {...args}
         month={month}
@@ -97,7 +97,7 @@ const ControlledMonthComponent = (args: Partial<CalendarProps>) => {
         selectedDate={selected}
         onDateSelect={setSelected}
       />
-      <div className='text-sm text-gray-600'>
+      <div className="text-sm text-gray-600">
         Visible Month:{" "}
         {month.toLocaleString(undefined, {
           month: "long",

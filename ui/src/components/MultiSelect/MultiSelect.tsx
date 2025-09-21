@@ -454,7 +454,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
       <div className={cn(wrapperBase, fullWidth ? "w-full" : (widths[width] ?? "w-auto"))}>
         {/* Hidden inputs for form submission */}
         {selectedValues.map(val => (
-          <input key={val} type='hidden' name={name} value={val} />
+          <input key={val} type="hidden" name={name} value={val} />
         ))}
 
         {label && (
@@ -476,25 +476,25 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
         >
           {/* Show selected options' icons if any selected, else startIcon if provided */}
           {((selectedOptions.length > 0 && selectedOptions[0]?.icon) || startIcon) && (
-            <span className='flex shrink-0 items-center text-gray-500'>
+            <span className="flex shrink-0 items-center text-gray-500">
               {selectedOptions[0]?.icon ? selectedOptions[0].icon : startIcon}
             </span>
           )}
 
-          <div className='scrollbar-hide flex min-w-0 flex-1 items-center gap-1 overflow-auto'>
+          <div className="scrollbar-hide flex min-w-0 flex-1 items-center gap-1 overflow-auto">
             {selectedOptions.length > 0 && !showSelectedCount ? (
               selectedOptions.map(option => (
                 <span key={option.value} className={cn(selectedItemBase)}>
-                  {option.icon && <span className='mr-1 flex items-center'>{option.icon}</span>}
-                  <span className='truncate'>{option.label}</span>
+                  {option.icon && <span className="mr-1 flex items-center">{option.icon}</span>}
+                  <span className="truncate">{option.label}</span>
                   <button
-                    type='button'
+                    type="button"
                     className={cn(selectedItemRemove)}
                     onClick={e => handleRemoveSelected(option.value, e)}
                     disabled={disabled}
                     aria-label={`Remove ${option.label}`}
                   >
-                    <IoClose className='h-3 w-3' />
+                    <IoClose className="h-3 w-3" />
                   </button>
                 </span>
               ))
@@ -512,7 +512,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
 
           <button
             ref={triggerRef}
-            type='button'
+            type="button"
             className={cn(
               "flex shrink-0 cursor-pointer items-center justify-center rounded p-1 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none",
               disabled && "cursor-not-allowed opacity-50"
@@ -526,7 +526,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
             onKeyDown={handleKeyDown}
             disabled={disabled}
             aria-expanded={isOpen}
-            aria-haspopup='listbox'
+            aria-haspopup="listbox"
             aria-controls={listboxId}
             aria-describedby={hasAssistive ? assistiveId : undefined}
             id={selectId}
@@ -546,8 +546,8 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                 animation &&
                   "animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-150 ease-out"
               )}
-              role='listbox'
-              aria-multiselectable='true'
+              role="listbox"
+              aria-multiselectable="true"
               onClick={e => e.stopPropagation()}
             >
               {options.map((option, index) => {
@@ -558,7 +558,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                 return (
                   <button
                     key={option.value}
-                    type='button'
+                    type="button"
                     className={cn(
                       optionBase,
                       animation && optionAnimated,
@@ -570,28 +570,28 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                     )}
                     onClick={() => handleOptionToggle(option.value)}
                     disabled={isDisabled}
-                    role='option'
+                    role="option"
                     aria-selected={isSelected}
                   >
                     {/* Checkbox indicator */}
-                    <div className='flex h-5 w-5 shrink-0 items-center justify-center'>
+                    <div className="flex h-5 w-5 shrink-0 items-center justify-center">
                       {isSelected ? (
-                        <HiOutlineCheck className='h-5 w-5 text-blue-600' />
+                        <HiOutlineCheck className="h-5 w-5 text-blue-600" />
                       ) : (
-                        <div className='h-4 w-4 rounded border-2 border-gray-300' />
+                        <div className="h-4 w-4 rounded border-2 border-gray-300" />
                       )}
                     </div>
 
                     {/* Option icon, if provided */}
                     {option.icon && (
-                      <span className='mr-2 flex items-center text-gray-500'>{option.icon}</span>
+                      <span className="mr-2 flex items-center text-gray-500">{option.icon}</span>
                     )}
 
-                    <span className='flex-1 truncate select-none'>{option.label}</span>
+                    <span className="flex-1 truncate select-none">{option.label}</span>
 
                     {/* Max selections indicator */}
                     {isAtMax && !isSelected && (
-                      <span className='text-xs text-gray-400'>Max reached</span>
+                      <span className="text-xs text-gray-400">Max reached</span>
                     )}
                   </button>
                 );

@@ -131,14 +131,14 @@ The `variant` prop determines the visual style and hierarchy of the multi-select
 <Unstyled>
   <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
     <MultiSelect
-      variant='primary'
+      variant="primary"
       options={[{ value: "1", label: "Primary" }]}
-      placeholder='Primary'
+      placeholder="Primary"
     />
     <MultiSelect
-      variant='secondary'
+      variant="secondary"
       options={[{ value: "1", label: "Secondary" }]}
-      placeholder='Secondary'
+      placeholder="Secondary"
     />
   </div>
 </Unstyled>
@@ -162,9 +162,9 @@ The `size` prop controls the multi-select's dimensions and text size. Choose siz
       flexWrap: "wrap",
     }}
   >
-    <MultiSelect size='sm' options={[{ value: "1", label: "SM" }]} placeholder='SM' />
-    <MultiSelect size='md' options={[{ value: "1", label: "MD" }]} placeholder='MD' />
-    <MultiSelect size='lg' options={[{ value: "1", label: "LG" }]} placeholder='LG' />
+    <MultiSelect size="sm" options={[{ value: "1", label: "SM" }]} placeholder="SM" />
+    <MultiSelect size="md" options={[{ value: "1", label: "MD" }]} placeholder="MD" />
+    <MultiSelect size="lg" options={[{ value: "1", label: "LG" }]} placeholder="LG" />
   </div>
 </Unstyled>
 
@@ -188,10 +188,10 @@ The `width` prop sets a preset container width for the MultiSelect wrapper. Use 
       flexWrap: "wrap",
     }}
   >
-    <MultiSelect width='sm' options={[{ value: "1", label: "sm" }]} placeholder='sm' />
-    <MultiSelect width='md' options={[{ value: "1", label: "md" }]} placeholder='md' />
-    <MultiSelect width='lg' options={[{ value: "1", label: "lg" }]} placeholder='lg' />
-    <MultiSelect width='xl' options={[{ value: "1", label: "xl" }]} placeholder='xl' />
+    <MultiSelect width="sm" options={[{ value: "1", label: "sm" }]} placeholder="sm" />
+    <MultiSelect width="md" options={[{ value: "1", label: "md" }]} placeholder="md" />
+    <MultiSelect width="lg" options={[{ value: "1", label: "lg" }]} placeholder="lg" />
+    <MultiSelect width="xl" options={[{ value: "1", label: "xl" }]} placeholder="xl" />
   </div>
   <div style={{ marginTop: 8, color: "#6b7280", fontSize: 12 }}>
     Tip: Use <code>fullWidth</code> to make the control stretch to its container instead.
@@ -221,52 +221,52 @@ The `rounded` prop controls the border radius of the multi-select. Use this to m
     }}
   >
     <MultiSelect
-      rounded='none'
+      rounded="none"
       options={[
         { value: "1", label: "1" },
         { value: "2", label: "2" },
       ]}
-      placeholder='No radius'
+      placeholder="No radius"
     />
     <MultiSelect
-      rounded='sm'
+      rounded="sm"
       options={[
         { value: "1", label: "1" },
         { value: "2", label: "2" },
       ]}
-      placeholder='Small radius'
+      placeholder="Small radius"
     />
     <MultiSelect
-      rounded='md'
+      rounded="md"
       options={[
         { value: "1", label: "1" },
         { value: "2", label: "2" },
       ]}
-      placeholder='Medium radius'
+      placeholder="Medium radius"
     />
     <MultiSelect
-      rounded='lg'
+      rounded="lg"
       options={[
         { value: "1", label: "1" },
         { value: "2", label: "2" },
       ]}
-      placeholder='Large radius'
+      placeholder="Large radius"
     />
     <MultiSelect
-      rounded='xl'
+      rounded="xl"
       options={[
         { value: "1", label: "1" },
         { value: "2", label: "2" },
       ]}
-      placeholder='Extra large radius'
+      placeholder="Extra large radius"
     />
     <MultiSelect
-      rounded='full'
+      rounded="full"
       options={[
         { value: "1", label: "1" },
         { value: "2", label: "2" },
       ]}
-      placeholder='Full radius'
+      placeholder="Full radius"
     />
   </div>
 </Unstyled>
@@ -295,7 +295,7 @@ The `animation` prop controls whether animations are enabled. Disable for users 
         { value: "1", label: "1" },
         { value: "2", label: "2" },
       ]}
-      placeholder='With animations'
+      placeholder="With animations"
     />
     <MultiSelect
       animation={false}
@@ -303,7 +303,7 @@ The `animation` prop controls whether animations are enabled. Disable for users 
         { value: "1", label: "1" },
         { value: "2", label: "2" },
       ]}
-      placeholder='No animations'
+      placeholder="No animations"
     />
   </div>
 </Unstyled>
@@ -313,7 +313,7 @@ The `animation` prop controls whether animations are enabled. Disable for users 
 The `maxSelections` prop limits the number of options that can be selected. This is useful for enforcing business rules or improving user experience by preventing overwhelming selections.
 
 ```jsx
-<MultiSelect maxSelections={3} options={options} placeholder='Select up to 3 options' />
+<MultiSelect maxSelections={3} options={options} placeholder="Select up to 3 options" />
 ```
 
 <Unstyled>
@@ -332,7 +332,7 @@ The `maxSelections` prop limits the number of options that can be selected. This
         { value: "2", label: "Option 2" },
         { value: "3", label: "Option 3" },
       ]}
-      placeholder='Max 2 selections'
+      placeholder="Max 2 selections"
     />
   </div>
 </Unstyled>
@@ -363,7 +363,7 @@ The `showSelectedCount` prop controls how selected options are displayed in the 
         { value: "2", label: "Option 2" },
         { value: "3", label: "Option 3" },
       ]}
-      placeholder='Show count'
+      placeholder="Show count"
     />
     <MultiSelect
       showSelectedCount={false}
@@ -373,7 +373,7 @@ The `showSelectedCount` prop controls how selected options are displayed in the 
         { value: "2", label: "Option 2" },
         { value: "3", label: "Option 3" },
       ]}
-      placeholder='Show labels'
+      placeholder="Show labels"
     />
   </div>
 </Unstyled>

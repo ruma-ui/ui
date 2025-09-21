@@ -30,7 +30,7 @@ const meta: Meta<typeof NavigationMenu> = {
   },
   decorators: [
     Story => (
-      <div className='min-h-96'>
+      <div className="min-h-96">
         <Story />
       </div>
     ),
@@ -78,28 +78,28 @@ export const Default: Story = {
   render: args => (
     <NavigationMenu {...args}>
       <NavigationMenuList>
-        <NavigationMenuItem value='home'>
-          <NavigationMenuLink href='#home'>Home</NavigationMenuLink>
+        <NavigationMenuItem value="home">
+          <NavigationMenuLink href="#home">Home</NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem value='about'>
-          <NavigationMenuLink href='#about'>About</NavigationMenuLink>
+        <NavigationMenuItem value="about">
+          <NavigationMenuLink href="#about">About</NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem value='services'>
+        <NavigationMenuItem value="services">
           <NavigationMenuTrigger>Services</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <NavigationMenuGroup title='Web Development'>
-              <NavigationMenuLink href='#web-design'>Web Design</NavigationMenuLink>
-              <NavigationMenuLink href='#frontend'>Frontend Development</NavigationMenuLink>
-              <NavigationMenuLink href='#backend'>Backend Development</NavigationMenuLink>
+            <NavigationMenuGroup title="Web Development">
+              <NavigationMenuLink href="#web-design">Web Design</NavigationMenuLink>
+              <NavigationMenuLink href="#frontend">Frontend Development</NavigationMenuLink>
+              <NavigationMenuLink href="#backend">Backend Development</NavigationMenuLink>
             </NavigationMenuGroup>
-            <NavigationMenuGroup title='Mobile Apps'>
-              <NavigationMenuLink href='#ios'>iOS Development</NavigationMenuLink>
-              <NavigationMenuLink href='#android'>Android Development</NavigationMenuLink>
+            <NavigationMenuGroup title="Mobile Apps">
+              <NavigationMenuLink href="#ios">iOS Development</NavigationMenuLink>
+              <NavigationMenuLink href="#android">Android Development</NavigationMenuLink>
             </NavigationMenuGroup>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem value='contact'>
-          <NavigationMenuLink href='#contact'>Contact</NavigationMenuLink>
+        <NavigationMenuItem value="contact">
+          <NavigationMenuLink href="#contact">Contact</NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
@@ -114,30 +114,30 @@ export const Vertical: Story = {
     variant: "default",
   },
   render: args => (
-    <div className='w-64'>
+    <div className="w-64">
       <NavigationMenu {...args}>
         <NavigationMenuList>
-          <NavigationMenuItem value='dashboard'>
-            <NavigationMenuLink href='#dashboard'>Dashboard</NavigationMenuLink>
+          <NavigationMenuItem value="dashboard">
+            <NavigationMenuLink href="#dashboard">Dashboard</NavigationMenuLink>
           </NavigationMenuItem>
-          <NavigationMenuItem value='projects'>
+          <NavigationMenuItem value="projects">
             <NavigationMenuTrigger>Projects</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <NavigationMenuGroup title='Recent'>
-                <NavigationMenuLink href='#project-1'>Project Alpha</NavigationMenuLink>
-                <NavigationMenuLink href='#project-2'>Project Beta</NavigationMenuLink>
+              <NavigationMenuGroup title="Recent">
+                <NavigationMenuLink href="#project-1">Project Alpha</NavigationMenuLink>
+                <NavigationMenuLink href="#project-2">Project Beta</NavigationMenuLink>
               </NavigationMenuGroup>
-              <NavigationMenuGroup title='Archived'>
-                <NavigationMenuLink href='#archived-1'>Old Project 1</NavigationMenuLink>
-                <NavigationMenuLink href='#archived-2'>Old Project 2</NavigationMenuLink>
+              <NavigationMenuGroup title="Archived">
+                <NavigationMenuLink href="#archived-1">Old Project 1</NavigationMenuLink>
+                <NavigationMenuLink href="#archived-2">Old Project 2</NavigationMenuLink>
               </NavigationMenuGroup>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem value='team'>
-            <NavigationMenuLink href='#team'>Team</NavigationMenuLink>
+          <NavigationMenuItem value="team">
+            <NavigationMenuLink href="#team">Team</NavigationMenuLink>
           </NavigationMenuItem>
-          <NavigationMenuItem value='settings'>
-            <NavigationMenuLink href='#settings'>Settings</NavigationMenuLink>
+          <NavigationMenuItem value="settings">
+            <NavigationMenuLink href="#settings">Settings</NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
@@ -155,41 +155,41 @@ export const WithIcons: Story = {
   render: args => (
     <NavigationMenu {...args}>
       <NavigationMenuList>
-        <NavigationMenuItem value='home'>
-          <NavigationMenuLink href='#home'>
-            <FaHome className='mr-2 h-4 w-4' />
+        <NavigationMenuItem value="home">
+          <NavigationMenuLink href="#home">
+            <FaHome className="mr-2 h-4 w-4" />
             Home
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem value='profile'>
+        <NavigationMenuItem value="profile">
           <NavigationMenuTrigger>
-            <FaUser className='mr-2 h-4 w-4' />
+            <FaUser className="mr-2 h-4 w-4" />
             Profile
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <NavigationMenuLink href='#view-profile'>
-              <FaUser className='mr-2 h-4 w-4' />
+            <NavigationMenuLink href="#view-profile">
+              <FaUser className="mr-2 h-4 w-4" />
               View Profile
             </NavigationMenuLink>
-            <NavigationMenuLink href='#edit-profile'>
-              <FaCog className='mr-2 h-4 w-4' />
+            <NavigationMenuLink href="#edit-profile">
+              <FaCog className="mr-2 h-4 w-4" />
               Edit Profile
             </NavigationMenuLink>
-            <NavigationMenuLink href='#notifications'>
-              <FaBell className='mr-2 h-4 w-4' />
+            <NavigationMenuLink href="#notifications">
+              <FaBell className="mr-2 h-4 w-4" />
               Notifications
             </NavigationMenuLink>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem value='search'>
-          <NavigationMenuLink href='#search'>
-            <FaSearch className='mr-2 h-4 w-4' />
+        <NavigationMenuItem value="search">
+          <NavigationMenuLink href="#search">
+            <FaSearch className="mr-2 h-4 w-4" />
             Search
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem value='favorites'>
-          <NavigationMenuLink href='#favorites'>
-            <FaHeart className='mr-2 h-4 w-4' />
+        <NavigationMenuItem value="favorites">
+          <NavigationMenuLink href="#favorites">
+            <FaHeart className="mr-2 h-4 w-4" />
             Favorites
           </NavigationMenuLink>
         </NavigationMenuItem>
@@ -208,24 +208,24 @@ export const UnderlineVariant: Story = {
   render: args => (
     <NavigationMenu {...args}>
       <NavigationMenuList>
-        <NavigationMenuItem value='home' active>
-          <NavigationMenuLink href='#home'>Home</NavigationMenuLink>
+        <NavigationMenuItem value="home" active>
+          <NavigationMenuLink href="#home">Home</NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem value='products'>
+        <NavigationMenuItem value="products">
           <NavigationMenuTrigger>Products</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <NavigationMenuGroup title='Categories'>
-              <NavigationMenuLink href='#electronics'>Electronics</NavigationMenuLink>
-              <NavigationMenuLink href='#clothing'>Clothing</NavigationMenuLink>
-              <NavigationMenuLink href='#books'>Books</NavigationMenuLink>
+            <NavigationMenuGroup title="Categories">
+              <NavigationMenuLink href="#electronics">Electronics</NavigationMenuLink>
+              <NavigationMenuLink href="#clothing">Clothing</NavigationMenuLink>
+              <NavigationMenuLink href="#books">Books</NavigationMenuLink>
             </NavigationMenuGroup>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem value='about'>
-          <NavigationMenuLink href='#about'>About</NavigationMenuLink>
+        <NavigationMenuItem value="about">
+          <NavigationMenuLink href="#about">About</NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem value='contact'>
-          <NavigationMenuLink href='#contact'>Contact</NavigationMenuLink>
+        <NavigationMenuItem value="contact">
+          <NavigationMenuLink href="#contact">Contact</NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
@@ -242,24 +242,24 @@ export const PillsVariant: Story = {
   render: args => (
     <NavigationMenu {...args}>
       <NavigationMenuList>
-        <NavigationMenuItem value='overview' active>
-          <NavigationMenuLink href='#overview'>Overview</NavigationMenuLink>
+        <NavigationMenuItem value="overview" active>
+          <NavigationMenuLink href="#overview">Overview</NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem value='analytics'>
-          <NavigationMenuLink href='#analytics'>Analytics</NavigationMenuLink>
+        <NavigationMenuItem value="analytics">
+          <NavigationMenuLink href="#analytics">Analytics</NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem value='reports'>
+        <NavigationMenuItem value="reports">
           <NavigationMenuTrigger>Reports</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <NavigationMenuGroup title='Report Types'>
-              <NavigationMenuLink href='#monthly'>Monthly Report</NavigationMenuLink>
-              <NavigationMenuLink href='#quarterly'>Quarterly Report</NavigationMenuLink>
-              <NavigationMenuLink href='#annual'>Annual Report</NavigationMenuLink>
+            <NavigationMenuGroup title="Report Types">
+              <NavigationMenuLink href="#monthly">Monthly Report</NavigationMenuLink>
+              <NavigationMenuLink href="#quarterly">Quarterly Report</NavigationMenuLink>
+              <NavigationMenuLink href="#annual">Annual Report</NavigationMenuLink>
             </NavigationMenuGroup>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem value='settings'>
-          <NavigationMenuLink href='#settings'>Settings</NavigationMenuLink>
+        <NavigationMenuItem value="settings">
+          <NavigationMenuLink href="#settings">Settings</NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
@@ -269,75 +269,75 @@ export const PillsVariant: Story = {
 // Custom styled navigation
 export const CustomStyled: Story = {
   render: () => (
-    <div className='w-full max-w-4xl'>
-      <NavigationMenu className='rounded-lg border border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 shadow-sm'>
-        <NavigationMenuList className='space-x-2'>
-          <NavigationMenuItem value='dashboard'>
+    <div className="w-full max-w-4xl">
+      <NavigationMenu className="rounded-lg border border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 shadow-sm">
+        <NavigationMenuList className="space-x-2">
+          <NavigationMenuItem value="dashboard">
             <NavigationMenuLink
-              href='#dashboard'
-              className='rounded-md bg-white px-4 py-2 font-semibold text-blue-700 shadow-sm hover:bg-blue-50 hover:text-blue-800'
+              href="#dashboard"
+              className="rounded-md bg-white px-4 py-2 font-semibold text-blue-700 shadow-sm hover:bg-blue-50 hover:text-blue-800"
             >
-              <FaHome className='mr-2 h-4 w-4' />
+              <FaHome className="mr-2 h-4 w-4" />
               Dashboard
             </NavigationMenuLink>
           </NavigationMenuItem>
-          <NavigationMenuItem value='projects'>
-            <NavigationMenuTrigger className='rounded-md bg-white px-4 py-2 font-semibold text-blue-700 shadow-sm hover:bg-blue-50 hover:text-blue-800'>
-              <FaCog className='mr-2 h-4 w-4' />
+          <NavigationMenuItem value="projects">
+            <NavigationMenuTrigger className="rounded-md bg-white px-4 py-2 font-semibold text-blue-700 shadow-sm hover:bg-blue-50 hover:text-blue-800">
+              <FaCog className="mr-2 h-4 w-4" />
               Projects
             </NavigationMenuTrigger>
-            <NavigationMenuContent className='border-blue-200 bg-white shadow-lg'>
-              <NavigationMenuGroup title='Active Projects' className='text-blue-800'>
+            <NavigationMenuContent className="border-blue-200 bg-white shadow-lg">
+              <NavigationMenuGroup title="Active Projects" className="text-blue-800">
                 <NavigationMenuLink
-                  href='#project-1'
-                  className='text-blue-600 hover:bg-blue-50 hover:text-blue-700'
+                  href="#project-1"
+                  className="text-blue-600 hover:bg-blue-50 hover:text-blue-700"
                 >
                   E-commerce Platform
                 </NavigationMenuLink>
                 <NavigationMenuLink
-                  href='#project-2'
-                  className='text-blue-600 hover:bg-blue-50 hover:text-blue-700'
+                  href="#project-2"
+                  className="text-blue-600 hover:bg-blue-50 hover:text-blue-700"
                 >
                   Mobile App Redesign
                 </NavigationMenuLink>
                 <NavigationMenuLink
-                  href='#project-3'
-                  className='text-blue-600 hover:bg-blue-50 hover:text-blue-700'
+                  href="#project-3"
+                  className="text-blue-600 hover:bg-blue-50 hover:text-blue-700"
                 >
                   Analytics Dashboard
                 </NavigationMenuLink>
               </NavigationMenuGroup>
-              <NavigationMenuGroup title='Completed' className='text-green-800'>
+              <NavigationMenuGroup title="Completed" className="text-green-800">
                 <NavigationMenuLink
-                  href='#completed-1'
-                  className='text-green-600 hover:bg-green-50 hover:text-green-700'
+                  href="#completed-1"
+                  className="text-green-600 hover:bg-green-50 hover:text-green-700"
                 >
                   Website Migration
                 </NavigationMenuLink>
                 <NavigationMenuLink
-                  href='#completed-2'
-                  className='text-green-600 hover:bg-green-50 hover:text-green-700'
+                  href="#completed-2"
+                  className="text-green-600 hover:bg-green-50 hover:text-green-700"
                 >
                   API Integration
                 </NavigationMenuLink>
               </NavigationMenuGroup>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem value='team'>
+          <NavigationMenuItem value="team">
             <NavigationMenuLink
-              href='#team'
-              className='rounded-md bg-white px-4 py-2 font-semibold text-blue-700 shadow-sm hover:bg-blue-50 hover:text-blue-800'
+              href="#team"
+              className="rounded-md bg-white px-4 py-2 font-semibold text-blue-700 shadow-sm hover:bg-blue-50 hover:text-blue-800"
             >
-              <FaUser className='mr-2 h-4 w-4' />
+              <FaUser className="mr-2 h-4 w-4" />
               Team
             </NavigationMenuLink>
           </NavigationMenuItem>
-          <NavigationMenuItem value='notifications'>
+          <NavigationMenuItem value="notifications">
             <NavigationMenuLink
-              href='#notifications'
-              className='rounded-md bg-white px-4 py-2 font-semibold text-blue-700 shadow-sm hover:bg-blue-50 hover:text-blue-800'
+              href="#notifications"
+              className="rounded-md bg-white px-4 py-2 font-semibold text-blue-700 shadow-sm hover:bg-blue-50 hover:text-blue-800"
             >
-              <FaBell className='mr-2 h-4 w-4' />
+              <FaBell className="mr-2 h-4 w-4" />
               Notifications
             </NavigationMenuLink>
           </NavigationMenuItem>

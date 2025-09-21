@@ -254,7 +254,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       }
 
       if (state === "completed") {
-        return <HiOutlineCheck className='h-4 w-4' />;
+        return <HiOutlineCheck className="h-4 w-4" />;
       }
 
       if (step.icon) {
@@ -293,7 +293,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       <div
         ref={ref}
         className={cn(stepperBase, orientations[orientation], sizes[size].gap, className)}
-        role='tablist'
+        role="tablist"
         aria-orientation={orientation}
         {...props}
       >

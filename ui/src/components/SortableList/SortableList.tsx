@@ -292,8 +292,8 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
           disabled && "cursor-not-allowed opacity-50"
         )}
         ref={dragHandleRef}
-        aria-label='Drag to reorder'
-        type='button'
+        aria-label="Drag to reorder"
+        type="button"
         disabled={disabled}
       >
         <DefaultDragHandle />
@@ -321,7 +321,7 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
         onDrop={handleDrop}
         onKeyDown={handleKeyDown}
         tabIndex={disabled ? -1 : 0}
-        role='listitem'
+        role="listitem"
         aria-label={`Item ${index + 1} of ${itemRef.current?.parentElement?.children.length || 1}`}
         aria-describedby={`sortable-item-${index}-hint`}
         aria-grabbed={isDragging ? "true" : "false"}
@@ -338,14 +338,14 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
 
         {/* Subtle border animation for drag over state */}
         {isDragOver && (
-          <div className='pointer-events-none absolute inset-0 animate-pulse rounded-lg border-2 border-blue-400' />
+          <div className="pointer-events-none absolute inset-0 animate-pulse rounded-lg border-2 border-blue-400" />
         )}
 
-        <div className='flex w-full items-center gap-4 p-3'>
+        <div className="flex w-full items-center gap-4 p-3">
           {!disabled && (
-            <div className='flex shrink-0 items-center self-start pt-1'>{dragHandleElement}</div>
+            <div className="flex shrink-0 items-center self-start pt-1">{dragHandleElement}</div>
           )}
-          <div className='min-w-0 flex-1'>{children(item, index, isDragging)}</div>
+          <div className="min-w-0 flex-1">{children(item, index, isDragging)}</div>
         </div>
 
         <div id={`sortable-item-${index}-hint`} className={keyboardHint}>
@@ -471,8 +471,8 @@ export const SortableList = React.forwardRef<HTMLDivElement, SortableListProps>(
           className
         )}
         style={style}
-        role='list'
-        aria-label='Sortable list'
+        role="list"
+        aria-label="Sortable list"
         {...props}
       >
         {/* Drop zone indicator at the beginning of the list */}

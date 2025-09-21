@@ -185,29 +185,29 @@ const InteractiveComponent = (args: Partial<BreadcrumbProps>) => {
   };
 
   return (
-    <div className='w-96 space-y-4'>
+    <div className="w-96 space-y-4">
       <Breadcrumb {...args} items={items} />
-      <div className='flex gap-2'>
+      <div className="flex gap-2">
         <button
           onClick={() => addPage("Details")}
-          className='rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600"
         >
           Add Details
         </button>
         <button
           onClick={() => addPage("Settings")}
-          className='rounded bg-green-500 px-3 py-1 text-sm text-white hover:bg-green-600'
+          className="rounded bg-green-500 px-3 py-1 text-sm text-white hover:bg-green-600"
         >
           Add Settings
         </button>
         <button
           onClick={() => setCurrentPath(["Home"])}
-          className='rounded bg-gray-500 px-3 py-1 text-sm text-white hover:bg-gray-600'
+          className="rounded bg-gray-500 px-3 py-1 text-sm text-white hover:bg-gray-600"
         >
           Reset
         </button>
       </div>
-      <p className='text-sm text-gray-600'>Current path: {currentPath.join(" > ")}</p>
+      <p className="text-sm text-gray-600">Current path: {currentPath.join(" > ")}</p>
     </div>
   );
 };

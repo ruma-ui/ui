@@ -187,7 +187,7 @@ export const Clipboard = React.forwardRef<HTMLButtonElement, ClipboardProps>(
     // Create a fixed-width container for icons to prevent layout shift
     const icon = (
       <div
-        className='relative inline-flex flex-shrink-0 items-center justify-center'
+        className="relative inline-flex flex-shrink-0 items-center justify-center"
         style={{ width: iconSize, height: iconSize }}
       >
         <FaCopy
@@ -212,7 +212,7 @@ export const Clipboard = React.forwardRef<HTMLButtonElement, ClipboardProps>(
     // Create fixed-width text container to prevent layout shift
     const textContent = !iconOnly && (
       <span
-        className='relative ml-1.5 flex-shrink-0 overflow-hidden transition-all duration-300'
+        className="relative ml-1.5 flex-shrink-0 overflow-hidden transition-all duration-300"
         style={{
           minWidth: Math.max(feedbackText.length * 0.6, "Copy".length * 0.6) + "rem",
           height: size === "sm" ? "1rem" : size === "lg" ? "1.25rem" : "1.125rem",
@@ -281,7 +281,7 @@ export const Clipboard = React.forwardRef<HTMLButtonElement, ClipboardProps>(
 
     if (tooltip) {
       return (
-        <Tooltip content={isCopied && showFeedback ? feedbackText : tooltip} position='top'>
+        <Tooltip content={isCopied && showFeedback ? feedbackText : tooltip} position="top">
           {buttonContent}
         </Tooltip>
       );

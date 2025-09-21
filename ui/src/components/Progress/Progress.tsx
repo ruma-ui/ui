@@ -204,7 +204,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       <div
         ref={ref}
         className={cn(progressBase, className)}
-        role='progressbar'
+        role="progressbar"
         aria-valuenow={indeterminate ? undefined : percentage}
         aria-valuemin={0}
         aria-valuemax={100}
@@ -212,14 +212,14 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         {...props}
       >
         {variant === "bar" ? (
-          <div className='flex flex-col gap-2'>
+          <div className="flex flex-col gap-2">
             {/* Top row: Label and Value */}
             {(label || showValue) && (
-              <div className='flex items-center justify-between'>
+              <div className="flex items-center justify-between">
                 {/* Label on the left */}
                 <div>
                   {label && (
-                    <div className='flex-shrink-0 text-sm font-medium text-gray-800'>{label}</div>
+                    <div className="flex-shrink-0 text-sm font-medium text-gray-800">{label}</div>
                   )}
                 </div>
 
@@ -237,7 +237,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             )}
 
             {/* Bottom row: Progress bar */}
-            <div className='relative'>
+            <div className="relative">
               <div
                 className={cn(
                   trackBase,
@@ -268,46 +268,46 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 "h-full w-full -rotate-90 transform",
                 indeterminate && circularIndeterminate
               )}
-              viewBox='0 0 100 100'
+              viewBox="0 0 100 100"
             >
               <circle
-                cx='50'
-                cy='50'
-                r='45'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='8'
-                className='text-gray-200'
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="8"
+                className="text-gray-200"
               />
               {indeterminate ? (
                 // Indeterminate state: show a partial arc that rotates
                 <circle
-                  cx='50'
-                  cy='50'
-                  r='45'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='8'
-                  strokeDasharray='70 200'
-                  strokeLinecap='round'
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="8"
+                  strokeDasharray="70 200"
+                  strokeLinecap="round"
                   className={cn(getVariantStyles())}
                 />
               ) : (
                 // Determinate state: show progress based on percentage
                 <circle
-                  cx='50'
-                  cy='50'
-                  r='45'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='8'
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="8"
                   strokeDasharray={`${percentage * 2.827} 282.7`}
-                  strokeLinecap='round'
+                  strokeLinecap="round"
                   className={cn("transition-all duration-300", getVariantStyles())}
                 />
               )}
             </svg>
-            <div className='absolute inset-0 flex items-center justify-center'>
+            <div className="absolute inset-0 flex items-center justify-center">
               <span className={cn(sizes[size].text, "font-medium text-gray-800")}>
                 {showValue && !indeterminate ? `${Math.round(percentage)}%` : ""}
               </span>

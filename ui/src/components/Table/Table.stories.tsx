@@ -77,7 +77,7 @@ const columns: Column<UserRow>[] = [
     align: "right",
     width: "8rem",
     resizable: true,
-    accessor: row => <span className='tabular-nums'>{row.usage}%</span>,
+    accessor: row => <span className="tabular-nums">{row.usage}%</span>,
   },
 ];
 
@@ -346,6 +346,6 @@ export const EmptyStateExample: StoryObj<typeof Table<EmptyRow>> = {
       { key: "role", header: "Role" },
     ] as Column<EmptyRow>[],
     data: [],
-    emptyState: <div className='p-6 text-center text-sm text-gray-500'>No results found</div>,
+    emptyState: <div className="p-6 text-center text-sm text-gray-500">No results found</div>,
   },
 };

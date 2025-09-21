@@ -196,7 +196,7 @@ export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
       if (isPartial) {
         // For partial stars, show both outline and filled with clipping
         return (
-          <div key={starIndex} className='relative'>
+          <div key={starIndex} className="relative">
             <EmptyIcon
               size={starSizes[size]}
               className={cn(
@@ -208,7 +208,7 @@ export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
               onClick={() => handleStarClick(starValue)}
               onMouseEnter={() => handleStarHover(starValue)}
             />
-            <div className='absolute inset-0 overflow-hidden' style={{ width: `${partialWidth}%` }}>
+            <div className="absolute inset-0 overflow-hidden" style={{ width: `${partialWidth}%` }}>
               <FilledIcon
                 size={starSizes[size]}
                 className={cn("transition-colors duration-150", getColorClass(true))}
@@ -266,18 +266,18 @@ export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
         ref={ref}
         className={cn(base, sizes[size], disabled && disabledStyles, className)}
         onMouseLeave={handleMouseLeave}
-        role='group'
+        role="group"
         aria-label={label || "Rating"}
         {...props}
       >
-        <div className='flex items-center'>
+        <div className="flex items-center">
           {Array.from({ length: max }, (_, index) => renderStar(index))}
         </div>
 
         {showValue && (
           <span
             className={cn("ml-2 text-sm font-medium", variants[variant], disabled && "opacity-60")}
-            aria-live='polite'
+            aria-live="polite"
           >
             {displayValue.toFixed(precision === 0.5 ? 1 : 0)}/{max}
           </span>

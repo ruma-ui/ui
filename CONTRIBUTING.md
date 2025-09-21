@@ -407,7 +407,7 @@ describe("ComponentName", () => {
   });
 
   it("applies variant classes correctly", () => {
-    render(<ComponentName variant='secondary'>Test</ComponentName>);
+    render(<ComponentName variant="secondary">Test</ComponentName>);
     expect(screen.getByText("Test")).toHaveClass("variant-secondary-classes");
   });
 

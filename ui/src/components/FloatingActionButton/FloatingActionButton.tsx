@@ -283,9 +283,9 @@ export const FloatingActionButton = React.forwardRef<HTMLButtonElement, Floating
               aria-label={action.tooltip || `Action ${index + 1}`}
               onClick={action.onClick}
             >
-              <span className='flex shrink-0 items-center'>{action.icon}</span>
+              <span className="flex shrink-0 items-center">{action.icon}</span>
               {showTooltip && action.tooltip && (
-                <div className={cn(tooltipBase, tooltipClasses)} role='tooltip'>
+                <div className={cn(tooltipBase, tooltipClasses)} role="tooltip">
                   {action.tooltip}
                 </div>
               )}
@@ -317,11 +317,11 @@ export const FloatingActionButton = React.forwardRef<HTMLButtonElement, Floating
           {...restProps}
         >
           {animation === "ripple" && !loading && ripples.length > 0 && (
-            <span aria-hidden className='pointer-events-none absolute inset-0'>
+            <span aria-hidden className="pointer-events-none absolute inset-0">
               {ripples.map(r => (
                 <span
                   key={r.id}
-                  className='rui-ripple'
+                  className="rui-ripple"
                   style={{
                     left: r.x,
                     top: r.y,
@@ -334,12 +334,12 @@ export const FloatingActionButton = React.forwardRef<HTMLButtonElement, Floating
           )}
           {loading && (
             <Loader
-              type='spinner'
-              variant='primary'
-              color='currentColor'
+              type="spinner"
+              variant="primary"
+              color="currentColor"
               size={size === "sm" ? "xs" : size === "md" ? "sm" : size === "lg" ? "md" : "md"}
-              speed='normal'
-              strokeWidth='thick'
+              speed="normal"
+              strokeWidth="thick"
             />
           )}
           {!loading && (
@@ -353,7 +353,7 @@ export const FloatingActionButton = React.forwardRef<HTMLButtonElement, Floating
             </span>
           )}
           {showTooltip && tooltip && (
-            <div className={cn(tooltipBase, tooltipClasses)} role='tooltip'>
+            <div className={cn(tooltipBase, tooltipClasses)} role="tooltip">
               {tooltip}
             </div>
           )}

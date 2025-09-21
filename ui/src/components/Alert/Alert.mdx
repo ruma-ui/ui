@@ -145,10 +145,10 @@ The `variant` prop determines the semantic meaning and visual appearance of the 
       maxWidth: "400px",
     }}
   >
-    <Alert variant='info'>Information message</Alert>
-    <Alert variant='success'>Success message</Alert>
-    <Alert variant='warning'>Warning message</Alert>
-    <Alert variant='error'>Error message</Alert>
+    <Alert variant="info">Information message</Alert>
+    <Alert variant="success">Success message</Alert>
+    <Alert variant="warning">Warning message</Alert>
+    <Alert variant="error">Error message</Alert>
   </div>
 </Unstyled>
 
@@ -171,13 +171,13 @@ The `size` prop controls the overall dimensions, padding, and text size of the a
       maxWidth: "400px",
     }}
   >
-    <Alert size='sm' variant='info'>
+    <Alert size="sm" variant="info">
       Small alert message
     </Alert>
-    <Alert size='md' variant='success'>
+    <Alert size="md" variant="success">
       Medium alert message
     </Alert>
-    <Alert size='lg' variant='warning'>
+    <Alert size="lg" variant="warning">
       Large alert message
     </Alert>
   </div>
@@ -202,13 +202,13 @@ The `style` prop determines the visual treatment of the alert background and bor
       maxWidth: "400px",
     }}
   >
-    <Alert style='filled' variant='info'>
+    <Alert style="filled" variant="info">
       Filled style alert
     </Alert>
-    <Alert style='outline' variant='info'>
+    <Alert style="outline" variant="info">
       Outline style alert
     </Alert>
-    <Alert style='soft' variant='info'>
+    <Alert style="soft" variant="info">
       Soft style alert
     </Alert>
   </div>
@@ -235,19 +235,19 @@ Control the border radius of alerts to match your design system&apos;s aesthetic
       maxWidth: "400px",
     }}
   >
-    <Alert rounded='none' variant='info'>
+    <Alert rounded="none" variant="info">
       Square corners
     </Alert>
-    <Alert rounded='sm' variant='success'>
+    <Alert rounded="sm" variant="success">
       Small radius
     </Alert>
-    <Alert rounded='md' variant='warning'>
+    <Alert rounded="md" variant="warning">
       Medium radius
     </Alert>
-    <Alert rounded='lg' variant='error'>
+    <Alert rounded="lg" variant="error">
       Large radius
     </Alert>
-    <Alert rounded='xl' variant='info'>
+    <Alert rounded="xl" variant="info">
       Extra large radius
     </Alert>
   </div>
@@ -275,10 +275,10 @@ The `title` prop adds a prominent header to your alert, helping organize informa
       maxWidth: "400px",
     }}
   >
-    <Alert title='Information' variant='info'>
+    <Alert title="Information" variant="info">
       This alert includes a title for better organization.
     </Alert>
-    <Alert title='Success!' variant='success'>
+    <Alert title="Success!" variant="success">
       Operation completed successfully.
     </Alert>
   </div>
@@ -310,13 +310,13 @@ Icons can enhance the meaning of your alerts and provide visual cues that help u
       maxWidth: "400px",
     }}
   >
-    <Alert startIcon={<LuUser className='h-5 w-5' />} variant='info'>
+    <Alert startIcon={<LuUser className="h-5 w-5" />} variant="info">
       Profile updated successfully
     </Alert>
     <Alert
-      startIcon={<LuShield className='h-5 w-5' />}
-      endIcon={<LuClock className='h-5 w-5' />}
-      variant='warning'
+      startIcon={<LuShield className="h-5 w-5" />}
+      endIcon={<LuClock className="h-5 w-5" />}
+      variant="warning"
     >
       Security alert with action required
     </Alert>
@@ -332,7 +332,7 @@ const [show, setShow] = useState(true);
 
 {
   show && (
-    <Alert dismissible onDismiss={() => setShow(false)} variant='info'>
+    <Alert dismissible onDismiss={() => setShow(false)} variant="info">
       This alert can be dismissed
     </Alert>
   );
@@ -341,7 +341,7 @@ const [show, setShow] = useState(true);
 
 <Unstyled>
   <div style={{ maxWidth: "400px" }}>
-    <Alert dismissible variant='info'>
+    <Alert dismissible variant="info">
       This alert can be dismissed
     </Alert>
   </div>
@@ -375,10 +375,10 @@ The `className` prop allows you to add custom styling while preserving the compo
       maxWidth: "400px",
     }}
   >
-    <Alert className='border-2 border-dashed' variant='info'>
+    <Alert className="border-2 border-dashed" variant="info">
       Alert with custom border styling
     </Alert>
-    <Alert className='bg-opacity-90 shadow-lg backdrop-blur-sm' variant='success'>
+    <Alert className="bg-opacity-90 shadow-lg backdrop-blur-sm" variant="success">
       Alert with custom visual effects
     </Alert>
   </div>

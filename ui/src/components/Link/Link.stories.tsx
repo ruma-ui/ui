@@ -256,20 +256,20 @@ export const CustomStyled: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className='flex flex-col items-start gap-4'>
-      <Link href='/xs' size='xs'>
+    <div className="flex flex-col items-start gap-4">
+      <Link href="/xs" size="xs">
         Extra Small Link
       </Link>
-      <Link href='/sm' size='sm'>
+      <Link href="/sm" size="sm">
         Small Link
       </Link>
-      <Link href='/md' size='md'>
+      <Link href="/md" size="md">
         Medium Link
       </Link>
-      <Link href='/lg' size='lg'>
+      <Link href="/lg" size="lg">
         Large Link
       </Link>
-      <Link href='/xl' size='xl'>
+      <Link href="/xl" size="xl">
         Extra Large Link
       </Link>
     </div>
@@ -281,20 +281,20 @@ export const Sizes: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div className='flex flex-col items-start gap-4'>
-      <Link href='/primary' variant='primary'>
+    <div className="flex flex-col items-start gap-4">
+      <Link href="/primary" variant="primary">
         Primary Link
       </Link>
-      <Link href='/secondary' variant='secondary'>
+      <Link href="/secondary" variant="secondary">
         Secondary Link
       </Link>
-      <Link href='/tertiary' variant='tertiary'>
+      <Link href="/tertiary" variant="tertiary">
         Tertiary Link
       </Link>
-      <Link href='/destructive' variant='destructive'>
+      <Link href="/destructive" variant="destructive">
         Destructive Link
       </Link>
-      <Link href='/none' variant='none'>
+      <Link href="/none" variant="none">
         Unstyled Link
       </Link>
     </div>
@@ -306,17 +306,17 @@ export const Variants: Story = {
 
 export const NavigationExample: Story = {
   render: () => (
-    <nav className='flex gap-6'>
-      <Link href='/' variant='primary' startIcon={<FaHome size={16} />}>
+    <nav className="flex gap-6">
+      <Link href="/" variant="primary" startIcon={<FaHome size={16} />}>
         Home
       </Link>
-      <Link href='/profile' variant='secondary' startIcon={<FaUser size={16} />}>
+      <Link href="/profile" variant="secondary" startIcon={<FaUser size={16} />}>
         Profile
       </Link>
-      <Link href='/contact' variant='secondary' startIcon={<FaEnvelope size={16} />}>
+      <Link href="/contact" variant="secondary" startIcon={<FaEnvelope size={16} />}>
         Contact
       </Link>
-      <Link href='https://github.com' variant='tertiary' endIcon={<FaExternalLinkAlt size={14} />}>
+      <Link href="https://github.com" variant="tertiary" endIcon={<FaExternalLinkAlt size={14} />}>
         GitHub
       </Link>
     </nav>

@@ -113,9 +113,9 @@ type Story = StoryObj<typeof Rating>;
 const DefaultComponent = () => {
   const [rating, setRating] = useState(3);
   return (
-    <div className='flex flex-col gap-2'>
+    <div className="flex flex-col gap-2">
       <Rating value={rating} onChange={setRating} />
-      <p className='text-xs text-gray-500'>Current value: {rating}</p>
+      <p className="text-xs text-gray-500">Current value: {rating}</p>
     </div>
   );
 };
@@ -127,9 +127,9 @@ export const Default: Story = {
 const InteractiveComponent = () => {
   const [rating, setRating] = useState(1.5);
   return (
-    <div className='flex flex-col gap-2'>
+    <div className="flex flex-col gap-2">
       <Rating value={rating} onChange={setRating} />
-      <p className='text-xs text-gray-500'>Current value: {rating}</p>
+      <p className="text-xs text-gray-500">Current value: {rating}</p>
     </div>
   );
 };
@@ -146,26 +146,26 @@ const SizesComponent = () => {
   const [xlRating, setXlRating] = useState(3);
 
   return (
-    <div className='flex flex-col gap-4'>
-      <div className='flex flex-col gap-1'>
-        <Rating size='xs' value={xsRating} onChange={setXsRating} />
-        <span className='text-xs text-gray-600'>xs - {xsRating}</span>
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-1">
+        <Rating size="xs" value={xsRating} onChange={setXsRating} />
+        <span className="text-xs text-gray-600">xs - {xsRating}</span>
       </div>
-      <div className='flex flex-col gap-1'>
-        <Rating size='sm' value={smRating} onChange={setSmRating} />
-        <span className='text-xs text-gray-600'>sm - {smRating}</span>
+      <div className="flex flex-col gap-1">
+        <Rating size="sm" value={smRating} onChange={setSmRating} />
+        <span className="text-xs text-gray-600">sm - {smRating}</span>
       </div>
-      <div className='flex flex-col gap-1'>
-        <Rating size='md' value={mdRating} onChange={setMdRating} />
-        <span className='text-xs text-gray-600'>md - {mdRating}</span>
+      <div className="flex flex-col gap-1">
+        <Rating size="md" value={mdRating} onChange={setMdRating} />
+        <span className="text-xs text-gray-600">md - {mdRating}</span>
       </div>
-      <div className='flex flex-col gap-1'>
-        <Rating size='lg' value={lgRating} onChange={setLgRating} />
-        <span className='text-xs text-gray-600'>lg - {lgRating}</span>
+      <div className="flex flex-col gap-1">
+        <Rating size="lg" value={lgRating} onChange={setLgRating} />
+        <span className="text-xs text-gray-600">lg - {lgRating}</span>
       </div>
-      <div className='flex flex-col gap-1'>
-        <Rating size='xl' value={xlRating} onChange={setXlRating} />
-        <span className='text-xs text-gray-600'>xl - {xlRating}</span>
+      <div className="flex flex-col gap-1">
+        <Rating size="xl" value={xlRating} onChange={setXlRating} />
+        <span className="text-xs text-gray-600">xl - {xlRating}</span>
       </div>
     </div>
   );
@@ -181,18 +181,18 @@ const VariantsComponent = () => {
   const [outlineRating, setOutlineRating] = useState(4);
 
   return (
-    <div className='flex flex-col gap-4'>
-      <div className='flex flex-col gap-1'>
-        <Rating variant='default' value={defaultRating} onChange={setDefaultRating} />
-        <span className='text-xs text-gray-600'>default - {defaultRating}</span>
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-1">
+        <Rating variant="default" value={defaultRating} onChange={setDefaultRating} />
+        <span className="text-xs text-gray-600">default - {defaultRating}</span>
       </div>
-      <div className='flex flex-col gap-1'>
-        <Rating variant='filled' value={filledRating} onChange={setFilledRating} />
-        <span className='text-xs text-gray-600'>filled - {filledRating}</span>
+      <div className="flex flex-col gap-1">
+        <Rating variant="filled" value={filledRating} onChange={setFilledRating} />
+        <span className="text-xs text-gray-600">filled - {filledRating}</span>
       </div>
-      <div className='flex flex-col gap-1'>
-        <Rating variant='outline' value={outlineRating} onChange={setOutlineRating} />
-        <span className='text-xs text-gray-600'>outline - {outlineRating}</span>
+      <div className="flex flex-col gap-1">
+        <Rating variant="outline" value={outlineRating} onChange={setOutlineRating} />
+        <span className="text-xs text-gray-600">outline - {outlineRating}</span>
       </div>
     </div>
   );
@@ -205,9 +205,9 @@ export const Variants: Story = {
 const WithValueComponent = () => {
   const [rating, setRating] = useState(3.5);
   return (
-    <div className='flex flex-col gap-2'>
+    <div className="flex flex-col gap-2">
       <Rating value={rating} onChange={setRating} showValue max={5} />
-      <p className='text-xs text-gray-500'>Interactive rating with value display</p>
+      <p className="text-xs text-gray-500">Interactive rating with value display</p>
     </div>
   );
 };
@@ -219,9 +219,9 @@ export const WithValue: Story = {
 const HalfStarsComponent = () => {
   const [rating, setRating] = useState(2.5);
   return (
-    <div className='flex flex-col gap-2'>
+    <div className="flex flex-col gap-2">
       <Rating value={rating} onChange={setRating} precision={0.5} showValue />
-      <p className='text-xs text-gray-500'>Half-star precision: {rating}</p>
+      <p className="text-xs text-gray-500">Half-star precision: {rating}</p>
     </div>
   );
 };
@@ -250,34 +250,34 @@ const WithAnimationComponent = () => {
   const [noAnimationRating, setNoAnimationRating] = useState(3);
 
   return (
-    <div className='flex flex-col gap-6'>
-      <div className='mb-2 text-sm text-gray-600'>
+    <div className="flex flex-col gap-6">
+      <div className="mb-2 text-sm text-gray-600">
         Hover over or click the stars below to see the animation effects in action. The ratings will
         update dynamically as you interact with them.
       </div>
 
-      <div className='flex flex-col gap-4'>
-        <div className='flex flex-col gap-2'>
-          <h4 className='text-sm font-medium'>Scale Animation</h4>
-          <Rating value={scaleRating} animation='scale' onChange={setScaleRating} size='lg' />
-          <p className='text-xs text-gray-500'>Current value: {scaleRating}</p>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <h4 className="text-sm font-medium">Scale Animation</h4>
+          <Rating value={scaleRating} animation="scale" onChange={setScaleRating} size="lg" />
+          <p className="text-xs text-gray-500">Current value: {scaleRating}</p>
         </div>
 
-        <div className='flex flex-col gap-2'>
-          <h4 className='text-sm font-medium'>Glow Animation</h4>
-          <Rating value={glowRating} animation='glow' onChange={setGlowRating} size='lg' />
-          <p className='text-xs text-gray-500'>Current value: {glowRating}</p>
+        <div className="flex flex-col gap-2">
+          <h4 className="text-sm font-medium">Glow Animation</h4>
+          <Rating value={glowRating} animation="glow" onChange={setGlowRating} size="lg" />
+          <p className="text-xs text-gray-500">Current value: {glowRating}</p>
         </div>
 
-        <div className='flex flex-col gap-2'>
-          <h4 className='text-sm font-medium'>No Animation (Default)</h4>
+        <div className="flex flex-col gap-2">
+          <h4 className="text-sm font-medium">No Animation (Default)</h4>
           <Rating
             value={noAnimationRating}
-            animation='none'
+            animation="none"
             onChange={setNoAnimationRating}
-            size='lg'
+            size="lg"
           />
-          <p className='text-xs text-gray-500'>Current value: {noAnimationRating}</p>
+          <p className="text-xs text-gray-500">Current value: {noAnimationRating}</p>
         </div>
       </div>
     </div>
@@ -291,9 +291,9 @@ export const WithAnimation: Story = {
 const CustomMaxComponent = () => {
   const [rating, setRating] = useState(7);
   return (
-    <div className='flex flex-col gap-2'>
+    <div className="flex flex-col gap-2">
       <Rating value={rating} onChange={setRating} max={10} showValue />
-      <p className='text-xs text-gray-500'>Custom maximum (10 stars): {rating}/10</p>
+      <p className="text-xs text-gray-500">Custom maximum (10 stars): {rating}/10</p>
     </div>
   );
 };
@@ -305,9 +305,9 @@ export const CustomMax: Story = {
 const ControlledComponent = () => {
   const [rating, setRating] = useState(3);
   return (
-    <div className='flex flex-col gap-4'>
-      <Rating value={rating} onChange={setRating} showValue label='Product Rating' />
-      <p className='text-sm text-gray-600'>Current rating: {rating}</p>
+    <div className="flex flex-col gap-4">
+      <Rating value={rating} onChange={setRating} showValue label="Product Rating" />
+      <p className="text-sm text-gray-600">Current rating: {rating}</p>
     </div>
   );
 };
@@ -321,9 +321,9 @@ const WithHoverFeedbackComponent = () => {
   const [hoverRating, setHoverRating] = useState(0);
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className="flex flex-col gap-4">
       <Rating value={rating} onChange={setRating} onHover={setHoverRating} showValue />
-      <div className='text-sm text-gray-600'>
+      <div className="text-sm text-gray-600">
         <p>Current: {rating}</p>
         <p>Hovered: {hoverRating}</p>
       </div>
@@ -337,34 +337,34 @@ export const WithHoverFeedback: Story = {
 
 export const ProductReview: Story = {
   render: () => (
-    <div className='max-w-md rounded-lg bg-white p-6 shadow-md'>
-      <h3 className='mb-2 text-lg font-semibold'>Customer Reviews</h3>
-      <div className='mb-4 flex items-center gap-4'>
-        <Rating value={4.2} precision={0.5} readonly size='sm' />
-        <span className='text-2xl font-bold'>4.2</span>
-        <span className='text-gray-600'>(1,234 reviews)</span>
+    <div className="max-w-md rounded-lg bg-white p-6 shadow-md">
+      <h3 className="mb-2 text-lg font-semibold">Customer Reviews</h3>
+      <div className="mb-4 flex items-center gap-4">
+        <Rating value={4.2} precision={0.5} readonly size="sm" />
+        <span className="text-2xl font-bold">4.2</span>
+        <span className="text-gray-600">(1,234 reviews)</span>
       </div>
-      <div className='space-y-2'>
-        <div className='flex items-center justify-between'>
-          <span className='text-sm'>5 stars</span>
-          <div className='mx-3 h-2 flex-1 rounded-full bg-gray-200'>
-            <div className='h-2 rounded-full bg-yellow-400' style={{ width: "60%" }}></div>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <span className="text-sm">5 stars</span>
+          <div className="mx-3 h-2 flex-1 rounded-full bg-gray-200">
+            <div className="h-2 rounded-full bg-yellow-400" style={{ width: "60%" }}></div>
           </div>
-          <span className='text-sm'>60%</span>
+          <span className="text-sm">60%</span>
         </div>
-        <div className='flex items-center justify-between'>
-          <span className='text-sm'>4 stars</span>
-          <div className='mx-3 h-2 flex-1 rounded-full bg-gray-200'>
-            <div className='h-2 rounded-full bg-yellow-400' style={{ width: "25%" }}></div>
+        <div className="flex items-center justify-between">
+          <span className="text-sm">4 stars</span>
+          <div className="mx-3 h-2 flex-1 rounded-full bg-gray-200">
+            <div className="h-2 rounded-full bg-yellow-400" style={{ width: "25%" }}></div>
           </div>
-          <span className='text-sm'>25%</span>
+          <span className="text-sm">25%</span>
         </div>
-        <div className='flex items-center justify-between'>
-          <span className='text-sm'>3 stars</span>
-          <div className='mx-3 h-2 flex-1 rounded-full bg-gray-200'>
-            <div className='h-2 rounded-full bg-yellow-400' style={{ width: "10%" }}></div>
+        <div className="flex items-center justify-between">
+          <span className="text-sm">3 stars</span>
+          <div className="mx-3 h-2 flex-1 rounded-full bg-gray-200">
+            <div className="h-2 rounded-full bg-yellow-400" style={{ width: "10%" }}></div>
           </div>
-          <span className='text-sm'>10%</span>
+          <span className="text-sm">10%</span>
         </div>
       </div>
     </div>
@@ -374,13 +374,13 @@ export const ProductReview: Story = {
 const CustomStyledComponent = () => {
   const [rating, setRating] = useState(4);
   return (
-    <div className='flex flex-col gap-2'>
+    <div className="flex flex-col gap-2">
       <Rating
         value={rating}
         onChange={setRating}
         className={tw`rounded-lg border border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 p-4`}
       />
-      <p className='text-xs text-gray-500'>Custom styled rating: {rating}</p>
+      <p className="text-xs text-gray-500">Custom styled rating: {rating}</p>
     </div>
   );
 };
@@ -393,49 +393,49 @@ const CustomIconsComponent = () => {
   const [interactiveRating, setInteractiveRating] = useState(2.5);
 
   return (
-    <div className='flex flex-col gap-6'>
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Heart Rating</h4>
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Heart Rating</h4>
         <Rating
           value={heartRating}
           onChange={setHeartRating}
           max={5}
           emptyIcon={AiOutlineHeart}
           filledIcon={AiFillHeart}
-          colorClassName='text-red-500'
+          colorClassName="text-red-500"
         />
-        <p className='text-xs text-gray-500'>Hearts: {heartRating}</p>
+        <p className="text-xs text-gray-500">Hearts: {heartRating}</p>
       </div>
 
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>FontAwesome Stars</h4>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">FontAwesome Stars</h4>
         <Rating
           value={fontAwesomeRating}
           onChange={setFontAwesomeRating}
           max={5}
           emptyIcon={FaRegStar}
           filledIcon={FaStar}
-          colorClassName='text-blue-500'
+          colorClassName="text-blue-500"
         />
-        <p className='text-xs text-gray-500'>FontAwesome: {fontAwesomeRating}</p>
+        <p className="text-xs text-gray-500">FontAwesome: {fontAwesomeRating}</p>
       </div>
 
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Emoji Faces (5 levels)</h4>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Emoji Faces (5 levels)</h4>
         <Rating
           value={emojiRating}
           onChange={setEmojiRating}
           max={5}
           emptyIcon={BsEmojiNeutral}
           filledIcon={BsEmojiSmileFill}
-          colorClassName='text-green-500'
-          size='lg'
+          colorClassName="text-green-500"
+          size="lg"
         />
-        <p className='text-xs text-gray-500'>Emoji faces: {emojiRating}</p>
+        <p className="text-xs text-gray-500">Emoji faces: {emojiRating}</p>
       </div>
 
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Thumbs Up Rating</h4>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Thumbs Up Rating</h4>
         <Rating
           value={thumbsRating}
           onChange={setThumbsRating}
@@ -443,11 +443,11 @@ const CustomIconsComponent = () => {
           emptyIcon={BiLike}
           filledIcon={BiSolidLike}
         />
-        <p className='text-xs text-gray-500'>Thumbs: {thumbsRating}</p>
+        <p className="text-xs text-gray-500">Thumbs: {thumbsRating}</p>
       </div>
 
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Interactive Custom Icons</h4>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Interactive Custom Icons</h4>
         <Rating
           value={interactiveRating}
           onChange={setInteractiveRating}
@@ -456,9 +456,9 @@ const CustomIconsComponent = () => {
           filledIcon={AiFillHeart}
           showValue
           precision={0.5}
-          colorClassName='text-pink-500'
+          colorClassName="text-pink-500"
         />
-        <p className='text-xs text-gray-500'>Interactive hearts: {interactiveRating}</p>
+        <p className="text-xs text-gray-500">Interactive hearts: {interactiveRating}</p>
       </div>
     </div>
   );
@@ -476,8 +476,8 @@ const CustomIconThumbsComponent = () => {
   const [rating, setRating] = useState(3);
 
   return (
-    <div className='flex flex-col gap-4'>
-      <h4 className='text-sm font-medium'>Thumbs Up Rating (1-5 scale)</h4>
+    <div className="flex flex-col gap-4">
+      <h4 className="text-sm font-medium">Thumbs Up Rating (1-5 scale)</h4>
       <Rating
         value={rating}
         max={5}
@@ -485,9 +485,9 @@ const CustomIconThumbsComponent = () => {
         emptyIcon={BiLike}
         filledIcon={BiSolidLike}
         showValue
-        colorClassName='text-green-600'
+        colorClassName="text-green-600"
       />
-      <p className='text-sm text-gray-600'>Rating: {rating} out of 5 thumbs up!</p>
+      <p className="text-sm text-gray-600">Rating: {rating} out of 5 thumbs up!</p>
     </div>
   );
 };
@@ -508,71 +508,71 @@ const CustomColorsComponent = () => {
   const [pinkComp, setPinkComp] = useState(3);
 
   return (
-    <div className='flex flex-col gap-6'>
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Custom Color Stars</h4>
-        <Rating value={blueRating} onChange={setBlueRating} colorClassName='text-blue-500' />
-        <p className='text-xs text-gray-500'>Blue stars: {blueRating}</p>
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Custom Color Stars</h4>
+        <Rating value={blueRating} onChange={setBlueRating} colorClassName="text-blue-500" />
+        <p className="text-xs text-gray-500">Blue stars: {blueRating}</p>
       </div>
 
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Custom Color with Custom Icons</h4>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Custom Color with Custom Icons</h4>
         <Rating
           value={redRating}
           onChange={setRedRating}
           emptyIcon={AiOutlineHeart}
           filledIcon={AiFillHeart}
-          colorClassName='text-red-500'
+          colorClassName="text-red-500"
         />
-        <p className='text-xs text-gray-500'>Red hearts: {redRating}</p>
+        <p className="text-xs text-gray-500">Red hearts: {redRating}</p>
       </div>
 
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Custom Color Thumbs</h4>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Custom Color Thumbs</h4>
         <Rating
           value={purpleRating}
           onChange={setPurpleRating}
           emptyIcon={BiLike}
           filledIcon={BiSolidLike}
-          colorClassName='text-purple-600'
+          colorClassName="text-purple-600"
         />
-        <p className='text-xs text-gray-500'>Purple thumbs: {purpleRating}</p>
+        <p className="text-xs text-gray-500">Purple thumbs: {purpleRating}</p>
       </div>
 
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Interactive with Custom Color</h4>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Interactive with Custom Color</h4>
         <Rating
           value={indigoRating}
           onChange={setIndigoRating}
-          colorClassName='text-indigo-600'
+          colorClassName="text-indigo-600"
           showValue
           precision={0.5}
         />
-        <p className='text-xs text-gray-500'>Indigo with precision: {indigoRating}</p>
+        <p className="text-xs text-gray-500">Indigo with precision: {indigoRating}</p>
       </div>
 
-      <div className='flex flex-col gap-2'>
-        <h4 className='text-sm font-medium'>Color Comparison</h4>
-        <div className='flex flex-wrap gap-4'>
-          <div className='flex flex-col items-center gap-1'>
-            <Rating value={redComp} onChange={setRedComp} colorClassName='text-red-500' />
-            <span className='text-xs text-gray-600'>Red - {redComp}</span>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-medium">Color Comparison</h4>
+        <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col items-center gap-1">
+            <Rating value={redComp} onChange={setRedComp} colorClassName="text-red-500" />
+            <span className="text-xs text-gray-600">Red - {redComp}</span>
           </div>
-          <div className='flex flex-col items-center gap-1'>
-            <Rating value={blueComp} onChange={setBlueComp} colorClassName='text-blue-500' />
-            <span className='text-xs text-gray-600'>Blue - {blueComp}</span>
+          <div className="flex flex-col items-center gap-1">
+            <Rating value={blueComp} onChange={setBlueComp} colorClassName="text-blue-500" />
+            <span className="text-xs text-gray-600">Blue - {blueComp}</span>
           </div>
-          <div className='flex flex-col items-center gap-1'>
-            <Rating value={greenComp} onChange={setGreenComp} colorClassName='text-green-500' />
-            <span className='text-xs text-gray-600'>Green - {greenComp}</span>
+          <div className="flex flex-col items-center gap-1">
+            <Rating value={greenComp} onChange={setGreenComp} colorClassName="text-green-500" />
+            <span className="text-xs text-gray-600">Green - {greenComp}</span>
           </div>
-          <div className='flex flex-col items-center gap-1'>
-            <Rating value={purpleComp} onChange={setPurpleComp} colorClassName='text-purple-500' />
-            <span className='text-xs text-gray-600'>Purple - {purpleComp}</span>
+          <div className="flex flex-col items-center gap-1">
+            <Rating value={purpleComp} onChange={setPurpleComp} colorClassName="text-purple-500" />
+            <span className="text-xs text-gray-600">Purple - {purpleComp}</span>
           </div>
-          <div className='flex flex-col items-center gap-1'>
-            <Rating value={pinkComp} onChange={setPinkComp} colorClassName='text-pink-500' />
-            <span className='text-xs text-gray-600'>Pink - {pinkComp}</span>
+          <div className="flex flex-col items-center gap-1">
+            <Rating value={pinkComp} onChange={setPinkComp} colorClassName="text-pink-500" />
+            <span className="text-xs text-gray-600">Pink - {pinkComp}</span>
           </div>
         </div>
       </div>

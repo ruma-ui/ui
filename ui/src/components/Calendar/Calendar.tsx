@@ -165,17 +165,17 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   return (
-    <div id={id} className={cn(wrapper, className)} role='group' aria-label='Calendar'>
+    <div id={id} className={cn(wrapper, className)} role="group" aria-label="Calendar">
       {/* Header */}
       <div className={header}>
-        <button type='button' className={navBtn} aria-label='Previous month' onClick={goPrev}>
+        <button type="button" className={navBtn} aria-label="Previous month" onClick={goPrev}>
           <ChevronLeft size={16} />
         </button>
         {showMonthYearPickers ? (
           <div className={pickerWrap}>
             {/* Month select */}
             <select
-              aria-label='Select month'
+              aria-label="Select month"
               className={selectBase}
               value={visibleMonth.getMonth()}
               onChange={e => {
@@ -198,7 +198,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             </select>
             {/* Year select: show a reasonable window around current year */}
             <select
-              aria-label='Select year'
+              aria-label="Select year"
               className={selectBase}
               value={visibleMonth.getFullYear()}
               onChange={e => {
@@ -226,19 +226,19 @@ export const Calendar: React.FC<CalendarProps> = ({
             </select>
           </div>
         ) : (
-          <div className={monthLabel} aria-live='polite' aria-atomic>
+          <div className={monthLabel} aria-live="polite" aria-atomic>
             {format(visibleMonth, "MMMM yyyy", { locale })}
           </div>
         )}
-        <button type='button' className={navBtn} aria-label='Next month' onClick={goNext}>
+        <button type="button" className={navBtn} aria-label="Next month" onClick={goNext}>
           <ChevronRight size={16} />
         </button>
       </div>
 
       {/* Grid header (days of week) */}
-      <div className={grid} role='row'>
+      <div className={grid} role="row">
         {weekdayLabels.map(label => (
-          <div key={label} className={dow} role='columnheader' aria-label={label}>
+          <div key={label} className={dow} role="columnheader" aria-label={label}>
             {label}
           </div>
         ))}
@@ -255,7 +255,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             animDir === "right" &&
             "animate-in slide-in-from-left-4 fade-in duration-200 ease-out"
         )}
-        role='grid'
+        role="grid"
         aria-readonly
       >
         {days.map(day => {
@@ -280,8 +280,8 @@ export const Calendar: React.FC<CalendarProps> = ({
           return (
             <button
               key={day.toISOString()}
-              type='button'
-              role='gridcell'
+              type="button"
+              role="gridcell"
               aria-selected={isSelected}
               aria-disabled={disabled}
               disabled={disabled}

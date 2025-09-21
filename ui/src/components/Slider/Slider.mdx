@@ -149,8 +149,8 @@ The `variant` prop determines the visual style and color scheme of the slider tr
       width: "300px",
     }}
   >
-    <Slider variant='primary' label='Primary' defaultValue={60} showValue />
-    <Slider variant='secondary' label='Secondary' defaultValue={40} showValue />
+    <Slider variant="primary" label="Primary" defaultValue={60} showValue />
+    <Slider variant="secondary" label="Secondary" defaultValue={40} showValue />
   </div>
 </Unstyled>
 
@@ -173,9 +173,9 @@ The `size` prop controls the dimensions of the slider track and thumb.
       width: "300px",
     }}
   >
-    <Slider size='sm' label='Small' defaultValue={30} showValue />
-    <Slider size='md' label='Medium' defaultValue={50} showValue />
-    <Slider size='lg' label='Large' defaultValue={70} showValue />
+    <Slider size="sm" label="Small" defaultValue={30} showValue />
+    <Slider size="md" label="Medium" defaultValue={50} showValue />
+    <Slider size="lg" label="Large" defaultValue={70} showValue />
   </div>
 </Unstyled>
 
@@ -198,9 +198,9 @@ Control the range and granularity of values.
       width: "300px",
     }}
   >
-    <Slider label='Volume' min={0} max={100} defaultValue={75} showValue />
-    <Slider label='Temperature' min={-10} max={40} defaultValue={20} showValue />
-    <Slider label='Rating' min={1} max={5} step={1} defaultValue={3} showValue />
+    <Slider label="Volume" min={0} max={100} defaultValue={75} showValue />
+    <Slider label="Temperature" min={-10} max={40} defaultValue={20} showValue />
+    <Slider label="Rating" min={1} max={5} step={1} defaultValue={3} showValue />
   </div>
 </Unstyled>
 
@@ -222,12 +222,12 @@ const [value, setValue] = useState(50);
 Display the current value next to the label.
 
 ```jsx
-<Slider label='Brightness' showValue defaultValue={80} />
+<Slider label="Brightness" showValue defaultValue={80} />
 ```
 
 <Unstyled>
   <div style={{ width: "300px" }}>
-    <Slider label='Brightness' showValue defaultValue={80} />
+    <Slider label="Brightness" showValue defaultValue={80} />
   </div>
 </Unstyled>
 
@@ -237,7 +237,7 @@ Customize how values are displayed.
 
 ```jsx
 <Slider
-  label='Price'
+  label="Price"
   min={0}
   max={1000}
   defaultValue={250}
@@ -249,7 +249,7 @@ Customize how values are displayed.
 <Unstyled>
   <div style={{ width: "300px" }}>
     <Slider
-      label='Price'
+      label="Price"
       min={0}
       max={1000}
       defaultValue={250}
@@ -264,12 +264,12 @@ Customize how values are displayed.
 Provide context and help text.
 
 ```jsx
-<Slider label='Volume Level' description='Adjust the audio output volume' defaultValue={70} />
+<Slider label="Volume Level" description="Adjust the audio output volume" defaultValue={70} />
 ```
 
 <Unstyled>
   <div style={{ width: "300px" }}>
-    <Slider label='Volume Level' description='Adjust the audio output volume' defaultValue={70} />
+    <Slider label="Volume Level" description="Adjust the audio output volume" defaultValue={70} />
   </div>
 </Unstyled>
 
@@ -279,9 +279,9 @@ Indicate validation errors or required states.
 
 ```jsx
 <Slider
-  label='Required Setting'
+  label="Required Setting"
   error
-  errorMessage='This setting must be configured'
+  errorMessage="This setting must be configured"
   defaultValue={0}
 />
 ```
@@ -289,9 +289,9 @@ Indicate validation errors or required states.
 <Unstyled>
   <div style={{ width: "300px" }}>
     <Slider
-      label='Required Setting'
+      label="Required Setting"
       error
-      errorMessage='This setting must be configured'
+      errorMessage="This setting must be configured"
       defaultValue={0}
     />
   </div>
@@ -302,12 +302,12 @@ Indicate validation errors or required states.
 Prevent user interaction when functionality is unavailable.
 
 ```jsx
-<Slider disabled label='Disabled Slider' defaultValue={50} />
+<Slider disabled label="Disabled Slider" defaultValue={50} />
 ```
 
 <Unstyled>
   <div style={{ width: "300px" }}>
-    <Slider disabled label='Disabled Slider' defaultValue={50} />
+    <Slider disabled label="Disabled Slider" defaultValue={50} />
   </div>
 </Unstyled>
 
@@ -327,7 +327,7 @@ Handle value changes with different timing.
 Add custom styling while preserving component behavior.
 
 ```jsx
-<Slider className='custom-slider' />
+<Slider className="custom-slider" />
 ```
 
 ## Accessibility

@@ -343,27 +343,27 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onClick={handleClick}
-          role='button'
+          role="button"
           tabIndex={disabled ? -1 : 0}
           aria-disabled={disabled}
           aria-label={placeholder}
         >
           <input
             ref={fileInputRef}
-            type='file'
-            className='sr-only'
+            type="file"
+            className="sr-only"
             multiple={multiple}
             accept={accept}
             onChange={handleFileInputChange}
             disabled={disabled}
-            aria-hidden='true'
+            aria-hidden="true"
           />
 
-          <div className='flex flex-col items-center justify-center text-center'>
-            <div className='mb-4 text-gray-400'>{icon}</div>
+          <div className="flex flex-col items-center justify-center text-center">
+            <div className="mb-4 text-gray-400">{icon}</div>
             <p className={cn("mb-2 font-medium text-gray-900", sizes[size].text)}>{placeholder}</p>
             <button
-              type='button'
+              type="button"
               className={cn(buttonBase, sizes[size].button)}
               onClick={e => {
                 e.stopPropagation();
@@ -373,18 +373,18 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             >
               {buttonText}
             </button>
-            {description && <p className='mt-2 text-sm text-gray-600'>{description}</p>}
-            {accept && <p className='mt-2 text-xs text-gray-500'>Accepted: {accept}</p>}
+            {description && <p className="mt-2 text-sm text-gray-600">{description}</p>}
+            {accept && <p className="mt-2 text-xs text-gray-500">Accepted: {accept}</p>}
             {maxSize && (
-              <p className='mt-1 text-xs text-gray-500'>Max size: {formatFileSize(maxSize)}</p>
+              <p className="mt-1 text-xs text-gray-500">Max size: {formatFileSize(maxSize)}</p>
             )}
           </div>
         </div>
 
         {errors.length > 0 && (
-          <div className='mt-2'>
+          <div className="mt-2">
             {errors.map((error, index) => (
-              <p key={index} className='text-sm text-red-600'>
+              <p key={index} className="text-sm text-red-600">
                 {error}
               </p>
             ))}
@@ -392,25 +392,25 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
         )}
 
         {showFileList && files.length > 0 && (
-          <div className='mt-4 space-y-2'>
-            <h4 className='text-sm font-medium text-gray-900'>Selected Files ({files.length})</h4>
-            <div className='space-y-2'>
+          <div className="mt-4 space-y-2">
+            <h4 className="text-sm font-medium text-gray-900">Selected Files ({files.length})</h4>
+            <div className="space-y-2">
               {files.map((file, index) => (
                 <div
                   key={`${file.name}-${index}`}
-                  className='flex items-center justify-between gap-3 rounded-md border border-gray-200 bg-white p-3'
+                  className="flex items-center justify-between gap-3 rounded-md border border-gray-200 bg-white p-3"
                 >
-                  <div className='flex items-center space-x-3'>
-                    <span className='text-lg'>{getFileIcon(file)}</span>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-lg">{getFileIcon(file)}</span>
                     <div>
-                      <p className='text-sm font-medium text-gray-900'>{file.name}</p>
-                      <p className='text-xs text-gray-500'>{formatFileSize(file.size)}</p>
+                      <p className="text-sm font-medium text-gray-900">{file.name}</p>
+                      <p className="text-xs text-gray-500">{formatFileSize(file.size)}</p>
                     </div>
                   </div>
                   <button
-                    type='button'
+                    type="button"
                     onClick={() => handleRemoveFile(index)}
-                    className='aspect-square h-6 w-6 cursor-pointer rounded-full border border-gray-200 text-xs text-gray-400 transition hover:bg-gray-100 hover:text-gray-500'
+                    className="aspect-square h-6 w-6 cursor-pointer rounded-full border border-gray-200 text-xs text-gray-400 transition hover:bg-gray-100 hover:text-gray-500"
                     aria-label={`Remove ${file.name}`}
                   >
                     ✕

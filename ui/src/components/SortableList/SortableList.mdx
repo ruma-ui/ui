@@ -120,8 +120,8 @@ A function that renders each item. Receives the item data, index, and drag state
   items={items}
   renderItem={(item, index, isDragging) => (
     <div className={`rounded border p-4 ${isDragging ? "opacity-50" : ""}`}>
-      <span className='font-medium'>{item.name}</span>
-      <span className='ml-2 text-sm text-gray-500'>({item.type})</span>
+      <span className="font-medium">{item.name}</span>
+      <span className="ml-2 text-sm text-gray-500">({item.type})</span>
     </div>
   )}
 />
@@ -220,7 +220,7 @@ Controls the layout direction of the sortable list.
           { id: 2, name: "Item 2" },
           { id: 3, name: "Item 3" },
         ]}
-        direction='vertical'
+        direction="vertical"
         renderItem={item => <div>{item.name}</div>}
         style={{ width: "200px" }}
       />
@@ -233,7 +233,7 @@ Controls the layout direction of the sortable list.
           { id: 2, name: "Item 2" },
           { id: 3, name: "Item 3" },
         ]}
-        direction='horizontal'
+        direction="horizontal"
         renderItem={item => <div>{item.name}</div>}
       />
     </div>
@@ -248,8 +248,8 @@ Custom function to render the drag handle. If not provided, uses a default hambu
 <SortableList
   items={items}
   renderDragHandle={(item, index) => (
-    <div className='flex items-center justify-center'>
-      <FaGripVertical className='text-gray-400' />
+    <div className="flex items-center justify-center">
+      <FaGripVertical className="text-gray-400" />
     </div>
   )}
   renderItem={item => <div>{item.name}</div>}
@@ -354,10 +354,10 @@ const TaskList = ({ tasks, onReorder }) => (
     items={tasks}
     onReorder={onReorder}
     renderItem={(task, index, isDragging) => (
-      <div className='flex items-center gap-3 rounded border p-3'>
-        <input type='checkbox' checked={task.completed} />
+      <div className="flex items-center gap-3 rounded border p-3">
+        <input type="checkbox" checked={task.completed} />
         <span className={task.completed ? "line-through" : ""}>{task.title}</span>
-        <span className='text-sm text-gray-500'>{task.priority}</span>
+        <span className="text-sm text-gray-500">{task.priority}</span>
       </div>
     )}
   />
@@ -369,10 +369,10 @@ const FileList = ({ files, onReorder }) => (
     items={files}
     onReorder={onReorder}
     renderItem={(file, index, isDragging) => (
-      <div className='flex items-center gap-3 p-2'>
+      <div className="flex items-center gap-3 p-2">
         {file.type === "folder" ? <FaFolder /> : <FaFile />}
         <span>{file.name}</span>
-        <span className='text-sm text-gray-500'>{file.size}</span>
+        <span className="text-sm text-gray-500">{file.size}</span>
       </div>
     )}
   />
@@ -382,12 +382,12 @@ const FileList = ({ files, onReorder }) => (
 const PriorityList = ({ items, onReorder }) => (
   <SortableList
     items={items}
-    direction='horizontal'
+    direction="horizontal"
     onReorder={onReorder}
     renderItem={(item, index, isDragging) => (
-      <div className='flex min-w-[100px] flex-col items-center rounded border p-4'>
-        <span className='font-medium'>{item.name}</span>
-        <span className='text-sm text-gray-500'>Priority {index + 1}</span>
+      <div className="flex min-w-[100px] flex-col items-center rounded border p-4">
+        <span className="font-medium">{item.name}</span>
+        <span className="text-sm text-gray-500">Priority {index + 1}</span>
       </div>
     )}
   />

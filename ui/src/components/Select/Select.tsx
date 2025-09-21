@@ -398,7 +398,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     return (
       <div className={cn(wrapperBase, fullWidth ? "w-full" : (widths[width] ?? "w-auto"))}>
         {/* Hidden input for form submission */}
-        <input type='hidden' name={name} value={selectedValue} />
+        <input type="hidden" name={name} value={selectedValue} />
 
         {label && (
           <label
@@ -412,13 +412,13 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         <div className={containerClasses}>
           {/* Show selected option's icon if selected, else startIcon if provided */}
           {(selectedOption?.icon || startIcon) && (
-            <span className='flex shrink-0 items-center text-gray-500'>
+            <span className="flex shrink-0 items-center text-gray-500">
               {selectedOption?.icon ? selectedOption.icon : startIcon}
             </span>
           )}
           <button
             ref={ref || triggerRef}
-            type='button'
+            type="button"
             className={cn(
               "min-w-0 flex-1 truncate bg-transparent text-left outline-none",
               sizes[size].text
@@ -427,19 +427,19 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
             onKeyDown={handleKeyDown}
             disabled={disabled}
             aria-expanded={isOpen}
-            aria-haspopup='listbox'
+            aria-haspopup="listbox"
             aria-controls={listboxId}
             aria-describedby={hasAssistive ? assistiveId : undefined}
             id={selectId}
             {...props}
           >
             {selectedOption ? (
-              <span className='truncate text-gray-900'>{selectedOption.label}</span>
+              <span className="truncate text-gray-900">{selectedOption.label}</span>
             ) : (
-              <span className='truncate text-gray-400'>{placeholder}</span>
+              <span className="truncate text-gray-400">{placeholder}</span>
             )}
           </button>
-          <span className='flex shrink-0 items-center text-gray-400'>
+          <span className="flex shrink-0 items-center text-gray-400">
             <ChevronDownIcon isOpen={isOpen} animated={animation} />
           </span>
           {/* Dropdown is now rendered inside the main container, right after the button */}
@@ -453,14 +453,14 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                 animation &&
                   "animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-150 ease-out"
               )}
-              role='listbox'
+              role="listbox"
             >
               {options.map((option, index) => {
                 const isSelected = selectedValue === option.value;
                 return (
                   <button
                     key={option.value}
-                    type='button'
+                    type="button"
                     className={cn(
                       optionBase,
                       animation && optionAnimated,
@@ -472,14 +472,14 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                     )}
                     onClick={() => handleOptionSelect(option.value)}
                     disabled={option.disabled}
-                    role='option'
+                    role="option"
                     aria-selected={isSelected}
                   >
                     {/* Option icon, if provided */}
                     {option.icon && (
-                      <span className='mr-2 flex items-center text-gray-500'>{option.icon}</span>
+                      <span className="mr-2 flex items-center text-gray-500">{option.icon}</span>
                     )}
-                    <span className='flex-1 truncate'>{option.label}</span>
+                    <span className="flex-1 truncate">{option.label}</span>
                     {/* Check icon shown for selected option */}
                     <HiOutlineCheck
                       className={cn(
@@ -487,7 +487,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                         isSelected ? "opacity-100" : "opacity-0"
                       )}
                       aria-hidden={!isSelected}
-                      focusable='false'
+                      focusable="false"
                     />
                   </button>
                 );

@@ -129,11 +129,11 @@ export const Error: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-4'>
-      <Alert variant='info'>This is an info alert with useful information.</Alert>
-      <Alert variant='success'>Success! Operation completed successfully.</Alert>
-      <Alert variant='warning'>Warning: Please check your configuration.</Alert>
-      <Alert variant='error'>Error: Something went wrong, please try again.</Alert>
+    <div className="w-full max-w-md space-y-4">
+      <Alert variant="info">This is an info alert with useful information.</Alert>
+      <Alert variant="success">Success! Operation completed successfully.</Alert>
+      <Alert variant="warning">Warning: Please check your configuration.</Alert>
+      <Alert variant="error">Error: Something went wrong, please try again.</Alert>
     </div>
   ),
   parameters: {
@@ -143,49 +143,49 @@ export const Variants: Story = {
 
 export const Styles: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-6'>
-      <div className='space-y-3'>
-        <h3 className='text-sm font-semibold text-gray-600'>Filled Style</h3>
-        <Alert style='filled' variant='info'>
+    <div className="w-full max-w-md space-y-6">
+      <div className="space-y-3">
+        <h3 className="text-sm font-semibold text-gray-600">Filled Style</h3>
+        <Alert style="filled" variant="info">
           Info alert with filled style
         </Alert>
-        <Alert style='filled' variant='success'>
+        <Alert style="filled" variant="success">
           Success alert with filled style
         </Alert>
-        <Alert style='filled' variant='warning'>
+        <Alert style="filled" variant="warning">
           Warning alert with filled style
         </Alert>
-        <Alert style='filled' variant='error'>
+        <Alert style="filled" variant="error">
           Error alert with filled style
         </Alert>
       </div>
-      <div className='space-y-3'>
-        <h3 className='text-sm font-semibold text-gray-600'>Outline Style</h3>
-        <Alert style='outline' variant='info'>
+      <div className="space-y-3">
+        <h3 className="text-sm font-semibold text-gray-600">Outline Style</h3>
+        <Alert style="outline" variant="info">
           Info alert with outline style
         </Alert>
-        <Alert style='outline' variant='success'>
+        <Alert style="outline" variant="success">
           Success alert with outline style
         </Alert>
-        <Alert style='outline' variant='warning'>
+        <Alert style="outline" variant="warning">
           Warning alert with outline style
         </Alert>
-        <Alert style='outline' variant='error'>
+        <Alert style="outline" variant="error">
           Error alert with outline style
         </Alert>
       </div>
-      <div className='space-y-3'>
-        <h3 className='text-sm font-semibold text-gray-600'>Soft Style</h3>
-        <Alert style='soft' variant='info'>
+      <div className="space-y-3">
+        <h3 className="text-sm font-semibold text-gray-600">Soft Style</h3>
+        <Alert style="soft" variant="info">
           Info alert with soft style
         </Alert>
-        <Alert style='soft' variant='success'>
+        <Alert style="soft" variant="success">
           Success alert with soft style
         </Alert>
-        <Alert style='soft' variant='warning'>
+        <Alert style="soft" variant="warning">
           Warning alert with soft style
         </Alert>
-        <Alert style='soft' variant='error'>
+        <Alert style="soft" variant="error">
           Error alert with soft style
         </Alert>
       </div>
@@ -198,14 +198,14 @@ export const Styles: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-4'>
-      <Alert size='sm' variant='info'>
+    <div className="w-full max-w-md space-y-4">
+      <Alert size="sm" variant="info">
         Small alert with concise information
       </Alert>
-      <Alert size='md' variant='success'>
+      <Alert size="md" variant="success">
         Medium alert with standard information
       </Alert>
-      <Alert size='lg' variant='warning'>
+      <Alert size="lg" variant="warning">
         Large alert with comprehensive details and extended content
       </Alert>
     </div>
@@ -217,20 +217,20 @@ export const Sizes: Story = {
 
 export const RoundedVariants: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-4'>
-      <Alert rounded='none' variant='info'>
+    <div className="w-full max-w-md space-y-4">
+      <Alert rounded="none" variant="info">
         Alert with no border radius
       </Alert>
-      <Alert rounded='sm' variant='success'>
+      <Alert rounded="sm" variant="success">
         Alert with small border radius
       </Alert>
-      <Alert rounded='md' variant='warning'>
+      <Alert rounded="md" variant="warning">
         Alert with medium border radius
       </Alert>
-      <Alert rounded='lg' variant='error'>
+      <Alert rounded="lg" variant="error">
         Alert with large border radius
       </Alert>
-      <Alert rounded='xl' variant='info'>
+      <Alert rounded="xl" variant="info">
         Alert with extra large border radius
       </Alert>
     </div>
@@ -242,17 +242,17 @@ export const RoundedVariants: Story = {
 
 export const WithTitle: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-4'>
-      <Alert variant='info' title='Information'>
+    <div className="w-full max-w-md space-y-4">
+      <Alert variant="info" title="Information">
         This alert includes a title to provide additional context and hierarchy.
       </Alert>
-      <Alert variant='success' title='Success!'>
+      <Alert variant="success" title="Success!">
         Your changes have been saved successfully.
       </Alert>
-      <Alert variant='warning' title='Warning'>
+      <Alert variant="warning" title="Warning">
         Please review the following items before continuing.
       </Alert>
-      <Alert variant='error' title='Error Occurred'>
+      <Alert variant="error" title="Error Occurred">
         An unexpected error has occurred. Please contact support if this continues.
       </Alert>
     </div>
@@ -264,17 +264,17 @@ export const WithTitle: Story = {
 
 export const WithIcons: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-4'>
-      <Alert variant='info' startIcon={<User className='h-5 w-5' />}>
+    <div className="w-full max-w-md space-y-4">
+      <Alert variant="info" startIcon={<User className="h-5 w-5" />}>
         User profile has been updated with new information.
       </Alert>
-      <Alert variant='success' startIcon={<Shield className='h-5 w-5' />}>
+      <Alert variant="success" startIcon={<Shield className="h-5 w-5" />}>
         Security settings have been successfully configured.
       </Alert>
-      <Alert variant='warning' startIcon={<Clock className='h-5 w-5' />}>
+      <Alert variant="warning" startIcon={<Clock className="h-5 w-5" />}>
         Session will expire in 5 minutes. Please save your work.
       </Alert>
-      <Alert variant='error' startIcon={<Bell className='h-5 w-5' />}>
+      <Alert variant="error" startIcon={<Bell className="h-5 w-5" />}>
         Failed to send notification. Please check your connection.
       </Alert>
     </div>
@@ -286,11 +286,11 @@ export const WithIcons: Story = {
 
 export const WithEndIcon: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-4'>
-      <Alert variant='info' endIcon={<Download className='h-5 w-5' />}>
+    <div className="w-full max-w-md space-y-4">
+      <Alert variant="info" endIcon={<Download className="h-5 w-5" />}>
         New update available for download
       </Alert>
-      <Alert variant='success' endIcon={<Settings className='h-5 w-5' />}>
+      <Alert variant="success" endIcon={<Settings className="h-5 w-5" />}>
         Configuration saved successfully
       </Alert>
     </div>
@@ -329,7 +329,7 @@ const DismissibleComponent = () => {
   };
 
   return (
-    <div className='w-full max-w-md space-y-4'>
+    <div className="w-full max-w-md space-y-4">
       {alerts.map(alert => (
         <Alert
           key={alert.id}
@@ -341,10 +341,10 @@ const DismissibleComponent = () => {
         </Alert>
       ))}
       {alerts.length === 0 && (
-        <div className='p-4 text-center'>
-          <p className='mb-4 text-gray-500'>All alerts have been dismissed!</p>
+        <div className="p-4 text-center">
+          <p className="mb-4 text-gray-500">All alerts have been dismissed!</p>
           <button
-            className='text-blue-600 underline hover:text-blue-700'
+            className="text-blue-600 underline hover:text-blue-700"
             onClick={() =>
               setAlerts([
                 {
@@ -390,10 +390,10 @@ const DismissibleWithTitleComponent = () => {
 
   if (!show) {
     return (
-      <div className='p-4 text-center'>
-        <p className='mb-4 text-gray-500'>Alert has been dismissed!</p>
+      <div className="p-4 text-center">
+        <p className="mb-4 text-gray-500">Alert has been dismissed!</p>
         <button
-          className='text-blue-600 underline hover:text-blue-700'
+          className="text-blue-600 underline hover:text-blue-700"
           onClick={() => setShow(true)}
         >
           Show alert again
@@ -403,13 +403,13 @@ const DismissibleWithTitleComponent = () => {
   }
 
   return (
-    <div className='w-full max-w-md'>
+    <div className="w-full max-w-md">
       <Alert
-        variant='warning'
-        title='Important Notice'
+        variant="warning"
+        title="Important Notice"
         dismissible
         onDismiss={() => setShow(false)}
-        startIcon={<AlertTriangle className='h-5 w-5' />}
+        startIcon={<AlertTriangle className="h-5 w-5" />}
       >
         Please update your password within the next 7 days to maintain account security.
       </Alert>
@@ -426,37 +426,37 @@ export const DismissibleWithTitle: Story = {
 
 export const CustomContent: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-4'>
-      <Alert variant='info' title='Software Update'>
-        <div className='space-y-2'>
+    <div className="w-full max-w-md space-y-4">
+      <Alert variant="info" title="Software Update">
+        <div className="space-y-2">
           <p>A new version is available with the following improvements:</p>
-          <ul className='list-inside list-disc space-y-1 text-sm'>
+          <ul className="list-inside list-disc space-y-1 text-sm">
             <li>Enhanced performance and stability</li>
             <li>New user interface components</li>
             <li>Bug fixes and security updates</li>
           </ul>
-          <div className='mt-3 flex gap-2'>
-            <button className='rounded border border-blue-200 bg-white px-3 py-1 text-sm text-blue-600 hover:bg-blue-50'>
+          <div className="mt-3 flex gap-2">
+            <button className="rounded border border-blue-200 bg-white px-3 py-1 text-sm text-blue-600 hover:bg-blue-50">
               Download Now
             </button>
-            <button className='text-sm text-blue-100 underline hover:text-white'>Learn More</button>
+            <button className="text-sm text-blue-100 underline hover:text-white">Learn More</button>
           </div>
         </div>
       </Alert>
 
-      <Alert variant='error' title='Payment Failed' style='soft'>
-        <div className='space-y-2'>
+      <Alert variant="error" title="Payment Failed" style="soft">
+        <div className="space-y-2">
           <p>Your payment could not be processed. Please:</p>
-          <ol className='list-inside list-decimal space-y-1 text-sm'>
+          <ol className="list-inside list-decimal space-y-1 text-sm">
             <li>Check your card details</li>
             <li>Ensure sufficient funds</li>
             <li>Contact your bank if issues persist</li>
           </ol>
-          <div className='mt-3 flex gap-2'>
-            <button className='rounded bg-red-600 px-3 py-1 text-sm text-white hover:bg-red-700'>
+          <div className="mt-3 flex gap-2">
+            <button className="rounded bg-red-600 px-3 py-1 text-sm text-white hover:bg-red-700">
               Try Again
             </button>
-            <button className='text-sm text-red-600 underline hover:text-red-800'>
+            <button className="text-sm text-red-600 underline hover:text-red-800">
               Contact Support
             </button>
           </div>
@@ -471,20 +471,20 @@ export const CustomContent: Story = {
 
 export const NotificationAlerts: Story = {
   render: () => (
-    <div className='w-full max-w-md space-y-4'>
-      <Alert variant='success' style='soft' startIcon={<CheckCircle className='h-5 w-5' />}>
+    <div className="w-full max-w-md space-y-4">
+      <Alert variant="success" style="soft" startIcon={<CheckCircle className="h-5 w-5" />}>
         Email verification completed successfully.
       </Alert>
 
-      <Alert variant='info' style='outline' startIcon={<InfoIcon className='h-5 w-5' />}>
+      <Alert variant="info" style="outline" startIcon={<InfoIcon className="h-5 w-5" />}>
         Your trial period ends in 3 days. Upgrade to continue using premium features.
       </Alert>
 
-      <Alert variant='warning' style='filled' startIcon={<AlertTriangle className='h-5 w-5' />}>
+      <Alert variant="warning" style="filled" startIcon={<AlertTriangle className="h-5 w-5" />}>
         Unusual login activity detected from a new device.
       </Alert>
 
-      <Alert variant='error' style='soft' startIcon={<XCircle className='h-5 w-5' />}>
+      <Alert variant="error" style="soft" startIcon={<XCircle className="h-5 w-5" />}>
         Unable to sync data. Check your internet connection.
       </Alert>
     </div>
@@ -496,32 +496,32 @@ export const NotificationAlerts: Story = {
 
 export const SystemAlerts: Story = {
   render: () => (
-    <div className='w-full max-w-lg space-y-4'>
+    <div className="w-full max-w-lg space-y-4">
       <Alert
-        variant='info'
-        title='Scheduled Maintenance'
-        style='outline'
-        startIcon={<Clock className='h-5 w-5' />}
+        variant="info"
+        title="Scheduled Maintenance"
+        style="outline"
+        startIcon={<Clock className="h-5 w-5" />}
       >
         System maintenance is scheduled for tonight from 2:00 AM to 4:00 AM EST. Some services may
         be temporarily unavailable during this time.
       </Alert>
 
       <Alert
-        variant='success'
-        title='Backup Completed'
-        style='soft'
-        startIcon={<Shield className='h-5 w-5' />}
+        variant="success"
+        title="Backup Completed"
+        style="soft"
+        startIcon={<Shield className="h-5 w-5" />}
       >
         Your data has been successfully backed up to secure cloud storage. Last backup: Today at
         12:30 PM
       </Alert>
 
       <Alert
-        variant='warning'
-        title='Storage Almost Full'
-        style='filled'
-        startIcon={<AlertTriangle className='h-5 w-5' />}
+        variant="warning"
+        title="Storage Almost Full"
+        style="filled"
+        startIcon={<AlertTriangle className="h-5 w-5" />}
       >
         You&apos;re using 95% of your storage quota. Consider upgrading your plan or removing unused
         files to avoid service interruption.

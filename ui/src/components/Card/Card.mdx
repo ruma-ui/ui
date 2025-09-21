@@ -135,7 +135,7 @@ The `variant` prop determines the visual style and hierarchy of the card. Choose
       gap: "16px",
     }}
   >
-    <Card variant='default'>
+    <Card variant="default">
       <div style={{ padding: "16px" }}>
         <h4
           style={{
@@ -149,7 +149,7 @@ The `variant` prop determines the visual style and hierarchy of the card. Choose
         <p style={{ margin: 0, color: "#6b7280", fontSize: "14px" }}>Clean and subtle</p>
       </div>
     </Card>
-    <Card variant='outlined'>
+    <Card variant="outlined">
       <div style={{ padding: "16px" }}>
         <h4
           style={{
@@ -163,7 +163,7 @@ The `variant` prop determines the visual style and hierarchy of the card. Choose
         <p style={{ margin: 0, color: "#6b7280", fontSize: "14px" }}>Prominent border</p>
       </div>
     </Card>
-    <Card variant='elevated'>
+    <Card variant="elevated">
       <div style={{ padding: "16px" }}>
         <h4
           style={{
@@ -177,7 +177,7 @@ The `variant` prop determines the visual style and hierarchy of the card. Choose
         <p style={{ margin: 0, color: "#6b7280", fontSize: "14px" }}>Floating effect</p>
       </div>
     </Card>
-    <Card variant='filled'>
+    <Card variant="filled">
       <div style={{ padding: "16px" }}>
         <h4
           style={{
@@ -208,16 +208,16 @@ The `padding` prop controls the internal spacing of the card. Use this to ensure
 
 <Unstyled>
   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-    <Card padding='sm'>
+    <Card padding="sm">
       <span>Small padding (12px)</span>
     </Card>
-    <Card padding='md'>
+    <Card padding="md">
       <span>Medium padding (16px)</span>
     </Card>
-    <Card padding='lg'>
+    <Card padding="lg">
       <span>Large padding (24px)</span>
     </Card>
-    <Card padding='xl'>
+    <Card padding="xl">
       <span>Extra large padding (32px)</span>
     </Card>
   </div>
@@ -239,7 +239,7 @@ Control the border radius of cards to match your design system's aesthetic.
 <Unstyled>
   <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
     <Card
-      rounded='none'
+      rounded="none"
       style={{
         width: "120px",
         height: "80px",
@@ -251,7 +251,7 @@ Control the border radius of cards to match your design system's aesthetic.
       <span style={{ fontSize: "12px" }}>None</span>
     </Card>
     <Card
-      rounded='sm'
+      rounded="sm"
       style={{
         width: "120px",
         height: "80px",
@@ -263,7 +263,7 @@ Control the border radius of cards to match your design system's aesthetic.
       <span style={{ fontSize: "12px" }}>SM</span>
     </Card>
     <Card
-      rounded='md'
+      rounded="md"
       style={{
         width: "120px",
         height: "80px",
@@ -275,7 +275,7 @@ Control the border radius of cards to match your design system's aesthetic.
       <span style={{ fontSize: "12px" }}>MD</span>
     </Card>
     <Card
-      rounded='lg'
+      rounded="lg"
       style={{
         width: "120px",
         height: "80px",
@@ -287,7 +287,7 @@ Control the border radius of cards to match your design system's aesthetic.
       <span style={{ fontSize: "12px" }}>LG</span>
     </Card>
     <Card
-      rounded='xl'
+      rounded="xl"
       style={{
         width: "120px",
         height: "80px",
@@ -316,7 +316,7 @@ The `shadow` prop controls the elevation and depth of the card. Use shadows to c
 <Unstyled>
   <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
     <Card
-      shadow='none'
+      shadow="none"
       style={{
         width: "140px",
         height: "100px",
@@ -328,7 +328,7 @@ The `shadow` prop controls the elevation and depth of the card. Use shadows to c
       <span style={{ fontSize: "12px" }}>None</span>
     </Card>
     <Card
-      shadow='sm'
+      shadow="sm"
       style={{
         width: "140px",
         height: "100px",
@@ -340,7 +340,7 @@ The `shadow` prop controls the elevation and depth of the card. Use shadows to c
       <span style={{ fontSize: "12px" }}>SM</span>
     </Card>
     <Card
-      shadow='md'
+      shadow="md"
       style={{
         width: "140px",
         height: "100px",
@@ -352,7 +352,7 @@ The `shadow` prop controls the elevation and depth of the card. Use shadows to c
       <span style={{ fontSize: "12px" }}>MD</span>
     </Card>
     <Card
-      shadow='lg'
+      shadow="lg"
       style={{
         width: "140px",
         height: "100px",
@@ -364,7 +364,7 @@ The `shadow` prop controls the elevation and depth of the card. Use shadows to c
       <span style={{ fontSize: "12px" }}>LG</span>
     </Card>
     <Card
-      shadow='xl'
+      shadow="xl"
       style={{
         width: "140px",
         height: "100px",
@@ -444,14 +444,14 @@ The `disabled` prop dims the card and prevents interaction. Use this when conten
 The `className` prop allows you to add custom styling while preserving the component's built-in styles.
 
 ```jsx
-<Card className='border-purple-600 bg-gradient-to-r from-purple-500 to-pink-500 text-white'>
+<Card className="border-purple-600 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
   Custom styled card
 </Card>
 ```
 
 <Unstyled>
   <Card
-    className='border-purple-600 bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+    className="border-purple-600 bg-gradient-to-r from-purple-500 to-pink-500 text-white"
     style={{ width: "250px" }}
   >
     <div style={{ padding: "16px" }}>
@@ -523,8 +523,8 @@ These are specialized components for structuring card content. They provide cons
     </CardBody>
     <CardFooter>
       <div style={{ display: "flex", gap: "8px" }}>
-        <Button size='sm'>Learn More</Button>
-        <Button variant='outline' size='sm'>
+        <Button size="sm">Learn More</Button>
+        <Button variant="outline" size="sm">
           Register
         </Button>
       </div>

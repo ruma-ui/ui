@@ -246,16 +246,16 @@ const ControlledComponent = (args: Partial<SelectProps>) => {
   const [value, setValue] = useState("");
 
   return (
-    <div className='w-80'>
+    <div className="w-80">
       <Select
         {...args}
         value={value}
         onValueChange={setValue}
         options={countryOptions}
-        label='Controlled Select'
-        placeholder='Select your country...'
+        label="Controlled Select"
+        placeholder="Select your country..."
       />
-      <p className='mt-2 text-sm text-gray-600'>Selected value: {value || "None"}</p>
+      <p className="mt-2 text-sm text-gray-600">Selected value: {value || "None"}</p>
     </div>
   );
 };

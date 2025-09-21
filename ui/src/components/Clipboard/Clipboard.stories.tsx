@@ -13,7 +13,7 @@ const meta: Meta<typeof Clipboard> = {
   },
   decorators: [
     Story => (
-      <div className='flex items-center justify-center p-8'>
+      <div className="flex items-center justify-center p-8">
         <Story />
       </div>
     ),

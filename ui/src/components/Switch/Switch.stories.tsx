@@ -165,12 +165,12 @@ const ControlledComponent = (args: Partial<React.ComponentProps<typeof Switch>>)
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className='space-y-4'>
-      <Switch {...args} label='Controlled switch' checked={checked} onCheckedChange={setChecked} />
-      <p className='text-sm text-gray-600'>Status: {checked ? "On" : "Off"}</p>
+    <div className="space-y-4">
+      <Switch {...args} label="Controlled switch" checked={checked} onCheckedChange={setChecked} />
+      <p className="text-sm text-gray-600">Status: {checked ? "On" : "Off"}</p>
       <button
         onClick={() => setChecked(!checked)}
-        className='rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600'
+        className="rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600"
       >
         Toggle from outside
       </button>
@@ -195,36 +195,36 @@ const SettingsPanelComponent = (args: Partial<React.ComponentProps<typeof Switch
   };
 
   return (
-    <div className='w-80 space-y-6 rounded-lg bg-white p-6 shadow-lg'>
-      <h3 className='text-lg font-semibold text-gray-900'>Settings</h3>
-      <div className='space-y-4'>
+    <div className="w-80 space-y-6 rounded-lg bg-white p-6 shadow-lg">
+      <h3 className="text-lg font-semibold text-gray-900">Settings</h3>
+      <div className="space-y-4">
         <Switch
-          label='Push notifications'
-          description='Get notified about important updates'
+          label="Push notifications"
+          description="Get notified about important updates"
           checked={settings.notifications}
           onCheckedChange={updateSetting("notifications")}
         />
         <Switch
-          label='Auto-save drafts'
-          description='Automatically save your work every 30 seconds'
+          label="Auto-save drafts"
+          description="Automatically save your work every 30 seconds"
           checked={settings.autoSave}
           onCheckedChange={updateSetting("autoSave")}
         />
         <Switch
-          label='Dark mode'
-          description='Use dark theme for better low-light viewing'
+          label="Dark mode"
+          description="Use dark theme for better low-light viewing"
           checked={settings.darkMode}
           onCheckedChange={updateSetting("darkMode")}
         />
         <Switch
-          label='Analytics'
-          description='Help us improve by sharing anonymous usage data'
+          label="Analytics"
+          description="Help us improve by sharing anonymous usage data"
           checked={settings.analytics}
           onCheckedChange={updateSetting("analytics")}
         />
       </div>
-      <div className='border-t border-gray-200 pt-4'>
-        <pre className='text-xs text-gray-600'>{JSON.stringify(settings, null, 2)}</pre>
+      <div className="border-t border-gray-200 pt-4">
+        <pre className="text-xs text-gray-600">{JSON.stringify(settings, null, 2)}</pre>
       </div>
     </div>
   );

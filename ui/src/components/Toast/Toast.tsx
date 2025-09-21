@@ -124,10 +124,10 @@ const toastAnimations = {
 
 // Default icons for variants
 const variantIcons = {
-  success: <HiOutlineCheckCircle className='h-5 w-5' />,
-  error: <HiOutlineExclamationCircle className='h-5 w-5' />,
-  warning: <HiOutlineExclamation className='h-5 w-5' />,
-  info: <HiOutlineInformationCircle className='h-5 w-5' />,
+  success: <HiOutlineCheckCircle className="h-5 w-5" />,
+  error: <HiOutlineExclamationCircle className="h-5 w-5" />,
+  warning: <HiOutlineExclamation className="h-5 w-5" />,
+  info: <HiOutlineInformationCircle className="h-5 w-5" />,
 };
 
 export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
@@ -225,9 +225,9 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       <div
         ref={ref || toastRef}
         className={toastClasses}
-        role='alert'
-        aria-live='assertive'
-        aria-atomic='true'
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
         aria-label={ariaLabel}
         aria-labelledby={title ? titleId : undefined}
         aria-describedby={description || children ? descId : undefined}
@@ -237,12 +237,12 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
         {...props}
       >
         {/* Icon */}
-        <div className='flex shrink-0 items-center'>{icon || variantIcons[variant]}</div>
+        <div className="flex shrink-0 items-center">{icon || variantIcons[variant]}</div>
 
         {/* Content */}
         <div className={contentBase}>
           {children ? (
-            <div id={descId} className='break-words'>
+            <div id={descId} className="break-words">
               {children}
             </div>
           ) : (
@@ -264,12 +264,12 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
         {/* Close button */}
         {showCloseButton && (
           <button
-            type='button'
+            type="button"
             className={closeButtonBase}
             onClick={onClose}
-            aria-label='Close notification'
+            aria-label="Close notification"
           >
-            <IoClose className='h-4 w-4' />
+            <IoClose className="h-4 w-4" />
           </button>
         )}
       </div>

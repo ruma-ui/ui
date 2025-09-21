@@ -106,7 +106,7 @@ const statusOutlineStyles = {
 const clickableStyles = tw`cursor-pointer hover:opacity-80 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
 
 // Default user icon
-const UserIcon = () => <HiOutlineUser className='h-full w-full text-gray-400' />;
+const UserIcon = () => <HiOutlineUser className="h-full w-full text-gray-400" />;
 
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   (
@@ -182,18 +182,18 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
           <img
             src={src}
             alt={alt || "Avatar"}
-            className='h-full w-full object-cover'
+            className="h-full w-full object-cover"
             onError={handleImageError}
             onLoad={handleImageLoad}
           />
         )}
 
         {/* Initials */}
-        {showInitials && <span className='uppercase select-none'>{initials.slice(0, 2)}</span>}
+        {showInitials && <span className="uppercase select-none">{initials.slice(0, 2)}</span>}
 
         {/* Fallback */}
         {showFallback && (
-          <div className='flex h-full w-full items-center justify-center'>
+          <div className="flex h-full w-full items-center justify-center">
             {fallback || <UserIcon />}
           </div>
         )}

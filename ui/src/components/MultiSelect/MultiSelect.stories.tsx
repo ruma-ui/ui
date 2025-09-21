@@ -274,16 +274,16 @@ const ControlledComponent = (args: Partial<MultiSelectProps>) => {
   const [value, setValue] = useState<string[]>(["option1", "option3"]);
 
   return (
-    <div className='w-80'>
+    <div className="w-80">
       <MultiSelect
         {...args}
         value={value}
         onValueChange={setValue}
         options={defaultOptions}
-        label='Controlled MultiSelect'
-        placeholder='Select options...'
+        label="Controlled MultiSelect"
+        placeholder="Select options..."
       />
-      <p className='mt-2 text-sm text-gray-600'>Selected values: {value.join(", ") || "None"}</p>
+      <p className="mt-2 text-sm text-gray-600">Selected values: {value.join(", ") || "None"}</p>
     </div>
   );
 };

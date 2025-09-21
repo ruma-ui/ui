@@ -158,7 +158,7 @@ export const FullSize: Story = {
   },
   decorators: [
     Story => (
-      <div className='h-full min-h-full border border-gray-200 py-10'>
+      <div className="h-full min-h-full border border-gray-200 py-10">
         <Story />
       </div>
     ),

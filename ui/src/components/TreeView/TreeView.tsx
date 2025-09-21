@@ -321,19 +321,19 @@ export const TreeItemContent: React.FC<TreeItemContentProps> = ({
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={disabled ? -1 : 0}
-      role='treeitem'
+      role="treeitem"
       aria-selected={isSelected}
       aria-expanded={isExpanded}
       aria-disabled={disabled}
       {...props}
     >
       {indentGuide && <IndentGuide level={level} />}
-      <div className='flex items-center' style={{ paddingLeft: `${level * 16 + 8}px` }}>
+      <div className="flex items-center" style={{ paddingLeft: `${level * 16 + 8}px` }}>
         {hasTrigger ? (
           children
         ) : (
           <div
-            className='flex flex-1 items-center gap-1'
+            className="flex flex-1 items-center gap-1"
             style={{ marginLeft: `${level > 0 ? 16 : 0}px` }}
           >
             {children}
@@ -371,11 +371,11 @@ export const TreeItemTrigger: React.FC<TreeItemTriggerProps> = ({
       disabled={disabled}
       {...props}
     >
-      <div className='flex flex-1 items-center gap-1'>
+      <div className="flex flex-1 items-center gap-1">
         {hasChildren ? (
           <IoChevronForward className={cn(expandIcon, isExpanded && "rotate-90")} />
         ) : (
-          <div className='w-4' /> // Placeholder to maintain alignment
+          <div className="w-4" /> // Placeholder to maintain alignment
         )}
         {children}
       </div>

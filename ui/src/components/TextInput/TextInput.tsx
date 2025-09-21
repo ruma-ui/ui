@@ -166,7 +166,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           )}
         >
           {startIcon && (
-            <span className='flex shrink-0 items-center text-gray-500'>{startIcon}</span>
+            <span className="flex shrink-0 items-center text-gray-500">{startIcon}</span>
           )}
           <input
             ref={inputRef}
@@ -180,14 +180,14 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             disabled={disabled}
             {...props}
           />
-          {endIcon && <span className='flex shrink-0 items-center text-gray-500'>{endIcon}</span>}
+          {endIcon && <span className="flex shrink-0 items-center text-gray-500">{endIcon}</span>}
         </div>
         {hasAssistive && (
-          <div id={assistiveId} className='mt-1 min-h-[1rem]'>
+          <div id={assistiveId} className="mt-1 min-h-[1rem]">
             {error && errorMessage ? (
-              <span className='text-sm text-red-600'>{errorMessage}</span>
+              <span className="text-sm text-red-600">{errorMessage}</span>
             ) : description ? (
-              <span className='text-sm text-gray-600'>{description}</span>
+              <span className="text-sm text-gray-600">{description}</span>
             ) : null}
           </div>
         )}

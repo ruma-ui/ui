@@ -107,18 +107,18 @@ const SuccessComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600'
+        className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
         onClick={() => setOpen(true)}
       >
         Show Success Toast
       </button>
       <Toast
         open={open}
-        variant='success'
-        title='Success!'
-        description='Your action was completed successfully.'
+        variant="success"
+        title="Success!"
+        description="Your action was completed successfully."
         onClose={() => setOpen(false)}
       />
     </div>
@@ -133,18 +133,18 @@ const ErrorComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600'
+        className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
         onClick={() => setOpen(true)}
       >
         Show Error Toast
       </button>
       <Toast
         open={open}
-        variant='error'
-        title='Error'
-        description='Something went wrong. Please try again.'
+        variant="error"
+        title="Error"
+        description="Something went wrong. Please try again."
         onClose={() => setOpen(false)}
       />
     </div>
@@ -159,18 +159,18 @@ const WarningComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600'
+        className="rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
         onClick={() => setOpen(true)}
       >
         Show Warning Toast
       </button>
       <Toast
         open={open}
-        variant='warning'
-        title='Warning'
-        description='Please review your input before proceeding.'
+        variant="warning"
+        title="Warning"
+        description="Please review your input before proceeding."
         onClose={() => setOpen(false)}
       />
     </div>
@@ -185,17 +185,17 @@ const InfoComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         onClick={() => setOpen(true)}
       >
         Show Info Toast
       </button>
       <Toast
         open={open}
-        variant='info'
-        title='Information'
+        variant="info"
+        title="Information"
         description="Here's some important information for you."
         onClose={() => setOpen(false)}
       />
@@ -224,28 +224,28 @@ const VariantsComponent = () => {
   };
 
   return (
-    <div className='space-y-4'>
-      <div className='flex flex-wrap gap-2'>
+    <div className="space-y-4">
+      <div className="flex flex-wrap gap-2">
         <button
-          className='rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600'
+          className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
           onClick={() => showToast("success")}
         >
           Show Success
         </button>
         <button
-          className='rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600'
+          className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
           onClick={() => showToast("error")}
         >
           Show Error
         </button>
         <button
-          className='rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600'
+          className="rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
           onClick={() => showToast("warning")}
         >
           Show Warning
         </button>
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("info")}
         >
           Show Info
@@ -253,34 +253,34 @@ const VariantsComponent = () => {
       </div>
       <Toast
         open={toasts.success}
-        variant='success'
-        title='Success!'
-        description='Your action was completed successfully.'
-        position='top-right'
+        variant="success"
+        title="Success!"
+        description="Your action was completed successfully."
+        position="top-right"
         onClose={() => closeToast("success")}
       />
       <Toast
         open={toasts.error}
-        variant='error'
-        title='Error'
-        description='Something went wrong. Please try again.'
-        position='top-right'
+        variant="error"
+        title="Error"
+        description="Something went wrong. Please try again."
+        position="top-right"
         onClose={() => closeToast("error")}
       />
       <Toast
         open={toasts.warning}
-        variant='warning'
-        title='Warning'
-        description='Please review your input before proceeding.'
-        position='top-right'
+        variant="warning"
+        title="Warning"
+        description="Please review your input before proceeding."
+        position="top-right"
         onClose={() => closeToast("warning")}
       />
       <Toast
         open={toasts.info}
-        variant='info'
-        title='Information'
+        variant="info"
+        title="Information"
         description="Here's some important information for you."
-        position='top-right'
+        position="top-right"
         onClose={() => closeToast("info")}
       />
     </div>
@@ -310,40 +310,40 @@ const PositionsComponent = () => {
   };
 
   return (
-    <div className='space-y-4'>
-      <div className='grid grid-cols-2 gap-2'>
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-2">
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("top-left")}
         >
           Top Left
         </button>
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("top-center")}
         >
           Top Center
         </button>
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("top-right")}
         >
           Top Right
         </button>
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("bottom-left")}
         >
           Bottom Left
         </button>
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("bottom-center")}
         >
           Bottom Center
         </button>
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("bottom-right")}
         >
           Bottom Right
@@ -351,49 +351,49 @@ const PositionsComponent = () => {
       </div>
       <Toast
         open={toasts["top-left"]}
-        variant='success'
-        title='Top Left'
-        position='top-left'
+        variant="success"
+        title="Top Left"
+        position="top-left"
         duration={0}
         onClose={() => closeToast("top-left")}
       />
       <Toast
         open={toasts["top-center"]}
-        variant='info'
-        title='Top Center'
-        position='top-center'
+        variant="info"
+        title="Top Center"
+        position="top-center"
         duration={0}
         onClose={() => closeToast("top-center")}
       />
       <Toast
         open={toasts["top-right"]}
-        variant='warning'
-        title='Top Right'
-        position='top-right'
+        variant="warning"
+        title="Top Right"
+        position="top-right"
         duration={0}
         onClose={() => closeToast("top-right")}
       />
       <Toast
         open={toasts["bottom-left"]}
-        variant='error'
-        title='Bottom Left'
-        position='bottom-left'
+        variant="error"
+        title="Bottom Left"
+        position="bottom-left"
         duration={0}
         onClose={() => closeToast("bottom-left")}
       />
       <Toast
         open={toasts["bottom-center"]}
-        variant='success'
-        title='Bottom Center'
-        position='bottom-center'
+        variant="success"
+        title="Bottom Center"
+        position="bottom-center"
         duration={0}
         onClose={() => closeToast("bottom-center")}
       />
       <Toast
         open={toasts["bottom-right"]}
-        variant='info'
-        title='Bottom Right'
-        position='bottom-right'
+        variant="info"
+        title="Bottom Right"
+        position="bottom-right"
         duration={0}
         onClose={() => closeToast("bottom-right")}
       />
@@ -421,22 +421,22 @@ const SizesComponent = () => {
   };
 
   return (
-    <div className='space-y-4'>
-      <div className='flex gap-2'>
+    <div className="space-y-4">
+      <div className="flex gap-2">
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("sm")}
         >
           Small
         </button>
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("md")}
         >
           Medium
         </button>
         <button
-          className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           onClick={() => showToast("lg")}
         >
           Large
@@ -444,31 +444,31 @@ const SizesComponent = () => {
       </div>
       <Toast
         open={toasts.sm}
-        variant='info'
-        title='Small Toast'
-        description='This is a small toast notification.'
-        size='sm'
-        position='top-right'
+        variant="info"
+        title="Small Toast"
+        description="This is a small toast notification."
+        size="sm"
+        position="top-right"
         duration={0}
         onClose={() => closeToast("sm")}
       />
       <Toast
         open={toasts.md}
-        variant='success'
-        title='Medium Toast'
-        description='This is a medium toast notification with more content.'
-        size='md'
-        position='top-right'
+        variant="success"
+        title="Medium Toast"
+        description="This is a medium toast notification with more content."
+        size="md"
+        position="top-right"
         duration={0}
         onClose={() => closeToast("md")}
       />
       <Toast
         open={toasts.lg}
-        variant='warning'
-        title='Large Toast'
-        description='This is a large toast notification with even more detailed information and content.'
-        size='lg'
-        position='top-right'
+        variant="warning"
+        title="Large Toast"
+        description="This is a large toast notification with even more detailed information and content."
+        size="lg"
+        position="top-right"
         duration={0}
         onClose={() => closeToast("lg")}
       />
@@ -484,19 +484,19 @@ const WithCustomIconComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         onClick={() => setOpen(true)}
       >
         Show Custom Icon Toast
       </button>
       <Toast
         open={open}
-        variant='info'
-        title='Custom Icon'
-        description='This toast has a custom icon.'
-        icon={<FiZap className='h-5 w-5' />}
+        variant="info"
+        title="Custom Icon"
+        description="This toast has a custom icon."
+        icon={<FiZap className="h-5 w-5" />}
         onClose={() => setOpen(false)}
       />
     </div>
@@ -511,14 +511,14 @@ const WithTitleOnlyComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600'
+        className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
         onClick={() => setOpen(true)}
       >
         Show Title Only Toast
       </button>
-      <Toast open={open} variant='success' title='Title Only' onClose={() => setOpen(false)} />
+      <Toast open={open} variant="success" title="Title Only" onClose={() => setOpen(false)} />
     </div>
   );
 };
@@ -531,17 +531,17 @@ const WithDescriptionOnlyComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         onClick={() => setOpen(true)}
       >
         Show Description Only Toast
       </button>
       <Toast
         open={open}
-        variant='info'
-        description='This toast has only a description without a title.'
+        variant="info"
+        description="This toast has only a description without a title."
         onClose={() => setOpen(false)}
       />
     </div>
@@ -556,18 +556,18 @@ const WithChildrenComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600'
+        className="rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
         onClick={() => setOpen(true)}
       >
         Show Custom Content Toast
       </button>
-      <Toast open={open} variant='warning' onClose={() => setOpen(false)}>
+      <Toast open={open} variant="warning" onClose={() => setOpen(false)}>
         <div>
           <strong>Custom Content</strong>
           <p>This toast uses children prop for custom content layout.</p>
-          <button className='mt-2 text-sm underline'>Action</button>
+          <button className="mt-2 text-sm underline">Action</button>
         </div>
       </Toast>
     </div>
@@ -582,18 +582,18 @@ const AutoDismissComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600'
+        className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
         onClick={() => setOpen(true)}
       >
         Show Auto-dismiss Toast
       </button>
       <Toast
         open={open}
-        variant='success'
-        title='Auto-dismiss'
-        description='This toast will auto-dismiss in 3 seconds.'
+        variant="success"
+        title="Auto-dismiss"
+        description="This toast will auto-dismiss in 3 seconds."
         duration={3000}
         onClose={() => setOpen(false)}
       />
@@ -609,17 +609,17 @@ const NoAutoDismissComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         onClick={() => setOpen(true)}
       >
         Show Persistent Toast
       </button>
       <Toast
         open={open}
-        variant='info'
-        title='Persistent Toast'
+        variant="info"
+        title="Persistent Toast"
         description="This toast won't auto-dismiss. Click the close button to dismiss it."
         duration={0}
         onClose={() => setOpen(false)}
@@ -636,18 +636,18 @@ const NoCloseButtonComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600'
+        className="rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
         onClick={() => setOpen(true)}
       >
         Show No Close Button Toast
       </button>
       <Toast
         open={open}
-        variant='warning'
-        title='No Close Button'
-        description='This toast has no close button and will auto-dismiss.'
+        variant="warning"
+        title="No Close Button"
+        description="This toast has no close button and will auto-dismiss."
         showCloseButton={false}
         duration={4000}
         onClose={() => setOpen(false)}
@@ -664,18 +664,18 @@ const NoAnimationComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <button
-        className='rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600'
+        className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
         onClick={() => setOpen(true)}
       >
         Show No Animation Toast
       </button>
       <Toast
         open={open}
-        variant='error'
-        title='No Animation'
-        description='This toast appears without animation.'
+        variant="error"
+        title="No Animation"
+        description="This toast appears without animation."
         animation={false}
         onClose={() => setOpen(false)}
       />
@@ -694,34 +694,34 @@ export const WithToastProvider: Story = {
       const { addToast, success, error, warning, info } = useToast();
 
       return (
-        <div className='space-y-4'>
-          <div className='flex flex-wrap gap-2'>
+        <div className="space-y-4">
+          <div className="flex flex-wrap gap-2">
             <button
-              className='rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600'
+              className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
               onClick={() => success("Success!", "Operation completed successfully")}
             >
               Show Success
             </button>
             <button
-              className='rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600'
+              className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
               onClick={() => error("Error!", "Something went wrong")}
             >
               Show Error
             </button>
             <button
-              className='rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600'
+              className="rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
               onClick={() => warning("Warning!", "Please check your input")}
             >
               Show Warning
             </button>
             <button
-              className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
               onClick={() => info("Info", "Here's some information")}
             >
               Show Info
             </button>
             <button
-              className='rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600'
+              className="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
               onClick={() =>
                 addToast({
                   variant: "info",
@@ -736,7 +736,7 @@ export const WithToastProvider: Story = {
               Custom Toast
             </button>
           </div>
-          <p className='text-sm text-gray-600'>
+          <p className="text-sm text-gray-600">
             Click the buttons above to show different types of toasts using the ToastProvider.
           </p>
         </div>
@@ -777,22 +777,22 @@ export const PromiseToast: Story = {
       };
 
       return (
-        <div className='space-y-4'>
-          <div className='flex flex-wrap gap-2'>
+        <div className="space-y-4">
+          <div className="flex flex-wrap gap-2">
             <button
-              className='rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600'
+              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
               onClick={handlePromise}
             >
               Simple Promise
             </button>
             <button
-              className='rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600'
+              className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
               onClick={handlePromiseWithData}
             >
               Promise with Data
             </button>
           </div>
-          <p className='text-sm text-gray-600'>
+          <p className="text-sm text-gray-600">
             Click to see promise-based toasts that show loading, success, and error states.
           </p>
         </div>
@@ -840,14 +840,14 @@ export const ToastQueue: Story = {
       };
 
       return (
-        <div className='space-y-4'>
+        <div className="space-y-4">
           <button
-            className='rounded bg-purple-500 px-4 py-2 text-white hover:bg-purple-600'
+            className="rounded bg-purple-500 px-4 py-2 text-white hover:bg-purple-600"
             onClick={showMultipleToasts}
           >
             Show Toast Queue
           </button>
-          <p className='text-sm text-gray-600'>
+          <p className="text-sm text-gray-600">
             Click to show multiple toasts that stack and auto-dismiss in sequence.
           </p>
         </div>

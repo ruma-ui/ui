@@ -113,7 +113,7 @@ export const Default: Story = {
     showCustomControls: true,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
+    <div className="w-full max-w-2xl">
       <VideoPlayer {...args} />
     </div>
   ),
@@ -127,7 +127,7 @@ export const Basic: Story = {
     showCustomControls: true,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
+    <div className="w-full max-w-2xl">
       <VideoPlayer {...args} />
     </div>
   ),
@@ -144,7 +144,7 @@ export const Autoplay: Story = {
     showCustomControls: true,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
+    <div className="w-full max-w-2xl">
       <VideoPlayer {...args} />
     </div>
   ),
@@ -160,7 +160,7 @@ export const Looping: Story = {
     showCustomControls: true,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
+    <div className="w-full max-w-2xl">
       <VideoPlayer {...args} />
     </div>
   ),
@@ -176,7 +176,7 @@ export const Muted: Story = {
     showCustomControls: true,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
+    <div className="w-full max-w-2xl">
       <VideoPlayer {...args} />
     </div>
   ),
@@ -191,7 +191,7 @@ export const NativeControls: Story = {
     showCustomControls: false,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
+    <div className="w-full max-w-2xl">
       <VideoPlayer {...args} />
     </div>
   ),
@@ -200,10 +200,10 @@ export const NativeControls: Story = {
 // Different aspect ratios
 export const AspectRatios: Story = {
   render: () => (
-    <div className='space-y-8'>
+    <div className="space-y-8">
       <div>
-        <h3 className='mb-4 text-lg font-semibold'>16:9 Aspect Ratio</h3>
-        <div className='aspect-video w-full max-w-2xl'>
+        <h3 className="mb-4 text-lg font-semibold">16:9 Aspect Ratio</h3>
+        <div className="aspect-video w-full max-w-2xl">
           <VideoPlayer
             src={SAMPLE_VIDEO}
             poster={SAMPLE_POSTER}
@@ -214,8 +214,8 @@ export const AspectRatios: Story = {
       </div>
 
       <div>
-        <h3 className='mb-4 text-lg font-semibold'>4:3 Aspect Ratio</h3>
-        <div className='aspect-[4/3] w-full max-w-xl'>
+        <h3 className="mb-4 text-lg font-semibold">4:3 Aspect Ratio</h3>
+        <div className="aspect-[4/3] w-full max-w-xl">
           <VideoPlayer
             src={SAMPLE_VIDEO}
             poster={SAMPLE_POSTER}
@@ -226,8 +226,8 @@ export const AspectRatios: Story = {
       </div>
 
       <div>
-        <h3 className='mb-4 text-lg font-semibold'>Square Aspect Ratio</h3>
-        <div className='aspect-square w-full max-w-md'>
+        <h3 className="mb-4 text-lg font-semibold">Square Aspect Ratio</h3>
+        <div className="aspect-square w-full max-w-md">
           <VideoPlayer
             src={SAMPLE_VIDEO}
             poster={SAMPLE_POSTER}
@@ -256,8 +256,8 @@ export const WithCallbacks: Story = {
       console.log(`Fullscreen: ${isFullscreen ? "entered" : "exited"}`),
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
-      <p className='mb-4 text-sm text-gray-600'>
+    <div className="w-full max-w-2xl">
+      <p className="mb-4 text-sm text-gray-600">
         Check the browser console to see callback events being logged.
       </p>
       <VideoPlayer {...args} />
@@ -274,11 +274,11 @@ export const CustomStyled: Story = {
     showCustomControls: true,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
+    <div className="w-full max-w-2xl">
       <VideoPlayer
         {...args}
-        className='rounded-xl border-4 border-blue-500 shadow-2xl'
-        videoClassName='rounded-lg'
+        className="rounded-xl border-4 border-blue-500 shadow-2xl"
+        videoClassName="rounded-lg"
       />
     </div>
   ),
@@ -287,10 +287,10 @@ export const CustomStyled: Story = {
 // Multiple video players
 export const MultiplePlayers: Story = {
   render: () => (
-    <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
       <div>
-        <h3 className='mb-4 text-lg font-semibold'>Player 1</h3>
-        <div className='aspect-video'>
+        <h3 className="mb-4 text-lg font-semibold">Player 1</h3>
+        <div className="aspect-video">
           <VideoPlayer
             src={SAMPLE_VIDEO}
             poster={SAMPLE_POSTER}
@@ -301,8 +301,8 @@ export const MultiplePlayers: Story = {
       </div>
 
       <div>
-        <h3 className='mb-4 text-lg font-semibold'>Player 2 (Muted)</h3>
-        <div className='aspect-video'>
+        <h3 className="mb-4 text-lg font-semibold">Player 2 (Muted)</h3>
+        <div className="aspect-video">
           <VideoPlayer
             src={SAMPLE_VIDEO}
             poster={SAMPLE_POSTER}
@@ -339,8 +339,8 @@ export const WithSubtitles: Story = {
     ],
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
-      <p className='mb-4 text-sm text-gray-600'>
+    <div className="w-full max-w-2xl">
+      <p className="mb-4 text-sm text-gray-600">
         Click the settings icon to access subtitle options.
       </p>
       <VideoPlayer {...args} />
@@ -358,8 +358,8 @@ export const WithPlaybackRates: Story = {
     playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2],
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
-      <p className='mb-4 text-sm text-gray-600'>
+    <div className="w-full max-w-2xl">
+      <p className="mb-4 text-sm text-gray-600">
         Click the settings icon to access playback speed controls.
       </p>
       <VideoPlayer {...args} />
@@ -384,8 +384,8 @@ export const WithSettingsMenu: Story = {
     ],
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
-      <p className='mb-4 text-sm text-gray-600'>
+    <div className="w-full max-w-2xl">
+      <p className="mb-4 text-sm text-gray-600">
         The settings menu includes playback speed and subtitle controls.
       </p>
       <VideoPlayer {...args} />
@@ -402,8 +402,8 @@ export const WithFeedback: Story = {
     showCustomControls: true,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
-      <p className='mb-4 text-sm text-gray-600'>
+    <div className="w-full max-w-2xl">
+      <p className="mb-4 text-sm text-gray-600">
         Try playing/pausing, seeking, or adjusting volume to see feedback overlays.
       </p>
       <VideoPlayer {...args} />
@@ -420,8 +420,8 @@ export const WithTooltips: Story = {
     showCustomControls: true,
   },
   render: args => (
-    <div className='w-full max-w-2xl'>
-      <p className='mb-4 text-sm text-gray-600'>
+    <div className="w-full max-w-2xl">
+      <p className="mb-4 text-sm text-gray-600">
         Hover over controls to see tooltips with keyboard shortcuts.
       </p>
       <VideoPlayer {...args} />

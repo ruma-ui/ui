@@ -110,25 +110,25 @@ const renderSpinner = (
     <svg
       className={cn(sizes[size], speeds[speed])}
       viewBox={`0 0 ${svgSize} ${svgSize}`}
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      aria-hidden='true'
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <circle
         cx={center}
         cy={center}
         r={radius}
-        stroke='currentColor'
+        stroke="currentColor"
         strokeWidth={strokeWidthValue}
-        opacity='0.25'
+        opacity="0.25"
       />
       <path
         d={`M ${center} ${strokeWidthValue} A ${radius} ${radius} 0 0 1 ${
           center + radius
         } ${center}`}
-        stroke='currentColor'
+        stroke="currentColor"
         strokeWidth={strokeWidthValue}
-        strokeLinecap='round'
+        strokeLinecap="round"
       />
     </svg>
   );
@@ -377,12 +377,12 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
           className
         )}
         style={color ? { color } : undefined}
-        role='status'
+        role="status"
         aria-label={label || "Loading"}
         {...props}
       >
         {renderLoader()}
-        {label && <span className='text-sm font-medium text-current'>{label}</span>}
+        {label && <span className="text-sm font-medium text-current">{label}</span>}
       </div>
     );
   }

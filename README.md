@@ -37,7 +37,7 @@ import { Button, Card } from "@ruma-ui/ui";
 function App() {
   return (
     <Card>
-      <Button variant='primary' size='lg'>
+      <Button variant="primary" size="lg">
         Get Started
       </Button>
     </Card>

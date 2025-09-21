@@ -182,7 +182,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         {showSkeleton && !isLoaded && (
           <Skeleton
             variant={skeletonVariant}
-            size='xs' // Use smallest size to minimize default styling
+            size="xs" // Use smallest size to minimize default styling
             width={fill ? "100%" : typeof width === "number" ? width : 300}
             height={fill ? "100%" : typeof height === "number" ? height : 200}
             animation={skeletonAnimation}

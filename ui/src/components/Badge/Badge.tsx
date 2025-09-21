@@ -251,7 +251,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
           <span className={cn("flex items-center", sizes[size].icon)}>{startIcon}</span>
         )}
 
-        <span className='truncate'>{children}</span>
+        <span className="truncate">{children}</span>
 
         {endIcon && !dismissible && (
           <span className={cn("flex items-center", sizes[size].icon)}>{endIcon}</span>
@@ -259,15 +259,15 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 
         {dismissible && (
           <button
-            type='button'
+            type="button"
             className={cn(
               "ml-1 flex items-center rounded-full p-0.5 hover:bg-black/10 focus:ring-1 focus:ring-white/50 focus:outline-none",
               sizes[size].icon
             )}
             onClick={handleDismiss}
-            aria-label='Remove badge'
+            aria-label="Remove badge"
           >
-            <IoClose className='h-3 w-3' />
+            <IoClose className="h-3 w-3" />
           </button>
         )}
       </Component>

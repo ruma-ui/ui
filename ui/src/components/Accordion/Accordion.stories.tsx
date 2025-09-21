@@ -41,21 +41,21 @@ export const Default: Story = {
     multiple: false,
   },
   render: args => (
-    <div className='w-96'>
+    <div className="w-96">
       <Accordion {...args}>
-        <AccordionItem value='item-1'>
+        <AccordionItem value="item-1">
           <AccordionTrigger>Is it accessible?</AccordionTrigger>
           <AccordionContent>
             Yes. It adheres to the WAI-ARIA design pattern and uses semantic HTML elements.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value='item-2'>
+        <AccordionItem value="item-2">
           <AccordionTrigger>Is it styled?</AccordionTrigger>
           <AccordionContent>
             Yes. It comes with clean, minimal styles that work perfectly in modern interfaces.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value='item-3'>
+        <AccordionItem value="item-3">
           <AccordionTrigger>Is it animated?</AccordionTrigger>
           <AccordionContent>
             Yes. It includes smooth expand/collapse animations that are performant and accessible.
@@ -72,21 +72,21 @@ export const Multiple: Story = {
     multiple: true,
   },
   render: args => (
-    <div className='w-96'>
+    <div className="w-96">
       <Accordion {...args}>
-        <AccordionItem value='item-1'>
+        <AccordionItem value="item-1">
           <AccordionTrigger>First Item</AccordionTrigger>
           <AccordionContent>
             Multiple items can be expanded at the same time when multiple prop is true.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value='item-2'>
+        <AccordionItem value="item-2">
           <AccordionTrigger>Second Item</AccordionTrigger>
           <AccordionContent>
             This item can be expanded independently of other items.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value='item-3'>
+        <AccordionItem value="item-3">
           <AccordionTrigger>Third Item</AccordionTrigger>
           <AccordionContent>
             Try expanding all items to see them open simultaneously.
@@ -100,19 +100,19 @@ export const Multiple: Story = {
 // Disabled items
 export const WithDisabledItems: Story = {
   render: () => (
-    <div className='w-96'>
+    <div className="w-96">
       <Accordion>
-        <AccordionItem value='item-1'>
+        <AccordionItem value="item-1">
           <AccordionTrigger>Enabled Item</AccordionTrigger>
           <AccordionContent>This is a normal, enabled accordion item.</AccordionContent>
         </AccordionItem>
-        <AccordionItem value='item-2' disabled>
+        <AccordionItem value="item-2" disabled>
           <AccordionTrigger>Disabled Item</AccordionTrigger>
           <AccordionContent>
             This content cannot be accessed because the item is disabled.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value='item-3'>
+        <AccordionItem value="item-3">
           <AccordionTrigger>Another Enabled Item</AccordionTrigger>
           <AccordionContent>This is another normal, enabled accordion item.</AccordionContent>
         </AccordionItem>
@@ -208,8 +208,8 @@ export const CustomStyled: Story = {
     ];
 
     return (
-      <div className='w-full max-w-lg'>
-        <Accordion className='overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm'>
+      <div className="w-full max-w-lg">
+        <Accordion className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
           {downloadOptions.map((option, index) => (
             <AccordionItem key={option.id} value={option.id}>
               <AccordionTrigger
@@ -217,42 +217,42 @@ export const CustomStyled: Story = {
                   index > 0 ? "border-t border-gray-100" : ""
                 }`}
               >
-                <div className='flex w-full items-center justify-between'>
-                  <div className='flex items-center space-x-3'>
+                <div className="flex w-full items-center justify-between">
+                  <div className="flex items-center space-x-3">
                     <div
                       className={`flex h-8 w-8 items-center justify-center rounded-lg ${option.iconBg}`}
                     >
-                      <option.icon className='h-4 w-4 text-white' />
+                      <option.icon className="h-4 w-4 text-white" />
                     </div>
-                    <div className='text-left'>
-                      <div className='flex items-center gap-2'>
-                        <span className='font-medium text-gray-900'>{option.title}</span>
+                    <div className="text-left">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium text-gray-900">{option.title}</span>
                         <span
                           className={`rounded px-1.5 py-0.5 text-xs font-medium ${option.status.color}`}
                         >
                           {option.status.label}
                         </span>
                       </div>
-                      <div className='text-sm text-gray-500'>{option.description}</div>
+                      <div className="text-sm text-gray-500">{option.description}</div>
                     </div>
                   </div>
                 </div>
               </AccordionTrigger>
-              <AccordionContent className='px-4'>
-                <div className='space-y-3'>
-                  <div className='text-sm text-gray-600'>
-                    <p className='mb-2'>
+              <AccordionContent className="px-4">
+                <div className="space-y-3">
+                  <div className="text-sm text-gray-600">
+                    <p className="mb-2">
                       {option.downloads.length > 1 ? "Choose your option:" : "Download:"}
                     </p>
-                    <div className='flex flex-wrap gap-2'>
+                    <div className="flex flex-wrap gap-2">
                       {option.downloads.map((download, downloadIndex) => (
-                        <Button key={downloadIndex} size='sm' variant={download.variant}>
+                        <Button key={downloadIndex} size="sm" variant={download.variant}>
                           {download.label}
                         </Button>
                       ))}
                     </div>
                   </div>
-                  <div className='text-xs text-gray-500'>
+                  <div className="text-xs text-gray-500">
                     {option.details.map((detail, detailIndex) => (
                       <p key={detailIndex}>{detail}</p>
                     ))}

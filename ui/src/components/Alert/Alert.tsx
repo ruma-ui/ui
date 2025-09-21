@@ -260,9 +260,9 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       <div ref={ref} className={alertClasses} role={role} id={id} {...props}>
         {renderIcon()}
 
-        <div className='min-w-0 flex-1'>
+        <div className="min-w-0 flex-1">
           {title && <div className={cn("mb-1", sizes[size].title)}>{title}</div>}
-          <div className='break-words'>{children}</div>
+          <div className="break-words">{children}</div>
         </div>
 
         {endIcon && !dismissible && (
@@ -273,7 +273,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 
         {dismissible && (
           <button
-            type='button'
+            type="button"
             className={cn(
               "flex shrink-0 items-start rounded-full p-1 transition-colors duration-200",
               "hover:bg-black/10 focus:ring-2 focus:ring-white/50 focus:outline-none",
@@ -281,9 +281,9 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             )}
             onClick={handleDismiss}
             onKeyDown={handleKeyDown}
-            aria-label='Dismiss alert'
+            aria-label="Dismiss alert"
           >
-            {dismissIcon || <IoClose className='h-4 w-4' />}
+            {dismissIcon || <IoClose className="h-4 w-4" />}
           </button>
         )}
       </div>

@@ -142,9 +142,9 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 
     const linkContent = (
       <>
-        {startIcon && <span className='flex shrink-0 items-center'>{startIcon}</span>}
-        <span className='truncate'>{children}</span>
-        {endIcon && <span className='flex shrink-0 items-center'>{endIcon}</span>}
+        {startIcon && <span className="flex shrink-0 items-center">{startIcon}</span>}
+        <span className="truncate">{children}</span>
+        {endIcon && <span className="flex shrink-0 items-center">{endIcon}</span>}
       </>
     );
 

@@ -88,14 +88,14 @@ const disabledItemBase = tw`cursor-not-allowed text-gray-400`;
 const animatedBase = tw`transition-all duration-200`;
 
 const DefaultSeparator = ({ size }: { size: "sm" | "md" | "lg" }) => (
-  <span className={cn("text-gray-400", sizes[size].text)} aria-hidden='true'>
+  <span className={cn("text-gray-400", sizes[size].text)} aria-hidden="true">
     /
   </span>
 );
 
 const CollapseIndicator = ({ size }: { size: "sm" | "md" | "lg" }) => (
   <button
-    type='button'
+    type="button"
     className={cn(
       itemBase,
       "cursor-pointer hover:text-gray-700",
@@ -103,7 +103,7 @@ const CollapseIndicator = ({ size }: { size: "sm" | "md" | "lg" }) => (
       sizes[size].padding,
       roundedOptions.sm
     )}
-    aria-label='Show hidden breadcrumb items'
+    aria-label="Show hidden breadcrumb items"
   >
     ...
   </button>
@@ -159,7 +159,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
     const containerClasses = cn(breadcrumbBase, fullWidth && "w-full", className);
 
     return (
-      <nav ref={ref} className={containerClasses} aria-label='Breadcrumb' {...props}>
+      <nav ref={ref} className={containerClasses} aria-label="Breadcrumb" {...props}>
         <ol className={cn("flex items-center", sizes[size].gap)}>
           {displayItems.map((item, index) => {
             const isLast = index === displayItems.length - 1;
@@ -167,7 +167,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
             const isCollapsed = item.label === "...";
 
             return (
-              <li key={`${item.label}-${index}`} className='flex items-center'>
+              <li key={`${item.label}-${index}`} className="flex items-center">
                 {isCollapsed ? (
                   <CollapseIndicator size={size} />
                 ) : item.href ? (
@@ -188,12 +188,12 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                     aria-current={isCurrent ? "page" : undefined}
                     aria-disabled={item.disabled}
                   >
-                    {item.icon && <span className='mr-2 flex items-center'>{item.icon}</span>}
+                    {item.icon && <span className="mr-2 flex items-center">{item.icon}</span>}
                     {item.label}
                   </a>
                 ) : (
                   <button
-                    type='button'
+                    type="button"
                     className={cn(
                       itemBase,
                       variants[variant],
@@ -209,7 +209,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                     disabled={item.disabled}
                     aria-current={isCurrent ? "page" : undefined}
                   >
-                    {item.icon && <span className='mr-2 flex items-center'>{item.icon}</span>}
+                    {item.icon && <span className="mr-2 flex items-center">{item.icon}</span>}
                     {item.label}
                   </button>
                 )}

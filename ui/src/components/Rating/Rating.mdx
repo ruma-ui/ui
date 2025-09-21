@@ -511,7 +511,7 @@ Adds animation effects to enhance user interaction.
 Allows custom styling via Tailwind CSS classes.
 
 ```jsx
-<Rating value={4} className='rounded-lg border bg-gradient-to-r from-blue-50 to-purple-50 p-4' />
+<Rating value={4} className="rounded-lg border bg-gradient-to-r from-blue-50 to-purple-50 p-4" />
 ```
 
 <Canvas of={RatingStories.CustomStyled} />
@@ -571,16 +571,16 @@ function ReviewForm() {
     <form onSubmit={handleSubmit}>
       <label>
         Overall Rating:
-        <Rating value={rating} onChange={setRating} label='Overall product rating' required />
+        <Rating value={rating} onChange={setRating} label="Overall product rating" required />
       </label>
 
       <textarea
         value={comment}
         onChange={e => setComment(e.target.value)}
-        placeholder='Tell us about your experience...'
+        placeholder="Tell us about your experience..."
       />
 
-      <button type='submit' disabled={rating === 0}>
+      <button type="submit" disabled={rating === 0}>
         Submit Review
       </button>
     </form>

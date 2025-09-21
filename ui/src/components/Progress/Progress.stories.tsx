@@ -69,23 +69,23 @@ type Story = StoryObj<typeof Progress>;
 
 export const Primary: Story = {
   render: () => (
-    <div className='w-80 space-y-6'>
-      <Progress value={75} variant='bar' size='md' appearance='filled' rounded='full' />
+    <div className="w-80 space-y-6">
+      <Progress value={75} variant="bar" size="md" appearance="filled" rounded="full" />
     </div>
   ),
 };
 
 export const Variants: Story = {
   render: () => (
-    <div className='w-80 space-y-6'>
+    <div className="w-80 space-y-6">
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Bar Variant</h4>
-        <Progress value={75} variant='bar' />
+        <h4 className="mb-2 text-sm font-medium">Bar Variant</h4>
+        <Progress value={75} variant="bar" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Circular Variant</h4>
-        <div className='flex justify-center'>
-          <Progress value={75} variant='circular' />
+        <h4 className="mb-2 text-sm font-medium">Circular Variant</h4>
+        <div className="flex justify-center">
+          <Progress value={75} variant="circular" />
         </div>
       </div>
     </div>
@@ -94,18 +94,18 @@ export const Variants: Story = {
 
 export const Appearances: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Filled Appearance</h4>
-        <Progress value={75} appearance='filled' />
+        <h4 className="mb-2 text-sm font-medium">Filled Appearance</h4>
+        <Progress value={75} appearance="filled" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Outline Appearance</h4>
-        <Progress value={75} appearance='outline' />
+        <h4 className="mb-2 text-sm font-medium">Outline Appearance</h4>
+        <Progress value={75} appearance="outline" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Soft Appearance</h4>
-        <Progress value={75} appearance='soft' />
+        <h4 className="mb-2 text-sm font-medium">Soft Appearance</h4>
+        <Progress value={75} appearance="soft" />
       </div>
     </div>
   ),
@@ -113,18 +113,18 @@ export const Appearances: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Small Size</h4>
-        <Progress value={75} size='sm' />
+        <h4 className="mb-2 text-sm font-medium">Small Size</h4>
+        <Progress value={75} size="sm" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Medium Size</h4>
-        <Progress value={75} size='md' />
+        <h4 className="mb-2 text-sm font-medium">Medium Size</h4>
+        <Progress value={75} size="md" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Large Size</h4>
-        <Progress value={75} size='lg' />
+        <h4 className="mb-2 text-sm font-medium">Large Size</h4>
+        <Progress value={75} size="lg" />
       </div>
     </div>
   ),
@@ -132,30 +132,30 @@ export const Sizes: Story = {
 
 export const RoundedVariants: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <div>
-        <h4 className='mb-2 text-sm font-medium'>No Rounding</h4>
-        <Progress value={75} rounded='none' />
+        <h4 className="mb-2 text-sm font-medium">No Rounding</h4>
+        <Progress value={75} rounded="none" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Small Rounding</h4>
-        <Progress value={75} rounded='sm' />
+        <h4 className="mb-2 text-sm font-medium">Small Rounding</h4>
+        <Progress value={75} rounded="sm" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Medium Rounding</h4>
-        <Progress value={75} rounded='md' />
+        <h4 className="mb-2 text-sm font-medium">Medium Rounding</h4>
+        <Progress value={75} rounded="md" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Large Rounding</h4>
-        <Progress value={75} rounded='lg' />
+        <h4 className="mb-2 text-sm font-medium">Large Rounding</h4>
+        <Progress value={75} rounded="lg" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Extra Large Rounding</h4>
-        <Progress value={75} rounded='xl' />
+        <h4 className="mb-2 text-sm font-medium">Extra Large Rounding</h4>
+        <Progress value={75} rounded="xl" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Full Rounding</h4>
-        <Progress value={75} rounded='full' />
+        <h4 className="mb-2 text-sm font-medium">Full Rounding</h4>
+        <Progress value={75} rounded="full" />
       </div>
     </div>
   ),
@@ -163,7 +163,7 @@ export const RoundedVariants: Story = {
 
 export const WithValue: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <Progress value={25} showValue />
       <Progress value={50} showValue />
       <Progress value={75} showValue />
@@ -174,17 +174,17 @@ export const WithValue: Story = {
 
 export const WithLabels: Story = {
   render: () => (
-    <div className='w-80 space-y-6'>
+    <div className="w-80 space-y-6">
       <div>
-        <h4 className='mb-2 text-sm font-medium'>With Label</h4>
-        <Progress value={75} label='Upload Progress' />
+        <h4 className="mb-2 text-sm font-medium">With Label</h4>
+        <Progress value={75} label="Upload Progress" />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>With Label and Value</h4>
-        <Progress value={45} label='Processing...' showValue />
+        <h4 className="mb-2 text-sm font-medium">With Label and Value</h4>
+        <Progress value={45} label="Processing..." showValue />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Just Value</h4>
+        <h4 className="mb-2 text-sm font-medium">Just Value</h4>
         <Progress value={90} showValue />
       </div>
     </div>
@@ -193,10 +193,10 @@ export const WithLabels: Story = {
 
 export const WithCustomLabel: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
-      <Progress value={75} label='Uploading...' />
-      <Progress value={45} label='Processing...' />
-      <Progress value={90} label='Complete!' />
+    <div className="w-80 space-y-4">
+      <Progress value={75} label="Uploading..." />
+      <Progress value={45} label="Processing..." />
+      <Progress value={90} label="Complete!" />
     </div>
   ),
 };
@@ -212,9 +212,9 @@ const AnimatedComponent = () => {
   }, []);
 
   return (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <Progress value={progress} animated showValue />
-      <p className='text-sm text-gray-600'>Progress: {progress}%</p>
+      <p className="text-sm text-gray-600">Progress: {progress}%</p>
     </div>
   );
 };
@@ -225,7 +225,7 @@ export const Animated: Story = {
 
 export const Striped: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <Progress value={75} striped showValue />
       <Progress value={60} striped showValue />
       <Progress value={85} striped showValue />
@@ -235,9 +235,9 @@ export const Striped: Story = {
 
 export const Indeterminate: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <Progress indeterminate />
-      <Progress indeterminate variant='circular' />
+      <Progress indeterminate variant="circular" />
     </div>
   ),
 };
@@ -263,7 +263,7 @@ const LoadingStatesComponent = () => {
   }, [isLoading]);
 
   return (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <Progress
         value={isLoading ? progress : 100}
         indeterminate={isLoading}
@@ -272,7 +272,7 @@ const LoadingStatesComponent = () => {
         label={isLoading ? "Loading..." : "Complete!"}
       />
       <button
-        className='rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700'
+        className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
         onClick={() => {
           setIsLoading(true);
           setProgress(0);
@@ -314,14 +314,14 @@ const FileUploadComponent = () => {
   }, []);
 
   return (
-    <div className='w-96 space-y-4'>
+    <div className="w-96 space-y-4">
       {files.map((file, index) => (
-        <div key={index} className='space-y-2'>
-          <div className='flex items-center justify-between'>
-            <span className='text-sm font-medium'>{file.name}</span>
-            <span className='text-xs text-gray-500'>{file.progress}%</span>
+        <div key={index} className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">{file.name}</span>
+            <span className="text-xs text-gray-500">{file.progress}%</span>
           </div>
-          <Progress value={file.progress} size='sm' animated={file.status === "uploading"} />
+          <Progress value={file.progress} size="sm" animated={file.status === "uploading"} />
         </div>
       ))}
     </div>
@@ -334,18 +334,18 @@ export const FileUpload: Story = {
 
 export const Circular: Story = {
   render: () => (
-    <div className='space-y-6'>
-      <div className='flex justify-center'>
-        <Progress value={75} variant='circular' showValue />
+    <div className="space-y-6">
+      <div className="flex justify-center">
+        <Progress value={75} variant="circular" showValue />
       </div>
-      <div className='flex justify-center'>
-        <Progress value={45} variant='circular' size='sm' showValue />
+      <div className="flex justify-center">
+        <Progress value={45} variant="circular" size="sm" showValue />
       </div>
-      <div className='flex justify-center'>
-        <Progress value={90} variant='circular' size='lg' showValue />
+      <div className="flex justify-center">
+        <Progress value={90} variant="circular" size="lg" showValue />
       </div>
-      <div className='flex justify-center'>
-        <Progress indeterminate variant='circular' />
+      <div className="flex justify-center">
+        <Progress indeterminate variant="circular" />
       </div>
     </div>
   ),
@@ -353,18 +353,18 @@ export const Circular: Story = {
 
 export const CircularAppearances: Story = {
   render: () => (
-    <div className='flex justify-center space-x-8'>
-      <div className='text-center'>
-        <h4 className='mb-2 text-sm font-medium'>Filled</h4>
-        <Progress value={75} variant='circular' appearance='filled' showValue />
+    <div className="flex justify-center space-x-8">
+      <div className="text-center">
+        <h4 className="mb-2 text-sm font-medium">Filled</h4>
+        <Progress value={75} variant="circular" appearance="filled" showValue />
       </div>
-      <div className='text-center'>
-        <h4 className='mb-2 text-sm font-medium'>Outline</h4>
-        <Progress value={75} variant='circular' appearance='outline' showValue />
+      <div className="text-center">
+        <h4 className="mb-2 text-sm font-medium">Outline</h4>
+        <Progress value={75} variant="circular" appearance="outline" showValue />
       </div>
-      <div className='text-center'>
-        <h4 className='mb-2 text-sm font-medium'>Soft</h4>
-        <Progress value={75} variant='circular' appearance='soft' showValue />
+      <div className="text-center">
+        <h4 className="mb-2 text-sm font-medium">Soft</h4>
+        <Progress value={75} variant="circular" appearance="soft" showValue />
       </div>
     </div>
   ),
@@ -372,12 +372,12 @@ export const CircularAppearances: Story = {
 
 export const ZeroAndFull: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <div>
-        <Progress label='Zero Progress' value={0} showValue />
+        <Progress label="Zero Progress" value={0} showValue />
       </div>
       <div>
-        <Progress label='Full Progress' value={100} showValue />
+        <Progress label="Full Progress" value={100} showValue />
       </div>
     </div>
   ),
@@ -385,19 +385,19 @@ export const ZeroAndFull: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <div className='w-80 space-y-4'>
+    <div className="w-80 space-y-4">
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Custom Track Color</h4>
+        <h4 className="mb-2 text-sm font-medium">Custom Track Color</h4>
         <Progress
           value={75}
-          trackClassName='bg-purple-100'
-          fillClassName='bg-purple-600'
+          trackClassName="bg-purple-100"
+          fillClassName="bg-purple-600"
           showValue
         />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Custom Container</h4>
-        <Progress value={60} className='rounded-lg bg-gray-50 p-4' showValue />
+        <h4 className="mb-2 text-sm font-medium">Custom Container</h4>
+        <Progress value={60} className="rounded-lg bg-gray-50 p-4" showValue />
       </div>
     </div>
   ),

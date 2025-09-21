@@ -148,18 +148,18 @@ export const Disabled: Story = {
 const ControlledComponent = (args: Partial<RangeInputProps>) => {
   const [range, setRange] = React.useState(args.value);
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <RangeInput {...args} value={range} onChange={setRange} />
-      <div className='text-sm text-gray-600'>
+      <div className="text-sm text-gray-600">
         Selected range:{" "}
-        <span className='font-mono'>
+        <span className="font-mono">
           {range?.[0]} - {range?.[1]}
         </span>
       </div>
-      <div className='flex items-center gap-2'>
-        <div className='h-4 flex-1 rounded bg-gray-200'>
+      <div className="flex items-center gap-2">
+        <div className="h-4 flex-1 rounded bg-gray-200">
           <div
-            className='h-full rounded bg-blue-600'
+            className="h-full rounded bg-blue-600"
             style={{
               marginLeft: `${((range?.[0] || 0) / 100) * 100}%`,
               width: `${(((range?.[1] || 100) - (range?.[0] || 0)) / 100) * 100}%`,

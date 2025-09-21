@@ -261,7 +261,7 @@ export const WithFallback: Story = {
     width: 300,
     height: 300,
     fallback: (
-      <div className='flex h-full w-full items-center justify-center bg-gray-100 text-sm text-gray-500'>
+      <div className="flex h-full w-full items-center justify-center bg-gray-100 text-sm text-gray-500">
         Image not available
       </div>
     ),
@@ -277,14 +277,14 @@ export const WithSkeletonAndFallback: Story = {
     showSkeleton: true,
     skeletonAnimation: "wave",
     fallback: (
-      <div className='flex h-full w-full flex-col items-center justify-center bg-red-50 p-4 text-center text-red-500'>
-        <div className='mb-2 text-2xl'>
-          <span role='img' aria-label='Warning'>
+      <div className="flex h-full w-full flex-col items-center justify-center bg-red-50 p-4 text-center text-red-500">
+        <div className="mb-2 text-2xl">
+          <span role="img" aria-label="Warning">
             ⚠️
           </span>
         </div>
-        <div className='text-sm font-medium'>Failed to load image</div>
-        <div className='mt-1 text-xs'>Please try again later</div>
+        <div className="text-sm font-medium">Failed to load image</div>
+        <div className="mt-1 text-xs">Please try again later</div>
       </div>
     ),
   },

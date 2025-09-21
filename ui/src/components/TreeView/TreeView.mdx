@@ -144,13 +144,13 @@ Controls whether multiple items can be selected simultaneously.
           borderRadius: "4px",
         }}
       >
-        <TreeItem value='item1'>
+        <TreeItem value="item1">
           <TreeItemContent>Item 1</TreeItemContent>
         </TreeItem>
-        <TreeItem value='item2'>
+        <TreeItem value="item2">
           <TreeItemContent>Item 2</TreeItemContent>
         </TreeItem>
-        <TreeItem value='item3'>
+        <TreeItem value="item3">
           <TreeItemContent>Item 3</TreeItemContent>
         </TreeItem>
       </TreeView>
@@ -165,13 +165,13 @@ Controls whether multiple items can be selected simultaneously.
           borderRadius: "4px",
         }}
       >
-        <TreeItem value='item1'>
+        <TreeItem value="item1">
           <TreeItemContent>Item 1</TreeItemContent>
         </TreeItem>
-        <TreeItem value='item2'>
+        <TreeItem value="item2">
           <TreeItemContent>Item 2</TreeItemContent>
         </TreeItem>
-        <TreeItem value='item3'>
+        <TreeItem value="item3">
           <TreeItemContent>Item 3</TreeItemContent>
         </TreeItem>
       </TreeView>
@@ -207,22 +207,22 @@ Controls whether multiple branches can be expanded simultaneously.
           borderRadius: "4px",
         }}
       >
-        <TreeItem value='folder1'>
+        <TreeItem value="folder1">
           <TreeItemContent>
             <TreeItemTrigger hasChildren={true}>📁 Folder 1</TreeItemTrigger>
           </TreeItemContent>
           <TreeItemChildren>
-            <TreeItem value='file1'>
+            <TreeItem value="file1">
               <TreeItemContent>📄 File 1</TreeItemContent>
             </TreeItem>
           </TreeItemChildren>
         </TreeItem>
-        <TreeItem value='folder2'>
+        <TreeItem value="folder2">
           <TreeItemContent>
             <TreeItemTrigger hasChildren={true}>📁 Folder 2</TreeItemTrigger>
           </TreeItemContent>
           <TreeItemChildren>
-            <TreeItem value='file2'>
+            <TreeItem value="file2">
               <TreeItemContent>📄 File 2</TreeItemContent>
             </TreeItem>
           </TreeItemChildren>
@@ -239,22 +239,22 @@ Controls whether multiple branches can be expanded simultaneously.
           borderRadius: "4px",
         }}
       >
-        <TreeItem value='folder1'>
+        <TreeItem value="folder1">
           <TreeItemContent>
             <TreeItemTrigger hasChildren={true}>📁 Folder 1</TreeItemTrigger>
           </TreeItemContent>
           <TreeItemChildren>
-            <TreeItem value='file1'>
+            <TreeItem value="file1">
               <TreeItemContent>📄 File 1</TreeItemContent>
             </TreeItem>
           </TreeItemChildren>
         </TreeItem>
-        <TreeItem value='folder2'>
+        <TreeItem value="folder2">
           <TreeItemContent>
             <TreeItemTrigger hasChildren={true}>📁 Folder 2</TreeItemTrigger>
           </TreeItemContent>
           <TreeItemChildren>
-            <TreeItem value='file2'>
+            <TreeItem value="file2">
               <TreeItemContent>📄 File 2</TreeItemContent>
             </TreeItem>
           </TreeItemChildren>
@@ -292,17 +292,17 @@ Shows visual indentation guides to help users understand the tree hierarchy stru
           borderRadius: "4px",
         }}
       >
-        <TreeItem value='root'>
+        <TreeItem value="root">
           <TreeItemContent>
             <TreeItemTrigger hasChildren={true}>📁 Root</TreeItemTrigger>
           </TreeItemContent>
           <TreeItemChildren>
-            <TreeItem value='child'>
+            <TreeItem value="child">
               <TreeItemContent>
                 <TreeItemTrigger hasChildren={true}>📁 Child</TreeItemTrigger>
               </TreeItemContent>
               <TreeItemChildren>
-                <TreeItem value='file'>
+                <TreeItem value="file">
                   <TreeItemContent>📄 File.txt</TreeItemContent>
                 </TreeItem>
               </TreeItemChildren>
@@ -321,17 +321,17 @@ Shows visual indentation guides to help users understand the tree hierarchy stru
           borderRadius: "4px",
         }}
       >
-        <TreeItem value='root'>
+        <TreeItem value="root">
           <TreeItemContent>
             <TreeItemTrigger hasChildren={true}>📁 Root</TreeItemTrigger>
           </TreeItemContent>
           <TreeItemChildren>
-            <TreeItem value='child'>
+            <TreeItem value="child">
               <TreeItemContent>
                 <TreeItemTrigger hasChildren={true}>📁 Child</TreeItemTrigger>
               </TreeItemContent>
               <TreeItemChildren>
-                <TreeItem value='file'>
+                <TreeItem value="file">
                   <TreeItemContent>📄 File.txt</TreeItemContent>
                 </TreeItem>
               </TreeItemChildren>
@@ -349,9 +349,9 @@ An array of item values that should be selected when the component mounts.
 
 ```jsx
 <TreeView defaultSelected={["item1", "item3"]}>
-  <TreeItem value='item1'>Item 1</TreeItem>
-  <TreeItem value='item2'>Item 2</TreeItem>
-  <TreeItem value='item3'>Item 3</TreeItem>
+  <TreeItem value="item1">Item 1</TreeItem>
+  <TreeItem value="item2">Item 2</TreeItem>
+  <TreeItem value="item3">Item 3</TreeItem>
 </TreeView>
 ```
 
@@ -361,12 +361,12 @@ An array of item values that should be expanded when the component mounts.
 
 ```jsx
 <TreeView defaultExpanded={["folder1"]}>
-  <TreeItem value='folder1'>
+  <TreeItem value="folder1">
     <TreeItemContent>
       <TreeItemTrigger hasChildren={true}>📁 Folder 1</TreeItemTrigger>
     </TreeItemContent>
     <TreeItemChildren>
-      <TreeItem value='file1'>📄 File 1</TreeItem>
+      <TreeItem value="file1">📄 File 1</TreeItem>
     </TreeItemChildren>
   </TreeItem>
 </TreeView>
@@ -401,7 +401,7 @@ const handleExpansionChange = expandedItems => {
 A unique identifier for the tree item. This value is used for selection and expansion state management.
 
 ```jsx
-<TreeItem value='unique-id'>Item Content</TreeItem>
+<TreeItem value="unique-id">Item Content</TreeItem>
 ```
 
 ### TreeItem `disabled`
@@ -409,7 +409,7 @@ A unique identifier for the tree item. This value is used for selection and expa
 Disables the tree item, preventing selection and expansion.
 
 ```jsx
-<TreeItem value='disabled-item' disabled>
+<TreeItem value="disabled-item" disabled>
   Disabled Item
 </TreeItem>
 ```
@@ -422,10 +422,10 @@ Disables the tree item, preventing selection and expansion.
       borderRadius: "4px",
     }}
   >
-    <TreeItem value='enabled'>
+    <TreeItem value="enabled">
       <TreeItemContent>Enabled Item</TreeItemContent>
     </TreeItem>
-    <TreeItem value='disabled' disabled>
+    <TreeItem value="disabled" disabled>
       <TreeItemContent>Disabled Item</TreeItemContent>
     </TreeItem>
   </TreeView>
@@ -451,12 +451,12 @@ Controls whether the expansion icon is displayed. Set to `true` for items that h
       borderRadius: "4px",
     }}
   >
-    <TreeItem value='folder'>
+    <TreeItem value="folder">
       <TreeItemContent>
         <TreeItemTrigger hasChildren={true}>📁 Folder</TreeItemTrigger>
       </TreeItemContent>
     </TreeItem>
-    <TreeItem value='file'>
+    <TreeItem value="file">
       <TreeItemContent>
         <TreeItemTrigger hasChildren={false}>📄 File.txt</TreeItemTrigger>
       </TreeItemContent>

@@ -125,9 +125,9 @@ The `variant` prop determines the shape and appearance of the skeleton. Choose t
       flexWrap: "wrap",
     }}
   >
-    <Skeleton variant='rectangle' width={120} height={60} />
-    <Skeleton variant='circle' width={60} height={60} />
-    <Skeleton variant='text' width={120} lines={2} />
+    <Skeleton variant="rectangle" width={120} height={60} />
+    <Skeleton variant="circle" width={60} height={60} />
+    <Skeleton variant="text" width={120} lines={2} />
   </div>
 </Unstyled>
 
@@ -145,11 +145,11 @@ The `size` prop controls the height of the skeleton for rectangle and text varia
 
 <Unstyled>
   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-    <Skeleton size='xs' width={200} />
-    <Skeleton size='sm' width={200} />
-    <Skeleton size='md' width={200} />
-    <Skeleton size='lg' width={200} />
-    <Skeleton size='xl' width={200} />
+    <Skeleton size="xs" width={200} />
+    <Skeleton size="sm" width={200} />
+    <Skeleton size="md" width={200} />
+    <Skeleton size="lg" width={200} />
+    <Skeleton size="xl" width={200} />
   </div>
 </Unstyled>
 
@@ -171,8 +171,8 @@ Control the exact dimensions of your skeleton using the `width` and `height` pro
 <Unstyled>
   <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
     <Skeleton width={150} height={100} />
-    <Skeleton width='100%' height={80} />
-    <Skeleton width={200} height='60px' />
+    <Skeleton width="100%" height={80} />
+    <Skeleton width={200} height="60px" />
   </div>
 </Unstyled>
 
@@ -200,11 +200,11 @@ Choose from different animation styles to create the right loading experience fo
 
 <Unstyled>
   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-    <Skeleton animation='shimmer' width={200} height={40} />
-    <Skeleton animation='wave' width={200} height={40} />
-    <Skeleton animation='fade' width={200} height={40} />
-    <Skeleton animation='pulse' width={200} height={40} />
-    <Skeleton animation='none' width={200} height={40} />
+    <Skeleton animation="shimmer" width={200} height={40} />
+    <Skeleton animation="wave" width={200} height={40} />
+    <Skeleton animation="fade" width={200} height={40} />
+    <Skeleton animation="pulse" width={200} height={40} />
+    <Skeleton animation="none" width={200} height={40} />
   </div>
 </Unstyled>
 
@@ -228,9 +228,9 @@ For text variants, control how many lines of skeleton text to display. The last 
 
 <Unstyled>
   <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-    <Skeleton variant='text' lines={1} width={300} />
-    <Skeleton variant='text' lines={3} width={300} />
-    <Skeleton variant='text' lines={5} width={300} />
+    <Skeleton variant="text" lines={1} width={300} />
+    <Skeleton variant="text" lines={3} width={300} />
+    <Skeleton variant="text" lines={5} width={300} />
   </div>
 </Unstyled>
 
@@ -264,9 +264,9 @@ Add custom styling while preserving the skeleton's built-in styles. Useful for c
 
 <Unstyled>
   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-    <Skeleton className='bg-blue-100' width={200} height={40} />
-    <Skeleton className='rounded-full' variant='rectangle' width={200} height={40} />
-    <Skeleton className='border border-gray-300' width={200} height={40} />
+    <Skeleton className="bg-blue-100" width={200} height={40} />
+    <Skeleton className="rounded-full" variant="rectangle" width={200} height={40} />
+    <Skeleton className="border border-gray-300" width={200} height={40} />
   </div>
 </Unstyled>
 
@@ -332,11 +332,11 @@ Our Skeleton component follows accessibility best practices:
 ```jsx
 // Efficient skeleton rendering
 const LoadingCard = () => (
-  <div className='card'>
-    <Skeleton variant='rectangle' width='100%' height={200} />
-    <div className='p-4'>
-      <Skeleton variant='text' width='100%' lines={2} />
-      <Skeleton variant='text' width='60%' lines={1} className='mt-2' />
+  <div className="card">
+    <Skeleton variant="rectangle" width="100%" height={200} />
+    <div className="p-4">
+      <Skeleton variant="text" width="100%" lines={2} />
+      <Skeleton variant="text" width="60%" lines={1} className="mt-2" />
     </div>
   </div>
 );

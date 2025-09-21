@@ -195,7 +195,7 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
       )}
       {...props}
     >
-      <div className='text-gray-600'>{children}</div>
+      <div className="text-gray-600">{children}</div>
     </div>
   );
 };
