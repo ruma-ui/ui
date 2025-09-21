@@ -3,6 +3,17 @@ import "../src/styles/globals.css";
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        // Ensure Getting Started group appears first and the Welcome page is first within it
+        order: [
+          "Getting Started",
+          ["Welcome", "Installation", "Usage", "Contributing"],
+          "Components",
+        ],
+        method: "alphabetical",
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
