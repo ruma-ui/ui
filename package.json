@@ -34,6 +34,7 @@
     "docs:api": "typedoc",
     "docs:build": "npm run docs:api && npm run storybook:build",
     "size": "size-limit",
+    "pack:size": "npm run build:production && cd dist/ui && node -e \"const { execSync } = require('child_process'); const out = execSync('npm pack --dry-run --json', { encoding: 'utf8' }); const info = JSON.parse(out)[0]; console.log('Unpacked size:', info.unpackedSize, 'bytes');\"",
     "size:analyze": "npm run build:analyze",
     "changeset": "changeset",
     "changeset:version": "changeset version",
