@@ -34,6 +34,7 @@
     "docs:api": "typedoc",
     "docs:build": "npm run docs:api && npm run storybook:build",
     "size": "size-limit",
+    "pack:size": "npm run build:production && cd dist/ui && npm pack | grep 'unpacked size:' | awk '{print \"Unpacked size:\", $NF}'",
     "size:analyze": "npm run build:analyze",
     "changeset": "changeset",
     "changeset:version": "changeset version",

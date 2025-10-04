@@ -85,7 +85,7 @@ export default defineConfig(({ mode }) => {
       // Increase chunk size warning limit
       chunkSizeWarningLimit: 1000,
       // Enable source maps for debugging
-      sourcemap: true,
+      sourcemap: mode !== "production",
       // Minify in production
       minify: mode === "production",
       // Target modern browsers
