@@ -41,10 +41,6 @@ jobs:
   prerelease:
     runs-on: ubuntu-latest
     if: contains(fromJson('["alpha", "beta"]'), github.ref_name) && !contains(github.event.head_commit.message, '[skip ci]')
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-      tag: ${{ steps.version.outputs.tag }}
-      published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -74,40 +70,22 @@ jobs:
       - name: Check bundle size
         run: pnpm run size
 
-      - name: Setup Git
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-
-      - name: Determine prerelease tag
-        id: version
-        run: |
-          BRANCH_NAME="${{ github.ref_name }}"
-          echo "tag=$BRANCH_NAME" >> $GITHUB_OUTPUT
-          echo "NPM tag: $BRANCH_NAME"
-
       - name: Build packages
         run: pnpm run build:production
 
-      - name: Create Release Pull Request or Publish (Prerelease)
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset:publish --tag ${{ steps.version.outputs.tag }}
-          version: pnpm changeset:version
-          commit: "chore: release ${{ github.ref_name }} prerelease"
-          title: "chore: release ${{ github.ref_name }} prerelease"
-          createGithubReleases: true
+      - name: Semantic Release (Prerelease)
+        id: semantic
+        run: pnpm run release:semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build documentation
-        if: steps.changesets.outputs.published == 'true'
+        if: success()
         run: pnpm run docs:build
 
       - name: Upload build artifacts
-        if: steps.changesets.outputs.published == 'true'
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: prerelease-artifacts-${{ github.ref_name }}
@@ -224,7 +202,7 @@ jobs:
   sync-dev:
     needs: stable-release
     runs-on: ubuntu-latest
-    if: needs.stable-release.outputs.published == 'true' && github.ref_name == 'main'
+    if: needs.stable-release.result == 'success' && github.ref_name == 'main'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
