@@ -151,10 +151,10 @@ const WithIconsComponent = (args: Partial<TextInputProps>) => {
       startIcon={<FaLock size={14} />}
       endIcon={
         <button
-          type='button'
+          type="button"
           aria-label={show ? "Hide password" : "Show password"}
           onClick={() => setShow(s => !s)}
-          className='inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-inherit transition-colors duration-200 hover:bg-gray-100 hover:text-gray-700'
+          className="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-inherit transition-colors duration-200 hover:bg-gray-100 hover:text-gray-700"
         >
           {show ? <BsEyeSlash size={18} /> : <BsEye size={18} />}
         </button>
@@ -204,23 +204,23 @@ const SearchWithIconComponent = (args: Partial<TextInputProps>) => {
       value={searchValue}
       onChange={e => setSearchValue(e.target.value)}
       placeholder={args.placeholder ?? "Search documentation..."}
-      variant='secondary'
+      variant="secondary"
       startIcon={<FaSearch size={14} />}
       endIcon={
         searchValue ? (
           <button
-            type='button'
-            aria-label='Clear search'
+            type="button"
+            aria-label="Clear search"
             onClick={() => setSearchValue("")}
-            className='inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-inherit transition-colors duration-200 hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-offset-1 focus:outline-none active:bg-gray-200'
+            className="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-inherit transition-colors duration-200 hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-offset-1 focus:outline-none active:bg-gray-200"
           >
             <RxCross1 size={16} />
           </button>
         ) : null
       }
-      rounded='full'
-      size='lg'
-      width='xl'
+      rounded="full"
+      size="lg"
+      width="xl"
     />
   );
 };

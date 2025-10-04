@@ -1,4 +1,4 @@
-import { cn, tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 import React, { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import {
   IoCheckmark,
@@ -14,6 +14,7 @@ import {
   IoVolumeMute,
   IoVolumeOff,
 } from "react-icons/io5";
+import { Loader } from "../Loader/Loader";
 
 export interface VideoTrack {
   /** The URL of the subtitle/caption file */
@@ -91,7 +92,7 @@ const ControlTooltip = ({
       )}
     >
       {text}
-      {shortcut && <span className='ml-2 font-mono text-gray-400'>{shortcut}</span>}
+      {shortcut && <span className="ml-2 font-mono text-gray-400">{shortcut}</span>}
     </div>
   );
 };
@@ -634,7 +635,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         loop={loop}
         muted={initialMuted}
         preload={preload}
-        crossOrigin='anonymous'
+        crossOrigin="anonymous"
         className={cn(baseVideo, videoClassName)}
         {...props}
       >
@@ -645,20 +646,20 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {isLoading && (
         <div className={loadingSpinner}>
-          <div className='h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white'></div>
+          <Loader type="ring" size="lg" color="white" strokeWidth="thick" />
         </div>
       )}
 
       {feedback && (
         <div className={feedbackOverlay} key={feedback.key}>
-          <div className='flex w-1/3 justify-start'>
+          <div className="flex w-1/3 justify-start">
             {feedback.type === "rewind" && (
               <div className={feedbackIcon}>
                 <IoPlayBack />
               </div>
             )}
           </div>
-          <div className='flex w-1/3 justify-center'>
+          <div className="flex w-1/3 justify-center">
             {["play", "pause"].includes(feedback.type) && (
               <div className={feedbackIcon}>
                 <CentralFeedbackIcon />
@@ -667,11 +668,11 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             {feedback.type === "volume" && (
               <div className={feedbackIcon}>
                 <VolumeIcon />
-                <span className='text-xl'>{Math.round(feedback.value ?? 0)}%</span>
+                <span className="text-xl">{Math.round(feedback.value ?? 0)}%</span>
               </div>
             )}
           </div>
-          <div className='flex w-1/3 justify-end'>
+          <div className="flex w-1/3 justify-end">
             {feedback.type === "forward" && (
               <div className={feedbackIcon}>
                 <IoPlayForward />
@@ -689,38 +690,38 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           )}
         >
           {!isPlaying && !isLoading && !feedback && (
-            <div className='absolute inset-0 flex items-center justify-center'>
-              <button onClick={togglePlay} className={playButton} aria-label='Play'>
-                <IoPlay className='ml-1 h-8 w-8 text-white' />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button onClick={togglePlay} className={playButton} aria-label="Play">
+                <IoPlay className="ml-1 h-8 w-8 text-white" />
               </button>
             </div>
           )}
           <div className={controlsBar} data-controls-bar>
             <button onClick={togglePlay} className={iconButton}>
-              {isPlaying ? <IoPause className='h-6 w-6' /> : <IoPlay className='h-6 w-6' />}
-              <ControlTooltip align='start' text={isPlaying ? "Pause" : "Play"} shortcut='K' />
+              {isPlaying ? <IoPause className="h-6 w-6" /> : <IoPlay className="h-6 w-6" />}
+              <ControlTooltip align="start" text={isPlaying ? "Pause" : "Play"} shortcut="K" />
             </button>
             <div className={volumeControl}>
               <button onClick={toggleMute} className={iconButton}>
-                <VolumeIcon className='h-6 w-6' />
-                <ControlTooltip text={isMuted ? "Unmute" : "Mute"} shortcut='M' />
+                <VolumeIcon className="h-6 w-6" />
+                <ControlTooltip text={isMuted ? "Unmute" : "Mute"} shortcut="M" />
               </button>
               <div onMouseDown={handleVolumeScrub} className={volumeTrack}>
                 <div
-                  className='absolute h-full rounded-full bg-white'
+                  className="absolute h-full rounded-full bg-white"
                   style={{
                     width: `${isMuted ? 0 : volume * 100}%`,
                   }}
                 />
                 <div
-                  className='absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow'
+                  className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow"
                   style={{
                     left: `${isMuted ? 0 : volume * 100}%`,
                   }}
                 />
               </div>
             </div>
-            <div className='min-w-[80px] text-right text-sm font-medium text-white'>
+            <div className="min-w-[80px] text-right text-sm font-medium text-white">
               {formatTime(currentTime)} / {formatTime(duration)}
             </div>
 
@@ -749,13 +750,13 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               {hoverTime !== null && (
                 <>
                   <div
-                    className='pointer-events-none absolute bottom-full mb-2 -translate-x-1/2 rounded bg-black/80 px-2 py-1 text-xs text-white'
+                    className="pointer-events-none absolute bottom-full mb-2 -translate-x-1/2 rounded bg-black/80 px-2 py-1 text-xs text-white"
                     style={{ left: `${hoverPosition}px` }}
                   >
                     {formatTime(hoverTime)}
                   </div>
                   <div
-                    className='pointer-events-none absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-md'
+                    className="pointer-events-none absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-md"
                     style={{ left: `${hoverPosition}px` }}
                   />
                 </>
@@ -769,27 +770,27 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               }}
               className={iconButton}
             >
-              <IoSettings className='h-6 w-6' />
-              <ControlTooltip text='Settings' />
+              <IoSettings className="h-6 w-6" />
+              <ControlTooltip text="Settings" />
             </button>
             <button onClick={toggleFullscreen} className={iconButton}>
-              {isFullscreen ? <IoContract className='h-6 w-6' /> : <IoExpand className='h-6 w-6' />}
+              {isFullscreen ? <IoContract className="h-6 w-6" /> : <IoExpand className="h-6 w-6" />}
               <ControlTooltip
-                align='end'
+                align="end"
                 text={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-                shortcut='F'
+                shortcut="F"
               />
             </button>
 
             {showSettings && (
               <div className={settingsMenu}>
-                <div className='p-1'>
-                  <h4 className='mb-2 text-sm font-semibold'>Speed</h4>
+                <div className="p-1">
+                  <h4 className="mb-2 text-sm font-semibold">Speed</h4>
                   {playbackRates.map(rate => (
                     <button
                       key={rate}
                       onClick={() => handlePlaybackRateChange(rate)}
-                      className='flex w-full items-center justify-between rounded p-1.5 text-left text-xs hover:bg-white/20'
+                      className="flex w-full items-center justify-between rounded p-1.5 text-left text-xs hover:bg-white/20"
                     >
                       <span>{rate === 1 ? "Normal" : `${rate}x`}</span>
                       {playbackRate === rate && <IoCheckmark />}
@@ -798,12 +799,12 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 </div>
                 {videoRef.current?.textTracks && videoRef.current.textTracks.length > 0 && (
                   <>
-                    <div className='my-1 h-px bg-white/20' />
-                    <div className='p-1'>
-                      <h4 className='mb-2 text-sm font-semibold'>Subtitles</h4>
+                    <div className="my-1 h-px bg-white/20" />
+                    <div className="p-1">
+                      <h4 className="mb-2 text-sm font-semibold">Subtitles</h4>
                       <button
                         onClick={() => handleTrackChange(null)}
-                        className='flex w-full items-center justify-between rounded p-1.5 text-left text-xs hover:bg-white/20'
+                        className="flex w-full items-center justify-between rounded p-1.5 text-left text-xs hover:bg-white/20"
                       >
                         <span>Off</span>
                         {activeTrack === null && <IoCheckmark />}
@@ -812,7 +813,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                         <button
                           key={track.label}
                           onClick={() => handleTrackChange(track.label)}
-                          className='flex w-full items-center justify-between rounded p-1.5 text-left text-xs hover:bg-white/20'
+                          className="flex w-full items-center justify-between rounded p-1.5 text-left text-xs hover:bg-white/20"
                         >
                           <span>{track.label}</span>
                           {activeTrack === track.label && <IoCheckmark />}

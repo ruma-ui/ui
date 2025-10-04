@@ -1,7 +1,13 @@
-import React, { useEffect, useState, useRef, createContext, useContext, useCallback } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import {
+  HiOutlineCheckCircle,
+  HiOutlineExclamation,
+  HiOutlineExclamationCircle,
+  HiOutlineInformationCircle,
+} from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
+import { cn, tw } from "../../lib/utils";
 
 export interface ToastProps {
   /**
@@ -118,49 +124,11 @@ const toastAnimations = {
 
 // Default icons for variants
 const variantIcons = {
-  success: (
-    <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
-    </svg>
-  ),
-  error: (
-    <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-      <path
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        strokeWidth={2}
-        d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-      />
-    </svg>
-  ),
-  warning: (
-    <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-      <path
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        strokeWidth={2}
-        d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z'
-      />
-    </svg>
-  ),
-  info: (
-    <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-      <path
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        strokeWidth={2}
-        d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-      />
-    </svg>
-  ),
+  success: <HiOutlineCheckCircle className="h-5 w-5" />,
+  error: <HiOutlineExclamationCircle className="h-5 w-5" />,
+  warning: <HiOutlineExclamation className="h-5 w-5" />,
+  info: <HiOutlineInformationCircle className="h-5 w-5" />,
 };
-
-// Close icon component
-const CloseIcon = () => (
-  <svg className='h-4 w-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-  </svg>
-);
 
 export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
   (
@@ -257,9 +225,9 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       <div
         ref={ref || toastRef}
         className={toastClasses}
-        role='alert'
-        aria-live='assertive'
-        aria-atomic='true'
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
         aria-label={ariaLabel}
         aria-labelledby={title ? titleId : undefined}
         aria-describedby={description || children ? descId : undefined}
@@ -269,12 +237,12 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
         {...props}
       >
         {/* Icon */}
-        <div className='flex shrink-0 items-center'>{icon || variantIcons[variant]}</div>
+        <div className="flex shrink-0 items-center">{icon || variantIcons[variant]}</div>
 
         {/* Content */}
         <div className={contentBase}>
           {children ? (
-            <div id={descId} className='break-words'>
+            <div id={descId} className="break-words">
               {children}
             </div>
           ) : (
@@ -296,12 +264,12 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
         {/* Close button */}
         {showCloseButton && (
           <button
-            type='button'
+            type="button"
             className={closeButtonBase}
             onClick={onClose}
-            aria-label='Close notification'
+            aria-label="Close notification"
           >
-            <CloseIcon />
+            <IoClose className="h-4 w-4" />
           </button>
         )}
       </div>

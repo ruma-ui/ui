@@ -1,6 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import { IoClose } from "react-icons/io5";
+import { cn, tw } from "../../lib/utils";
 
 export interface BadgeProps {
   /**
@@ -158,19 +158,6 @@ const focusRings = {
   info: tw`focus:ring-cyan-500`,
 };
 
-// Close icon component
-const CloseIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={cn("h-3 w-3", className)}
-    fill='none'
-    stroke='currentColor'
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-  </svg>
-);
-
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (
     {
@@ -264,7 +251,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
           <span className={cn("flex items-center", sizes[size].icon)}>{startIcon}</span>
         )}
 
-        <span className='truncate'>{children}</span>
+        <span className="truncate">{children}</span>
 
         {endIcon && !dismissible && (
           <span className={cn("flex items-center", sizes[size].icon)}>{endIcon}</span>
@@ -272,15 +259,15 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 
         {dismissible && (
           <button
-            type='button'
+            type="button"
             className={cn(
               "ml-1 flex items-center rounded-full p-0.5 hover:bg-black/10 focus:ring-1 focus:ring-white/50 focus:outline-none",
               sizes[size].icon
             )}
             onClick={handleDismiss}
-            aria-label='Remove badge'
+            aria-label="Remove badge"
           >
-            <CloseIcon />
+            <IoClose className="h-3 w-3" />
           </button>
         )}
       </Component>

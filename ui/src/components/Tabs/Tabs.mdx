@@ -99,16 +99,16 @@ Vertical tabs are useful when you have limited horizontal space or when the tab 
 Small tabs are compact and work well in constrained spaces or secondary interfaces.
 
 <Unstyled>
-  <Tabs size='sm' defaultValue='small'>
+  <Tabs size="sm" defaultValue="small">
     <TabList>
-      <Tab value='small'>Small</Tab>
-      <Tab value='tabs'>Tabs</Tab>
+      <Tab value="small">Small</Tab>
+      <Tab value="tabs">Tabs</Tab>
     </TabList>
-    <TabPanel value='small'>
-      <div className='rounded bg-gray-50 p-2'>Small tab content</div>
+    <TabPanel value="small">
+      <div className="rounded bg-gray-50 p-2">Small tab content</div>
     </TabPanel>
-    <TabPanel value='tabs'>
-      <div className='rounded bg-gray-50 p-2'>Small tabs content</div>
+    <TabPanel value="tabs">
+      <div className="rounded bg-gray-50 p-2">Small tabs content</div>
     </TabPanel>
   </Tabs>
 </Unstyled>
@@ -118,16 +118,16 @@ Small tabs are compact and work well in constrained spaces or secondary interfac
 Medium tabs are the default size and provide a good balance of usability and visual prominence.
 
 <Unstyled>
-  <Tabs size='md' defaultValue='medium'>
+  <Tabs size="md" defaultValue="medium">
     <TabList>
-      <Tab value='medium'>Medium</Tab>
-      <Tab value='tabs'>Tabs</Tab>
+      <Tab value="medium">Medium</Tab>
+      <Tab value="tabs">Tabs</Tab>
     </TabList>
-    <TabPanel value='medium'>
-      <div className='rounded bg-gray-50 p-4'>Medium tab content</div>
+    <TabPanel value="medium">
+      <div className="rounded bg-gray-50 p-4">Medium tab content</div>
     </TabPanel>
-    <TabPanel value='tabs'>
-      <div className='rounded bg-gray-50 p-4'>Medium tabs content</div>
+    <TabPanel value="tabs">
+      <div className="rounded bg-gray-50 p-4">Medium tabs content</div>
     </TabPanel>
   </Tabs>
 </Unstyled>
@@ -137,16 +137,16 @@ Medium tabs are the default size and provide a good balance of usability and vis
 Large tabs provide maximum visual prominence and are ideal for primary navigation or when accessibility is a key concern.
 
 <Unstyled>
-  <Tabs size='lg' defaultValue='large'>
+  <Tabs size="lg" defaultValue="large">
     <TabList>
-      <Tab value='large'>Large</Tab>
-      <Tab value='tabs'>Tabs</Tab>
+      <Tab value="large">Large</Tab>
+      <Tab value="tabs">Tabs</Tab>
     </TabList>
-    <TabPanel value='large'>
-      <div className='rounded bg-gray-50 p-4'>Large tab content</div>
+    <TabPanel value="large">
+      <div className="rounded bg-gray-50 p-4">Large tab content</div>
     </TabPanel>
-    <TabPanel value='tabs'>
-      <div className='rounded bg-gray-50 p-4'>Large tabs content</div>
+    <TabPanel value="tabs">
+      <div className="rounded bg-gray-50 p-4">Large tabs content</div>
     </TabPanel>
   </Tabs>
 </Unstyled>
@@ -164,27 +164,27 @@ Full-width tabs distribute evenly across the available space, creating a balance
 Uncontrolled tabs manage their own internal state. Use the `defaultValue` prop to set the initial active tab.
 
 ```jsx
-<Tabs defaultValue='tab1'>
+<Tabs defaultValue="tab1">
   <TabList>
-    <Tab value='tab1'>Tab 1</Tab>
-    <Tab value='tab2'>Tab 2</Tab>
+    <Tab value="tab1">Tab 1</Tab>
+    <Tab value="tab2">Tab 2</Tab>
   </TabList>
-  <TabPanel value='tab1'>Content 1</TabPanel>
-  <TabPanel value='tab2'>Content 2</TabPanel>
+  <TabPanel value="tab1">Content 1</TabPanel>
+  <TabPanel value="tab2">Content 2</TabPanel>
 </Tabs>
 ```
 
 <Unstyled>
-  <Tabs defaultValue='uncontrolled1'>
+  <Tabs defaultValue="uncontrolled1">
     <TabList>
-      <Tab value='uncontrolled1'>Uncontrolled 1</Tab>
-      <Tab value='uncontrolled2'>Uncontrolled 2</Tab>
+      <Tab value="uncontrolled1">Uncontrolled 1</Tab>
+      <Tab value="uncontrolled2">Uncontrolled 2</Tab>
     </TabList>
-    <TabPanel value='uncontrolled1'>
-      <div className='rounded bg-gray-50 p-4'>Uncontrolled tab 1 content</div>
+    <TabPanel value="uncontrolled1">
+      <div className="rounded bg-gray-50 p-4">Uncontrolled tab 1 content</div>
     </TabPanel>
-    <TabPanel value='uncontrolled2'>
-      <div className='rounded bg-gray-50 p-4'>Uncontrolled tab 2 content</div>
+    <TabPanel value="uncontrolled2">
+      <div className="rounded bg-gray-50 p-4">Uncontrolled tab 2 content</div>
     </TabPanel>
   </Tabs>
 </Unstyled>
@@ -198,35 +198,35 @@ const [activeTab, setActiveTab] = useState("tab1");
 
 <Tabs value={activeTab} onValueChange={setActiveTab}>
   <TabList>
-    <Tab value='tab1'>Tab 1</Tab>
-    <Tab value='tab2'>Tab 2</Tab>
+    <Tab value="tab1">Tab 1</Tab>
+    <Tab value="tab2">Tab 2</Tab>
   </TabList>
-  <TabPanel value='tab1'>Content 1</TabPanel>
-  <TabPanel value='tab2'>Content 2</TabPanel>
+  <TabPanel value="tab1">Content 1</TabPanel>
+  <TabPanel value="tab2">Content 2</TabPanel>
 </Tabs>;
 ```
 
 <Unstyled>
   <div>
-    <div className='mb-4 rounded-md bg-blue-50 p-4'>
-      <p className='mb-2 text-sm text-blue-800'>
+    <div className="mb-4 rounded-md bg-blue-50 p-4">
+      <p className="mb-2 text-sm text-blue-800">
         <strong>Active Tab:</strong> tab1
       </p>
-      <div className='space-x-2'>
-        <button className='rounded bg-blue-600 px-3 py-1 text-sm text-white'>Set Tab 1</button>
-        <button className='rounded bg-blue-600 px-3 py-1 text-sm text-white'>Set Tab 2</button>
+      <div className="space-x-2">
+        <button className="rounded bg-blue-600 px-3 py-1 text-sm text-white">Set Tab 1</button>
+        <button className="rounded bg-blue-600 px-3 py-1 text-sm text-white">Set Tab 2</button>
       </div>
     </div>
-    <Tabs value='tab1'>
+    <Tabs value="tab1">
       <TabList>
-        <Tab value='tab1'>Controlled 1</Tab>
-        <Tab value='tab2'>Controlled 2</Tab>
+        <Tab value="tab1">Controlled 1</Tab>
+        <Tab value="tab2">Controlled 2</Tab>
       </TabList>
-      <TabPanel value='tab1'>
-        <div className='rounded bg-gray-50 p-4'>Controlled tab 1 content</div>
+      <TabPanel value="tab1">
+        <div className="rounded bg-gray-50 p-4">Controlled tab 1 content</div>
       </TabPanel>
-      <TabPanel value='tab2'>
-        <div className='rounded bg-gray-50 p-4'>Controlled tab 2 content</div>
+      <TabPanel value="tab2">
+        <div className="rounded bg-gray-50 p-4">Controlled tab 2 content</div>
       </TabPanel>
     </Tabs>
   </div>
@@ -394,20 +394,20 @@ The `fullWidth` prop makes tabs expand to fill their container width, creating a
 <Unstyled>
   <div style={{ width: "100%", maxWidth: "600px" }}>
     <h4 style={{ marginBottom: "8px", fontSize: "14px", fontWeight: "600" }}>Full Width Tabs</h4>
-    <Tabs fullWidth defaultValue='fw1'>
+    <Tabs fullWidth defaultValue="fw1">
       <TabList>
-        <Tab value='fw1'>Full Width</Tab>
-        <Tab value='fw2'>Tabs</Tab>
-        <Tab value='fw3'>Example</Tab>
+        <Tab value="fw1">Full Width</Tab>
+        <Tab value="fw2">Tabs</Tab>
+        <Tab value="fw3">Example</Tab>
       </TabList>
-      <TabPanel value='fw1'>
-        <div className='rounded bg-gray-50 p-4'>Full width layout</div>
+      <TabPanel value="fw1">
+        <div className="rounded bg-gray-50 p-4">Full width layout</div>
       </TabPanel>
-      <TabPanel value='fw2'>
-        <div className='rounded bg-gray-50 p-4'>Tabs expand evenly</div>
+      <TabPanel value="fw2">
+        <div className="rounded bg-gray-50 p-4">Tabs expand evenly</div>
       </TabPanel>
-      <TabPanel value='fw3'>
-        <div className='rounded bg-gray-50 p-4'>Across container</div>
+      <TabPanel value="fw3">
+        <div className="rounded bg-gray-50 p-4">Across container</div>
       </TabPanel>
     </Tabs>
   </div>
@@ -419,9 +419,9 @@ Use `defaultValue` for uncontrolled tabs and `value` for controlled tabs to mana
 
 ```jsx
 // Uncontrolled
-<Tabs defaultValue='tab1'>
+<Tabs defaultValue="tab1">
   <TabList>
-    <Tab value='tab1'>Tab 1</Tab>
+    <Tab value="tab1">Tab 1</Tab>
   </TabList>
 </Tabs>;
 
@@ -429,7 +429,7 @@ Use `defaultValue` for uncontrolled tabs and `value` for controlled tabs to mana
 const [activeTab, setActiveTab] = useState("tab1");
 <Tabs value={activeTab} onValueChange={setActiveTab}>
   <TabList>
-    <Tab value='tab1'>Tab 1</Tab>
+    <Tab value="tab1">Tab 1</Tab>
   </TabList>
 </Tabs>;
 ```
@@ -441,8 +441,8 @@ The `onValueChange` callback is called when the active tab changes, providing th
 ```jsx
 <Tabs onValueChange={value => console.log("Active tab:", value)}>
   <TabList>
-    <Tab value='tab1'>Tab 1</Tab>
-    <Tab value='tab2'>Tab 2</Tab>
+    <Tab value="tab1">Tab 1</Tab>
+    <Tab value="tab2">Tab 2</Tab>
   </TabList>
 </Tabs>
 ```
@@ -454,11 +454,11 @@ Each tab must have a unique `value` that corresponds to its associated `TabPanel
 ```jsx
 <Tabs>
   <TabList>
-    <Tab value='unique-id-1'>Tab 1</Tab>
-    <Tab value='unique-id-2'>Tab 2</Tab>
+    <Tab value="unique-id-1">Tab 1</Tab>
+    <Tab value="unique-id-2">Tab 2</Tab>
   </TabList>
-  <TabPanel value='unique-id-1'>Content 1</TabPanel>
-  <TabPanel value='unique-id-2'>Content 2</TabPanel>
+  <TabPanel value="unique-id-1">Content 1</TabPanel>
+  <TabPanel value="unique-id-2">Content 2</TabPanel>
 </Tabs>
 ```
 
@@ -469,8 +469,8 @@ The `disabled` prop prevents a tab from being selected and applies visual disabl
 ```jsx
 <Tabs>
   <TabList>
-    <Tab value='enabled'>Enabled</Tab>
-    <Tab value='disabled' disabled>
+    <Tab value="enabled">Enabled</Tab>
+    <Tab value="disabled" disabled>
       Disabled
     </Tab>
   </TabList>
@@ -478,18 +478,18 @@ The `disabled` prop prevents a tab from being selected and applies visual disabl
 ```
 
 <Unstyled>
-  <Tabs defaultValue='enabled'>
+  <Tabs defaultValue="enabled">
     <TabList>
-      <Tab value='enabled'>Enabled Tab</Tab>
-      <Tab value='disabled' disabled>
+      <Tab value="enabled">Enabled Tab</Tab>
+      <Tab value="disabled" disabled>
         Disabled Tab
       </Tab>
     </TabList>
-    <TabPanel value='enabled'>
-      <div className='rounded bg-gray-50 p-4'>This tab is enabled</div>
+    <TabPanel value="enabled">
+      <div className="rounded bg-gray-50 p-4">This tab is enabled</div>
     </TabPanel>
-    <TabPanel value='disabled'>
-      <div className='rounded bg-red-50 p-4'>This tab is disabled</div>
+    <TabPanel value="disabled">
+      <div className="rounded bg-red-50 p-4">This tab is disabled</div>
     </TabPanel>
   </Tabs>
 </Unstyled>

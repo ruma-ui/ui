@@ -1,6 +1,5 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 
 export interface TopLoaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -113,11 +112,11 @@ export const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
           className
         )}
         style={{ zIndex }}
-        role='progressbar'
+        role="progressbar"
         aria-valuenow={isIndeterminate ? undefined : progress || 0}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-label='Loading progress'
+        aria-label="Loading progress"
         {...props}
       >
         <div

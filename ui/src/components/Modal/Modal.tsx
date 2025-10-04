@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import { IoClose } from "react-icons/io5";
+import { cn, tw } from "../../lib/utils";
 
 export interface ModalProps {
   /**
@@ -126,19 +126,6 @@ const modalAnimations = {
   enter: tw`animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200 ease-out`,
   exit: tw`animate-out fade-out-0 zoom-out-95 slide-out-to-top-2 duration-150 ease-in`,
 };
-
-// Close icon component
-const CloseIcon = () => (
-  <svg
-    className='h-5 w-5'
-    fill='none'
-    stroke='currentColor'
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-  </svg>
-);
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (
@@ -288,8 +275,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       <div
         className={overlayClasses}
         onClick={handleOverlayClick}
-        role='dialog'
-        aria-modal='true'
+        role="dialog"
+        aria-modal="true"
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy || (title ? titleId : undefined)}
         aria-describedby={ariaDescribedBy || descId}
@@ -305,22 +292,22 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           {/* Header */}
           {(header || title || !hideCloseButton) && (
             <div className={headerBase}>
-              <div className='min-w-0 flex-1'>
+              <div className="min-w-0 flex-1">
                 {header ||
                   (title && (
-                    <h2 id={titleId} className='truncate text-lg font-semibold text-gray-900'>
+                    <h2 id={titleId} className="truncate text-lg font-semibold text-gray-900">
                       {title}
                     </h2>
                   ))}
               </div>
               {!hideCloseButton && (
                 <button
-                  type='button'
+                  type="button"
                   className={closeButtonBase}
                   onClick={onClose}
-                  aria-label='Close modal'
+                  aria-label="Close modal"
                 >
-                  <CloseIcon />
+                  <IoClose className="h-5 w-5" />
                 </button>
               )}
             </div>

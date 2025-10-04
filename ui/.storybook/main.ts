@@ -1,6 +1,6 @@
+import type { StorybookConfig } from "@storybook/react-vite";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import type { StorybookConfig } from "@storybook/react-vite";
 const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
@@ -26,6 +26,11 @@ const config: StorybookConfig = {
     // Provide process polyfill for browser environment
 
     config.define["process.env"] = JSON.stringify(process.env);
+
+    // For Storybook build, don't externalize dependencies to avoid resolution issues
+    config.build = config.build || {};
+    config.build.rollupOptions = config.build.rollupOptions || {};
+    config.build.rollupOptions.external = [];
 
     return config;
   },

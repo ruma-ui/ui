@@ -1,6 +1,6 @@
-import React, { useState, createContext, useContext } from "react";
-import { cn } from "@ruma-ui/utils";
+import React, { createContext, useContext, useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
+import { cn } from "../../lib/utils";
 
 export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -195,7 +195,7 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
       )}
       {...props}
     >
-      <div className='text-gray-600'>{children}</div>
+      <div className="text-gray-600">{children}</div>
     </div>
   );
 };

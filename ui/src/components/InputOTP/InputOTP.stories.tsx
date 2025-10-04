@@ -239,19 +239,19 @@ const ControlledComponent = (args: Partial<InputOTPProps>) => {
   };
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <InputOTP
         {...args}
         value={value}
         onChange={handleChange}
         onComplete={handleComplete}
-        label='Enter Verification Code'
+        label="Enter Verification Code"
         description={isComplete ? "✅ Code verified successfully!" : "Enter the 6-digit code"}
         error={isComplete ? false : args.error}
       />
-      <div className='text-center'>
-        <p className='text-sm text-gray-600'>Current value: {value || "Empty"}</p>
-        <p className='text-sm text-gray-600'>Complete: {isComplete ? "Yes" : "No"}</p>
+      <div className="text-center">
+        <p className="text-sm text-gray-600">Current value: {value || "Empty"}</p>
+        <p className="text-sm text-gray-600">Complete: {isComplete ? "Yes" : "No"}</p>
       </div>
     </div>
   );
@@ -266,26 +266,26 @@ export const Controlled: Story = {
 
 export const SizeVariations: Story = {
   render: args => (
-    <div className='space-y-6'>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Extra Small (xs)</h3>
-        <InputOTP {...args} size='xs' />
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Extra Small (xs)</h3>
+        <InputOTP {...args} size="xs" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Small (sm)</h3>
-        <InputOTP {...args} size='sm' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Small (sm)</h3>
+        <InputOTP {...args} size="sm" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Medium (md)</h3>
-        <InputOTP {...args} size='md' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Medium (md)</h3>
+        <InputOTP {...args} size="md" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Large (lg)</h3>
-        <InputOTP {...args} size='lg' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Large (lg)</h3>
+        <InputOTP {...args} size="lg" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Extra Large (xl)</h3>
-        <InputOTP {...args} size='xl' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Extra Large (xl)</h3>
+        <InputOTP {...args} size="xl" />
       </div>
     </div>
   ),
@@ -299,30 +299,30 @@ export const SizeVariations: Story = {
 
 export const RoundedVariations: Story = {
   render: args => (
-    <div className='space-y-6'>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>None</h3>
-        <InputOTP {...args} rounded='none' />
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">None</h3>
+        <InputOTP {...args} rounded="none" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Small</h3>
-        <InputOTP {...args} rounded='sm' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Small</h3>
+        <InputOTP {...args} rounded="sm" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Medium</h3>
-        <InputOTP {...args} rounded='md' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Medium</h3>
+        <InputOTP {...args} rounded="md" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Large</h3>
-        <InputOTP {...args} rounded='lg' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Large</h3>
+        <InputOTP {...args} rounded="lg" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Extra Large</h3>
-        <InputOTP {...args} rounded='xl' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Extra Large</h3>
+        <InputOTP {...args} rounded="xl" />
       </div>
-      <div className='space-y-2'>
-        <h3 className='text-sm font-medium text-gray-700'>Full</h3>
-        <InputOTP {...args} rounded='full' />
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium text-gray-700">Full</h3>
+        <InputOTP {...args} rounded="full" />
       </div>
     </div>
   ),
@@ -337,48 +337,48 @@ export const RoundedVariations: Story = {
 
 export const UseCases: Story = {
   render: () => (
-    <div className='space-y-8'>
-      <div className='space-y-3'>
-        <h3 className='text-lg font-semibold text-gray-900'>Email Verification</h3>
+    <div className="space-y-8">
+      <div className="space-y-3">
+        <h3 className="text-lg font-semibold text-gray-900">Email Verification</h3>
         <InputOTP
-          label='Email Verification'
-          description='Enter the 6-digit code sent to your email'
+          label="Email Verification"
+          description="Enter the 6-digit code sent to your email"
           length={6}
           autoFocus
         />
       </div>
 
-      <div className='space-y-3'>
-        <h3 className='text-lg font-semibold text-gray-900'>SMS Authentication</h3>
+      <div className="space-y-3">
+        <h3 className="text-lg font-semibold text-gray-900">SMS Authentication</h3>
         <InputOTP
-          label='SMS Code'
-          description='Enter the 4-digit code sent to your phone'
+          label="SMS Code"
+          description="Enter the 4-digit code sent to your phone"
           length={4}
-          variant='secondary'
+          variant="secondary"
         />
       </div>
 
-      <div className='space-y-3'>
-        <h3 className='text-lg font-semibold text-gray-900'>Secure PIN Entry</h3>
+      <div className="space-y-3">
+        <h3 className="text-lg font-semibold text-gray-900">Secure PIN Entry</h3>
         <InputOTP
-          label='Security PIN'
-          description='Enter your 6-digit security PIN'
+          label="Security PIN"
+          description="Enter your 6-digit security PIN"
           length={6}
           mask={true}
-          size='lg'
-          rounded='lg'
+          size="lg"
+          rounded="lg"
         />
       </div>
 
-      <div className='space-y-3'>
-        <h3 className='text-lg font-semibold text-gray-900'>Product License</h3>
+      <div className="space-y-3">
+        <h3 className="text-lg font-semibold text-gray-900">Product License</h3>
         <InputOTP
-          label='License Key'
-          description='Enter the 12-character license key'
+          label="License Key"
+          description="Enter the 12-character license key"
           length={12}
-          type='text'
-          gap='xs'
-          size='sm'
+          type="text"
+          gap="xs"
+          size="sm"
         />
       </div>
     </div>

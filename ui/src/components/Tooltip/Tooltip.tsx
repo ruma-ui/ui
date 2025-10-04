@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { useEffect, useRef, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface TooltipProps {
   /**
@@ -298,7 +297,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
         onMouseLeave={hideTooltip}
         onFocus={showTooltip}
         onBlur={hideTooltip}
-        className='inline-block'
+        className="inline-block"
         aria-describedby={id}
       >
         {children}
@@ -307,7 +306,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       <div
         ref={tooltipRef}
         id={id}
-        role='tooltip'
+        role="tooltip"
         className={tooltipClasses}
         style={getPositionStyles()}
         onMouseEnter={showTooltip}

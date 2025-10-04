@@ -215,7 +215,7 @@ const EmailValidationComponent = (args: Partial<EditableProps>) => {
 
   return (
     <div>
-      <Editable {...args} value={value} onSave={handleSave} placeholder='Enter email...' />
+      <Editable {...args} value={value} onSave={handleSave} placeholder="Enter email..." />
       {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
     </div>
   );

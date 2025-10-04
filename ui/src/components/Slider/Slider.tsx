@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { useEffect, useRef, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface SliderProps {
   /**
@@ -327,7 +326,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     return (
       <div ref={ref} className={wrapperBase}>
         {label && (
-          <div className='flex items-center justify-between'>
+          <div className="flex items-center justify-between">
             <label htmlFor={sliderId} className={labelClasses}>
               {label}
             </label>
@@ -342,7 +341,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             onPointerDown={handlePointerDown}
             onKeyDown={handleKeyDown}
             tabIndex={disabled ? -1 : 0}
-            role='slider'
+            role="slider"
             aria-valuemin={min}
             aria-valuemax={max}
             aria-valuenow={clampedValue}

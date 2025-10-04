@@ -171,10 +171,10 @@ export const FullWidth: Story = {
 
 export const DifferentRows: Story = {
   render: args => (
-    <div className='grid gap-4'>
-      <Textarea {...args} rows={2} placeholder='2 rows' />
-      <Textarea {...args} rows={4} placeholder='4 rows' />
-      <Textarea {...args} rows={6} placeholder='6 rows' />
+    <div className="grid gap-4">
+      <Textarea {...args} rows={2} placeholder="2 rows" />
+      <Textarea {...args} rows={4} placeholder="4 rows" />
+      <Textarea {...args} rows={6} placeholder="6 rows" />
     </div>
   ),
   args: {
@@ -184,11 +184,11 @@ export const DifferentRows: Story = {
 
 export const ResizeOptions: Story = {
   render: args => (
-    <div className='grid gap-4'>
-      <Textarea {...args} resize='none' placeholder='No resize' />
-      <Textarea {...args} resize='vertical' placeholder='Vertical resize only' />
-      <Textarea {...args} resize='horizontal' placeholder='Horizontal resize only' />
-      <Textarea {...args} resize='both' placeholder='Both directions' />
+    <div className="grid gap-4">
+      <Textarea {...args} resize="none" placeholder="No resize" />
+      <Textarea {...args} resize="vertical" placeholder="Vertical resize only" />
+      <Textarea {...args} resize="horizontal" placeholder="Horizontal resize only" />
+      <Textarea {...args} resize="both" placeholder="Both directions" />
     </div>
   ),
   args: {
@@ -208,7 +208,7 @@ const CharacterCounterComponent = (args: Partial<TextareaProps>) => {
       onChange={e => setValue(e.target.value)}
       maxLength={maxLength}
       label={`${args.label ?? "Message"} (${value.length}/${maxLength})`}
-      description='Character count is shown in the label'
+      description="Character count is shown in the label"
     />
   );
 };

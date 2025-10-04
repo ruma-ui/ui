@@ -1,7 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import { Skeleton } from "../../";
+import { cn, tw } from "../../lib/utils";
 
 export interface ImageProps
   extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src" | "alt" | "width" | "height"> {
@@ -183,7 +182,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         {showSkeleton && !isLoaded && (
           <Skeleton
             variant={skeletonVariant}
-            size='xs' // Use smallest size to minimize default styling
+            size="xs" // Use smallest size to minimize default styling
             width={fill ? "100%" : typeof width === "number" ? width : 300}
             height={fill ? "100%" : typeof height === "number" ? height : 200}
             animation={skeletonAnimation}

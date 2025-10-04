@@ -58,6 +58,11 @@ Thumbs.db
 .yarn/build-state.yml
 .yarn/install-state.gz
 
+# Package Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
 # Changesets (exclude markdown files)
 .changeset/*.md
 !.changeset/config.json

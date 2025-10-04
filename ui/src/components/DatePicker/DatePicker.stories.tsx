@@ -7,9 +7,16 @@ const meta: Meta<typeof DatePicker> = {
   title: "Components/DatePicker",
   component: DatePicker,
   parameters: {
-    layout: "centered",
+    layout: "padded",
     docs: { page: mdx },
   },
+  decorators: [
+    Story => (
+      <div className="min-h-96">
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     variant: {
       control: { type: "radio" },
@@ -128,10 +135,10 @@ export const FullWidth: Story = {
 const ControlledComponent = (args: Partial<DatePickerProps>) => {
   const [date, setDate] = useState<Date | null>(null);
   return (
-    <div className='w-80'>
+    <div className="w-80">
       <DatePicker
         {...args}
-        label='Controlled'
+        label="Controlled"
         value={date}
         onChange={d => setDate(d)}
         description={`Selected: ${date ? date.toDateString() : "None"}`}

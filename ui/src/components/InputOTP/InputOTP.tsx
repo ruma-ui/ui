@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface InputOTPProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   /**
@@ -400,7 +399,7 @@ export const InputOTP = React.forwardRef<HTMLDivElement, InputOTPProps>(
             fullWidth && "w-full justify-between",
             className
           )}
-          role='group'
+          role="group"
           aria-label={label || "OTP input"}
           aria-describedby={hasAssistive ? assistiveId : undefined}
         >
@@ -463,11 +462,11 @@ export const InputOTP = React.forwardRef<HTMLDivElement, InputOTPProps>(
         </div>
 
         {hasAssistive && (
-          <div id={assistiveId} className='mt-1 min-h-[1rem]'>
+          <div id={assistiveId} className="mt-1 min-h-[1rem]">
             {error && errorMessage ? (
-              <span className='text-sm text-red-600'>{errorMessage}</span>
+              <span className="text-sm text-red-600">{errorMessage}</span>
             ) : description ? (
-              <span className='text-sm text-gray-600'>{description}</span>
+              <span className="text-sm text-gray-600">{description}</span>
             ) : null}
           </div>
         )}

@@ -112,8 +112,8 @@ Controls padding: `compact | normal | comfortable`.
             role: "Editor",
           },
         ]}
-        density='compact'
-        variant='outlined'
+        density="compact"
+        variant="outlined"
       />
     </div>
     <div>
@@ -136,8 +136,8 @@ Controls padding: `compact | normal | comfortable`.
             role: "Editor",
           },
         ]}
-        density='normal'
-        variant='outlined'
+        density="normal"
+        variant="outlined"
       />
     </div>
     <div>
@@ -160,8 +160,8 @@ Controls padding: `compact | normal | comfortable`.
             role: "Editor",
           },
         ]}
-        density='comfortable'
-        variant='outlined'
+        density="comfortable"
+        variant="outlined"
       />
     </div>
   </div>
@@ -206,7 +206,7 @@ Controls padding: `compact | normal | comfortable`.
             role: "Viewer",
           },
         ]}
-        variant='plain'
+        variant="plain"
       />
     </div>
     <div>
@@ -234,7 +234,7 @@ Controls padding: `compact | normal | comfortable`.
             role: "Viewer",
           },
         ]}
-        variant='zebra'
+        variant="zebra"
       />
     </div>
     <div>
@@ -262,7 +262,7 @@ Controls padding: `compact | normal | comfortable`.
             role: "Viewer",
           },
         ]}
-        variant='outlined'
+        variant="outlined"
       />
     </div>
   </div>
@@ -297,7 +297,7 @@ Highlight rows when hovering to improve visual feedback.
 Enable sticky header behavior with a maximum height container for scrollable table content.
 
 ```jsx
-<Table stickyHeader maxHeight='300px' />
+<Table stickyHeader maxHeight="300px" />
 ```
 
 <Unstyled>
@@ -315,7 +315,7 @@ Enable sticky header behavior with a maximum height container for scrollable tab
       status: i % 3 === 0 ? "Completed" : i % 3 === 1 ? "In Progress" : "Todo",
     }))}
     stickyHeader
-    maxHeight='300px'
+    maxHeight="300px"
   />
 </Unstyled>
 
@@ -324,7 +324,7 @@ Enable sticky header behavior with a maximum height container for scrollable tab
 Add accessibility features with caption and aria-label for screen readers.
 
 ```jsx
-<Table caption='Employee information' ariaLabel='Employee data table' />
+<Table caption="Employee information" ariaLabel="Employee data table" />
 ```
 
 <Unstyled>
@@ -347,8 +347,8 @@ Add accessibility features with caption and aria-label for screen readers.
       },
       { employee: "Mike Wilson", department: "Sales", salary: "$55,000" },
     ]}
-    caption='Employee information'
-    ariaLabel='Employee data table'
+    caption="Employee information"
+    ariaLabel="Employee data table"
   />
 </Unstyled>
 
@@ -357,7 +357,7 @@ Add accessibility features with caption and aria-label for screen readers.
 Append custom styles.
 
 ```jsx
-<Table className='rounded-lg border-2 border-blue-500' />
+<Table className="rounded-lg border-2 border-blue-500" />
 ```
 
 <Unstyled>
@@ -372,7 +372,7 @@ Append custom styles.
       { item: "Widget B", quantity: 5, price: "$15.00" },
       { item: "Widget C", quantity: 8, price: "$30.00" },
     ]}
-    className='rounded-lg border-2 border-blue-500'
+    className="rounded-lg border-2 border-blue-500"
   />
 </Unstyled>
 
@@ -405,7 +405,7 @@ Enable column resizing with drag handles.
       },
       { name: "Bob Carter", email: "bob@example.com", role: "Editor" },
     ]}
-    variant='outlined'
+    variant="outlined"
   />
 </Unstyled>
 
@@ -433,7 +433,7 @@ Enable virtualization for large datasets.
       virtualization={true}
       maxHeight={300}
       rowHeight={48}
-      variant='zebra'
+      variant="zebra"
     />
   </div>
 </Unstyled>
@@ -529,7 +529,7 @@ Make columns stick to the left while scrolling horizontally.
         quantity: Math.floor(Math.random() * 50) + 1,
         total: `$${(Math.random() * 500 + 50).toFixed(2)}`,
       }))}
-      variant='zebra'
+      variant="zebra"
       stickyHeader={true}
       maxHeight={200}
     />

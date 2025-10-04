@@ -150,11 +150,11 @@ Combine skeleton loading with fallback content for comprehensive error handling.
 The `src` prop specifies the image source URL, and `alt` provides alternative text for accessibility and when the image fails to load.
 
 ```jsx
-<Image src='https://example.com/image.jpg' alt='Description of the image' />
+<Image src="https://example.com/image.jpg" alt="Description of the image" />
 ```
 
 <Unstyled>
-  <Image src='https://picsum.photos/200/150' alt='Sample image' width={200} height={150} />
+  <Image src="https://picsum.photos/200/150" alt="Sample image" width={200} height={150} />
 </Unstyled>
 
 ### Image `width` and `height`
@@ -168,8 +168,8 @@ Specify the dimensions of the image. These are required for Next.js Image optimi
 
 <Unstyled>
   <div style={{ display: "flex", gap: "8px" }}>
-    <Image src='https://picsum.photos/200/150' alt='Small image' width={200} height={150} />
-    <Image src='https://picsum.photos/150/200' alt='Tall image' width={150} height={200} />
+    <Image src="https://picsum.photos/200/150" alt="Small image" width={200} height={150} />
+    <Image src="https://picsum.photos/150/200" alt="Tall image" width={150} height={200} />
   </div>
 </Unstyled>
 
@@ -185,15 +185,15 @@ Control how the image scales within its container using object-fit CSS property.
 
 <Unstyled>
   <div style={{ display: "flex", gap: "8px" }}>
-    <Image fit='cover' src='https://picsum.photos/200/200' alt='Cover' width={200} height={200} />
+    <Image fit="cover" src="https://picsum.photos/200/200" alt="Cover" width={200} height={200} />
     <Image
-      fit='contain'
-      src='https://picsum.photos/200/200'
-      alt='Contain'
+      fit="contain"
+      src="https://picsum.photos/200/200"
+      alt="Contain"
       width={200}
       height={200}
     />
-    <Image fit='fill' src='https://picsum.photos/200/200' alt='Fill' width={200} height={200} />
+    <Image fit="fill" src="https://picsum.photos/200/200" alt="Fill" width={200} height={200} />
   </div>
 </Unstyled>
 
@@ -210,23 +210,23 @@ Maintain consistent aspect ratios across your images using preset options or cus
 <Unstyled>
   <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
     <Image
-      aspectRatio='square'
-      src='https://picsum.photos/150/150'
-      alt='Square'
+      aspectRatio="square"
+      src="https://picsum.photos/150/150"
+      alt="Square"
       width={150}
       height={150}
     />
     <Image
-      aspectRatio='video'
-      src='https://picsum.photos/200/113'
-      alt='Video'
+      aspectRatio="video"
+      src="https://picsum.photos/200/113"
+      alt="Video"
       width={200}
       height={113}
     />
     <Image
-      aspectRatio='portrait'
-      src='https://picsum.photos/150/200'
-      alt='Portrait'
+      aspectRatio="portrait"
+      src="https://picsum.photos/150/200"
+      alt="Portrait"
       width={150}
       height={200}
     />
@@ -246,23 +246,23 @@ Apply rounded corners to soften the image appearance and match your design syste
 <Unstyled>
   <div style={{ display: "flex", gap: "8px" }}>
     <Image
-      rounded='none'
-      src='https://picsum.photos/150/150'
-      alt='Sharp'
+      rounded="none"
+      src="https://picsum.photos/150/150"
+      alt="Sharp"
       width={150}
       height={150}
     />
     <Image
-      rounded='md'
-      src='https://picsum.photos/150/150'
-      alt='Rounded'
+      rounded="md"
+      src="https://picsum.photos/150/150"
+      alt="Rounded"
       width={150}
       height={150}
     />
     <Image
-      rounded='full'
-      src='https://picsum.photos/150/150'
-      alt='Circle'
+      rounded="full"
+      src="https://picsum.photos/150/150"
+      alt="Circle"
       width={150}
       height={150}
     />
@@ -275,7 +275,7 @@ The `fill` prop makes the image fill its parent container, useful for responsive
 
 ```jsx
 <div style={{ position: "relative", width: "300px", height: "200px" }}>
-  <Image fill src='https://picsum.photos/1200/800' alt='Filling container' />
+  <Image fill src="https://picsum.photos/1200/800" alt="Filling container" />
 </div>
 ```
 
@@ -290,7 +290,7 @@ The `fill` prop makes the image fill its parent container, useful for responsive
       overflow: "hidden",
     }}
   >
-    <Image fill src='https://picsum.photos/1200/800' alt='Filling container' />
+    <Image fill src="https://picsum.photos/1200/800" alt="Filling container" />
   </div>
 </Unstyled>
 
@@ -307,16 +307,16 @@ The `showSkeleton` prop displays a skeleton loader while the image is loading, p
   <div style={{ display: "flex", gap: "8px" }}>
     <Image
       showSkeleton
-      src='https://picsum.photos/1500/1500'
-      alt='Shimmer'
+      src="https://picsum.photos/1500/1500"
+      alt="Shimmer"
       width={150}
       height={150}
     />
     <Image
       showSkeleton
-      skeletonAnimation='wave'
-      src='https://picsum.photos/1500/1500'
-      alt='Wave'
+      skeletonAnimation="wave"
+      src="https://picsum.photos/1500/1500"
+      alt="Wave"
       width={150}
       height={150}
     />
@@ -336,21 +336,21 @@ Control the animation and shape of the skeleton loader.
   <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
     <Image
       showSkeleton
-      skeletonAnimation='shimmer'
-      src='https://picsum.photos/1200/1200'
-      alt='Shimmer'
+      skeletonAnimation="shimmer"
+      src="https://picsum.photos/1200/1200"
+      alt="Shimmer"
       width={120}
       height={120}
     />
     <Image
       showSkeleton
-      skeletonAnimation='pulse'
-      skeletonVariant='circle'
-      src='https://picsum.photos/1200/1200'
-      alt='Pulse circle'
+      skeletonAnimation="pulse"
+      skeletonVariant="circle"
+      src="https://picsum.photos/1200/1200"
+      alt="Pulse circle"
       width={120}
       height={120}
-      rounded='full'
+      rounded="full"
     />
   </div>
 </Unstyled>
@@ -361,12 +361,12 @@ The `fallback` prop allows you to specify custom content to display when the ima
 
 ```jsx
 <Image
-  src='https://invalid-url.com/image.jpg'
-  alt='With fallback'
+  src="https://invalid-url.com/image.jpg"
+  alt="With fallback"
   width={300}
   height={300}
   fallback={
-    <div className='flex h-full w-full items-center justify-center bg-gray-100 text-gray-500'>
+    <div className="flex h-full w-full items-center justify-center bg-gray-100 text-gray-500">
       Image not available
     </div>
   }
@@ -375,14 +375,14 @@ The `fallback` prop allows you to specify custom content to display when the ima
 
 <Unstyled>
   <Image
-    src='https://invalid-url.com/image.jpg'
-    alt='With fallback'
+    src="https://invalid-url.com/image.jpg"
+    alt="With fallback"
     width={200}
     height={150}
     fallback={
-      <div className='flex h-[200px] w-[150px] flex-col items-center justify-center bg-gray-100 p-2 text-gray-500'>
-        <span className='mb-1 text-2xl'>🖼️</span>
-        <span className='text-sm'>Image not available</span>
+      <div className="flex h-[200px] w-[150px] flex-col items-center justify-center bg-gray-100 p-2 text-gray-500">
+        <span className="mb-1 text-2xl">🖼️</span>
+        <span className="text-sm">Image not available</span>
       </div>
     }
   />
@@ -394,9 +394,9 @@ Add custom styling while preserving the component's built-in styles.
 
 ```jsx
 <Image
-  className='border-2 border-gray-300 shadow-lg'
-  src='https://picsum.photos/300/200'
-  alt='Custom styled'
+  className="border-2 border-gray-300 shadow-lg"
+  src="https://picsum.photos/300/200"
+  alt="Custom styled"
   width={300}
   height={200}
 />
@@ -404,9 +404,9 @@ Add custom styling while preserving the component's built-in styles.
 
 <Unstyled>
   <Image
-    className='border-2 border-gray-300 shadow-lg'
-    src='https://picsum.photos/200/150'
-    alt='Custom styled'
+    className="border-2 border-gray-300 shadow-lg"
+    src="https://picsum.photos/200/150"
+    alt="Custom styled"
     width={200}
     height={150}
   />

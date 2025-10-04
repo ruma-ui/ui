@@ -1,4 +1,4 @@
-import { cn, tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 import React, { useCallback, useRef, useState } from "react";
 
 export interface ResizableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onResize"> {
@@ -288,8 +288,8 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                 onMouseDown={handleMouseDown("horizontal")}
                 onKeyDown={handleKeyDown("horizontal")}
                 tabIndex={0}
-                role='slider'
-                aria-label='Resize width'
+                role="slider"
+                aria-label="Resize width"
                 aria-valuemin={minWidth}
                 aria-valuemax={maxWidth}
                 aria-valuenow={size.width}
@@ -316,8 +316,8 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                 onMouseDown={handleMouseDown("vertical")}
                 onKeyDown={handleKeyDown("vertical")}
                 tabIndex={0}
-                role='slider'
-                aria-label='Resize height'
+                role="slider"
+                aria-label="Resize height"
                 aria-valuemin={minHeight}
                 aria-valuemax={maxHeight}
                 aria-valuenow={size.height}
@@ -344,8 +344,8 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                 onMouseDown={handleMouseDown("both")}
                 onKeyDown={handleKeyDown("both")}
                 tabIndex={0}
-                role='slider'
-                aria-label='Resize both dimensions'
+                role="slider"
+                aria-label="Resize both dimensions"
                 aria-valuemin={Math.min(minWidth, minHeight)}
                 aria-valuemax={Math.max(maxWidth, maxHeight)}
                 aria-valuenow={Math.max(size.width, size.height)}

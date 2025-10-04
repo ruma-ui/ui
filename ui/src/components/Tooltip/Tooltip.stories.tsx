@@ -26,7 +26,7 @@ const meta: Meta<typeof Tooltip> = {
   },
   decorators: [
     Story => (
-      <div className='flex items-center justify-center p-8'>
+      <div className="flex items-center justify-center p-8">
         <Story />
       </div>
     ),
@@ -122,18 +122,18 @@ export const Basic: Story = {
 
 export const Positions: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center justify-center gap-8 p-8'>
-      <Tooltip content='Tooltip on top' position='top'>
-        <Button variant='outline'>Top</Button>
+    <div className="flex flex-wrap items-center justify-center gap-8 p-8">
+      <Tooltip content="Tooltip on top" position="top">
+        <Button variant="outline">Top</Button>
       </Tooltip>
-      <Tooltip content='Tooltip on bottom' position='bottom'>
-        <Button variant='outline'>Bottom</Button>
+      <Tooltip content="Tooltip on bottom" position="bottom">
+        <Button variant="outline">Bottom</Button>
       </Tooltip>
-      <Tooltip content='Tooltip on left' position='left'>
-        <Button variant='outline'>Left</Button>
+      <Tooltip content="Tooltip on left" position="left">
+        <Button variant="outline">Left</Button>
       </Tooltip>
-      <Tooltip content='Tooltip on right' position='right'>
-        <Button variant='outline'>Right</Button>
+      <Tooltip content="Tooltip on right" position="right">
+        <Button variant="outline">Right</Button>
       </Tooltip>
     </div>
   ),
@@ -141,12 +141,12 @@ export const Positions: Story = {
 
 export const AutoPosition: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center justify-center gap-8 p-8'>
+    <div className="flex flex-wrap items-center justify-center gap-8 p-8">
       <Tooltip
-        content='This tooltip will automatically choose the best position, prioritizing top, then left, right, bottom'
-        position='auto'
+        content="This tooltip will automatically choose the best position, prioritizing top, then left, right, bottom"
+        position="auto"
       >
-        <Button variant='outline'>Auto Position</Button>
+        <Button variant="outline">Auto Position</Button>
       </Tooltip>
     </div>
   ),
@@ -154,24 +154,24 @@ export const AutoPosition: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-4'>
-      <Tooltip content='Dark tooltip' variant='dark'>
-        <Button variant='secondary'>Dark</Button>
+    <div className="flex flex-wrap items-center gap-4">
+      <Tooltip content="Dark tooltip" variant="dark">
+        <Button variant="secondary">Dark</Button>
       </Tooltip>
-      <Tooltip content='Light tooltip' variant='light'>
-        <Button variant='secondary'>Light</Button>
+      <Tooltip content="Light tooltip" variant="light">
+        <Button variant="secondary">Light</Button>
       </Tooltip>
-      <Tooltip content='Primary tooltip' variant='primary'>
-        <Button variant='secondary'>Primary</Button>
+      <Tooltip content="Primary tooltip" variant="primary">
+        <Button variant="secondary">Primary</Button>
       </Tooltip>
-      <Tooltip content='Success tooltip' variant='success'>
-        <Button variant='secondary'>Success</Button>
+      <Tooltip content="Success tooltip" variant="success">
+        <Button variant="secondary">Success</Button>
       </Tooltip>
-      <Tooltip content='Warning tooltip' variant='warning'>
-        <Button variant='secondary'>Warning</Button>
+      <Tooltip content="Warning tooltip" variant="warning">
+        <Button variant="secondary">Warning</Button>
       </Tooltip>
-      <Tooltip content='Error tooltip' variant='error'>
-        <Button variant='secondary'>Error</Button>
+      <Tooltip content="Error tooltip" variant="error">
+        <Button variant="secondary">Error</Button>
       </Tooltip>
     </div>
   ),
@@ -179,19 +179,19 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
-      <Tooltip content='Small tooltip' size='sm'>
-        <Button variant='outline' size='sm'>
+    <div className="flex items-center gap-4">
+      <Tooltip content="Small tooltip" size="sm">
+        <Button variant="outline" size="sm">
           SM
         </Button>
       </Tooltip>
-      <Tooltip content='Medium tooltip' size='md'>
-        <Button variant='outline' size='md'>
+      <Tooltip content="Medium tooltip" size="md">
+        <Button variant="outline" size="md">
           MD
         </Button>
       </Tooltip>
-      <Tooltip content='Large tooltip' size='lg'>
-        <Button variant='outline' size='lg'>
+      <Tooltip content="Large tooltip" size="lg">
+        <Button variant="outline" size="lg">
           LG
         </Button>
       </Tooltip>
@@ -201,21 +201,21 @@ export const Sizes: Story = {
 
 export const MaxWidth: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-4'>
-      <Tooltip content='Small max width tooltip' maxWidth='xs'>
-        <Button variant='outline'>XS</Button>
+    <div className="flex flex-wrap items-center gap-4">
+      <Tooltip content="Small max width tooltip" maxWidth="xs">
+        <Button variant="outline">XS</Button>
       </Tooltip>
-      <Tooltip content='Medium max width tooltip' maxWidth='sm'>
-        <Button variant='outline'>SM</Button>
+      <Tooltip content="Medium max width tooltip" maxWidth="sm">
+        <Button variant="outline">SM</Button>
       </Tooltip>
-      <Tooltip content='Large max width tooltip' maxWidth='md'>
-        <Button variant='outline'>MD</Button>
+      <Tooltip content="Large max width tooltip" maxWidth="md">
+        <Button variant="outline">MD</Button>
       </Tooltip>
-      <Tooltip content='Extra large max width tooltip' maxWidth='lg'>
-        <Button variant='outline'>LG</Button>
+      <Tooltip content="Extra large max width tooltip" maxWidth="lg">
+        <Button variant="outline">LG</Button>
       </Tooltip>
-      <Tooltip content='No max width tooltip' maxWidth='none'>
-        <Button variant='outline'>None</Button>
+      <Tooltip content="No max width tooltip" maxWidth="none">
+        <Button variant="outline">None</Button>
       </Tooltip>
     </div>
   ),
@@ -223,29 +223,29 @@ export const MaxWidth: Story = {
 
 export const Multiline: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-4'>
-      <Tooltip content="This tooltip has no max width and won't wrap" maxWidth='none'>
-        <Button variant='outline'>No Max Width</Button>
+    <div className="flex flex-wrap items-center gap-4">
+      <Tooltip content="This tooltip has no max width and won't wrap" maxWidth="none">
+        <Button variant="outline">No Max Width</Button>
       </Tooltip>
       <Tooltip
-        content='This tooltip has a small max width and will wrap long content to fit within the width constraint'
-        maxWidth='sm'
+        content="This tooltip has a small max width and will wrap long content to fit within the width constraint"
+        maxWidth="sm"
       >
-        <Button variant='outline'>Wrapped Content</Button>
+        <Button variant="outline">Wrapped Content</Button>
       </Tooltip>
       <Tooltip
         content={
           <div>
-            <div className='font-semibold'>Rich Wrapped Content</div>
-            <div className='mt-1 text-xs'>
+            <div className="font-semibold">Rich Wrapped Content</div>
+            <div className="mt-1 text-xs">
               This tooltip contains rich content with multiple lines that will wrap naturally within
               the medium max width constraint.
             </div>
           </div>
         }
-        maxWidth='md'
+        maxWidth="md"
       >
-        <Button variant='outline'>Rich Content</Button>
+        <Button variant="outline">Rich Content</Button>
       </Tooltip>
     </div>
   ),
@@ -253,24 +253,24 @@ export const Multiline: Story = {
 
 export const WithIcons: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-4'>
-      <Tooltip content='Information tooltip'>
-        <Button variant='outline' startIcon={<Info className='h-4 w-4' />}>
+    <div className="flex flex-wrap items-center gap-4">
+      <Tooltip content="Information tooltip">
+        <Button variant="outline" startIcon={<Info className="h-4 w-4" />}>
           Info
         </Button>
       </Tooltip>
-      <Tooltip content='Help tooltip'>
-        <Button variant='outline' startIcon={<HelpCircle className='h-4 w-4' />}>
+      <Tooltip content="Help tooltip">
+        <Button variant="outline" startIcon={<HelpCircle className="h-4 w-4" />}>
           Help
         </Button>
       </Tooltip>
-      <Tooltip content='Warning tooltip' variant='warning'>
-        <Button variant='outline' startIcon={<AlertTriangle className='h-4 w-4' />}>
+      <Tooltip content="Warning tooltip" variant="warning">
+        <Button variant="outline" startIcon={<AlertTriangle className="h-4 w-4" />}>
           Warning
         </Button>
       </Tooltip>
-      <Tooltip content='Success tooltip' variant='success'>
-        <Button variant='outline' startIcon={<CheckCircle className='h-4 w-4' />}>
+      <Tooltip content="Success tooltip" variant="success">
+        <Button variant="outline" startIcon={<CheckCircle className="h-4 w-4" />}>
           Success
         </Button>
       </Tooltip>
@@ -280,24 +280,24 @@ export const WithIcons: Story = {
 
 export const WithBadges: Story = {
   render: () => (
-    <div className='flex flex-wrap items-center gap-4'>
-      <Tooltip content='Premium feature'>
-        <Badge variant='primary' startIcon={<Star className='h-3 w-3' />}>
+    <div className="flex flex-wrap items-center gap-4">
+      <Tooltip content="Premium feature">
+        <Badge variant="primary" startIcon={<Star className="h-3 w-3" />}>
           Premium
         </Badge>
       </Tooltip>
-      <Tooltip content='Favorite item'>
-        <Badge variant='error' startIcon={<Heart className='h-3 w-3' />}>
+      <Tooltip content="Favorite item">
+        <Badge variant="error" startIcon={<Heart className="h-3 w-3" />}>
           Favorite
         </Badge>
       </Tooltip>
-      <Tooltip content='High priority'>
-        <Badge variant='warning' startIcon={<Zap className='h-3 w-3' />}>
+      <Tooltip content="High priority">
+        <Badge variant="warning" startIcon={<Zap className="h-3 w-3" />}>
           Priority
         </Badge>
       </Tooltip>
-      <Tooltip content='Award winner'>
-        <Badge variant='success' startIcon={<Award className='h-3 w-3' />}>
+      <Tooltip content="Award winner">
+        <Badge variant="success" startIcon={<Award className="h-3 w-3" />}>
           Award
         </Badge>
       </Tooltip>
@@ -307,26 +307,26 @@ export const WithBadges: Story = {
 
 export const LongContent: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
+    <div className="flex items-center gap-4">
       <Tooltip
-        content='This is a longer tooltip with more detailed information that explains what this button does in the interface.'
-        position='top'
+        content="This is a longer tooltip with more detailed information that explains what this button does in the interface."
+        position="top"
       >
-        <Button variant='primary'>Long Tooltip</Button>
+        <Button variant="primary">Long Tooltip</Button>
       </Tooltip>
       <Tooltip
         content={
-          <div className='max-w-xs'>
-            <div className='mb-1 font-semibold'>Advanced Settings</div>
-            <div className='text-xs'>
+          <div className="max-w-xs">
+            <div className="mb-1 font-semibold">Advanced Settings</div>
+            <div className="text-xs">
               Configure advanced options for this feature including timeout settings, retry logic,
               and error handling preferences.
             </div>
           </div>
         }
-        position='bottom'
+        position="bottom"
       >
-        <Button variant='secondary'>Rich Content</Button>
+        <Button variant="secondary">Rich Content</Button>
       </Tooltip>
     </div>
   ),
@@ -334,15 +334,15 @@ export const LongContent: Story = {
 
 export const CustomDelay: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
-      <Tooltip content='Quick tooltip (100ms)' delay={100}>
-        <Button variant='outline'>Quick</Button>
+    <div className="flex items-center gap-4">
+      <Tooltip content="Quick tooltip (100ms)" delay={100}>
+        <Button variant="outline">Quick</Button>
       </Tooltip>
-      <Tooltip content='Normal tooltip (300ms)' delay={300}>
-        <Button variant='outline'>Normal</Button>
+      <Tooltip content="Normal tooltip (300ms)" delay={300}>
+        <Button variant="outline">Normal</Button>
       </Tooltip>
-      <Tooltip content='Slow tooltip (1000ms)' delay={1000}>
-        <Button variant='outline'>Slow</Button>
+      <Tooltip content="Slow tooltip (1000ms)" delay={1000}>
+        <Button variant="outline">Slow</Button>
       </Tooltip>
     </div>
   ),
@@ -350,12 +350,12 @@ export const CustomDelay: Story = {
 
 export const WithoutArrow: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
-      <Tooltip content='Tooltip with arrow' showArrow={true}>
-        <Button variant='outline'>With Arrow</Button>
+    <div className="flex items-center gap-4">
+      <Tooltip content="Tooltip with arrow" showArrow={true}>
+        <Button variant="outline">With Arrow</Button>
       </Tooltip>
-      <Tooltip content='Tooltip without arrow' showArrow={false}>
-        <Button variant='outline'>Without Arrow</Button>
+      <Tooltip content="Tooltip without arrow" showArrow={false}>
+        <Button variant="outline">Without Arrow</Button>
       </Tooltip>
     </div>
   ),
@@ -363,12 +363,12 @@ export const WithoutArrow: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
-      <Tooltip content='This tooltip is enabled'>
-        <Button variant='outline'>Enabled</Button>
+    <div className="flex items-center gap-4">
+      <Tooltip content="This tooltip is enabled">
+        <Button variant="outline">Enabled</Button>
       </Tooltip>
-      <Tooltip content='This tooltip is disabled' disabled={true}>
-        <Button variant='outline' disabled>
+      <Tooltip content="This tooltip is disabled" disabled={true}>
+        <Button variant="outline" disabled>
           Disabled
         </Button>
       </Tooltip>
@@ -380,37 +380,37 @@ const InteractiveElementsComponent = (args: Partial<TooltipProps>) => {
   const [count, setCount] = useState(0);
 
   return (
-    <div className='space-y-4'>
-      <div className='flex items-center gap-4'>
-        <Tooltip {...args} content='Click to increment counter'>
-          <Button onClick={() => setCount(count + 1)} variant='primary'>
+    <div className="space-y-4">
+      <div className="flex items-center gap-4">
+        <Tooltip {...args} content="Click to increment counter">
+          <Button onClick={() => setCount(count + 1)} variant="primary">
             Count: {count}
           </Button>
         </Tooltip>
-        <Tooltip {...args} content='Reset counter'>
-          <Button onClick={() => setCount(0)} variant='secondary'>
+        <Tooltip {...args} content="Reset counter">
+          <Button onClick={() => setCount(0)} variant="secondary">
             Reset
           </Button>
         </Tooltip>
       </div>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Tooltip {...args} content='Primary action'>
-          <Button variant='primary' size='sm'>
+      <div className="flex flex-wrap items-center gap-2">
+        <Tooltip {...args} content="Primary action">
+          <Button variant="primary" size="sm">
             Primary
           </Button>
         </Tooltip>
-        <Tooltip {...args} content='Secondary action'>
-          <Button variant='secondary' size='sm'>
+        <Tooltip {...args} content="Secondary action">
+          <Button variant="secondary" size="sm">
             Secondary
           </Button>
         </Tooltip>
-        <Tooltip {...args} content='Outline action'>
-          <Button variant='outline' size='sm'>
+        <Tooltip {...args} content="Outline action">
+          <Button variant="outline" size="sm">
             Outline
           </Button>
         </Tooltip>
-        <Tooltip {...args} content='Destructive action' variant='error'>
-          <Button variant='destructive' size='sm'>
+        <Tooltip {...args} content="Destructive action" variant="error">
+          <Button variant="destructive" size="sm">
             Delete
           </Button>
         </Tooltip>

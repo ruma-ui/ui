@@ -66,14 +66,14 @@ const BasicComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <Pagination
         {...args}
         currentPage={currentPage}
         totalPages={10}
         onPageChange={setCurrentPage}
       />
-      <p className='text-sm text-gray-600'>Current page: {currentPage}</p>
+      <p className="text-sm text-gray-600">Current page: {currentPage}</p>
     </div>
   );
 };
@@ -86,35 +86,35 @@ const SizesComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(3);
 
   return (
-    <div className='space-y-6'>
+    <div className="space-y-6">
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Small Size</h4>
+        <h4 className="mb-2 text-sm font-medium">Small Size</h4>
         <Pagination
           {...args}
           currentPage={currentPage}
           totalPages={10}
           onPageChange={setCurrentPage}
-          size='sm'
+          size="sm"
         />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Medium Size</h4>
+        <h4 className="mb-2 text-sm font-medium">Medium Size</h4>
         <Pagination
           {...args}
           currentPage={currentPage}
           totalPages={10}
           onPageChange={setCurrentPage}
-          size='md'
+          size="md"
         />
       </div>
       <div>
-        <h4 className='mb-2 text-sm font-medium'>Large Size</h4>
+        <h4 className="mb-2 text-sm font-medium">Large Size</h4>
         <Pagination
           {...args}
           currentPage={currentPage}
           totalPages={10}
           onPageChange={setCurrentPage}
-          size='lg'
+          size="lg"
         />
       </div>
     </div>
@@ -129,7 +129,7 @@ const WithFirstLastComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(5);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <Pagination
         {...args}
         currentPage={currentPage}
@@ -137,7 +137,7 @@ const WithFirstLastComponent = (args: Partial<PaginationProps>) => {
         onPageChange={setCurrentPage}
         showFirstLast
       />
-      <p className='text-sm text-gray-600'>Current page: {currentPage}</p>
+      <p className="text-sm text-gray-600">Current page: {currentPage}</p>
     </div>
   );
 };
@@ -150,7 +150,7 @@ const ManyPagesComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(8);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <Pagination
         {...args}
         currentPage={currentPage}
@@ -158,7 +158,7 @@ const ManyPagesComponent = (args: Partial<PaginationProps>) => {
         onPageChange={setCurrentPage}
         maxVisiblePages={7}
       />
-      <p className='text-sm text-gray-600'>Current page: {currentPage} of 50</p>
+      <p className="text-sm text-gray-600">Current page: {currentPage} of 50</p>
     </div>
   );
 };
@@ -171,14 +171,14 @@ const FewPagesComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(2);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <Pagination
         {...args}
         currentPage={currentPage}
         totalPages={5}
         onPageChange={setCurrentPage}
       />
-      <p className='text-sm text-gray-600'>Current page: {currentPage}</p>
+      <p className="text-sm text-gray-600">Current page: {currentPage}</p>
     </div>
   );
 };
@@ -191,7 +191,7 @@ const MiddlePagesComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(15);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <Pagination
         {...args}
         currentPage={currentPage}
@@ -199,7 +199,7 @@ const MiddlePagesComponent = (args: Partial<PaginationProps>) => {
         onPageChange={setCurrentPage}
         showFirstLast
       />
-      <p className='text-sm text-gray-600'>Current page: {currentPage} of 25</p>
+      <p className="text-sm text-gray-600">Current page: {currentPage} of 25</p>
     </div>
   );
 };
@@ -212,7 +212,7 @@ const EndPagesComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(23);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <Pagination
         {...args}
         currentPage={currentPage}
@@ -220,7 +220,7 @@ const EndPagesComponent = (args: Partial<PaginationProps>) => {
         onPageChange={setCurrentPage}
         showFirstLast
       />
-      <p className='text-sm text-gray-600'>Current page: {currentPage} of 25</p>
+      <p className="text-sm text-gray-600">Current page: {currentPage} of 25</p>
     </div>
   );
 };
@@ -242,7 +242,7 @@ const CompactComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <Pagination
         {...args}
         currentPage={currentPage}
@@ -251,7 +251,7 @@ const CompactComponent = (args: Partial<PaginationProps>) => {
         showPrevNext={false}
         maxVisiblePages={3}
       />
-      <p className='text-sm text-gray-600'>Current page: {currentPage}</p>
+      <p className="text-sm text-gray-600">Current page: {currentPage}</p>
     </div>
   );
 };
@@ -266,10 +266,10 @@ const DataTableComponent = (args: Partial<PaginationProps>) => {
   const totalItems = 247;
 
   return (
-    <div className='space-y-4'>
-      <div className='rounded-lg border border-gray-200 bg-white p-4'>
-        <div className='mb-4 flex flex-col items-start justify-between gap-2'>
-          <div className='text-sm text-gray-700'>
+    <div className="space-y-4">
+      <div className="rounded-lg border border-gray-200 bg-white p-4">
+        <div className="mb-4 flex flex-col items-start justify-between gap-2">
+          <div className="text-sm text-gray-700">
             Showing {Math.min((currentPage - 1) * itemsPerPage + 1, totalItems)} to{" "}
             {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems} results
           </div>
@@ -278,16 +278,16 @@ const DataTableComponent = (args: Partial<PaginationProps>) => {
             currentPage={currentPage}
             totalPages={Math.ceil(totalItems / itemsPerPage)}
             onPageChange={setCurrentPage}
-            size='sm'
+            size="sm"
           />
         </div>
-        <div className='space-y-2'>
+        <div className="space-y-2">
           {Array.from({ length: itemsPerPage }, (_, i) => (
-            <div key={i} className='flex items-center space-x-4 rounded border p-3'>
-              <div className='h-8 w-8 rounded-full bg-gray-200'></div>
-              <div className='flex-1'>
-                <div className='h-4 w-32 rounded bg-gray-200'></div>
-                <div className='mt-1 h-3 w-24 rounded bg-gray-100'></div>
+            <div key={i} className="flex items-center space-x-4 rounded border p-3">
+              <div className="h-8 w-8 rounded-full bg-gray-200"></div>
+              <div className="flex-1">
+                <div className="h-4 w-32 rounded bg-gray-200"></div>
+                <div className="mt-1 h-3 w-24 rounded bg-gray-100"></div>
               </div>
             </div>
           ))}
@@ -305,15 +305,15 @@ const CustomStylingComponent = (args: Partial<PaginationProps>) => {
   const [currentPage, setCurrentPage] = useState(3);
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <Pagination
         {...args}
         currentPage={currentPage}
         totalPages={10}
         onPageChange={setCurrentPage}
-        className='rounded-lg bg-gray-50 p-4'
+        className="rounded-lg bg-gray-50 p-4"
       />
-      <p className='text-sm text-gray-600'>Current page: {currentPage}</p>
+      <p className="text-sm text-gray-600">Current page: {currentPage}</p>
     </div>
   );
 };

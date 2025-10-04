@@ -74,16 +74,16 @@ export const Default: Story = {
     glow: false,
   },
   render: args => (
-    <div className='relative min-h-screen bg-gray-50 p-8'>
+    <div className="relative min-h-screen bg-gray-50 p-8">
       <TopLoader {...args} />
-      <div className='space-y-4'>
-        <h1 className='text-2xl font-bold text-gray-900'>Page Content</h1>
-        <p className='text-gray-600'>
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold text-gray-900">Page Content</h1>
+        <p className="text-gray-600">
           This is an example of a top loader in indeterminate mode. The loader appears at the top of
           the page and shows continuous animation to indicate loading activity.
         </p>
-        <div className='flex h-64 items-center justify-center rounded-lg border border-gray-200 bg-white'>
-          <p className='text-gray-500'>Content Area</p>
+        <div className="flex h-64 items-center justify-center rounded-lg border border-gray-200 bg-white">
+          <p className="text-gray-500">Content Area</p>
         </div>
       </div>
     </div>
@@ -100,13 +100,13 @@ export const Determinate: Story = {
     speed: "normal",
   },
   render: args => (
-    <div className='relative min-h-screen bg-gray-50 p-8'>
+    <div className="relative min-h-screen bg-gray-50 p-8">
       <TopLoader {...args} />
-      <div className='space-y-4'>
-        <h1 className='text-2xl font-bold text-gray-900'>File Upload Progress</h1>
-        <p className='text-gray-600'>Upload progress: {args.progress}%</p>
-        <div className='flex h-32 items-center justify-center rounded-lg border border-gray-200 bg-white'>
-          <p className='text-gray-500'>Upload Area</p>
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold text-gray-900">File Upload Progress</h1>
+        <p className="text-gray-600">Upload progress: {args.progress}%</p>
+        <div className="flex h-32 items-center justify-center rounded-lg border border-gray-200 bg-white">
+          <p className="text-gray-500">Upload Area</p>
         </div>
       </div>
     </div>
@@ -143,22 +143,22 @@ const InteractiveComponent = () => {
   };
 
   return (
-    <div className='relative min-h-screen bg-gray-50 p-8'>
+    <div className="relative min-h-screen bg-gray-50 p-8">
       <TopLoader
         progress={loadingState.isLoading ? loadingState.progress : null}
         show={loadingState.isLoading}
-        variant='primary'
-        size='md'
+        variant="primary"
+        size="md"
       />
-      <div className='space-y-6'>
+      <div className="space-y-6">
         <div>
-          <h1 className='mb-2 text-2xl font-bold text-gray-900'>Interactive TopLoader</h1>
-          <p className='text-gray-600'>
+          <h1 className="mb-2 text-2xl font-bold text-gray-900">Interactive TopLoader</h1>
+          <p className="text-gray-600">
             Click the button below to simulate a loading process with progress indication.
           </p>
         </div>
 
-        <div className='flex items-center gap-4'>
+        <div className="flex items-center gap-4">
           <Button
             onClick={startLoading}
             disabled={loadingState.isLoading}
@@ -167,14 +167,14 @@ const InteractiveComponent = () => {
             {loadingState.isLoading ? "Loading..." : "Start Loading"}
           </Button>
           {loadingState.isLoading && (
-            <span className='text-sm text-gray-600'>
+            <span className="text-sm text-gray-600">
               Progress: {Math.round(loadingState.progress)}%
             </span>
           )}
         </div>
 
-        <div className='flex h-64 items-center justify-center rounded-lg border border-gray-200 bg-white'>
-          <p className='text-gray-500'>
+        <div className="flex h-64 items-center justify-center rounded-lg border border-gray-200 bg-white">
+          <p className="text-gray-500">
             {loadingState.isLoading ? "Processing..." : "Ready to load"}
           </p>
         </div>
@@ -220,22 +220,22 @@ const SizesComponent = () => {
   ];
 
   return (
-    <div className='relative min-h-screen space-y-8 bg-gray-50 p-8'>
+    <div className="relative min-h-screen space-y-8 bg-gray-50 p-8">
       <div>
-        <h1 className='text-2xl font-bold text-gray-900'>TopLoader Sizes</h1>
-        <p className='mt-2 text-gray-600'>
+        <h1 className="text-2xl font-bold text-gray-900">TopLoader Sizes</h1>
+        <p className="mt-2 text-gray-600">
           Click the buttons below to see different size variants. Each size shows a 75% progress
           bar.
         </p>
       </div>
 
       {/* Size Selection Buttons */}
-      <div className='flex flex-wrap gap-2'>
+      <div className="flex flex-wrap gap-2">
         {sizes.map(size => (
           <Button
             key={size.key}
             variant={currentSize === size.key ? "primary" : "outline"}
-            size='sm'
+            size="sm"
             onClick={() => setCurrentSize(size.key)}
           >
             {size.label}
@@ -244,27 +244,27 @@ const SizesComponent = () => {
       </div>
 
       {/* Current Size Display */}
-      <div className='space-y-4'>
-        <div className='rounded-lg border border-gray-200 bg-white p-4'>
-          <div className='flex items-center justify-between'>
+      <div className="space-y-4">
+        <div className="rounded-lg border border-gray-200 bg-white p-4">
+          <div className="flex items-center justify-between">
             <div>
-              <h3 className='font-medium text-gray-900'>
+              <h3 className="font-medium text-gray-900">
                 {sizes.find(s => s.key === currentSize)?.label} ({currentSize})
               </h3>
-              <p className='text-sm text-gray-600'>
+              <p className="text-sm text-gray-600">
                 {sizes.find(s => s.key === currentSize)?.description}
               </p>
             </div>
-            <div className='text-sm text-gray-500'>Progress: 75%</div>
+            <div className="text-sm text-gray-500">Progress: 75%</div>
           </div>
         </div>
 
         {/* TopLoader with current size */}
-        <TopLoader progress={75} show size={currentSize} variant='primary' />
+        <TopLoader progress={75} show size={currentSize} variant="primary" />
       </div>
 
-      <div className='flex h-32 items-center justify-center rounded-lg border border-gray-200 bg-white'>
-        <p className='text-gray-500'>Content Area - Resize the loader above using the buttons</p>
+      <div className="flex h-32 items-center justify-center rounded-lg border border-gray-200 bg-white">
+        <p className="text-gray-500">Content Area - Resize the loader above using the buttons</p>
       </div>
     </div>
   );
@@ -314,22 +314,22 @@ const VariantsComponent = () => {
   ];
 
   return (
-    <div className='relative min-h-screen space-y-8 bg-gray-50 p-8'>
+    <div className="relative min-h-screen space-y-8 bg-gray-50 p-8">
       <div>
-        <h1 className='text-2xl font-bold text-gray-900'>TopLoader Variants</h1>
-        <p className='mt-2 text-gray-600'>
+        <h1 className="text-2xl font-bold text-gray-900">TopLoader Variants</h1>
+        <p className="mt-2 text-gray-600">
           Click the buttons below to see different color variants. Each variant shows an 80%
           progress bar.
         </p>
       </div>
 
       {/* Variant Selection Buttons */}
-      <div className='flex flex-wrap gap-2'>
+      <div className="flex flex-wrap gap-2">
         {variants.map(variant => (
           <Button
             key={variant.key}
             variant={currentVariant === variant.key ? "primary" : "outline"}
-            size='sm'
+            size="sm"
             onClick={() => setCurrentVariant(variant.key)}
           >
             {variant.label}
@@ -338,18 +338,18 @@ const VariantsComponent = () => {
       </div>
 
       {/* Current Variant Display */}
-      <div className='space-y-4'>
-        <div className='rounded-lg border border-gray-200 bg-white p-4'>
-          <div className='flex items-center justify-between'>
+      <div className="space-y-4">
+        <div className="rounded-lg border border-gray-200 bg-white p-4">
+          <div className="flex items-center justify-between">
             <div>
-              <h3 className='font-medium text-gray-900'>
+              <h3 className="font-medium text-gray-900">
                 {variants.find(v => v.key === currentVariant)?.label} ({currentVariant})
               </h3>
-              <p className='text-sm text-gray-600'>
+              <p className="text-sm text-gray-600">
                 {variants.find(v => v.key === currentVariant)?.description}
               </p>
             </div>
-            <div className='text-sm text-gray-500'>Progress: 80%</div>
+            <div className="text-sm text-gray-500">Progress: 80%</div>
           </div>
         </div>
 
@@ -357,8 +357,8 @@ const VariantsComponent = () => {
         <TopLoader progress={80} show variant={currentVariant} />
       </div>
 
-      <div className='flex h-32 items-center justify-center rounded-lg border border-gray-200 bg-white'>
-        <p className='text-gray-500'>Content Area - Change the variant above using the buttons</p>
+      <div className="flex h-32 items-center justify-center rounded-lg border border-gray-200 bg-white">
+        <p className="text-gray-500">Content Area - Change the variant above using the buttons</p>
       </div>
     </div>
   );
@@ -371,15 +371,15 @@ export const Variants: Story = {
 // With glow effect
 export const WithGlow: Story = {
   render: () => (
-    <div className='relative min-h-screen bg-gray-50 p-8'>
-      <TopLoader progress={null} show variant='primary' glow size='lg' />
-      <div className='space-y-4'>
-        <h1 className='text-2xl font-bold text-gray-900'>TopLoader with Glow Effect</h1>
-        <p className='text-gray-600'>
+    <div className="relative min-h-screen bg-gray-50 p-8">
+      <TopLoader progress={null} show variant="primary" glow size="lg" />
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold text-gray-900">TopLoader with Glow Effect</h1>
+        <p className="text-gray-600">
           The glow effect adds a subtle shadow that enhances the visual prominence of the loader.
         </p>
-        <div className='flex h-64 items-center justify-center rounded-lg border border-gray-200 bg-white'>
-          <p className='text-gray-500'>Content Area</p>
+        <div className="flex h-64 items-center justify-center rounded-lg border border-gray-200 bg-white">
+          <p className="text-gray-500">Content Area</p>
         </div>
       </div>
     </div>
@@ -396,15 +396,15 @@ export const CustomColor: Story = {
     glow: true,
   },
   render: args => (
-    <div className='relative min-h-screen bg-gray-50 p-8'>
+    <div className="relative min-h-screen bg-gray-50 p-8">
       <TopLoader {...args} />
-      <div className='space-y-4'>
-        <h1 className='text-2xl font-bold text-gray-900'>Custom Color TopLoader</h1>
-        <p className='text-gray-600'>
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold text-gray-900">Custom Color TopLoader</h1>
+        <p className="text-gray-600">
           Use the color prop to apply custom colors that override the variant colors.
         </p>
-        <div className='flex h-64 items-center justify-center rounded-lg border border-gray-200 bg-white'>
-          <p className='text-gray-500'>Content Area</p>
+        <div className="flex h-64 items-center justify-center rounded-lg border border-gray-200 bg-white">
+          <p className="text-gray-500">Content Area</p>
         </div>
       </div>
     </div>
@@ -437,22 +437,22 @@ const SpeedsComponent = () => {
   ];
 
   return (
-    <div className='relative min-h-screen space-y-8 bg-gray-50 p-8'>
+    <div className="relative min-h-screen space-y-8 bg-gray-50 p-8">
       <div>
-        <h1 className='text-2xl font-bold text-gray-900'>TopLoader Animation Speeds</h1>
-        <p className='mt-2 text-gray-600'>
+        <h1 className="text-2xl font-bold text-gray-900">TopLoader Animation Speeds</h1>
+        <p className="mt-2 text-gray-600">
           Click the buttons below to see different animation speeds. Each shows indeterminate
           loading.
         </p>
       </div>
 
       {/* Speed Selection Buttons */}
-      <div className='flex flex-wrap gap-2'>
+      <div className="flex flex-wrap gap-2">
         {speeds.map(speed => (
           <Button
             key={speed.key}
             variant={currentSpeed === speed.key ? "primary" : "outline"}
-            size='sm'
+            size="sm"
             onClick={() => setCurrentSpeed(speed.key)}
           >
             {speed.label}
@@ -461,29 +461,29 @@ const SpeedsComponent = () => {
       </div>
 
       {/* Current Speed Display */}
-      <div className='space-y-4'>
-        <div className='rounded-lg border border-gray-200 bg-white p-4'>
-          <div className='flex items-center justify-between'>
+      <div className="space-y-4">
+        <div className="rounded-lg border border-gray-200 bg-white p-4">
+          <div className="flex items-center justify-between">
             <div>
-              <h3 className='font-medium text-gray-900'>
+              <h3 className="font-medium text-gray-900">
                 {speeds.find(s => s.key === currentSpeed)?.label} ({currentSpeed})
               </h3>
-              <p className='text-sm text-gray-600'>
+              <p className="text-sm text-gray-600">
                 {speeds.find(s => s.key === currentSpeed)?.description}
               </p>
             </div>
-            <div className='text-sm text-gray-500'>
+            <div className="text-sm text-gray-500">
               Duration: {speeds.find(s => s.key === currentSpeed)?.duration}
             </div>
           </div>
         </div>
 
         {/* TopLoader with current speed */}
-        <TopLoader progress={null} show speed={currentSpeed} variant='primary' />
+        <TopLoader progress={null} show speed={currentSpeed} variant="primary" />
       </div>
 
-      <div className='flex h-32 items-center justify-center rounded-lg border border-gray-200 bg-white'>
-        <p className='text-gray-500'>
+      <div className="flex h-32 items-center justify-center rounded-lg border border-gray-200 bg-white">
+        <p className="text-gray-500">
           Content Area - Change the animation speed above using the buttons
         </p>
       </div>
@@ -523,13 +523,13 @@ const PageTransitionComponent = () => {
   const currentPageData = pages.find(p => p.id === currentPage);
 
   return (
-    <div className='relative min-h-screen bg-gray-50'>
-      <TopLoader progress={isTransitioning ? null : 100} show={isTransitioning} variant='primary' />
+    <div className="relative min-h-screen bg-gray-50">
+      <TopLoader progress={isTransitioning ? null : 100} show={isTransitioning} variant="primary" />
 
-      <div className='p-8'>
-        <div className='mx-auto max-w-4xl'>
-          <nav className='mb-8'>
-            <div className='flex space-x-4'>
+      <div className="p-8">
+        <div className="mx-auto max-w-4xl">
+          <nav className="mb-8">
+            <div className="flex space-x-4">
               {pages.map(page => (
                 <Button
                   key={page.id}
@@ -543,9 +543,9 @@ const PageTransitionComponent = () => {
             </div>
           </nav>
 
-          <div className='min-h-64 rounded-lg border border-gray-200 bg-white p-8'>
-            <h1 className='mb-4 text-3xl font-bold text-gray-900'>{currentPageData?.title}</h1>
-            <p className='text-lg text-gray-600'>
+          <div className="min-h-64 rounded-lg border border-gray-200 bg-white p-8">
+            <h1 className="mb-4 text-3xl font-bold text-gray-900">{currentPageData?.title}</h1>
+            <p className="text-lg text-gray-600">
               {isTransitioning ? "Loading..." : currentPageData?.content}
             </p>
           </div>

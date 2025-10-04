@@ -107,20 +107,20 @@ FormField wraps individual form inputs with labels, descriptions, and error mess
 
 ```jsx
 <FormField
-  label='Email Address'
+  label="Email Address"
   description="We'll use this to send you updates"
   required
   error={hasError}
-  errorMessage='Please enter a valid email'
+  errorMessage="Please enter a valid email"
 >
-  <TextInput type='email' placeholder='your@email.com' />
+  <TextInput type="email" placeholder="your@email.com" />
 </FormField>
 ```
 
 <Unstyled>
   <div style={{ maxWidth: "400px" }}>
-    <FormField label='Email Address' description="We'll use this to send you updates" required>
-      <TextInput type='email' placeholder='your@email.com' />
+    <FormField label="Email Address" description="We'll use this to send you updates" required>
+      <TextInput type="email" placeholder="your@email.com" />
     </FormField>
   </div>
 </Unstyled>
@@ -130,24 +130,24 @@ FormField wraps individual form inputs with labels, descriptions, and error mess
 FormSection groups related form fields with an optional title and description. Use the `bordered` prop to visually separate sections.
 
 ```jsx
-<FormSection title='Personal Information' description='Tell us about yourself' bordered>
-  <FormField label='First Name' required>
-    <TextInput placeholder='Enter your first name' />
+<FormSection title="Personal Information" description="Tell us about yourself" bordered>
+  <FormField label="First Name" required>
+    <TextInput placeholder="Enter your first name" />
   </FormField>
-  <FormField label='Last Name' required>
-    <TextInput placeholder='Enter your last name' />
+  <FormField label="Last Name" required>
+    <TextInput placeholder="Enter your last name" />
   </FormField>
 </FormSection>
 ```
 
 <Unstyled>
   <div style={{ maxWidth: "400px" }}>
-    <FormSection title='Personal Information' description='Tell us about yourself' bordered>
-      <FormField label='First Name' required>
-        <TextInput placeholder='Enter your first name' />
+    <FormSection title="Personal Information" description="Tell us about yourself" bordered>
+      <FormField label="First Name" required>
+        <TextInput placeholder="Enter your first name" />
       </FormField>
-      <FormField label='Last Name' required>
-        <TextInput placeholder='Enter your last name' />
+      <FormField label="Last Name" required>
+        <TextInput placeholder="Enter your last name" />
       </FormField>
     </FormSection>
   </div>
@@ -168,14 +168,14 @@ The `variant` prop controls the visual style of the form. Currently supports pri
 
 <Unstyled>
   <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
-    <Form variant='primary' title='Primary Form'>
-      <FormField label='Name'>
-        <TextInput placeholder='Primary variant' />
+    <Form variant="primary" title="Primary Form">
+      <FormField label="Name">
+        <TextInput placeholder="Primary variant" />
       </FormField>
     </Form>
-    <Form variant='secondary' title='Secondary Form'>
-      <FormField label='Name'>
-        <TextInput placeholder='Secondary variant' />
+    <Form variant="secondary" title="Secondary Form">
+      <FormField label="Name">
+        <TextInput placeholder="Secondary variant" />
       </FormField>
     </Form>
   </div>
@@ -195,14 +195,14 @@ The `size` prop controls the overall size of form elements, affecting text size 
 
 <Unstyled>
   <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
-    <Form size='sm' title='Small Form'>
-      <FormField label='Name' size='sm'>
-        <TextInput placeholder='Small size' size='sm' />
+    <Form size="sm" title="Small Form">
+      <FormField label="Name" size="sm">
+        <TextInput placeholder="Small size" size="sm" />
       </FormField>
     </Form>
-    <Form size='lg' title='Large Form'>
-      <FormField label='Name' size='lg'>
-        <TextInput placeholder='Large size' size='lg' />
+    <Form size="lg" title="Large Form">
+      <FormField label="Name" size="lg">
+        <TextInput placeholder="Large size" size="lg" />
       </FormField>
     </Form>
   </div>
@@ -219,12 +219,12 @@ The `direction` prop controls the layout direction of form fields.
 
 <Unstyled>
   <div style={{ maxWidth: "600px" }}>
-    <Form direction='horizontal' title='Horizontal Form' spacing='lg'>
-      <FormField label='First Name' direction='horizontal'>
-        <TextInput placeholder='John' />
+    <Form direction="horizontal" title="Horizontal Form" spacing="lg">
+      <FormField label="First Name" direction="horizontal">
+        <TextInput placeholder="John" />
       </FormField>
-      <FormField label='Last Name' direction='horizontal'>
-        <TextInput placeholder='Doe' />
+      <FormField label="Last Name" direction="horizontal">
+        <TextInput placeholder="Doe" />
       </FormField>
     </Form>
   </div>
@@ -244,20 +244,20 @@ The `spacing` prop controls the spacing between form elements.
 
 <Unstyled>
   <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
-    <Form spacing='sm' title='Tight Spacing'>
-      <FormField label='Field 1'>
-        <TextInput placeholder='Tight spacing' />
+    <Form spacing="sm" title="Tight Spacing">
+      <FormField label="Field 1">
+        <TextInput placeholder="Tight spacing" />
       </FormField>
-      <FormField label='Field 2'>
-        <TextInput placeholder='Tight spacing' />
+      <FormField label="Field 2">
+        <TextInput placeholder="Tight spacing" />
       </FormField>
     </Form>
-    <Form spacing='lg' title='Loose Spacing'>
-      <FormField label='Field 1'>
-        <TextInput placeholder='Loose spacing' />
+    <Form spacing="lg" title="Loose Spacing">
+      <FormField label="Field 1">
+        <TextInput placeholder="Loose spacing" />
       </FormField>
-      <FormField label='Field 2'>
-        <TextInput placeholder='Loose spacing' />
+      <FormField label="Field 2">
+        <TextInput placeholder="Loose spacing" />
       </FormField>
     </Form>
   </div>
@@ -273,9 +273,9 @@ The `fullWidth` prop makes the form expand to fill its container width.
 
 <Unstyled>
   <div style={{ width: "100%", border: "1px solid #e5e7eb", padding: "16px" }}>
-    <Form fullWidth title='Full Width Form'>
-      <FormField label='Name' fullWidth>
-        <TextInput placeholder='Full width input' fullWidth />
+    <Form fullWidth title="Full Width Form">
+      <FormField label="Name" fullWidth>
+        <TextInput placeholder="Full width input" fullWidth />
       </FormField>
     </Form>
   </div>
@@ -290,9 +290,9 @@ The `card` prop displays the form in a card-like container with background, bord
 ```
 
 <Unstyled>
-  <Form card title='Card Form' style={{ maxWidth: "400px" }}>
-    <FormField label='Name'>
-      <TextInput placeholder='Card layout' />
+  <Form card title="Card Form" style={{ maxWidth: "400px" }}>
+    <FormField label="Name">
+      <TextInput placeholder="Card layout" />
     </FormField>
   </Form>
 </Unstyled>
@@ -302,15 +302,15 @@ The `card` prop displays the form in a card-like container with background, bord
 The `loading` prop shows a loading state and prevents form submission.
 
 ```jsx
-<Form loading loadingMessage='Processing...'>
+<Form loading loadingMessage="Processing...">
   ...
 </Form>
 ```
 
 <Unstyled>
-  <Form loading loadingMessage='Processing...' title='Loading Form' style={{ maxWidth: "400px" }}>
-    <FormField label='Name'>
-      <TextInput placeholder='Loading state' disabled />
+  <Form loading loadingMessage="Processing..." title="Loading Form" style={{ maxWidth: "400px" }}>
+    <FormField label="Name">
+      <TextInput placeholder="Loading state" disabled />
     </FormField>
   </Form>
 </Unstyled>
@@ -324,9 +324,9 @@ The `disabled` prop disables all form elements and applies visual styling.
 ```
 
 <Unstyled>
-  <Form disabled title='Disabled Form' style={{ maxWidth: "400px" }}>
-    <FormField label='Name'>
-      <TextInput placeholder='Disabled form' />
+  <Form disabled title="Disabled Form" style={{ maxWidth: "400px" }}>
+    <FormField label="Name">
+      <TextInput placeholder="Disabled form" />
     </FormField>
   </Form>
 </Unstyled>
@@ -353,8 +353,8 @@ The `onSubmit` callback is fired when the form is submitted successfully. The `o
 The `label` prop displays text above the form field.
 
 ```jsx
-<FormField label='Email Address'>
-  <TextInput type='email' />
+<FormField label="Email Address">
+  <TextInput type="email" />
 </FormField>
 ```
 
@@ -363,8 +363,8 @@ The `label` prop displays text above the form field.
 The `description` prop displays helper text below the form field.
 
 ```jsx
-<FormField label='Password' description='Must be at least 8 characters long'>
-  <TextInput type='password' />
+<FormField label="Password" description="Must be at least 8 characters long">
+  <TextInput type="password" />
 </FormField>
 ```
 
@@ -373,8 +373,8 @@ The `description` prop displays helper text below the form field.
 The `error` prop shows the field in an error state with red styling.
 
 ```jsx
-<FormField label='Email' error errorMessage='Please enter a valid email address'>
-  <TextInput type='email' />
+<FormField label="Email" error errorMessage="Please enter a valid email address">
+  <TextInput type="email" />
 </FormField>
 ```
 
@@ -383,7 +383,7 @@ The `error` prop shows the field in an error state with red styling.
 The `required` prop adds a red asterisk to the label and enables validation.
 
 ```jsx
-<FormField label='Name' required>
+<FormField label="Name" required>
   <TextInput />
 </FormField>
 ```
@@ -393,7 +393,7 @@ The `required` prop adds a red asterisk to the label and enables validation.
 The `title` prop displays a heading for the section.
 
 ```jsx
-<FormSection title='Personal Information'>...</FormSection>
+<FormSection title="Personal Information">...</FormSection>
 ```
 
 ### FormSection `bordered`
@@ -401,7 +401,7 @@ The `title` prop displays a heading for the section.
 The `bordered` prop adds a border, background, and shadow to the section.
 
 ```jsx
-<FormSection title='Section' bordered>
+<FormSection title="Section" bordered>
   ...
 </FormSection>
 ```

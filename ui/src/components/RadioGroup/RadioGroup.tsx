@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { useEffect, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface RadioOption {
   value: string;
@@ -229,16 +228,16 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
         return (
           <div key={option.value} className={radioWrapperBase}>
-            <div className='flex items-center'>
+            <div className="flex items-center">
               <input
-                type='radio'
+                type="radio"
                 id={radioId}
                 name={groupName}
                 value={option.value}
                 checked={isSelected}
                 onChange={() => handleOptionChange(option.value)}
                 disabled={isDisabled}
-                className='peer sr-only'
+                className="peer sr-only"
               />
               <label
                 htmlFor={radioId}
@@ -271,8 +270,8 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                   )}
                 </div>
 
-                <div className='flex flex-col'>
-                  <div className='flex items-center gap-2'>
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
                     {option.icon && (
                       <span
                         className={cn(
@@ -318,15 +317,15 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     return (
       <div ref={ref} className={cn(wrapperBase, className)} {...props}>
         {label && (
-          <fieldset className='w-full'>
+          <fieldset className="w-full">
             <legend className={cn(labelBase, labelSizes[size], error && "text-red-700", "mb-3")}>
               {label}
-              {required && <span className='ml-1 text-red-500'>*</span>}
+              {required && <span className="ml-1 text-red-500">*</span>}
             </legend>
 
             <div
               className={groupClasses}
-              role='radiogroup'
+              role="radiogroup"
               aria-describedby={hasAssistive ? assistiveId : undefined}
               aria-required={required}
               aria-invalid={error}
@@ -339,7 +338,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         {!label && (
           <div
             className={groupClasses}
-            role='radiogroup'
+            role="radiogroup"
             aria-describedby={hasAssistive ? assistiveId : undefined}
             aria-required={required}
             aria-invalid={error}

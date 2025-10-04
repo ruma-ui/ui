@@ -1,7 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { cn, tw } from "../../lib/utils";
 
 export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   /**
@@ -328,7 +327,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     if (totalItems === 0) {
       return (
         <div ref={carouselRef} className={cn(carouselBase, className)} {...props}>
-          <div className='flex h-48 items-center justify-center text-gray-500'>
+          <div className="flex h-48 items-center justify-center text-gray-500">
             No items to display
           </div>
         </div>
@@ -352,9 +351,9 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         onKeyDown={handleKeyDown}
         onMouseEnter={handleMouseEnter}
         tabIndex={0}
-        role='region'
-        aria-label='Carousel'
-        aria-live='polite'
+        role="region"
+        aria-label="Carousel"
+        aria-live="polite"
         {...props}
       >
         <div
@@ -374,7 +373,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               style={{
                 left: `${index * 100}%`,
               }}
-              role='img'
+              role="img"
               aria-label={`Slide ${index + 1} of ${totalItems}`}
             >
               {item}
@@ -389,8 +388,8 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               className={cn(arrowBase, arrowClassName, "left-4")}
               onClick={goToPrev}
               disabled={!infinite && activeIndex === 0}
-              aria-label='Previous slide'
-              type='button'
+              aria-label="Previous slide"
+              type="button"
             >
               <FaChevronLeft size={16} />
             </button>
@@ -398,8 +397,8 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               className={cn(arrowBase, arrowClassName, "right-4")}
               onClick={goToNext}
               disabled={!infinite && activeIndex === totalItems - 1}
-              aria-label='Next slide'
-              type='button'
+              aria-label="Next slide"
+              type="button"
             >
               <FaChevronRight size={16} />
             </button>
@@ -415,7 +414,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                 className={cn(dotBase, dotClassName, index === activeIndex && activeDot)}
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to slide ${index + 1}`}
-                type='button'
+                type="button"
               />
             ))}
           </div>

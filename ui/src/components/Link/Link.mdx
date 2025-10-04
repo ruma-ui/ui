@@ -186,19 +186,19 @@ The `variant` prop determines the visual style and hierarchy of the link. Choose
       alignItems: "flex-start",
     }}
   >
-    <Link href='/home' variant='primary'>
+    <Link href="/home" variant="primary">
       Primary
     </Link>
-    <Link href='/about' variant='secondary'>
+    <Link href="/about" variant="secondary">
       Secondary
     </Link>
-    <Link href='/help' variant='tertiary'>
+    <Link href="/help" variant="tertiary">
       Tertiary
     </Link>
-    <Link href='/delete' variant='destructive'>
+    <Link href="/delete" variant="destructive">
       Destructive
     </Link>
-    <Link href='/custom' variant='none'>
+    <Link href="/custom" variant="none">
       None
     </Link>
   </div>
@@ -225,19 +225,19 @@ The `size` prop controls the link's text size and icon spacing. Choose sizes bas
       alignItems: "flex-start",
     }}
   >
-    <Link href='/xs' size='xs'>
+    <Link href="/xs" size="xs">
       XS
     </Link>
-    <Link href='/sm' size='sm'>
+    <Link href="/sm" size="sm">
       SM
     </Link>
-    <Link href='/md' size='md'>
+    <Link href="/md" size="md">
       MD
     </Link>
-    <Link href='/lg' size='lg'>
+    <Link href="/lg" size="lg">
       LG
     </Link>
-    <Link href='/xl' size='xl'>
+    <Link href="/xl" size="xl">
       XL
     </Link>
   </div>
@@ -262,13 +262,13 @@ Icons can be placed at the start or end of link text to enhance meaning and impr
       alignItems: "flex-start",
     }}
   >
-    <Link href='/home' startIcon={<FaHome size={16} />}>
+    <Link href="/home" startIcon={<FaHome size={16} />}>
       Home
     </Link>
-    <Link href='/continue' endIcon={<FaArrowRight size={16} />}>
+    <Link href="/continue" endIcon={<FaArrowRight size={16} />}>
       Continue
     </Link>
-    <Link href='https://external.com' endIcon={<FaExternalLinkAlt size={14} />}>
+    <Link href="https://external.com" endIcon={<FaExternalLinkAlt size={14} />}>
       External Site
     </Link>
   </div>
@@ -294,16 +294,16 @@ Control the text decoration to provide appropriate visual cues for different lin
       alignItems: "flex-start",
     }}
   >
-    <Link href='/none' underline='none'>
+    <Link href="/none" underline="none">
       No Underline
     </Link>
-    <Link href='/hover' underline='hover'>
+    <Link href="/hover" underline="hover">
       Hover Underline
     </Link>
-    <Link href='/always' underline='always'>
+    <Link href="/always" underline="always">
       Always Underlined
     </Link>
-    <Link href='/default' underline='default'>
+    <Link href="/default" underline="default">
       Browser Default
     </Link>
   </div>
@@ -329,16 +329,16 @@ Add subtle animation effects to enhance user interactions and provide visual fee
       alignItems: "flex-start",
     }}
   >
-    <Link href='/scale' animation='scale'>
+    <Link href="/scale" animation="scale">
       Scale Animation
     </Link>
-    <Link href='/glow' animation='glow'>
+    <Link href="/glow" animation="glow">
       Glow Effect
     </Link>
-    <Link href='/lift' animation='lift'>
+    <Link href="/lift" animation="lift">
       Lift Animation
     </Link>
-    <Link href='/press' animation='press'>
+    <Link href="/press" animation="press">
       Press Animation
     </Link>
   </div>
@@ -374,9 +374,9 @@ Control whether the link opens in a new tab and includes proper security attribu
       alignItems: "flex-start",
     }}
   >
-    <Link href='/internal'>Internal Link (auto-detected)</Link>
-    <Link href='https://external.com'>External Link (auto-detected)</Link>
-    <Link href='mailto:hello@example.com'>Email Link (auto-detected)</Link>
+    <Link href="/internal">Internal Link (auto-detected)</Link>
+    <Link href="https://external.com">External Link (auto-detected)</Link>
+    <Link href="mailto:hello@example.com">Email Link (auto-detected)</Link>
   </div>
 </Unstyled>
 
@@ -391,10 +391,10 @@ Control the visibility of focus rings for accessibility and design preferences.
 
 <Unstyled>
   <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-    <Link href='/focus' focusRing={true}>
+    <Link href="/focus" focusRing={true}>
       With Focus Ring
     </Link>
-    <Link href='/no-focus' focusRing={false}>
+    <Link href="/no-focus" focusRing={false}>
       No Focus Ring
     </Link>
   </div>
@@ -406,8 +406,8 @@ The `className` prop allows you to add custom styling while preserving the compo
 
 ```jsx
 <Link
-  href='/custom'
-  className='bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent'
+  href="/custom"
+  className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"
 >
   Custom Styled Link
 </Link>
@@ -416,8 +416,8 @@ The `className` prop allows you to add custom styling while preserving the compo
 <Unstyled>
   <div style={{ marginBottom: "16px" }}>
     <Link
-      href='/custom'
-      className='bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent hover:from-purple-600 hover:to-pink-600'
+      href="/custom"
+      className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent hover:from-purple-600 hover:to-pink-600"
     >
       Custom Styled Link
     </Link>

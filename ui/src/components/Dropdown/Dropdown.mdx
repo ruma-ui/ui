@@ -53,7 +53,7 @@ The Dropdown component uses a compound pattern with multiple sub-components. The
 ```tsx
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
-    <Button variant='outline' endIcon={<FaChevronDown />}>
+    <Button variant="outline" endIcon={<FaChevronDown />}>
       Open Menu
     </Button>
   </DropdownMenuTrigger>
@@ -62,15 +62,15 @@ The Dropdown component uses a compound pattern with multiple sub-components. The
     <DropdownMenuSeparator />
     <DropdownMenuGroup>
       <DropdownMenuItem>
-        <FaUser className='mr-2 h-4 w-4' />
+        <FaUser className="mr-2 h-4 w-4" />
         <span>Profile</span>
       </DropdownMenuItem>
       <DropdownMenuItem>
-        <FaCog className='mr-2 h-4 w-4' />
+        <FaCog className="mr-2 h-4 w-4" />
         <span>Settings</span>
       </DropdownMenuItem>
       <DropdownMenuItem>
-        <FaSignOutAlt className='mr-2 h-4 w-4' />
+        <FaSignOutAlt className="mr-2 h-4 w-4" />
         <span>Sign Out</span>
       </DropdownMenuItem>
     </DropdownMenuGroup>
@@ -187,7 +187,7 @@ The trigger element that opens/closes the dropdown menu.
 The content container for the dropdown menu.
 
 ```tsx
-<DropdownMenuContent align='bottom-start' className='w-56'>
+<DropdownMenuContent align="bottom-start" className="w-56">
   {/* menu items */}
 </DropdownMenuContent>
 ```
@@ -204,7 +204,7 @@ An interactive menu item.
 
 ```tsx
 <DropdownMenuItem onSelect={handleSelect}>
-  <FaUser className='mr-2 h-4 w-4' />
+  <FaUser className="mr-2 h-4 w-4" />
   <span>Menu Item</span>
 </DropdownMenuItem>
 ```

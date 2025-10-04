@@ -1,8 +1,8 @@
-import { tw } from "@ruma-ui/utils";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { FaAndroid, FaApple, FaChrome, FaLinux, FaQuestion, FaWindows } from "react-icons/fa";
 import { RiComputerLine } from "react-icons/ri";
+import { tw } from "../../lib/utils";
 import { MultiSelect, MultiSelectProps } from "./MultiSelect";
 import mdx from "./MultiSelect.mdx";
 
@@ -274,16 +274,16 @@ const ControlledComponent = (args: Partial<MultiSelectProps>) => {
   const [value, setValue] = useState<string[]>(["option1", "option3"]);
 
   return (
-    <div className='w-80'>
+    <div className="w-80">
       <MultiSelect
         {...args}
         value={value}
         onValueChange={setValue}
         options={defaultOptions}
-        label='Controlled MultiSelect'
-        placeholder='Select options...'
+        label="Controlled MultiSelect"
+        placeholder="Select options..."
       />
-      <p className='mt-2 text-sm text-gray-600'>Selected values: {value.join(", ") || "None"}</p>
+      <p className="mt-2 text-sm text-gray-600">Selected values: {value.join(", ") || "None"}</p>
     </div>
   );
 };

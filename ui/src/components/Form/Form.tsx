@@ -1,6 +1,5 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 
 // FormField Component
 export interface FormFieldProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -155,14 +154,14 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
             htmlFor={assistiveId}
           >
             {label}
-            {required && <span className='ml-1 text-red-500'>*</span>}
+            {required && <span className="ml-1 text-red-500">*</span>}
           </label>
         )}
 
         <div className={cn("min-w-0 flex-1", fullWidth && "w-full")}>{children}</div>
 
         {hasAssistive && (
-          <div className='min-h-[1rem]'>
+          <div className="min-h-[1rem]">
             {error && errorMessage ? (
               <span className={cn(errorBase, formFieldSizes[size].error)}>{errorMessage}</span>
             ) : description ? (
@@ -317,7 +316,7 @@ export const FormSection = React.forwardRef<HTMLDivElement, FormSectionProps>(
         {...props}
       >
         {(title || description) && (
-          <div className='flex flex-col gap-2'>
+          <div className="flex flex-col gap-2">
             {title && (
               <h3 className={cn(titleBase, sectionSizes[size].title, error && "text-red-700")}>
                 {title}
@@ -340,7 +339,7 @@ export const FormSection = React.forwardRef<HTMLDivElement, FormSectionProps>(
         {children}
 
         {error && errorMessage && (
-          <div className='rounded-md border border-red-200 bg-red-50 p-3'>
+          <div className="rounded-md border border-red-200 bg-red-50 p-3">
             <p className={cn(errorBase, sectionSizes[size].error)}>{errorMessage}</p>
           </div>
         )}
@@ -506,7 +505,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
     const formContent = (
       <>
         {(title || description) && (
-          <div className='mb-6'>
+          <div className="mb-6">
             {title && (
               <h2
                 className={cn(
@@ -552,14 +551,14 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
         </div>
 
         {error && errorMessage && (
-          <div className='mt-4 rounded-md border border-red-200 bg-red-50 p-3'>
-            <p className='text-sm text-red-600'>{errorMessage}</p>
+          <div className="mt-4 rounded-md border border-red-200 bg-red-50 p-3">
+            <p className="text-sm text-red-600">{errorMessage}</p>
           </div>
         )}
 
         {loading && (
-          <div className='mt-4 rounded-md border border-blue-200 bg-blue-50 p-3'>
-            <p className='text-sm text-blue-600'>{loadingMessage}</p>
+          <div className="mt-4 rounded-md border border-blue-200 bg-blue-50 p-3">
+            <p className="text-sm text-blue-600">{loadingMessage}</p>
           </div>
         )}
       </>

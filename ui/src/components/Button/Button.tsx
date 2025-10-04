@@ -1,7 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import { Loader } from "../../";
+import { cn, tw } from "../../lib/utils";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -185,11 +184,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...restProps}
       >
         {animation === "ripple" && !loading && ripples.length > 0 && (
-          <span aria-hidden className='pointer-events-none absolute inset-0'>
+          <span aria-hidden className="pointer-events-none absolute inset-0">
             {ripples.map(r => (
               <span
                 key={r.id}
-                className='rui-ripple'
+                className="rui-ripple"
                 style={{
                   left: r.x,
                   top: r.y,
@@ -202,9 +201,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {loading && (
           <Loader
-            type='spinner'
-            variant='primary'
-            color='currentColor'
+            type="spinner"
+            variant="primary"
+            color="currentColor"
             size={
               size === "xs"
                 ? "xs"
@@ -216,13 +215,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                       ? "md"
                       : "md"
             }
-            speed='normal'
-            strokeWidth='thick'
+            speed="normal"
+            strokeWidth="thick"
           />
         )}
-        {startIcon && !loading && <span className='flex shrink-0 items-center'>{startIcon}</span>}
-        <span className='truncate'>{children}</span>
-        {endIcon && !loading && <span className='flex shrink-0 items-center'>{endIcon}</span>}
+        {startIcon && !loading && <span className="flex shrink-0 items-center">{startIcon}</span>}
+        <span className="truncate">{children}</span>
+        {endIcon && !loading && <span className="flex shrink-0 items-center">{endIcon}</span>}
       </button>
     );
   }

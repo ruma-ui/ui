@@ -167,19 +167,19 @@ const ControlledComponent = (args: Partial<React.ComponentProps<typeof Slider>>)
   const [value, setValue] = useState(50);
 
   return (
-    <div className='space-y-4'>
-      <Slider {...args} label='Controlled slider' value={value} onChange={setValue} showValue />
-      <p className='text-sm text-gray-600'>Value: {value}</p>
-      <div className='flex items-center gap-2'>
+    <div className="space-y-4">
+      <Slider {...args} label="Controlled slider" value={value} onChange={setValue} showValue />
+      <p className="text-sm text-gray-600">Value: {value}</p>
+      <div className="flex items-center gap-2">
         <button
           onClick={() => setValue(25)}
-          className='rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600"
         >
           Set to 25
         </button>
         <button
           onClick={() => setValue(75)}
-          className='rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600"
         >
           Set to 75
         </button>
@@ -205,40 +205,40 @@ const SettingsPanelComponent = () => {
   };
 
   return (
-    <div className='w-96 space-y-6 rounded-lg bg-white p-6 shadow-lg'>
-      <h3 className='text-lg font-semibold text-gray-900'>Display Settings</h3>
-      <div className='space-y-4'>
+    <div className="w-96 space-y-6 rounded-lg bg-white p-6 shadow-lg">
+      <h3 className="text-lg font-semibold text-gray-900">Display Settings</h3>
+      <div className="space-y-4">
         <Slider
-          label='Volume'
-          description='Adjust system volume level'
+          label="Volume"
+          description="Adjust system volume level"
           value={settings.volume}
           onChange={updateSetting("volume")}
           showValue
         />
         <Slider
-          label='Brightness'
-          description='Screen brightness adjustment'
+          label="Brightness"
+          description="Screen brightness adjustment"
           value={settings.brightness}
           onChange={updateSetting("brightness")}
           showValue
         />
         <Slider
-          label='Mouse Sensitivity'
-          description='Adjust pointer speed'
+          label="Mouse Sensitivity"
+          description="Adjust pointer speed"
           value={settings.sensitivity}
           onChange={updateSetting("sensitivity")}
           showValue
         />
         <Slider
-          label='Quality'
-          description='Rendering quality setting'
+          label="Quality"
+          description="Rendering quality setting"
           value={settings.quality}
           onChange={updateSetting("quality")}
           showValue
         />
       </div>
-      <div className='border-t border-gray-200 pt-4'>
-        <pre className='text-xs text-gray-600'>{JSON.stringify(settings, null, 2)}</pre>
+      <div className="border-t border-gray-200 pt-4">
+        <pre className="text-xs text-gray-600">{JSON.stringify(settings, null, 2)}</pre>
       </div>
     </div>
   );
@@ -249,19 +249,19 @@ export const SettingsPanel: Story = {
 };
 export const Sizes: Story = {
   render: () => (
-    <div className='grid place-items-center space-y-6'>
-      <Slider size='sm' label='Small' defaultValue={30} showValue />
-      <Slider size='md' label='Medium' defaultValue={50} showValue />
-      <Slider size='lg' label='Large' defaultValue={70} showValue />
+    <div className="grid place-items-center space-y-6">
+      <Slider size="sm" label="Small" defaultValue={30} showValue />
+      <Slider size="md" label="Medium" defaultValue={50} showValue />
+      <Slider size="lg" label="Large" defaultValue={70} showValue />
     </div>
   ),
 };
 
 export const Variants: Story = {
   render: () => (
-    <div className='space-y-6'>
-      <Slider variant='primary' label='Primary' defaultValue={40} showValue />
-      <Slider variant='secondary' label='Secondary' defaultValue={60} showValue />
+    <div className="space-y-6">
+      <Slider variant="primary" label="Primary" defaultValue={40} showValue />
+      <Slider variant="secondary" label="Secondary" defaultValue={60} showValue />
     </div>
   ),
 };

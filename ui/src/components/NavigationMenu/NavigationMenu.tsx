@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect, useContext, createContext, useCallback } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { IoChevronDown, IoChevronForward } from "react-icons/io5";
+import { cn, tw } from "../../lib/utils";
 
 // Main Menu Context
 interface NavigationMenuContextType {
@@ -266,7 +265,7 @@ export const NavigationMenuList: React.FC<NavigationMenuListProps> = ({
   return (
     <ul
       className={cn("flex", orientation === "horizontal" ? "flex-row" : "flex-col", className)}
-      role='menubar'
+      role="menubar"
       {...props}
     >
       {children}
@@ -291,7 +290,7 @@ export const NavigationMenuItem: React.FC<NavigationMenuItemProps> = ({
 
   return (
     <NavigationMenuItemContext.Provider value={{ value }}>
-      <li className={cn("relative", className)} role='none' {...props}>
+      <li className={cn("relative", className)} role="none" {...props}>
         {children}
       </li>
     </NavigationMenuItemContext.Provider>
@@ -335,8 +334,8 @@ export const NavigationMenuTrigger = React.forwardRef<
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       aria-expanded={isOpen}
-      aria-haspopup='true'
-      role='menuitem'
+      aria-haspopup="true"
+      role="menuitem"
       {...props}
     >
       {children}
@@ -410,7 +409,7 @@ export const NavigationMenuContent = React.forwardRef<HTMLDivElement, Navigation
           positionClass,
           className
         )}
-        role='menu'
+        role="menu"
         {...props}
       >
         {children}
@@ -436,7 +435,7 @@ export const NavigationMenuLink = React.forwardRef<HTMLAnchorElement, Navigation
           (variant === "default" || variant === "pills") && "rounded-md",
           className
         )}
-        role='menuitem'
+        role="menuitem"
         {...props}
       >
         {children}
@@ -456,7 +455,7 @@ export const NavigationMenuGroup: React.FC<NavigationMenuGroupProps> = ({
   const { size } = useNavigationMenu();
 
   return (
-    <div className={className} role='group' {...props}>
+    <div className={className} role="group" {...props}>
       {title && (
         <div
           className={cn(

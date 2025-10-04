@@ -119,38 +119,38 @@ export const WithStatus: Story = {
 
 export const StatusVariants: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
-      <div className='text-center'>
+    <div className="flex items-center gap-4">
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
           showStatus
-          status='online'
+          status="online"
         />
-        <p className='mt-2 text-xs text-gray-600'>Online</p>
+        <p className="mt-2 text-xs text-gray-600">Online</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=400'
+          src="https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=400"
           showStatus
-          status='away'
+          status="away"
         />
-        <p className='mt-2 text-xs text-gray-600'>Away</p>
+        <p className="mt-2 text-xs text-gray-600">Away</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400'
+          src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400"
           showStatus
-          status='busy'
+          status="busy"
         />
-        <p className='mt-2 text-xs text-gray-600'>Busy</p>
+        <p className="mt-2 text-xs text-gray-600">Busy</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400'
+          src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400"
           showStatus
-          status='offline'
+          status="offline"
         />
-        <p className='mt-2 text-xs text-gray-600'>Offline</p>
+        <p className="mt-2 text-xs text-gray-600">Offline</p>
       </div>
     </div>
   ),
@@ -158,48 +158,48 @@ export const StatusVariants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className='flex items-end gap-4'>
-      <div className='text-center'>
+    <div className="flex items-end gap-4">
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          size='xs'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          size="xs"
         />
-        <p className='mt-2 text-xs text-gray-600'>XS</p>
+        <p className="mt-2 text-xs text-gray-600">XS</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          size='sm'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          size="sm"
         />
-        <p className='mt-2 text-xs text-gray-600'>SM</p>
+        <p className="mt-2 text-xs text-gray-600">SM</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          size='md'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          size="md"
         />
-        <p className='mt-2 text-xs text-gray-600'>MD</p>
+        <p className="mt-2 text-xs text-gray-600">MD</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          size='lg'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          size="lg"
         />
-        <p className='mt-2 text-xs text-gray-600'>LG</p>
+        <p className="mt-2 text-xs text-gray-600">LG</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          size='xl'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          size="xl"
         />
-        <p className='mt-2 text-xs text-gray-600'>XL</p>
+        <p className="mt-2 text-xs text-gray-600">XL</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          size='2xl'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          size="2xl"
         />
-        <p className='mt-2 text-xs text-gray-600'>2XL</p>
+        <p className="mt-2 text-xs text-gray-600">2XL</p>
       </div>
     </div>
   ),
@@ -207,48 +207,48 @@ export const Sizes: Story = {
 
 export const RoundedVariants: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
-      <div className='text-center'>
+    <div className="flex items-center gap-4">
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          rounded='none'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          rounded="none"
         />
-        <p className='mt-2 text-xs text-gray-600'>None</p>
+        <p className="mt-2 text-xs text-gray-600">None</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          rounded='sm'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          rounded="sm"
         />
-        <p className='mt-2 text-xs text-gray-600'>SM</p>
+        <p className="mt-2 text-xs text-gray-600">SM</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          rounded='md'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          rounded="md"
         />
-        <p className='mt-2 text-xs text-gray-600'>MD</p>
+        <p className="mt-2 text-xs text-gray-600">MD</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          rounded='lg'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          rounded="lg"
         />
-        <p className='mt-2 text-xs text-gray-600'>LG</p>
+        <p className="mt-2 text-xs text-gray-600">LG</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          rounded='xl'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          rounded="xl"
         />
-        <p className='mt-2 text-xs text-gray-600'>XL</p>
+        <p className="mt-2 text-xs text-gray-600">XL</p>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <Avatar
-          src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-          rounded='full'
+          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+          rounded="full"
         />
-        <p className='mt-2 text-xs text-gray-600'>Full</p>
+        <p className="mt-2 text-xs text-gray-600">Full</p>
       </div>
     </div>
   ),
@@ -258,13 +258,13 @@ const ClickableComponent = () => {
   const [clicked, setClicked] = useState(false);
 
   return (
-    <div className='text-center'>
+    <div className="text-center">
       <Avatar
-        src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
+        src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
         clickable
         onClick={() => setClicked(!clicked)}
       />
-      <p className='mt-2 text-sm text-gray-600'>{clicked ? "Clicked!" : "Click the avatar"}</p>
+      <p className="mt-2 text-sm text-gray-600">{clicked ? "Clicked!" : "Click the avatar"}</p>
     </div>
   );
 };
@@ -275,42 +275,42 @@ export const Clickable: Story = {
 
 export const CustomFallback: Story = {
   args: {
-    fallback: <Heart className='h-6 w-6 text-red-500' />,
+    fallback: <Heart className="h-6 w-6 text-red-500" />,
     variant: "primary",
   },
 };
 
 export const AvatarGroup: Story = {
   render: () => (
-    <div className='flex -space-x-2'>
+    <div className="flex -space-x-2">
       <Avatar
-        src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-        alt='User 1'
-        className='ring-2 ring-white'
+        src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+        alt="User 1"
+        className="ring-2 ring-white"
       />
       <Avatar
-        src='https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=400'
-        alt='User 2'
-        className='ring-2 ring-white'
+        src="https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=400"
+        alt="User 2"
+        className="ring-2 ring-white"
       />
       <Avatar
-        src='https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400'
-        alt='User 3'
-        className='ring-2 ring-white'
+        src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400"
+        alt="User 3"
+        className="ring-2 ring-white"
       />
-      <Avatar initials='+3' className='bg-gray-200 text-gray-600 ring-2 ring-white' />
+      <Avatar initials="+3" className="bg-gray-200 text-gray-600 ring-2 ring-white" />
     </div>
   ),
 };
 
 export const WithBadge: Story = {
   render: () => (
-    <div className='relative inline-block'>
+    <div className="relative inline-block">
       <Avatar
-        src='https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400'
-        size='lg'
+        src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+        size="lg"
       />
-      <span className='absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-medium text-white'>
+      <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-medium text-white">
         3
       </span>
     </div>

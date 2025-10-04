@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect, useContext, createContext } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 // DropdownMenu Context
 interface DropdownMenuContextType {
@@ -173,7 +172,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   };
 
   return (
-    <div className='relative'>
+    <div className="relative">
       <DropdownMenuContext.Provider value={contextValue}>{children}</DropdownMenuContext.Provider>
     </div>
   );
@@ -229,11 +228,11 @@ export const DropdownMenuTrigger = React.forwardRef<HTMLElement, DropdownMenuTri
             actualRef.current = node;
           }
         }}
-        type='button'
+        type="button"
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         aria-expanded={isOpen}
-        aria-haspopup='menu'
+        aria-haspopup="menu"
         {...props}
       >
         {children}
@@ -373,7 +372,7 @@ export const DropdownMenuContent = React.forwardRef<HTMLDivElement, DropdownMenu
         }}
         className={cn(contentBase, contentAnimation, "absolute", className)}
         data-dropdown-menu-content
-        role='menu'
+        role="menu"
         style={getPositionStyles()}
         {...props}
       >
@@ -407,12 +406,12 @@ export const DropdownMenuItem = React.forwardRef<HTMLButtonElement, DropdownMenu
     return (
       <button
         ref={ref}
-        type='button'
+        type="button"
         className={cn(itemBase, className)}
         disabled={disabled}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        role='menuitem'
+        role="menuitem"
         {...props}
       >
         {children}
@@ -425,7 +424,7 @@ DropdownMenuItem.displayName = "DropdownMenuItem";
 
 // DropdownMenuLabel component
 export const DropdownMenuLabel: React.FC<DropdownMenuLabelProps> = ({ className, ...props }) => {
-  return <div className={cn(labelBase, className)} role='group' {...props} />;
+  return <div className={cn(labelBase, className)} role="group" {...props} />;
 };
 
 // DropdownMenuSeparator component
@@ -433,10 +432,10 @@ export const DropdownMenuSeparator: React.FC<DropdownMenuSeparatorProps> = ({
   className,
   ...props
 }) => {
-  return <div className={cn(separatorBase, className)} role='separator' {...props} />;
+  return <div className={cn(separatorBase, className)} role="separator" {...props} />;
 };
 
 // DropdownMenuGroup component
 export const DropdownMenuGroup: React.FC<DropdownMenuGroupProps> = ({ className, ...props }) => {
-  return <div className={cn(className)} role='group' {...props} />;
+  return <div className={cn(className)} role="group" {...props} />;
 };

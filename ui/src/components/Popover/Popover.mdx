@@ -55,14 +55,14 @@ The Popover component uses a compound pattern with multiple sub-components. The 
 ```tsx
 <Popover>
   <PopoverTrigger asChild>
-    <Button variant='outline' endIcon={<FaInfoCircle />}>
+    <Button variant="outline" endIcon={<FaInfoCircle />}>
       Show Info
     </Button>
   </PopoverTrigger>
-  <PopoverContent className='w-80'>
-    <div className='space-y-3'>
-      <h4 className='font-semibold text-gray-900'>About this feature</h4>
-      <p className='text-sm text-gray-600'>
+  <PopoverContent className="w-80">
+    <div className="space-y-3">
+      <h4 className="font-semibold text-gray-900">About this feature</h4>
+      <p className="text-sm text-gray-600">
         This is a popover component that can contain rich content.
       </p>
     </div>
@@ -191,26 +191,26 @@ Popovers are perfect for containing forms and interactive content. Use the Form 
 ```tsx
 <Popover>
   <PopoverTrigger asChild>
-    <Button variant='outline' endIcon={<FaEdit />}>
+    <Button variant="outline" endIcon={<FaEdit />}>
       Contact Us
     </Button>
   </PopoverTrigger>
-  <PopoverContent className='w-80'>
-    <Form onSubmit={handleSubmit} spacing='md'>
-      <FormField label='Name' required>
-        <TextInput placeholder='Enter your name' />
+  <PopoverContent className="w-80">
+    <Form onSubmit={handleSubmit} spacing="md">
+      <FormField label="Name" required>
+        <TextInput placeholder="Enter your name" />
       </FormField>
-      <FormField label='Email' required>
-        <TextInput type='email' placeholder='Enter your email' />
+      <FormField label="Email" required>
+        <TextInput type="email" placeholder="Enter your email" />
       </FormField>
-      <FormField label='Message'>
-        <Textarea placeholder='Enter your message' rows={3} />
+      <FormField label="Message">
+        <Textarea placeholder="Enter your message" rows={3} />
       </FormField>
-      <div className='flex justify-end space-x-2 pt-2'>
-        <Button type='button' size='sm' variant='outline'>
+      <div className="flex justify-end space-x-2 pt-2">
+        <Button type="button" size="sm" variant="outline">
           Cancel
         </Button>
-        <Button type='submit' size='sm'>
+        <Button type="submit" size="sm">
           Send Message
         </Button>
       </div>
@@ -228,7 +228,7 @@ Popovers are perfect for containing forms and interactive content. Use the Form 
 The root component that provides context for the popover.
 
 ```tsx
-<Popover open={open} onOpenChange={setOpen} trigger='click'>
+<Popover open={open} onOpenChange={setOpen} trigger="click">
   {/* children */}
 </Popover>
 ```
@@ -261,7 +261,7 @@ The trigger element that opens/closes the popover.
 The content container for the popover overlay.
 
 ```tsx
-<PopoverContent position='bottom' align='start' className='w-64' closeOnClick offset={8}>
+<PopoverContent position="bottom" align="start" className="w-64" closeOnClick offset={8}>
   {/* popover content */}
 </PopoverContent>
 ```

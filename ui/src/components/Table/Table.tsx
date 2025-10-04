@@ -1,4 +1,4 @@
-import { cn, tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export type TableDensity = "compact" | "normal" | "comfortable";
@@ -219,7 +219,7 @@ export function Table<T extends Record<string, any>>({
   density = "normal",
   variant = "plain",
   highlightOnHover = true,
-  emptyState = <div className='p-6 text-center text-sm text-gray-500'>No data</div>,
+  emptyState = <div className="p-6 text-center text-sm text-gray-500">No data</div>,
   caption,
   selectedRows,
   onRowClick,
@@ -314,7 +314,7 @@ export function Table<T extends Record<string, any>>({
         {columns.map((col, i) => (
           <th
             key={String(col.key) + i}
-            scope='col'
+            scope="col"
             className={cn(
               densityCellPadding[density],
               variant === "outlined" && outlinedCell,
@@ -476,7 +476,7 @@ export function Table<T extends Record<string, any>>({
       )}
       aria-label={ariaLabel}
     >
-      {caption && <caption className='sr-only'>{caption}</caption>}
+      {caption && <caption className="sr-only">{caption}</caption>}
       {headerElement}
       {bodyElement}
     </table>
@@ -495,7 +495,7 @@ export function Table<T extends Record<string, any>>({
               : maxHeight || "400px"
             : "auto",
         }}
-        role='region'
+        role="region"
         aria-label={caption || ariaLabel}
         onScroll={virtualization ? onScroll : undefined}
       >

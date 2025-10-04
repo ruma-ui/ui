@@ -64,7 +64,7 @@ The RangeInput can be used as a simple range selector with default settings.
 function MyComponent() {
   const [range, setRange] = useState([20, 80]);
 
-  return <RangeInput value={range} onChange={setRange} label='Select a range' />;
+  return <RangeInput value={range} onChange={setRange} label="Select a range" />;
 }
 ```
 
@@ -194,11 +194,11 @@ The `step` prop controls the increment value for range adjustments.
 The `variant` prop determines the visual style of the range input.
 
 ```jsx
-<RangeInput variant='primary' />;
+<RangeInput variant="primary" />;
 {
   /* Blue styling */
 }
-<RangeInput variant='secondary' />;
+<RangeInput variant="secondary" />;
 {
   /* Gray styling */
 }
@@ -209,15 +209,15 @@ The `variant` prop determines the visual style of the range input.
 The `size` prop controls the overall dimensions of the range input.
 
 ```jsx
-<RangeInput size='sm' />;
+<RangeInput size="sm" />;
 {
   /* Small size */
 }
-<RangeInput size='md' />;
+<RangeInput size="md" />;
 {
   /* Medium size (default) */
 }
-<RangeInput size='lg' />;
+<RangeInput size="lg" />;
 {
   /* Large size */
 }
@@ -244,7 +244,7 @@ The `valueFormatter` prop allows custom formatting of the displayed values.
 The `label` prop adds a label above the range input for better accessibility and user experience.
 
 ```jsx
-<RangeInput label='Price Range' />
+<RangeInput label="Price Range" />
 ```
 
 ### RangeInput `description`
@@ -252,7 +252,7 @@ The `label` prop adds a label above the range input for better accessibility and
 The `description` prop adds helper text below the range input.
 
 ```jsx
-<RangeInput label='Volume' description='Adjust the volume level' />
+<RangeInput label="Volume" description="Adjust the volume level" />
 ```
 
 ### RangeInput `error`
@@ -260,7 +260,7 @@ The `description` prop adds helper text below the range input.
 The `error` prop displays the range input in an error state with red styling.
 
 ```jsx
-<RangeInput error={true} errorMessage='Please select a valid range' />
+<RangeInput error={true} errorMessage="Please select a valid range" />
 ```
 
 ### RangeInput `onChange`

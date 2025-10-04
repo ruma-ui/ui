@@ -1,9 +1,4 @@
 {
-  "workbench.colorCustomizations": {
-    "activityBar.background": "#04046e",
-    "titleBar.activeBackground": "#04046e",
-    "titleBar.activeForeground": "#FFFCFD"
-  },
   "nxConsole.generateAiAgentRules": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -91,5 +86,5 @@
   },
   "cSpell.words": [
     "ruma"
-  ]
+  ],
 }

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { FaArrowRight, FaLink } from "react-icons/fa";
+import { tw } from "../../lib/utils";
 import { Button } from "./Button";
-import { FaLink, FaArrowRight } from "react-icons/fa";
 import mdx from "./Button.mdx";
-import { tw } from "@ruma-ui/utils";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",

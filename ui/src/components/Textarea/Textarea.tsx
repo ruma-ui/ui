@@ -1,6 +1,5 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import { cn, tw } from "../../lib/utils";
 
 export interface TextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
@@ -200,11 +199,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           />
         </div>
         {hasAssistive && (
-          <div id={assistiveId} className='mt-1 min-h-[1rem]'>
+          <div id={assistiveId} className="mt-1 min-h-[1rem]">
             {error && errorMessage ? (
-              <span className='text-sm text-red-600'>{errorMessage}</span>
+              <span className="text-sm text-red-600">{errorMessage}</span>
             ) : description ? (
-              <span className='text-sm text-gray-600'>{description}</span>
+              <span className="text-sm text-gray-600">{description}</span>
             ) : null}
           </div>
         )}

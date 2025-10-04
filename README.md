@@ -37,7 +37,7 @@ import { Button, Card } from "@ruma-ui/ui";
 function App() {
   return (
     <Card>
-      <Button variant='primary' size='lg'>
+      <Button variant="primary" size="lg">
         Get Started
       </Button>
     </Card>
@@ -86,7 +86,6 @@ pnpm dev
 ├── ui/              # Main UI library
 ├── demo/            # Demo application
 ├── website/         # Documentation website
-├── utils/           # Shared utilities
 └── docs/            # Generated documentation
 ```
 
@@ -135,9 +134,3 @@ MIT © [Ruma UI](https://github.com/ruma-ui)
 - [Storybook](https://ruma-ui.github.io/ui/storybook/)
 - [NPM Package](https://www.npmjs.com/package/@ruma-ui/ui)
 - [GitHub Repository](https://github.com/ruma-ui/ui)
-
----
-
-![Nx Logo](https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png)
-
-✨ **Built with [Nx](https://nx.dev)** ✨

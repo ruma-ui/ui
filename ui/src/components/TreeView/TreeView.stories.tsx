@@ -68,39 +68,39 @@ const sampleTreeData: TreeNode[] = [
   {
     id: "1",
     label: "Documents",
-    icon: <FaFolder className='h-4 w-4 text-blue-500' />,
+    icon: <FaFolder className="h-4 w-4 text-blue-500" />,
     children: [
       {
         id: "1-1",
         label: "Work",
-        icon: <FaFolder className='h-4 w-4 text-blue-500' />,
+        icon: <FaFolder className="h-4 w-4 text-blue-500" />,
         children: [
           {
             id: "1-1-1",
             label: "Report.pdf",
-            icon: <FaFile className='h-4 w-4 text-gray-500' />,
+            icon: <FaFile className="h-4 w-4 text-gray-500" />,
           },
           {
             id: "1-1-2",
             label: "Presentation.pptx",
-            icon: <FaFile className='h-4 w-4 text-gray-500' />,
+            icon: <FaFile className="h-4 w-4 text-gray-500" />,
           },
         ],
       },
       {
         id: "1-2",
         label: "Personal",
-        icon: <FaFolder className='h-4 w-4 text-blue-500' />,
+        icon: <FaFolder className="h-4 w-4 text-blue-500" />,
         children: [
           {
             id: "1-2-1",
             label: "Resume.docx",
-            icon: <FaFile className='h-4 w-4 text-gray-500' />,
+            icon: <FaFile className="h-4 w-4 text-gray-500" />,
           },
           {
             id: "1-2-2",
             label: "Photos",
-            icon: <FaFolder className='h-4 w-4 text-green-500' />,
+            icon: <FaFolder className="h-4 w-4 text-green-500" />,
           },
         ],
       },
@@ -109,24 +109,24 @@ const sampleTreeData: TreeNode[] = [
   {
     id: "2",
     label: "Downloads",
-    icon: <FaFolder className='h-4 w-4 text-blue-500' />,
+    icon: <FaFolder className="h-4 w-4 text-blue-500" />,
     children: [
       {
         id: "2-1",
         label: "Software.zip",
-        icon: <FaFile className='h-4 w-4 text-gray-500' />,
+        icon: <FaFile className="h-4 w-4 text-gray-500" />,
       },
       {
         id: "2-2",
         label: "Images",
-        icon: <FaFolder className='h-4 w-4 text-green-500' />,
+        icon: <FaFolder className="h-4 w-4 text-green-500" />,
       },
     ],
   },
   {
     id: "3",
     label: "README.md",
-    icon: <FaFile className='h-4 w-4 text-gray-500' />,
+    icon: <FaFile className="h-4 w-4 text-gray-500" />,
   },
 ];
 
@@ -135,7 +135,7 @@ const renderTreeItem = (item: TreeNode): React.ReactNode => (
     <TreeItemContent>
       <TreeItemTrigger hasChildren={!!item.children}>
         {item.icon}
-        <span className='ml-1'>{item.label}</span>
+        <span className="ml-1">{item.label}</span>
       </TreeItemTrigger>
     </TreeItemContent>
     {item.children && <TreeItemChildren>{item.children.map(renderTreeItem)}</TreeItemChildren>}
@@ -181,17 +181,17 @@ export const SimpleList: Story = {
   args: {
     children: (
       <>
-        <TreeItem value='item1'>
+        <TreeItem value="item1">
           <TreeItemContent>
             <span>Item 1</span>
           </TreeItemContent>
         </TreeItem>
-        <TreeItem value='item2'>
+        <TreeItem value="item2">
           <TreeItemContent>
             <span>Item 2</span>
           </TreeItemContent>
         </TreeItem>
-        <TreeItem value='item3'>
+        <TreeItem value="item3">
           <TreeItemContent>
             <span>Item 3</span>
           </TreeItemContent>

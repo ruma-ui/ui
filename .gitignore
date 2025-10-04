@@ -53,7 +53,7 @@ vite.config.*.timestamp*
 vitest.config.*.timestamp*
 
 # Generated documentation
-docs/
+/docs
 
 # env files
 .env.local

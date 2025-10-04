@@ -1,8 +1,8 @@
-import { tw } from "@ruma-ui/utils";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { FaAndroid, FaApple, FaChrome, FaLinux, FaQuestion, FaWindows } from "react-icons/fa";
 import { RiComputerLine } from "react-icons/ri";
+import { tw } from "../../lib/utils";
 import { Select, SelectProps } from "./Select";
 import mdx from "./Select.mdx";
 
@@ -246,16 +246,16 @@ const ControlledComponent = (args: Partial<SelectProps>) => {
   const [value, setValue] = useState("");
 
   return (
-    <div className='w-80'>
+    <div className="w-80">
       <Select
         {...args}
         value={value}
         onValueChange={setValue}
         options={countryOptions}
-        label='Controlled Select'
-        placeholder='Select your country...'
+        label="Controlled Select"
+        placeholder="Select your country..."
       />
-      <p className='mt-2 text-sm text-gray-600'>Selected value: {value || "None"}</p>
+      <p className="mt-2 text-sm text-gray-600">Selected value: {value || "None"}</p>
     </div>
   );
 };

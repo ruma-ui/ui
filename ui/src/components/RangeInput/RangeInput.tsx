@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { cn, tw } from "../../lib/utils";
 
 export interface RangeInputProps {
   /**
@@ -362,7 +361,7 @@ export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
     return (
       <div ref={ref} className={wrapperBase}>
         {label && (
-          <div className='mb-3 flex items-center justify-between'>
+          <div className="mb-3 flex items-center justify-between">
             <label htmlFor={rangeId} className={labelClasses}>
               {label}
             </label>
@@ -405,7 +404,7 @@ export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
                 onPointerDown={e => handlePointerDown(e, 0)}
                 onKeyDown={e => handleKeyDown(e, 0)}
                 tabIndex={disabled ? -1 : 0}
-                role='slider'
+                role="slider"
                 aria-valuemin={min}
                 aria-valuemax={clampedValue[1]}
                 aria-valuenow={clampedValue[0]}
@@ -427,7 +426,7 @@ export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
                 onPointerDown={e => handlePointerDown(e, 1)}
                 onKeyDown={e => handleKeyDown(e, 1)}
                 tabIndex={disabled ? -1 : 0}
-                role='slider'
+                role="slider"
                 aria-valuemin={clampedValue[0]}
                 aria-valuemax={max}
                 aria-valuenow={clampedValue[1]}

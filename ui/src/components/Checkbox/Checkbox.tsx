@@ -1,7 +1,6 @@
 import React from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
 import { FaCheck, FaMinus } from "react-icons/fa";
+import { cn, tw } from "../../lib/utils";
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   /**
@@ -170,11 +169,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     }, [color]);
 
     const checkboxElement = (
-      <div className='relative inline-flex items-center'>
+      <div className="relative inline-flex items-center">
         <input
           ref={checkboxRef}
-          type='checkbox'
-          className='sr-only'
+          type="checkbox"
+          className="sr-only"
           checked={isChecked}
           disabled={isDisabled}
           required={required}
@@ -206,7 +205,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               }),
           }}
         >
-          <div className='absolute inset-0 flex items-center justify-center'>
+          <div className="absolute inset-0 flex items-center justify-center">
             <CheckIcon
               className={cn(
                 "text-white",
@@ -231,7 +230,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     }
 
     return (
-      <div className='flex flex-col'>
+      <div className="flex flex-col">
         <label
           className={cn(
             "flex cursor-pointer items-center gap-2 select-none",
@@ -239,7 +238,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             labelPosition === "left" && "flex-row-reverse"
           )}
         >
-          <div className='flex flex-shrink-0 items-center'>{checkboxElement}</div>
+          <div className="flex flex-shrink-0 items-center">{checkboxElement}</div>
           <div className={cn("flex min-w-0 flex-col justify-center", textMinHeights[size])}>
             {label && (
               <span
@@ -250,7 +249,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                 )}
               >
                 {label}
-                {required && <span className='ml-1 text-red-500'>*</span>}
+                {required && <span className="ml-1 text-red-500">*</span>}
               </span>
             )}
             {description && (
@@ -266,7 +265,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             )}
           </div>
         </label>
-        {error && errorMessage && <span className='mt-1 text-sm text-red-600'>{errorMessage}</span>}
+        {error && errorMessage && <span className="mt-1 text-sm text-red-600">{errorMessage}</span>}
       </div>
     );
   }
@@ -406,7 +405,7 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
     return (
       <div ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
         {label && (
-          <div className='flex flex-col'>
+          <div className="flex flex-col">
             <span className={cn("font-medium text-gray-900", error && "text-red-700")}>
               {label}
             </span>
@@ -432,7 +431,7 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
                 checked={allSelected}
                 indeterminate={indeterminate}
                 onChange={e => handleSelectAllChange(e.target.checked)}
-                className='font-semibold'
+                className="font-semibold"
               />
             </div>
           )}
@@ -459,7 +458,7 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
           </div>
         </div>
 
-        {error && errorMessage && <span className='text-sm text-red-600'>{errorMessage}</span>}
+        {error && errorMessage && <span className="text-sm text-red-600">{errorMessage}</span>}
       </div>
     );
   }

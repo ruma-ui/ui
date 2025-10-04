@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { tw } from "../../lib/utils";
 import { Loader } from "./Loader";
 import mdx from "./Loader.mdx";
-import { tw } from "@ruma-ui/utils";
 
 const meta: Meta<typeof Loader> = {
   title: "Components/Loader",
@@ -158,7 +158,7 @@ export const FullSize: Story = {
   },
   decorators: [
     Story => (
-      <div className='h-full min-h-full border border-gray-200 py-10'>
+      <div className="h-full min-h-full border border-gray-200 py-10">
         <Story />
       </div>
     ),

@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect, useContext, createContext } from "react";
-import { cn } from "@ruma-ui/utils";
-import { tw } from "@ruma-ui/utils";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { cn, tw } from "../../lib/utils";
 
 // ContextMenu Context
 interface ContextMenuContextType {
@@ -267,7 +266,7 @@ export const ContextMenuContent = React.forwardRef<HTMLDivElement, ContextMenuCo
             }}
             className={cn(contentBase, contentAnimation, "fixed", className)}
             data-context-menu-content
-            role='menu'
+            role="menu"
             style={{
               left: finalPosition.x,
               top: finalPosition.y,
@@ -307,12 +306,12 @@ export const ContextMenuItem = React.forwardRef<HTMLButtonElement, ContextMenuIt
     return (
       <button
         ref={ref}
-        type='button'
+        type="button"
         className={cn(itemBase, className)}
         disabled={disabled}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        role='menuitem'
+        role="menuitem"
         {...props}
       >
         {children}
@@ -325,7 +324,7 @@ ContextMenuItem.displayName = "ContextMenuItem";
 
 // ContextMenuLabel component
 export const ContextMenuLabel: React.FC<ContextMenuLabelProps> = ({ className, ...props }) => {
-  return <div className={cn(labelBase, className)} role='group' {...props} />;
+  return <div className={cn(labelBase, className)} role="group" {...props} />;
 };
 
 // ContextMenuSeparator component
@@ -333,10 +332,10 @@ export const ContextMenuSeparator: React.FC<ContextMenuSeparatorProps> = ({
   className,
   ...props
 }) => {
-  return <div className={cn(separatorBase, className)} role='separator' {...props} />;
+  return <div className={cn(separatorBase, className)} role="separator" {...props} />;
 };
 
 // ContextMenuGroup component
 export const ContextMenuGroup: React.FC<ContextMenuGroupProps> = ({ className, ...props }) => {
-  return <div className={cn(className)} role='group' {...props} />;
+  return <div className={cn(className)} role="group" {...props} />;
 };

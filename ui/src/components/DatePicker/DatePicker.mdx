@@ -121,8 +121,8 @@ The visual style of the input.
 
 <Unstyled>
   <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-    <DatePicker variant='primary' label='Primary' />
-    <DatePicker variant='secondary' label='Secondary' />
+    <DatePicker variant="primary" label="Primary" />
+    <DatePicker variant="secondary" label="Secondary" />
   </div>
 </Unstyled>
 
@@ -147,11 +147,11 @@ Control height and typography.
       flexWrap: "wrap",
     }}
   >
-    <DatePicker size='xs' label='XS' />
-    <DatePicker size='sm' label='SM' />
-    <DatePicker size='md' label='MD' />
-    <DatePicker size='lg' label='LG' />
-    <DatePicker size='xl' label='XL' />
+    <DatePicker size="xs" label="XS" />
+    <DatePicker size="sm" label="SM" />
+    <DatePicker size="md" label="MD" />
+    <DatePicker size="lg" label="LG" />
+    <DatePicker size="xl" label="XL" />
   </div>
 </Unstyled>
 
@@ -177,12 +177,12 @@ Border radius options.
       flexWrap: "wrap",
     }}
   >
-    <DatePicker rounded='none' label='None' />
-    <DatePicker rounded='sm' label='SM' />
-    <DatePicker rounded='md' label='MD' />
-    <DatePicker rounded='lg' label='LG' />
-    <DatePicker rounded='xl' label='XL' />
-    <DatePicker rounded='full' label='Full' />
+    <DatePicker rounded="none" label="None" />
+    <DatePicker rounded="sm" label="SM" />
+    <DatePicker rounded="md" label="MD" />
+    <DatePicker rounded="lg" label="LG" />
+    <DatePicker rounded="xl" label="XL" />
+    <DatePicker rounded="full" label="Full" />
   </div>
 </Unstyled>
 
@@ -206,10 +206,10 @@ Preset wrapper widths (use `fullWidth` to stretch to container).
       flexWrap: "wrap",
     }}
   >
-    <DatePicker width='sm' label='sm' />
-    <DatePicker width='md' label='md' />
-    <DatePicker width='lg' label='lg' />
-    <DatePicker width='xl' label='xl' />
+    <DatePicker width="sm" label="sm" />
+    <DatePicker width="md" label="md" />
+    <DatePicker width="lg" label="lg" />
+    <DatePicker width="xl" label="xl" />
   </div>
 </Unstyled>
 
@@ -223,7 +223,7 @@ Stretch to fill the container.
 
 <Unstyled>
   <div style={{ width: "100%", maxWidth: 480 }}>
-    <DatePicker fullWidth label='Full width' />
+    <DatePicker fullWidth label="Full width" />
   </div>
 </Unstyled>
 
@@ -238,8 +238,8 @@ Toggle the calendar popover button and overlay.
 
 <Unstyled>
   <div style={{ display: "flex", gap: 12 }}>
-    <DatePicker withCalendar={true} label='With calendar' />
-    <DatePicker withCalendar={false} label='No calendar' />
+    <DatePicker withCalendar={true} label="With calendar" />
+    <DatePicker withCalendar={false} label="No calendar" />
   </div>
 </Unstyled>
 
@@ -255,9 +255,9 @@ Set input segment order.
 
 <Unstyled>
   <div style={{ display: "flex", gap: 12 }}>
-    <DatePicker order='dmy' label='DMY' placeholder='DD/MM/YYYY' />
-    <DatePicker order='mdy' label='MDY' placeholder='MM/DD/YYYY' />
-    <DatePicker order='ymd' label='YMD' placeholder='YYYY/MM/DD' />
+    <DatePicker order="dmy" label="DMY" placeholder="DD/MM/YYYY" />
+    <DatePicker order="mdy" label="MDY" placeholder="MM/DD/YYYY" />
+    <DatePicker order="ymd" label="YMD" placeholder="YYYY/MM/DD" />
   </div>
 </Unstyled>
 
@@ -266,11 +266,11 @@ Set input segment order.
 Customize placeholder text.
 
 ```jsx
-<DatePicker placeholder='DD/MM/YYYY' />
+<DatePicker placeholder="DD/MM/YYYY" />
 ```
 
 <Unstyled>
-  <DatePicker placeholder='DD/MM/YYYY' label='With placeholder' />
+  <DatePicker placeholder="DD/MM/YYYY" label="With placeholder" />
 </Unstyled>
 
 ### DatePicker `label` and `description`
@@ -278,11 +278,11 @@ Customize placeholder text.
 Provide accessible labeling and helper text.
 
 ```jsx
-<DatePicker label='Date' description='Enter in DD/MM/YYYY format' />
+<DatePicker label="Date" description="Enter in DD/MM/YYYY format" />
 ```
 
 <Unstyled>
-  <DatePicker label='Date' description='Enter in DD/MM/YYYY format' />
+  <DatePicker label="Date" description="Enter in DD/MM/YYYY format" />
 </Unstyled>
 
 ### DatePicker `error`
@@ -290,11 +290,11 @@ Provide accessible labeling and helper text.
 Force an error state with message.
 
 ```jsx
-<DatePicker error='Invalid date' />
+<DatePicker error="Invalid date" />
 ```
 
 <Unstyled>
-  <DatePicker error='Invalid date' label='Date' />
+  <DatePicker error="Invalid date" label="Date" />
 </Unstyled>
 
 ### DatePicker `disabled`
@@ -306,7 +306,7 @@ Disable the field.
 ```
 
 <Unstyled>
-  <DatePicker disabled label='Disabled' />
+  <DatePicker disabled label="Disabled" />
 </Unstyled>
 
 ### DatePicker `minDate` and `maxDate`
@@ -326,7 +326,7 @@ min.setFullYear(today.getFullYear() - 100);
     const today = new Date();
     const min = new Date();
     min.setFullYear(today.getFullYear() - 100);
-    return <DatePicker minDate={min} maxDate={today} label='DOB' />;
+    return <DatePicker minDate={min} maxDate={today} label="DOB" />;
   })()}
 </Unstyled>
 
@@ -337,7 +337,7 @@ Controlled usage pattern.
 ```tsx
 function Example() {
   const [date, setDate] = React.useState<Date | null>(null);
-  return <DatePicker value={date} onChange={setDate} label='Controlled' />;
+  return <DatePicker value={date} onChange={setDate} label="Controlled" />;
 }
 ```
 
@@ -348,7 +348,7 @@ function Example() {
       <DatePicker
         value={date}
         onChange={setDate}
-        label='Controlled'
+        label="Controlled"
         description={`Selected: ${date ? date.toDateString() : "None"}`}
       />
     );

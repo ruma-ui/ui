@@ -1,0 +1,82 @@
+name: Version Bump
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: "Version bump type"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      branch:
+        description: "Branch to bump version on"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - alpha
+          - beta
+          - rc
+
+permissions:
+  contents: write
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.8.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Bump version
+        run: |
+          BUMP_TYPE="${{ github.event.inputs.bump_type }}"
+          BRANCH="${{ github.event.inputs.branch }}"
+
+          # Bump version based on type
+          if [[ "$BRANCH" == "dev" ]]; then
+            # For dev branch, use dev prerelease suffix
+            npm version pre$BUMP_TYPE --preid=dev --no-git-tag-version --workspace=ui
+            npm version pre$BUMP_TYPE --preid=dev --no-git-tag-version
+          else
+            # For release branches, bump the base version
+            npm version $BUMP_TYPE --no-git-tag-version --workspace=ui
+            npm version $BUMP_TYPE --no-git-tag-version
+          fi
+
+      - name: Commit changes
+        run: |
+          BRANCH="${{ github.event.inputs.branch }}"
+          BUMP_TYPE="${{ github.event.inputs.bump_type }}"
+          NEW_VERSION=$(node -p "require('./ui/package.json').version")
+
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package.json ui/package.json
+          git commit -m "chore: bump version to $NEW_VERSION ($BUMP_TYPE on $BRANCH)"
+          git push origin $BRANCH
+
+          echo "✅ Version bumped to $NEW_VERSION on $BRANCH branch"

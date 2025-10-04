@@ -53,7 +53,7 @@ perf: optimize bundle size
 docs: update README with installation guide
 style: format code with prettier
 refactor: simplify state management
-test: add unit tests for utils
+test: add unit tests for components
 build: update vite config
 ci: fix deployment workflow
 dependency: update react to v19

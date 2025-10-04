@@ -121,8 +121,8 @@ const [value, setValue] = useState("text");
 
 <Unstyled>
   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-    <Editable value='Controlled' onChange={() => {}} />
-    <Editable defaultValue='Uncontrolled' />
+    <Editable value="Controlled" onChange={() => {}} />
+    <Editable defaultValue="Uncontrolled" />
   </div>
 </Unstyled>
 
@@ -131,11 +131,11 @@ const [value, setValue] = useState("text");
 Text displayed when the value is empty.
 
 ```tsx
-<Editable placeholder='Enter your name...' />
+<Editable placeholder="Enter your name..." />
 ```
 
 <Unstyled>
-  <Editable placeholder='Enter your name...' />
+  <Editable placeholder="Enter your name..." />
 </Unstyled>
 
 ### Editable `size`
@@ -152,11 +152,11 @@ Controls the overall dimensions and text size.
 
 <Unstyled>
   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-    <Editable size='xs' defaultValue='Extra small' />
-    <Editable size='sm' defaultValue='Small' />
-    <Editable size='md' defaultValue='Medium' />
-    <Editable size='lg' defaultValue='Large' />
-    <Editable size='xl' defaultValue='Extra large' />
+    <Editable size="xs" defaultValue="Extra small" />
+    <Editable size="sm" defaultValue="Small" />
+    <Editable size="md" defaultValue="Medium" />
+    <Editable size="lg" defaultValue="Large" />
+    <Editable size="xl" defaultValue="Extra large" />
   </div>
 </Unstyled>
 
@@ -171,8 +171,8 @@ Choose whether clicking or double-clicking starts the edit mode.
 
 <Unstyled>
   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-    <Editable trigger='click' defaultValue='Click to edit' />
-    <Editable trigger='doubleClick' defaultValue='Double-click to edit' />
+    <Editable trigger="click" defaultValue="Click to edit" />
+    <Editable trigger="doubleClick" defaultValue="Double-click to edit" />
   </div>
 </Unstyled>
 
@@ -181,11 +181,11 @@ Choose whether clicking or double-clicking starts the edit mode.
 Display save and cancel buttons when editing.
 
 ```tsx
-<Editable showButtons defaultValue='Edit with buttons' />
+<Editable showButtons defaultValue="Edit with buttons" />
 ```
 
 <Unstyled>
-  <Editable showButtons defaultValue='Edit with buttons' />
+  <Editable showButtons defaultValue="Edit with buttons" />
 </Unstyled>
 
 ### Editable `maxLength`
@@ -193,11 +193,11 @@ Display save and cancel buttons when editing.
 Set maximum character limit.
 
 ```tsx
-<Editable maxLength={20} defaultValue='Max 20 characters' />
+<Editable maxLength={20} defaultValue="Max 20 characters" />
 ```
 
 <Unstyled>
-  <Editable maxLength={20} defaultValue='Max 20 characters' />
+  <Editable maxLength={20} defaultValue="Max 20 characters" />
 </Unstyled>
 
 ### Editable `onChange`
@@ -205,11 +205,11 @@ Set maximum character limit.
 Callback function for value changes.
 
 ```tsx
-<Editable onChange={value => console.log("Value changed:", value)} defaultValue='With callback' />
+<Editable onChange={value => console.log("Value changed:", value)} defaultValue="With callback" />
 ```
 
 <Unstyled>
-  <Editable onChange={value => console.log("Value changed:", value)} defaultValue='With callback' />
+  <Editable onChange={value => console.log("Value changed:", value)} defaultValue="With callback" />
 </Unstyled>
 
 ## Accessibility

@@ -277,27 +277,27 @@ const ControlledComponent = (args: Partial<React.ComponentProps<typeof RadioGrou
   const [value, setValue] = useState("basic");
 
   return (
-    <div className='space-y-4'>
+    <div className="space-y-4">
       <RadioGroup
         {...args}
         options={planOptions}
-        label='Controlled selection'
+        label="Controlled selection"
         value={value}
         onValueChange={setValue}
       />
-      <p className='text-sm text-gray-600'>
+      <p className="text-sm text-gray-600">
         Selected value: <strong>{value || "None"}</strong>
       </p>
-      <div className='flex gap-2'>
+      <div className="flex gap-2">
         <button
           onClick={() => setValue("pro")}
-          className='rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600'
+          className="rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600"
         >
           Select Pro
         </button>
         <button
           onClick={() => setValue("")}
-          className='rounded bg-gray-500 px-3 py-1 text-sm text-white hover:bg-gray-600'
+          className="rounded bg-gray-500 px-3 py-1 text-sm text-white hover:bg-gray-600"
         >
           Clear Selection
         </button>
@@ -315,11 +315,11 @@ const PaymentMethodExampleComponent = (args: Partial<React.ComponentProps<typeof
   const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <div className='w-96 space-y-6 rounded-lg bg-white p-6 shadow-lg'>
-      <h3 className='text-lg font-semibold text-gray-900'>Checkout</h3>
+    <div className="w-96 space-y-6 rounded-lg bg-white p-6 shadow-lg">
+      <h3 className="text-lg font-semibold text-gray-900">Checkout</h3>
       <RadioGroup
         options={paymentOptions}
-        label='Payment method'
+        label="Payment method"
         description="Choose how you'd like to pay for your order"
         value={paymentMethod}
         onValueChange={value => {
@@ -329,18 +329,18 @@ const PaymentMethodExampleComponent = (args: Partial<React.ComponentProps<typeof
         required
       />
       {showDetails && paymentMethod && (
-        <div className='rounded-lg border border-blue-200 bg-blue-50 p-4'>
-          <h4 className='mb-2 font-medium text-blue-900'>
+        <div className="rounded-lg border border-blue-200 bg-blue-50 p-4">
+          <h4 className="mb-2 font-medium text-blue-900">
             Payment Details - {paymentOptions.find(opt => opt.value === paymentMethod)?.label}
           </h4>
-          <p className='text-sm text-blue-700'>
+          <p className="text-sm text-blue-700">
             {paymentOptions.find(opt => opt.value === paymentMethod)?.description}
           </p>
         </div>
       )}
       <button
         disabled={!paymentMethod}
-        className='w-full rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50'
+        className="w-full rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
       >
         Continue to Payment
       </button>
