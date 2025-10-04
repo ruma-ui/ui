@@ -190,7 +190,7 @@ When making changes that affect CI:
 
 ## Release Pipeline & Branch Strategy
 
-We use a **5-branch strategy** for controlled releases:
+We use a **5-branch release strategy** combining Changesets for version management and Semantic Release for automated publishing:
 
 ### Branch Hierarchy
 
@@ -198,21 +198,31 @@ We use a **5-branch strategy** for controlled releases:
 dev (default) → alpha → beta → rc → main
 ```
 
-| Branch  | Purpose                  | Release Type | NPM Tag   |
-| ------- | ------------------------ | ------------ | --------- |
-| `dev`   | Active development       | No release   | -         |
-| `alpha` | Experimental features    | Pre-release  | `@alpha`  |
-| `beta`  | Feature-complete testing | Pre-release  | `@beta`   |
-| `rc`    | Release candidates       | Pre-release  | `@rc`     |
-| `main`  | Stable production        | Stable       | `@latest` |
+| Branch  | Purpose                  | Release Type | NPM Tag   | Release Tool            |
+| ------- | ------------------------ | ------------ | --------- | ----------------------- |
+| `dev`   | Active development       | No release   | -         | Changesets (versioning) |
+| `alpha` | Experimental features    | Pre-release  | `@alpha`  | Semantic Release        |
+| `beta`  | Feature-complete testing | Pre-release  | `@beta`   | Semantic Release        |
+| `rc`    | Release candidates       | Pre-release  | `@rc`     | Changesets              |
+| `main`  | Stable production        | Stable       | `@latest` | Changesets              |
 
 ### Release Flow
 
 1. **Development**: All feature branches merge into `dev`
-2. **Alpha Release**: `dev` → `alpha` triggers automatic pre-release (`1.0.0-alpha.1`)
-3. **Beta Release**: `alpha` → `beta` triggers automatic pre-release (`1.0.0-beta.1`)
-4. **Release Candidate**: `beta` → `rc` triggers automatic pre-release (`1.0.0-rc.1`)
-5. **Stable Release**: `rc` → `main` triggers manual approval for stable release (`1.0.0`)
+2. **Versioning**: Changesets automatically create version PRs when changes are pushed to `dev`
+3. **Alpha Release**: Merge version PR to `alpha` branch triggers automatic semantic-release prerelease (`0.1.0-alpha.1`)
+4. **Beta Release**: Merge `alpha` → `beta` triggers automatic semantic-release prerelease (`0.1.0-beta.1`)
+5. **Release Candidate**: Merge `beta` → `rc` triggers changesets stable release (`0.1.0-rc.1`)
+6. **Stable Release**: Merge `rc` → `main` triggers changesets stable release (`0.1.0`)
+
+### Automated Workflows
+
+The release process is fully automated using GitHub Actions:
+
+- **Version Management**: Changesets create version bump PRs on `dev` branch pushes
+- **Branch Merging**: Use the "Branch Merge Pipeline" workflow to merge between release branches
+- **Prereleases**: Semantic Release automatically publishes alpha/beta versions on branch pushes
+- **Stable Releases**: Changesets handle versioning and publishing for rc/main branches
 
 ### Branch Permissions
 
@@ -221,32 +231,6 @@ dev (default) → alpha → beta → rc → main
 - **beta**: 1 review required, no force pushes
 - **rc**: 2 reviews required, no force pushes (release candidate quality)
 - **main**: 2 reviews required, no force pushes, no deletions (production protection)
-
-### Using the Release Pipeline
-
-#### For Contributors
-
-- Always branch from and PR to `dev`
-- Follow conventional commits for automated changelog generation
-
-#### For Maintainers
-
-- Use GitHub Actions workflows for branch merging:
-  - **Branch Merge Pipeline**: Automated merging between release branches
-  - **Version Bump**: Manually bump versions when needed
-  - **Release Pipeline**: Automated publishing to NPM
-
-#### Manual Branch Operations
-
-```bash
-# Merge dev to alpha (for alpha release)
-git checkout alpha
-git pull origin alpha
-git merge dev --no-ff
-git push origin alpha
-
-# This triggers automatic alpha release: 1.0.0-alpha.X
-```
 
 ### Version Strategy
 
@@ -461,17 +445,28 @@ export const Secondary: Story = {
 
 We use a **5-branch release strategy** with Changesets for version management:
 
-### Using Changesets (Recommended)
+### Using Changesets
 
-1. Create a changeset for your changes:
+Changesets automate version management and changelog generation:
 
-   ```bash
-   pnpm changeset
-   ```
+#### For Contributors
 
-2. Follow the prompts to describe your changes
-3. Commit the changeset file with your changes
-4. The release process will be automated when the PR is merged to the appropriate branch
+- Commit your changes to feature branches using conventional commits
+- Changesets will automatically analyze commits and create version bump PRs on the `dev` branch
+- No manual changeset creation required for most changes
+
+#### For Maintainers
+
+- **Version PRs**: Automatically created when pushing to `dev` branch
+- **Stable Releases**: Changesets create release PRs that bump versions and update changelogs
+- **Manual Changesets**: For complex changes, use `pnpm changeset` to create custom changeset files
+
+#### Changeset Workflow
+
+1. Push commits to `dev` branch
+2. Changesets workflow creates a version PR with updated package versions
+3. Review and merge the version PR to alpha/beta/rc/main branches using the Branch Merge workflow
+4. Automated publishing occurs based on the target branch (semantic-release for alpha/beta, changesets for rc/main)
 
 ## Getting Help
 
