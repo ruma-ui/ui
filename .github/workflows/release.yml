@@ -95,7 +95,6 @@ jobs:
           add-paths: |
             CHANGELOG.md
             package.json
-            package-lock.json
             pnpm-lock.yaml
 
       - name: Build documentation
