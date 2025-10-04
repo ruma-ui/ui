@@ -7,16 +7,23 @@ on:
       - beta
       - rc
       - main
+    paths-ignore:
+      - ".changeset/**"
+      - "CHANGELOG.md"
   workflow_dispatch:
     inputs:
       release_type:
-        description: "Manual release type"
+        description: "Release type for manual trigger"
         required: true
-        default: "prerelease"
+        default: "stable"
         type: choice
         options:
-          - prerelease
+          - rc
           - stable
+      confirm_release:
+        description: "Type 'CONFIRM' to proceed with release"
+        required: true
+        type: string
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -30,10 +37,10 @@ permissions:
   packages: write
 
 jobs:
-  # Pre-release job for alpha, beta, rc branches using Changesets
+  # Automated pre-release job for alpha and beta branches
   prerelease:
     runs-on: ubuntu-latest
-    if: contains(fromJson('["alpha", "beta", "rc"]'), github.ref_name) && !contains(github.event.head_commit.message, '[skip ci]')
+    if: contains(fromJson('["alpha", "beta"]'), github.ref_name) && !contains(github.event.head_commit.message, '[skip ci]')
     outputs:
       version: ${{ steps.version.outputs.version }}
       tag: ${{ steps.version.outputs.tag }}
@@ -111,10 +118,10 @@ jobs:
             storybook-static/
           retention-days: 30
 
-  # Stable release job for main branch using Changesets
+  # Manual release job for rc and main branches
   stable-release:
     runs-on: ubuntu-latest
-    if: github.ref_name == 'main' && !contains(github.event.head_commit.message, '[skip ci]')
+    if: (contains(fromJson('["rc", "main"]'), github.ref_name) && !contains(github.event.head_commit.message, '[skip ci]')) || github.event_name == 'workflow_dispatch'
     outputs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
@@ -145,6 +152,15 @@ jobs:
 
       - name: Check bundle size
         run: pnpm run size
+
+      - name: Validate Manual Release
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          if [ "${{ github.event.inputs.confirm_release }}" != "CONFIRM" ]; then
+            echo "Release not confirmed. Please type 'CONFIRM' to proceed."
+            exit 1
+          fi
+          echo "Release confirmed for ${{ github.event.inputs.release_type }} on branch ${{ github.ref_name }}"
 
       - name: Setup Git
         run: |
