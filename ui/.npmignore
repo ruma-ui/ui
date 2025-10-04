@@ -1,0 +1,21 @@
+# Exclude source files
+src/
+# Exclude build config
+vite.config.ts
+tsconfig*.json
+postcss.config.js
+# Exclude test files
+**/*.test.*
+**/*.spec.*
+# Exclude storybook
+.storybook/
+# Exclude source maps (already disabled in prod, but just in case)
+**/*.map
+# Exclude development files
+eslint.config.mjs
+jest.config.ts
+project.json
+# Exclude public assets not needed in package
+public/
+# Keep only built files
+!dist/
