@@ -76,7 +76,13 @@ jobs:
 
       - name: Semantic Release (Prerelease)
         id: semantic
-        run: pnpm run release:semantic
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 24.2.9
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/npm
+            @semantic-release/github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
