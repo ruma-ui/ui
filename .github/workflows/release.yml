@@ -81,11 +81,11 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build documentation
-        if: success()
+        if: steps.semantic.outputs.new-release-published == 'true'
         run: pnpm run docs:build
 
       - name: Upload build artifacts
-        if: success()
+        if: steps.semantic.outputs.new-release-published == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: prerelease-artifacts-${{ github.ref_name }}
