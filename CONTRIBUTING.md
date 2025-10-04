@@ -221,7 +221,7 @@ The release process is fully automated using GitHub Actions:
 
 - **Version Management**: Changesets create version bump PRs on `dev` branch pushes
 - **Branch Merging**: Use the "Branch Merge Pipeline" workflow to merge between release branches
-- **Prereleases**: Semantic Release automatically publishes alpha/beta versions on branch pushes
+- **Prereleases**: Semantic Release automatically publishes alpha/beta versions and updates changelog
 - **Stable Releases**: Changesets handle versioning and publishing for rc/main branches
 
 ### Branch Permissions

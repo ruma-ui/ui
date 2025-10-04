@@ -80,6 +80,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Push changes back to branch
+        if: steps.semantic.outputs.new-release-published == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git push origin ${{ github.ref_name }}
+
       - name: Build documentation
         if: steps.semantic.outputs.new-release-published == 'true'
         run: pnpm run docs:build
