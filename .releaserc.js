@@ -61,13 +61,7 @@ module.exports = {
         pkgRoot: "dist/ui",
       },
     ],
-    [
-      "@semantic-release/git",
-      {
-        assets: ["CHANGELOG.md", "package.json", "ui/package.json"],
-        message: "chore(release): ${nextRelease.version} [skip ci]",
-      },
-    ],
+    // Removed @semantic-release/git to avoid branch protection conflicts on alpha/beta branches
     "@semantic-release/github",
   ],
 };
