@@ -15,42 +15,42 @@
     {
       "description": "Group React-related packages",
       "groupName": "React ecosystem",
-      "matchPackagePatterns": ["^react", "^@types/react"]
+      "matchPackageNames": ["/^react/", "/^@types/react/"]
     },
     {
       "description": "Group Nx packages",
       "groupName": "Nx monorepo",
-      "matchPackagePatterns": ["^@nx/", "^nx$"]
+      "matchPackageNames": ["/^@nx//", "/^nx$/"]
     },
     {
       "description": "Group testing packages",
       "groupName": "Testing tools",
-      "matchPackagePatterns": ["^@testing-library/", "^jest", "^vitest"]
+      "matchPackageNames": ["/^@testing-library//", "/^jest/", "/^vitest/"]
     },
     {
       "description": "Group ESLint packages",
       "groupName": "ESLint ecosystem",
-      "matchPackagePatterns": ["^eslint", "^@eslint/"]
+      "matchPackageNames": ["/^eslint/", "/^@eslint//"]
     },
     {
       "description": "Group TypeScript packages",
       "groupName": "TypeScript ecosystem",
-      "matchPackagePatterns": ["^typescript", "^@types/"]
+      "matchPackageNames": ["/^typescript/", "/^@types//"]
     },
     {
       "description": "Group Storybook packages",
       "groupName": "Storybook ecosystem",
-      "matchPackagePatterns": ["^@storybook/"]
+      "matchPackageNames": ["/^@storybook//"]
     },
     {
       "description": "Group semantic-release packages",
       "groupName": "semantic-release",
-      "matchPackagePatterns": ["^@semantic-release/"]
+      "matchPackageNames": ["/^@semantic-release//"]
     },
     {
       "description": "Group changesets packages",
       "groupName": "changesets",
-      "matchPackagePatterns": ["^@changesets/"]
+      "matchPackageNames": ["/^@changesets//"]
     },
     {
       "description": "Automerge patch updates for dev dependencies",
