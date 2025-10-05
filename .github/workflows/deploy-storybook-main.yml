@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Fetches all history for git so Chromatic can compare commits
           fetch-depth: 0
@@ -23,9 +23,9 @@ jobs:
           version: 10.0.0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "pnpm"
 
       # Caches the pnpm content-addressable store for faster installs
@@ -49,7 +49,7 @@ jobs:
         # Only run if the node_modules cache was not hit
         if: steps.cache-deps.outputs.cache-hit != 'true'
         # Retry the command up to 3 times in case of transient network errors
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@v3
         with:
           timeout_minutes: 10
           max_attempts: 3

@@ -44,7 +44,7 @@ jobs:
     if: contains(fromJson('["alpha", "beta"]'), github.ref_name) && !contains(github.event.head_commit.message, '[skip ci]')
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -56,9 +56,9 @@ jobs:
           run_install: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
@@ -108,7 +108,7 @@ jobs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -120,9 +120,9 @@ jobs:
           run_install: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
@@ -188,7 +188,7 @@ jobs:
     if: always() && (needs.prerelease.result == 'failure' || needs.stable-release.result == 'failure')
     steps:
       - name: Notify on failure
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const branch = '${{ github.ref_name }}';
@@ -209,7 +209,7 @@ jobs:
     if: needs.stable-release.result == 'success' && github.ref_name == 'main'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
