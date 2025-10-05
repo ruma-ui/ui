@@ -55,6 +55,7 @@ pnpm build
    ```
 
 5. Commit your changes using conventional commits:
+
    ```bash
    git commit -m "feat: add amazing new component"
    ```
@@ -226,11 +227,114 @@ The release process is fully automated using GitHub Actions:
 
 ### Branch Permissions
 
-- **dev**: 1 review required, allows force pushes (development flexibility)
-- **alpha**: 1 review required, no force pushes
-- **beta**: 1 review required, no force pushes
-- **rc**: 2 reviews required, no force pushes (release candidate quality)
-- **main**: 2 reviews required, no force pushes, no deletions (production protection)
+The following branches are protected with comprehensive rules:
+
+- **Protected Branches**: `main`, `rc`, `alpha`, `beta`, `dev`
+
+**Protection Rules Applied to All Protected Branches:**
+
+- **Deletion Protection**: Branch deletion is not allowed
+- **Force Push Protection**: Force pushes are not allowed (non-fast-forward only)
+- **Pull Request Requirements**:
+  - Pull requests are required for all changes
+  - Code owner review is required
+  - Review thread resolution is required
+  - Allowed merge methods: merge, squash, rebase
+- **Required Status Checks**: `lint`, `typecheck`, `security`, `test`, `build`
+- **Code Scanning**: CodeQL security alerts must be resolved (high or higher severity)
+
+**Additional Notes:**
+
+- No minimum number of approving reviews required beyond code owner approval
+- No bypass actors configured - all contributors must follow the rules
+- Branch protection ensures code quality and security across all release branches
+
+**Complete Branch Protection Ruleset (JSON):**
+
+```json
+{
+  "id": 8101922,
+  "name": "Protect All Branches",
+  "target": "branch",
+  "source_type": "Repository",
+  "source": "ruma-ui/ui",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "exclude": [],
+      "include": [
+        "refs/heads/main",
+        "refs/heads/rc",
+        "refs/heads/beta",
+        "refs/heads/dev",
+        "refs/heads/alpha"
+      ]
+    }
+  },
+  "rules": [
+    {
+      "type": "deletion"
+    },
+    {
+      "type": "code_scanning",
+      "parameters": {
+        "code_scanning_tools": [
+          {
+            "tool": "CodeQL",
+            "security_alerts_threshold": "high_or_higher",
+            "alerts_threshold": "errors"
+          }
+        ]
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          {
+            "context": "lint",
+            "integration_id": 15368
+          },
+          {
+            "context": "typecheck",
+            "integration_id": 15368
+          },
+          {
+            "context": "security",
+            "integration_id": 15368
+          },
+          {
+            "context": "test",
+            "integration_id": 15368
+          },
+          {
+            "context": "build",
+            "integration_id": 15368
+          }
+        ]
+      }
+    },
+    {
+      "type": "non_fast_forward"
+    },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 0,
+        "dismiss_stale_reviews_on_push": false,
+        "require_code_owner_review": true,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": true,
+        "automatic_copilot_code_review_enabled": false,
+        "allowed_merge_methods": ["merge", "squash", "rebase"]
+      }
+    }
+  ],
+  "bypass_actors": []
+}
+```
 
 ### Version Strategy
 
