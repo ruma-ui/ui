@@ -188,7 +188,7 @@ jobs:
     if: always() && (needs.prerelease.result == 'failure' || needs.stable-release.result == 'failure')
     steps:
       - name: Notify on failure
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const branch = '${{ github.ref_name }}';
