@@ -103,9 +103,6 @@ jobs:
             ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
             ${{ runner.os }}-nx-
 
-      - name: Start Nx Cloud CI run
-        run: pnpm dlx nx start-ci-run --stop-agents-after="build" --agent-count=3
-
   # Code quality and linting
   lint:
     runs-on: ubuntu-latest
@@ -310,11 +307,6 @@ jobs:
             docs/
             ui/storybook-static/
           retention-days: 30
-
-      # Nx Cloud recommends fixes for failures to help you get CI green faster
-      - name: Fix CI issues
-        run: pnpm dlx nx fix-ci
-        if: always()
 
   # Notify on failures
   notify-failure:

@@ -22,6 +22,12 @@ jobs:
         with:
           version: 10.0.0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
       # Caches the pnpm content-addressable store for faster installs
       - name: Cache pnpm store
         uses: actions/cache@v4
@@ -38,12 +44,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
 
       - name: Install dependencies
         # Only run if the node_modules cache was not hit
