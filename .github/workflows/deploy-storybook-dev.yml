@@ -64,7 +64,7 @@ jobs:
       # Install dependencies only if cache was not hit
       - name: Install dependencies
         if: steps.cache-deps.outputs.cache-hit != 'true'
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@v3
         with:
           timeout_minutes: 10
           max_attempts: 3
