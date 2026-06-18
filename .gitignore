@@ -32,6 +32,7 @@ node_modules
 npm-debug.log
 yarn-error.log
 testem.log
+debug-storybook.log
 /typings
 
 # System Files
@@ -59,3 +60,8 @@ vitest.config.*.timestamp*
 .env.local
 .env.*.local
 .env
+
+.claude/worktrees
+.nx/polygraph
+.nx/self-healing
+.nx/migrate-runs

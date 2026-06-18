@@ -1,4 +1,4 @@
-import { create } from "@storybook/theming";
+import { create } from "storybook/theming";
 import { addons } from "storybook/manager-api";
 
 const rumaTheme = create({

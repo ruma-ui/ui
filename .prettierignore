@@ -67,3 +67,5 @@ pnpm-lock.yaml
 .changeset/*.md
 !.changeset/config.json
 !.changeset/README.md
+
+.nx/self-healing
