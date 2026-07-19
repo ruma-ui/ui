@@ -87,7 +87,7 @@ jobs:
 
       - name: Upload build artifacts
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: prerelease-artifacts-${{ github.ref_name }}
           path: |
@@ -171,7 +171,7 @@ jobs:
 
       - name: Upload build artifacts
         if: steps.changesets.outputs.published == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: stable-artifacts-${{ github.ref_name }}
           path: |
