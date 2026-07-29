@@ -84,7 +84,23 @@ jobs:
 
       - name: Semantic Release (Prerelease)
         id: semantic
-        run: pnpm run release:semantic
+        run: |
+          set +e
+          SR_OUTPUT=$(pnpm run release:semantic 2>&1)
+          SR_EXIT=$?
+          echo "$SR_OUTPUT"
+
+          # If semantic-release failed because the version was already published
+          # (E400) it means a previous concurrent or re-triggered run already
+          # succeeded. Treat this as a no-op success to keep the pipeline green.
+          if [[ $SR_EXIT -ne 0 ]]; then
+            if echo "$SR_OUTPUT" | grep -q "Cannot publish over previously published version"; then
+              echo "⚠️  Version already published to npm — previous run succeeded. Treating as no-op."
+              exit 0
+            fi
+            # Any other error: propagate normally
+            exit $SR_EXIT
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
