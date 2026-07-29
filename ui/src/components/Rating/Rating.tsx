@@ -106,9 +106,9 @@ const starSizes = {
 };
 
 const variants = {
-  default: tw`text-gray-300`,
+  default: tw`text-border`,
   filled: tw`text-yellow-400`,
-  outline: tw`text-gray-400`,
+  outline: tw`text-muted-foreground/60`,
 };
 
 const filledVariants = {

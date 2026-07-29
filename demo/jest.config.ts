@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: "demo",
   preset: "../jest.preset.js",
   passWithNoTests: true,

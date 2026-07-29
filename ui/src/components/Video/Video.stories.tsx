@@ -101,7 +101,7 @@ type Story = StoryObj<typeof meta>;
 
 // Sample video URLs for demonstration
 const SAMPLE_VIDEO =
-  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+  "https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/Big_Buck_Bunny_4K.webm/Big_Buck_Bunny_4K.webm.1080p.vp9.webm";
 const SAMPLE_POSTER = "https://peach.blender.org/wp-content/uploads/bbb-splash.png";
 
 // Default story

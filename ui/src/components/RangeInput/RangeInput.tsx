@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn, tw } from "../../lib/utils";
 
 export interface RangeInputProps {
@@ -85,53 +85,28 @@ export interface RangeInputProps {
   id?: string;
 }
 
-// Design primitives
-const wrapperBase = tw`relative inline-flex flex-col`;
-const containerBase = tw`inline-flex flex-col gap-2`;
-const rangeBase = tw`relative w-full cursor-pointer focus:outline-none disabled:cursor-not-allowed disabled:opacity-50`;
+const wrapperBase = tw`inline-flex w-full flex-col`;
 
-const trackBase = tw`relative w-full rounded-full bg-gray-200`;
-const trackVariants = {
-  primary: tw`bg-blue-600`,
-  secondary: tw`bg-gray-600`,
-};
-
+// Sizes map matching Slider exactly (wrapper height is equal to thumb height)
 const sizes = {
-  sm: {
-    track: tw`h-1 min-w-[120px]`,
-    thumb: tw`h-3 w-3`,
-  },
-  md: {
-    track: tw`h-2 min-w-[160px]`,
-    thumb: tw`h-4 w-4`,
-  },
-  lg: {
-    track: tw`h-3 min-w-[200px]`,
-    thumb: tw`h-5 w-5`,
-  },
+  sm: { wrapper: tw`h-4 min-w-[120px]`, track: tw`h-1`, thumb: tw`h-3 w-3`, text: tw`text-xs` },
+  md: { wrapper: tw`h-5 min-w-[160px]`, track: tw`h-2`, thumb: tw`h-4 w-4`, text: tw`text-sm` },
+  lg: { wrapper: tw`h-6 min-w-[200px]`, track: tw`h-3`, thumb: tw`h-5 w-5`, text: tw`text-base` },
+} as const;
+
+const trackFillVariants = {
+  primary: tw`bg-primary`,
+  secondary: tw`bg-secondary-foreground`,
 };
 
-const thumbBase = tw`absolute block cursor-pointer rounded-full border-1 border-gray-400 bg-white shadow-lg transition duration-200 ease-in-out hover:scale-105 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-115 disabled:shadow-none`;
-
-const labelBase = tw`font-medium text-gray-900`;
-const labelSizes = {
-  sm: tw`text-xs`,
-  md: tw`text-sm`,
-  lg: tw`text-base`,
-};
-
-const valueLabelBase = tw`text-gray-600`;
-const valueLabelSizes = {
-  sm: tw`text-xs`,
-  md: tw`text-sm`,
-  lg: tw`text-base`,
-};
-
-const assistiveContainer = tw`mt-2 px-1`;
-const descriptionText = tw`text-sm text-gray-600`;
-const errorText = tw`text-sm text-red-600`;
-
-const errorStyles = tw`ring-red-500`;
+const thumbBase = tw`
+  absolute top-1/2 -translate-y-1/2
+  block cursor-pointer rounded-full
+  border border-border bg-background
+  shadow-sm transition-[transform,shadow,border-color,background-color] duration-150 ease-in-out
+  hover:scale-110 hover:shadow-md
+  disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none
+`;
 
 export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
   (
@@ -159,7 +134,6 @@ export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
     ref
   ) => {
     const [internalValue, setInternalValue] = useState<[number, number]>(defaultValue);
-    const rangeRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const activeThumbRef = useRef<0 | 1 | null>(null);
     const [draggingThumb, setDraggingThumb] = useState<0 | 1 | null>(null);
@@ -169,280 +143,255 @@ export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
     const hasAssistive = Boolean(description || (error && errorMessage));
     const assistiveId = `${rangeId}-desc`;
 
-    // Determine if component is controlled
     const isControlled = value !== undefined;
 
-    // Update internal state when controlled value changes
     useEffect(() => {
       if (!isControlled) {
         setInternalValue(defaultValue);
       }
     }, [defaultValue, isControlled]);
 
-    // For controlled components, sync internal state with prop changes
     useEffect(() => {
-      if (isControlled) {
+      if (isControlled && value) {
         setInternalValue(value);
       }
     }, [value, isControlled]);
 
-    const currentValue = isControlled ? value : internalValue;
-
-    // Ensure values are within bounds and min <= max
+    const currentValue = isControlled && value ? value : internalValue;
     const clampedValue: [number, number] = [
-      Math.min(Math.max(currentValue[0], min), Math.min(currentValue[1], max)),
-      Math.min(Math.max(currentValue[1], Math.min(currentValue[0], max)), max),
+      Math.min(Math.max(currentValue[0], min), max),
+      Math.min(Math.max(currentValue[1], min), max),
     ];
 
-    // Calculate percentages for styling
+    const valueRef = useRef<[number, number]>(clampedValue);
+    valueRef.current = clampedValue;
+
     const minPercent = ((clampedValue[0] - min) / (max - min)) * 100;
     const maxPercent = ((clampedValue[1] - min) / (max - min)) * 100;
+    const formatValue = (val: number) => (valueFormatter ? valueFormatter(val) : val.toString());
 
-    const formatValue = (val: number) => {
-      return valueFormatter ? valueFormatter(val) : val.toString();
-    };
-
-    const getValueFromPosition = (clientX: number): number => {
-      if (!trackRef.current) return clampedValue[0];
-
+    const getValueFromPosition = (clientX: number) => {
+      if (!trackRef.current) return 0;
       const rect = trackRef.current.getBoundingClientRect();
-      const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      const rawValue = percent * (max - min) + min;
-
-      // Round to nearest step
-      const steppedValue = Math.round(rawValue / step) * step;
-      return Math.min(Math.max(steppedValue, min), max);
+      const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      const val = pct * (max - min) + min;
+      return Math.round(val / step) * step;
     };
 
-    const updateValue = useCallback(
-      (newValue: [number, number]) => {
-        const clamped: [number, number] = [
-          Math.min(Math.max(newValue[0], min), Math.min(newValue[1], max)),
-          Math.min(Math.max(newValue[1], Math.min(newValue[0], max)), max),
-        ];
-
-        if (isControlled) {
-          // For controlled components, just call onChange
-          onChange?.(clamped);
-        } else {
-          // For uncontrolled components, update internal state
-          setInternalValue(clamped);
-          onChange?.(clamped);
-        }
-      },
-      [isControlled, onChange, min, max]
-    );
+    const updateValue = (newVal: [number, number]) => {
+      const sorted: [number, number] = newVal[0] <= newVal[1] ? newVal : [newVal[1], newVal[0]];
+      const clamped: [number, number] = [
+        Math.min(max, Math.max(min, sorted[0])),
+        Math.min(max, Math.max(min, sorted[1])),
+      ];
+      if (!isControlled) {
+        setInternalValue(clamped);
+      }
+      onChange?.(clamped);
+    };
 
     const handlePointerDown = (e: React.PointerEvent, thumbIndex: 0 | 1) => {
       if (disabled) return;
-
+      e.stopPropagation();
       e.preventDefault();
-      activeThumbRef.current = thumbIndex;
       setDraggingThumb(thumbIndex);
+      activeThumbRef.current = thumbIndex;
 
-      // Prevent text selection during drag
-      document.body.style.userSelect = "none";
-
-      const updateThumb = (clientX: number) => {
-        const newValue = getValueFromPosition(clientX);
+      const onMove = (ev: PointerEvent) => {
+        const newVal = getValueFromPosition(ev.clientX);
+        const currentVals = valueRef.current;
         if (thumbIndex === 0) {
-          updateValue([newValue, clampedValue[1]]);
+          updateValue([newVal, currentVals[1]]);
         } else {
-          updateValue([clampedValue[0], newValue]);
+          updateValue([currentVals[0], newVal]);
         }
       };
 
-      // Add global listeners for drag
-      const handlePointerMove = (e: PointerEvent) => {
-        e.preventDefault();
-        updateThumb(e.clientX);
-      };
-
-      const handlePointerUp = () => {
-        // Restore text selection
-        document.body.style.userSelect = "";
+      const onUp = (ev: PointerEvent) => {
         setDraggingThumb(null);
-        onChangeEnd?.(clampedValue);
-        activeThumbRef.current = null;
-        document.removeEventListener("pointermove", handlePointerMove);
-        document.removeEventListener("pointerup", handlePointerUp);
+        const finalVal = getValueFromPosition(ev.clientX);
+        const currentVals = valueRef.current;
+        const nextVal: [number, number] =
+          thumbIndex === 0 ? [finalVal, currentVals[1]] : [currentVals[0], finalVal];
+        const sorted: [number, number] =
+          nextVal[0] <= nextVal[1] ? nextVal : [nextVal[1], nextVal[0]];
+        onChangeEnd?.(sorted);
+        document.removeEventListener("pointermove", onMove);
+        document.removeEventListener("pointerup", onUp);
       };
 
-      document.addEventListener("pointermove", handlePointerMove);
-      document.addEventListener("pointerup", handlePointerUp);
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", onUp);
     };
 
-    const handleTrackClick = (e: React.MouseEvent) => {
+    const handleTrackClick = (e: React.PointerEvent) => {
       if (disabled) return;
+      const clickVal = getValueFromPosition(e.clientX);
+      const distMin = Math.abs(clampedValue[0] - clickVal);
+      const distMax = Math.abs(clampedValue[1] - clickVal);
 
-      e.preventDefault();
-      const clickValue = getValueFromPosition(e.clientX);
-
-      // Determine which thumb is closer to the click position
-      const distanceToMin = Math.abs(clickValue - clampedValue[0]);
-      const distanceToMax = Math.abs(clickValue - clampedValue[1]);
-
-      const thumbIndex = distanceToMin <= distanceToMax ? 0 : 1;
-
-      if (thumbIndex === 0) {
-        updateValue([clickValue, clampedValue[1]]);
+      const targetThumb: 0 | 1 = distMin < distMax ? 0 : 1;
+      if (targetThumb === 0) {
+        updateValue([clickVal, clampedValue[1]]);
+        onChangeEnd?.([clickVal, clampedValue[1]]);
       } else {
-        updateValue([clampedValue[0], clickValue]);
+        updateValue([clampedValue[0], clickVal]);
+        onChangeEnd?.([clampedValue[0], clickVal]);
       }
     };
 
     const handleKeyDown = (e: React.KeyboardEvent, thumbIndex: 0 | 1) => {
       if (disabled) return;
-
-      let newValue = clampedValue[thumbIndex];
-
+      let val = clampedValue[thumbIndex];
       switch (e.key) {
-        case "ArrowLeft":
-        case "ArrowDown":
-          e.preventDefault();
-          newValue = Math.max(min, clampedValue[thumbIndex] - step);
-          break;
         case "ArrowRight":
         case "ArrowUp":
           e.preventDefault();
-          newValue = Math.min(max, clampedValue[thumbIndex] + step);
+          val = Math.min(max, val + step);
+          break;
+        case "ArrowLeft":
+        case "ArrowDown":
+          e.preventDefault();
+          val = Math.max(min, val - step);
           break;
         case "Home":
           e.preventDefault();
-          newValue = thumbIndex === 0 ? min : clampedValue[0];
+          val = min;
           break;
         case "End":
           e.preventDefault();
-          newValue = thumbIndex === 0 ? clampedValue[1] : max;
+          val = max;
           break;
         case "PageUp":
           e.preventDefault();
-          newValue = Math.min(max, clampedValue[thumbIndex] + (max - min) * 0.1);
+          val = Math.min(max, val + (max - min) * 0.1);
           break;
         case "PageDown":
           e.preventDefault();
-          newValue = Math.max(min, clampedValue[thumbIndex] - (max - min) * 0.1);
+          val = Math.max(min, val - (max - min) * 0.1);
           break;
         default:
           return;
       }
 
-      if (thumbIndex === 0) {
-        updateValue([newValue, clampedValue[1]]);
-      } else {
-        updateValue([clampedValue[0], newValue]);
-      }
-      onChangeEnd?.(thumbIndex === 0 ? [newValue, clampedValue[1]] : [clampedValue[0], newValue]);
+      const nextVal: [number, number] =
+        thumbIndex === 0 ? [val, clampedValue[1]] : [clampedValue[0], val];
+      updateValue(nextVal);
+      onChangeEnd?.(nextVal[0] <= nextVal[1] ? nextVal : [nextVal[1], nextVal[0]]);
     };
 
-    const trackClasses = cn(trackBase, sizes[size].track, className);
-
-    const thumbClasses = cn(
-      thumbBase,
-      sizes[size].thumb,
-      error && errorStyles,
-      disabled && "shadow-none"
-    );
-
-    const labelClasses = cn(
-      labelBase,
-      labelSizes[size],
-      error && "text-red-700",
-      disabled && "text-gray-500"
-    );
-
-    const valueLabelClasses = cn(
-      valueLabelBase,
-      valueLabelSizes[size],
-      error && "text-red-700",
-      disabled && "text-gray-500"
-    );
-
     return (
-      <div ref={ref} className={wrapperBase}>
-        {label && (
-          <div className="mb-3 flex items-center justify-between">
-            <label htmlFor={rangeId} className={labelClasses}>
-              {label}
-            </label>
+      <div ref={ref} className={cn(wrapperBase, className)}>
+        {/* Labels row */}
+        {(label || showValue) && (
+          <div className="mb-2 flex items-center justify-between">
+            {label && (
+              <span
+                className={cn(
+                  "text-foreground font-medium",
+                  sizes[size].text,
+                  error && "text-destructive",
+                  disabled && "text-muted-foreground"
+                )}
+              >
+                {label}
+              </span>
+            )}
             {showValue && (
-              <span className={valueLabelClasses}>
+              <span
+                className={cn(
+                  "text-muted-foreground tabular-nums",
+                  sizes[size].text,
+                  error && "text-destructive",
+                  disabled && "opacity-50"
+                )}
+              >
                 {formatValue(clampedValue[0])} - {formatValue(clampedValue[1])}
               </span>
             )}
           </div>
         )}
 
-        <div className={cn(containerBase, "w-full min-w-[200px]")}>
-          <div ref={rangeRef} className={rangeBase} id={rangeId} {...props}>
+        {/* Range rail interaction area */}
+        <div
+          className={cn(
+            "relative flex w-full items-center select-none",
+            sizes[size].wrapper,
+            disabled && "cursor-not-allowed opacity-50"
+          )}
+          id={rangeId}
+          {...props}
+        >
+          <div
+            ref={trackRef}
+            className={cn(
+              "bg-secondary relative w-full cursor-pointer rounded-full",
+              sizes[size].track
+            )}
+            onPointerDown={handleTrackClick}
+          >
+            {/* Range fill */}
             <div
-              ref={trackRef}
-              className={cn(trackClasses, "absolute top-1/2 -translate-y-1/2")}
-              onClick={handleTrackClick}
-            >
-              {/* Range fill */}
-              <div
-                className={cn("absolute top-0 rounded-full", trackVariants[variant])}
-                style={{
-                  left: `${minPercent}%`,
-                  width: `${maxPercent - minPercent}%`,
-                  height: "100%",
-                }}
-              />
+              className={cn("absolute inset-y-0 rounded-full", trackFillVariants[variant])}
+              style={{
+                left: `${minPercent}%`,
+                width: `${maxPercent - minPercent}%`,
+              }}
+            />
 
-              {/* Min thumb */}
-              <div
-                className={cn(
-                  thumbClasses,
-                  draggingThumb === 0 && "scale-115 ring-2 ring-blue-300"
-                )}
-                style={{
-                  left: `${minPercent}%`,
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
-                onPointerDown={e => handlePointerDown(e, 0)}
-                onKeyDown={e => handleKeyDown(e, 0)}
-                tabIndex={disabled ? -1 : 0}
-                role="slider"
-                aria-valuemin={min}
-                aria-valuemax={clampedValue[1]}
-                aria-valuenow={clampedValue[0]}
-                aria-disabled={disabled}
-                aria-describedby={hasAssistive ? assistiveId : undefined}
-              />
+            {/* Min Thumb */}
+            <div
+              className={cn(
+                thumbBase,
+                sizes[size].thumb,
+                error && "border-destructive",
+                draggingThumb === 0 &&
+                  "scale-110 shadow-[0_0_0_var(--ring-offset)_hsl(var(--background)),0_0_0_calc(var(--ring-offset)+var(--ring-width))_var(--ring-color)]",
+                "rui-focus-ring outline-none"
+              )}
+              style={{ left: `${minPercent}%` }}
+              onPointerDown={e => handlePointerDown(e, 0)}
+              onKeyDown={e => handleKeyDown(e, 0)}
+              tabIndex={disabled ? -1 : 0}
+              role="slider"
+              aria-valuemin={min}
+              aria-valuemax={clampedValue[1]}
+              aria-valuenow={clampedValue[0]}
+              aria-disabled={disabled}
+              aria-describedby={hasAssistive ? assistiveId : undefined}
+            />
 
-              {/* Max thumb */}
-              <div
-                className={cn(
-                  thumbClasses,
-                  draggingThumb === 1 && "scale-115 ring-2 ring-blue-300"
-                )}
-                style={{
-                  left: `${maxPercent}%`,
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
-                onPointerDown={e => handlePointerDown(e, 1)}
-                onKeyDown={e => handleKeyDown(e, 1)}
-                tabIndex={disabled ? -1 : 0}
-                role="slider"
-                aria-valuemin={clampedValue[0]}
-                aria-valuemax={max}
-                aria-valuenow={clampedValue[1]}
-                aria-disabled={disabled}
-                aria-describedby={hasAssistive ? assistiveId : undefined}
-              />
-            </div>
+            {/* Max Thumb */}
+            <div
+              className={cn(
+                thumbBase,
+                sizes[size].thumb,
+                error && "border-destructive",
+                draggingThumb === 1 &&
+                  "scale-110 shadow-[0_0_0_var(--ring-offset)_hsl(var(--background)),0_0_0_calc(var(--ring-offset)+var(--ring-width))_var(--ring-color)]",
+                "rui-focus-ring outline-none"
+              )}
+              style={{ left: `${maxPercent}%` }}
+              onPointerDown={e => handlePointerDown(e, 1)}
+              onKeyDown={e => handleKeyDown(e, 1)}
+              tabIndex={disabled ? -1 : 0}
+              role="slider"
+              aria-valuemin={clampedValue[0]}
+              aria-valuemax={max}
+              aria-valuenow={clampedValue[1]}
+              aria-disabled={disabled}
+              aria-describedby={hasAssistive ? assistiveId : undefined}
+            />
           </div>
         </div>
 
+        {/* Assistive text */}
         {hasAssistive && (
-          <div id={assistiveId} className={assistiveContainer}>
+          <div id={assistiveId} className="mt-2 px-0.5">
             {error && errorMessage ? (
-              <span className={errorText}>{errorMessage}</span>
+              <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (
-              <span className={descriptionText}>{description}</span>
+              <span className="text-muted-foreground text-sm">{description}</span>
             ) : null}
           </div>
         )}

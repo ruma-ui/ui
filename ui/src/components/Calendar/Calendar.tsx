@@ -53,15 +53,15 @@ export interface CalendarProps {
   className?: string;
 }
 
-const wrapper = tw`inline-flex flex-col rounded-md border border-gray-300 bg-white p-3 text-gray-900`;
+const wrapper = tw`inline-flex flex-col rounded-md border border-border bg-card p-3 text-foreground`;
 const header = tw`mb-2 flex items-center justify-between`;
-const navBtn = tw`inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 active:bg-gray-100`;
+const navBtn = tw`rui-focus-ring inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-border text-foreground hover:bg-accent hover:text-accent-foreground active:bg-muted`;
 const monthLabel = tw`px-2 text-sm font-semibold`;
 const pickerWrap = tw`flex items-center gap-2`;
-const selectBase = tw`h-8 rounded-md border border-gray-300 bg-white px-2 text-sm text-gray-900 hover:border-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none`;
+const selectBase = tw`rui-field-focus h-8 rounded-md border border-input bg-background px-2 text-sm text-foreground focus:outline-none`;
 const grid = tw`grid grid-cols-7 gap-1`;
-const dow = tw`py-1 text-center text-xs font-medium text-gray-500`;
-const dayBase = tw`relative flex h-9 w-9 items-center justify-center rounded-md text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`;
+const dow = tw`py-1 text-center text-xs font-medium text-muted-foreground`;
+const dayBase = tw`rui-focus-ring relative flex h-9 w-9 items-center justify-center rounded-md text-sm transition-colors focus:outline-none`;
 
 function clampToDay(date: Date) {
   // normalize to noon to avoid DST edge cases on comparisons if needed
@@ -270,11 +270,12 @@ export const Calendar: React.FC<CalendarProps> = ({
 
           const dayClasses = cn(
             dayBase,
-            disabled && "cursor-not-allowed text-gray-300",
-            !disabled && "cursor-pointer hover:bg-gray-100",
-            outOfMonth && showOutsideDays && "text-gray-400",
-            isSelected && "bg-blue-600 text-white hover:bg-blue-600",
-            todayFlag && !isSelected && "ring-1 ring-blue-500/40 ring-inset"
+            disabled && "cursor-not-allowed opacity-40",
+            !disabled && "cursor-pointer hover:bg-accent hover:text-accent-foreground",
+            outOfMonth && showOutsideDays && "text-muted-foreground/60",
+            isSelected &&
+              "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
+            todayFlag && !isSelected && "ring-1 ring-ring/40 ring-inset"
           );
 
           return (

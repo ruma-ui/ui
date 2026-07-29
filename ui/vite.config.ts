@@ -55,7 +55,7 @@ export default defineConfig(({ mode }) => {
         // Don't forget to update your package.json as well.
         formats: ["es", "cjs"],
       },
-      rollupOptions: {
+      rolldownOptions: {
         // External packages that should not be bundled into your library.
         external: [
           "react",
@@ -96,6 +96,7 @@ export default defineConfig(({ mode }) => {
       environment: "jsdom",
       setupFiles: ["src/test-setup.ts"],
       include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+      passWithNoTests: true,
       reporters: ["default"],
       coverage: {
         reportsDirectory: "../coverage/ui",

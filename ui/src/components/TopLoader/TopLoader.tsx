@@ -59,11 +59,11 @@ const sizes = {
 
 // Added text colors to variants for glow effect to work correctly
 const variants = {
-  primary: tw`bg-blue-600 text-blue-600`,
-  secondary: tw`bg-gray-600 text-gray-600`,
-  success: tw`bg-green-600 text-green-600`,
-  warning: tw`bg-yellow-600 text-yellow-600`,
-  error: tw`bg-red-600 text-red-600`,
+  primary: tw`bg-primary text-primary`,
+  secondary: tw`bg-muted-foreground text-muted-foreground`,
+  success: tw`bg-success text-success`,
+  warning: tw`bg-warning text-warning`,
+  error: tw`bg-destructive text-destructive`,
 };
 
 const speeds = {

@@ -55,34 +55,21 @@ export interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInput
 }
 
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
-const fieldBase = tw`relative inline-flex items-center border bg-white text-gray-900 transition-all duration-200 focus-within:ring-3 disabled:cursor-not-allowed disabled:opacity-50`;
+
+// rui-field-focus: handles border-color transition on focus (no ring, clean)
+const fieldBase = tw`rui-field-focus relative inline-flex items-center border bg-background text-foreground transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50`;
 
 const variants = {
-  primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200`,
-  secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200`,
+  primary: tw`border-input bg-background`,
+  secondary: tw`border-input bg-muted`,
 };
 
 const sizes = {
-  xs: {
-    container: tw`h-8`,
-    input: tw`text-xs`,
-    padX: "px-2",
-    gap: "gap-1.5",
-  },
-  sm: { container: tw`h-9`, input: tw`text-sm`, padX: "px-3", gap: "gap-2" },
-  md: {
-    container: tw`h-10`,
-    input: tw`text-base`,
-    padX: "px-3.5",
-    gap: "gap-2",
-  },
-  lg: {
-    container: tw`h-12`,
-    input: tw`text-lg`,
-    padX: "px-4",
-    gap: "gap-2.5",
-  },
-  xl: { container: tw`h-14`, input: tw`text-xl`, padX: "px-5", gap: "gap-3" },
+  xs: { container: tw`h-7`, input: tw`text-xs`, padX: "px-2", gap: "gap-1" },
+  sm: { container: tw`h-8`, input: tw`text-xs`, padX: "px-2.5", gap: "gap-1.5" },
+  md: { container: tw`h-9`, input: tw`text-sm`, padX: "px-3", gap: "gap-2" },
+  lg: { container: tw`h-10`, input: tw`text-sm`, padX: "px-3.5", gap: "gap-2" },
+  xl: { container: tw`h-12`, input: tw`text-base`, padX: "px-4", gap: "gap-2.5" },
 } as const;
 
 const roundedOptions = {
@@ -144,9 +131,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           <label
             htmlFor={inputId}
             className={cn(
-              "mb-1 font-medium text-gray-900",
+              "text-foreground mb-1 font-medium",
               labelSizes[size],
-              error && "text-red-700"
+              error && "text-destructive"
             )}
           >
             {label}
@@ -160,34 +147,33 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             roundedOptions[rounded],
             sizes[size].padX,
             sizes[size].gap,
-            error && "border-red-500 focus-within:border-red-500 focus-within:ring-red-200",
+            error && "rui-field-error border-destructive",
             fullWidth && "w-full",
             className
           )}
         >
           {startIcon && (
-            <span className="flex shrink-0 items-center text-gray-500">{startIcon}</span>
+            <span className="text-muted-foreground flex shrink-0 items-center">{startIcon}</span>
           )}
           <input
             ref={inputRef}
             id={inputId}
-            className={cn(
-              "min-w-0 flex-1 bg-transparent outline-none placeholder:font-light placeholder:text-gray-400",
-              sizes[size].input
-            )}
+            className="placeholder:text-muted-foreground min-w-0 flex-1 bg-transparent outline-none placeholder:font-light"
             aria-invalid={error || undefined}
             aria-describedby={hasAssistive ? assistiveId : undefined}
             disabled={disabled}
             {...props}
           />
-          {endIcon && <span className="flex shrink-0 items-center text-gray-500">{endIcon}</span>}
+          {endIcon && (
+            <span className="text-muted-foreground flex shrink-0 items-center">{endIcon}</span>
+          )}
         </div>
         {hasAssistive && (
           <div id={assistiveId} className="mt-1 min-h-[1rem]">
             {error && errorMessage ? (
-              <span className="text-sm text-red-600">{errorMessage}</span>
+              <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (
-              <span className="text-sm text-gray-600">{description}</span>
+              <span className="text-muted-foreground text-sm">{description}</span>
             ) : null}
           </div>
         )}

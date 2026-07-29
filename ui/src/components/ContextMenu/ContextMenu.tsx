@@ -21,10 +21,10 @@ const useContextMenu = () => {
 };
 
 // Base styles (same as Dropdown)
-const contentBase = tw`z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 bg-white p-1 shadow-lg`;
-const itemBase = tw`relative flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm !text-gray-900 transition-colors outline-none select-none hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 disabled:pointer-events-none disabled:opacity-50`;
-const labelBase = tw`px-2 py-1.5 text-sm font-semibold text-gray-900`;
-const separatorBase = tw`-mx-1 my-1 h-px bg-gray-200`;
+const contentBase = tw`z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover text-popover-foreground p-1 shadow-md`;
+const itemBase = tw`relative flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50`;
+const labelBase = tw`px-2 py-1.5 text-sm font-semibold text-foreground`;
+const separatorBase = tw`-mx-1 my-1 h-px bg-border`;
 
 // Animation classes
 const contentAnimation = tw`animate-in fade-in-0 zoom-in-95 duration-150 ease-out`;

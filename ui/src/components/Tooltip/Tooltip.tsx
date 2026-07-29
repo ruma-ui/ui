@@ -79,12 +79,12 @@ const maxWidthOptions = {
 
 // Variants
 const variants = {
-  dark: tw`bg-gray-900 text-white`,
-  light: tw`border border-gray-200 bg-white text-gray-900`,
-  primary: tw`bg-blue-600 text-white`,
-  success: tw`bg-green-600 text-white`,
-  warning: tw`bg-yellow-600 text-white`,
-  error: tw`bg-red-600 text-white`,
+  dark: tw`bg-foreground text-background`,
+  light: tw`border border-border bg-popover text-popover-foreground`,
+  primary: tw`bg-primary text-primary-foreground`,
+  success: tw`bg-success text-success-foreground`,
+  warning: tw`bg-warning text-warning-foreground`,
+  error: tw`bg-destructive text-destructive-foreground`,
 };
 
 // Sizes
@@ -107,12 +107,12 @@ const roundedOptions = {
 // Arrow styles
 const arrowBase = tw`absolute h-2 w-2 rotate-45 transform`;
 const arrowVariants = {
-  dark: tw`bg-gray-900`,
-  light: tw`border-gray-200 bg-white`,
-  primary: tw`bg-blue-600`,
-  success: tw`bg-green-600`,
-  warning: tw`bg-yellow-600`,
-  error: tw`bg-red-600`,
+  dark: tw`bg-foreground`,
+  light: tw`border-border bg-popover`,
+  primary: tw`bg-primary`,
+  success: tw`bg-success`,
+  warning: tw`bg-warning`,
+  error: tw`bg-destructive`,
 };
 
 const getArrowPosition = (position: string) => {

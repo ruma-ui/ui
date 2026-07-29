@@ -20,7 +20,7 @@ const usePopover = () => {
 };
 
 // Base styles
-const contentBase = tw`z-50 min-w-[8rem] overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-lg`;
+const contentBase = tw`z-50 min-w-[8rem] overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground p-4 shadow-md`;
 
 // Animation classes
 const contentAnimationIn = tw`animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200 ease-out`;

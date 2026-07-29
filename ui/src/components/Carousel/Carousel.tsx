@@ -83,14 +83,14 @@ export interface CarouselProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   dotClassName?: string;
 }
 
-const carouselBase = tw`relative h-64 w-full min-w-0 overflow-hidden rounded-lg bg-gray-50`;
+const carouselBase = tw`relative h-64 w-full min-w-0 overflow-hidden rounded-lg bg-muted`;
 const slideContainer = tw`relative h-full w-full`;
 const slideBase = tw`absolute inset-0 h-full w-full flex-shrink-0`;
-const arrowBase = tw`absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/80 text-gray-700 shadow-lg transition-all duration-200 hover:scale-110 hover:bg-white hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100`;
+const arrowBase = tw`absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-background/90 text-foreground shadow-md transition-all duration-200 hover:scale-110 hover:bg-background hover:shadow-lg rui-focus-ring focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100`;
 const dotsContainer = tw`absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2`;
-const dotBase = tw`h-2 w-2 rounded-full bg-white/60 transition-all duration-200 hover:bg-white/80 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none`;
-const activeDot = tw`scale-125 bg-white`;
-const counterBase = tw`absolute top-4 right-4 rounded-md bg-black/50 px-2 py-1 text-xs font-medium text-white`;
+const dotBase = tw`h-2 w-2 rounded-full bg-background/50 transition-all duration-200 hover:bg-background/70 rui-focus-ring focus:outline-none`;
+const activeDot = tw`scale-125 bg-background`;
+const counterBase = tw`absolute top-4 right-4 rounded-md bg-foreground/60 px-2 py-1 text-xs font-medium text-background`;
 
 export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
   (
@@ -327,7 +327,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     if (totalItems === 0) {
       return (
         <div ref={carouselRef} className={cn(carouselBase, className)} {...props}>
-          <div className="flex h-48 items-center justify-center text-gray-500">
+          <div className="text-muted-foreground flex h-48 items-center justify-center">
             No items to display
           </div>
         </div>

@@ -123,13 +123,13 @@ const useTreeItem = () => {
   return context;
 };
 
-const baseItem = tw`relative flex items-center gap-1 rounded-sm px-2 py-1 text-sm transition-colors select-none hover:bg-gray-50 focus-visible:ring-1 focus-visible:ring-gray-400 focus-visible:outline-none`;
+const baseItem = tw`relative flex items-center gap-1 rounded-sm px-2 py-1 text-sm transition-colors select-none hover:bg-accent hover:text-accent-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none`;
 
-const selectedItem = tw`bg-blue-50 text-blue-900 hover:bg-blue-100`;
+const selectedItem = tw`bg-accent text-accent-foreground hover:bg-accent/80`;
 
 const disabledItem = tw`pointer-events-none cursor-not-allowed opacity-50`;
 
-const expandIcon = tw`h-4 w-4 shrink-0 text-gray-500 transition-transform duration-200`;
+const expandIcon = tw`h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200`;
 
 const IndentGuide: React.FC<{ level: number; isLast?: boolean }> = ({ level, isLast = false }) => {
   if (level === 0) return null;
@@ -141,8 +141,8 @@ const IndentGuide: React.FC<{ level: number; isLast?: boolean }> = ({ level, isL
       <div
         key={i}
         className={cn(
-          "absolute top-0 bottom-0 w-px bg-gray-200",
-          isCurrentLevel && !isLast && "bg-gray-300"
+          "bg-border/60 absolute top-0 bottom-0 w-px",
+          isCurrentLevel && !isLast && "bg-border"
         )}
         style={{
           left: `${(i + 1) * 16 + 8}px`, // Align with center of chevron icon

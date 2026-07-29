@@ -1,4 +1,3 @@
-import { fixupConfigRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import nx from "@nx/eslint-plugin";
@@ -11,10 +10,11 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...fixupConfigRules(compat.extends("next")),
-  ...fixupConfigRules(compat.extends("next/core-web-vitals")),
   ...baseConfig,
   ...nx.configs["flat/react-typescript"],
+  ...compat.config({
+    extends: ["plugin:@next/next/recommended"],
+  }),
   {
     ignores: [".next/**/*", "next-env.d.ts"],
   },

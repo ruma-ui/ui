@@ -65,13 +65,12 @@ export interface AvatarProps {
 
 // Base styles - Added border for shadow and ensured shadow-sm is always present for primary.
 // We will use a border to hold the shadow, and outline for the status.
-const avatarBase = tw`relative inline-flex items-center justify-center overflow-hidden bg-gray-100 font-medium text-gray-600 transition-all duration-200`;
+const avatarBase = tw`relative inline-flex items-center justify-center overflow-hidden bg-muted font-medium text-muted-foreground transition-all duration-150`;
 
-// Variants - Removed outlines from here. Will handle outlines conditionally in avatarClasses.
-// Primary now just includes the shadow.
+// Variants
 const variants = {
-  primary: tw`border-2 border-white shadow-sm`, // Keep the border for the shadow and the shadow itself
-  secondary: tw`border border-gray-200`,
+  primary: tw`border-2 border-background shadow-sm`,
+  secondary: tw`border border-border`,
 };
 
 // Sizes
@@ -94,19 +93,19 @@ const roundedOptions = {
   full: tw`rounded-full`,
 };
 
-// Status outline styles - these will be applied *in addition* to the variant's border.
+// Status outline styles
 const statusOutlineStyles = {
-  online: tw`outline-2 outline-offset-0 outline-green-500`,
-  offline: tw`outline-2 outline-offset-0 outline-gray-400`,
-  away: tw`outline-2 outline-offset-0 outline-yellow-500`,
-  busy: tw`outline-2 outline-offset-0 outline-red-500`,
+  online: tw`outline-2 outline-offset-0 outline-success`,
+  offline: tw`outline-2 outline-offset-0 outline-muted-foreground/60`,
+  away: tw`outline-2 outline-offset-0 outline-warning`,
+  busy: tw`outline-2 outline-offset-0 outline-destructive`,
 };
 
 // Clickable styles
-const clickableStyles = tw`cursor-pointer hover:opacity-80 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
+const clickableStyles = tw`cursor-pointer hover:opacity-80 rui-focus-ring focus:outline-none`;
 
 // Default user icon
-const UserIcon = () => <HiOutlineUser className="h-full w-full text-gray-400" />;
+const UserIcon = () => <HiOutlineUser className="text-muted-foreground/60 h-full w-full" />;
 
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   (

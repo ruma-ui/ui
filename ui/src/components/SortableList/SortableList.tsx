@@ -107,19 +107,19 @@ export interface SortableItemProps<T = unknown>
 
 const baseList = tw`relative w-full gap-3 select-none`;
 
-const baseItem = tw`relative cursor-move rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 ease-in-out hover:border-gray-300 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none`;
+const baseItem = tw`relative cursor-move rounded-lg border border-border bg-card shadow-sm transition-all duration-200 ease-in-out hover:border-input hover:shadow-md rui-focus-ring focus-visible:outline-none`;
 
-const draggingItem = tw`z-50 scale-105 rotate-1 border-blue-400 bg-blue-50/30 shadow-xl`;
+const draggingItem = tw`z-50 scale-105 rotate-1 border-primary/40 bg-primary/5 shadow-xl`;
 
-const dragOverItem = tw`scale-102 bg-blue-50 shadow-lg`;
+const dragOverItem = tw`scale-102 bg-accent shadow-lg`;
 
-const disabledItem = tw`cursor-not-allowed border-gray-200 bg-gray-50 opacity-60 hover:border-gray-200 hover:shadow-none`;
+const disabledItem = tw`cursor-not-allowed border-border/50 bg-muted opacity-60 hover:border-border/50 hover:shadow-none`;
 
-const dragHandle = tw`flex cursor-grab items-center justify-center rounded-sm text-gray-400 transition-all duration-200 active:cursor-grabbing disabled:cursor-not-allowed disabled:opacity-50`;
+const dragHandle = tw`flex cursor-grab items-center justify-center rounded-sm text-muted-foreground transition-all duration-200 active:cursor-grabbing disabled:cursor-not-allowed disabled:opacity-50`;
 
-const dragIndicator = tw`pointer-events-none absolute inset-0 rounded-lg border-2 border-blue-400 bg-gradient-to-r from-blue-50 to-blue-100 opacity-0 transition-all duration-200`;
+const dragIndicator = tw`pointer-events-none absolute inset-0 rounded-lg border-2 border-primary/40 bg-gradient-to-r from-primary/5 to-primary/10 opacity-0 transition-all duration-200`;
 
-const dropZoneIndicator = tw`pointer-events-none h-1 rounded-full bg-blue-500 opacity-0 transition-all duration-200`;
+const dropZoneIndicator = tw`pointer-events-none h-1 rounded-full bg-primary opacity-0 transition-all duration-200`;
 
 const keyboardHint = tw`sr-only`;
 
@@ -288,7 +288,7 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
       <button
         className={cn(
           dragHandle,
-          !isDragging && "hover:bg-blue-50 hover:text-blue-600",
+          !isDragging && "hover:bg-accent hover:text-accent-foreground",
           disabled && "cursor-not-allowed opacity-50"
         )}
         ref={dragHandleRef}
@@ -338,7 +338,7 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
 
         {/* Subtle border animation for drag over state */}
         {isDragOver && (
-          <div className="pointer-events-none absolute inset-0 animate-pulse rounded-lg border-2 border-blue-400" />
+          <div className="border-primary/40 pointer-events-none absolute inset-0 animate-pulse rounded-lg border-2" />
         )}
 
         <div className="flex w-full items-center gap-4 p-3">

@@ -85,17 +85,17 @@ export interface ModalProps {
 }
 
 // Base styles
-const overlayBase = tw`fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm`;
-const modalBase = tw`relative max-h-[85vh] w-full overflow-hidden bg-white shadow-xl ring-1 ring-gray-200 outline-none`;
-const headerBase = tw`flex items-center justify-between border-b border-gray-200 px-6 py-4`;
-const bodyBase = tw`flex-1 overflow-y-auto px-6 py-5`;
-const footerBase = tw`border-t border-gray-200 px-6 py-4`;
-const closeButtonBase = tw`rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
+const overlayBase = tw`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm`;
+const modalBase = tw`relative max-h-[85vh] w-full overflow-hidden bg-background text-foreground shadow-lg border border-border outline-none`;
+const headerBase = tw`flex items-center justify-between border-b border-border px-6 py-4`;
+const bodyBase = tw`flex-1 overflow-y-auto px-6 py-5 text-sm text-foreground/90`;
+const footerBase = tw`border-t border-border px-6 py-4`;
+const closeButtonBase = tw`rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground rui-focus-ring focus:outline-none`;
 
 // Variants
 const variants = {
-  primary: tw`border border-gray-200`,
-  secondary: tw`border border-gray-300 bg-gray-50`,
+  primary: tw`border border-border`,
+  secondary: tw`border border-border bg-muted`,
 };
 
 // Sizes
@@ -295,7 +295,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               <div className="min-w-0 flex-1">
                 {header ||
                   (title && (
-                    <h2 id={titleId} className="truncate text-lg font-semibold text-gray-900">
+                    <h2 id={titleId} className="text-foreground truncate text-lg font-semibold">
                       {title}
                     </h2>
                   ))}

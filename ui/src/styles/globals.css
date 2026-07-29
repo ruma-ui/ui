@@ -1,4 +1,71 @@
+/* Design tokens (must be first — defines CSS custom properties on :root) */
+@import "./tokens.css";
+
+/* Unified focus utilities */
+@import "./focus.css";
+
+/* Tailwind v4 */
 @import "tailwindcss";
 @import "tw-animate-css";
+
+/* Library animations & scrollbar utilities */
 @import "./animations.css";
 @import "./scrollbar.css";
+
+/* =============================================================================
+   Tailwind v4 @theme inline registration
+   -----------------------------------------------------------------------------
+   Maps CSS custom properties defined in tokens.css → Tailwind utility classes.
+   Pattern is identical to shadcn/ui's Tailwind v4 approach:
+     bg-background, text-foreground, border-border, bg-primary/50, etc.
+
+   NOTE: <alpha-value> is a Tailwind v3 concept and is NOT used here.
+   In Tailwind v4, opacity modifiers (bg-primary/50) work automatically
+   because the CSS engine applies color-mix() under the hood.
+   ============================================================================= */
+@theme inline {
+  /* Colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+
+  /* Border radius scale — all derived from --radius in tokens.css */
+  --radius-none: 0px;
+  --radius-sm: calc(var(--radius) - 2px); /* 4px at default */
+  --radius-md: var(--radius); /* 6px at default */
+  --radius-lg: calc(var(--radius) + 2px); /* 8px at default */
+  --radius-xl: calc(var(--radius) + 6px); /* 12px at default */
+  --radius-2xl: calc(var(--radius) + 10px); /* 16px at default */
+  --radius-full: 9999px;
+}

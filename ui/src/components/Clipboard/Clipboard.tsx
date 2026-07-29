@@ -76,10 +76,10 @@ export interface ClipboardProps {
 const base = tw`relative inline-flex transform-gpu cursor-pointer items-center justify-center transition-all duration-200 select-none focus:outline-none disabled:pointer-events-none disabled:opacity-50`;
 
 const variants = {
-  primary: tw`focus:ring-opacity-50 bg-blue-600 p-2 text-white shadow-sm hover:bg-blue-500 hover:shadow-md`,
-  secondary: tw`focus:ring-opacity-50 bg-gray-200 p-2 text-black shadow-sm hover:bg-gray-200/80 hover:shadow-md`,
-  outline: tw`focus:ring-opacity-50 border border-blue-600 bg-transparent p-2 text-blue-600 hover:bg-blue-50`,
-  ghost: tw`focus:ring-opacity-50 bg-transparent p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900`,
+  primary: tw`rui-focus-ring bg-primary p-2 text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md`,
+  secondary: tw`rui-focus-ring bg-secondary p-2 text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md`,
+  outline: tw`rui-focus-ring border border-primary bg-transparent p-2 text-primary hover:bg-primary/10`,
+  ghost: tw`rui-focus-ring bg-transparent p-2 text-muted-foreground hover:bg-accent hover:text-accent-foreground`,
 };
 
 const sizes = {
@@ -92,7 +92,7 @@ const sizes = {
 const animations = {
   none: tw``,
   scale: tw`transition-transform duration-150 ease-out hover:scale-105 active:scale-95`,
-  glow: tw`transition-shadow duration-200 ease-out hover:shadow-lg hover:shadow-blue-500/25`,
+  glow: tw`transition-shadow duration-200 ease-out hover:shadow-lg hover:shadow-primary/25`,
   press: tw`transition-transform duration-200 ease-out active:scale-95`,
 };
 
@@ -107,23 +107,23 @@ const roundedOptions = {
 
 // Helper function to get color classes based on variant and copied state
 const getColorClass = (variant: string, isCopied: boolean, showFeedback: boolean) => {
-  // For outline variant, text should be white when copied
+  // For outline variant, text should be primary-foreground when copied
   if (variant === "outline" && isCopied && showFeedback) {
-    return "text-white";
+    return "text-primary-foreground";
   }
 
   // Default colors for each variant
   switch (variant) {
     case "primary":
-      return "text-white";
+      return "text-primary-foreground";
     case "secondary":
-      return "text-black";
+      return "text-secondary-foreground";
     case "outline":
-      return "text-blue-600";
+      return "text-primary";
     case "ghost":
-      return "text-gray-600";
+      return "text-muted-foreground";
     default:
-      return "text-gray-600";
+      return "text-muted-foreground";
   }
 };
 
@@ -258,10 +258,10 @@ export const Clipboard = React.forwardRef<HTMLButtonElement, ClipboardProps>(
               "hover:scale-100 active:scale-100", // Reset scale transforms
               "hover:-translate-y-0", // Reset lift transforms
               // Apply copied visual state
-              variant === "primary" && "bg-blue-700 shadow-md",
-              variant === "secondary" && "bg-gray-300 shadow-md",
+              variant === "primary" && "bg-primary/80 shadow-md",
+              variant === "secondary" && "bg-secondary shadow-md",
               variant === "outline" &&
-                "border-blue-600 bg-blue-600 text-white shadow-md hover:bg-blue-600",
+                "border-primary bg-primary text-primary-foreground hover:bg-primary shadow-md",
             ].filter(Boolean),
           className
         )}

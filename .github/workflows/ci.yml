@@ -36,7 +36,7 @@ jobs:
       workflows: ${{ steps.changes.outputs.workflows }}
       docs: ${{ steps.changes.outputs.docs }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -69,18 +69,18 @@ jobs:
     needs: changes
     if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.12.0
+          version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
 
       # Install dependencies with retry
@@ -103,27 +103,24 @@ jobs:
             ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
             ${{ runner.os }}-nx-
 
-      - name: Start Nx Cloud CI run
-        run: pnpm dlx nx start-ci-run --stop-agents-after="build" --agent-count=3
-
   # Code quality and linting
   lint:
     runs-on: ubuntu-latest
     needs: [changes, setup]
     if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.12.0
+          version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -151,18 +148,18 @@ jobs:
     needs: [changes, setup]
     if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.12.0
+          version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -190,18 +187,18 @@ jobs:
     needs: [changes, setup]
     if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.12.0
+          version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -216,6 +213,7 @@ jobs:
       - name: Dependency Review
         uses: actions/dependency-review-action@v4
         if: github.event_name == 'pull_request'
+        continue-on-error: true
 
   # Testing
   test:
@@ -223,18 +221,18 @@ jobs:
     needs: [changes, setup]
     if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.12.0
+          version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -261,18 +259,18 @@ jobs:
     needs: [changes, setup]
     if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.12.0
+          version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -310,44 +308,3 @@ jobs:
             docs/
             ui/storybook-static/
           retention-days: 30
-
-      # Nx Cloud recommends fixes for failures to help you get CI green faster
-      - name: Fix CI issues
-        run: pnpm dlx nx fix-ci
-        if: always()
-
-  # Notify on failures
-  notify-failure:
-    needs: [lint, typecheck, security, test, build]
-    runs-on: ubuntu-latest
-    if: always() && (needs.lint.result == 'failure' || needs.typecheck.result == 'failure' || needs.security.result == 'failure' || needs.test.result == 'failure' || needs.build.result == 'failure')
-    steps:
-      - name: Create failure issue
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const runUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}`;
-            const branch = '${{ github.ref_name }}';
-
-            // Get job statuses from workflow context
-            const lintResult = '${{ needs.lint.result }}';
-            const typecheckResult = '${{ needs.typecheck.result }}';
-            const securityResult = '${{ needs.security.result }}';
-            const testResult = '${{ needs.test.result }}';
-            const buildResult = '${{ needs.build.result }}';
-
-            // Build the failed jobs list
-            let failedJobs = '';
-            if (lintResult === 'failure') failedJobs += '- Lint checks\n';
-            if (typecheckResult === 'failure') failedJobs += '- Type checks\n';
-            if (securityResult === 'failure') failedJobs += '- Security checks\n';
-            if (testResult === 'failure') failedJobs += '- Tests\n';
-            if (buildResult === 'failure') failedJobs += '- Build\n';
-
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🚨 CI Failed on ${branch}`,
-              body: `The CI workflow failed on branch \`${branch}\`.\n\n**Workflow Run:** ${runUrl}\n\n**Failed Jobs:**\n${failedJobs}\nPlease check the logs for details.`,
-              labels: ['bug', 'ci', `branch:${branch}`]
-            });

@@ -63,79 +63,72 @@ export interface BadgeProps {
   id?: string;
 }
 
-// Base styles
 const badgeBase = tw`inline-flex items-center font-medium transition-all duration-200`;
 
-// Variants - filled style
+// Filled — brand colors use tokens, semantics stay as Tailwind
 const variantsFilled = {
-  primary: tw`bg-blue-600 text-white`,
-  secondary: tw`bg-gray-600 text-white`,
+  primary: tw`bg-primary text-primary-foreground`,
+  secondary: tw`bg-secondary text-secondary-foreground`,
   success: tw`bg-green-600 text-white`,
   warning: tw`bg-yellow-600 text-white`,
-  error: tw`bg-red-600 text-white`,
+  error: tw`bg-destructive text-destructive-foreground`,
   info: tw`bg-cyan-600 text-white`,
 };
 
-// Variants - outline style
+// Outline
 const variantsOutline = {
-  primary: tw`border border-blue-600 bg-white text-blue-600`,
-  secondary: tw`border border-gray-600 bg-white text-gray-600`,
-  success: tw`border border-green-600 bg-white text-green-600`,
-  warning: tw`border border-yellow-600 bg-white text-yellow-600`,
-  error: tw`border border-red-600 bg-white text-red-600`,
-  info: tw`border border-cyan-600 bg-white text-cyan-600`,
+  primary: tw`border border-primary bg-background text-primary`,
+  secondary: tw`border border-secondary-foreground bg-background text-secondary-foreground`,
+  success: tw`border border-green-600 bg-background text-green-600`,
+  warning: tw`border border-yellow-600 bg-background text-yellow-600`,
+  error: tw`border border-destructive bg-background text-destructive`,
+  info: tw`border border-cyan-600 bg-background text-cyan-600`,
 };
 
-// Variants - soft style
+// Soft
 const variantsSoft = {
-  primary: tw`bg-blue-50 text-blue-700`,
-  secondary: tw`bg-gray-50 text-gray-700`,
+  primary: tw`bg-accent text-accent-foreground`,
+  secondary: tw`bg-secondary text-secondary-foreground`,
   success: tw`bg-green-50 text-green-700`,
   warning: tw`bg-yellow-50 text-yellow-700`,
-  error: tw`bg-red-50 text-red-700`,
+  error: tw`bg-destructive/10 text-destructive`,
   info: tw`bg-cyan-50 text-cyan-700`,
 };
 
 // Hover states for clickable badges
 const hoverStatesFilled = {
-  primary: tw`hover:bg-blue-700`,
-  secondary: tw`hover:bg-gray-700`,
+  primary: tw`hover:bg-primary/90`,
+  secondary: tw`hover:bg-secondary/80`,
   success: tw`hover:bg-green-700`,
   warning: tw`hover:bg-yellow-700`,
-  error: tw`hover:bg-red-700`,
+  error: tw`hover:bg-destructive/90`,
   info: tw`hover:bg-cyan-700`,
 };
 
 const hoverStatesOutline = {
-  primary: tw`hover:bg-blue-50`,
-  secondary: tw`hover:bg-gray-50`,
+  primary: tw`hover:bg-accent`,
+  secondary: tw`hover:bg-secondary`,
   success: tw`hover:bg-green-50`,
   warning: tw`hover:bg-yellow-50`,
-  error: tw`hover:bg-red-50`,
+  error: tw`hover:bg-destructive/10`,
   info: tw`hover:bg-cyan-50`,
 };
 
 const hoverStatesSoft = {
-  primary: tw`hover:bg-blue-100`,
-  secondary: tw`hover:bg-gray-100`,
+  primary: tw`hover:bg-accent/80`,
+  secondary: tw`hover:bg-secondary/80`,
   success: tw`hover:bg-green-100`,
   warning: tw`hover:bg-yellow-100`,
-  error: tw`hover:bg-red-100`,
+  error: tw`hover:bg-destructive/15`,
   info: tw`hover:bg-cyan-100`,
 };
 
-// Sizes
 const sizes = {
   sm: { container: tw`h-5 gap-1 px-2`, text: tw`text-xs`, icon: tw`h-3 w-3` },
-  md: {
-    container: tw`h-6 gap-1.5 px-2.5`,
-    text: tw`text-xs`,
-    icon: tw`h-3.5 w-3.5`,
-  },
+  md: { container: tw`h-6 gap-1.5 px-2.5`, text: tw`text-xs`, icon: tw`h-3.5 w-3.5` },
   lg: { container: tw`h-7 gap-2 px-3`, text: tw`text-sm`, icon: tw`h-4 w-4` },
 } as const;
 
-// Rounded options
 const roundedOptions = {
   none: tw`rounded-none`,
   sm: tw`rounded-sm`,
@@ -145,18 +138,8 @@ const roundedOptions = {
   full: tw`rounded-full`,
 };
 
-// Clickable styles
-const clickableStyles = tw`cursor-pointer focus:ring-2 focus:ring-offset-2 focus:outline-none`;
-
-// Focus ring colors
-const focusRings = {
-  primary: tw`focus:ring-blue-500`,
-  secondary: tw`focus:ring-gray-500`,
-  success: tw`focus:ring-green-500`,
-  warning: tw`focus:ring-yellow-500`,
-  error: tw`focus:ring-red-500`,
-  info: tw`focus:ring-cyan-500`,
-};
+// rui-focus-ring: keyboard-only focus via :focus-visible
+const clickableStyles = tw`rui-focus-ring cursor-pointer`;
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (
@@ -179,18 +162,12 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     ref
   ) => {
     const handleClick = () => {
-      if (clickable && onClick) {
-        onClick();
-      }
+      if (clickable && onClick) onClick();
     };
-
     const handleDismiss = (event: React.MouseEvent) => {
       event.stopPropagation();
-      if (dismissible && onDismiss) {
-        onDismiss();
-      }
+      if (dismissible && onDismiss) onDismiss();
     };
-
     const handleKeyDown = (event: React.KeyboardEvent) => {
       if (clickable && (event.key === "Enter" || event.key === " ")) {
         event.preventDefault();
@@ -198,7 +175,6 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       }
     };
 
-    // Get variant styles based on style prop
     const getVariantStyles = () => {
       switch (style) {
         case "outline":
@@ -210,7 +186,6 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       }
     };
 
-    // Get hover styles for clickable badges
     const getHoverStyles = () => {
       if (!clickable) return "";
       switch (style) {
@@ -231,7 +206,6 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       roundedOptions[rounded],
       clickable && clickableStyles,
       clickable && getHoverStyles(),
-      clickable && focusRings[variant],
       className
     );
 
@@ -239,7 +213,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 
     return (
       <Component
-        ref={ref as any}
+        ref={ref as React.Ref<HTMLButtonElement & HTMLSpanElement>}
         className={badgeClasses}
         onClick={clickable ? handleClick : undefined}
         onKeyDown={clickable ? handleKeyDown : undefined}
@@ -250,18 +224,15 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
         {startIcon && (
           <span className={cn("flex items-center", sizes[size].icon)}>{startIcon}</span>
         )}
-
         <span className="truncate">{children}</span>
-
         {endIcon && !dismissible && (
           <span className={cn("flex items-center", sizes[size].icon)}>{endIcon}</span>
         )}
-
         {dismissible && (
           <button
             type="button"
             className={cn(
-              "ml-1 flex items-center rounded-full p-0.5 hover:bg-black/10 focus:ring-1 focus:ring-white/50 focus:outline-none",
+              "rui-focus-ring ml-1 flex items-center rounded-full p-0.5 hover:bg-black/10",
               sizes[size].icon
             )}
             onClick={handleDismiss}

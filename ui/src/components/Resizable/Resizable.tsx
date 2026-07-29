@@ -94,12 +94,12 @@ export interface ResizableProps extends Omit<React.HTMLAttributes<HTMLDivElement
 }
 
 const baseContainer = tw`relative inline-block`;
-const baseHandle = tw`absolute z-10 bg-blue-500 opacity-50 transition-all select-none hover:bg-blue-600 hover:opacity-80 active:bg-blue-700`;
+const baseHandle = tw`absolute z-10 bg-primary/60 opacity-50 transition-all select-none hover:bg-primary/80 hover:opacity-80 active:bg-primary`;
 
 const handleColors = {
   default: tw``,
-  primary: tw`bg-blue-600 hover:bg-blue-700 active:bg-blue-800`,
-  secondary: tw`bg-gray-700 hover:bg-gray-800 active:bg-gray-900`,
+  primary: tw`bg-primary hover:bg-primary/90 active:bg-primary/80`,
+  secondary: tw`bg-foreground/60 hover:bg-foreground/80 active:bg-foreground`,
 };
 
 export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
@@ -276,7 +276,7 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                   handleClassName,
                   "handle",
                   (activeDirection === "horizontal" || activeDirection === "both") &&
-                    "bg-blue-600 opacity-100 ring-1 ring-blue-400"
+                    "bg-primary ring-ring opacity-100 ring-1"
                 )}
                 style={{
                   top: 0,
@@ -304,7 +304,7 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                   handleClassName,
                   "handle",
                   (activeDirection === "vertical" || activeDirection === "both") &&
-                    "bg-blue-600 opacity-100 ring-1 ring-blue-400"
+                    "bg-primary ring-ring opacity-100 ring-1"
                 )}
                 style={{
                   bottom: 0,
@@ -331,7 +331,7 @@ export const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>(
                   handleColors[handleColor],
                   handleClassName,
                   "handle",
-                  activeDirection === "both" && "bg-blue-600 opacity-100 ring-1 ring-blue-400"
+                  activeDirection === "both" && "bg-primary ring-ring opacity-100 ring-1"
                 )}
                 style={{
                   bottom: 0,

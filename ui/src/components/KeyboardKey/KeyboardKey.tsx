@@ -50,27 +50,25 @@ export interface KeyboardKeyProps extends React.HTMLAttributes<HTMLElement> {
 const keyBase = tw`inline-flex items-center justify-center font-mono font-medium whitespace-nowrap transition-all duration-150 select-none`;
 
 // Variant styles
-const variants = {
-  default: tw`border border-gray-300 bg-gray-100 text-gray-900 shadow-sm hover:bg-gray-200`,
-  flat: tw`border border-gray-200 bg-gray-50 text-gray-700`,
-  outlined: tw`border-2 border-gray-300 bg-white text-gray-900 hover:border-gray-400`,
-  minimal: tw`border border-gray-200 bg-gray-50 text-gray-600`,
+const variantStyles = {
+  default: tw`border border-border bg-muted text-foreground shadow-sm hover:bg-accent`,
+  flat: tw`border border-border bg-background text-foreground/80`,
+  outlined: tw`border-2 border-border bg-background text-foreground hover:border-input`,
+  minimal: tw`border border-border/60 bg-muted/50 text-muted-foreground`,
 };
 
-// Pressed state styles
-const pressedVariants = {
-  default: tw`translate-y-[1px] transform border-gray-400 bg-gray-200 shadow-inner`,
-  flat: tw`border-gray-300 bg-gray-100 shadow-inner`,
-  outlined: tw`translate-y-[1px] transform border-gray-500 bg-gray-50 shadow-inner`,
-  minimal: tw`border-gray-300 bg-gray-100 shadow-inner`,
+const activeStyles = {
+  default: tw`translate-y-[1px] transform border-input bg-muted shadow-inner`,
+  flat: tw`border-border bg-muted shadow-inner`,
+  outlined: tw`translate-y-[1px] transform border-input bg-muted shadow-inner`,
+  minimal: tw`border-border/80 bg-muted shadow-inner`,
 };
 
-// Disabled state styles
-const disabledVariants = {
-  default: tw`cursor-not-allowed border-gray-200 bg-gray-50 text-gray-400`,
-  flat: tw`bg-gray-25 cursor-not-allowed border-gray-100 text-gray-300`,
-  outlined: tw`bg-gray-25 cursor-not-allowed border-gray-200 text-gray-300`,
-  minimal: tw`bg-gray-25 cursor-not-allowed border-gray-100 text-gray-300`,
+const disabledStyles = {
+  default: tw`cursor-not-allowed border-border/50 bg-muted/50 text-muted-foreground/50`,
+  flat: tw`cursor-not-allowed border-border/30 bg-background text-muted-foreground/40`,
+  outlined: tw`cursor-not-allowed border-border/40 bg-background text-muted-foreground/40`,
+  minimal: tw`cursor-not-allowed border-border/30 bg-background text-muted-foreground/30`,
 };
 
 // Size configurations
@@ -83,7 +81,7 @@ const sizes = {
 };
 
 // Clickable styles
-const clickableStyles = tw`cursor-pointer focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none`;
+const clickableStyles = tw`cursor-pointer rui-focus-ring focus:outline-none`;
 
 export const KeyboardKey = React.forwardRef<HTMLElement, KeyboardKeyProps>(
   (
@@ -127,7 +125,7 @@ export const KeyboardKey = React.forwardRef<HTMLElement, KeyboardKeyProps>(
     const keyClasses = cn(
       keyBase,
       sizes[size],
-      disabled ? disabledVariants[variant] : pressed ? pressedVariants[variant] : variants[variant],
+      disabled ? disabledStyles[variant] : pressed ? activeStyles[variant] : variantStyles[variant],
       clickable && !disabled && clickableStyles,
       className
     );

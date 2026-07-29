@@ -108,11 +108,11 @@ export interface EditableProps {
 }
 
 const sizes = {
-  xs: { container: tw`min-h-6 text-xs`, gap: "gap-1" },
-  sm: { container: tw`min-h-8 text-sm`, gap: "gap-1.5" },
-  md: { container: tw`min-h-10 text-base`, gap: "gap-2" },
-  lg: { container: tw`min-h-12 text-lg`, gap: "gap-2.5" },
-  xl: { container: tw`min-h-14 text-xl`, gap: "gap-3" },
+  xs: { container: tw`min-h-7 text-xs`, gap: "gap-1" },
+  sm: { container: tw`min-h-8 text-xs`, gap: "gap-1.5" },
+  md: { container: tw`min-h-9 text-sm`, gap: "gap-2" },
+  lg: { container: tw`min-h-10 text-sm`, gap: "gap-2.5" },
+  xl: { container: tw`min-h-12 text-base`, gap: "gap-3" },
 } as const;
 
 const roundedOptions = {
@@ -124,7 +124,7 @@ const roundedOptions = {
   full: tw`rounded-full`,
 };
 
-const buttonBase = tw`inline-flex items-center justify-center rounded px-2 py-1 text-xs font-medium transition-colors duration-150 focus:ring-2 focus:ring-offset-1 focus:outline-none disabled:pointer-events-none disabled:opacity-50`;
+const buttonBase = tw`inline-flex items-center justify-center rounded px-2 py-1 text-xs font-medium transition-colors duration-150 rui-focus-ring focus:outline-none disabled:pointer-events-none disabled:opacity-50`;
 
 export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
   (
@@ -283,8 +283,8 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
                 maxLength={maxLength}
                 minLength={minLength}
                 className={cn(
-                  "col-start-1 row-start-1 w-full border-none bg-transparent p-0 text-gray-900 ring-0 outline-none",
-                  isEmpty && "text-gray-400"
+                  "text-foreground col-start-1 row-start-1 w-full border-none bg-transparent p-0 ring-0 outline-none",
+                  isEmpty && "text-muted-foreground"
                 )}
                 disabled={isDisabled}
                 aria-label="Edit text"
@@ -297,7 +297,7 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
                   onMouseDown={handleSaveMouseDown}
                   className={cn(
                     buttonBase,
-                    "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500"
+                    "bg-success text-success-foreground hover:bg-success/90"
                   )}
                   disabled={isDisabled}
                   aria-label={saveText}
@@ -309,7 +309,7 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
                   onMouseDown={handleCancelMouseDown}
                   className={cn(
                     buttonBase,
-                    "bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500"
+                    "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                   )}
                   disabled={isDisabled}
                   aria-label={cancelText}
@@ -333,7 +333,7 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
             className="truncate"
           >
             {children || (
-              <span className={cn("select-none", isEmpty && "text-gray-400 italic")}>
+              <span className={cn("select-none", isEmpty && "text-muted-foreground italic")}>
                 {displayValue}
               </span>
             )}

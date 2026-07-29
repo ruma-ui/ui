@@ -100,37 +100,37 @@ export interface InputOTPProps extends Omit<React.HTMLAttributes<HTMLDivElement>
 // Design primitives matching TextInput component
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
 const containerBase = tw`inline-flex items-center justify-center`;
-const slotBase = tw`relative inline-flex items-center justify-center border bg-white text-center font-mono transition-all duration-200 focus-within:ring-3 disabled:cursor-not-allowed disabled:opacity-50`;
+const slotBase = tw`relative inline-flex items-center justify-center border bg-background text-foreground text-center font-mono transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-50`;
 
 const variants = {
-  primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200`,
-  secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200`,
+  primary: tw`border-input bg-background focus-within:border-primary`,
+  secondary: tw`border-input bg-muted focus-within:border-primary`,
 };
 
 const sizes = {
   xs: {
-    slot: tw`h-8 w-8 text-xs`,
+    slot: tw`h-7 w-7 text-xs`,
     input: tw`text-xs`,
     gap: "gap-1",
   },
   sm: {
-    slot: tw`h-9 w-9 text-sm`,
-    input: tw`text-sm`,
+    slot: tw`h-8 w-8 text-xs`,
+    input: tw`text-xs`,
     gap: "gap-1.5",
   },
   md: {
-    slot: tw`h-10 w-10 text-base`,
-    input: tw`text-base`,
+    slot: tw`h-9 w-9 text-sm`,
+    input: tw`text-sm`,
     gap: "gap-2",
   },
   lg: {
-    slot: tw`h-12 w-12 text-lg`,
-    input: tw`text-lg`,
+    slot: tw`h-10 w-10 text-sm`,
+    input: tw`text-sm`,
     gap: "gap-2.5",
   },
   xl: {
-    slot: tw`h-14 w-14 text-xl`,
-    input: tw`text-xl`,
+    slot: tw`h-12 w-12 text-base`,
+    input: tw`text-base`,
     gap: "gap-3",
   },
 } as const;
@@ -383,9 +383,9 @@ export const InputOTP = React.forwardRef<HTMLDivElement, InputOTPProps>(
           <label
             htmlFor={`${inputId}-0`}
             className={cn(
-              "mb-1 font-medium text-gray-900",
+              "text-foreground mb-1 font-medium",
               labelSizes[size],
-              error && "text-red-700"
+              error && "text-destructive"
             )}
           >
             {label}
@@ -416,18 +416,8 @@ export const InputOTP = React.forwardRef<HTMLDivElement, InputOTPProps>(
                   variants[variant],
                   sizes[size].slot,
                   roundedOptions[rounded],
-                  error && "border-red-500 focus-within:border-red-500 focus-within:ring-red-200",
-                  isActive && !disabled && "ring-3",
-                  isActive &&
-                    !disabled &&
-                    !error &&
-                    variants[variant].includes("blue") &&
-                    "ring-blue-200",
-                  isActive &&
-                    !disabled &&
-                    !error &&
-                    variants[variant].includes("gray") &&
-                    "ring-gray-200",
+                  error && "border-destructive focus-within:border-destructive",
+                  isActive && !disabled && !error && "border-primary ring-primary/40 ring-1",
                   fullWidth && "flex-1"
                 )}
                 onClick={() => handleClick(index)}
@@ -447,7 +437,7 @@ export const InputOTP = React.forwardRef<HTMLDivElement, InputOTPProps>(
                   aria-label={`Digit ${index + 1} of ${length}`}
                   aria-invalid={error || undefined}
                   className={cn(
-                    "h-full w-full bg-transparent text-center outline-none placeholder:text-gray-400",
+                    "placeholder:text-muted-foreground h-full w-full bg-transparent text-center outline-none",
                     sizes[size].input,
                     disabled && "cursor-not-allowed"
                   )}
@@ -464,9 +454,9 @@ export const InputOTP = React.forwardRef<HTMLDivElement, InputOTPProps>(
         {hasAssistive && (
           <div id={assistiveId} className="mt-1 min-h-[1rem]">
             {error && errorMessage ? (
-              <span className="text-sm text-red-600">{errorMessage}</span>
+              <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (
-              <span className="text-sm text-gray-600">{description}</span>
+              <span className="text-muted-foreground text-sm">{description}</span>
             ) : null}
           </div>
         )}

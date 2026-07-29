@@ -94,7 +94,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
             <div
               key={index}
               className={cn(
-                "rounded-sm bg-gray-100",
+                "bg-muted rounded-sm",
                 sizes[size],
                 animations[animation],
                 textLineSpacing,
@@ -115,7 +115,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
       <div
         ref={ref}
         className={cn(
-          "relative overflow-hidden bg-gray-100",
+          "bg-muted relative overflow-hidden",
           variants[variant],
           variant !== "circle" && sizes[size],
           animations[animation],

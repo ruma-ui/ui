@@ -133,7 +133,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
 
   return (
     <AccordionItemContext.Provider value={contextValue}>
-      <div className={cn("border-b border-gray-200 last:border-b-0", className)} {...props}>
+      <div className={cn("border-border border-b last:border-b-0", className)} {...props}>
         {children}
       </div>
     </AccordionItemContext.Provider>
@@ -157,8 +157,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
   return (
     <button
       className={cn(
-        "flex w-full items-center justify-between py-4 text-left text-sm font-medium transition-all hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-50",
-        "focus-visible:ring-1 focus-visible:ring-gray-400 focus-visible:outline-none",
+        "rui-focus-ring hover:text-foreground flex w-full items-center justify-between py-4 text-left text-sm font-medium transition-all disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       onClick={handleClick}
@@ -169,7 +168,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
       <span>{children}</span>
       <IoChevronDown
         className={cn(
-          "h-4 w-4 shrink-0 text-gray-500 transition-transform duration-200",
+          "text-muted-foreground h-4 w-4 shrink-0 transition-transform duration-200",
           isExpanded && "rotate-180"
         )}
       />
@@ -195,7 +194,7 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
       )}
       {...props}
     >
-      <div className="text-gray-600">{children}</div>
+      <div className="text-muted-foreground">{children}</div>
     </div>
   );
 };

@@ -79,37 +79,31 @@ export interface SwitchProps {
   value?: string;
 }
 
-// Design primitives matching Select component
 const wrapperBase = tw`relative inline-flex flex-col`;
 const containerBase = tw`inline-flex items-center gap-2`;
-const switchBase = tw`relative inline-flex shrink-0 cursor-pointer border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none`;
+
+// rui-focus-ring: keyboard-only :focus-visible ring
+const switchBase = tw`rui-focus-ring relative inline-flex shrink-0 cursor-pointer border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none`;
 
 const variants = {
   primary: {
-    off: tw`bg-gray-200`,
-    on: tw`bg-blue-600`,
+    off: tw`bg-secondary`,
+    on: tw`bg-primary`,
   },
   secondary: {
-    off: tw`bg-gray-200`,
-    on: tw`bg-gray-600`,
+    off: tw`bg-secondary`,
+    on: tw`bg-secondary-foreground`,
   },
 };
 
 const sizes = {
-  sm: {
-    switch: tw`h-4 w-7`,
-    thumb: tw`h-3 w-3`,
-    translate: tw`translate-x-3`,
-  },
-  md: {
-    switch: tw`h-5 w-9`,
-    thumb: tw`h-4 w-4`,
-    translate: tw`translate-x-4`,
-  },
+  sm: { switch: tw`h-4 w-7`, thumb: tw`h-3 w-3`, translate: tw`translate-x-3`, text: tw`text-xs` },
+  md: { switch: tw`h-5 w-9`, thumb: tw`h-4 w-4`, translate: tw`translate-x-4`, text: tw`text-sm` },
   lg: {
     switch: tw`h-6 w-11`,
     thumb: tw`h-5 w-5`,
     translate: tw`translate-x-5`,
+    text: tw`text-base`,
   },
 };
 
@@ -122,21 +116,7 @@ const roundedOptions = {
   full: tw`rounded-full`,
 };
 
-const thumbBase = tw`pointer-events-none absolute top-0 left-0 inline-block transform bg-white shadow transition duration-200 ease-in-out`;
-
-const labelBase = tw`font-medium text-gray-900`;
-const labelSizes = {
-  sm: tw`text-xs`,
-  md: tw`text-sm`,
-  lg: tw`text-base`,
-};
-
-const assistiveContainer = tw`mt-1 min-h-[1rem] px-1`;
-const descriptionText = tw`text-sm text-gray-600`;
-const errorText = tw`text-sm text-red-600`;
-
-const disabledStyles = tw`cursor-not-allowed opacity-50`;
-const errorStyles = tw`ring-red-500`;
+const thumbBase = tw`pointer-events-none absolute top-0 left-0 inline-block transform bg-background shadow-sm transition duration-200 ease-in-out`;
 
 export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
   (
@@ -169,23 +149,14 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     const hasAssistive = Boolean(description || (error && errorMessage));
     const assistiveId = `${switchId}-desc`;
 
-    // Update internal state when controlled value changes
     useEffect(() => {
-      if (checked !== undefined) {
-        setIsChecked(checked);
-      }
+      if (checked !== undefined) setIsChecked(checked);
     }, [checked]);
 
     const handleToggle = () => {
       if (disabled) return;
-
       const newChecked = !isChecked;
-
-      // Only update internal state if not controlled
-      if (checked === undefined) {
-        setIsChecked(newChecked);
-      }
-
+      if (checked === undefined) setIsChecked(newChecked);
       onCheckedChange?.(newChecked);
     };
 
@@ -194,8 +165,8 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
       sizes[size].switch,
       roundedOptions[rounded],
       isChecked ? variants[variant].on : variants[variant].off,
-      disabled && disabledStyles,
-      error && errorStyles,
+      disabled && "cursor-not-allowed opacity-50",
+      error && "ring-1 ring-destructive",
       !animation && "transition-none",
       className
     );
@@ -206,13 +177,6 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
       roundedOptions[rounded],
       isChecked ? sizes[size].translate : "translate-x-0",
       !animation && "transition-none"
-    );
-
-    const labelClasses = cn(
-      labelBase,
-      labelSizes[size],
-      error && "text-red-700",
-      disabled && "text-gray-500"
     );
 
     const SwitchElement = (
@@ -237,7 +201,12 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     const LabelElement = label && (
       <label
         htmlFor={switchId}
-        className={cn(labelClasses, disabled ? "cursor-not-allowed" : "cursor-pointer")}
+        className={cn(
+          "text-foreground font-medium",
+          sizes[size].text,
+          error && "text-destructive",
+          disabled ? "text-muted-foreground cursor-not-allowed" : "cursor-pointer"
+        )}
       >
         {label}
       </label>
@@ -255,11 +224,11 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
         </div>
 
         {hasAssistive && (
-          <div id={assistiveId} className={assistiveContainer}>
+          <div id={assistiveId} className="mt-1 min-h-[1rem] px-1">
             {error && errorMessage ? (
-              <span className={errorText}>{errorMessage}</span>
+              <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (
-              <span className={descriptionText}>{description}</span>
+              <span className="text-muted-foreground text-sm">{description}</span>
             ) : null}
           </div>
         )}

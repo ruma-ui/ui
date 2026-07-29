@@ -79,30 +79,30 @@ export interface AlertProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "
 }
 
 // Base styles
-const alertBase = tw`relative flex items-start gap-3 p-4 transition-all duration-200`;
+const alertBase = tw`relative flex items-start gap-3 p-4 transition-all duration-150`;
 
 // Variants - filled style
 const variantsFilled: Record<AlertVariant, string> = {
-  info: tw`bg-blue-600 text-white`,
-  success: tw`bg-green-600 text-white`,
-  warning: tw`bg-yellow-600 text-white`,
-  error: tw`bg-red-600 text-white`,
+  info: tw`bg-info text-info-foreground`,
+  success: tw`bg-success text-success-foreground`,
+  warning: tw`bg-warning text-warning-foreground`,
+  error: tw`bg-destructive text-destructive-foreground`,
 };
 
 // Variants - outline style
 const variantsOutline: Record<AlertVariant, string> = {
-  info: tw`border border-blue-600 bg-white text-blue-700`,
-  success: tw`border border-green-600 bg-white text-green-700`,
-  warning: tw`border border-yellow-600 bg-white text-yellow-700`,
-  error: tw`border border-red-600 bg-white text-red-700`,
+  info: tw`border border-info bg-background text-info`,
+  success: tw`border border-success bg-background text-success`,
+  warning: tw`border border-warning bg-background text-warning`,
+  error: tw`border border-destructive bg-background text-destructive`,
 };
 
 // Variants - soft style
 const variantsSoft: Record<AlertVariant, string> = {
-  info: tw`border border-blue-200 bg-blue-50 text-blue-800`,
-  success: tw`border border-green-200 bg-green-50 text-green-800`,
-  warning: tw`border border-yellow-200 bg-yellow-50 text-yellow-800`,
-  error: tw`border border-red-200 bg-red-50 text-red-800`,
+  info: tw`border border-info/20 bg-info/10 text-info`,
+  success: tw`border border-success/20 bg-success/10 text-success`,
+  warning: tw`border border-warning/20 bg-warning/10 text-warning`,
+  error: tw`border border-destructive/20 bg-destructive/10 text-destructive`,
 };
 
 // Sizes
@@ -115,14 +115,14 @@ const sizes: Record<AlertSize, { container: string; text: string; title: string;
   },
   md: {
     container: tw`gap-3 p-4`,
-    text: tw`text-base`,
-    title: tw`text-base font-semibold`,
+    text: tw`text-sm`,
+    title: tw`text-sm font-semibold`,
     icon: tw`h-5 w-5`,
   },
   lg: {
     container: tw`gap-4 p-5`,
-    text: tw`text-lg`,
-    title: tw`text-lg font-semibold`,
+    text: tw`text-base`,
+    title: tw`text-base font-semibold`,
     icon: tw`h-6 w-6`,
   },
 } as const;
@@ -139,22 +139,22 @@ const roundedOptions: Record<AlertRounded, string> = {
 // Icon color variants for different styles
 const iconColors: Record<AlertStyle, Record<AlertVariant, string>> = {
   filled: {
-    info: tw`text-blue-100`,
-    success: tw`text-green-100`,
-    warning: tw`text-yellow-100`,
-    error: tw`text-red-100`,
+    info: tw`text-info-foreground/80`,
+    success: tw`text-success-foreground/80`,
+    warning: tw`text-warning-foreground/80`,
+    error: tw`text-destructive-foreground/80`,
   },
   outline: {
-    info: tw`text-blue-600`,
-    success: tw`text-green-600`,
-    warning: tw`text-yellow-600`,
-    error: tw`text-red-600`,
+    info: tw`text-info`,
+    success: tw`text-success`,
+    warning: tw`text-warning`,
+    error: tw`text-destructive`,
   },
   soft: {
-    info: tw`text-blue-600`,
-    success: tw`text-green-600`,
-    warning: tw`text-yellow-600`,
-    error: tw`text-red-600`,
+    info: tw`text-info`,
+    success: tw`text-success`,
+    warning: tw`text-warning`,
+    error: tw`text-destructive`,
   },
 };
 
@@ -226,7 +226,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 
     // Get icon color
     const getIconColor = () => {
-      return iconColors[style!][variant];
+      return iconColors[style || "filled"][variant];
     };
 
     // Render the appropriate icon
@@ -275,8 +275,8 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           <button
             type="button"
             className={cn(
-              "flex shrink-0 items-start rounded-full p-1 transition-colors duration-200",
-              "hover:bg-black/10 focus:ring-2 focus:ring-white/50 focus:outline-none",
+              "rui-focus-ring flex shrink-0 items-start rounded-full p-1 transition-colors duration-150",
+              "hover:bg-black/10 focus:outline-none",
               style === "filled" ? "text-white/80 hover:text-white" : "opacity-70 hover:opacity-100"
             )}
             onClick={handleDismiss}

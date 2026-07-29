@@ -63,8 +63,8 @@ const breadcrumbBase = tw`inline-flex items-center`;
 const itemBase = tw`inline-flex items-center text-sm font-medium transition-colors duration-200`;
 
 const variants = {
-  primary: tw`text-gray-600 hover:text-blue-600`,
-  secondary: tw`text-gray-500 hover:text-gray-700`,
+  primary: tw`text-muted-foreground hover:text-primary`,
+  secondary: tw`text-muted-foreground/80 hover:text-foreground`,
 };
 
 const sizes = {
@@ -82,13 +82,13 @@ const roundedOptions = {
   full: tw`rounded-full`,
 };
 
-const separatorBase = tw`mx-2 text-gray-400`;
-const currentItemBase = tw`font-semibold text-gray-900`;
-const disabledItemBase = tw`cursor-not-allowed text-gray-400`;
+const separatorBase = tw`mx-2 text-muted-foreground/60`;
+const currentItemBase = tw`font-semibold text-foreground`;
+const disabledItemBase = tw`cursor-not-allowed opacity-50`;
 const animatedBase = tw`transition-all duration-200`;
 
 const DefaultSeparator = ({ size }: { size: "sm" | "md" | "lg" }) => (
-  <span className={cn("text-gray-400", sizes[size].text)} aria-hidden="true">
+  <span className={cn("text-muted-foreground/60", sizes[size].text)} aria-hidden="true">
     /
   </span>
 );
@@ -98,7 +98,7 @@ const CollapseIndicator = ({ size }: { size: "sm" | "md" | "lg" }) => (
     type="button"
     className={cn(
       itemBase,
-      "cursor-pointer hover:text-gray-700",
+      "hover:text-foreground hover:bg-accent cursor-pointer",
       sizes[size].text,
       sizes[size].padding,
       roundedOptions.sm
@@ -182,7 +182,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                       animation && animatedBase,
                       item.disabled && disabledItemBase,
                       isCurrent && currentItemBase,
-                      "hover:bg-gray-50"
+                      "hover:bg-accent hover:text-accent-foreground"
                     )}
                     onClick={e => handleItemClick(item, index, e)}
                     aria-current={isCurrent ? "page" : undefined}
@@ -203,7 +203,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                       animation && animatedBase,
                       item.disabled && disabledItemBase,
                       isCurrent && currentItemBase,
-                      !item.disabled && "hover:bg-gray-50"
+                      !item.disabled && "hover:bg-accent hover:text-accent-foreground"
                     )}
                     onClick={e => handleItemClick(item, index, e)}
                     disabled={item.disabled}
