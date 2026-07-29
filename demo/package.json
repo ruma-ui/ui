@@ -4,7 +4,7 @@
   "types": "./index.d.ts",
   "private": true,
   "dependencies": {
-    "next": "15.5.22",
+    "next": "16.2.11",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-router-dom": "7.9.3",
