@@ -10,6 +10,7 @@ on:
     paths-ignore:
       - ".changeset/**"
       - "CHANGELOG.md"
+      - "package.json"
   workflow_dispatch:
     inputs:
       release_type:
