@@ -61,11 +61,17 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
   required?: boolean;
 }
 
-const base = tw`relative inline-flex cursor-pointer items-center justify-center border-2 transition-all duration-200 focus-within:ring-2 focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`;
+// peer-focus-visible: keyboard-only focus ring rendered via box-shadow
+const base = tw`relative inline-flex cursor-pointer items-center justify-center border-2 transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-50`;
 
 const variants = {
-  primary: tw`border-gray-300 bg-white text-blue-600 focus-within:ring-blue-500 hover:border-blue-300`,
-  secondary: tw`border-gray-300 bg-white text-gray-600 focus-within:ring-gray-500 hover:border-gray-400`,
+  primary: tw`border-input bg-background hover:border-primary`,
+  secondary: tw`border-input bg-background hover:border-secondary-foreground`,
+};
+
+const checkedVariants = {
+  primary: tw`border-primary bg-primary`,
+  secondary: tw`border-secondary-foreground bg-secondary-foreground`,
 };
 
 const sizes = {
@@ -87,10 +93,10 @@ const roundedOptions = {
 
 const labelSizes = {
   xs: tw`text-xs`,
-  sm: tw`text-sm`,
-  md: tw`text-base`,
-  lg: tw`text-lg`,
-  xl: tw`text-xl`,
+  sm: tw`text-xs`,
+  md: tw`text-sm`,
+  lg: tw`text-base`,
+  xl: tw`text-lg`,
 };
 
 const iconSizes = {
@@ -101,7 +107,6 @@ const iconSizes = {
   xl: tw`text-base`,
 };
 
-// Ensure the text block has at least the checkbox height for clean vertical centering
 const textMinHeights = {
   xs: tw`min-h-3`,
   sm: tw`min-h-4`,
@@ -109,6 +114,10 @@ const textMinHeights = {
   lg: tw`min-h-6`,
   xl: tw`min-h-7`,
 };
+
+// Keyboard-only focus ring via peer-focus-visible (box-shadow: offset + 2px ring)
+const focusRingClass =
+  "peer-focus-visible:shadow-[0_0_0_var(--ring-offset)_hsl(var(--background)),0_0_0_calc(var(--ring-offset)+var(--ring-width))_var(--ring-color)]";
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -135,37 +144,25 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const [internalChecked, setInternalChecked] = React.useState(false);
     const checkboxRef = React.useRef<HTMLInputElement | null>(null);
-
-    // Combine forwarded ref and local ref
     React.useImperativeHandle(ref, () => checkboxRef.current as HTMLInputElement);
 
     const isChecked = checked !== undefined ? checked : internalChecked;
     const isDisabled = disabled;
 
-    // Update indeterminate property
     React.useEffect(() => {
-      if (checkboxRef.current) {
-        checkboxRef.current.indeterminate = indeterminate;
-      }
+      if (checkboxRef.current) checkboxRef.current.indeterminate = indeterminate;
     }, [indeterminate]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (checked === undefined) {
-        setInternalChecked(e.target.checked);
-      }
+      if (checked === undefined) setInternalChecked(e.target.checked);
       onChange?.(e);
     };
 
     const CheckIcon = indeterminate ? FaMinus : FaCheck;
 
-    // Generate custom styles for color prop
     const customColorStyles = React.useMemo(() => {
       if (!color) return {};
-      return {
-        "--checkbox-color": color,
-        "--checkbox-hover-color": color + "20", // Add opacity for hover
-        "--checkbox-ring-color": color + "40", // Add opacity for ring
-      } as React.CSSProperties;
+      return { "--checkbox-color": color } as React.CSSProperties;
     }, [color]);
 
     const checkboxElement = (
@@ -173,7 +170,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         <input
           ref={checkboxRef}
           type="checkbox"
-          className="sr-only"
+          className="peer sr-only"
           checked={isChecked}
           disabled={isDisabled}
           required={required}
@@ -185,15 +182,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             base,
             sizes[size],
             roundedOptions[rounded],
-            // ensure the box itself aligns perfectly in the label row
             "self-center",
-            variants[variant],
-            color && `hover:border-[${color}]`,
-            error && "border-red-500 focus-within:ring-red-500",
-            isChecked && !color && variant === "primary" && "border-blue-600 bg-blue-600",
-            isChecked && !color && variant === "secondary" && "border-gray-600 bg-gray-600",
-            indeterminate && !color && variant === "primary" && "border-blue-600 bg-blue-600",
-            indeterminate && !color && variant === "secondary" && "border-gray-600 bg-gray-600",
+            // Use checked/indeterminate variant or default
+            (isChecked || indeterminate) && !color ? checkedVariants[variant] : variants[variant],
+            error && "border-destructive",
+            focusRingClass,
+            "outline-none",
             className
           )}
           style={{
@@ -208,7 +202,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <div className="absolute inset-0 flex items-center justify-center">
             <CheckIcon
               className={cn(
-                "text-white",
+                "text-primary-foreground",
                 iconSizes[size],
                 animation && "transition-all duration-200 ease-out",
                 isChecked || indeterminate
@@ -225,9 +219,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       </div>
     );
 
-    if (!label && !description) {
-      return checkboxElement;
-    }
+    if (!label && !description) return checkboxElement;
 
     return (
       <div className="flex flex-col">
@@ -243,21 +235,21 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             {label && (
               <span
                 className={cn(
-                  "leading-tight font-medium text-gray-900",
+                  "text-foreground leading-tight font-medium",
                   labelSizes[size],
-                  error && "text-red-700"
+                  error && "text-destructive"
                 )}
               >
                 {label}
-                {required && <span className="ml-1 text-red-500">*</span>}
+                {required && <span className="text-destructive ml-1">*</span>}
               </span>
             )}
             {description && (
               <span
                 className={cn(
-                  "leading-tight text-gray-600",
+                  "text-muted-foreground leading-tight",
                   size === "xs" ? "text-xs" : "text-sm",
-                  error && "text-red-600"
+                  error && "text-destructive"
                 )}
               >
                 {description}
@@ -265,7 +257,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             )}
           </div>
         </label>
-        {error && errorMessage && <span className="mt-1 text-sm text-red-600">{errorMessage}</span>}
+        {error && errorMessage && (
+          <span className="text-destructive mt-1 text-sm">{errorMessage}</span>
+        )}
       </div>
     );
   }
@@ -275,79 +269,25 @@ Checkbox.displayName = "Checkbox";
 
 // CheckboxGroup interfaces
 export interface CheckboxGroupProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
-  /**
-   * Array of selected values
-   */
   value?: string[];
-  /**
-   * Default selected values for uncontrolled component
-   */
   defaultValue?: string[];
-  /**
-   * Callback fired when selection changes
-   */
   onChange?: (value: string[]) => void;
-  /**
-   * Array of checkbox options
-   */
   options: CheckboxOption[];
-  /**
-   * Layout direction
-   * @default "vertical"
-   */
   direction?: "horizontal" | "vertical";
-  /**
-   * Props to pass to individual checkboxes
-   */
   checkboxProps?: Partial<CheckboxProps>;
-  /**
-   * Group label
-   */
   label?: string;
-  /**
-   * Group description
-   */
   description?: string;
-  /**
-   * Show error state for the group
-   */
   error?: boolean;
-  /**
-   * Error message for the group
-   */
   errorMessage?: string;
-  /**
-   * Enable indeterminate state for "Select All" functionality
-   * @default false
-   */
   enableSelectAll?: boolean;
-  /**
-   * Label for the "Select All" checkbox
-   * @default "Select All"
-   */
   selectAllLabel?: string;
 }
 
 export interface CheckboxOption {
-  /**
-   * Unique value for this option
-   */
   value: string;
-  /**
-   * Display label
-   */
   label: string;
-  /**
-   * Optional description
-   */
   description?: string;
-  /**
-   * Whether this option is disabled
-   */
   disabled?: boolean;
-  /**
-   * Additional props for this specific checkbox
-   */
   props?: Partial<CheckboxProps>;
 }
 
@@ -372,29 +312,22 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
     ref
   ) => {
     const [internalValue, setInternalValue] = React.useState<string[]>(defaultValue);
-
     const selectedValues = value !== undefined ? value : internalValue;
 
     const handleOptionChange = (optionValue: string, checked: boolean) => {
       const newValues = checked
         ? [...selectedValues, optionValue]
         : selectedValues.filter(v => v !== optionValue);
-
-      if (value === undefined) {
-        setInternalValue(newValues);
-      }
+      if (value === undefined) setInternalValue(newValues);
       onChange?.(newValues);
     };
 
     const handleSelectAllChange = (checked: boolean) => {
       const newValues = checked ? options.filter(opt => !opt.disabled).map(opt => opt.value) : [];
-      if (value === undefined) {
-        setInternalValue(newValues);
-      }
+      if (value === undefined) setInternalValue(newValues);
       onChange?.(newValues);
     };
 
-    // Calculate select all state
     const enabledOptions = options.filter(opt => !opt.disabled);
     const selectedEnabledCount = enabledOptions.filter(opt =>
       selectedValues.includes(opt.value)
@@ -406,11 +339,11 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
       <div ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
         {label && (
           <div className="flex flex-col">
-            <span className={cn("font-medium text-gray-900", error && "text-red-700")}>
+            <span className={cn("text-foreground font-medium", error && "text-destructive")}>
               {label}
             </span>
             {description && (
-              <span className={cn("text-sm text-gray-600", error && "text-red-600")}>
+              <span className={cn("text-muted-foreground text-sm", error && "text-destructive")}>
                 {description}
               </span>
             )}
@@ -458,7 +391,7 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
           </div>
         </div>
 
-        {error && errorMessage && <span className="text-sm text-red-600">{errorMessage}</span>}
+        {error && errorMessage && <span className="text-destructive text-sm">{errorMessage}</span>}
       </div>
     );
   }

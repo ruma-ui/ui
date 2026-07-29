@@ -41,9 +41,9 @@ const useNavigationMenuItem = () => {
 };
 
 // Base styles
-const menuBase = tw`flex bg-white`;
-const itemBase = tw`relative inline-flex w-full items-center justify-start px-3 py-2 text-left text-sm font-medium whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`;
-const submenuBase = tw`absolute z-50 min-w-[12rem] overflow-hidden rounded-md border border-gray-200 bg-white p-1 shadow-lg`;
+const menuBase = tw`flex bg-background`;
+const itemBase = tw`rui-focus-ring relative inline-flex w-full items-center justify-start px-3 py-2 text-left text-sm font-medium whitespace-nowrap transition-all focus:outline-none disabled:pointer-events-none disabled:opacity-50`;
+const submenuBase = tw`absolute z-50 min-w-[12rem] overflow-hidden rounded-md border border-border bg-popover text-popover-foreground p-1 shadow-md`;
 
 // Animation classes
 const submenuAnimationIn = tw`animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-150 ease-out`;
@@ -134,8 +134,8 @@ export interface NavigationMenuGroupProps extends React.HTMLAttributes<HTMLDivEl
 // Menu variants
 const menuVariants = {
   default: tw``,
-  underline: tw`border-b border-gray-200`,
-  pills: tw`rounded-lg bg-gray-100 p-1`,
+  underline: tw`border-b border-border`,
+  pills: tw`rounded-lg bg-muted p-1`,
 };
 
 const menuOrientations = {
@@ -146,16 +146,16 @@ const menuOrientations = {
 // Item variants with hover effects
 const itemVariants = {
   default: {
-    inactive: tw`cursor-pointer text-gray-600 hover:bg-gray-100 hover:text-blue-600`,
-    active: tw`bg-gray-100 text-blue-600`,
+    inactive: tw`cursor-pointer text-muted-foreground hover:bg-accent hover:text-accent-foreground`,
+    active: tw`bg-accent text-accent-foreground`,
   },
   underline: {
-    inactive: tw`cursor-pointer border-b-2 border-transparent text-gray-600 hover:bg-gray-100 hover:text-blue-600`,
-    active: tw`border-b-2 border-blue-600 text-blue-600`,
+    inactive: tw`cursor-pointer border-b-2 border-transparent text-muted-foreground hover:bg-accent hover:text-accent-foreground`,
+    active: tw`border-b-2 border-primary text-primary`,
   },
   pills: {
-    inactive: tw`cursor-pointer bg-transparent text-gray-600 hover:bg-white hover:text-blue-600`,
-    active: tw`bg-white text-blue-600 shadow-sm`,
+    inactive: tw`cursor-pointer bg-transparent text-muted-foreground hover:bg-background hover:text-accent-foreground`,
+    active: tw`bg-background text-primary shadow-sm`,
   },
 };
 
@@ -460,7 +460,7 @@ export const NavigationMenuGroup: React.FC<NavigationMenuGroupProps> = ({
         <div
           className={cn(
             itemSizes[size],
-            "my-0.5 border-b border-gray-200 font-semibold tracking-wider text-gray-500"
+            "border-border text-muted-foreground my-0.5 border-b font-semibold tracking-wider"
           )}
         >
           {title}

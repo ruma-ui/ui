@@ -70,24 +70,24 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
 const progressBase = tw`relative w-full overflow-hidden`;
 
 // Track styles
-const trackBase = tw`w-full bg-gray-200`;
+const trackBase = tw`w-full bg-muted`;
 
 // Variants - filled style
 const variantsFilled = {
-  bar: tw`bg-blue-600`,
-  circular: tw`text-blue-600`,
+  bar: tw`bg-primary`,
+  circular: tw`text-primary`,
 };
 
 // Variants - outline style
 const variantsOutline = {
-  bar: tw`border border-blue-600 bg-blue-100`,
-  circular: tw`text-blue-600`,
+  bar: tw`border border-primary bg-primary/10`,
+  circular: tw`text-primary`,
 };
 
 // Variants - soft style
 const variantsSoft = {
-  bar: tw`bg-blue-50`,
-  circular: tw`text-blue-400`,
+  bar: tw`bg-primary/15`,
+  circular: tw`text-primary/60`,
 };
 
 // Sizes
@@ -219,7 +219,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 {/* Label on the left */}
                 <div>
                   {label && (
-                    <div className="flex-shrink-0 text-sm font-medium text-gray-800">{label}</div>
+                    <div className="text-foreground flex-shrink-0 text-sm font-medium">{label}</div>
                   )}
                 </div>
 
@@ -227,7 +227,10 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 <div>
                   {showValue && (
                     <div
-                      className={cn(sizes[size].text, "flex-shrink-0 font-medium text-gray-700")}
+                      className={cn(
+                        sizes[size].text,
+                        "text-muted-foreground flex-shrink-0 font-medium"
+                      )}
                     >
                       {Math.round(percentage)}%
                     </div>
@@ -277,7 +280,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="8"
-                className="text-gray-200"
+                className="text-muted"
               />
               {indeterminate ? (
                 // Indeterminate state: show a partial arc that rotates
@@ -308,7 +311,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
               )}
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className={cn(sizes[size].text, "font-medium text-gray-800")}>
+              <span className={cn(sizes[size].text, "text-foreground font-medium")}>
                 {showValue && !indeterminate ? `${Math.round(percentage)}%` : ""}
               </span>
             </div>

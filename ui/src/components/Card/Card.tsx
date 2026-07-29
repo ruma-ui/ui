@@ -47,38 +47,26 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Header content
-   */
   children: React.ReactNode;
 }
 
 export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Body content
-   */
   children: React.ReactNode;
 }
 
 export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Footer content
-   */
   children: React.ReactNode;
 }
 
-// Base styles
-const cardBase = tw`relative bg-white transition-all duration-200`;
+const cardBase = tw`relative bg-card text-card-foreground transition-all duration-200`;
 
-// Variants
 const variants = {
-  default: tw`border border-gray-200`,
-  outlined: tw`border-2 border-gray-300`,
-  elevated: tw`border border-gray-200`,
-  filled: tw`border border-gray-200 bg-gray-50`,
+  default: tw`border border-border`,
+  outlined: tw`border-2 border-border`,
+  elevated: tw`border border-border`,
+  filled: tw`border border-border bg-muted`,
 };
 
-// Padding options
 const paddings = {
   none: tw``,
   sm: tw`p-3`,
@@ -87,7 +75,6 @@ const paddings = {
   xl: tw`p-8`,
 };
 
-// Rounded options
 const roundedOptions = {
   none: tw`rounded-none`,
   sm: tw`rounded-sm`,
@@ -97,7 +84,6 @@ const roundedOptions = {
   full: tw`rounded-full`,
 };
 
-// Shadow options
 const shadows = {
   none: tw``,
   sm: tw`shadow-sm`,
@@ -106,18 +92,16 @@ const shadows = {
   xl: tw`shadow-xl`,
 };
 
-// Clickable styles
-const clickableStyles = tw`cursor-pointer hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
+// rui-focus-ring: keyboard-only :focus-visible ring
+const clickableStyles = tw`rui-focus-ring cursor-pointer`;
 
-// Disabled styles
 const disabledStyles = tw`pointer-events-none cursor-not-allowed opacity-60`;
 
-// Hover states for variants
 const hoverStates = {
-  default: tw`hover:border-gray-300 hover:shadow-sm`,
-  outlined: tw`hover:border-gray-400`,
+  default: tw`hover:border-ring/40 hover:shadow-sm`,
+  outlined: tw`hover:border-ring/40`,
   elevated: tw`hover:shadow-md`,
-  filled: tw`hover:bg-gray-100`,
+  filled: tw`hover:bg-secondary`,
 };
 
 export const Card = React.forwardRef<HTMLDivElement | HTMLButtonElement, CardProps>(
@@ -137,11 +121,8 @@ export const Card = React.forwardRef<HTMLDivElement | HTMLButtonElement, CardPro
     ref
   ) => {
     const handleClick = () => {
-      if (clickable && !disabled && onClick) {
-        onClick();
-      }
+      if (clickable && !disabled && onClick) onClick();
     };
-
     const handleKeyDown = (event: React.KeyboardEvent) => {
       if (clickable && !disabled && (event.key === "Enter" || event.key === " ")) {
         event.preventDefault();
@@ -190,34 +171,28 @@ export const Card = React.forwardRef<HTMLDivElement | HTMLButtonElement, CardPro
 Card.displayName = "Card";
 
 export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
-  ({ children, className = "", ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn("mb-3 border-b border-gray-200 pb-3", className)} {...props}>
-        {children}
-      </div>
-    );
-  }
+  ({ children, className = "", ...props }, ref) => (
+    <div ref={ref} className={cn("border-border mb-3 border-b pb-3", className)} {...props}>
+      {children}
+    </div>
+  )
 );
 CardHeader.displayName = "CardHeader";
 
 export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
-  ({ children, className = "", ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn("flex-1", className)} {...props}>
-        {children}
-      </div>
-    );
-  }
+  ({ children, className = "", ...props }, ref) => (
+    <div ref={ref} className={cn("flex-1", className)} {...props}>
+      {children}
+    </div>
+  )
 );
 CardBody.displayName = "CardBody";
 
 export const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
-  ({ children, className = "", ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn("mt-3 border-t border-gray-200 pt-3", className)} {...props}>
-        {children}
-      </div>
-    );
-  }
+  ({ children, className = "", ...props }, ref) => (
+    <div ref={ref} className={cn("border-border mt-3 border-t pt-3", className)} {...props}>
+      {children}
+    </div>
+  )
 );
 CardFooter.displayName = "CardFooter";

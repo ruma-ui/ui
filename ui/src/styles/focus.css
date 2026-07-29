@@ -1,0 +1,41 @@
+/* =============================================================================
+   RUI Focus Utilities
+   -----------------------------------------------------------------------------
+   Two unified focus patterns:
+
+   1. .rui-focus-ring  — for buttons, badges, checkboxes, radios, sliders.
+      Keyboard-only (:focus-visible). Offset + 2px ring so it never merges with
+      the element border.
+
+   2. .rui-field-focus — for text inputs, textareas, selects.
+      No ring. Just a clean border-color transition to --primary on :focus-within.
+   ============================================================================= */
+
+/* --- Keyboard focus ring (buttons & controls) ------------------------------- */
+.rui-focus-ring {
+  outline: none;
+}
+
+.rui-focus-ring:focus-visible {
+  outline: none;
+  /* 2px white gap + 2px colored ring — clearly visible over any background */
+  box-shadow:
+    0 0 0 var(--ring-offset) hsl(var(--background)),
+    0 0 0 calc(var(--ring-offset) + var(--ring-width)) var(--ring-color);
+}
+
+/* --- Field focus (inputs, selects, textareas) ------------------------------- */
+/* Clean minimal border-color change — no ring glow */
+.rui-field-focus {
+  border-color: hsl(var(--border));
+  transition: border-color 150ms ease;
+}
+
+.rui-field-focus:focus-within {
+  border-color: var(--field-focus-border);
+}
+
+/* Error state overrides — border stays red on focus */
+.rui-field-focus.rui-field-error:focus-within {
+  border-color: hsl(var(--destructive));
+}

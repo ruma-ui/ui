@@ -58,44 +58,19 @@ export interface TextareaProps
 }
 
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
-const fieldBase = tw`relative inline-flex border bg-white text-gray-900 transition-all duration-200 focus-within:ring-3 disabled:cursor-not-allowed disabled:opacity-50`;
+const fieldBase = tw`rui-field-focus relative inline-flex border bg-background text-foreground transition-colors duration-150`;
 
 const variants = {
-  primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200`,
-  secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200`,
+  primary: tw`border-input bg-background`,
+  secondary: tw`border-input bg-muted`,
 };
 
 const sizes = {
-  xs: {
-    container: tw`min-h-8`,
-    textarea: tw`px-2 py-1.5 text-xs`,
-    padX: "px-2",
-    padY: "py-1.5",
-  },
-  sm: {
-    container: tw`min-h-9`,
-    textarea: tw`px-3 py-2 text-sm`,
-    padX: "px-3",
-    padY: "py-2",
-  },
-  md: {
-    container: tw`min-h-10`,
-    textarea: tw`px-3.5 py-2.5 text-base`,
-    padX: "px-3.5",
-    padY: "py-2.5",
-  },
-  lg: {
-    container: tw`min-h-12`,
-    textarea: tw`px-4 py-3 text-lg`,
-    padX: "px-4",
-    padY: "py-3",
-  },
-  xl: {
-    container: tw`min-h-14`,
-    textarea: tw`px-5 py-4 text-xl`,
-    padX: "px-5",
-    padY: "py-4",
-  },
+  xs: { container: tw`min-h-7`, textarea: tw`px-2 py-1 text-xs` },
+  sm: { container: tw`min-h-8`, textarea: tw`px-2.5 py-1.5 text-xs` },
+  md: { container: tw`min-h-9`, textarea: tw`px-3 py-1.5 text-sm` },
+  lg: { container: tw`min-h-10`, textarea: tw`px-3.5 py-2 text-sm` },
+  xl: { container: tw`min-h-12`, textarea: tw`px-4 py-2.5 text-base` },
 } as const;
 
 const roundedOptions = {
@@ -164,9 +139,9 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           <label
             htmlFor={textareaId}
             className={cn(
-              "mb-1 font-medium text-gray-900",
+              "text-foreground mb-1 font-medium",
               labelSizes[size],
-              error && "text-red-700"
+              error && "text-destructive"
             )}
           >
             {label}
@@ -178,7 +153,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             variants[variant],
             sizes[size].container,
             roundedOptions[rounded],
-            error && "border-red-500 focus-within:border-red-500 focus-within:ring-red-200",
+            error && "rui-field-error border-destructive",
             fullWidth && "w-full",
             className
           )}
@@ -188,7 +163,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             id={textareaId}
             rows={rows}
             className={cn(
-              "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 min-w-0 flex-1 bg-transparent outline-none placeholder:font-light placeholder:text-gray-400",
+              "scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent placeholder:text-muted-foreground min-w-0 flex-1 bg-transparent outline-none placeholder:font-light",
               sizes[size].textarea,
               resizeOptions[resize]
             )}
@@ -201,9 +176,9 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {hasAssistive && (
           <div id={assistiveId} className="mt-1 min-h-[1rem]">
             {error && errorMessage ? (
-              <span className="text-sm text-red-600">{errorMessage}</span>
+              <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (
-              <span className="text-sm text-gray-600">{description}</span>
+              <span className="text-muted-foreground text-sm">{description}</span>
             ) : null}
           </div>
         )}

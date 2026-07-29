@@ -110,7 +110,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         size={size === "sm" ? "xs" : size === "md" ? "sm" : "md"}
         onClick={() => handlePageChange(page)}
         disabled={disabled}
-        className={tw`min-w-[2.5rem] px-3 ${isActive ? "outline outline-blue-600" : ""}`}
+        className={tw`min-w-[2.5rem] px-3 ${isActive ? "outline-ring outline" : ""}`}
         aria-label={`Go to page ${page}`}
         aria-current={isActive ? "page" : undefined}
       >
@@ -121,7 +121,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const renderEllipsis = (key: string) => (
       <span
         key={key}
-        className={tw`flex h-8 w-8 items-center justify-center text-sm text-gray-500`}
+        className={tw`text-muted-foreground flex h-8 w-8 items-center justify-center text-sm`}
         aria-hidden="true"
       >
         ...

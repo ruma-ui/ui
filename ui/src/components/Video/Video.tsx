@@ -92,7 +92,7 @@ const ControlTooltip = ({
       )}
     >
       {text}
-      {shortcut && <span className="ml-2 font-mono text-gray-400">{shortcut}</span>}
+      {shortcut && <span className="text-muted-foreground/70 ml-2 font-mono">{shortcut}</span>}
     </div>
   );
 };
@@ -106,7 +106,7 @@ const playButton = tw`flex h-16 w-16 items-center justify-center rounded-full bg
 const volumeControl = tw`group/volume relative flex min-w-0 items-center gap-2 transition-all duration-300 group-hover/volume:mr-4`;
 const volumeTrack = tw`relative h-1 w-0 cursor-pointer rounded-full bg-white/30 opacity-0 transition-all duration-300 group-hover/volume:w-20 group-hover/volume:opacity-100`;
 const progressBar = tw`group/progress relative h-2 flex-1 cursor-pointer rounded-full bg-white/20 transition-all duration-200 group-hover/progress:h-3`;
-const progressFill = tw`absolute top-0 left-0 h-full rounded-full bg-blue-500`;
+const progressFill = tw`absolute top-0 left-0 h-full rounded-full bg-primary`;
 const bufferedFill = tw`absolute top-0 left-0 h-full rounded-full bg-white/30`;
 const iconButton = tw`group relative flex h-10 w-10 items-center justify-center rounded-full text-white transition-all duration-200 hover:scale-105 hover:bg-white/20`;
 const loadingSpinner = tw`absolute inset-0 flex items-center justify-center bg-black/50`;

@@ -58,10 +58,10 @@ export interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorEle
 const base = tw`inline-flex items-center gap-2 font-medium transition-all duration-200 select-none disabled:pointer-events-none disabled:opacity-50`;
 
 const variants = {
-  primary: tw`text-blue-600 hover:text-blue-700 active:text-blue-800`,
-  secondary: tw`text-gray-600 hover:text-gray-700 active:text-gray-800`,
-  tertiary: tw`text-gray-500 hover:text-gray-600 active:text-gray-700`,
-  destructive: tw`text-red-600 hover:text-red-700 active:text-red-800`,
+  primary: tw`text-primary hover:text-primary/80 active:text-primary/60`,
+  secondary: tw`text-muted-foreground hover:text-foreground active:text-foreground/80`,
+  tertiary: tw`text-muted-foreground/70 hover:text-muted-foreground active:text-foreground/70`,
+  destructive: tw`text-destructive hover:text-destructive/80 active:text-destructive/60`,
   none: tw``,
 };
 
@@ -97,7 +97,7 @@ const animations = {
   press: tw`transition-transform duration-75 ease-out active:scale-95`,
 };
 
-const focusRingStyles = tw`focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
+const focusRingStyles = tw`rui-focus-ring focus:outline-none`;
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   (

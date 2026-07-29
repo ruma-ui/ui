@@ -73,11 +73,11 @@ export interface TableProps<T> {
   onColumnResize?: (columnKey: string | keyof T, width: number) => void;
 }
 
-const tableBase = tw`w-full border-collapse text-gray-900`;
-const wrapperBase = tw`relative w-full overflow-auto rounded-md border border-gray-200 bg-white`;
-const headerBase = tw`bg-gray-50 text-left text-sm font-semibold text-gray-700`;
-const cellBase = tw`text-sm text-gray-900`;
-const outlinedCell = tw`border border-gray-200`;
+const tableBase = tw`w-full border-collapse text-foreground`;
+const wrapperBase = tw`relative w-full overflow-auto rounded-md border border-border bg-card`;
+const headerBase = tw`bg-muted/40 text-left text-sm font-semibold text-muted-foreground`;
+const cellBase = tw`text-sm text-foreground`;
+const outlinedCell = tw`border border-border`;
 
 const densityRow: Record<TableDensity, string> = {
   compact: tw`[&>td]:py-2 [&>th]:py-2`,
@@ -213,13 +213,13 @@ function useColumnResizing<T>(
   };
 }
 
-export function Table<T extends Record<string, any>>({
+export function Table<T extends Record<string, unknown>>({
   columns,
   data = [],
   density = "normal",
   variant = "plain",
   highlightOnHover = true,
-  emptyState = <div className="p-6 text-center text-sm text-gray-500">No data</div>,
+  emptyState = <div className="text-muted-foreground p-6 text-center text-sm">No data</div>,
   caption,
   selectedRows,
   onRowClick,
@@ -309,7 +309,7 @@ export function Table<T extends Record<string, any>>({
 
   // Sticky header implementation
   const headerElement = (
-    <thead className={cn(headerBase, stickyHeader && "sticky top-0 z-20 bg-gray-50")}>
+    <thead className={cn(headerBase, stickyHeader && "bg-card sticky top-0 z-20")}>
       <tr className={cn(densityRow[density])}>
         {columns.map((col, i) => (
           <th
@@ -319,7 +319,7 @@ export function Table<T extends Record<string, any>>({
               densityCellPadding[density],
               variant === "outlined" && outlinedCell,
               getAlign(col.align),
-              col.sticky && "sticky left-0 z-30 bg-gray-50",
+              col.sticky && "bg-card sticky left-0 z-30",
               getColumnClassName(col),
               "relative"
             )}
@@ -346,8 +346,8 @@ export function Table<T extends Record<string, any>>({
               {col.resizable && (
                 <div
                   className={cn(
-                    "absolute top-0 right-0 h-full w-1 cursor-col-resize bg-transparent hover:bg-blue-500",
-                    isResizing === String(col.key) && "bg-blue-500",
+                    "hover:bg-primary absolute top-0 right-0 h-full w-1 cursor-col-resize bg-transparent",
+                    isResizing === String(col.key) && "bg-primary",
                     col.align === "right" ? "relative" : ""
                   )}
                   onMouseDown={e => {
@@ -395,9 +395,9 @@ export function Table<T extends Record<string, any>>({
               className={cn(
                 "group",
                 densityRow[density],
-                variant === "zebra" && actualIndex % 2 === 1 && "bg-gray-50",
-                isSelected && "!bg-blue-50/70",
-                highlightOnHover && "hover:!bg-blue-50",
+                variant === "zebra" && actualIndex % 2 === 1 && "bg-muted/35",
+                isSelected && "!bg-accent/40",
+                highlightOnHover && "hover:bg-accent/25",
                 onRowClick && "cursor-pointer",
                 getRowClassName(row, actualIndex)
               )}
@@ -405,7 +405,7 @@ export function Table<T extends Record<string, any>>({
               style={virtualization ? { height: effectiveRowHeight } : {}}
               onMouseEnter={e => {
                 if (highlightOnHover) {
-                  e.currentTarget.style.setProperty("--row-hover-bg", "rgb(239 246 255)");
+                  e.currentTarget.style.setProperty("--row-hover-bg", "hsl(var(--accent) / 0.25)");
                 }
               }}
               onMouseLeave={e => {
@@ -417,7 +417,7 @@ export function Table<T extends Record<string, any>>({
               {columns.map((col, colIndex) => {
                 const value = col.accessor
                   ? col.accessor(row, actualIndex)
-                  : (row as any)[col.key as any];
+                  : (row as Record<string, unknown>)[col.key as string];
                 return (
                   <td
                     key={`${tableId}-cell-${actualIndex}-${colIndex}`}
@@ -433,16 +433,16 @@ export function Table<T extends Record<string, any>>({
                       width: getColumnWidth(col),
                       backgroundColor: col.sticky
                         ? isSelected
-                          ? "rgb(147 197 253 / 0.7)"
+                          ? "hsl(var(--accent) / 0.4)"
                           : "var(--row-hover-bg, " +
                             (variant === "zebra" && actualIndex % 2 === 1
-                              ? "rgb(249 250 251)"
-                              : "white") +
+                              ? "hsl(var(--muted) / 0.35)"
+                              : "hsl(var(--background))") +
                             ")"
                         : undefined,
                     }}
                   >
-                    {value}
+                    {value as React.ReactNode}
                   </td>
                 );
               })}
@@ -471,7 +471,7 @@ export function Table<T extends Record<string, any>>({
       className={cn(
         tableBase,
         variant !== "plain" && "w-full",
-        variant === "outlined" && "border border-gray-200",
+        variant === "outlined" && "border-border border",
         className
       )}
       aria-label={ariaLabel}

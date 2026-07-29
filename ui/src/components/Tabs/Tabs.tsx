@@ -95,33 +95,33 @@ const useTabs = () => {
   return context;
 };
 
-const baseTabList = tw`flex border-b border-gray-200 bg-white`;
-const baseTab = tw`relative inline-flex items-center justify-center px-3 py-2 text-sm font-medium whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`;
+const baseTabList = tw`flex border-b border-border bg-background`;
+const baseTab = tw`relative inline-flex items-center justify-center px-3 py-2 text-sm font-medium whitespace-nowrap transition-all focus:outline-none rui-focus-ring disabled:pointer-events-none disabled:opacity-50`;
 const baseTabPanel = tw`mt-4 focus-visible:outline-none`;
 
 const tabListVariants = {
   default: tw``,
   underline: tw`border-b-2`,
-  pills: tw`rounded-lg bg-gray-100 p-1`,
+  pills: tw`rounded-lg bg-muted p-1`,
 };
 
 const tabListOrientations = {
   horizontal: tw`flex-row`,
-  vertical: tw`flex-col border-r border-b-0 border-gray-200`,
+  vertical: tw`flex-col border-r border-b-0 border-border`,
 };
 
 const tabVariants = {
   default: {
-    inactive: tw`cursor-pointer border-b-2 border-transparent text-gray-500 hover:text-blue-600`,
-    active: tw`border-b-2 border-blue-600 text-blue-600`,
+    inactive: tw`cursor-pointer border-b-2 border-transparent text-muted-foreground hover:text-primary`,
+    active: tw`border-b-2 border-primary text-primary`,
   },
   underline: {
-    inactive: tw`cursor-pointer border-b-2 border-transparent text-gray-500 hover:text-blue-600`,
-    active: tw`border-b-2 border-blue-600 text-blue-600`,
+    inactive: tw`cursor-pointer border-b-2 border-transparent text-muted-foreground hover:text-primary`,
+    active: tw`border-b-2 border-primary text-primary`,
   },
   pills: {
-    inactive: tw`cursor-pointer bg-transparent text-gray-500 hover:text-blue-600`,
-    active: tw`bg-white text-blue-600 shadow-sm`,
+    inactive: tw`cursor-pointer bg-transparent text-muted-foreground hover:text-foreground`,
+    active: tw`bg-background text-primary shadow-sm`,
   },
 };
 

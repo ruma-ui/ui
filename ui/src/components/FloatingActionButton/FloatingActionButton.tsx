@@ -89,13 +89,13 @@ export interface FloatingActionButtonProps
   onExpandedChange?: (expanded: boolean) => void;
 }
 
-const base = tw`fixed z-50 inline-flex transform-gpu cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-all duration-200 select-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none disabled:opacity-50`;
+const base = tw`fixed z-50 inline-flex transform-gpu cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-all duration-200 select-none rui-focus-ring focus:outline-none disabled:pointer-events-none disabled:opacity-50`;
 
 const variants = {
-  primary: tw`bg-blue-600 text-white shadow-lg hover:bg-blue-500 hover:shadow-xl`,
-  secondary: tw`bg-gray-200 text-black shadow-lg outline outline-gray-300 hover:bg-gray-200/80 hover:shadow-xl`,
-  tertiary: tw`border border-gray-300 bg-white text-gray-900 shadow-lg hover:shadow-xl`,
-  destructive: tw`bg-red-600 text-white shadow-lg hover:bg-red-700 hover:shadow-xl`,
+  primary: tw`bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 hover:shadow-xl`,
+  secondary: tw`bg-secondary text-secondary-foreground shadow-lg outline outline-border hover:bg-secondary/80 hover:shadow-xl`,
+  tertiary: tw`border border-border bg-background text-foreground shadow-lg hover:shadow-xl`,
+  destructive: tw`bg-destructive text-destructive-foreground shadow-lg hover:bg-destructive/90 hover:shadow-xl`,
 };
 
 const sizes = {
@@ -121,15 +121,15 @@ const roundedOptions = {
 const animations = {
   none: tw``,
   scale: tw`transition-transform duration-150 ease-out hover:scale-110 active:scale-95`,
-  glow: tw`transition-shadow duration-200 ease-out hover:shadow-xl hover:shadow-blue-500/25`,
+  glow: tw`transition-shadow duration-200 ease-out hover:shadow-xl hover:shadow-primary/25`,
   lift: tw`transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-[2px] hover:shadow-2xl active:-translate-y-[1px]`,
   ripple: tw`overflow-hidden`,
   press: tw`transition-transform duration-75 ease-out active:scale-95`,
 };
 
-const tooltipBase = tw`pointer-events-none absolute rounded-md bg-gray-900 px-2 py-1 text-xs font-medium whitespace-nowrap text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100`;
+const tooltipBase = tw`pointer-events-none absolute rounded-md bg-foreground px-2 py-1 text-xs font-medium whitespace-nowrap text-background opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100`;
 
-const actionButtonBase = tw`inline-flex transform-gpu cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-all duration-300 select-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none disabled:opacity-50`;
+const actionButtonBase = tw`inline-flex transform-gpu cursor-pointer items-center justify-center gap-2 font-medium whitespace-nowrap transition-all duration-300 select-none rui-focus-ring focus:outline-none disabled:pointer-events-none disabled:opacity-50`;
 
 export const FloatingActionButton = React.forwardRef<HTMLButtonElement, FloatingActionButtonProps>(
   (

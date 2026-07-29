@@ -85,18 +85,18 @@ export interface ToastProps {
 }
 
 // Base styles
-const toastBase = tw`relative flex max-w-sm items-start gap-3 rounded-lg border p-4 shadow-lg ring-1 ring-gray-200 outline-none`;
+const toastBase = tw`relative flex max-w-sm items-start gap-3 rounded-lg border border-border p-4 shadow-md outline-none bg-background text-foreground`;
 const contentBase = tw`min-w-0 flex-1`;
 const titleBase = tw`text-sm font-semibold break-words`;
-const descriptionBase = tw`text-sm break-words`;
-const closeButtonBase = tw`flex shrink-0 items-center justify-center rounded-md p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none`;
+const descriptionBase = tw`text-sm text-foreground/80 break-words`;
+const closeButtonBase = tw`flex shrink-0 items-center justify-center rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground rui-focus-ring focus:outline-none`;
 
-// Variants
+// Variants — semantic status toasts
 const variants = {
-  success: tw`border-green-200 bg-green-50 text-green-800 ring-green-200`,
-  error: tw`border-red-200 bg-red-50 text-red-800 ring-red-200`,
-  warning: tw`border-yellow-200 bg-yellow-50 text-yellow-800 ring-yellow-200`,
-  info: tw`border-blue-200 bg-blue-50 text-blue-800 ring-blue-200`,
+  success: tw`border-success/30 bg-success/10 text-success`,
+  error: tw`border-destructive/30 bg-destructive/10 text-destructive`,
+  warning: tw`border-warning/30 bg-warning/10 text-warning`,
+  info: tw`border-info/30 bg-info/10 text-info`,
 };
 
 // Sizes

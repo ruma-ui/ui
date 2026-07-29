@@ -88,25 +88,20 @@ export interface RadioGroupProps {
   name?: string;
 }
 
-// Design primitives matching Select component
 const wrapperBase = tw`relative flex flex-col`;
 const groupBase = tw`flex`;
-const radioWrapperBase = tw`relative flex items-start`;
-// Use peer-* utilities for focus styles since input is visually hidden
-const radioBase = tw`h-4 w-4 shrink-0 border border-gray-300 peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2`;
-const radioInner = tw`absolute inset-0 flex items-center justify-center`;
-const radioDot = tw`h-1.5 w-1.5 rounded-full bg-white`;
+
+// Radio button visual box — no Tailwind ring utilities; peer-focus-visible box-shadow
+const radioBase = tw`relative inline-flex items-center justify-center border transition-all duration-150 outline-none`;
 
 const variants = {
   primary: {
-    radio: tw`border-gray-300 text-blue-600 peer-focus-visible:ring-blue-500`,
-    checked: tw`border-blue-600 bg-blue-600`,
-    hover: tw`hover:border-blue-500`,
+    unchecked: tw`border-input bg-background hover:border-primary`,
+    checked: tw`border-primary bg-primary`,
   },
   secondary: {
-    radio: tw`border-gray-300 text-gray-600 peer-focus-visible:ring-gray-400`,
-    checked: tw`border-gray-600 bg-gray-600`,
-    hover: tw`hover:border-gray-500`,
+    unchecked: tw`border-input bg-background hover:border-secondary-foreground`,
+    checked: tw`border-secondary-foreground bg-secondary-foreground`,
   },
 };
 
@@ -143,24 +138,11 @@ const roundedOptions = {
   full: tw`rounded-full`,
 };
 
-const labelBase = tw`font-medium text-gray-900`;
-const labelSizes = {
-  sm: tw`text-xs`,
-  md: tw`text-sm`,
-  lg: tw`text-base`,
-};
-
-const optionLabelBase = tw`font-medium text-gray-900`;
-const descriptionBase = tw`text-gray-600`;
-const assistiveContainer = tw`mt-1 min-h-[1rem] px-1`;
-const groupDescriptionText = tw`text-sm text-gray-600`;
-const errorText = tw`text-sm text-red-600`;
-
-const disabledStyles = tw`cursor-not-allowed opacity-50`;
-const errorStyles = tw`border-red-500 peer-focus-visible:ring-red-500`;
-const animatedStyles = tw`transition-all duration-200`;
-// Tailwindcss-animate helpers
 const animateDotIn = tw`animate-in fade-in-0 zoom-in-95 duration-150 ease-out`;
+
+// Keyboard-only focus ring for radio buttons (via peer-focus-visible)
+const focusRingClass =
+  "peer-focus-visible:shadow-[0_0_0_var(--ring-offset)_hsl(var(--background)),0_0_0_calc(var(--ring-offset)+var(--ring-width))_var(--ring-color)]";
 
 export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
   (
@@ -193,24 +175,15 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     const hasAssistive = Boolean(description || (error && errorMessage));
     const assistiveId = `${autoId}-desc`;
 
-    // Update internal state when controlled value changes
     useEffect(() => {
-      if (value !== undefined) {
-        setSelectedValue(value);
-      }
+      if (value !== undefined) setSelectedValue(value);
     }, [value]);
 
     const handleOptionChange = (optionValue: string) => {
       if (disabled) return;
-
       const option = options.find(opt => opt.value === optionValue);
       if (option?.disabled) return;
-
-      // Only update internal state if not controlled
-      if (value === undefined) {
-        setSelectedValue(optionValue);
-      }
-
+      if (value === undefined) setSelectedValue(optionValue);
       onValueChange?.(optionValue);
     };
 
@@ -227,7 +200,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         const radioId = `${groupName}-${option.value}`;
 
         return (
-          <div key={option.value} className={radioWrapperBase}>
+          <div key={option.value} className="relative flex items-start">
             <div className="flex items-center">
               <input
                 type="radio"
@@ -242,7 +215,6 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
               <label
                 htmlFor={radioId}
                 className={cn(
-                  // Center the radio with the text block
                   "flex cursor-pointer items-center",
                   sizes[size].gap,
                   isDisabled && "cursor-not-allowed"
@@ -253,19 +225,21 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                     radioBase,
                     sizes[size].radio,
                     roundedOptions[rounded],
-                    variants[variant].radio,
-                    !isDisabled && variants[variant].hover,
-                    isSelected && variants[variant].checked,
-                    isDisabled && disabledStyles,
-                    error && errorStyles,
-                    animation && animatedStyles,
-                    // Ensure correct positioning and no shrink
-                    "relative inline-flex items-center justify-center"
+                    isSelected ? variants[variant].checked : variants[variant].unchecked,
+                    isDisabled && "cursor-not-allowed opacity-50",
+                    error && !isSelected && "border-destructive",
+                    focusRingClass
                   )}
                 >
                   {isSelected && (
-                    <div className={radioInner}>
-                      <div className={cn(radioDot, sizes[size].dot, animation && animateDotIn)} />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div
+                        className={cn(
+                          "bg-primary-foreground rounded-full",
+                          sizes[size].dot,
+                          animation && animateDotIn
+                        )}
+                      />
                     </div>
                   )}
                 </div>
@@ -275,7 +249,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                     {option.icon && (
                       <span
                         className={cn(
-                          "flex items-center text-gray-500",
+                          "text-muted-foreground flex items-center",
                           isDisabled && "opacity-50"
                         )}
                       >
@@ -284,11 +258,10 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                     )}
                     <span
                       className={cn(
-                        optionLabelBase,
+                        "text-foreground leading-tight font-medium",
                         sizes[size].text,
-                        "leading-tight",
-                        isDisabled && "text-gray-400",
-                        error && "text-red-700"
+                        isDisabled && "text-muted-foreground",
+                        error && "text-destructive"
                       )}
                     >
                       {option.label}
@@ -298,10 +271,9 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                   {option.description && (
                     <span
                       className={cn(
-                        descriptionBase,
+                        "text-muted-foreground mt-1 leading-snug",
                         sizes[size].text,
-                        "mt-1 leading-snug",
-                        isDisabled && "text-gray-400"
+                        isDisabled && "opacity-70"
                       )}
                     >
                       {option.description}
@@ -318,9 +290,15 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       <div ref={ref} className={cn(wrapperBase, className)} {...props}>
         {label && (
           <fieldset className="w-full">
-            <legend className={cn(labelBase, labelSizes[size], error && "text-red-700", "mb-3")}>
+            <legend
+              className={cn(
+                "text-foreground mb-3 font-medium",
+                sizes[size].text,
+                error && "text-destructive"
+              )}
+            >
               {label}
-              {required && <span className="ml-1 text-red-500">*</span>}
+              {required && <span className="text-destructive ml-1">*</span>}
             </legend>
 
             <div
@@ -348,11 +326,11 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         )}
 
         {hasAssistive && (
-          <div id={assistiveId} className={assistiveContainer}>
+          <div id={assistiveId} className="mt-1 min-h-[1rem] px-1">
             {error && errorMessage ? (
-              <span className={errorText}>{errorMessage}</span>
+              <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (
-              <span className={groupDescriptionText}>{description}</span>
+              <span className="text-muted-foreground text-sm">{description}</span>
             ) : null}
           </div>
         )}

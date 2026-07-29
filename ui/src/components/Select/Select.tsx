@@ -19,7 +19,7 @@ export interface SelectProps {
    * The size of the select
    * @default "md"
    */
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   /**
    * Control the border radius of the select
    * @default "sm"
@@ -100,37 +100,22 @@ export interface SelectProps {
   name?: string;
 }
 
-// Match Input's design primitives for consistency
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
-const fieldBase = tw`relative inline-flex items-center border bg-white text-gray-900 transition-all duration-200 focus-within:ring-3`;
+const fieldBase = tw`rui-field-focus relative inline-flex items-center border bg-background text-foreground transition-colors duration-150`;
 
 const variants = {
-  primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200`,
-  secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200`,
+  primary: tw`border-input bg-background`,
+  secondary: tw`border-input bg-muted`,
 };
 
+// IMPORTANT: Heights must match TextInput's size scale exactly.
+// xs=h-8 sm=h-9 md=h-10 lg=h-12 xl=h-14
 const sizes = {
-  sm: {
-    container: tw`h-8`,
-    text: tw`text-xs`,
-    padX: "px-2",
-    padY: "py-1.5",
-    gap: "gap-1.5",
-  },
-  md: {
-    container: tw`h-9`,
-    text: tw`text-sm`,
-    padX: "px-3.5",
-    padY: "py-2",
-    gap: "gap-2",
-  },
-  lg: {
-    container: tw`h-10`,
-    text: tw`text-base`,
-    padX: "px-4",
-    padY: "py-2.5",
-    gap: "gap-2.5",
-  },
+  xs: { container: tw`h-7`, text: tw`text-xs`, padX: "px-2", padY: "py-1", gap: "gap-1" },
+  sm: { container: tw`h-8`, text: tw`text-xs`, padX: "px-2.5", padY: "py-1.5", gap: "gap-1.5" },
+  md: { container: tw`h-9`, text: tw`text-sm`, padX: "px-3", padY: "py-1.5", gap: "gap-2" },
+  lg: { container: tw`h-10`, text: tw`text-sm`, padX: "px-3.5", padY: "py-2", gap: "gap-2" },
+  xl: { container: tw`h-12`, text: tw`text-base`, padX: "px-4", padY: "py-2.5", gap: "gap-2.5" },
 } as const;
 
 const roundedOptions = {
@@ -143,9 +128,11 @@ const roundedOptions = {
 };
 
 const labelSizes = {
-  sm: tw`text-xs`,
+  xs: tw`text-xs`,
+  sm: tw`text-sm`,
   md: tw`text-sm`,
   lg: tw`text-base`,
+  xl: tw`text-base`,
 };
 
 const widths = {
@@ -155,30 +142,20 @@ const widths = {
   xl: tw`w-[30rem]`,
 } as const;
 
-const errorStyles = tw`border-red-500 focus-within:border-red-500 focus-within:ring-red-200`;
-
-const dropdownBase = tw`absolute top-full left-0 z-50 mt-2 max-h-60 w-full overflow-auto border border-gray-200 bg-white shadow-lg`;
-
-const optionBase = tw`flex w-full cursor-pointer items-center justify-between gap-2 px-3 py-2 text-left text-sm hover:bg-gray-50 focus:bg-gray-50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50`;
-
+const dropdownBase = tw`absolute top-full left-0 z-50 mt-1.5 max-h-60 w-full overflow-auto border border-border bg-popover shadow-lg`;
+const optionBase = tw`flex w-full cursor-pointer items-center justify-between gap-2 px-3 py-2 text-left text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:outline-none disabled:cursor-not-allowed disabled:opacity-50`;
 const optionAnimated = tw`transition-colors duration-150`;
-
-const optionSelected = tw`bg-blue-50 text-blue-700`;
-const optionDisabled = tw`cursor-not-allowed bg-gray-100 opacity-50`;
-
+const optionSelected = tw`bg-accent text-accent-foreground`;
+const optionDisabled = tw`cursor-not-allowed opacity-50`;
 const chevronAnimated = tw`transition-transform duration-200`;
 
-const labelBase = tw`mb-1 font-medium text-gray-900`;
-
-// Assistive text matches Input's layout
-const assistiveContainer = tw`mt-1 min-h-[1rem] px-1`;
-const descriptionText = tw`text-sm text-gray-600`;
-const errorText = tw`text-sm text-red-600`;
-
-// Chevron down icon component
 const ChevronDownIcon = ({ isOpen, animated }: { isOpen: boolean; animated: boolean }) => (
   <HiOutlineChevronDown
-    className={cn("h-4 w-4 text-gray-400", animated && chevronAnimated, isOpen && "rotate-180")}
+    className={cn(
+      "text-muted-foreground h-4 w-4",
+      animated && chevronAnimated,
+      isOpen && "rotate-180"
+    )}
   />
 );
 
@@ -224,14 +201,10 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     const assistiveId = `${selectId}-desc`;
     const listboxId = `${selectId}-listbox`;
 
-    // Update selected value when controlled value changes
     useEffect(() => {
-      if (value !== undefined) {
-        setSelectedValue(value);
-      }
+      if (value !== undefined) setSelectedValue(value);
     }, [value]);
 
-    // Close dropdown when clicking outside
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
         if (
@@ -244,30 +217,25 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           setFocusedIndex(-1);
         }
       };
-
       if (isOpen) {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
       }
     }, [isOpen]);
 
-    // Handle keyboard navigation and hidden search
     const handleKeyDown = (event: React.KeyboardEvent) => {
       if (disabled) return;
 
-      // Hidden search (type-to-select, cycles through matches)
       if (event.key.length === 1 && event.key.match(/^[^\s]$/)) {
         const char = event.key.toLowerCase();
         let newBuffer = searchBuffer + char;
         if (searchTimeout.current) clearTimeout(searchTimeout.current);
         searchTimeout.current = setTimeout(() => setSearchBuffer(""), 500);
 
-        // Find all matching options
         const matches = options
           .map((opt, idx) => ({ idx, opt }))
           .filter(({ opt }) => !opt.disabled && opt.label.toLowerCase().startsWith(newBuffer));
 
-        // If no matches, try just the last char
         if (matches.length === 0 && newBuffer.length > 1) {
           newBuffer = char;
           setSearchBuffer(newBuffer);
@@ -284,7 +252,6 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 
         setSearchBuffer(newBuffer);
         if (matches.length > 0) {
-          // Cycle through matches if same buffer is typed repeatedly
           let nextIdx = matches[0].idx;
           if (
             matches.length > 1 &&
@@ -355,7 +322,6 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       }
     };
 
-    // Scroll to option helper
     const scrollToOption = (idx: number) => {
       if (!isOpen) return;
       const dropdown = dropdownRef.current;
@@ -368,7 +334,6 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     const handleOptionSelect = (optionValue: string) => {
       const option = options.find(opt => opt.value === optionValue);
       if (option?.disabled) return;
-
       setSelectedValue(optionValue);
       setIsOpen(false);
       setFocusedIndex(-1);
@@ -377,42 +342,41 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     };
 
     const selectedOption = options.find(opt => opt.value === selectedValue);
-
-    // Container matches Input field wrapper
-    const containerClasses = cn(
-      fieldBase,
-      variants[variant],
-      sizes[size].container,
-      roundedOptions[rounded],
-      sizes[size].padX,
-      sizes[size].gap,
-      error && errorStyles,
-      fullWidth && "w-full",
-      disabled && "cursor-not-allowed opacity-50",
-      className
-    );
-
-    // Cap dropdown rounding at xl even if control is rounded-full
     const dropdownRadius = rounded === "full" ? tw`rounded-xl` : roundedOptions[rounded];
 
     return (
       <div className={cn(wrapperBase, fullWidth ? "w-full" : (widths[width] ?? "w-auto"))}>
-        {/* Hidden input for form submission */}
         <input type="hidden" name={name} value={selectedValue} />
 
         {label && (
           <label
             htmlFor={selectId}
-            className={cn(labelBase, labelSizes[size], error && "text-red-700")}
+            className={cn(
+              "text-foreground mb-1 font-medium",
+              labelSizes[size],
+              error && "text-destructive"
+            )}
           >
             {label}
           </label>
         )}
 
-        <div className={containerClasses}>
-          {/* Show selected option's icon if selected, else startIcon if provided */}
+        <div
+          className={cn(
+            fieldBase,
+            variants[variant],
+            sizes[size].container,
+            roundedOptions[rounded],
+            sizes[size].padX,
+            sizes[size].gap,
+            error && "rui-field-error border-destructive",
+            fullWidth && "w-full",
+            disabled && "cursor-not-allowed opacity-50",
+            className
+          )}
+        >
           {(selectedOption?.icon || startIcon) && (
-            <span className="flex shrink-0 items-center text-gray-500">
+            <span className="text-muted-foreground flex shrink-0 items-center">
               {selectedOption?.icon ? selectedOption.icon : startIcon}
             </span>
           )}
@@ -434,15 +398,15 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
             {...props}
           >
             {selectedOption ? (
-              <span className="truncate text-gray-900">{selectedOption.label}</span>
+              <span className="text-foreground truncate">{selectedOption.label}</span>
             ) : (
-              <span className="truncate text-gray-400">{placeholder}</span>
+              <span className="text-muted-foreground truncate">{placeholder}</span>
             )}
           </button>
-          <span className="flex shrink-0 items-center text-gray-400">
+          <span className="flex shrink-0 items-center">
             <ChevronDownIcon isOpen={isOpen} animated={animation} />
           </span>
-          {/* Dropdown is now rendered inside the main container, right after the button */}
+
           {isOpen && (
             <div
               ref={dropdownRef}
@@ -466,7 +430,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                       animation && optionAnimated,
                       isSelected && optionSelected,
                       option.disabled && optionDisabled,
-                      index === focusedIndex && "bg-gray-50",
+                      index === focusedIndex && "bg-accent text-accent-foreground",
                       sizes[size].text,
                       sizes[size].padY
                     )}
@@ -475,15 +439,15 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                     role="option"
                     aria-selected={isSelected}
                   >
-                    {/* Option icon, if provided */}
                     {option.icon && (
-                      <span className="mr-2 flex items-center text-gray-500">{option.icon}</span>
+                      <span className="text-muted-foreground mr-2 flex items-center">
+                        {option.icon}
+                      </span>
                     )}
                     <span className="flex-1 truncate">{option.label}</span>
-                    {/* Check icon shown for selected option */}
                     <HiOutlineCheck
                       className={cn(
-                        "h-5 w-5 shrink-0 text-blue-600",
+                        "text-primary h-5 w-5 shrink-0",
                         isSelected ? "opacity-100" : "opacity-0"
                       )}
                       aria-hidden={!isSelected}
@@ -497,11 +461,11 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         </div>
 
         {hasAssistive && (
-          <div id={assistiveId} className={assistiveContainer}>
+          <div id={assistiveId} className="mt-1 min-h-[1rem] px-1">
             {error && errorMessage ? (
-              <span className={errorText}>{errorMessage}</span>
+              <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (
-              <span className={descriptionText}>{description}</span>
+              <span className="text-muted-foreground text-sm">{description}</span>
             ) : null}
           </div>
         )}

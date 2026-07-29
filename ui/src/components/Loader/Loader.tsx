@@ -45,8 +45,8 @@ export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
 const base = tw`inline-flex items-center justify-center`;
 
 const variants = {
-  primary: tw`text-blue-600`,
-  secondary: tw`text-gray-600`,
+  primary: tw`text-primary`,
+  secondary: tw`text-muted-foreground`,
 };
 
 const sizes = {

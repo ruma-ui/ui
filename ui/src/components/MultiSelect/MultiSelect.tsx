@@ -116,11 +116,11 @@ export interface MultiSelectProps {
 
 // Match Input's design primitives for consistency
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
-const fieldBase = tw`relative inline-flex items-center border bg-white text-gray-900 transition-all duration-200 focus-within:ring-3`;
+const fieldBase = tw`relative inline-flex items-center border bg-background text-foreground transition-colors duration-200 rui-field-focus`;
 
 const variants = {
-  primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200`,
-  secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200`,
+  primary: tw`border-input`,
+  secondary: tw`border-input bg-muted`,
 };
 
 const sizes = {
@@ -169,34 +169,38 @@ const widths = {
   xl: tw`w-[30rem]`,
 } as const;
 
-const errorStyles = tw`border-red-500 focus-within:border-red-500 focus-within:ring-red-200`;
+const errorStyles = tw`border-destructive rui-field-error`;
 
-const dropdownBase = tw`absolute top-full left-0 z-50 mt-2 max-h-60 w-full overflow-auto border border-gray-200 bg-white shadow-lg`;
+const dropdownBase = tw`absolute top-full left-0 z-50 mt-2 max-h-60 w-full overflow-auto border border-border bg-popover text-popover-foreground shadow-md rounded-md`;
 
-const optionBase = tw`flex w-full cursor-pointer items-center justify-between gap-2 px-3 py-2 text-left text-sm hover:bg-gray-50 focus:bg-gray-50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50`;
+const optionBase = tw`flex w-full cursor-pointer items-center justify-between gap-2 px-3 py-2 text-left text-sm hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:outline-none disabled:cursor-not-allowed disabled:opacity-50`;
 
 const optionAnimated = tw`transition-colors duration-150`;
 
-const optionSelected = tw`text-blue-700`;
-const optionDisabled = tw`cursor-not-allowed bg-gray-100 opacity-50`;
+const optionSelected = tw`text-primary`;
+const optionDisabled = tw`cursor-not-allowed opacity-50`;
 
 const chevronAnimated = tw`transition-transform duration-200`;
 
-const labelBase = tw`mb-1 font-medium text-gray-900`;
+const labelBase = tw`mb-1 font-medium text-foreground`;
 
 // Assistive text matches Input's layout
 const assistiveContainer = tw`mt-1 min-h-[1rem] px-1`;
-const descriptionText = tw`text-sm text-gray-600`;
-const errorText = tw`text-sm text-red-600`;
+const descriptionText = tw`text-sm text-muted-foreground`;
+const errorText = tw`text-sm text-destructive`;
 
 // Selected item styles
-const selectedItemBase = tw`inline-flex items-center gap-1 rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800`;
-const selectedItemRemove = tw`ml-1 flex h-3 w-3 cursor-pointer items-center justify-center rounded-full hover:bg-blue-200 focus:bg-blue-200 focus:outline-none`;
+const selectedItemBase = tw`inline-flex items-center gap-1 rounded-md bg-accent px-2 py-1 text-xs font-medium text-accent-foreground`;
+const selectedItemRemove = tw`ml-1 flex h-3 w-3 cursor-pointer items-center justify-center rounded-full hover:bg-accent-foreground/20 focus:bg-accent-foreground/20 focus:outline-none`;
 
 // Chevron down icon component
 const ChevronDownIcon = ({ isOpen, animated }: { isOpen: boolean; animated: boolean }) => (
   <HiOutlineChevronDown
-    className={cn("h-4 w-4 text-gray-400", animated && chevronAnimated, isOpen && "rotate-180")}
+    className={cn(
+      "text-muted-foreground h-4 w-4",
+      animated && chevronAnimated,
+      isOpen && "rotate-180"
+    )}
   />
 );
 
@@ -240,7 +244,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     // Forward ref to the trigger button
-    React.useImperativeHandle(ref, () => triggerRef.current!);
+    React.useImperativeHandle(ref, () => triggerRef.current as HTMLButtonElement);
 
     const autoId = React.useId();
     const selectId = id ?? autoId;
@@ -460,7 +464,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
         {label && (
           <label
             htmlFor={selectId}
-            className={cn(labelBase, labelSizes[size], error && "text-red-700")}
+            className={cn(labelBase, labelSizes[size], error && "text-destructive")}
           >
             {label}
           </label>
@@ -476,7 +480,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
         >
           {/* Show selected options' icons if any selected, else startIcon if provided */}
           {((selectedOptions.length > 0 && selectedOptions[0]?.icon) || startIcon) && (
-            <span className="flex shrink-0 items-center text-gray-500">
+            <span className="text-muted-foreground flex shrink-0 items-center">
               {selectedOptions[0]?.icon ? selectedOptions[0].icon : startIcon}
             </span>
           )}
@@ -501,8 +505,8 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
             ) : (
               <span
                 className={cn(
-                  "truncate text-gray-900 select-none",
-                  selectedOptions.length === 0 && "text-gray-400"
+                  "text-foreground truncate select-none",
+                  selectedOptions.length === 0 && "text-muted-foreground"
                 )}
               >
                 {displayText}
@@ -514,7 +518,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
             ref={triggerRef}
             type="button"
             className={cn(
-              "flex shrink-0 cursor-pointer items-center justify-center rounded p-1 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none",
+              "hover:bg-accent focus:bg-accent flex shrink-0 cursor-pointer items-center justify-center rounded p-1 focus:outline-none",
               disabled && "cursor-not-allowed opacity-50"
             )}
             onClick={e => {
@@ -564,7 +568,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                       animation && optionAnimated,
                       isSelected && optionSelected,
                       isDisabled && optionDisabled,
-                      index === focusedIndex && "bg-gray-50",
+                      index === focusedIndex && "bg-accent",
                       sizes[size].text,
                       sizes[size].padY
                     )}
@@ -576,22 +580,24 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                     {/* Checkbox indicator */}
                     <div className="flex h-5 w-5 shrink-0 items-center justify-center">
                       {isSelected ? (
-                        <HiOutlineCheck className="h-5 w-5 text-blue-600" />
+                        <HiOutlineCheck className="text-primary h-5 w-5" />
                       ) : (
-                        <div className="h-4 w-4 rounded border-2 border-gray-300" />
+                        <div className="border-border h-4 w-4 rounded border-2" />
                       )}
                     </div>
 
                     {/* Option icon, if provided */}
                     {option.icon && (
-                      <span className="mr-2 flex items-center text-gray-500">{option.icon}</span>
+                      <span className="text-muted-foreground mr-2 flex items-center">
+                        {option.icon}
+                      </span>
                     )}
 
                     <span className="flex-1 truncate select-none">{option.label}</span>
 
                     {/* Max selections indicator */}
                     {isAtMax && !isSelected && (
-                      <span className="text-xs text-gray-400">Max reached</span>
+                      <span className="text-muted-foreground text-xs">Max reached</span>
                     )}
                   </button>
                 );

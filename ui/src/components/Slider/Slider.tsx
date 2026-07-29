@@ -85,53 +85,35 @@ export interface SliderProps {
   id?: string;
 }
 
-// Design primitives
-const wrapperBase = tw`relative inline-flex flex-col`;
-const containerBase = tw`inline-flex flex-col gap-2`;
-const sliderBase = tw`relative w-full cursor-pointer focus:outline-none disabled:cursor-not-allowed disabled:opacity-50`;
+// rui-focus-ring: keyboard-only :focus-visible ring via .rui-focus-ring CSS class.
+// The slider wrapper needs an explicit height equal to the thumb so the
+// absolute-positioned track has a proper containing block.
+const wrapperBase = tw`inline-flex w-full flex-col`;
 
-const trackBase = tw`relative w-full rounded-full bg-gray-200`;
-const trackVariants = {
-  primary: tw`bg-blue-600`,
-  secondary: tw`bg-gray-600`,
-};
-
+// Per-size table: wrapper height must be >= thumb height so the absolute
+// track center-aligns properly. Track height defines the rail.
 const sizes = {
-  sm: {
-    track: tw`h-1 min-w-[120px]`,
-    thumb: tw`h-3 w-3`,
-  },
-  md: {
-    track: tw`h-2 min-w-[160px]`,
-    thumb: tw`h-4 w-4`,
-  },
-  lg: {
-    track: tw`h-3 min-w-[200px]`,
-    thumb: tw`h-5 w-5`,
-  },
+  sm: { wrapper: tw`h-4 min-w-[120px]`, track: tw`h-1`, thumb: tw`h-3 w-3`, text: tw`text-xs` },
+  md: { wrapper: tw`h-5 min-w-[160px]`, track: tw`h-2`, thumb: tw`h-4 w-4`, text: tw`text-sm` },
+  lg: { wrapper: tw`h-6 min-w-[200px]`, track: tw`h-3`, thumb: tw`h-5 w-5`, text: tw`text-base` },
+} as const;
+
+const trackFillVariants = {
+  primary: tw`bg-primary`,
+  secondary: tw`bg-secondary-foreground`,
 };
 
-const thumbBase = tw`absolute block cursor-pointer rounded-full border-1 border-gray-400 bg-white shadow-lg transition duration-200 ease-in-out hover:scale-105 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-115 disabled:shadow-none`;
+// Thumb: bg-background with border so it reads on any surface
+const thumbBase = tw`
+  absolute top-1/2 -translate-x-1/2 -translate-y-1/2
+  block cursor-pointer rounded-full
+  border border-border bg-background
+  shadow-sm transition-[transform,shadow,border-color,background-color] duration-150 ease-in-out
+  hover:scale-110 hover:shadow-md
+  disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none
+`;
 
-const labelBase = tw`mb-2 font-medium text-gray-900`;
-const labelSizes = {
-  sm: tw`text-xs`,
-  md: tw`text-sm`,
-  lg: tw`text-base`,
-};
-
-const valueLabelBase = tw`text-gray-600`;
-const valueLabelSizes = {
-  sm: tw`text-xs`,
-  md: tw`text-sm`,
-  lg: tw`text-base`,
-};
-
-const assistiveContainer = tw`mt-2 px-1`;
-const descriptionText = tw`text-sm text-gray-600`;
-const errorText = tw`text-sm text-red-600`;
-
-const errorStyles = tw`ring-red-500`;
+const labelBase = tw`mb-1.5 font-medium text-foreground`;
 
 export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
   (
@@ -159,7 +141,6 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     ref
   ) => {
     const [internalValue, setInternalValue] = useState(defaultValue);
-    const sliderRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
 
@@ -168,217 +149,179 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     const hasAssistive = Boolean(description || (error && errorMessage));
     const assistiveId = `${sliderId}-desc`;
 
-    // Determine if component is controlled
     const isControlled = value !== undefined;
 
-    // Update internal state when controlled value changes (for initialization)
     useEffect(() => {
-      if (!isControlled) {
-        setInternalValue(defaultValue);
-      }
+      if (!isControlled) setInternalValue(defaultValue);
     }, [defaultValue, isControlled]);
 
-    // For controlled components, sync internal state with prop changes
     useEffect(() => {
-      if (isControlled) {
-        setInternalValue(value);
-      }
+      if (isControlled) setInternalValue(value);
     }, [value, isControlled]);
 
-    const currentValue = isControlled ? value : internalValue;
-
-    // Clamp value between min and max
+    const currentValue = isControlled && value !== undefined ? value : internalValue;
     const clampedValue = Math.min(Math.max(currentValue, min), max);
-
-    // Calculate percentage for styling
     const percentage = ((clampedValue - min) / (max - min)) * 100;
-
-    const formatValue = (val: number) => {
-      return valueFormatter ? valueFormatter(val) : val.toString();
-    };
+    const formatValue = (val: number) => (valueFormatter ? valueFormatter(val) : val.toString());
 
     const getValueFromPosition = (clientX: number) => {
       if (!trackRef.current) return clampedValue;
-
       const rect = trackRef.current.getBoundingClientRect();
-      const percent = (clientX - rect.left) / rect.width;
-
-      const clampedPercent = Math.max(0, Math.min(1, percent));
-      const rawValue = clampedPercent * (max - min) + min;
-
-      // Round to nearest step
-      const steppedValue = Math.round(rawValue / step) * step;
-      return Math.min(Math.max(steppedValue, min), max);
+      const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      return Math.min(max, Math.max(min, Math.round((pct * (max - min) + min) / step) * step));
     };
 
-    const handleTrackClick = (e: React.PointerEvent) => {
-      if (disabled) return;
-
-      e.preventDefault();
-      const newValue = getValueFromPosition(e.clientX);
-      updateValue(newValue);
-      onChangeEnd?.(newValue);
+    const updateValue = (newVal: number) => {
+      const clamped = Math.min(max, Math.max(min, newVal));
+      if (!isControlled) setInternalValue(clamped);
+      onChange?.(clamped);
     };
 
     const handlePointerDown = (e: React.PointerEvent) => {
       if (disabled) return;
-
       e.preventDefault();
       setIsDragging(true);
-      let currentValue = getValueFromPosition(e.clientX);
-      updateValue(currentValue);
+      let current = getValueFromPosition(e.clientX);
+      updateValue(current);
 
-      // Add global listeners for drag
-      const handlePointerMove = (e: PointerEvent) => {
-        e.preventDefault();
-        currentValue = getValueFromPosition(e.clientX);
-        updateValue(currentValue);
+      const onMove = (ev: PointerEvent) => {
+        current = getValueFromPosition(ev.clientX);
+        updateValue(current);
       };
-
-      const handlePointerUp = () => {
+      const onUp = () => {
         setIsDragging(false);
-        onChangeEnd?.(currentValue);
-        document.removeEventListener("pointermove", handlePointerMove);
-        document.removeEventListener("pointerup", handlePointerUp);
+        onChangeEnd?.(current);
+        document.removeEventListener("pointermove", onMove);
+        document.removeEventListener("pointerup", onUp);
       };
-
-      document.addEventListener("pointermove", handlePointerMove);
-      document.addEventListener("pointerup", handlePointerUp);
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", onUp);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (disabled) return;
-
-      let newValue = clampedValue;
-
+      let next = clampedValue;
       switch (e.key) {
-        case "ArrowLeft":
-        case "ArrowDown":
-          e.preventDefault();
-          newValue = Math.max(min, clampedValue - step);
-          break;
         case "ArrowRight":
         case "ArrowUp":
           e.preventDefault();
-          newValue = Math.min(max, clampedValue + step);
+          next = Math.min(max, clampedValue + step);
+          break;
+        case "ArrowLeft":
+        case "ArrowDown":
+          e.preventDefault();
+          next = Math.max(min, clampedValue - step);
           break;
         case "Home":
           e.preventDefault();
-          newValue = min;
+          next = min;
           break;
         case "End":
           e.preventDefault();
-          newValue = max;
+          next = max;
           break;
         case "PageUp":
           e.preventDefault();
-          newValue = Math.min(max, clampedValue + (max - min) * 0.1);
+          next = Math.min(max, clampedValue + (max - min) * 0.1);
           break;
         case "PageDown":
           e.preventDefault();
-          newValue = Math.max(min, clampedValue - (max - min) * 0.1);
+          next = Math.max(min, clampedValue - (max - min) * 0.1);
           break;
         default:
           return;
       }
-
-      updateValue(newValue);
-      onChangeEnd?.(newValue);
+      updateValue(next);
+      onChangeEnd?.(next);
     };
-
-    const updateValue = (newValue: number) => {
-      const clamped = Math.min(Math.max(newValue, min), max);
-
-      if (isControlled) {
-        // For controlled components, just call onChange
-        onChange?.(clamped);
-      } else {
-        // For uncontrolled components, update internal state
-        setInternalValue(clamped);
-        onChange?.(clamped);
-      }
-    };
-
-    const trackClasses = cn(trackBase, sizes[size].track, className);
 
     const thumbClasses = cn(
       thumbBase,
       sizes[size].thumb,
-      error && errorStyles,
-      disabled && "shadow-none",
-      isDragging && "ring-2 ring-blue-300"
-    );
-
-    const labelClasses = cn(
-      labelBase,
-      labelSizes[size],
-      error && "text-red-700",
-      disabled && "text-gray-500"
-    );
-
-    const valueLabelClasses = cn(
-      valueLabelBase,
-      valueLabelSizes[size],
-      error && "text-red-700",
-      disabled && "text-gray-500"
+      error && "border-destructive",
+      isDragging &&
+        "scale-110 shadow-[0_0_0_var(--ring-offset)_hsl(var(--background)),0_0_0_calc(var(--ring-offset)+var(--ring-width))_var(--ring-color)]"
     );
 
     return (
-      <div ref={ref} className={wrapperBase}>
-        {label && (
-          <div className="flex items-center justify-between">
-            <label htmlFor={sliderId} className={labelClasses}>
-              {label}
-            </label>
-            {showValue && <span className={valueLabelClasses}>{formatValue(clampedValue)}</span>}
+      <div ref={ref} className={cn(wrapperBase, className)}>
+        {/* Label row */}
+        {(label || showValue) && (
+          <div className="mb-2 flex items-center justify-between">
+            {label && (
+              <label
+                htmlFor={sliderId}
+                className={cn(
+                  labelBase,
+                  sizes[size].text,
+                  error && "text-destructive",
+                  disabled && "text-muted-foreground"
+                )}
+              >
+                {label}
+              </label>
+            )}
+            {showValue && (
+              <span
+                className={cn(
+                  "text-muted-foreground tabular-nums",
+                  sizes[size].text,
+                  error && "text-destructive"
+                )}
+              >
+                {formatValue(clampedValue)}
+              </span>
+            )}
           </div>
         )}
 
-        <div className={cn(containerBase, "w-full min-w-[200px]")}>
+        {/*
+          Slider interaction area.
+          - Has an explicit height (= thumb height) so the absolute track has a
+            proper containing block and `top-1/2` works correctly.
+          - `flex items-center` centers the track rail within the wrapper.
+          - rui-focus-ring handles :focus-visible ring for keyboard nav.
+        */}
+        <div
+          className={cn(
+            "rui-focus-ring relative flex w-full cursor-pointer items-center outline-none",
+            sizes[size].wrapper,
+            disabled && "cursor-not-allowed opacity-50"
+          )}
+          onPointerDown={handlePointerDown}
+          onKeyDown={handleKeyDown}
+          tabIndex={disabled ? -1 : 0}
+          role="slider"
+          aria-valuemin={min}
+          aria-valuemax={max}
+          aria-valuenow={clampedValue}
+          aria-disabled={disabled}
+          aria-describedby={hasAssistive ? assistiveId : undefined}
+          id={sliderId}
+          {...props}
+        >
+          {/* Track rail — full width, relative so fill + thumb are positioned within it */}
           <div
-            ref={sliderRef}
-            className={sliderBase}
-            onPointerDown={handlePointerDown}
-            onKeyDown={handleKeyDown}
-            tabIndex={disabled ? -1 : 0}
-            role="slider"
-            aria-valuemin={min}
-            aria-valuemax={max}
-            aria-valuenow={clampedValue}
-            aria-disabled={disabled}
-            aria-describedby={hasAssistive ? assistiveId : undefined}
-            id={sliderId}
-            {...props}
+            ref={trackRef}
+            className={cn("bg-secondary relative w-full rounded-full", sizes[size].track)}
           >
+            {/* Filled portion */}
             <div
-              ref={trackRef}
-              className={cn(trackClasses, "absolute top-1/2 -translate-y-1/2")}
-              onPointerDown={handleTrackClick}
-            >
-              <div
-                className={cn("absolute top-0 left-0 h-full rounded-full", trackVariants[variant])}
-                style={{
-                  width: `${percentage}%`,
-                }}
-              />
-              <div
-                className={thumbClasses}
-                style={{
-                  left: `${percentage}%`,
-                  top: "50%",
-                  transform: `translateX(-50%) translateY(-50%)`,
-                }}
-              />
-            </div>
+              className={cn("absolute inset-y-0 left-0 rounded-full", trackFillVariants[variant])}
+              style={{ width: `${percentage}%` }}
+            />
+            {/* Thumb */}
+            <div className={thumbClasses} style={{ left: `${percentage}%` }} />
           </div>
         </div>
 
+        {/* Assistive text */}
         {hasAssistive && (
-          <div id={assistiveId} className={assistiveContainer}>
+          <div id={assistiveId} className="mt-2 px-0.5">
             {error && errorMessage ? (
-              <span className={errorText}>{errorMessage}</span>
+              <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (
-              <span className={descriptionText}>{description}</span>
+              <span className="text-muted-foreground text-sm">{description}</span>
             ) : null}
           </div>
         )}

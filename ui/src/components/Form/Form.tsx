@@ -57,9 +57,9 @@ export interface FormFieldProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const formFieldBase = tw`relative flex transition-all duration-200`;
-const labelBase = tw`font-medium text-gray-900 select-none`;
-const descriptionBase = tw`text-gray-600`;
-const errorBase = tw`text-red-600`;
+const labelBase = tw`font-medium text-foreground select-none`;
+const descriptionBase = tw`text-muted-foreground`;
+const errorBase = tw`text-destructive`;
 
 const formFieldVariants = {
   primary: tw``,
@@ -148,13 +148,13 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
             className={cn(
               labelBase,
               formFieldSizes[size].label,
-              error && "text-red-700",
+              error && "text-destructive",
               disabled && "opacity-50"
             )}
             htmlFor={assistiveId}
           >
             {label}
-            {required && <span className="ml-1 text-red-500">*</span>}
+            {required && <span className="text-destructive ml-1">*</span>}
           </label>
         )}
 
@@ -234,7 +234,7 @@ export interface FormSectionProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const formSectionBase = tw`relative flex flex-col transition-all duration-200`;
-const titleBase = tw`font-semibold text-gray-900`;
+const titleBase = tw`font-semibold text-foreground`;
 
 const formSectionVariants = {
   primary: tw``,
@@ -277,7 +277,7 @@ const sectionSizes = {
   },
 };
 
-const borderedStyles = tw`rounded-lg border border-gray-200 bg-white p-4 shadow-sm`;
+const borderedStyles = tw`rounded-lg border border-border bg-card p-4 shadow-sm`;
 
 export const FormSection = React.forwardRef<HTMLDivElement, FormSectionProps>(
   (
@@ -318,7 +318,7 @@ export const FormSection = React.forwardRef<HTMLDivElement, FormSectionProps>(
         {(title || description) && (
           <div className="flex flex-col gap-2">
             {title && (
-              <h3 className={cn(titleBase, sectionSizes[size].title, error && "text-red-700")}>
+              <h3 className={cn(titleBase, sectionSizes[size].title, error && "text-destructive")}>
                 {title}
               </h3>
             )}
@@ -327,7 +327,7 @@ export const FormSection = React.forwardRef<HTMLDivElement, FormSectionProps>(
                 className={cn(
                   descriptionBase,
                   sectionSizes[size].description,
-                  error && "text-red-600"
+                  error && "text-destructive"
                 )}
               >
                 {description}
@@ -339,7 +339,7 @@ export const FormSection = React.forwardRef<HTMLDivElement, FormSectionProps>(
         {children}
 
         {error && errorMessage && (
-          <div className="rounded-md border border-red-200 bg-red-50 p-3">
+          <div className="border-destructive/30 bg-destructive/10 rounded-md border p-3">
             <p className={cn(errorBase, sectionSizes[size].error)}>{errorMessage}</p>
           </div>
         )}
@@ -427,8 +427,8 @@ export interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement
 const formBase = tw`relative flex transition-all duration-200`;
 
 const formVariants = {
-  primary: tw`text-gray-900`,
-  secondary: tw`text-gray-700`,
+  primary: tw`text-foreground`,
+  secondary: tw`text-foreground/80`,
 };
 
 const formSpacings = {
@@ -444,7 +444,7 @@ const formDirections = {
   horizontal: tw`flex-row flex-wrap`,
 };
 
-const cardStyles = tw`rounded-lg border border-gray-200 bg-white p-6 shadow-sm`;
+const cardStyles = tw`rounded-lg border border-border bg-card p-6 shadow-sm`;
 
 export const Form = React.forwardRef<HTMLFormElement, FormProps>(
   (
@@ -509,7 +509,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
             {title && (
               <h2
                 className={cn(
-                  "mb-2 font-semibold text-gray-900",
+                  "text-foreground mb-2 font-semibold",
                   size === "xs" && "text-lg",
                   size === "sm" && "text-xl",
                   size === "md" && "text-2xl",
@@ -523,7 +523,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
             {description && (
               <p
                 className={cn(
-                  "text-gray-600",
+                  "text-muted-foreground",
                   size === "xs" && "text-sm",
                   size === "sm" && "text-sm",
                   size === "md" && "text-base",
@@ -551,14 +551,14 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
         </div>
 
         {error && errorMessage && (
-          <div className="mt-4 rounded-md border border-red-200 bg-red-50 p-3">
-            <p className="text-sm text-red-600">{errorMessage}</p>
+          <div className="border-destructive/30 bg-destructive/10 mt-4 rounded-md border p-3">
+            <p className="text-destructive text-sm">{errorMessage}</p>
           </div>
         )}
 
         {loading && (
-          <div className="mt-4 rounded-md border border-blue-200 bg-blue-50 p-3">
-            <p className="text-sm text-blue-600">{loadingMessage}</p>
+          <div className="border-info/30 bg-info/10 mt-4 rounded-md border p-3">
+            <p className="text-info text-sm">{loadingMessage}</p>
           </div>
         )}
       </>

@@ -54,38 +54,23 @@ export interface DatePickerProps {
 
 // Sizing and style tokens aligned with TextInput
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
-const fieldBase = tw`relative inline-flex items-center border bg-white text-gray-900 transition-all duration-200 focus-within:ring-3 disabled:cursor-not-allowed disabled:opacity-50`;
+const fieldBase = tw`rui-field-focus relative inline-flex items-center border bg-background text-foreground transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-50`;
 const variants = {
-  primary: tw`border-gray-300 focus-within:border-blue-500 focus-within:ring-blue-200`,
-  secondary: tw`border-gray-300 bg-gray-50 focus-within:border-gray-500 focus-within:ring-gray-200`,
+  primary: tw`border-input bg-background`,
+  secondary: tw`border-input bg-muted`,
 };
 const sizes = {
-  xs: {
-    container: tw`h-8`,
-    input: tw`text-xs`,
-    padX: "px-2",
-    gap: "gap-1.5",
-  },
-  sm: { container: tw`h-9`, input: tw`text-sm`, padX: "px-3", gap: "gap-2" },
-  md: {
-    container: tw`h-10`,
-    input: tw`text-base`,
-    padX: "px-3.5",
-    gap: "gap-2",
-  },
-  lg: {
-    container: tw`h-12`,
-    input: tw`text-lg`,
-    padX: "px-4",
-    gap: "gap-2.5",
-  },
-  xl: { container: tw`h-14`, input: tw`text-xl`, padX: "px-5", gap: "gap-3" },
+  xs: { container: tw`h-7`, input: tw`text-xs`, padX: "px-2", gap: "gap-1" },
+  sm: { container: tw`h-8`, input: tw`text-xs`, padX: "px-2.5", gap: "gap-1.5" },
+  md: { container: tw`h-9`, input: tw`text-sm`, padX: "px-3", gap: "gap-2" },
+  lg: { container: tw`h-10`, input: tw`text-sm`, padX: "px-3.5", gap: "gap-2" },
+  xl: { container: tw`h-12`, input: tw`text-base`, padX: "px-4", gap: "gap-2.5" },
 } as const;
 
 // Icon button sizes to match control size
 const iconBtnSizes: Record<keyof typeof sizes, string> = {
-  xs: "h-6 w-6",
-  sm: "h-7 w-7",
+  xs: "h-5 w-5",
+  sm: "h-6 w-6",
   md: "h-7 w-7",
   lg: "h-8 w-8",
   xl: "h-9 w-9",
@@ -193,7 +178,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     if (dd !== nextDD) setDD(nextDD);
     if (mm !== nextMM) setMM(nextMM);
     if (yyyy !== nextYYYY) setYYYY(nextYYYY);
-  }, [value]);
+  }, [value, dd, mm, yyyy]);
 
   const hasAssistive = Boolean(description || error);
   const assistiveId = `${inputId}-desc`;
@@ -390,9 +375,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         <label
           htmlFor={inputId}
           className={cn(
-            "mb-1 font-medium text-gray-900",
+            "text-foreground mb-1 font-medium",
             labelSizes[size],
-            showError && "text-red-700"
+            showError && "text-destructive"
           )}
         >
           {label}
@@ -406,7 +391,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           roundedOptions[rounded],
           sizes[size].padX,
           "gap-0.5", // tighter spacing between segments
-          showError && "border-red-500 focus-within:border-red-500 focus-within:ring-red-200",
+          showError && "rui-field-error border-destructive",
           fullWidth && "w-full",
           className
         )}
@@ -432,7 +417,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
               <span
                 key={`sep-${parts.length}`}
                 aria-hidden
-                className="px-0 text-gray-400 select-none"
+                className="text-muted-foreground/60 px-0 select-none"
               >
                 /
               </span>
@@ -455,7 +440,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 disabled={disabled}
                 className={cn(
                   "w-9 min-w-0 bg-transparent text-center outline-none",
-                  "placeholder:font-light placeholder:text-gray-400",
+                  "placeholder:text-muted-foreground placeholder:font-light",
                   sizes[size].input
                 )}
               />
@@ -475,7 +460,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 disabled={disabled}
                 className={cn(
                   "w-9 min-w-0 bg-transparent text-center outline-none",
-                  "placeholder:font-light placeholder:text-gray-400",
+                  "placeholder:text-muted-foreground placeholder:font-light",
                   sizes[size].input
                 )}
               />
@@ -495,7 +480,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 disabled={disabled}
                 className={cn(
                   "w-16 min-w-0 bg-transparent text-center outline-none",
-                  "placeholder:font-light placeholder:text-gray-400",
+                  "placeholder:text-muted-foreground placeholder:font-light",
                   sizes[size].input
                 )}
               />
@@ -524,7 +509,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             onClick={() => setOpen(v => !v)}
             disabled={disabled}
             className={cn(
-              "ml-auto inline-flex items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+              "text-muted-foreground hover:bg-accent hover:text-accent-foreground rui-focus-ring ml-auto inline-flex items-center justify-center rounded-md",
               iconBtnSizes[size]
             )}
           >
@@ -536,7 +521,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         {withCalendar && open && (
           <div
             ref={popRef}
-            className={tw`animate-in fade-in zoom-in-95 absolute top-[calc(100%+6px)] left-0 z-50 w-max rounded-md bg-white shadow-lg duration-150`}
+            className={tw`animate-in fade-in zoom-in-95 border-border bg-popover text-popover-foreground absolute top-[calc(100%+6px)] left-0 z-50 w-max rounded-md border shadow-md duration-150`}
             role="dialog"
             aria-modal={false}
           >
@@ -568,9 +553,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       {hasAssistive && (
         <div id={assistiveId} className="mt-1 min-h-[1rem]">
           {showError && errorMessage ? (
-            <span className="text-sm text-red-600">{errorMessage}</span>
+            <span className="text-destructive text-sm">{errorMessage}</span>
           ) : description ? (
-            <span className="text-sm text-gray-600">{description}</span>
+            <span className="text-muted-foreground text-sm">{description}</span>
           ) : null}
         </div>
       )}

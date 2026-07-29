@@ -1,0 +1,119 @@
+/* =============================================================================
+   RUI Design Tokens — Light & Dark Mode (shadcn/ui compatible)
+   -----------------------------------------------------------------------------
+   All semantic color names follow shadcn/ui standards using raw HSL channels.
+   Supports automatic system dark mode, `.dark` class, and `data-theme="dark"`.
+   ============================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Background & Foreground */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+
+  /* Card & Popover Surfaces */
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  /* Primary Brand Color */
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+
+  /* Secondary (Subdued controls) */
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  /* Muted Surfaces & Text */
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  /* Accent (Hover highlights & selected items) */
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+
+  /* Destructive */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  /* Borders, Inputs & Focus Ring */
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+
+  /* Status Tokens */
+  --success: 142.1 76.2% 36.3%;
+  --success-foreground: 355.7 100% 97.3%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 48 96% 89%;
+  --info: 199 89% 48%;
+  --info-foreground: 210 40% 98%;
+
+  /* Corner Radius */
+  --radius: 0.5rem;
+
+  /* Focus Ring Metrics */
+  --ring-width: 2px;
+  --ring-offset: 2px;
+  --ring-color: hsl(var(--ring) / 0.4);
+  --field-focus-border: hsl(var(--ring));
+}
+
+/* =============================================================================
+   Dark Theme Overrides (.dark / [data-theme="dark"])
+   ============================================================================= */
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Background & Foreground */
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+
+  /* Card & Popover Surfaces */
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+
+  /* Primary Brand Color */
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+
+  /* Secondary (Subdued controls) */
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+
+  /* Muted Surfaces & Text */
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  /* Accent (Hover highlights & selected items) */
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+
+  /* Destructive */
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  /* Borders, Inputs & Focus Ring */
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+
+  /* Status Tokens */
+  --success: 142.1 70.6% 45.3%;
+  --success-foreground: 144.9 80.4% 10%;
+  --warning: 48 96% 53%;
+  --warning-foreground: 26 83.3% 14.1%;
+  --info: 199 89% 58%;
+  --info-foreground: 222.2 47.4% 11.2%;
+
+  /* Focus Ring Metrics */
+  --ring-color: hsl(var(--ring) / 0.6);
+  --field-focus-border: hsl(var(--ring));
+}
