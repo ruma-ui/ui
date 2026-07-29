@@ -307,39 +307,3 @@ jobs:
             docs/
             ui/storybook-static/
           retention-days: 30
-
-  # Notify on failures
-  notify-failure:
-    needs: [lint, typecheck, security, test, build]
-    runs-on: ubuntu-latest
-    if: always() && (needs.lint.result == 'failure' || needs.typecheck.result == 'failure' || needs.security.result == 'failure' || needs.test.result == 'failure' || needs.build.result == 'failure')
-    steps:
-      - name: Create failure issue
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const runUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}`;
-            const branch = '${{ github.ref_name }}';
-
-            // Get job statuses from workflow context
-            const lintResult = '${{ needs.lint.result }}';
-            const typecheckResult = '${{ needs.typecheck.result }}';
-            const securityResult = '${{ needs.security.result }}';
-            const testResult = '${{ needs.test.result }}';
-            const buildResult = '${{ needs.build.result }}';
-
-            // Build the failed jobs list
-            let failedJobs = '';
-            if (lintResult === 'failure') failedJobs += '- Lint checks\n';
-            if (typecheckResult === 'failure') failedJobs += '- Type checks\n';
-            if (securityResult === 'failure') failedJobs += '- Security checks\n';
-            if (testResult === 'failure') failedJobs += '- Tests\n';
-            if (buildResult === 'failure') failedJobs += '- Build\n';
-
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🚨 CI Failed on ${branch}`,
-              body: `The CI workflow failed on branch \`${branch}\`.\n\n**Workflow Run:** ${runUrl}\n\n**Failed Jobs:**\n${failedJobs}\nPlease check the logs for details.`,
-              labels: ['bug', 'ci', `branch:${branch}`]
-            });

@@ -2,6 +2,7 @@ packages:
   - "ui"
   - "demo"
   - "www"
+  - "packages/*"
 
 autoInstallPeers: true
 strictPeerDependencies: false

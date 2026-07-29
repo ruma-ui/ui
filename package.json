@@ -10,9 +10,10 @@
   "license": "MIT",
   "author": "Ruma UI",
   "scripts": {
-    "build": "nx run-many -t build",
+    "build": "nx run-many -t build && npm run build:registry",
     "build:analyze": "cross-env NODE_ENV=analyze nx build ui",
-    "build:production": "cross-env NODE_ENV=production nx run-many -t build",
+    "build:production": "cross-env NODE_ENV=production nx run-many -t build && npm run build:registry",
+    "build:registry": "npx tsx scripts/build-registry.ts",
     "build:ui": "nx build ui",
     "build-storybook": "nx build-storybook ui",
     "changeset": "changeset",
@@ -118,6 +119,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@types/node": "24.7.0",
+    "@types/prompts": "^2.4.9",
     "@types/react": "19.2.0",
     "@types/react-dom": "19.2.0",
     "@vitejs/plugin-react": "6.0.2",
@@ -128,6 +130,7 @@
     "baseline-browser-mapping": "^2.10.38",
     "c8": "^10.1.3",
     "chromatic": "^13.2.0",
+    "commander": "^15.0.0",
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "cross-env": "^10.0.0",
     "eslint": "^9.36.0",
@@ -138,6 +141,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-storybook": "^10.4.6",
+    "execa": "^10.0.0",
     "husky": "^9.1.7",
     "jest": "30.3.0",
     "jest-environment-jsdom": "^30.1.2",
@@ -148,9 +152,11 @@
     "jsonc-eslint-parser": "^2.4.0",
     "lint-staged": "^16.1.6",
     "nx": "23.0.0",
+    "ora": "^9.4.1",
     "postcss": "8.5.6",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "prompts": "^2.4.2",
     "rollup-plugin-visualizer": "^6.0.3",
     "semantic-release": "^24.2.9",
     "size-limit": "^11.2.0",
@@ -168,7 +174,8 @@
     "vite": "8.0.9",
     "vite-bundle-analyzer": "^1.2.3",
     "vite-plugin-dts": "~4.5.4",
-    "vitest": "4.1.9"
+    "vitest": "4.1.9",
+    "zod": "^4.4.3"
   },
   "nx": {
     "includedScripts": []

@@ -181,27 +181,6 @@ jobs:
             storybook-static/
           retention-days: 90
 
-  # Notify on failures
-  notify-failure:
-    needs: [prerelease, stable-release]
-    runs-on: ubuntu-latest
-    if: always() && (needs.prerelease.result == 'failure' || needs.stable-release.result == 'failure')
-    steps:
-      - name: Notify on failure
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const branch = '${{ github.ref_name }}';
-            const runUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}`;
-
-            github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🚨 Release Failed on ${branch}`,
-              body: `The release workflow failed on branch \`${branch}\`.\n\n**Workflow Run:** ${runUrl}\n\nPlease check the logs for details.`,
-              labels: ['bug', 'release', `branch:${branch}`]
-            });
-
   # Update dev branch after stable release
   sync-dev:
     needs: stable-release
