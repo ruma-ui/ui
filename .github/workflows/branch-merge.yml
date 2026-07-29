@@ -35,8 +35,11 @@ permissions:
   pull-requests: write
 
 jobs:
+  # ── Validate the requested merge path ─────────────────────────────────────
   validate-merge:
+    name: 🔍 Validate merge path
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     outputs:
       valid: ${{ steps.validation.outputs.valid }}
       reason: ${{ steps.validation.outputs.reason }}
@@ -47,7 +50,14 @@ jobs:
           SOURCE="${{ github.event.inputs.source_branch }}"
           TARGET="${{ github.event.inputs.target_branch }}"
 
-          # Define valid merge paths
+          # Guard: source and target must differ
+          if [[ "$SOURCE" == "$TARGET" ]]; then
+            echo "valid=false" >> $GITHUB_OUTPUT
+            echo "reason=Source and target branches cannot be the same: $SOURCE" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Only allow strictly forward promotion paths
           VALID_PATHS=(
             "dev->alpha"
             "alpha->beta"
@@ -70,12 +80,15 @@ jobs:
             echo "reason=Valid merge path: $MERGE_PATH" >> $GITHUB_OUTPUT
           else
             echo "valid=false" >> $GITHUB_OUTPUT
-            echo "reason=Invalid merge path: $MERGE_PATH. Valid paths: ${VALID_PATHS[*]}" >> $GITHUB_OUTPUT
+            echo "reason=Invalid merge path: $MERGE_PATH. Allowed paths: ${VALID_PATHS[*]}" >> $GITHUB_OUTPUT
           fi
 
+  # ── Perform the merge ──────────────────────────────────────────────────────
   merge-branches:
+    name: 🔀 Merge ${{ github.event.inputs.source_branch }} → ${{ github.event.inputs.target_branch }}
     needs: validate-merge
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: needs.validate-merge.outputs.valid == 'true'
     steps:
       - name: Checkout
@@ -84,7 +97,7 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Git
+      - name: Setup Git identity
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -95,36 +108,34 @@ jobs:
           TARGET="${{ github.event.inputs.target_branch }}"
           MERGE_TYPE="${{ github.event.inputs.merge_type }}"
 
-          # Ensure we have the latest branches
           git fetch origin
 
-          # Checkout target branch
-          git checkout $TARGET
-          git pull origin $TARGET
+          git checkout "$TARGET"
+          git pull origin "$TARGET"
 
-          # Perform merge
           if [[ "$MERGE_TYPE" == "squash" ]]; then
-            git merge --squash origin/$SOURCE
-            git commit -m "feat: merge $SOURCE into $TARGET (squashed)"
+            git merge --squash "origin/$SOURCE"
+            git commit -m "feat: squash merge $SOURCE into $TARGET [skip ci]"
           else
-            git merge origin/$SOURCE --no-ff -m "feat: merge $SOURCE into $TARGET"
+            git merge "origin/$SOURCE" --no-ff -m "feat: merge $SOURCE into $TARGET [skip ci]"
           fi
 
-          # Push the result
-          git push origin $TARGET
+          git push origin "$TARGET"
 
-      - name: Create merge summary
+      - name: Print merge summary
         run: |
           SOURCE="${{ github.event.inputs.source_branch }}"
           TARGET="${{ github.event.inputs.target_branch }}"
           MERGE_TYPE="${{ github.event.inputs.merge_type }}"
-
           echo "✅ Successfully merged $SOURCE into $TARGET using $MERGE_TYPE"
           echo "🚀 Branch $TARGET is now ready for release"
 
+  # ── Report invalid merge attempt ──────────────────────────────────────────
   merge-failed:
+    name: ❌ Invalid merge rejected
     needs: validate-merge
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     if: needs.validate-merge.outputs.valid == 'false'
     steps:
       - name: Report invalid merge

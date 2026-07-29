@@ -39,9 +39,11 @@ permissions:
   packages: write
 
 jobs:
-  # Automated pre-release job for alpha and beta branches
+  # ── Pre-release: auto-triggered on alpha/beta pushes ──────────────────────
   prerelease:
+    name: 🚀 Prerelease (${{ github.ref_name }})
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     if: contains(fromJson('["alpha", "beta"]'), github.ref_name) && !contains(github.event.head_commit.message, '[skip ci]')
     steps:
       - name: Checkout
@@ -62,6 +64,11 @@ jobs:
           node-version: 22
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
+
+      - name: Setup Git identity
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -87,27 +94,22 @@ jobs:
         run: cd packages/cli && pnpm publish --no-git-checks --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Build documentation
-        if: success()
-        run: pnpm run docs:build
-
-      - name: Upload build artifacts
-        if: success()
+      - name: Upload prerelease artifacts
+        if: steps.semantic.outputs.new_release_published == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: prerelease-artifacts-${{ github.ref_name }}
+          name: prerelease-artifacts-${{ github.ref_name }}-${{ github.run_id }}
           path: |
             dist/
             ui/dist/
-            docs/
-            storybook-static/
           retention-days: 30
 
-  # Manual release job for rc and main branches
+  # ── Stable release: manual dispatch or push to rc/main ───────────────────
   stable-release:
+    name: 📦 Stable Release
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     if: >
       (github.event_name == 'workflow_dispatch') ||
       (contains(fromJson('["rc","main"]'), github.ref_name) &&
@@ -143,16 +145,16 @@ jobs:
       - name: Check bundle size
         run: pnpm run size
 
-      - name: Validate Manual Release
+      - name: Validate manual release confirmation
         if: github.event_name == 'workflow_dispatch'
         run: |
           if [ "${{ github.event.inputs.confirm_release }}" != "CONFIRM" ]; then
-            echo "Release not confirmed. Please type 'CONFIRM' to proceed."
+            echo "❌ Release not confirmed. Please type 'CONFIRM' to proceed."
             exit 1
           fi
-          echo "Release confirmed for ${{ github.event.inputs.release_type }} on branch ${{ github.ref_name }}"
+          echo "✅ Release confirmed for ${{ github.event.inputs.release_type }} on branch ${{ github.ref_name }}"
 
-      - name: Setup Git
+      - name: Setup Git identity
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -178,29 +180,24 @@ jobs:
         run: cd packages/cli && pnpm publish --no-git-checks --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Build documentation
-        if: steps.changesets.outputs.published == 'true'
-        run: pnpm run docs:build
-
-      - name: Upload build artifacts
+      - name: Upload stable artifacts
         if: steps.changesets.outputs.published == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: stable-artifacts-${{ github.ref_name }}
+          name: stable-artifacts-${{ github.ref_name }}-${{ github.run_id }}
           path: |
             dist/
             ui/dist/
-            docs/
-            storybook-static/
           retention-days: 90
 
-  # Update dev branch after stable release
+  # ── Sync main → dev after every stable release ───────────────────────────
   sync-dev:
+    name: 🔄 Sync main → dev
     needs: stable-release
     runs-on: ubuntu-latest
-    if: needs.stable-release.result == 'success' && github.ref_name == 'main'
+    timeout-minutes: 10
+    if: needs.stable-release.result == 'success' && needs.stable-release.outputs.published == 'true' && github.ref_name == 'main'
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -208,10 +205,15 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Sync main back to dev
+      - name: Setup Git identity
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+
+      - name: Sync main → dev
+        run: |
+          git fetch origin
           git checkout dev
-          git merge main --no-ff -m "chore: sync main back to dev after stable release" || true
+          git pull origin dev
+          git merge origin/main --no-ff -m "chore: sync main → dev after stable release [skip ci]" || true
           git push origin dev
