@@ -18,7 +18,7 @@ import {
 export default function Home() {
   const [copiedCli, setCopiedCli] = useState(false);
 
-  const cliCommand = "npx ruma-ui init";
+  const cliCommand = "npx @ruma-ui/cli init";
 
   const copyCli = () => {
     navigator.clipboard.writeText(cliCommand);

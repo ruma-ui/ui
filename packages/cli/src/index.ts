@@ -30,7 +30,9 @@ program
   .option("-o, --overwrite", "overwrite existing files", false)
   .action(async (components, options) => {
     if (!components || components.length === 0) {
-      console.log("Please specify components to add (e.g. `npx ruma-ui add button card modal`)");
+      console.log(
+        "Please specify components to add (e.g. `npx @ruma-ui/cli add button card modal`)"
+      );
       return;
     }
     await runAdd(components, options);
