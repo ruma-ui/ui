@@ -8,6 +8,12 @@ on:
       - beta
       - rc
       - main
+    paths-ignore:
+      - "*.md"
+      - "docs/**"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/pull_request_template.md"
+      - "CHANGELOG.md"
   pull_request:
     branches:
       - dev
@@ -15,40 +21,55 @@ on:
       - beta
       - rc
       - main
+    paths-ignore:
+      - "*.md"
+      - "docs/**"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/pull_request_template.md"
+      - "CHANGELOG.md"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   actions: read
   contents: read
   issues: write
   pull-requests: read
+  security-events: write
+
+# ─── Reusable setup composite ────────────────────────────────────────────────
+# Each job re-installs dependencies and restores the Nx cache independently.
+# This avoids cross-job artifact passing complexity while keeping each job
+# hermetic and reproducible.
+# ─────────────────────────────────────────────────────────────────────────────
 
 jobs:
-  # Check what files changed to conditionally run jobs
+  # ── 1. Path-filter — decide which jobs need to run ───────────────────────
   changes:
+    name: 🔍 Detect changed paths
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     outputs:
-      src: ${{ steps.changes.outputs.src }}
-      config: ${{ steps.changes.outputs.config }}
-      workflows: ${{ steps.changes.outputs.workflows }}
-      docs: ${{ steps.changes.outputs.docs }}
+      src: ${{ steps.filter.outputs.src }}
+      config: ${{ steps.filter.outputs.config }}
+      workflows: ${{ steps.filter.outputs.workflows }}
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Check changed files
-        id: changes
+      - name: Detect changed files
+        id: filter
         uses: dorny/paths-filter@v3
         with:
-          # Add token for better API access
           token: ${{ github.token }}
           filters: |
             src:
               - 'ui/src/**'
+              - 'packages/**/src/**'
               - 'demo/src/**'
               - 'www/src/**'
             config:
@@ -57,68 +78,82 @@ jobs:
               - '**/package.json'
               - 'nx.json'
               - 'tsconfig*.json'
+              - 'vitest.config.*'
+              - 'jest.config.*'
+              - 'eslint.config.*'
             workflows:
               - '.github/workflows/**'
-            docs:
-              - 'docs/**'
-              - '*.md'
 
-  # Initial setup and dependency installation
+  # ── 2. Install & prime the Nx cache ──────────────────────────────────────
   setup:
+    name: 📦 Install & cache
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: changes
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: |
+      needs.changes.outputs.src     == 'true' ||
+      needs.changes.outputs.config  == 'true' ||
+      needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: "pnpm"
 
-      # Install dependencies with retry
-      - name: Install dependencies with retry
+      - name: Install dependencies (with retry)
         uses: nick-fields/retry@v3
         with:
           timeout_minutes: 10
           max_attempts: 3
           command: pnpm install --frozen-lockfile
 
-      # Cache Nx workspace
-      - name: Cache Nx workspace
+      - name: Prime Nx cache
         uses: actions/cache@v4
         with:
           path: |
             .nx/cache
             .nx/workspace-data
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
+          key: nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
-            ${{ runner.os }}-nx-
+            nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
+            nx-${{ runner.os }}-
 
-  # Code quality and linting
+  # ── 3. Lint ───────────────────────────────────────────────────────────────
   lint:
+    name: 🔎 Lint
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: |
+      needs.changes.outputs.src     == 'true' ||
+      needs.changes.outputs.config  == 'true' ||
+      needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: "pnpm"
@@ -126,38 +161,44 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Restore Nx cache
       - name: Restore Nx cache
         uses: actions/cache@v4
         with:
           path: |
             .nx/cache
             .nx/workspace-data
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
+          key: nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
-            ${{ runner.os }}-nx-
+            nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
+            nx-${{ runner.os }}-
 
-      # Lint using Nx
-      - name: Lint
-        run: pnpm dlx nx run-many -t lint --parallel=3
+      - name: Run linter
+        run: pnpm nx run-many -t lint --parallel=3
 
-  # Type checking
+  # ── 4. Type-check ─────────────────────────────────────────────────────────
   typecheck:
+    name: 🔷 Typecheck
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: |
+      needs.changes.outputs.src     == 'true' ||
+      needs.changes.outputs.config  == 'true' ||
+      needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: "pnpm"
@@ -165,38 +206,44 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Restore Nx cache
       - name: Restore Nx cache
         uses: actions/cache@v4
         with:
           path: |
             .nx/cache
             .nx/workspace-data
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
+          key: nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
-            ${{ runner.os }}-nx-
+            nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
+            nx-${{ runner.os }}-
 
-      # Typecheck using Nx
-      - name: Typecheck
-        run: pnpm dlx nx run-many -t typecheck --parallel=3
+      - name: Run typecheck
+        run: pnpm nx run-many -t typecheck --parallel=3
 
-  # Security checks
+  # ── 5. Security audit ─────────────────────────────────────────────────────
   security:
+    name: 🔒 Security
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: |
+      needs.changes.outputs.src     == 'true' ||
+      needs.changes.outputs.config  == 'true' ||
+      needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: "pnpm"
@@ -204,33 +251,41 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Security scanning
-      - name: Run security audit
+      - name: npm audit (high severity)
         run: pnpm audit --audit-level high
         continue-on-error: true
 
-      # Dependency scanning for PRs
-      - name: Dependency Review
+      - name: Dependency Review (PR only)
         uses: actions/dependency-review-action@v4
         if: github.event_name == 'pull_request'
+        with:
+          fail-on-severity: high
         continue-on-error: true
 
-  # Testing
+  # ── 6. Unit tests ─────────────────────────────────────────────────────────
   test:
+    name: 🧪 Test
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: |
+      needs.changes.outputs.src     == 'true' ||
+      needs.changes.outputs.config  == 'true' ||
+      needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: "pnpm"
@@ -238,37 +293,52 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Restore Nx cache
       - name: Restore Nx cache
         uses: actions/cache@v4
         with:
           path: |
             .nx/cache
             .nx/workspace-data
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
+          key: nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
-            ${{ runner.os }}-nx-
+            nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
+            nx-${{ runner.os }}-
 
-      - name: Run unit tests
-        run: pnpm dlx nx run-many -t test --parallel=3 --coverage
+      - name: Run unit tests with coverage
+        run: pnpm nx run-many -t test --parallel=3 --coverage
 
-  # Build
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report-${{ github.run_id }}
+          path: coverage/
+          retention-days: 14
+
+  # ── 7. Build ──────────────────────────────────────────────────────────────
   build:
+    name: 🏗️ Build
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: [changes, setup]
-    if: needs.changes.outputs.src == 'true' || needs.changes.outputs.config == 'true' || needs.changes.outputs.workflows == 'true'
+    if: |
+      needs.changes.outputs.src     == 'true' ||
+      needs.changes.outputs.config  == 'true' ||
+      needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 10.18.1
           run_install: false
 
-      - uses: actions/setup-node@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: "pnpm"
@@ -276,35 +346,47 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Restore Nx cache
       - name: Restore Nx cache
         uses: actions/cache@v4
         with:
           path: |
             .nx/cache
             .nx/workspace-data
-          key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
+          key: nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nx-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
-            ${{ runner.os }}-nx-
+            nx-${{ runner.os }}-${{ hashFiles('**/package.json', 'nx.json', '**/project.json') }}-
+            nx-${{ runner.os }}-
 
-      - name: Build
-        run: pnpm dlx nx run-many -t build --parallel=3
+      - name: Build all packages
+        run: pnpm nx run-many -t build --parallel=3
 
-      - name: Build docs
-        run: pnpm run docs:build
-
-      - name: Optimization checks
+      - name: Check bundle size limits
         run: pnpm run size
 
-      # Upload build artifacts
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts
+          name: build-artifacts-${{ github.run_id }}
           path: |
             dist/
             ui/dist/
-            docs/
-            ui/storybook-static/
-          retention-days: 30
+          retention-days: 14
+
+  # ── 8. CI gate — all required checks must pass ────────────────────────────
+  ci-success:
+    name: ✅ CI gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [lint, typecheck, test, build, security]
+    if: always()
+    steps:
+      - name: Check all jobs
+        run: |
+          RESULTS="${{ join(needs.*.result, ' ') }}"
+          for result in $RESULTS; do
+            if [[ "$result" != "success" && "$result" != "skipped" ]]; then
+              echo "❌ One or more CI jobs failed: $RESULTS"
+              exit 1
+            fi
+          done
+          echo "✅ All CI checks passed"
