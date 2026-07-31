@@ -1,3 +1,10 @@
+## [1.0.0-alpha.4](https://github.com/ruma-ui/ui/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2026-07-31)
+
+### 🐛 Bug Fixes
+
+- **release:** promote published versions to npm latest dist-tag ([476321b](https://github.com/ruma-ui/ui/commit/476321b3573abde59e3655853cb9a1a8a8ca2bc3))
+- **release:** promote published versions to npm latest dist-tag ([40758b1](https://github.com/ruma-ui/ui/commit/40758b141d9d4cb39b09b405dd23aa9542bb87c0))
+
 ## [1.0.0-alpha.3](https://github.com/ruma-ui/ui/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2026-07-31)
 
 ### 🚀 Features
