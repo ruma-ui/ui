@@ -65,10 +65,12 @@ jobs:
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Setup Git identity
+      - name: Setup Git identity and sync branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git fetch origin ${{ github.ref_name }}
+          git checkout -B ${{ github.ref_name }} origin/${{ github.ref_name }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -173,10 +175,12 @@ jobs:
           fi
           echo "✅ Release confirmed for ${{ github.event.inputs.release_type }} on branch ${{ github.ref_name }}"
 
-      - name: Setup Git identity
+      - name: Setup Git identity and sync branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git fetch origin ${{ github.ref_name }}
+          git checkout -B ${{ github.ref_name }} origin/${{ github.ref_name }}
 
       - name: Build packages
         run: pnpm run build:production
