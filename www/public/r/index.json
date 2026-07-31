@@ -17,7 +17,7 @@
     "name": "accordion",
     "type": "registry:ui",
     "title": "Accordion",
-    "description": "Production-ready Accordion component for @rumaui",
+    "description": "Production-ready Accordion component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -32,7 +32,7 @@
     "name": "alert",
     "type": "registry:ui",
     "title": "Alert",
-    "description": "Production-ready Alert component for @rumaui",
+    "description": "Production-ready Alert component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -47,7 +47,7 @@
     "name": "avatar",
     "type": "registry:ui",
     "title": "Avatar",
-    "description": "Production-ready Avatar component for @rumaui",
+    "description": "Production-ready Avatar component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -62,7 +62,7 @@
     "name": "badge",
     "type": "registry:ui",
     "title": "Badge",
-    "description": "Production-ready Badge component for @rumaui",
+    "description": "Production-ready Badge component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -77,7 +77,7 @@
     "name": "breadcrumb",
     "type": "registry:ui",
     "title": "Breadcrumb",
-    "description": "Production-ready Breadcrumb component for @rumaui",
+    "description": "Production-ready Breadcrumb component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -92,7 +92,7 @@
     "name": "button",
     "type": "registry:ui",
     "title": "Button",
-    "description": "Production-ready Button component for @rumaui",
+    "description": "Production-ready Button component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -107,7 +107,7 @@
     "name": "calendar",
     "type": "registry:ui",
     "title": "Calendar",
-    "description": "Production-ready Calendar component for @rumaui",
+    "description": "Production-ready Calendar component for @ruma-org",
     "dependencies": ["react-icons", "date-fns"],
     "registryDependencies": ["utils"],
     "files": [
@@ -122,7 +122,7 @@
     "name": "card",
     "type": "registry:ui",
     "title": "Card",
-    "description": "Production-ready Card component for @rumaui",
+    "description": "Production-ready Card component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -137,7 +137,7 @@
     "name": "carousel",
     "type": "registry:ui",
     "title": "Carousel",
-    "description": "Production-ready Carousel component for @rumaui",
+    "description": "Production-ready Carousel component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -152,7 +152,7 @@
     "name": "checkbox",
     "type": "registry:ui",
     "title": "Checkbox",
-    "description": "Production-ready Checkbox component for @rumaui",
+    "description": "Production-ready Checkbox component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -167,7 +167,7 @@
     "name": "clipboard",
     "type": "registry:ui",
     "title": "Clipboard",
-    "description": "Production-ready Clipboard component for @rumaui",
+    "description": "Production-ready Clipboard component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -182,7 +182,7 @@
     "name": "contextmenu",
     "type": "registry:ui",
     "title": "ContextMenu",
-    "description": "Production-ready ContextMenu component for @rumaui",
+    "description": "Production-ready ContextMenu component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -197,7 +197,7 @@
     "name": "datepicker",
     "type": "registry:ui",
     "title": "DatePicker",
-    "description": "Production-ready DatePicker component for @rumaui",
+    "description": "Production-ready DatePicker component for @ruma-org",
     "dependencies": ["react-icons", "date-fns"],
     "registryDependencies": ["utils"],
     "files": [
@@ -212,7 +212,7 @@
     "name": "drawer",
     "type": "registry:ui",
     "title": "Drawer",
-    "description": "Production-ready Drawer component for @rumaui",
+    "description": "Production-ready Drawer component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -227,7 +227,7 @@
     "name": "dropdown",
     "type": "registry:ui",
     "title": "Dropdown",
-    "description": "Production-ready Dropdown component for @rumaui",
+    "description": "Production-ready Dropdown component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -242,7 +242,7 @@
     "name": "editable",
     "type": "registry:ui",
     "title": "Editable",
-    "description": "Production-ready Editable component for @rumaui",
+    "description": "Production-ready Editable component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -257,7 +257,7 @@
     "name": "fileupload",
     "type": "registry:ui",
     "title": "FileUpload",
-    "description": "Production-ready FileUpload component for @rumaui",
+    "description": "Production-ready FileUpload component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -272,7 +272,7 @@
     "name": "floatingactionbutton",
     "type": "registry:ui",
     "title": "FloatingActionButton",
-    "description": "Production-ready FloatingActionButton component for @rumaui",
+    "description": "Production-ready FloatingActionButton component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -287,7 +287,7 @@
     "name": "form",
     "type": "registry:ui",
     "title": "Form",
-    "description": "Production-ready Form component for @rumaui",
+    "description": "Production-ready Form component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -302,7 +302,7 @@
     "name": "image",
     "type": "registry:ui",
     "title": "Image",
-    "description": "Production-ready Image component for @rumaui",
+    "description": "Production-ready Image component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -317,7 +317,7 @@
     "name": "inputotp",
     "type": "registry:ui",
     "title": "InputOTP",
-    "description": "Production-ready InputOTP component for @rumaui",
+    "description": "Production-ready InputOTP component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -332,7 +332,7 @@
     "name": "keyboardkey",
     "type": "registry:ui",
     "title": "KeyboardKey",
-    "description": "Production-ready KeyboardKey component for @rumaui",
+    "description": "Production-ready KeyboardKey component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -347,7 +347,7 @@
     "name": "link",
     "type": "registry:ui",
     "title": "Link",
-    "description": "Production-ready Link component for @rumaui",
+    "description": "Production-ready Link component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -362,7 +362,7 @@
     "name": "loader",
     "type": "registry:ui",
     "title": "Loader",
-    "description": "Production-ready Loader component for @rumaui",
+    "description": "Production-ready Loader component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -377,7 +377,7 @@
     "name": "modal",
     "type": "registry:ui",
     "title": "Modal",
-    "description": "Production-ready Modal component for @rumaui",
+    "description": "Production-ready Modal component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -392,7 +392,7 @@
     "name": "multiselect",
     "type": "registry:ui",
     "title": "MultiSelect",
-    "description": "Production-ready MultiSelect component for @rumaui",
+    "description": "Production-ready MultiSelect component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -407,7 +407,7 @@
     "name": "navigationmenu",
     "type": "registry:ui",
     "title": "NavigationMenu",
-    "description": "Production-ready NavigationMenu component for @rumaui",
+    "description": "Production-ready NavigationMenu component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -422,7 +422,7 @@
     "name": "pagination",
     "type": "registry:ui",
     "title": "Pagination",
-    "description": "Production-ready Pagination component for @rumaui",
+    "description": "Production-ready Pagination component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -437,7 +437,7 @@
     "name": "popover",
     "type": "registry:ui",
     "title": "Popover",
-    "description": "Production-ready Popover component for @rumaui",
+    "description": "Production-ready Popover component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -452,7 +452,7 @@
     "name": "progress",
     "type": "registry:ui",
     "title": "Progress",
-    "description": "Production-ready Progress component for @rumaui",
+    "description": "Production-ready Progress component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -467,7 +467,7 @@
     "name": "radiogroup",
     "type": "registry:ui",
     "title": "RadioGroup",
-    "description": "Production-ready RadioGroup component for @rumaui",
+    "description": "Production-ready RadioGroup component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -482,7 +482,7 @@
     "name": "rangeinput",
     "type": "registry:ui",
     "title": "RangeInput",
-    "description": "Production-ready RangeInput component for @rumaui",
+    "description": "Production-ready RangeInput component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -497,7 +497,7 @@
     "name": "rating",
     "type": "registry:ui",
     "title": "Rating",
-    "description": "Production-ready Rating component for @rumaui",
+    "description": "Production-ready Rating component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -512,7 +512,7 @@
     "name": "resizable",
     "type": "registry:ui",
     "title": "Resizable",
-    "description": "Production-ready Resizable component for @rumaui",
+    "description": "Production-ready Resizable component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -527,7 +527,7 @@
     "name": "select",
     "type": "registry:ui",
     "title": "Select",
-    "description": "Production-ready Select component for @rumaui",
+    "description": "Production-ready Select component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -542,7 +542,7 @@
     "name": "skeleton",
     "type": "registry:ui",
     "title": "Skeleton",
-    "description": "Production-ready Skeleton component for @rumaui",
+    "description": "Production-ready Skeleton component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -557,7 +557,7 @@
     "name": "slider",
     "type": "registry:ui",
     "title": "Slider",
-    "description": "Production-ready Slider component for @rumaui",
+    "description": "Production-ready Slider component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -572,7 +572,7 @@
     "name": "sortablelist",
     "type": "registry:ui",
     "title": "SortableList",
-    "description": "Production-ready SortableList component for @rumaui",
+    "description": "Production-ready SortableList component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -587,7 +587,7 @@
     "name": "stepper",
     "type": "registry:ui",
     "title": "Stepper",
-    "description": "Production-ready Stepper component for @rumaui",
+    "description": "Production-ready Stepper component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -602,7 +602,7 @@
     "name": "switch",
     "type": "registry:ui",
     "title": "Switch",
-    "description": "Production-ready Switch component for @rumaui",
+    "description": "Production-ready Switch component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -617,7 +617,7 @@
     "name": "table",
     "type": "registry:ui",
     "title": "Table",
-    "description": "Production-ready Table component for @rumaui",
+    "description": "Production-ready Table component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -632,7 +632,7 @@
     "name": "tabs",
     "type": "registry:ui",
     "title": "Tabs",
-    "description": "Production-ready Tabs component for @rumaui",
+    "description": "Production-ready Tabs component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -647,7 +647,7 @@
     "name": "textinput",
     "type": "registry:ui",
     "title": "TextInput",
-    "description": "Production-ready TextInput component for @rumaui",
+    "description": "Production-ready TextInput component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -662,7 +662,7 @@
     "name": "textarea",
     "type": "registry:ui",
     "title": "Textarea",
-    "description": "Production-ready Textarea component for @rumaui",
+    "description": "Production-ready Textarea component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -677,7 +677,7 @@
     "name": "toast",
     "type": "registry:ui",
     "title": "Toast",
-    "description": "Production-ready Toast component for @rumaui",
+    "description": "Production-ready Toast component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -692,7 +692,7 @@
     "name": "tooltip",
     "type": "registry:ui",
     "title": "Tooltip",
-    "description": "Production-ready Tooltip component for @rumaui",
+    "description": "Production-ready Tooltip component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -707,7 +707,7 @@
     "name": "toploader",
     "type": "registry:ui",
     "title": "TopLoader",
-    "description": "Production-ready TopLoader component for @rumaui",
+    "description": "Production-ready TopLoader component for @ruma-org",
     "dependencies": [],
     "registryDependencies": ["utils"],
     "files": [
@@ -722,7 +722,7 @@
     "name": "treeview",
     "type": "registry:ui",
     "title": "TreeView",
-    "description": "Production-ready TreeView component for @rumaui",
+    "description": "Production-ready TreeView component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [
@@ -737,7 +737,7 @@
     "name": "video",
     "type": "registry:ui",
     "title": "Video",
-    "description": "Production-ready Video component for @rumaui",
+    "description": "Production-ready Video component for @ruma-org",
     "dependencies": ["react-icons"],
     "registryDependencies": ["utils"],
     "files": [

@@ -55,7 +55,7 @@ function getDependenciesFromContent(content: string): string[] {
 }
 
 function buildRegistry() {
-  console.log("🔨 Building @rumaui registry...");
+  console.log("🔨 Building @ruma-org registry...");
 
   const registryItems: RegistryItem[] = [];
 
@@ -128,7 +128,7 @@ function buildRegistry() {
         name: compLower,
         type: "registry:ui",
         title: compName,
-        description: `Production-ready ${compName} component for @rumaui`,
+        description: `Production-ready ${compName} component for @ruma-org`,
         dependencies,
         registryDependencies: Array.from(registryDeps),
         files,

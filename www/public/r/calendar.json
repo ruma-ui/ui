@@ -2,7 +2,7 @@
   "name": "calendar",
   "type": "registry:ui",
   "title": "Calendar",
-  "description": "Production-ready Calendar component for @rumaui",
+  "description": "Production-ready Calendar component for @ruma-org",
   "dependencies": ["react-icons", "date-fns"],
   "registryDependencies": ["utils"],
   "files": [

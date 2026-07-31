@@ -2,7 +2,7 @@
   "name": "contextmenu",
   "type": "registry:ui",
   "title": "ContextMenu",
-  "description": "Production-ready ContextMenu component for @rumaui",
+  "description": "Production-ready ContextMenu component for @ruma-org",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

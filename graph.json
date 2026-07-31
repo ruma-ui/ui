@@ -715,18 +715,18 @@
           "implicitDependencies": []
         }
       },
-      "@rumaui/source": {
-        "name": "@rumaui/source",
+      "@ruma-org/source": {
+        "name": "@ruma-org/source",
         "type": "app",
         "data": {
           "root": ".",
-          "name": "@rumaui/source",
+          "name": "@ruma-org/source",
           "includedScripts": [],
           "tags": ["npm:private"],
           "metadata": {
             "targetGroups": {},
             "js": {
-              "packageName": "@rumaui/source",
+              "packageName": "@ruma-org/source",
               "isInPackageManagerWorkspaces": true
             }
           },
@@ -752,7 +752,7 @@
       "demo": [],
       "www": [],
       "ui": [],
-      "@rumaui/source": []
+      "@ruma-org/source": []
     }
   }
 }

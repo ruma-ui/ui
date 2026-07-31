@@ -2,7 +2,7 @@
   "name": "loader",
   "type": "registry:ui",
   "title": "Loader",
-  "description": "Production-ready Loader component for @rumaui",
+  "description": "Production-ready Loader component for @ruma-org",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

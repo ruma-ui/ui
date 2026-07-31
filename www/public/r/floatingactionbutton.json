@@ -2,7 +2,7 @@
   "name": "floatingactionbutton",
   "type": "registry:ui",
   "title": "FloatingActionButton",
-  "description": "Production-ready FloatingActionButton component for @rumaui",
+  "description": "Production-ready FloatingActionButton component for @ruma-org",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

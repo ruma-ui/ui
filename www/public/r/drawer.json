@@ -2,7 +2,7 @@
   "name": "drawer",
   "type": "registry:ui",
   "title": "Drawer",
-  "description": "Production-ready Drawer component for @rumaui",
+  "description": "Production-ready Drawer component for @ruma-org",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

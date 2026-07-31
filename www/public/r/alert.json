@@ -2,7 +2,7 @@
   "name": "alert",
   "type": "registry:ui",
   "title": "Alert",
-  "description": "Production-ready Alert component for @rumaui",
+  "description": "Production-ready Alert component for @ruma-org",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

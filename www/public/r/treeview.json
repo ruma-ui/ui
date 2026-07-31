@@ -2,7 +2,7 @@
   "name": "treeview",
   "type": "registry:ui",
   "title": "TreeView",
-  "description": "Production-ready TreeView component for @rumaui",
+  "description": "Production-ready TreeView component for @ruma-org",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

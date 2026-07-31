@@ -2,7 +2,7 @@
   "name": "select",
   "type": "registry:ui",
   "title": "Select",
-  "description": "Production-ready Select component for @rumaui",
+  "description": "Production-ready Select component for @ruma-org",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [
