@@ -2,7 +2,7 @@
   "name": "avatar",
   "type": "registry:ui",
   "title": "Avatar",
-  "description": "Production-ready Avatar component for @ruma-org",
+  "description": "Production-ready Avatar component for @ruma-kit",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

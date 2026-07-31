@@ -2,7 +2,7 @@
   "name": "modal",
   "type": "registry:ui",
   "title": "Modal",
-  "description": "Production-ready Modal component for @ruma-org",
+  "description": "Production-ready Modal component for @ruma-kit",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

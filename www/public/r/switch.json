@@ -2,7 +2,7 @@
   "name": "switch",
   "type": "registry:ui",
   "title": "Switch",
-  "description": "Production-ready Switch component for @ruma-org",
+  "description": "Production-ready Switch component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

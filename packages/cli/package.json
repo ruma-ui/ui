@@ -1,5 +1,5 @@
 {
-  "name": "@ruma-org/cli",
+  "name": "@ruma-kit/cli",
   "version": "0.0.0",
   "description": "CLI for adding ruma-ui components to your React project",
   "bin": {

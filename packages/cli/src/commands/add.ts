@@ -18,7 +18,7 @@ export async function runAdd(components: string[], options: AddOptions) {
   const configPath = path.join(cwd, "components.json");
 
   if (!fs.existsSync(configPath)) {
-    console.error("❌ components.json not found. Please run `npx @ruma-org/cli init` first.");
+    console.error("❌ components.json not found. Please run `npx @ruma-kit/cli init` first.");
     process.exit(1);
   }
 

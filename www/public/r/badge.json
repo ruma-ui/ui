@@ -2,7 +2,7 @@
   "name": "badge",
   "type": "registry:ui",
   "title": "Badge",
-  "description": "Production-ready Badge component for @ruma-org",
+  "description": "Production-ready Badge component for @ruma-kit",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

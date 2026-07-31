@@ -8,12 +8,12 @@
 built with TypeScript, Tailwind CSS v4, and enterprise CI/CD.
 
 [![CI](https://img.shields.io/github/actions/workflow/status/ruma-ui/ui/ci.yml?branch=dev&style=flat-square&label=CI)](https://github.com/ruma-ui/ui/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@ruma-org/ui?style=flat-square&color=6366f1&label=%40rumaui%2Fui)](https://www.npmjs.com/package/@ruma-org/ui)
-[![CLI version](https://img.shields.io/npm/v/@ruma-org/cli?style=flat-square&color=8b5cf6&label=%40rumaui%2Fcli)](https://www.npmjs.com/package/@ruma-org/cli)
+[![npm version](https://img.shields.io/npm/v/@ruma-kit/ui?style=flat-square&color=6366f1&label=%40rumaui%2Fui)](https://www.npmjs.com/package/@ruma-kit/ui)
+[![CLI version](https://img.shields.io/npm/v/@ruma-kit/cli?style=flat-square&color=8b5cf6&label=%40rumaui%2Fcli)](https://www.npmjs.com/package/@ruma-kit/cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-[Documentation](https://ruma.5dev.in) · [Storybook](https://ruma-ui.github.io/ui/storybook/) · [npm](https://www.npmjs.com/package/@ruma-org/ui) · [Changelog](CHANGELOG.md)
+[Documentation](https://ruma.5dev.in) · [Storybook](https://ruma-ui.github.io/ui/storybook/) · [npm](https://www.npmjs.com/package/@ruma-kit/ui) · [Changelog](CHANGELOG.md)
 
 </div>
 
@@ -25,15 +25,15 @@ This is an [Nx](https://nx.dev)-managed monorepo. It contains two published pack
 
 | Package                            | Version                                                                                                         | Description                                                       |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [`@ruma-org/ui`](./ui/)            | [![npm](https://img.shields.io/npm/v/@ruma-org/ui?style=flat-square)](https://npmjs.com/package/@ruma-org/ui)   | Pre-built, tree-shakeable React component library (49 components) |
-| [`@ruma-org/cli`](./packages/cli/) | [![npm](https://img.shields.io/npm/v/@ruma-org/cli?style=flat-square)](https://npmjs.com/package/@ruma-org/cli) | CLI to initialise and add components to your project              |
+| [`@ruma-kit/ui`](./ui/)            | [![npm](https://img.shields.io/npm/v/@ruma-kit/ui?style=flat-square)](https://npmjs.com/package/@ruma-kit/ui)   | Pre-built, tree-shakeable React component library (49 components) |
+| [`@ruma-kit/cli`](./packages/cli/) | [![npm](https://img.shields.io/npm/v/@ruma-kit/cli?style=flat-square)](https://npmjs.com/package/@ruma-kit/cli) | CLI to initialise and add components to your project              |
 
 ### Which should I use?
 
 | Approach              | Package         | Best for                                           |
 | --------------------- | --------------- | -------------------------------------------------- |
-| **Import from npm**   | `@ruma-org/ui`  | Quick integration, auto-updates, minimal setup     |
-| **Copy into project** | `@ruma-org/cli` | Full control, customisation, shadcn-style workflow |
+| **Import from npm**   | `@ruma-kit/ui`  | Quick integration, auto-updates, minimal setup     |
+| **Copy into project** | `@ruma-kit/cli` | Full control, customisation, shadcn-style workflow |
 
 Both approaches can be used together.
 
@@ -44,12 +44,12 @@ Both approaches can be used together.
 ### Option A — Import from npm
 
 ```bash
-npm install @ruma-org/ui
+npm install @ruma-kit/ui
 ```
 
 ```tsx
-import { Button } from "@ruma-org/ui";
-import "@ruma-org/ui/ui.css";
+import { Button } from "@ruma-kit/ui";
+import "@ruma-kit/ui/ui.css";
 
 export default function App() {
   return <Button size="lg">Hello Ruma UI</Button>;
@@ -59,8 +59,8 @@ export default function App() {
 ### Option B — Add components via CLI
 
 ```bash
-npx @ruma-org/cli init
-npx @ruma-org/cli add button modal toast
+npx @ruma-kit/cli init
+npx @ruma-kit/cli add button modal toast
 ```
 
 ---
@@ -69,7 +69,7 @@ npx @ruma-org/cli add button modal toast
 
 ```text
 ruma-ui/ui
-├── ui/                     # @ruma-org/ui — main component library
+├── ui/                     # @ruma-kit/ui — main component library
 │   ├── src/
 │   │   ├── components/     # 49 React components
 │   │   ├── lib/            # Shared utilities (cn, etc.)
@@ -78,7 +78,7 @@ ruma-ui/ui
 │   └── .storybook/         # Storybook configuration
 │
 ├── packages/
-│   └── cli/                # @ruma-org/cli — CLI tool
+│   └── cli/                # @ruma-kit/cli — CLI tool
 │       └── src/
 │           ├── commands/   # init.ts, add.ts
 │           └── index.ts

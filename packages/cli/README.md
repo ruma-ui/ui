@@ -2,15 +2,15 @@
 
 <img src="../../logo.png" alt="Ruma UI" width="70" height="70" />
 
-# @ruma-org/cli
+# @ruma-kit/cli
 
 **The official CLI for Ruma UI** — scaffold projects, initialise configuration, and add components to your React application in one command.
 
-[![npm version](https://img.shields.io/npm/v/@ruma-org/cli?style=flat-square&color=6366f1)](https://www.npmjs.com/package/@ruma-org/cli)
-[![npm downloads](https://img.shields.io/npm/dm/@ruma-org/cli?style=flat-square&color=6366f1)](https://www.npmjs.com/package/@ruma-org/cli)
+[![npm version](https://img.shields.io/npm/v/@ruma-kit/cli?style=flat-square&color=6366f1)](https://www.npmjs.com/package/@ruma-kit/cli)
+[![npm downloads](https://img.shields.io/npm/dm/@ruma-kit/cli?style=flat-square&color=6366f1)](https://www.npmjs.com/package/@ruma-kit/cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-[Documentation](https://ruma.5dev.in/docs/cli) · [npm](https://www.npmjs.com/package/@ruma-org/cli) · [GitHub](https://github.com/ruma-ui/ui)
+[Documentation](https://ruma.5dev.in/docs/cli) · [npm](https://www.npmjs.com/package/@ruma-kit/cli) · [GitHub](https://github.com/ruma-ui/ui)
 
 </div>
 
@@ -33,14 +33,14 @@
 
 ## Overview
 
-`@ruma-org/cli` is a zero-config CLI that brings the Ruma UI component library into any React project:
+`@ruma-kit/cli` is a zero-config CLI that brings the Ruma UI component library into any React project:
 
 1. **`init`** — detect your framework, configure aliases, create `components.json`, install utilities
 2. **`add`** — pull individual components from the Ruma registry directly into your source tree
 
 Components are copied as source files (not imported from npm), giving you full ownership and customisability — similar to [shadcn/ui](https://ui.shadcn.com/).
 
-> The npm package `@ruma-org/ui` contains the pre-built, tree-shakeable version of the library. The CLI is the alternative "copy-into-your-project" approach — use whichever fits your workflow.
+> The npm package `@ruma-kit/ui` contains the pre-built, tree-shakeable version of the library. The CLI is the alternative "copy-into-your-project" approach — use whichever fits your workflow.
 
 ---
 
@@ -49,13 +49,13 @@ Components are copied as source files (not imported from npm), giving you full o
 Run without installing using `npx`:
 
 ```bash
-npx @ruma-org/cli <command> [options]
+npx @ruma-kit/cli <command> [options]
 ```
 
 Or install globally:
 
 ```bash
-npm install -g @ruma-org/cli
+npm install -g @ruma-kit/cli
 ruma-ui <command> [options]
 ```
 
@@ -68,7 +68,7 @@ ruma-ui <command> [options]
 Initialises Ruma UI in your project. Run this once per project.
 
 ```bash
-npx @ruma-org/cli init [options]
+npx @ruma-kit/cli init [options]
 ```
 
 #### What it does
@@ -93,16 +93,16 @@ npx @ruma-org/cli init [options]
 
 ```bash
 # Interactive — asks alias and CSS file questions
-npx @ruma-org/cli init
+npx @ruma-kit/cli init
 
 # Non-interactive — uses all defaults instantly
-npx @ruma-org/cli init --yes
+npx @ruma-kit/cli init --yes
 
 # Scaffold a brand-new Next.js app called "my-dashboard" and initialise
-npx @ruma-org/cli init --template next --name my-dashboard --yes
+npx @ruma-kit/cli init --template next --name my-dashboard --yes
 
 # Initialise inside a specific directory
-npx @ruma-org/cli init --cwd ./apps/web
+npx @ruma-kit/cli init --cwd ./apps/web
 ```
 
 #### Interactive Prompts
@@ -124,7 +124,7 @@ When run without `--yes`, `init` asks:
 ✔ Dependencies installed successfully.
 
 🎉 ruma-ui initialized! You can now add components using:
-   npx @ruma-org/cli add button
+   npx @ruma-kit/cli add button
 ```
 
 ---
@@ -134,7 +134,7 @@ When run without `--yes`, `init` asks:
 Adds one or more Ruma UI components to your project by fetching them from the registry.
 
 ```bash
-npx @ruma-org/cli add [components...] [options]
+npx @ruma-kit/cli add [components...] [options]
 ```
 
 #### What it does
@@ -162,21 +162,21 @@ npx @ruma-org/cli add [components...] [options]
 
 ```bash
 # Add a single component
-npx @ruma-org/cli add button
+npx @ruma-kit/cli add button
 
 # Add multiple components at once
-npx @ruma-org/cli add button card modal toast
+npx @ruma-kit/cli add button card modal toast
 
 # Overwrite existing files
-npx @ruma-org/cli add button --overwrite
+npx @ruma-kit/cli add button --overwrite
 
 # Add components to a specific directory
-npx @ruma-org/cli add table --cwd ./apps/dashboard
+npx @ruma-kit/cli add table --cwd ./apps/dashboard
 ```
 
 #### Available Components
 
-All 49 components from `@ruma-org/ui` are available via `add`:
+All 49 components from `@ruma-kit/ui` are available via `add`:
 
 ```
 accordion    alert        avatar       badge        breadcrumb

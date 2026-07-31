@@ -116,7 +116,7 @@ export const Default: Story = {
 
 export const Secondary: Story = {
   args: {
-    value: "npm install @ruma-org/ui",
+    value: "npm install @ruma-kit/ui",
     variant: "secondary",
   },
 };

@@ -2,7 +2,7 @@
   "name": "accordion",
   "type": "registry:ui",
   "title": "Accordion",
-  "description": "Production-ready Accordion component for @ruma-org",
+  "description": "Production-ready Accordion component for @ruma-kit",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

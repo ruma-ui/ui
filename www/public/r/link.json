@@ -2,7 +2,7 @@
   "name": "link",
   "type": "registry:ui",
   "title": "Link",
-  "description": "Production-ready Link component for @ruma-org",
+  "description": "Production-ready Link component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

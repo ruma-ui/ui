@@ -2,7 +2,7 @@
   "name": "toploader",
   "type": "registry:ui",
   "title": "TopLoader",
-  "description": "Production-ready TopLoader component for @ruma-org",
+  "description": "Production-ready TopLoader component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [
