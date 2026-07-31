@@ -1,6 +1,6 @@
 {
   "name": "@ruma-org/source",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.1",
   "private": true,
   "description": "A modern, production-ready React UI component library built with TypeScript, Tailwind CSS, and Nx.",
   "repository": {
