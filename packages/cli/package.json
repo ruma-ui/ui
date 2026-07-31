@@ -1,6 +1,6 @@
 {
   "name": "@ruma-org/cli",
-  "version": "1.0.0-alpha.1",
+  "version": "0.0.0",
   "description": "CLI for adding ruma-ui components to your React project",
   "bin": {
     "ruma-ui": "dist/index.js"

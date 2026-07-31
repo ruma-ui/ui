@@ -1,20 +1,37 @@
-name: Deploy Storybook
+name: Deploy Storybook (Chromatic)
 
-# Triggers the workflow on push events to the main branch
 on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "*.md"
+      - "docs/**"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/pull_request_template.md"
+      - "CHANGELOG.md"
+      - "package.json"
+      - "ui/package.json"
+      - "packages/cli/package.json"
+
+permissions:
+  contents: read
+
+# Serialize Chromatic deployments — don't cancel in-progress (let it finish).
+concurrency:
+  group: storybook-chromatic-main
+  cancel-in-progress: false
 
 jobs:
   deploy:
+    name: 🎨 Publish to Chromatic
     runs-on: ubuntu-latest
-
+    timeout-minutes: 20
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          # Fetches all history for git so Chromatic can compare commits
           fetch-depth: 0
 
       - name: Setup pnpm
@@ -28,27 +45,7 @@ jobs:
           node-version: "22"
           cache: "pnpm"
 
-      # Caches the pnpm content-addressable store for faster installs
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      # Caches node_modules for projects that might have postinstall scripts
-      - name: Cache dependencies
-        id: cache-deps
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
       - name: Install dependencies
-        # Only run if the node_modules cache was not hit
-        if: steps.cache-deps.outputs.cache-hit != 'true'
-        # Retry the command up to 3 times in case of transient network errors
         uses: nick-fields/retry@v3
         with:
           timeout_minutes: 10
@@ -59,18 +56,11 @@ jobs:
         run: pnpm run storybook:build
 
       - name: Publish to Chromatic
-        # UPDATE: Changed from @v1 to @v11 to support the 'onlyStories' flag
         uses: chromaui/action@v13
         with:
-          # Use GITHUB_TOKEN for tighter integration
           token: ${{ secrets.GITHUB_TOKEN }}
-          # Your project's unique token, stored as a secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          # Explicitly tell Chromatic where the built Storybook is located
           storybookBuildDir: ui/storybook-static
-          # Don't fail the CI job if visual changes are detected
           exitZeroOnChanges: true
-          # Exit the process once upload is complete
           exitOnceUploaded: true
-        # Don't block deployment if Chromatic fails for any reason
         continue-on-error: true

@@ -8,9 +8,11 @@ on:
       - rc
       - main
     paths-ignore:
-      - ".changeset/**"
+      - "*.md"
+      - "docs/**"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/pull_request_template.md"
       - "CHANGELOG.md"
-      - "package.json"
   workflow_dispatch:
     inputs:
       release_type:
@@ -26,9 +28,11 @@ on:
         required: true
         type: string
 
+# Serialize releases per branch — only one release can run at a time per branch.
+# For alpha/beta prereleases, cancel any in-progress run if a newer commit arrives.
+# For rc/main stable releases, never cancel (let them complete).
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  # Allow concurrent prereleases but serialize stable ones
+  group: release-${{ github.ref_name }}
   cancel-in-progress: ${{ contains(fromJson('["alpha","beta"]'), github.ref_name) }}
 
 permissions:
@@ -109,11 +113,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish CLI package (Prerelease)
-        if: steps.semantic.outputs.new_release_published == 'true'
-        run: cd packages/cli && pnpm publish --no-git-checks --access public
-        env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Upload prerelease artifacts
@@ -197,11 +196,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish CLI package (Stable)
-        if: steps.changesets.outputs.published == 'true'
-        run: cd packages/cli && pnpm publish --no-git-checks --access public
-        env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Upload stable artifacts
