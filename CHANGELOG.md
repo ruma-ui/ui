@@ -1,3 +1,22 @@
+## [1.0.0-alpha.2](https://github.com/ruma-ui/ui/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2026-07-31)
+
+### 🚀 Features
+
+- merge dev into alpha — update packages, upgrade dependencies & fix CLI tw helper export ([435e833](https://github.com/ruma-ui/ui/commit/435e83341f47951b17057106c29850d83fb7549c))
+
+### 🐛 Bug Fixes
+
+- **cli:** include tw helper in generated utils.ts and registry utils bundle ([fe8753b](https://github.com/ruma-ui/ui/commit/fe8753bc48eb2a81b4978c9ea642bf903b750b78))
+
+### 📚 Documentation
+
+- fix trailing whitespace in README header description ([86b051b](https://github.com/ruma-ui/ui/commit/86b051b1264a7d502a44722072e712e7de241bb2))
+- update Storybook URL and remove trailing whitespace in README ([fefa924](https://github.com/ruma-ui/ui/commit/fefa924605932f69345d3476c4415a745e73024b))
+
+### 👷 Continuous Integration
+
+- remove storybook github pages workflow and remove emojis from all workflows ([7e94d04](https://github.com/ruma-ui/ui/commit/7e94d046f05a623f9c359486a8a71610628386e1))
+
 ## 1.0.0-alpha.1 (2026-07-31)
 
 ### 🚀 Features
