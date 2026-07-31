@@ -4,7 +4,7 @@
 
 # Ruma UI
 
-**A modern, production-ready React UI component library and ecosystem**
+**A modern, production-ready React UI component library and ecosystem**  
 built with TypeScript, Tailwind CSS v4, and enterprise CI/CD.
 
 [![CI](https://img.shields.io/github/actions/workflow/status/ruma-ui/ui/ci.yml?branch=dev&style=flat-square&label=CI)](https://github.com/ruma-ui/ui/actions/workflows/ci.yml)
