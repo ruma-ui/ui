@@ -48,7 +48,7 @@ permissions:
 jobs:
   # ── 1. Path-filter — decide which jobs need to run ───────────────────────
   changes:
-    name: 🔍 Detect changed paths
+    name: Detect changed paths
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
@@ -86,7 +86,7 @@ jobs:
 
   # ── 2. Install & prime the Nx cache ──────────────────────────────────────
   setup:
-    name: 📦 Install & cache
+    name: Install & cache
     runs-on: ubuntu-latest
     timeout-minutes: 15
     needs: changes
@@ -132,7 +132,7 @@ jobs:
 
   # ── 3. Lint ───────────────────────────────────────────────────────────────
   lint:
-    name: 🔎 Lint
+    name: Lint
     runs-on: ubuntu-latest
     timeout-minutes: 15
     needs: [changes, setup]
@@ -177,7 +177,7 @@ jobs:
 
   # ── 4. Type-check ─────────────────────────────────────────────────────────
   typecheck:
-    name: 🔷 Typecheck
+    name: Typecheck
     runs-on: ubuntu-latest
     timeout-minutes: 15
     needs: [changes, setup]
@@ -222,7 +222,7 @@ jobs:
 
   # ── 5. Security audit ─────────────────────────────────────────────────────
   security:
-    name: 🔒 Security
+    name: Security
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: [changes, setup]
@@ -264,7 +264,7 @@ jobs:
 
   # ── 6. Unit tests ─────────────────────────────────────────────────────────
   test:
-    name: 🧪 Test
+    name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 20
     needs: [changes, setup]
@@ -317,7 +317,7 @@ jobs:
 
   # ── 7. Build ──────────────────────────────────────────────────────────────
   build:
-    name: 🏗️ Build
+    name: Build
     runs-on: ubuntu-latest
     timeout-minutes: 20
     needs: [changes, setup]
@@ -374,7 +374,7 @@ jobs:
 
   # ── 8. CI gate — all required checks must pass ────────────────────────────
   ci-success:
-    name: ✅ CI gate
+    name: CI gate
     runs-on: ubuntu-latest
     timeout-minutes: 5
     needs: [lint, typecheck, test, build, security]
@@ -385,8 +385,8 @@ jobs:
           RESULTS="${{ join(needs.*.result, ' ') }}"
           for result in $RESULTS; do
             if [[ "$result" != "success" && "$result" != "skipped" ]]; then
-              echo "❌ One or more CI jobs failed: $RESULTS"
+              echo "One or more CI jobs failed: $RESULTS"
               exit 1
             fi
           done
-          echo "✅ All CI checks passed"
+          echo "All CI checks passed"

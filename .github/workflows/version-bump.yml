@@ -79,4 +79,4 @@ jobs:
           git commit -m "chore: bump version to $NEW_VERSION ($BUMP_TYPE on $BRANCH)"
           git push origin $BRANCH
 
-          echo "✅ Version bumped to $NEW_VERSION on $BRANCH branch"
+          echo "Version bumped to $NEW_VERSION on $BRANCH branch"
