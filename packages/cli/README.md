@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="../../logo.png" alt="Ruma UI" width="70" height="70" />
+
 # @ruma-org/cli
 
 **The official CLI for Ruma UI** — scaffold projects, initialise configuration, and add components to your React application in one command.

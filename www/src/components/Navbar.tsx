@@ -24,9 +24,7 @@ export function Navbar() {
             href="/"
             className="flex items-center gap-2 text-xl font-bold tracking-tight text-white transition-colors hover:text-zinc-300"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 text-sm font-extrabold text-white shadow-md shadow-cyan-500/20">
-              R
-            </span>
+            <img src="/logo.png" alt="Ruma UI" className="h-8 w-8 rounded-lg object-contain" />
             <span>ruma-ui</span>
             <span className="rounded-md border border-zinc-700/50 bg-zinc-800 px-2 py-0.5 text-xs font-medium text-zinc-300">
               v0.1.0

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://ruma.5dev.in/logo.png" alt="Ruma UI" width="120" height="120" />
+<img src="../logo.png" alt="Ruma UI" width="70" height="70" />
 
 # @ruma-org/ui
 
