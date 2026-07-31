@@ -1,6 +1,6 @@
 {
   "name": "@ruma-kit/source",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "private": true,
   "description": "A modern, production-ready React UI component library built with TypeScript, Tailwind CSS, and Nx.",
   "repository": {
