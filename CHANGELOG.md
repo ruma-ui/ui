@@ -1,3 +1,9 @@
+## [1.0.0-alpha.2](https://github.com/ruma-ui/ui/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2026-07-31)
+
+### 🐛 Bug Fixes
+
+- **ci:** broaden E403/EOTP already-published no-op handler in release workflow ([0fdb794](https://github.com/ruma-ui/ui/commit/0fdb7943db2ff74ef9f9632b22b83aa2e21a8d3d))
+
 ## 1.0.0-alpha.1 (2026-07-31)
 
 ### 🚀 Features
