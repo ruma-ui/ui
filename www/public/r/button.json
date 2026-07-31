@@ -2,7 +2,7 @@
   "name": "button",
   "type": "registry:ui",
   "title": "Button",
-  "description": "Production-ready Button component for @ruma-org",
+  "description": "Production-ready Button component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

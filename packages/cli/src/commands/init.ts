@@ -275,5 +275,5 @@ export async function runInit(options: InitOptions) {
   }
 
   console.log("\n🎉 ruma-ui initialized! You can now add components using:");
-  console.log("   npx @ruma-org/cli add button\n");
+  console.log("   npx @ruma-kit/cli add button\n");
 }

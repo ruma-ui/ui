@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ruma-org/ui": ["ui/src/index.ts"]
+      "@ruma-kit/ui": ["ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -2,7 +2,7 @@
   "name": "textarea",
   "type": "registry:ui",
   "title": "Textarea",
-  "description": "Production-ready Textarea component for @ruma-org",
+  "description": "Production-ready Textarea component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

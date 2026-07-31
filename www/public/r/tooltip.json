@@ -2,7 +2,7 @@
   "name": "tooltip",
   "type": "registry:ui",
   "title": "Tooltip",
-  "description": "Production-ready Tooltip component for @ruma-org",
+  "description": "Production-ready Tooltip component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

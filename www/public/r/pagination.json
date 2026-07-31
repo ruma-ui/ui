@@ -2,7 +2,7 @@
   "name": "pagination",
   "type": "registry:ui",
   "title": "Pagination",
-  "description": "Production-ready Pagination component for @ruma-org",
+  "description": "Production-ready Pagination component for @ruma-kit",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

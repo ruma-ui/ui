@@ -2,7 +2,7 @@
   "name": "rating",
   "type": "registry:ui",
   "title": "Rating",
-  "description": "Production-ready Rating component for @ruma-org",
+  "description": "Production-ready Rating component for @ruma-kit",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

@@ -2,7 +2,7 @@
   "name": "textinput",
   "type": "registry:ui",
   "title": "TextInput",
-  "description": "Production-ready TextInput component for @ruma-org",
+  "description": "Production-ready TextInput component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

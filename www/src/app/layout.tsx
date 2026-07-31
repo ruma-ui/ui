@@ -3,7 +3,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 
 export const metadata = {
-  title: "@ruma-org — Production-ready React Component Library",
+  title: "@ruma-kit — Production-ready React Component Library",
   description:
     "Beautifully designed React components built with TypeScript, Tailwind CSS, and CLI delivery.",
 };

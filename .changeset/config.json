@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
   "changelog": ["@changesets/changelog-github", { "repo": "ruma-ui/ui" }],
   "commit": false,
-  "fixed": [["@ruma-org/ui", "@ruma-org/cli"]],
+  "fixed": [["@ruma-kit/ui", "@ruma-kit/cli"]],
   "linked": [],
   "access": "public",
   "baseBranch": "dev",

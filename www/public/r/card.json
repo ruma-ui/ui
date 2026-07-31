@@ -2,7 +2,7 @@
   "name": "card",
   "type": "registry:ui",
   "title": "Card",
-  "description": "Production-ready Card component for @ruma-org",
+  "description": "Production-ready Card component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

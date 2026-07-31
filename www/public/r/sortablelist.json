@@ -2,7 +2,7 @@
   "name": "sortablelist",
   "type": "registry:ui",
   "title": "SortableList",
-  "description": "Production-ready SortableList component for @ruma-org",
+  "description": "Production-ready SortableList component for @ruma-kit",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

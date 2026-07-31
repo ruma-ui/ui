@@ -2,7 +2,7 @@
   "name": "carousel",
   "type": "registry:ui",
   "title": "Carousel",
-  "description": "Production-ready Carousel component for @ruma-org",
+  "description": "Production-ready Carousel component for @ruma-kit",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

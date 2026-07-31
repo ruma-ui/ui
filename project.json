@@ -1,5 +1,5 @@
 {
-  "name": "@ruma-org/source",
+  "name": "@ruma-kit/source",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "targets": {
     "local-registry": {

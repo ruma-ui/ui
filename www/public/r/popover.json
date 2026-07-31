@@ -2,7 +2,7 @@
   "name": "popover",
   "type": "registry:ui",
   "title": "Popover",
-  "description": "Production-ready Popover component for @ruma-org",
+  "description": "Production-ready Popover component for @ruma-kit",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [
