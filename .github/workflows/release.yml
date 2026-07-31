@@ -114,6 +114,14 @@ jobs:
           if echo "$SR_OUTPUT" | grep -i -q -E "Published release|Created tag|Published version"; then
             echo "new_release_published=true" >> $GITHUB_OUTPUT
           fi
+
+          # Update npm latest tag so npx @ruma-kit/cli installs the newest version
+          CLI_VER=$(node -p "require('./packages/cli/package.json').version")
+          if [ "$CLI_VER" != "0.0.0" ]; then
+            echo "Promoting @ruma-kit packages version $CLI_VER to npm latest tag..."
+            npm dist-tag add @ruma-kit/cli@$CLI_VER latest || true
+            npm dist-tag add @ruma-kit/ui@$CLI_VER latest || true
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
