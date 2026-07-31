@@ -13,7 +13,7 @@ built with TypeScript, Tailwind CSS v4, and enterprise CI/CD.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-[Documentation](https://ruma.5dev.in) · [Storybook](https://ruma-ui.github.io/ui/storybook/) · [npm](https://www.npmjs.com/package/@ruma-kit/ui) · [Changelog](CHANGELOG.md)
+[Documentation](https://ruma.5dev.in) · [Storybook](https://storybook.ruma.5dev.in) · [npm](https://www.npmjs.com/package/@ruma-kit/ui) · [Changelog](CHANGELOG.md)
 
 </div>
 

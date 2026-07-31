@@ -37,7 +37,7 @@ permissions:
 jobs:
   # ── Validate the requested merge path ─────────────────────────────────────
   validate-merge:
-    name: 🔍 Validate merge path
+    name: Validate merge path
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
@@ -85,7 +85,7 @@ jobs:
 
   # ── Perform the merge ──────────────────────────────────────────────────────
   merge-branches:
-    name: 🔀 Merge ${{ github.event.inputs.source_branch }} → ${{ github.event.inputs.target_branch }}
+    name: Merge ${{ github.event.inputs.source_branch }} -> ${{ github.event.inputs.target_branch }}
     needs: validate-merge
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -127,12 +127,12 @@ jobs:
           SOURCE="${{ github.event.inputs.source_branch }}"
           TARGET="${{ github.event.inputs.target_branch }}"
           MERGE_TYPE="${{ github.event.inputs.merge_type }}"
-          echo "✅ Successfully merged $SOURCE into $TARGET using $MERGE_TYPE"
-          echo "🚀 Branch $TARGET is now ready for release"
+          echo "Successfully merged $SOURCE into $TARGET using $MERGE_TYPE"
+          echo "Branch $TARGET is now ready for release"
 
   # ── Report invalid merge attempt ──────────────────────────────────────────
   merge-failed:
-    name: ❌ Invalid merge rejected
+    name: Invalid merge rejected
     needs: validate-merge
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -140,5 +140,5 @@ jobs:
     steps:
       - name: Report invalid merge
         run: |
-          echo "❌ ${{ needs.validate-merge.outputs.reason }}"
+          echo "${{ needs.validate-merge.outputs.reason }}"
           exit 1
