@@ -61,19 +61,22 @@ function buildRegistry() {
 
   // 1. Add Utils (`registry:lib`)
   const cnPath = path.join(utilsDir, "cn.ts");
+  const twPath = path.join(utilsDir, "tw.ts");
   if (fs.existsSync(cnPath)) {
-    const content = fs.readFileSync(cnPath, "utf-8");
+    const cnContent = fs.readFileSync(cnPath, "utf-8");
+    const twContent = fs.existsSync(twPath) ? fs.readFileSync(twPath, "utf-8") : "";
+    const combinedContent = `${cnContent.trim()}\n\n${twContent.trim()}\n`;
     const utilsItem: RegistryItem = {
       name: "utils",
       type: "registry:lib",
       title: "Utility Functions",
-      description: "cn class merger utility function",
+      description: "cn class merger and tw helper utility functions",
       dependencies: ["clsx", "tailwind-merge"],
       files: [
         {
           path: "lib/utils.ts",
           type: "registry:lib",
-          content,
+          content: combinedContent,
         },
       ],
     };

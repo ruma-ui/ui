@@ -242,12 +242,64 @@ export async function runInit(options: InitOptions) {
     utilsFullPath = path.join(cwd, utilsRelativePath + ".ts");
   }
 
+  const utilsHelperContent = `import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export type TwValue =
+  | string
+  | number
+  | false
+  | null
+  | undefined
+  | TwValue[]
+  | Record<string, string | number | boolean>;
+
+function serializeTw(val: TwValue): string {
+  if (!val) return "";
+  if (Array.isArray(val)) return val.map(serializeTw).filter(Boolean).join(" ");
+  if (typeof val === "object") {
+    return Object.entries(val)
+      .filter(([, v]) => Boolean(v))
+      .map(([k]) => k)
+      .join(" ");
+  }
+  return String(val);
+}
+
+export function tw(strings: TemplateStringsArray, ...expr: TwValue[]): string {
+  let out = "";
+  for (let i = 0; i < strings.length; i++) {
+    out += strings[i];
+    if (i < expr.length) out += (out.endsWith(" ") ? "" : " ") + serializeTw(expr[i]);
+  }
+  return out.replace(/\\s+/g, " ").trim();
+}
+`;
+
   if (!fs.existsSync(utilsFullPath)) {
     const utilsSpinner = ora("Creating utils helper...").start();
     fs.mkdirSync(path.dirname(utilsFullPath), { recursive: true });
-    const cnContent = `import { clsx, type ClassValue } from "clsx";\nimport { twMerge } from "tailwind-merge";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n`;
-    fs.writeFileSync(utilsFullPath, cnContent);
+    fs.writeFileSync(utilsFullPath, utilsHelperContent);
     utilsSpinner.succeed(`Created ${path.relative(cwd, utilsFullPath)}`);
+  } else {
+    const existingContent = fs.readFileSync(utilsFullPath, "utf8");
+    if (
+      !existingContent.includes("export function tw") &&
+      !existingContent.includes("export const tw")
+    ) {
+      const utilsSpinner = ora("Adding tw helper to existing utils...").start();
+      fs.writeFileSync(
+        utilsFullPath,
+        existingContent +
+          "\n" +
+          utilsHelperContent.slice(utilsHelperContent.indexOf("export type TwValue"))
+      );
+      utilsSpinner.succeed(`Updated ${path.relative(cwd, utilsFullPath)} with tw helper`);
+    }
   }
 
   // 4. Install required dependencies (clsx, tailwind-merge)
