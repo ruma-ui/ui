@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - dev
+    paths-ignore:
+      - "*.md"
+      - "docs/**"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/pull_request_template.md"
+      - "CHANGELOG.md"
   workflow_dispatch:
     inputs:
       branch:
@@ -16,6 +22,12 @@ on:
           - alpha
           - beta
           - rc
+
+# Only one changeset version PR should be active at a time per branch.
+# If a newer push arrives, cancel the in-progress run.
+concurrency:
+  group: changeset-${{ github.ref_name }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
