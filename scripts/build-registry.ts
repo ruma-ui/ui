@@ -114,7 +114,15 @@ function buildRegistry() {
 
         // Clean up relative import paths to match user's aliases (@/lib/utils)
         content = content.replace(/(\.\.\/)+lib\/utils/g, "@/lib/utils");
-        content = content.replace(/(\.\.\/)+/g, "@/components/ui/");
+        content = content.replace(
+          /from ["'](\.\.\/)+([A-Za-z0-9_-]+)(\/[A-Za-z0-9_-]+)?["']/g,
+          (_match, _p1, comp) => {
+            if (comp.toLowerCase() !== "lib" && comp.toLowerCase() !== "utils") {
+              registryDeps.add(comp.toLowerCase());
+            }
+            return `from "@/components/ui/${comp.toLowerCase()}"`;
+          }
+        );
 
         combinedContent += content + "\n";
 

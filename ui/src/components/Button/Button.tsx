@@ -1,5 +1,5 @@
 import React from "react";
-import { Loader } from "../../";
+import { Loader } from "../Loader/Loader";
 import { cn, tw } from "../../lib/utils";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

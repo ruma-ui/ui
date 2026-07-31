@@ -25,8 +25,16 @@ export async function runAdd(components: string[], options: AddOptions) {
   const rawConfig = fs.readFileSync(configPath, "utf-8");
   const config = JSON.parse(rawConfig);
 
-  for (const name of components) {
+  const queue = [...components];
+  const processed = new Set<string>();
+
+  while (queue.length > 0) {
+    const name = queue.shift()!;
     const compLower = name.toLowerCase();
+
+    if (processed.has(compLower) || compLower === "utils") continue;
+    processed.add(compLower);
+
     const spinner = ora(`Fetching ${compLower} from registry...`).start();
 
     let registryItem: RegistryItem | null = null;
@@ -65,6 +73,15 @@ export async function runAdd(components: string[], options: AddOptions) {
     if (!registryItem) {
       spinner.fail(`Component "${compLower}" not found in registry.`);
       continue;
+    }
+
+    // Add nested registry dependencies to queue
+    if (registryItem.registryDependencies) {
+      for (const regDep of registryItem.registryDependencies) {
+        if (!processed.has(regDep.toLowerCase())) {
+          queue.push(regDep);
+        }
+      }
     }
 
     spinner.text = `Installing ${compLower}...`;
