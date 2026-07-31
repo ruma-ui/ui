@@ -14,7 +14,7 @@ export function ComponentPreview({ slug, code, children }: ComponentPreviewProps
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedCli, setCopiedCli] = useState(false);
 
-  const cliCommand = `npx @ruma-ui/cli add ${slug}`;
+  const cliCommand = `npx @rumaui/cli add ${slug}`;
 
   const copyToClipboard = (text: string, type: "code" | "cli") => {
     navigator.clipboard.writeText(text);

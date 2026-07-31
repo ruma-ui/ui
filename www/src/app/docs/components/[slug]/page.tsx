@@ -20,7 +20,7 @@ import {
   Avatar,
   Progress,
   Skeleton,
-} from "@ruma-ui/ui";
+} from "@rumaui/ui";
 
 function renderLivePreview(slug: string) {
   switch (slug) {
@@ -198,7 +198,7 @@ export default function ComponentDetailPage() {
       <div className="space-y-3">
         <h2 className="text-lg font-bold text-white">Installation</h2>
         <div className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-950 p-3.5 font-mono text-xs text-zinc-200">
-          <span>npx @ruma-ui/cli add {componentData.slug}</span>
+          <span>npx @rumaui/cli add {componentData.slug}</span>
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 {
-  "name": "@ruma-ui/source",
+  "name": "@rumaui/source",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "targets": {
     "local-registry": {

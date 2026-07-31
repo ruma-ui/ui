@@ -2,7 +2,7 @@
   "name": "video",
   "type": "registry:ui",
   "title": "Video",
-  "description": "Production-ready Video component for @ruma-ui",
+  "description": "Production-ready Video component for @rumaui",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

@@ -2,7 +2,7 @@
   "name": "multiselect",
   "type": "registry:ui",
   "title": "MultiSelect",
-  "description": "Production-ready MultiSelect component for @ruma-ui",
+  "description": "Production-ready MultiSelect component for @rumaui",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

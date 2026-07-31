@@ -2,7 +2,7 @@
   "name": "slider",
   "type": "registry:ui",
   "title": "Slider",
-  "description": "Production-ready Slider component for @ruma-ui",
+  "description": "Production-ready Slider component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

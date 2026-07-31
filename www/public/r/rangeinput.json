@@ -2,7 +2,7 @@
   "name": "rangeinput",
   "type": "registry:ui",
   "title": "RangeInput",
-  "description": "Production-ready RangeInput component for @ruma-ui",
+  "description": "Production-ready RangeInput component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

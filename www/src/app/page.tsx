@@ -13,12 +13,12 @@ import {
   TabList,
   Tab,
   TabPanel,
-} from "@ruma-ui/ui";
+} from "@rumaui/ui";
 
 export default function Home() {
   const [copiedCli, setCopiedCli] = useState(false);
 
-  const cliCommand = "npx @ruma-ui/cli init";
+  const cliCommand = "npx @rumaui/cli init";
 
   const copyCli = () => {
     navigator.clipboard.writeText(cliCommand);

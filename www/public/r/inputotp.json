@@ -2,7 +2,7 @@
   "name": "inputotp",
   "type": "registry:ui",
   "title": "InputOTP",
-  "description": "Production-ready InputOTP component for @ruma-ui",
+  "description": "Production-ready InputOTP component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

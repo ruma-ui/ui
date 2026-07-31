@@ -2,7 +2,7 @@
   "name": "radiogroup",
   "type": "registry:ui",
   "title": "RadioGroup",
-  "description": "Production-ready RadioGroup component for @ruma-ui",
+  "description": "Production-ready RadioGroup component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

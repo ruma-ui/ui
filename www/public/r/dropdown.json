@@ -2,7 +2,7 @@
   "name": "dropdown",
   "type": "registry:ui",
   "title": "Dropdown",
-  "description": "Production-ready Dropdown component for @ruma-ui",
+  "description": "Production-ready Dropdown component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

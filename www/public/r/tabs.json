@@ -2,7 +2,7 @@
   "name": "tabs",
   "type": "registry:ui",
   "title": "Tabs",
-  "description": "Production-ready Tabs component for @ruma-ui",
+  "description": "Production-ready Tabs component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

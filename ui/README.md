@@ -2,19 +2,19 @@
 
 <img src="https://ruma.5dev.in/logo.png" alt="Ruma UI" width="120" height="120" />
 
-# @ruma-ui/ui
+# @rumaui/ui
 
 **A modern, production-ready React UI component library**  
 built with TypeScript, Tailwind CSS v4, and tree-shaking in mind.
 
-[![npm version](https://img.shields.io/npm/v/@ruma-ui/ui?style=flat-square&color=6366f1)](https://www.npmjs.com/package/@ruma-ui/ui)
-[![npm downloads](https://img.shields.io/npm/dm/@ruma-ui/ui?style=flat-square&color=6366f1)](https://www.npmjs.com/package/@ruma-ui/ui)
+[![npm version](https://img.shields.io/npm/v/@rumaui/ui?style=flat-square&color=6366f1)](https://www.npmjs.com/package/@rumaui/ui)
+[![npm downloads](https://img.shields.io/npm/dm/@rumaui/ui?style=flat-square&color=6366f1)](https://www.npmjs.com/package/@rumaui/ui)
 [![CI](https://img.shields.io/github/actions/workflow/status/ruma-ui/ui/ci.yml?branch=dev&style=flat-square&label=CI)](https://github.com/ruma-ui/ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18%20%7C%2019-61dafb?style=flat-square&logo=react)](https://react.dev/)
 
-[Documentation](https://ruma.5dev.in) · [Storybook](https://ruma-ui.github.io/ui/storybook/) · [npm](https://www.npmjs.com/package/@ruma-ui/ui) · [GitHub](https://github.com/ruma-ui/ui)
+[Documentation](https://ruma.5dev.in) · [Storybook](https://ruma-ui.github.io/ui/storybook/) · [npm](https://www.npmjs.com/package/@rumaui/ui) · [GitHub](https://github.com/ruma-ui/ui)
 
 </div>
 
@@ -77,22 +77,22 @@ built with TypeScript, Tailwind CSS v4, and tree-shaking in mind.
 
 ```bash
 # npm
-npm install @ruma-ui/ui
+npm install @rumaui/ui
 
 # pnpm
-pnpm add @ruma-ui/ui
+pnpm add @rumaui/ui
 
 # yarn
-yarn add @ruma-ui/ui
+yarn add @rumaui/ui
 
 # bun
-bun add @ruma-ui/ui
+bun add @rumaui/ui
 ```
 
 Or use the CLI to scaffold and install everything automatically:
 
 ```bash
-npx @ruma-ui/cli init
+npx @rumaui/cli init
 ```
 
 ---
@@ -101,12 +101,12 @@ npx @ruma-ui/cli init
 
 ### Tailwind CSS Setup
 
-`@ruma-ui/ui` uses Tailwind CSS v4. Add the library path to your `@source` directive so Tailwind picks up component classes:
+`@rumaui/ui` uses Tailwind CSS v4. Add the library path to your `@source` directive so Tailwind picks up component classes:
 
 ```css
 /* globals.css / main.css */
 @import "tailwindcss";
-@source "../node_modules/@ruma-ui/ui";
+@source "../node_modules/@rumaui/ui";
 ```
 
 > If you are using Tailwind v3, use the `content` array in `tailwind.config.ts`:
@@ -114,7 +114,7 @@ npx @ruma-ui/cli init
 > ```ts
 > // tailwind.config.ts
 > export default {
->   content: ["./src/**/*.{ts,tsx}", "./node_modules/@ruma-ui/ui/dist/**/*.{js,mjs}"],
+>   content: ["./src/**/*.{ts,tsx}", "./node_modules/@rumaui/ui/dist/**/*.{js,mjs}"],
 > };
 > ```
 
@@ -124,7 +124,7 @@ Import the library's base stylesheet once in your application entry point:
 
 ```ts
 // _app.tsx / layout.tsx / main.tsx
-import "@ruma-ui/ui/ui.css";
+import "@rumaui/ui/ui.css";
 ```
 
 ---
@@ -132,7 +132,7 @@ import "@ruma-ui/ui/ui.css";
 ## Quick Start
 
 ```tsx
-import { Button, Card, Badge } from "@ruma-ui/ui";
+import { Button, Card, Badge } from "@rumaui/ui";
 
 export default function HomePage() {
   return (
@@ -152,86 +152,86 @@ export default function HomePage() {
 
 ## Component Catalogue
 
-All 49 components are available as named exports from `@ruma-ui/ui`.
+All 49 components are available as named exports from `@rumaui/ui`.
 
 ### Layout & Navigation
 
-| Component        | Import                                         | Description                             |
-| ---------------- | ---------------------------------------------- | --------------------------------------- |
-| `Breadcrumb`     | `import { Breadcrumb } from "@ruma-ui/ui"`     | Hierarchical path navigation            |
-| `NavigationMenu` | `import { NavigationMenu } from "@ruma-ui/ui"` | Accessible multi-level nav menu         |
-| `Tabs`           | `import { Tabs } from "@ruma-ui/ui"`           | Tabbed content panels                   |
-| `Pagination`     | `import { Pagination } from "@ruma-ui/ui"`     | Page navigation with configurable range |
-| `Stepper`        | `import { Stepper } from "@ruma-ui/ui"`        | Multi-step wizard UI                    |
+| Component        | Import                                        | Description                             |
+| ---------------- | --------------------------------------------- | --------------------------------------- |
+| `Breadcrumb`     | `import { Breadcrumb } from "@rumaui/ui"`     | Hierarchical path navigation            |
+| `NavigationMenu` | `import { NavigationMenu } from "@rumaui/ui"` | Accessible multi-level nav menu         |
+| `Tabs`           | `import { Tabs } from "@rumaui/ui"`           | Tabbed content panels                   |
+| `Pagination`     | `import { Pagination } from "@rumaui/ui"`     | Page navigation with configurable range |
+| `Stepper`        | `import { Stepper } from "@rumaui/ui"`        | Multi-step wizard UI                    |
 
 ### Inputs & Forms
 
-| Component     | Import                                      | Description                                   |
-| ------------- | ------------------------------------------- | --------------------------------------------- |
-| `Button`      | `import { Button } from "@ruma-ui/ui"`      | Versatile button with 6 variants              |
-| `TextInput`   | `import { TextInput } from "@ruma-ui/ui"`   | Single-line text field with validation states |
-| `Textarea`    | `import { Textarea } from "@ruma-ui/ui"`    | Multi-line text field with auto-resize        |
-| `Checkbox`    | `import { Checkbox } from "@ruma-ui/ui"`    | Accessible checkbox with indeterminate state  |
-| `Switch`      | `import { Switch } from "@ruma-ui/ui"`      | Toggle switch with animated thumb             |
-| `Select`      | `import { Select } from "@ruma-ui/ui"`      | Dropdown select with search                   |
-| `MultiSelect` | `import { MultiSelect } from "@ruma-ui/ui"` | Multi-value select with chips                 |
-| `RadioGroup`  | `import { RadioGroup } from "@ruma-ui/ui"`  | Accessible radio button group                 |
-| `Slider`      | `import { Slider } from "@ruma-ui/ui"`      | Range slider with step support                |
-| `RangeInput`  | `import { RangeInput } from "@ruma-ui/ui"`  | Dual-handle range input                       |
-| `DatePicker`  | `import { DatePicker } from "@ruma-ui/ui"`  | Calendar-based date selector                  |
-| `Calendar`    | `import { Calendar } from "@ruma-ui/ui"`    | Standalone calendar component                 |
-| `InputOTP`    | `import { InputOTP } from "@ruma-ui/ui"`    | One-time password input slots                 |
-| `FileUpload`  | `import { FileUpload } from "@ruma-ui/ui"`  | Drag-and-drop file upload zone                |
-| `Editable`    | `import { Editable } from "@ruma-ui/ui"`    | Click-to-edit inline text                     |
-| `Rating`      | `import { Rating } from "@ruma-ui/ui"`      | Star rating input                             |
-| `Form`        | `import { Form } from "@ruma-ui/ui"`        | Form wrapper with validation context          |
+| Component     | Import                                     | Description                                   |
+| ------------- | ------------------------------------------ | --------------------------------------------- |
+| `Button`      | `import { Button } from "@rumaui/ui"`      | Versatile button with 6 variants              |
+| `TextInput`   | `import { TextInput } from "@rumaui/ui"`   | Single-line text field with validation states |
+| `Textarea`    | `import { Textarea } from "@rumaui/ui"`    | Multi-line text field with auto-resize        |
+| `Checkbox`    | `import { Checkbox } from "@rumaui/ui"`    | Accessible checkbox with indeterminate state  |
+| `Switch`      | `import { Switch } from "@rumaui/ui"`      | Toggle switch with animated thumb             |
+| `Select`      | `import { Select } from "@rumaui/ui"`      | Dropdown select with search                   |
+| `MultiSelect` | `import { MultiSelect } from "@rumaui/ui"` | Multi-value select with chips                 |
+| `RadioGroup`  | `import { RadioGroup } from "@rumaui/ui"`  | Accessible radio button group                 |
+| `Slider`      | `import { Slider } from "@rumaui/ui"`      | Range slider with step support                |
+| `RangeInput`  | `import { RangeInput } from "@rumaui/ui"`  | Dual-handle range input                       |
+| `DatePicker`  | `import { DatePicker } from "@rumaui/ui"`  | Calendar-based date selector                  |
+| `Calendar`    | `import { Calendar } from "@rumaui/ui"`    | Standalone calendar component                 |
+| `InputOTP`    | `import { InputOTP } from "@rumaui/ui"`    | One-time password input slots                 |
+| `FileUpload`  | `import { FileUpload } from "@rumaui/ui"`  | Drag-and-drop file upload zone                |
+| `Editable`    | `import { Editable } from "@rumaui/ui"`    | Click-to-edit inline text                     |
+| `Rating`      | `import { Rating } from "@rumaui/ui"`      | Star rating input                             |
+| `Form`        | `import { Form } from "@rumaui/ui"`        | Form wrapper with validation context          |
 
 ### Overlay & Feedback
 
-| Component   | Import                                    | Description                                     |
-| ----------- | ----------------------------------------- | ----------------------------------------------- |
-| `Modal`     | `import { Modal } from "@ruma-ui/ui"`     | Accessible dialog/modal                         |
-| `Drawer`    | `import { Drawer } from "@ruma-ui/ui"`    | Side-panel drawer (4 directions)                |
-| `Popover`   | `import { Popover } from "@ruma-ui/ui"`   | Floating popover with anchor positioning        |
-| `Tooltip`   | `import { Tooltip } from "@ruma-ui/ui"`   | Hover/focus tooltip with delay                  |
-| `Toast`     | `import { Toast } from "@ruma-ui/ui"`     | Stack-able toast notifications                  |
-| `Alert`     | `import { Alert } from "@ruma-ui/ui"`     | Inline alert with 4 severity levels             |
-| `Progress`  | `import { Progress } from "@ruma-ui/ui"`  | Determinate / indeterminate progress bar        |
-| `Loader`    | `import { Loader } from "@ruma-ui/ui"`    | Spinner variants for loading states             |
-| `Skeleton`  | `import { Skeleton } from "@ruma-ui/ui"`  | Content-placeholder skeleton                    |
-| `TopLoader` | `import { TopLoader } from "@ruma-ui/ui"` | Page-level progress indicator (NProgress-style) |
+| Component   | Import                                   | Description                                     |
+| ----------- | ---------------------------------------- | ----------------------------------------------- |
+| `Modal`     | `import { Modal } from "@rumaui/ui"`     | Accessible dialog/modal                         |
+| `Drawer`    | `import { Drawer } from "@rumaui/ui"`    | Side-panel drawer (4 directions)                |
+| `Popover`   | `import { Popover } from "@rumaui/ui"`   | Floating popover with anchor positioning        |
+| `Tooltip`   | `import { Tooltip } from "@rumaui/ui"`   | Hover/focus tooltip with delay                  |
+| `Toast`     | `import { Toast } from "@rumaui/ui"`     | Stack-able toast notifications                  |
+| `Alert`     | `import { Alert } from "@rumaui/ui"`     | Inline alert with 4 severity levels             |
+| `Progress`  | `import { Progress } from "@rumaui/ui"`  | Determinate / indeterminate progress bar        |
+| `Loader`    | `import { Loader } from "@rumaui/ui"`    | Spinner variants for loading states             |
+| `Skeleton`  | `import { Skeleton } from "@rumaui/ui"`  | Content-placeholder skeleton                    |
+| `TopLoader` | `import { TopLoader } from "@rumaui/ui"` | Page-level progress indicator (NProgress-style) |
 
 ### Data Display
 
-| Component      | Import                                       | Description                             |
-| -------------- | -------------------------------------------- | --------------------------------------- |
-| `Table`        | `import { Table } from "@ruma-ui/ui"`        | Sortable, paginated data table          |
-| `Card`         | `import { Card } from "@ruma-ui/ui"`         | Container card with header/footer slots |
-| `Badge`        | `import { Badge } from "@ruma-ui/ui"`        | Status badge with 8 colour variants     |
-| `Avatar`       | `import { Avatar } from "@ruma-ui/ui"`       | User avatar with fallback initials      |
-| `Accordion`    | `import { Accordion } from "@ruma-ui/ui"`    | Expandable content sections             |
-| `TreeView`     | `import { TreeView } from "@ruma-ui/ui"`     | Hierarchical tree with expand/collapse  |
-| `SortableList` | `import { SortableList } from "@ruma-ui/ui"` | Drag-and-drop reorderable list          |
-| `Carousel`     | `import { Carousel } from "@ruma-ui/ui"`     | Touch-friendly image/content carousel   |
-| `Image`        | `import { Image } from "@ruma-ui/ui"`        | Optimised image with lazy-load          |
-| `Video`        | `import { Video } from "@ruma-ui/ui"`        | HTML5 video player wrapper              |
-| `KeyboardKey`  | `import { KeyboardKey } from "@ruma-ui/ui"`  | Keyboard shortcut display (`⌘K`)        |
+| Component      | Import                                      | Description                             |
+| -------------- | ------------------------------------------- | --------------------------------------- |
+| `Table`        | `import { Table } from "@rumaui/ui"`        | Sortable, paginated data table          |
+| `Card`         | `import { Card } from "@rumaui/ui"`         | Container card with header/footer slots |
+| `Badge`        | `import { Badge } from "@rumaui/ui"`        | Status badge with 8 colour variants     |
+| `Avatar`       | `import { Avatar } from "@rumaui/ui"`       | User avatar with fallback initials      |
+| `Accordion`    | `import { Accordion } from "@rumaui/ui"`    | Expandable content sections             |
+| `TreeView`     | `import { TreeView } from "@rumaui/ui"`     | Hierarchical tree with expand/collapse  |
+| `SortableList` | `import { SortableList } from "@rumaui/ui"` | Drag-and-drop reorderable list          |
+| `Carousel`     | `import { Carousel } from "@rumaui/ui"`     | Touch-friendly image/content carousel   |
+| `Image`        | `import { Image } from "@rumaui/ui"`        | Optimised image with lazy-load          |
+| `Video`        | `import { Video } from "@rumaui/ui"`        | HTML5 video player wrapper              |
+| `KeyboardKey`  | `import { KeyboardKey } from "@rumaui/ui"`  | Keyboard shortcut display (`⌘K`)        |
 
 ### Actions & Menus
 
-| Component              | Import                                               | Description                   |
-| ---------------------- | ---------------------------------------------------- | ----------------------------- |
-| `Dropdown`             | `import { Dropdown } from "@ruma-ui/ui"`             | Contextual action menu        |
-| `ContextMenu`          | `import { ContextMenu } from "@ruma-ui/ui"`          | Right-click context menu      |
-| `FloatingActionButton` | `import { FloatingActionButton } from "@ruma-ui/ui"` | FAB with speed-dial support   |
-| `Clipboard`            | `import { Clipboard } from "@ruma-ui/ui"`            | Copy-to-clipboard button      |
-| `Link`                 | `import { Link } from "@ruma-ui/ui"`                 | Router-aware anchor component |
+| Component              | Import                                              | Description                   |
+| ---------------------- | --------------------------------------------------- | ----------------------------- |
+| `Dropdown`             | `import { Dropdown } from "@rumaui/ui"`             | Contextual action menu        |
+| `ContextMenu`          | `import { ContextMenu } from "@rumaui/ui"`          | Right-click context menu      |
+| `FloatingActionButton` | `import { FloatingActionButton } from "@rumaui/ui"` | FAB with speed-dial support   |
+| `Clipboard`            | `import { Clipboard } from "@rumaui/ui"`            | Copy-to-clipboard button      |
+| `Link`                 | `import { Link } from "@rumaui/ui"`                 | Router-aware anchor component |
 
 ### Layout Utilities
 
-| Component   | Import                                    | Description                 |
-| ----------- | ----------------------------------------- | --------------------------- |
-| `Resizable` | `import { Resizable } from "@ruma-ui/ui"` | Drag-to-resize panel layout |
+| Component   | Import                                   | Description                 |
+| ----------- | ---------------------------------------- | --------------------------- |
+| `Resizable` | `import { Resizable } from "@rumaui/ui"` | Drag-to-resize panel layout |
 
 ---
 
@@ -241,7 +241,7 @@ All 49 components are available as named exports from `@ruma-ui/ui`.
 
 ```tsx
 // app/layout.tsx
-import "@ruma-ui/ui/ui.css";
+import "@rumaui/ui/ui.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -254,7 +254,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ```tsx
 // app/page.tsx
-import { Button, Toast } from "@ruma-ui/ui";
+import { Button, Toast } from "@rumaui/ui";
 
 export default function Page() {
   return <Button>Hello from App Router</Button>;
@@ -269,7 +269,7 @@ export default function Page() {
 // src/main.tsx
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "@ruma-ui/ui/ui.css";
+import "@rumaui/ui/ui.css";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -294,7 +294,7 @@ export default defineConfig({
 
 ```tsx
 // app/root.tsx
-import rumaStyles from "@ruma-ui/ui/ui.css?url";
+import rumaStyles from "@rumaui/ui/ui.css?url";
 import type { LinksFunction } from "@remix-run/node";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: rumaStyles }];
@@ -307,7 +307,7 @@ export const links: LinksFunction = () => [{ rel: "stylesheet", href: rumaStyles
 The package ships full TypeScript declarations. All component props are exported for convenience:
 
 ```tsx
-import type { ButtonProps, CardProps, ModalProps } from "@ruma-ui/ui";
+import type { ButtonProps, CardProps, ModalProps } from "@rumaui/ui";
 
 // Extend component props
 interface MyButtonProps extends ButtonProps {

@@ -439,7 +439,7 @@ BREAKING CHANGE: The old \`color\` prop has been replaced with \`variant\`"
 ```tsx
 // ComponentName.tsx
 import React from "react";
-import { cn } from "@ruma-ui/ui";
+import { cn } from "@rumaui/ui";
 
 export interface ComponentNameProps {
   /**

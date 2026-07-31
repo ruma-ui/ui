@@ -2,7 +2,7 @@
   "name": "fileupload",
   "type": "registry:ui",
   "title": "FileUpload",
-  "description": "Production-ready FileUpload component for @ruma-ui",
+  "description": "Production-ready FileUpload component for @rumaui",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [
