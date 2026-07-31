@@ -45,7 +45,7 @@ export default function InstallationPage() {
         </p>
         <div className="pl-10">
           <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 font-mono text-xs text-zinc-300">
-            npx @rumaui/cli init
+            npx @ruma-org/cli init
           </div>
         </div>
       </div>

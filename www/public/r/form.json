@@ -2,7 +2,7 @@
   "name": "form",
   "type": "registry:ui",
   "title": "Form",
-  "description": "Production-ready Form component for @rumaui",
+  "description": "Production-ready Form component for @ruma-org",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

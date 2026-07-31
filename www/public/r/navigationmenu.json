@@ -2,7 +2,7 @@
   "name": "navigationmenu",
   "type": "registry:ui",
   "title": "NavigationMenu",
-  "description": "Production-ready NavigationMenu component for @rumaui",
+  "description": "Production-ready NavigationMenu component for @ruma-org",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

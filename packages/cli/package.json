@@ -1,9 +1,19 @@
 {
-  "name": "@rumaui/cli",
+  "name": "@ruma-org/cli",
   "version": "0.1.0-dev.0",
   "description": "CLI for adding ruma-ui components to your React project",
   "bin": {
     "ruma-ui": "dist/index.js"
+  },
+  "license": "MIT",
+  "author": "Ruma UI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruma-ui/ui.git",
+    "directory": "packages/cli"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "type": "module",
   "scripts": {

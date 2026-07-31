@@ -2,7 +2,7 @@
   "name": "skeleton",
   "type": "registry:ui",
   "title": "Skeleton",
-  "description": "Production-ready Skeleton component for @rumaui",
+  "description": "Production-ready Skeleton component for @ruma-org",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

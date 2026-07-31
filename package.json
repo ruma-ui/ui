@@ -1,5 +1,5 @@
 {
-  "name": "@rumaui/source",
+  "name": "@ruma-org/source",
   "version": "0.1.0-dev.0",
   "private": true,
   "description": "A modern, production-ready React UI component library built with TypeScript, Tailwind CSS, and Nx.",

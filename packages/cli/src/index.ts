@@ -31,7 +31,7 @@ program
   .action(async (components, options) => {
     if (!components || components.length === 0) {
       console.log(
-        "Please specify components to add (e.g. `npx @rumaui/cli add button card modal`)"
+        "Please specify components to add (e.g. `npx @ruma-org/cli add button card modal`)"
       );
       return;
     }

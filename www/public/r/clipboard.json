@@ -2,7 +2,7 @@
   "name": "clipboard",
   "type": "registry:ui",
   "title": "Clipboard",
-  "description": "Production-ready Clipboard component for @rumaui",
+  "description": "Production-ready Clipboard component for @ruma-org",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

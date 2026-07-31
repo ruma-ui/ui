@@ -2,7 +2,7 @@
   "name": "keyboardkey",
   "type": "registry:ui",
   "title": "KeyboardKey",
-  "description": "Production-ready KeyboardKey component for @rumaui",
+  "description": "Production-ready KeyboardKey component for @ruma-org",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

@@ -2,7 +2,7 @@
   "name": "toast",
   "type": "registry:ui",
   "title": "Toast",
-  "description": "Production-ready Toast component for @rumaui",
+  "description": "Production-ready Toast component for @ruma-org",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

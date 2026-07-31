@@ -2,7 +2,7 @@
   "name": "table",
   "type": "registry:ui",
   "title": "Table",
-  "description": "Production-ready Table component for @rumaui",
+  "description": "Production-ready Table component for @ruma-org",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [
