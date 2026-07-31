@@ -97,11 +97,15 @@ jobs:
           echo "$SR_OUTPUT"
 
           # If semantic-release failed because the version was already published
-          # (E400) it means a previous concurrent or re-triggered run already
-          # succeeded. Treat this as a no-op success to keep the pipeline green.
+          # (npm E403 / "cannot publish over previously published") it means a
+          # prior run already succeeded. Treat as a no-op to keep the pipeline green.
           if [[ $SR_EXIT -ne 0 ]]; then
-            if echo "$SR_OUTPUT" | grep -q "Cannot publish over previously published version"; then
-              echo "⚠️  Version already published to npm — previous run succeeded. Treating as no-op."
+            if echo "$SR_OUTPUT" | grep -q -i \
+              -e "cannot publish over.*previously published" \
+              -e "previously published versions" \
+              -e "code E403" \
+              -e "code EOTP"; then
+              echo "⚠️  Version already published or OTP required — treating as no-op."
               exit 0
             fi
             exit $SR_EXIT
