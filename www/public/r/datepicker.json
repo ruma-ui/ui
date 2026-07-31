@@ -2,7 +2,7 @@
   "name": "datepicker",
   "type": "registry:ui",
   "title": "DatePicker",
-  "description": "Production-ready DatePicker component for @ruma-ui",
+  "description": "Production-ready DatePicker component for @rumaui",
   "dependencies": ["react-icons", "date-fns"],
   "registryDependencies": ["utils"],
   "files": [

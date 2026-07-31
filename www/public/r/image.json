@@ -2,7 +2,7 @@
   "name": "image",
   "type": "registry:ui",
   "title": "Image",
-  "description": "Production-ready Image component for @ruma-ui",
+  "description": "Production-ready Image component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

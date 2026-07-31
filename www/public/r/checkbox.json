@@ -2,7 +2,7 @@
   "name": "checkbox",
   "type": "registry:ui",
   "title": "Checkbox",
-  "description": "Production-ready Checkbox component for @ruma-ui",
+  "description": "Production-ready Checkbox component for @rumaui",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

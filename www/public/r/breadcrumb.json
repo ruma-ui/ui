@@ -2,7 +2,7 @@
   "name": "breadcrumb",
   "type": "registry:ui",
   "title": "Breadcrumb",
-  "description": "Production-ready Breadcrumb component for @ruma-ui",
+  "description": "Production-ready Breadcrumb component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

@@ -1,5 +1,5 @@
 {
-  "name": "@ruma-ui/ui",
+  "name": "@rumaui/ui",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "ui/src",
   "projectType": "library",

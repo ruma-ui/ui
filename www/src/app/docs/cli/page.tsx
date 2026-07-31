@@ -20,7 +20,7 @@ export default function CliPage() {
           installs dependencies.
         </p>
         <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 font-mono text-xs text-zinc-300">
-          npx @ruma-ui/cli init [options]
+          npx @rumaui/cli init [options]
         </div>
 
         <h3 className="pt-2 text-sm font-semibold text-white">Options</h3>

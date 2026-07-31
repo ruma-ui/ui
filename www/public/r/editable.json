@@ -2,7 +2,7 @@
   "name": "editable",
   "type": "registry:ui",
   "title": "Editable",
-  "description": "Production-ready Editable component for @ruma-ui",
+  "description": "Production-ready Editable component for @rumaui",
   "dependencies": [],
   "registryDependencies": ["utils"],
   "files": [

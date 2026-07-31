@@ -2,7 +2,7 @@
   "name": "stepper",
   "type": "registry:ui",
   "title": "Stepper",
-  "description": "Production-ready Stepper component for @ruma-ui",
+  "description": "Production-ready Stepper component for @rumaui",
   "dependencies": ["react-icons"],
   "registryDependencies": ["utils"],
   "files": [

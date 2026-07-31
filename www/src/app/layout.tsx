@@ -3,7 +3,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 
 export const metadata = {
-  title: "@ruma-ui — Production-ready React Component Library",
+  title: "@rumaui — Production-ready React Component Library",
   description:
     "Beautifully designed React components built with TypeScript, Tailwind CSS, and CLI delivery.",
 };
