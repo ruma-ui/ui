@@ -2,4 +2,259 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Getting Started/Contributing" />
 
-# Contributing
+# Contribution Guide 🤝
+
+Thank you for your interest in contributing to **Ruma UI**! We welcome bug fixes, component enhancements, documentation updates, and new features.
+
+This guide outlines our development setup, monorepo structure, component creation workflow, quality standards, and release pipeline.
+
+---
+
+## 1. Local Environment Setup
+
+### Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- **Node.js**: `≥ 18.0.0`
+- **pnpm**: `10.18.1` (Enforced via `packageManager` in `package.json`)
+
+### Step 1: Fork & Clone Repository
+
+```bash
+# Clone your fork
+git clone https://github.com/<your-username>/ui.git
+cd ui
+
+# Install all workspace dependencies
+pnpm install
+```
+
+### Step 2: Start Development Environment
+
+Run the workspace dev servers in parallel:
+
+```bash
+# Start Storybook component environment (http://localhost:6006)
+pnpm storybook
+
+# Start Documentation site (http://localhost:3000)
+pnpm dev:website
+```
+
+---
+
+## 2. Monorepo Architecture
+
+Ruma UI uses **Nx** and **pnpm workspaces** to manage multiple packages within a single repository:
+
+```text
+ruma-ui/ui/
+├── ui/                     # @ruma-kit/ui — Core React component library
+│   ├── src/
+│   │   ├── components/     # 49+ React components
+│   │   ├── docs/           # Storybook MDX documentation pages
+│   │   ├── lib/            # Shared utilities (cn.ts, tw.ts, etc.)
+│   │   ├── registry/       # Registry JSON generator schemas for CLI
+│   │   └── styles/         # Global CSS & design tokens
+│   └── .storybook/         # Storybook configuration & main settings
+│
+├── packages/
+│   └── cli/                # @ruma-kit/cli — CLI tool source code
+│       └── src/
+│           ├── commands/   # init.ts, add.ts
+│           └── index.ts
+│
+├── www/                    # Documentation website (Next.js 16)
+└── scripts/                # Build & registry generation scripts
+```
+
+---
+
+## 3. Creating a New Component
+
+Follow this checklist when adding a new component to Ruma UI:
+
+### Step 3.1: Create Component Directory
+
+Create a new folder in `ui/src/components/<ComponentName>/`:
+
+```text
+ui/src/components/Rating/
+├── Rating.tsx              # Component source code
+├── Rating.stories.tsx      # Storybook stories & interactive controls
+├── Rating.mdx              # MDX Documentation page
+├── Rating.spec.tsx         # Unit tests (Vitest + React Testing Library)
+└── index.ts                # Named exports
+```
+
+### Step 3.2: Write Component Code (`Rating.tsx`)
+
+Ensure your component adheres to these design rules:
+
+- Export props interface (e.g. `export interface RatingProps`).
+- Forward refs using `React.forwardRef` where applicable.
+- Use `cn()` for merging classes.
+- Support `variant`, `size`, and `className` props.
+
+### Step 3.3: Write Storybook Story (`Rating.stories.tsx`)
+
+Provide interactive stories covering all variants, sizes, states (disabled, loading, active), and custom class overrides:
+
+```tsx
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Rating } from "./Rating";
+
+const meta: Meta<typeof Rating> = {
+  title: "Components/Rating",
+  component: Rating,
+  tags: ["autodocs"],
+  argTypes: {
+    value: { control: { type: "number", min: 0, max: 5 } },
+    size: { control: "select", options: ["sm", "md", "lg"] },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Rating>;
+
+export className: Story = {
+  args: {
+    value: 4,
+    size: "md",
+  },
+};
+```
+
+### Step 3.4: Write Unit Tests (`Rating.spec.tsx`)
+
+Add tests for rendering, event handlers, keyboard interactions, and custom class names:
+
+```tsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Rating } from "./Rating";
+
+describe("Rating Component", () => {
+  it("renders correctly with default props", () => {
+    render(<Rating value={3} />);
+    expect(screen.getByRole("slider")).toBeInTheDocument();
+  });
+});
+```
+
+### Step 3.5: Export in `ui/src/index.ts`
+
+Export your new component in the main entrypoint `ui/src/index.ts`:
+
+```ts
+export * from "./components/Rating";
+```
+
+---
+
+## 4. Verification & Quality Pipeline
+
+Before opening a pull request, run the automated verification pipeline:
+
+```bash
+# Run full validation pipeline (lint + typecheck + test + build)
+pnpm validate
+
+# Or run individual checks
+pnpm lint           # Check ESLint rules across monorepo
+pnpm typecheck      # Run TypeScript compiler checks
+pnpm test           # Run Vitest unit tests
+```
+
+---
+
+## 5. Commit Convention
+
+We enforce [Conventional Commits](https://conventionalcommits.org/) format. Automated semantic releases rely on commit prefixes to calculate version bumps:
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Prefix</th>
+      <th align="left">Type</th>
+      <th align="left">Release Impact</th>
+      <th align="left">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>feat:</code>
+      </td>
+      <td>Feature</td>
+      <td>
+        Minor (<code>1.x.0</code>)
+      </td>
+      <td>
+        <code>feat: add Rating component</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>fix:</code>
+      </td>
+      <td>Bug Fix</td>
+      <td>
+        Patch (<code>1.0.x</code>)
+      </td>
+      <td>
+        <code>fix: resolve Modal focus trap on ESC</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>docs:</code>
+      </td>
+      <td>Documentation</td>
+      <td>
+        Patch (<code>1.0.x</code>)
+      </td>
+      <td>
+        <code>docs: update Installation MDX guide</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>refactor:</code>
+      </td>
+      <td>Refactor</td>
+      <td>
+        Patch (<code>1.0.x</code>)
+      </td>
+      <td>
+        <code>refactor: optimize Accordion render</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>feat!:</code>
+      </td>
+      <td>Breaking Change</td>
+      <td>
+        Major (<code>x.0.0</code>)
+      </td>
+      <td>
+        <code>feat!: remove deprecated size prop</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 6. Pull Request & Branch Promotion Workflow
+
+1. Create a branch off `dev`: `git checkout -b feat/rating-component dev`
+2. Commit your changes: `git commit -m "feat: add Rating component"`
+3. Push to your fork and submit a PR targeting the **`dev`** branch.
+4. Continuous Integration will execute lint, typecheck, unit tests, and build checks automatically.
+
+```text
+dev  ──>  alpha  ──>  beta  ──>  rc  ──>  main
+           (Pre-release)          (Stable Release)
+```

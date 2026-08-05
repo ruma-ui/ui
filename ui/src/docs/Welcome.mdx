@@ -2,4 +2,107 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Getting Started/Welcome" />
 
-# Welcome to Ruma UI
+# Welcome to Ruma UI 🚀
+
+**Ruma UI** is a modern, production-ready React component library and design ecosystem built with **TypeScript**, **Tailwind CSS v4**, and enterprise-grade CI/CD pipelines.
+
+Whether you are building a fast prototype or scaling a complex enterprise application, Ruma UI provides beautifully crafted, accessible, and customizable components designed for seamless developer experience.
+
+---
+
+## ✨ Key Features
+
+- **🎨 Modern Design Tokens**: Hand-crafted color palettes, glassmorphism support, dark mode readiness, and responsive layouts.
+- **🧱 49+ Components**: Complete suite of interactive components ranging from basic inputs (`Button`, `Select`, `Input`) to advanced controls (`SortableList`, `Resizable`, `Video`).
+- **🚀 Flexible Integration Options**:
+  - **NPM Package (`@ruma-kit/ui`)**: Install pre-compiled, tree-shakeable React components for instant setup.
+  - **CLI Add (`@ruma-kit/cli`)**: Copy component source code directly into your codebase for 100% control (shadcn-style workflow).
+- **⚡ Built for Speed**: Minimal bundle overhead, full tree-shaking support, and performance-optimized rendering.
+- **♿ Accessible First**: Built following WAI-ARIA authoring practices with keyboard navigation, focus trapping, and screen reader announcements.
+- **📦 Full Monorepo Architecture**: Managed via **Nx** with automated releases, pre-release channels (`alpha`, `beta`, `rc`), and changeset tracking.
+
+---
+
+## 📦 Package Ecosystem
+
+Ruma UI is published as two complementary packages within our Nx monorepo:
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Package</th>
+      <th align="left">Version</th>
+      <th align="left">Description</th>
+      <th align="left">Recommended Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>
+          <code>@ruma-kit/ui</code>
+        </strong>
+      </td>
+      <td>
+        <code>v1.0.0-alpha</code>
+      </td>
+      <td>Pre-built React component library</td>
+      <td>Fast integration, automatic updates, zero setup overhead.</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          <code>@ruma-kit/cli</code>
+        </strong>
+      </td>
+      <td>
+        <code>v1.0.0-alpha</code>
+      </td>
+      <td>Command-line interface for component generation</td>
+      <td>Complete source ownership, custom component modifications.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## ⚡ Quick Start Comparison
+
+### Option A: NPM Package Integration
+
+```bash
+# Install the package
+pnpm add @ruma-kit/ui
+
+# Import stylesheet and components
+import { Button, Card } from "@ruma-kit/ui";
+import "@ruma-kit/ui/ui.css";
+```
+
+### Option B: CLI Direct Source Add
+
+```bash
+# Initialize Ruma UI configuration in your project
+npx @ruma-kit/cli init
+
+# Add components directly to your src/components directory
+npx @ruma-kit/cli add button card modal toast
+```
+
+---
+
+## 🗺️ Navigation & Next Steps
+
+Explore the rest of the getting started documentation to start building:
+
+- **[Installation](?path=/docs/getting-started-installation--docs)** — Comprehensive setup guide for Next.js, Vite, Remix, and React CRA projects.
+- **[Usage & Customization](?path=/docs/getting-started-usage--docs)** — Learn about styling overrides, `cn()` utility, design tokens, and prop patterns.
+- **[Contributing Guide](?path=/docs/getting-started-contributing--docs)** — Step-by-step guide on setting up the local workspace, creating components, and submitting PRs.
+
+---
+
+## 🌐 Community & Resources
+
+- **Official Website & Docs**: [ruma.5dev.in](https://ruma.5dev.in)
+- **GitHub Repository**: [ruma-ui/ui](https://github.com/ruma-ui/ui)
+- **NPM Package**: [@ruma-kit/ui](https://www.npmjs.com/package/@ruma-kit/ui)

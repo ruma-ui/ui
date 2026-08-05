@@ -24,7 +24,7 @@
     "clean:all": "npm run clean && rm -rf node_modules",
     "dev": "nx run-many -t dev --parallel=3",
     "dev:ui": "nx dev ui",
-    "dev:website": "nx dev website",
+    "dev:website": "nx dev www",
     "docs:api": "typedoc",
     "docs:build": "npm run docs:api && npm run storybook:build",
     "format": "prettier --write .",

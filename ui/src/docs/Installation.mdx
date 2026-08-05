@@ -2,4 +2,166 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Getting Started/Installation" />
 
-# Installation
+# Installation Guide ⚙️
+
+Ruma UI offers two integration paths:
+
+1. **NPM Package (`@ruma-kit/ui`)**: Pre-built library for quick installation and automatic version updates.
+2. **CLI Copy & Add (`@ruma-kit/cli`)**: Command-line tool to copy full component source code into your project for 100% customizability (shadcn-style).
+
+---
+
+## Prerequisites
+
+Before installing Ruma UI, ensure your environment meets the following requirements:
+
+- **Node.js**: `≥ 18.0.0`
+- **React**: `≥ 18.0.0` or `19.x`
+- **Tailwind CSS**: `v4.x` (Recommended) or `v3.4+`
+
+---
+
+## Path 1: Installing via NPM Package (`@ruma-kit/ui`)
+
+### Step 1: Install Package
+
+Install `@ruma-kit/ui` and its peer dependencies using your preferred package manager:
+
+```bash
+# pnpm
+pnpm add @ruma-kit/ui react-icons clsx tailwind-merge
+
+# npm
+npm install @ruma-kit/ui react-icons clsx tailwind-merge
+
+# yarn
+yarn add @ruma-kit/ui react-icons clsx tailwind-merge
+
+# bun
+bun add @ruma-kit/ui react-icons clsx tailwind-merge
+```
+
+### Step 2: Import Stylesheet
+
+Import the bundled stylesheet `@ruma-kit/ui/ui.css` into your root CSS file or application entry point.
+
+#### Next.js (App Router) — `app/globals.css` or `app/layout.tsx`
+
+```tsx
+// app/layout.tsx
+import "@ruma-kit/ui/ui.css";
+import "./globals.css";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+#### Vite / React SPA — `src/main.tsx` or `src/index.css`
+
+```tsx
+// src/main.tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "@ruma-kit/ui/ui.css";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+### Step 3: Verify Tailwind CSS Integration
+
+If you are using **Tailwind CSS v4**, ensure your `@import` directives are configured correctly in your main CSS file:
+
+```css
+/* main.css */
+@import "tailwindcss";
+@import "@ruma-kit/ui/ui.css";
+```
+
+---
+
+## Path 2: Installing via CLI (`@ruma-kit/cli`)
+
+The `@ruma-kit/cli` copies raw component source code directly into your repository, giving you total control over styling, behavior, and structural modifications.
+
+### Step 1: Initialize Ruma UI in your Project
+
+Run the `init` command in your project root to generate the configuration file (`ruma.json`), setup the `cn()` utility function, and configure design tokens:
+
+```bash
+npx @ruma-kit/cli init
+```
+
+The initializer will prompt you for:
+
+- Component directory location (e.g. `src/components/ui` or `components/ui`)
+- Path to your global CSS file
+- Tailwind configuration style
+
+### Step 2: Add Components on Demand
+
+Use the `add` command to fetch specific components along with their required utility dependencies:
+
+```bash
+# Add a single component
+npx @ruma-kit/cli add button
+
+# Add multiple components
+npx @ruma-kit/cli add card modal toast badge select
+```
+
+This populates your workspace with editable TypeScript component files:
+
+```text
+your-project/
+├── src/
+│   ├── components/
+│   │   └── ui/
+│   │       ├── Button.tsx
+│   │       ├── Card.tsx
+│   │       ├── Modal.tsx
+│   │       └── Toast.tsx
+│   └── lib/
+│       └── utils.ts        # Includes cn() utility
+```
+
+---
+
+## 🎨 Theme & Dark Mode Setup
+
+Ruma UI components use CSS variables for theme tokens (colors, radii, shadows).
+
+To enable dark mode, attach the `dark` class to your root `<html>` or `<body>` element:
+
+```html
+<html class="dark">
+  <body>
+    <!-- Ruma UI components will render in dark mode -->
+  </body>
+</html>
+```
+
+Or toggle dynamically in React:
+
+```tsx
+import { useState, useEffect } from "react";
+
+export function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
+
+  return <button onClick={() => setDark(!dark)}>Switch to {dark ? "Light" : "Dark"} Mode</button>;
+}
+```

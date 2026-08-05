@@ -5,6 +5,12 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "dev": {
+      "command": "storybook dev -p 6006",
+      "options": {
+        "cwd": "ui"
+      }
+    },
     "storybook": {
       "options": {
         "port": 6006

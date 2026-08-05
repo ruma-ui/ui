@@ -2,4 +2,187 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Getting Started/Usage" />
 
-# Usage
+# Component Usage & Customization 💡
+
+This guide covers component imports, variant customization, state management, prop types, and accessibility best practices in Ruma UI.
+
+---
+
+## 1. Basic Component Usage
+
+All Ruma UI components are exported as named exports with intuitive prop interfaces.
+
+```tsx
+import { Button, Card, Badge } from "@ruma-kit/ui";
+
+export function DashboardHeader() {
+  return (
+    <Card className="flex items-center justify-between p-6">
+      <div>
+        <h2 className="text-xl font-bold">Analytics Overview</h2>
+        <Badge variant="success" className="mt-1">
+          Live Updates
+        </Badge>
+      </div>
+      <Button variant="default" size="md" onClick={() => alert("Refreshed!")}>
+        Refresh Data
+      </Button>
+    </Card>
+  );
+}
+```
+
+---
+
+## 2. Component Variants & Sizes
+
+Most interactive components (`Button`, `Badge`, `Alert`, `Input`, etc.) support standardized `variant` and `size` props:
+
+```tsx
+// Variant options: "default" | "secondary" | "outline" | "ghost" | "destructive" | "link"
+<Button variant="default">Primary Action</Button>
+<Button variant="secondary">Secondary Action</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="destructive">Delete Item</Button>
+
+// Size options: "sm" | "md" | "lg"
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+```
+
+---
+
+## 3. Styling & Class Overrides with `cn()`
+
+Ruma UI components accept standard `className` props. Under the hood, class names are safely merged using the `cn()` utility (`clsx` + `tailwind-merge`), allowing you to override default styles without specificity conflicts.
+
+```tsx
+import { Button } from "@ruma-kit/ui";
+
+export function CustomButton() {
+  return (
+    // Custom gradient and hover shadow overrides default background
+    <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg hover:shadow-purple-500/25">
+      Gradient Button
+    </Button>
+  );
+}
+```
+
+### The `cn()` Utility Implementation
+
+If you are using `@ruma-kit/cli`, the `cn()` helper is located in `src/lib/utils.ts`:
+
+```ts
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+---
+
+## 4. Controlled vs Uncontrolled Components
+
+Complex components like `Modal`, `Drawer`, `Tabs`, `Switch`, and `Accordion` support both controlled state management and uncontrolled default values.
+
+### Controlled Modal Example
+
+```tsx
+import { useState } from "react";
+import { Button, Modal } from "@ruma-kit/ui";
+
+export function ControlledModalExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Confirm Action">
+        <p className="text-zinc-400">Are you sure you want to proceed with this request?</p>
+        <div className="mt-6 flex justify-end gap-3">
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="destructive"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
+            Confirm
+          </Button>
+        </div>
+      </Modal>
+    </>
+  );
+}
+```
+
+---
+
+## 5. Composition & Sub-Components
+
+Many components utilize compound sub-components for flexibile layout composition:
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ruma-kit/ui";
+
+export function FAQSection() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>What is Ruma UI?</AccordionTrigger>
+        <AccordionContent>
+          Ruma UI is a modern, production-ready React component library built with TypeScript and
+          Tailwind CSS.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Can I use it with Next.js App Router?</AccordionTrigger>
+        <AccordionContent>
+          Yes! All components support React 19 and Next.js App Router out of the box.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+---
+
+## 6. TypeScript Support
+
+All component props, ref types, and event handlers are fully typed with TypeScript.
+
+```tsx
+import { ButtonProps } from "@ruma-kit/ui";
+
+// Extending component props in custom wrappers
+interface PrimaryActionButtonProps extends Omit<ButtonProps, "variant"> {
+  loading?: boolean;
+}
+
+export function PrimaryActionButton({ loading, children, ...props }: PrimaryActionButtonProps) {
+  return (
+    <Button variant="default" disabled={loading} {...props}>
+      {loading ? "Loading..." : children}
+    </Button>
+  );
+}
+```
+
+---
+
+## 7. Accessibility Guidelines
+
+Every component in Ruma UI is built to satisfy WCAG 2.1 AA accessibility standards:
+
+- **Keyboard Navigation**: Interactive elements support `Tab`, `Shift+Tab`, `Enter`, `Space`, and `Escape` handling.
+- **Focus Management**: Focus states are styled with visible rings using `focus-visible:ring-2`.
+- **ARIA Attributes**: Components maintain correct `aria-expanded`, `aria-controls`, `aria-selected`, and `role` properties automatically.
+- **Screen Reader Support**: Hidden text wrappers (`sr-only`) ensure screen readers receive contextual notifications for icons and dismiss buttons.
