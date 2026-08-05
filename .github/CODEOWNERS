@@ -1,0 +1,30 @@
+# CODEOWNERS for Ruma UI Monorepo
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-codeowners
+
+# Default global codeowners for the entire repository
+*                     @ranitmanik @ruma-ui/maintainers
+
+# Core UI Components & Design System
+/ui/                  @ranitmanik @ruma-ui/core-team
+/ui/src/components/   @ranitmanik @ruma-ui/core-team
+/ui/src/styles/       @ranitmanik @ruma-ui/design-system
+
+# CI/CD Workflows & GitHub Configuration
+/.github/             @ranitmanik @ruma-ui/devops
+/.github/workflows/   @ranitmanik @ruma-ui/devops
+
+# Monorepo Scripts & Tools
+/scripts/             @ranitmanik @ruma-ui/devops
+/tools/               @ranitmanik @ruma-ui/devops
+/package.json         @ranitmanik @ruma-ui/maintainers
+/pnpm-workspace.yaml  @ranitmanik @ruma-ui/maintainers
+/nx.json              @ranitmanik @ruma-ui/maintainers
+
+# Community Standards & Documentation
+/README.md            @ranitmanik @ruma-ui/docs
+/CONTRIBUTING.md      @ranitmanik @ruma-ui/docs
+/CODE_OF_CONDUCT.md   @ranitmanik @ruma-ui/docs
+/SECURITY.md          @ranitmanik @ruma-ui/docs
+/SUPPORT.md           @ranitmanik @ruma-ui/docs
+/GOVERNANCE.md        @ranitmanik @ruma-ui/docs
+/LICENSE              @ranitmanik @ruma-ui/docs
