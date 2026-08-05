@@ -40,7 +40,7 @@ export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const variants = {
-  rectangle: tw`rounded-md`,
+  rectangle: tw`rounded-sm`,
   circle: tw`rounded-full`,
   text: tw`rounded-sm`,
 };

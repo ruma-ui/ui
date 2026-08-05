@@ -60,7 +60,7 @@ export interface BreadcrumbProps {
 
 // Design primitives matching Select component
 const breadcrumbBase = tw`inline-flex items-center`;
-const itemBase = tw`inline-flex items-center text-sm font-medium transition-colors duration-200`;
+const itemBase = tw`rui-focus-ring inline-flex items-center text-sm font-medium transition-colors duration-200`;
 
 const variants = {
   primary: tw`text-muted-foreground hover:text-primary`,

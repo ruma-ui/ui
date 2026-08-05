@@ -90,25 +90,25 @@ export interface DrawerProps {
 }
 
 // Base styles
-const overlayBase = tw`fixed inset-0 z-50 bg-black/50 backdrop-blur-sm`;
-const drawerBase = tw`absolute flex flex-col bg-background text-foreground shadow-lg outline-none`;
-const headerBase = tw`flex items-center justify-between border-b border-border px-6 py-4`;
-const bodyBase = tw`flex-1 overflow-y-auto px-6 py-5 text-sm text-foreground/90`;
-const footerBase = tw`border-t border-border px-6 py-4`;
-const closeButtonBase = tw`rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground rui-focus-ring focus:outline-none`;
+const overlayBase = tw`fixed inset-0 z-50 bg-black/60 backdrop-blur-sm`;
+const drawerBase = tw`absolute flex flex-col bg-card text-card-foreground shadow-2xl outline-none`;
+const headerBase = tw`flex items-center justify-between border-b border-border px-4 py-3`;
+const bodyBase = tw`flex-1 overflow-y-auto p-4 text-sm text-foreground/90`;
+const footerBase = tw`flex items-center justify-end gap-2.5 border-t border-border bg-muted/30 px-4 py-3`;
+const closeButtonBase = tw`rounded-sm p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground rui-focus-ring focus:outline-none`;
 
 // Variants
 const variants = {
   primary: tw`border-border`,
-  secondary: tw`border-border bg-muted`,
+  secondary: tw`border-border bg-muted/20`,
 };
 
 // Positions
 const positions = {
-  left: tw`top-0 left-0 h-full`,
-  right: tw`top-0 right-0 h-full`,
-  top: tw`top-0 left-0 w-full`,
-  bottom: tw`bottom-0 left-0 w-full`,
+  left: tw`top-0 left-0 h-full border-r border-border`,
+  right: tw`top-0 right-0 h-full border-l border-border`,
+  top: tw`top-0 left-0 w-full border-b border-border`,
+  bottom: tw`bottom-0 left-0 w-full border-t border-border`,
 };
 
 // Sizes
@@ -160,20 +160,20 @@ const overlayAnimations = {
 
 const drawerAnimations = {
   left: {
-    enter: tw`animate-in slide-in-from-left-2 duration-200 ease-out`,
-    exit: tw`animate-out slide-out-to-left-2 duration-150 ease-in`,
+    enter: tw`animate-in slide-in-from-left-full duration-300 ease-out`,
+    exit: tw`animate-out slide-out-to-left-full duration-200 ease-in`,
   },
   right: {
-    enter: tw`animate-in slide-in-from-right-2 duration-200 ease-out`,
-    exit: tw`animate-out slide-out-to-right-2 duration-150 ease-in`,
+    enter: tw`animate-in slide-in-from-right-full duration-300 ease-out`,
+    exit: tw`animate-out slide-out-to-right-full duration-200 ease-in`,
   },
   top: {
-    enter: tw`animate-in slide-in-from-top-2 duration-200 ease-out`,
-    exit: tw`animate-out slide-out-to-top-2 duration-150 ease-in`,
+    enter: tw`animate-in slide-in-from-top-full duration-300 ease-out`,
+    exit: tw`animate-out slide-out-to-top-full duration-200 ease-in`,
   },
   bottom: {
-    enter: tw`animate-in slide-in-from-bottom-2 duration-200 ease-out`,
-    exit: tw`animate-out slide-out-to-bottom-2 duration-150 ease-in`,
+    enter: tw`animate-in slide-in-from-bottom-full duration-300 ease-out`,
+    exit: tw`animate-out slide-out-to-bottom-full duration-200 ease-in`,
   },
 };
 
@@ -285,24 +285,27 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       }
     };
 
-    // Support exit animations by keeping mounted until animation completes
+    // Support exit animations without flicker by tracking prevOpen and using fill-mode forwards
     const [isMounted, setIsMounted] = useState(open);
     const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+    const prevOpenRef = useRef(open);
 
     useEffect(() => {
       if (open) {
         setIsMounted(true);
         setIsAnimatingOut(false);
-      } else if (animation) {
+      } else if (prevOpenRef.current && animation) {
         setIsAnimatingOut(true);
         const t = setTimeout(() => {
           setIsMounted(false);
           setIsAnimatingOut(false);
-        }, 160); // match duration-150 + small buffer
+        }, 210); // match duration-200 + small buffer
         return () => clearTimeout(t);
       } else {
         setIsMounted(false);
+        setIsAnimatingOut(false);
       }
+      prevOpenRef.current = open;
     }, [open, animation]);
 
     if (!isMounted) return null;
@@ -333,6 +336,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy || (title ? titleId : undefined)}
         aria-describedby={ariaDescribedBy || descId}
+        style={{ animationFillMode: "forwards" }}
       >
         <div
           ref={ref || drawerRef}
@@ -340,6 +344,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           tabIndex={-1}
           onKeyDown={handleKeyDown}
           id={drawerId}
+          style={{ animationFillMode: "forwards" }}
           {...props}
         >
           {/* Header */}

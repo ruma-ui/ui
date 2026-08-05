@@ -20,7 +20,16 @@ const usePopover = () => {
 };
 
 // Base styles
-const contentBase = tw`z-50 min-w-[8rem] overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground p-4 shadow-md`;
+const contentBase = tw`z-50 min-w-[8rem] overflow-hidden border border-border bg-popover text-popover-foreground p-4 shadow-md`;
+
+const roundedOptions = {
+  none: tw`rounded-none`,
+  sm: tw`rounded-sm`,
+  md: tw`rounded-md`,
+  lg: tw`rounded-lg`,
+  xl: tw`rounded-xl`,
+  full: tw`rounded-full`,
+};
 
 // Animation classes
 const contentAnimationIn = tw`animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200 ease-out`;
@@ -79,6 +88,11 @@ export interface PopoverContentProps {
    * Content to display in the popover
    */
   children: React.ReactNode;
+  /**
+   * Control border radius
+   * @default "sm"
+   */
+  rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
   /**
    * Custom class name
    */
@@ -313,6 +327,7 @@ export const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentPro
   (
     {
       align = "bottom-start",
+      rounded = "sm",
       className,
       children,
       closeOnClick = false,
@@ -566,7 +581,7 @@ export const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentPro
           if (typeof ref === "function") ref(node);
           else if (ref) ref.current = node;
         }}
-        className={cn(contentBase, animationClass, className)}
+        className={cn(contentBase, roundedOptions[rounded], animationClass, className)}
         data-popover-content
         role="dialog"
         style={getPositionStyles()}

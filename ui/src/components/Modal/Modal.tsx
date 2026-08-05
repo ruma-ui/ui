@@ -85,17 +85,17 @@ export interface ModalProps {
 }
 
 // Base styles
-const overlayBase = tw`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm`;
-const modalBase = tw`relative max-h-[85vh] w-full overflow-hidden bg-background text-foreground shadow-lg border border-border outline-none`;
-const headerBase = tw`flex items-center justify-between border-b border-border px-6 py-4`;
-const bodyBase = tw`flex-1 overflow-y-auto px-6 py-5 text-sm text-foreground/90`;
-const footerBase = tw`border-t border-border px-6 py-4`;
-const closeButtonBase = tw`rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground rui-focus-ring focus:outline-none`;
+const overlayBase = tw`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm`;
+const modalBase = tw`relative max-h-[85vh] w-full overflow-hidden bg-card text-card-foreground shadow-2xl border border-border outline-none`;
+const headerBase = tw`flex items-center justify-between border-b border-border px-4 py-3`;
+const bodyBase = tw`flex-1 overflow-y-auto p-4 text-sm text-foreground/90`;
+const footerBase = tw`flex items-center justify-end gap-2.5 border-t border-border bg-muted/30 px-4 py-3`;
+const closeButtonBase = tw`rounded-sm p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground rui-focus-ring focus:outline-none`;
 
 // Variants
 const variants = {
   primary: tw`border border-border`,
-  secondary: tw`border border-border bg-muted`,
+  secondary: tw`border border-border bg-muted/20`,
 };
 
 // Sizes
@@ -119,12 +119,12 @@ const roundedOptions = {
 // Animation classes
 const overlayAnimations = {
   enter: tw`animate-in fade-in-0 duration-200 ease-out`,
-  exit: tw`animate-out fade-out-0 duration-150 ease-in`,
+  exit: tw`animate-out fade-out-0 duration-200 ease-in`,
 };
 
 const modalAnimations = {
-  enter: tw`animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200 ease-out`,
-  exit: tw`animate-out fade-out-0 zoom-out-95 slide-out-to-top-2 duration-150 ease-in`,
+  enter: tw`animate-in fade-in-0 zoom-in-95 duration-200 ease-out`,
+  exit: tw`animate-out fade-out-0 zoom-out-95 duration-200 ease-in`,
 };
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
@@ -134,7 +134,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       onClose,
       variant = "primary",
       size = "md",
-      rounded = "lg",
+      rounded = "sm",
       animation = true,
       preventClose = false,
       hideCloseButton = false,
@@ -234,24 +234,27 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       }
     };
 
-    // Support exit animations by keeping mounted until animation completes
+    // Support exit animations without flicker by tracking prevOpen and using fill-mode forwards
     const [isMounted, setIsMounted] = useState(open);
     const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+    const prevOpenRef = useRef(open);
 
     useEffect(() => {
       if (open) {
         setIsMounted(true);
         setIsAnimatingOut(false);
-      } else if (animation) {
+      } else if (prevOpenRef.current && animation) {
         setIsAnimatingOut(true);
         const t = setTimeout(() => {
           setIsMounted(false);
           setIsAnimatingOut(false);
-        }, 160); // match duration-150 + small buffer
+        }, 210);
         return () => clearTimeout(t);
       } else {
         setIsMounted(false);
+        setIsAnimatingOut(false);
       }
+      prevOpenRef.current = open;
     }, [open, animation]);
 
     if (!isMounted) return null;
@@ -280,6 +283,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy || (title ? titleId : undefined)}
         aria-describedby={ariaDescribedBy || descId}
+        style={{ animationFillMode: "forwards" }}
       >
         <div
           ref={ref || modalRef}
@@ -287,6 +291,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           tabIndex={-1}
           onKeyDown={handleKeyDown}
           id={modalId}
+          style={{ animationFillMode: "forwards" }}
           {...props}
         >
           {/* Header */}

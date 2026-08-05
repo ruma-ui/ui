@@ -18,24 +18,25 @@
 
 .rui-focus-ring:focus-visible {
   outline: none;
-  /* 2px white gap + 2px colored ring — clearly visible over any background */
-  box-shadow:
-    0 0 0 var(--ring-offset) hsl(var(--background)),
-    0 0 0 calc(var(--ring-offset) + var(--ring-width)) var(--ring-color);
+  /* 2px solid opaque primary ring — no offset gap */
+  box-shadow: 0 0 0 2px var(--ring-color);
 }
 
 /* --- Field focus (inputs, selects, textareas) ------------------------------- */
-/* Clean minimal border-color change — no ring glow */
 .rui-field-focus {
   border-color: hsl(var(--border));
-  transition: border-color 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
 }
 
 .rui-field-focus:focus-within {
   border-color: var(--field-focus-border);
+  box-shadow: 0 0 0 2px var(--ring-color);
 }
 
-/* Error state overrides — border stays red on focus */
+/* Error state overrides — 2px destructive ring on focus */
 .rui-field-focus.rui-field-error:focus-within {
   border-color: hsl(var(--destructive));
+  box-shadow: 0 0 0 2px hsl(var(--destructive));
 }

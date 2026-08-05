@@ -110,7 +110,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         size={size === "sm" ? "xs" : size === "md" ? "sm" : "md"}
         onClick={() => handlePageChange(page)}
         disabled={disabled}
-        className={tw`min-w-[2.5rem] px-3 ${isActive ? "outline-ring outline" : ""}`}
+        className="min-w-[2rem] px-2.5"
         aria-label={`Go to page ${page}`}
         aria-current={isActive ? "page" : undefined}
       >

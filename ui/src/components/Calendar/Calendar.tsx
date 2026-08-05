@@ -275,7 +275,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             outOfMonth && showOutsideDays && "text-muted-foreground/60",
             isSelected &&
               "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
-            todayFlag && !isSelected && "ring-1 ring-ring/40 ring-inset"
+            todayFlag && !isSelected && "ring-1 ring-border font-semibold"
           );
 
           return (

@@ -44,6 +44,11 @@ export interface SortableListProps<T = unknown>
    */
   animationDuration?: number;
   /**
+   * Control the border radius of the sortable items
+   * @default "sm"
+   */
+  rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
+  /**
    * Whether to show real-time preview of changes during drag
    * @default true
    */
@@ -55,6 +60,11 @@ export interface SortableItemProps<T = unknown>
     React.HTMLAttributes<HTMLDivElement>,
     "children" | "onDragStart" | "onDragEnd" | "onDrop"
   > {
+  /**
+   * Control the border radius of the item
+   * @default "sm"
+   */
+  rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
   /**
    * The item data
    */
@@ -107,7 +117,16 @@ export interface SortableItemProps<T = unknown>
 
 const baseList = tw`relative w-full gap-3 select-none`;
 
-const baseItem = tw`relative cursor-move rounded-lg border border-border bg-card shadow-sm transition-all duration-200 ease-in-out hover:border-input hover:shadow-md rui-focus-ring focus-visible:outline-none`;
+const baseItem = tw`relative cursor-move border border-border bg-card shadow-sm transition-all duration-200 ease-in-out hover:border-input hover:shadow-md rui-focus-ring focus-visible:outline-none`;
+
+const roundedOptions = {
+  none: tw`rounded-none`,
+  sm: tw`rounded-sm`,
+  md: tw`rounded-md`,
+  lg: tw`rounded-lg`,
+  xl: tw`rounded-xl`,
+  full: tw`rounded-full`,
+};
 
 const draggingItem = tw`z-50 scale-105 rotate-1 border-primary/40 bg-primary/5 shadow-xl`;
 
@@ -117,7 +136,7 @@ const disabledItem = tw`cursor-not-allowed border-border/50 bg-muted opacity-60 
 
 const dragHandle = tw`flex cursor-grab items-center justify-center rounded-sm text-muted-foreground transition-all duration-200 active:cursor-grabbing disabled:cursor-not-allowed disabled:opacity-50`;
 
-const dragIndicator = tw`pointer-events-none absolute inset-0 rounded-lg border-2 border-primary/40 bg-gradient-to-r from-primary/5 to-primary/10 opacity-0 transition-all duration-200`;
+const dragIndicator = tw`pointer-events-none absolute inset-0 border-2 border-primary/40 bg-gradient-to-r from-primary/5 to-primary/10 opacity-0 transition-all duration-200`;
 
 const dropZoneIndicator = tw`pointer-events-none h-1 rounded-full bg-primary opacity-0 transition-all duration-200`;
 
@@ -140,6 +159,7 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
       onDrop,
       direction,
       disabled,
+      rounded = "sm",
       renderDragHandle,
       animationDuration,
       children,
@@ -305,6 +325,7 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
         ref={itemRef}
         className={cn(
           baseItem,
+          roundedOptions[rounded],
           isDragging && draggingItem,
           isDragOver && dragOverItem,
           disabled && disabledItem,
@@ -329,7 +350,7 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
       >
         {isDragOver && (
           <div
-            className={dragIndicator}
+            className={cn(dragIndicator, roundedOptions[rounded])}
             style={{
               opacity: isDragOver ? 1 : 0,
             }}
@@ -338,7 +359,12 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
 
         {/* Subtle border animation for drag over state */}
         {isDragOver && (
-          <div className="border-primary/40 pointer-events-none absolute inset-0 animate-pulse rounded-lg border-2" />
+          <div
+            className={cn(
+              "border-primary/40 pointer-events-none absolute inset-0 animate-pulse border-2",
+              roundedOptions[rounded]
+            )}
+          />
         )}
 
         <div className="flex w-full items-center gap-4 p-3">
@@ -368,6 +394,7 @@ export const SortableList = React.forwardRef<HTMLDivElement, SortableListProps>(
       getItemKey = (item: T, index: number) => `item-${index}`,
       disabled = false,
       direction = "vertical",
+      rounded = "sm",
       renderDragHandle,
       animationDuration = 200,
       showDragPreview = true,
@@ -507,6 +534,7 @@ export const SortableList = React.forwardRef<HTMLDivElement, SortableListProps>(
                 onDrop={handleDrop}
                 direction={direction}
                 disabled={disabled}
+                rounded={rounded}
                 renderDragHandle={
                   renderDragHandle as
                     | ((item: unknown, index: number) => React.ReactNode)

@@ -251,10 +251,14 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
               >
                 {/* Fill */}
                 <div
-                  className={cn(sizes[size].fill, getFillStyles(), fillClassName)}
+                  className={cn(
+                    sizes[size].fill,
+                    roundedOptions[rounded],
+                    getFillStyles(),
+                    fillClassName
+                  )}
                   style={{
                     width: progressWidth,
-                    borderRadius: rounded === "full" ? "inherit" : undefined,
                   }}
                 >
                   {/* Striped overlay */}

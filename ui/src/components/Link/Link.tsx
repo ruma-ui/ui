@@ -108,7 +108,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       startIcon,
       endIcon,
       underline = "default",
-      rounded = "md",
+      rounded = "sm",
       animation = "none",
       children,
       external = false,

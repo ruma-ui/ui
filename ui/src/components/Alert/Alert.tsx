@@ -182,7 +182,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     {
       variant = "info",
       size = "md",
-      rounded = "md",
+      rounded = "sm",
       style = "filled",
       startIcon,
       endIcon,

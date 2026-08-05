@@ -166,7 +166,7 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
       roundedOptions[rounded],
       isChecked ? variants[variant].on : variants[variant].off,
       disabled && "cursor-not-allowed opacity-50",
-      error && "ring-1 ring-destructive",
+      error && "ring-2 ring-destructive",
       !animation && "transition-none",
       className
     );
