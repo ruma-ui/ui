@@ -152,8 +152,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   const ddRef = React.useRef<HTMLInputElement | null>(null);
   const yyyyRef = React.useRef<HTMLInputElement | null>(null);
 
-  const today = React.useMemo(() => new Date(), []);
-  const maxDate = React.useMemo(() => (maxDateProp ? maxDateProp : today), [maxDateProp, today]);
+  const maxDate = maxDateProp;
 
   // Internal segment state
   const [dd, setDD] = React.useState<string>(value ? format(value, "dd") : "");
@@ -166,19 +165,17 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
   // Keep segments in sync with controlled value
   React.useEffect(() => {
-    if (!value) {
+    if (value === undefined) return;
+    if (value === null) {
       setMM("");
       setDD("");
       setYYYY("");
       return;
     }
-    const nextDD = format(value, "dd");
-    const nextMM = format(value, "MM");
-    const nextYYYY = format(value, "yyyy");
-    if (dd !== nextDD) setDD(nextDD);
-    if (mm !== nextMM) setMM(nextMM);
-    if (yyyy !== nextYYYY) setYYYY(nextYYYY);
-  }, [value, dd, mm, yyyy]);
+    setDD(format(value, "dd"));
+    setMM(format(value, "MM"));
+    setYYYY(format(value, "yyyy"));
+  }, [value]);
 
   const hasAssistive = Boolean(description || error);
   const assistiveId = `${inputId}-desc`;
@@ -398,6 +395,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         onMouseDown={e => {
           if (disabled) return;
           const target = e.target as HTMLElement;
+          if (popRef.current?.contains(target)) return;
+
           const hitInput = target.closest("input");
           const hitButton = target.closest("button");
           if (!hitInput && !hitButton) {

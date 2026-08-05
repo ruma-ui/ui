@@ -237,8 +237,8 @@ export const Calendar: React.FC<CalendarProps> = ({
 
       {/* Grid header (days of week) */}
       <div className={grid} role="row">
-        {weekdayLabels.map(label => (
-          <div key={label} className={dow} role="columnheader" aria-label={label}>
+        {weekdayLabels.map((label, idx) => (
+          <div key={`${label}-${idx}`} className={dow} role="columnheader" aria-label={label}>
             {label}
           </div>
         ))}
