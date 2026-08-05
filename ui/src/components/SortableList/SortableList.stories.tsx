@@ -28,6 +28,10 @@ const meta: Meta<typeof SortableList> = {
       control: { type: "select" },
       options: ["vertical", "horizontal"],
     },
+    rounded: {
+      control: { type: "select" },
+      options: ["none", "sm", "md", "lg", "xl", "full"],
+    },
     disabled: {
       control: "boolean",
     },

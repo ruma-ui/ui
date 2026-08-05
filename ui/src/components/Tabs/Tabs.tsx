@@ -102,7 +102,7 @@ const baseTabPanel = tw`mt-4 focus-visible:outline-none`;
 const tabListVariants = {
   default: tw``,
   underline: tw`border-b-2`,
-  pills: tw`rounded-lg bg-muted p-1`,
+  pills: tw`rounded-sm bg-muted p-1`,
 };
 
 const tabListOrientations = {
@@ -244,8 +244,8 @@ export const Tab: React.FC<TabProps> = ({
         tabSizes[size],
         isActive ? tabVariants[variant].active : tabVariants[variant].inactive,
         fullWidth && "flex-1",
-        variant === "pills" && isActive && "rounded-md",
-        variant === "pills" && !isActive && "rounded-md",
+        variant === "pills" && isActive && "rounded-sm",
+        variant === "pills" && !isActive && "rounded-sm",
         className
       )}
       onClick={handleClick}

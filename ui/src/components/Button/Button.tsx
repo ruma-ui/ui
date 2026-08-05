@@ -95,7 +95,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       endIcon,
       loading = false,
       fullWidth = false,
-      rounded = "md",
+      rounded = "sm",
       animation = "none",
       children,
       disabled,

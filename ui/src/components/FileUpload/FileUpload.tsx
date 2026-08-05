@@ -105,7 +105,7 @@ export interface FileUploadProps {
 }
 
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
-const uploadAreaBase = tw`relative flex flex-col items-center justify-center border-2 border-dashed bg-background text-foreground transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50`;
+const uploadAreaBase = tw`rui-focus-ring relative flex flex-col items-center justify-center border-2 border-dashed bg-background text-foreground transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50`;
 
 const variants = {
   primary: tw`border-border hover:border-primary`,
@@ -143,7 +143,7 @@ const roundedOptions = {
   full: tw`rounded-full`,
 };
 
-const buttonBase = tw`inline-flex cursor-pointer items-center justify-center rounded-md border border-border bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm hover:bg-muted disabled:pointer-events-none disabled:opacity-50`;
+const buttonBase = tw`rui-focus-ring inline-flex cursor-pointer items-center justify-center rounded-sm border border-border bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm hover:bg-muted disabled:pointer-events-none disabled:opacity-50`;
 
 // Default file upload icon
 const DefaultFileUploadIcon = ({ size = 24 }: { size?: number }) => <FileUploadIcon size={size} />;
@@ -153,7 +153,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
     {
       variant = "primary",
       size = "md",
-      rounded = "md",
+      rounded = "sm",
       fullWidth = false,
       multiple = false,
       accept,

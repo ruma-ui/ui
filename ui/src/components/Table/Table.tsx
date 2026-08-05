@@ -74,7 +74,7 @@ export interface TableProps<T> {
 }
 
 const tableBase = tw`w-full border-collapse text-foreground`;
-const wrapperBase = tw`relative w-full overflow-auto rounded-md border border-border bg-card`;
+const wrapperBase = tw`relative w-full overflow-auto rounded-sm border border-border bg-card`;
 const headerBase = tw`bg-muted/40 text-left text-sm font-semibold text-muted-foreground`;
 const cellBase = tw`text-sm text-foreground`;
 const outlinedCell = tw`border border-border`;

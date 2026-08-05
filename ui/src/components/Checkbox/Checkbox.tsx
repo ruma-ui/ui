@@ -84,10 +84,10 @@ const sizes = {
 
 const roundedOptions = {
   none: tw`rounded-none`,
-  sm: tw`rounded-sm`,
-  md: tw`rounded-md`,
-  lg: tw`rounded-lg`,
-  xl: tw`rounded-xl`,
+  sm: tw`rounded-[3px]`,
+  md: tw`rounded-[4px]`,
+  lg: tw`rounded-[6px]`,
+  xl: tw`rounded-[8px]`,
   full: tw`rounded-full`,
 };
 

@@ -123,7 +123,7 @@ const useTreeItem = () => {
   return context;
 };
 
-const baseItem = tw`relative flex items-center gap-1 rounded-sm px-2 py-1 text-sm transition-colors select-none hover:bg-accent hover:text-accent-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none`;
+const baseItem = tw`rui-focus-ring relative flex items-center gap-1 rounded-sm px-2 py-1 text-sm transition-colors select-none hover:bg-accent hover:text-accent-foreground focus-visible:outline-none`;
 
 const selectedItem = tw`bg-accent text-accent-foreground hover:bg-accent/80`;
 

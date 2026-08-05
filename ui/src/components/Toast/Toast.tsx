@@ -85,7 +85,7 @@ export interface ToastProps {
 }
 
 // Base styles
-const toastBase = tw`relative flex max-w-sm items-start gap-3 rounded-lg border border-border p-4 shadow-md outline-none bg-background text-foreground`;
+const toastBase = tw`relative flex max-w-sm items-start gap-3 rounded-sm border border-border p-4 shadow-md outline-none bg-background text-foreground`;
 const contentBase = tw`min-w-0 flex-1`;
 const titleBase = tw`text-sm font-semibold break-words`;
 const descriptionBase = tw`text-sm text-foreground/80 break-words`;

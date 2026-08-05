@@ -65,62 +65,62 @@ export interface BadgeProps {
 
 const badgeBase = tw`inline-flex items-center font-medium transition-all duration-200`;
 
-// Filled — brand colors use tokens, semantics stay as Tailwind
+// Filled
 const variantsFilled = {
   primary: tw`bg-primary text-primary-foreground`,
   secondary: tw`bg-secondary text-secondary-foreground`,
-  success: tw`bg-green-600 text-white`,
-  warning: tw`bg-yellow-600 text-white`,
+  success: tw`bg-success text-success-foreground`,
+  warning: tw`bg-warning text-warning-foreground`,
   error: tw`bg-destructive text-destructive-foreground`,
-  info: tw`bg-cyan-600 text-white`,
+  info: tw`bg-info text-info-foreground`,
 };
 
 // Outline
 const variantsOutline = {
   primary: tw`border border-primary bg-background text-primary`,
   secondary: tw`border border-secondary-foreground bg-background text-secondary-foreground`,
-  success: tw`border border-green-600 bg-background text-green-600`,
-  warning: tw`border border-yellow-600 bg-background text-yellow-600`,
+  success: tw`border border-success bg-background text-success`,
+  warning: tw`border border-warning bg-background text-warning`,
   error: tw`border border-destructive bg-background text-destructive`,
-  info: tw`border border-cyan-600 bg-background text-cyan-600`,
+  info: tw`border border-info bg-background text-info`,
 };
 
 // Soft
 const variantsSoft = {
   primary: tw`bg-accent text-accent-foreground`,
   secondary: tw`bg-secondary text-secondary-foreground`,
-  success: tw`bg-green-50 text-green-700`,
-  warning: tw`bg-yellow-50 text-yellow-700`,
-  error: tw`bg-destructive/10 text-destructive`,
-  info: tw`bg-cyan-50 text-cyan-700`,
+  success: tw`bg-success/15 text-success`,
+  warning: tw`bg-warning/15 text-warning`,
+  error: tw`bg-destructive/15 text-destructive`,
+  info: tw`bg-info/15 text-info`,
 };
 
 // Hover states for clickable badges
 const hoverStatesFilled = {
   primary: tw`hover:bg-primary/90`,
   secondary: tw`hover:bg-secondary/80`,
-  success: tw`hover:bg-green-700`,
-  warning: tw`hover:bg-yellow-700`,
+  success: tw`hover:bg-success/90`,
+  warning: tw`hover:bg-warning/90`,
   error: tw`hover:bg-destructive/90`,
-  info: tw`hover:bg-cyan-700`,
+  info: tw`hover:bg-info/90`,
 };
 
 const hoverStatesOutline = {
   primary: tw`hover:bg-accent`,
   secondary: tw`hover:bg-secondary`,
-  success: tw`hover:bg-green-50`,
-  warning: tw`hover:bg-yellow-50`,
+  success: tw`hover:bg-success/10`,
+  warning: tw`hover:bg-warning/10`,
   error: tw`hover:bg-destructive/10`,
-  info: tw`hover:bg-cyan-50`,
+  info: tw`hover:bg-info/10`,
 };
 
 const hoverStatesSoft = {
   primary: tw`hover:bg-accent/80`,
   secondary: tw`hover:bg-secondary/80`,
-  success: tw`hover:bg-green-100`,
-  warning: tw`hover:bg-yellow-100`,
-  error: tw`hover:bg-destructive/15`,
-  info: tw`hover:bg-cyan-100`,
+  success: tw`hover:bg-success/25`,
+  warning: tw`hover:bg-warning/25`,
+  error: tw`hover:bg-destructive/25`,
+  info: tw`hover:bg-info/25`,
 };
 
 const sizes = {

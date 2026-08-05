@@ -100,11 +100,11 @@ export interface InputOTPProps extends Omit<React.HTMLAttributes<HTMLDivElement>
 // Design primitives matching TextInput component
 const wrapperBase = tw`relative inline-flex w-full flex-col`;
 const containerBase = tw`inline-flex items-center justify-center`;
-const slotBase = tw`relative inline-flex items-center justify-center border bg-background text-foreground text-center font-mono transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-50`;
+const slotBase = tw`rui-field-focus relative inline-flex items-center justify-center border bg-background text-foreground text-center font-mono transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-50`;
 
 const variants = {
-  primary: tw`border-input bg-background focus-within:border-primary`,
-  secondary: tw`border-input bg-muted focus-within:border-primary`,
+  primary: tw`border-input bg-background`,
+  secondary: tw`border-input bg-muted`,
 };
 
 const sizes = {
@@ -416,8 +416,7 @@ export const InputOTP = React.forwardRef<HTMLDivElement, InputOTPProps>(
                   variants[variant],
                   sizes[size].slot,
                   roundedOptions[rounded],
-                  error && "border-destructive focus-within:border-destructive",
-                  isActive && !disabled && !error && "border-primary ring-primary/40 ring-1",
+                  error && "rui-field-error border-destructive",
                   fullWidth && "flex-1"
                 )}
                 onClick={() => handleClick(index)}

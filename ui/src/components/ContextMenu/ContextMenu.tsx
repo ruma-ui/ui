@@ -21,10 +21,19 @@ const useContextMenu = () => {
 };
 
 // Base styles (same as Dropdown)
-const contentBase = tw`z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover text-popover-foreground p-1 shadow-md`;
+const contentBase = tw`z-50 min-w-[8rem] overflow-hidden border border-border bg-popover text-popover-foreground p-1 shadow-md`;
 const itemBase = tw`relative flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50`;
 const labelBase = tw`px-2 py-1.5 text-sm font-semibold text-foreground`;
 const separatorBase = tw`-mx-1 my-1 h-px bg-border`;
+
+const roundedOptions = {
+  none: tw`rounded-none`,
+  sm: tw`rounded-sm`,
+  md: tw`rounded-md`,
+  lg: tw`rounded-lg`,
+  xl: tw`rounded-xl`,
+  full: tw`rounded-full`,
+};
 
 // Animation classes
 const contentAnimation = tw`animate-in fade-in-0 zoom-in-95 duration-150 ease-out`;
@@ -60,6 +69,11 @@ export interface ContextMenuTriggerProps {
 }
 
 export interface ContextMenuContentProps {
+  /**
+   * Control border radius
+   * @default "sm"
+   */
+  rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
   /**
    * Content to display in the context menu
    */
@@ -192,7 +206,7 @@ ContextMenuTrigger.displayName = "ContextMenuTrigger";
 
 // ContextMenuContent component
 export const ContextMenuContent = React.forwardRef<HTMLDivElement, ContextMenuContentProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ rounded = "sm", className, children, ...props }, ref) => {
     const { isOpen, position } = useContextMenu();
     const contentRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -223,11 +237,7 @@ export const ContextMenuContent = React.forwardRef<HTMLDivElement, ContextMenuCo
                 y = viewportHeight - contentRect.height - 8; // 8px margin from edge
               }
 
-              // Ensure minimum margins from edges
-              x = Math.max(8, x);
-              y = Math.max(8, y);
-
-              setFinalPosition({ x, y });
+              setFinalPosition({ x: Math.max(8, x), y: Math.max(8, y) });
               setIsVisible(true);
             }
           });
@@ -245,7 +255,7 @@ export const ContextMenuContent = React.forwardRef<HTMLDivElement, ContextMenuCo
         {/* Hidden measurement element */}
         <div
           ref={contentRef}
-          className={cn(contentBase, "fixed", className)}
+          className={cn(contentBase, roundedOptions[rounded], "fixed", className)}
           style={{
             left: "-9999px",
             top: "-9999px",
@@ -264,7 +274,13 @@ export const ContextMenuContent = React.forwardRef<HTMLDivElement, ContextMenuCo
               if (typeof ref === "function") ref(node);
               else if (ref) ref.current = node;
             }}
-            className={cn(contentBase, contentAnimation, "fixed", className)}
+            className={cn(
+              contentBase,
+              roundedOptions[rounded],
+              contentAnimation,
+              "fixed",
+              className
+            )}
             data-context-menu-content
             role="menu"
             style={{

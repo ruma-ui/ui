@@ -109,7 +109,7 @@ export const Card = React.forwardRef<HTMLDivElement | HTMLButtonElement, CardPro
     {
       variant = "default",
       padding = "md",
-      rounded = "lg",
+      rounded = "sm",
       shadow = "sm",
       clickable = false,
       disabled = false,

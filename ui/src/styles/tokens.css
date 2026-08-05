@@ -57,8 +57,8 @@
 
   /* Focus Ring Metrics */
   --ring-width: 2px;
-  --ring-offset: 2px;
-  --ring-color: hsl(var(--ring) / 0.4);
+  --ring-offset: 0px;
+  --ring-color: hsl(var(--ring));
   --field-focus-border: hsl(var(--ring));
 }
 
@@ -114,6 +114,6 @@
   --info-foreground: 222.2 47.4% 11.2%;
 
   /* Focus Ring Metrics */
-  --ring-color: hsl(var(--ring) / 0.6);
+  --ring-color: hsl(var(--ring));
   --field-focus-border: hsl(var(--ring));
 }

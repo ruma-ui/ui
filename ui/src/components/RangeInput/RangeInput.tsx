@@ -100,9 +100,9 @@ const trackFillVariants = {
 };
 
 const thumbBase = tw`
-  absolute top-1/2 -translate-y-1/2
+  absolute top-1/2 -translate-x-1/2 -translate-y-1/2 z-10
   block cursor-pointer rounded-full
-  border border-border bg-background
+  border-2 border-primary bg-background
   shadow-sm transition-[transform,shadow,border-color,background-color] duration-150 ease-in-out
   hover:scale-110 hover:shadow-md
   disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none
@@ -345,8 +345,7 @@ export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
                 thumbBase,
                 sizes[size].thumb,
                 error && "border-destructive",
-                draggingThumb === 0 &&
-                  "scale-110 shadow-[0_0_0_var(--ring-offset)_hsl(var(--background)),0_0_0_calc(var(--ring-offset)+var(--ring-width))_var(--ring-color)]",
+                draggingThumb === 0 && "scale-110",
                 "rui-focus-ring outline-none"
               )}
               style={{ left: `${minPercent}%` }}
@@ -367,8 +366,7 @@ export const RangeInput = React.forwardRef<HTMLDivElement, RangeInputProps>(
                 thumbBase,
                 sizes[size].thumb,
                 error && "border-destructive",
-                draggingThumb === 1 &&
-                  "scale-110 shadow-[0_0_0_var(--ring-offset)_hsl(var(--background)),0_0_0_calc(var(--ring-offset)+var(--ring-width))_var(--ring-color)]",
+                draggingThumb === 1 && "scale-110",
                 "rui-focus-ring outline-none"
               )}
               style={{ left: `${maxPercent}%` }}

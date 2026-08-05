@@ -19,10 +19,19 @@ const useDropdownMenu = () => {
 };
 
 // Base styles
-const contentBase = tw`z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover text-popover-foreground p-1 shadow-md`;
+const contentBase = tw`z-50 min-w-[8rem] overflow-hidden border border-border bg-popover text-popover-foreground p-1 shadow-md`;
 const itemBase = tw`relative flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50`;
 const labelBase = tw`px-2 py-1.5 text-sm font-semibold text-foreground`;
 const separatorBase = tw`-mx-1 my-1 h-px bg-border`;
+
+const roundedOptions = {
+  none: tw`rounded-none`,
+  sm: tw`rounded-sm`,
+  md: tw`rounded-md`,
+  lg: tw`rounded-lg`,
+  xl: tw`rounded-xl`,
+  full: tw`rounded-full`,
+};
 
 // Animation classes
 const contentAnimation = tw`animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-150 ease-out`;
@@ -63,6 +72,11 @@ export interface DropdownMenuContentProps {
    * @default "bottom-start"
    */
   align?: "bottom-start" | "bottom-end" | "top-start" | "top-end";
+  /**
+   * Control border radius
+   * @default "sm"
+   */
+  rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
   /**
    * Content to display in the dropdown
    */
@@ -243,7 +257,7 @@ export const DropdownMenuTrigger = React.forwardRef<HTMLElement, DropdownMenuTri
 
 DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
 export const DropdownMenuContent = React.forwardRef<HTMLDivElement, DropdownMenuContentProps>(
-  ({ align = "bottom-start", className, children, ...props }, ref) => {
+  ({ align = "bottom-start", rounded = "sm", className, children, ...props }, ref) => {
     const { isOpen, triggerRef } = useDropdownMenu();
     const contentRef = useRef<HTMLDivElement>(null);
     const [actualAlign, setActualAlign] = useState(align);
@@ -370,7 +384,13 @@ export const DropdownMenuContent = React.forwardRef<HTMLDivElement, DropdownMenu
           if (typeof ref === "function") ref(node);
           else if (ref) ref.current = node;
         }}
-        className={cn(contentBase, contentAnimation, "absolute", className)}
+        className={cn(
+          contentBase,
+          roundedOptions[rounded],
+          contentAnimation,
+          "absolute",
+          className
+        )}
         data-dropdown-menu-content
         role="menu"
         style={getPositionStyles()}

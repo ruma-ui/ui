@@ -141,7 +141,7 @@ export const Clipboard = React.forwardRef<HTMLButtonElement, ClipboardProps>(
       onCopy,
       onError,
       disabled = false,
-      rounded = "md",
+      rounded = "sm",
       animation = "none",
       className = "",
       ...props
