@@ -1,3 +1,22 @@
+## [1.0.0-alpha.5](https://github.com/ruma-ui/ui/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2026-08-05)
+
+### 🚀 Features
+
+- resolve component dependencies and update storybook ([#807](https://github.com/ruma-ui/ui/issues/807)) ([5df99f1](https://github.com/ruma-ui/ui/commit/5df99f1782c7bb0f1f33d0b2b989609ef18e5c32)), closes [/#diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519L108-R110](https://github.com/ruma-ui///issues/diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519L108-R110) [/#diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519L143-R143](https://github.com/ruma-ui///issues/diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519L143-R143) [/#diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519L163-R163](https://github.com/ruma-ui///issues/diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519L163-R163) [/#diff-3192c93fda2b1cc081b272d1cca4f1f4d838b85ce52878b18d09174ba9c2f976L185-R185](https://github.com/ruma-ui///issues/diff-3192c93fda2b1cc081b272d1cca4f1f4d838b85ce52878b18d09174ba9c2f976L185-R185) [/#diff-b82b9a4fed1606e7dc0f870758c8e00db99737c36bbb8150c69ebb47a4dd2598L98-R98](https://github.com/ruma-ui///issues/diff-b82b9a4fed1606e7dc0f870758c8e00db99737c36bbb8150c69ebb47a4dd2598L98-R98) [/#diff-94100c9fe2f9fca92d670ab1121f30d487588013d0cae75e171a28fac68d18ddL112-R112](https://github.com/ruma-ui///issues/diff-94100c9fe2f9fca92d670ab1121f30d487588013d0cae75e171a28fac68d18ddL112-R112) [/#diff-02e64f807c1bb0d74983133f56cffc763b7ddaedeab0628f2f51eb83d3abdb59L144-R144](https://github.com/ruma-ui///issues/diff-02e64f807c1bb0d74983133f56cffc763b7ddaedeab0628f2f51eb83d3abdb59L144-R144) [/#diff-1f2ad43a9795386fe5976eb2ca79c1393654e1eda744e70271ceb2f9e4cd5098L87-R90](https://github.com/ruma-ui///issues/diff-1f2ad43a9795386fe5976eb2ca79c1393654e1eda744e70271ceb2f9e4cd5098L87-R90) [/#diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eL24-R37](https://github.com/ruma-ui///issues/diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eL24-R37) [/#diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eR72-R76](https://github.com/ruma-ui///issues/diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eR72-R76) [/#diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eL195-R209](https://github.com/ruma-ui///issues/diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eL195-R209) [/#diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eL248-R258](https://github.com/ruma-ui///issues/diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eL248-R258) [/#diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eL267-R283](https://github.com/ruma-ui///issues/diff-d5cd0048241489f96ef0905fdd88659c1ce3d0a9f1ecbd4ad17949cfda21148eL267-R283) [/#diff-721f2dfa740fa77dfee328f955f2d5cfdd78fa9ff5b0abde41e3d5ffa4b42711L93-R111](https://github.com/ruma-ui///issues/diff-721f2dfa740fa77dfee328f955f2d5cfdd78fa9ff5b0abde41e3d5ffa4b42711L93-R111) [/#diff-721f2dfa740fa77dfee328f955f2d5cfdd78fa9ff5b0abde41e3d5ffa4b42711L163-R176](https://github.com/ruma-ui///issues/diff-721f2dfa740fa77dfee328f955f2d5cfdd78fa9ff5b0abde41e3d5ffa4b42711L163-R176)
+
+### 🐛 Bug Fixes
+
+- **cli:** resolve component dependencies and missing tw helper exports ([#788](https://github.com/ruma-ui/ui/issues/788)) ([5948bb8](https://github.com/ruma-ui/ui/commit/5948bb8499f80e2ea0169a58134d74495afe150b))
+
+### ♻️ Code Refactoring
+
+- standardize border-radius and update focus ring implementation across UI components ([fdf8de7](https://github.com/ruma-ui/ui/commit/fdf8de7e412165afaf4626cc7343ce7f2ba4ffd7))
+
+### 👷 Continuous Integration
+
+- **deps:** bump chromaui/action from 13 to 18 ([b5f25a2](https://github.com/ruma-ui/ui/commit/b5f25a221194d9c00dd77f1405cc92a2df37c5d1))
+- **deps:** bump chromaui/action from 13 to 18 ([#789](https://github.com/ruma-ui/ui/issues/789)) ([4a6e61c](https://github.com/ruma-ui/ui/commit/4a6e61c535a535623370a6f9957232baf8679810))
+
 ## [1.0.0-alpha.4](https://github.com/ruma-ui/ui/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2026-07-31)
 
 ### 🐛 Bug Fixes
