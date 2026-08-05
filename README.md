@@ -93,7 +93,8 @@ ruma-ui/ui
 │       ├── branch-merge.yml     # Controlled branch promotion
 │       ├── deploy-storybook-*.yml
 │       ├── codeql.yml
-│       └── changeset-version.yml
+│       ├── changeset-version.yml
+│       └── dependabot-auto-merge.yml
 │
 ├── nx.json                 # Nx workspace configuration
 ├── pnpm-workspace.yaml     # pnpm workspace definition
