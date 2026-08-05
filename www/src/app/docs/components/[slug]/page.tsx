@@ -48,7 +48,7 @@ function renderLivePreview(slug: string) {
 
     case "card":
       return (
-        <Card className="w-[350px] border-zinc-800 bg-zinc-950">
+        <Card className="w-87.5 border-zinc-800 bg-zinc-950">
           <CardHeader>
             <h4 className="text-sm font-semibold text-white">Create Project</h4>
             <p className="text-xs text-zinc-400">Deploy your new project in one click.</p>
@@ -71,7 +71,7 @@ function renderLivePreview(slug: string) {
 
     case "tabs":
       return (
-        <Tabs defaultValue="account" className="w-[360px]">
+        <Tabs defaultValue="account" className="w-90">
           <TabList>
             <Tab value="account">Account</Tab>
             <Tab value="password">Password</Tab>
@@ -135,8 +135,8 @@ function renderLivePreview(slug: string) {
         <div className="flex items-center space-x-4">
           <Skeleton className="h-12 w-12 rounded-full" />
           <div className="space-y-2">
-            <Skeleton className="h-4 w-[220px]" />
-            <Skeleton className="h-4 w-[160px]" />
+            <Skeleton className="h-4 w-55" />
+            <Skeleton className="h-4 w-40" />
           </div>
         </div>
       );

@@ -452,7 +452,7 @@ export const CustomStyled: Story = {
           Show Love
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-64 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
+      <PopoverContent className="w-64 border-purple-200 bg-linear-to-br from-purple-50 to-pink-50">
         <div className="space-y-3 text-center">
           <span role="img" aria-label="purple heart">
             💜

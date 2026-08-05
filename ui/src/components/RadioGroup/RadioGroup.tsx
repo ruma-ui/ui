@@ -326,7 +326,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         )}
 
         {hasAssistive && (
-          <div id={assistiveId} className="mt-1 min-h-[1rem] px-1">
+          <div id={assistiveId} className="mt-1 min-h-4 px-1">
             {error && errorMessage ? (
               <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (

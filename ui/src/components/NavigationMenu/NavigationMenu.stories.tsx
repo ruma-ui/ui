@@ -270,7 +270,7 @@ export const PillsVariant: Story = {
 export const CustomStyled: Story = {
   render: () => (
     <div className="w-full max-w-4xl">
-      <NavigationMenu className="rounded-lg border border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 shadow-sm">
+      <NavigationMenu className="rounded-lg border border-gray-200 bg-linear-to-r from-blue-50 to-indigo-50 p-4 shadow-sm">
         <NavigationMenuList className="space-x-2">
           <NavigationMenuItem value="dashboard">
             <NavigationMenuLink

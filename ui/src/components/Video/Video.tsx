@@ -721,7 +721,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 />
               </div>
             </div>
-            <div className="min-w-[80px] text-right text-sm font-medium text-white">
+            <div className="min-w-20 text-right text-sm font-medium text-white">
               {formatTime(currentTime)} / {formatTime(duration)}
             </div>
 

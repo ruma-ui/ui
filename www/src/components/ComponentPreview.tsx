@@ -111,7 +111,7 @@ export function ComponentPreview({ slug, code, children }: ComponentPreviewProps
 
       {/* Tab Contents */}
       {activeTab === "preview" ? (
-        <div className="flex min-h-[300px] items-center justify-center bg-zinc-950/40 p-8">
+        <div className="flex min-h-75 items-center justify-center bg-zinc-950/40 p-8">
           {children}
         </div>
       ) : (

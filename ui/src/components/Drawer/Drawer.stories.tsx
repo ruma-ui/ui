@@ -408,7 +408,7 @@ export const PreventClose: Story = {
           }
         >
           <div className="flex items-start gap-3">
-            <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
+            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
             <p className="text-gray-600">
               This drawer cannot be closed by clicking outside or pressing Escape. You must click
               the &quot;I Understand&quot; button to proceed.
@@ -588,12 +588,12 @@ export const CustomStyled: Story = {
           open={open}
           onClose={onClose}
           title="Custom Drawer"
-          className="border-purple-200 bg-gradient-to-b from-purple-50 to-pink-50"
+          className="border-purple-200 bg-linear-to-b from-purple-50 to-pink-50"
           overlayClassName="bg-purple-900/50"
           footer={
             <div className="flex justify-end">
               <button
-                className="rounded-md bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-sm font-medium text-white hover:from-purple-700 hover:to-pink-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:outline-none"
+                className="rounded-md bg-linear-to-r from-purple-600 to-pink-600 px-4 py-2 text-sm font-medium text-white hover:from-purple-700 hover:to-pink-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:outline-none"
                 onClick={onClose}
               >
                 Got it!

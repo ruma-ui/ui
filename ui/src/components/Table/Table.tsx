@@ -396,7 +396,7 @@ export function Table<T extends Record<string, unknown>>({
                 "group",
                 densityRow[density],
                 variant === "zebra" && actualIndex % 2 === 1 && "bg-muted/35",
-                isSelected && "!bg-accent/40",
+                isSelected && "bg-accent/40!",
                 highlightOnHover && "hover:bg-accent/25",
                 onRowClick && "cursor-pointer",
                 getRowClassName(row, actualIndex)

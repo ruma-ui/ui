@@ -83,7 +83,6 @@ ruma-ui/ui
 │           ├── commands/   # init.ts, add.ts
 │           └── index.ts
 │
-├── demo/                   # Interactive demo application
 ├── www/                    # Documentation website
 ├── scripts/                # Build & registry generation scripts
 │
@@ -124,7 +123,6 @@ pnpm install
 
 # 3. Start development
 pnpm storybook      # Component dev environment  →  http://localhost:6006
-pnpm dev:demo       # Demo app                  →  http://localhost:3000
 pnpm dev:website    # Documentation website     →  http://localhost:3001
 ```
 

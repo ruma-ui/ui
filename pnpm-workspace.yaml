@@ -1,6 +1,5 @@
 packages:
   - "ui"
-  - "demo"
   - "www"
   - "packages/*"
 

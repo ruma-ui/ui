@@ -242,7 +242,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
         {/* Content */}
         <div className={contentBase}>
           {children ? (
-            <div id={descId} className="break-words">
+            <div id={descId} className="wrap-break-word">
               {children}
             </div>
           ) : (

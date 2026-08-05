@@ -85,7 +85,7 @@ type Story = StoryObj<typeof Carousel>;
 const sampleItems = [
   <div
     key="1"
-    className="flex h-full items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 text-white"
+    className="flex h-full items-center justify-center bg-linear-to-br from-blue-500 to-blue-600 text-white"
   >
     <div className="text-center">
       <h3 className="mb-2 text-2xl font-bold">Slide 1</h3>
@@ -94,7 +94,7 @@ const sampleItems = [
   </div>,
   <div
     key="2"
-    className="flex h-full items-center justify-center bg-gradient-to-br from-green-500 to-green-600 text-white"
+    className="flex h-full items-center justify-center bg-linear-to-br from-green-500 to-green-600 text-white"
   >
     <div className="text-center">
       <h3 className="mb-2 text-2xl font-bold">Slide 2</h3>
@@ -103,7 +103,7 @@ const sampleItems = [
   </div>,
   <div
     key="3"
-    className="flex h-full items-center justify-center bg-gradient-to-br from-purple-500 to-purple-600 text-white"
+    className="flex h-full items-center justify-center bg-linear-to-br from-purple-500 to-purple-600 text-white"
   >
     <div className="text-center">
       <h3 className="mb-2 text-2xl font-bold">Slide 3</h3>
@@ -112,7 +112,7 @@ const sampleItems = [
   </div>,
   <div
     key="4"
-    className="flex h-full items-center justify-center bg-gradient-to-br from-red-500 to-red-600 text-white"
+    className="flex h-full items-center justify-center bg-linear-to-br from-red-500 to-red-600 text-white"
   >
     <div className="text-center">
       <h3 className="mb-2 text-2xl font-bold">Slide 4</h3>

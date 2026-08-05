@@ -236,7 +236,7 @@ export const ProductCard: Story = {
     clickable: true,
     children: (
       <>
-        <div className="mb-4 aspect-video rounded-t-lg bg-gradient-to-br from-blue-400 to-purple-500"></div>
+        <div className="mb-4 aspect-video rounded-t-lg bg-linear-to-br from-blue-400 to-purple-500"></div>
         <CardBody>
           <h3 className="mb-2 text-lg font-semibold">Premium Plan</h3>
           <p className="mb-3 text-gray-600">

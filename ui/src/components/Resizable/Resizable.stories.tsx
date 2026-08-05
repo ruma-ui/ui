@@ -113,7 +113,7 @@ export default meta;
 type Story = StoryObj<typeof Resizable>;
 
 const SampleContent = () => (
-  <div className="flex h-full items-center justify-center rounded-lg bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+  <div className="flex h-full items-center justify-center rounded-lg bg-linear-to-br from-blue-50 to-indigo-100 p-4">
     <div className="text-center">
       <h3 className="mb-2 text-lg font-semibold text-gray-800">Resizable Content</h3>
       <p className="text-sm text-gray-600">Drag the edges to resize this container</p>
@@ -177,7 +177,7 @@ export const LargeHandle: Story = {
 export const CustomStyled: Story = {
   args: {
     children: (
-      <div className="flex h-full items-center justify-center rounded-xl bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-6 shadow-lg">
+      <div className="flex h-full items-center justify-center rounded-xl bg-linear-to-r from-purple-400 via-pink-500 to-red-500 p-6 shadow-lg">
         <div className="text-center text-white">
           <h3 className="mb-2 text-xl font-bold">Custom Styled</h3>
           <p className="text-sm opacity-90">Beautiful resizable container</p>
@@ -214,7 +214,7 @@ export const ImageViewer: Story = {
     children: (
       <div className="flex h-full items-center justify-center bg-gray-100 p-4">
         <div className="max-h-full max-w-full rounded-lg bg-white p-4 shadow-md">
-          <div className="flex h-48 w-full items-center justify-center rounded bg-gradient-to-br from-blue-200 to-purple-300">
+          <div className="flex h-48 w-full items-center justify-center rounded bg-linear-to-br from-blue-200 to-purple-300">
             <span className="text-sm text-gray-600">Sample Image</span>
           </div>
           <p className="mt-2 text-center text-sm text-gray-600">Sample Image Placeholder</p>

@@ -215,7 +215,7 @@ export const AspectRatios: Story = {
 
       <div>
         <h3 className="mb-4 text-lg font-semibold">4:3 Aspect Ratio</h3>
-        <div className="aspect-[4/3] w-full max-w-xl">
+        <div className="aspect-4/3 w-full max-w-xl">
           <VideoPlayer
             src={SAMPLE_VIDEO}
             poster={SAMPLE_POSTER}

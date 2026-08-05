@@ -94,7 +94,7 @@ import { Button } from "@/components/ui/button";
 
 export default function CardDemo() {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-87.5">
       <CardHeader>
         <CardTitle>Create Project</CardTitle>
         <CardDescription>Deploy your new project in one click.</CardDescription>
@@ -129,7 +129,7 @@ export default function CardDemo() {
 
 export default function TabsDemo() {
   return (
-    <Tabs defaultValue="account" className="w-[400px]">
+    <Tabs defaultValue="account" className="w-100">
       <TabList>
         <Tab value="account">Account</Tab>
         <Tab value="password">Password</Tab>
@@ -335,8 +335,8 @@ export default function SkeletonDemo() {
     <div className="flex items-center space-x-4">
       <Skeleton className="h-12 w-12 rounded-full" />
       <div className="space-y-2">
-        <Skeleton className="h-4 w-[250px]" />
-        <Skeleton className="h-4 w-[200px]" />
+        <Skeleton className="h-4 w-62.5" />
+        <Skeleton className="h-4 w-50" />
       </div>
     </div>
   );

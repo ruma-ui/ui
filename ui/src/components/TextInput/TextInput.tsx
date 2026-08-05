@@ -169,7 +169,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           )}
         </div>
         {hasAssistive && (
-          <div id={assistiveId} className="mt-1 min-h-[1rem]">
+          <div id={assistiveId} className="mt-1 min-h-4">
             {error && errorMessage ? (
               <span className="text-destructive text-sm">{errorMessage}</span>
             ) : description ? (

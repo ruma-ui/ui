@@ -161,7 +161,7 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
         <div className={cn("min-w-0 flex-1", fullWidth && "w-full")}>{children}</div>
 
         {hasAssistive && (
-          <div className="min-h-[1rem]">
+          <div className="min-h-4">
             {error && errorMessage ? (
               <span className={cn(errorBase, formFieldSizes[size].error)}>{errorMessage}</span>
             ) : description ? (

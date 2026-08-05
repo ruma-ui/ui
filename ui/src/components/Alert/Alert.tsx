@@ -262,7 +262,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 
         <div className="min-w-0 flex-1">
           {title && <div className={cn("mb-1", sizes[size].title)}>{title}</div>}
-          <div className="break-words">{children}</div>
+          <div className="wrap-break-word">{children}</div>
         </div>
 
         {endIcon && !dismissible && (

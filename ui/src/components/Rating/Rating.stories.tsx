@@ -378,7 +378,7 @@ const CustomStyledComponent = () => {
       <Rating
         value={rating}
         onChange={setRating}
-        className={tw`rounded-lg border border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 p-4`}
+        className={tw`rounded-lg border border-purple-200 bg-linear-to-r from-purple-50 to-pink-50 p-4`}
       />
       <p className="text-xs text-gray-500">Custom styled rating: {rating}</p>
     </div>

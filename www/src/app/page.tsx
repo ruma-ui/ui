@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <main className="relative overflow-hidden">
       {/* Hero Section Background Glow */}
-      <div className="pointer-events-none absolute top-0 left-1/2 h-[500px] w-full max-w-7xl -translate-x-1/2 bg-gradient-to-b from-cyan-500/10 via-blue-600/5 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute top-0 left-1/2 h-125 w-full max-w-7xl -translate-x-1/2 bg-linear-to-b from-cyan-500/10 via-blue-600/5 to-transparent blur-3xl" />
 
       {/* Hero Content */}
       <section className="relative mx-auto max-w-7xl px-4 pt-20 pb-16 text-center sm:px-6 lg:px-8">
@@ -40,7 +40,7 @@ export default function Home() {
 
         <h1 className="mx-auto max-w-4xl text-4xl leading-tight font-extrabold tracking-tight text-white sm:text-6xl">
           Build your component library. <br />
-          <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
             Copy. Paste. Customize.
           </span>
         </h1>

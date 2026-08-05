@@ -219,7 +219,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 {/* Label on the left */}
                 <div>
                   {label && (
-                    <div className="text-foreground flex-shrink-0 text-sm font-medium">{label}</div>
+                    <div className="text-foreground shrink-0 text-sm font-medium">{label}</div>
                   )}
                 </div>
 
@@ -227,10 +227,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 <div>
                   {showValue && (
                     <div
-                      className={cn(
-                        sizes[size].text,
-                        "text-muted-foreground flex-shrink-0 font-medium"
-                      )}
+                      className={cn(sizes[size].text, "text-muted-foreground shrink-0 font-medium")}
                     >
                       {Math.round(percentage)}%
                     </div>

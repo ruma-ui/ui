@@ -230,7 +230,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             labelPosition === "left" && "flex-row-reverse"
           )}
         >
-          <div className="flex flex-shrink-0 items-center">{checkboxElement}</div>
+          <div className="flex shrink-0 items-center">{checkboxElement}</div>
           <div className={cn("flex min-w-0 flex-col justify-center", textMinHeights[size])}>
             {label && (
               <span
